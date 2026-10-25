@@ -1,0 +1,62 @@
+/* Mustangs+ athlete profiles. These four are REAL SMU football players.
+   Bio and stat lines come from public sources linked in each profile's "src" list (checked Oct 25, 2026).
+   Anything not from a source is marked illustrative on the page. */
+window.MP = window.MP || {};
+(function(){var MP=window.MP;
+var ESPN='https://www.espn.com/college-football/player/', SMU='https://smumustangs.com/sports/football/roster/';
+MP.ATHLETES = [
+ {id:'derrick-mcfall',name:'Derrick McFall',first:'Derrick',last:'McFall',num:'0',pos:'WR/RB',sport:'football',kit:'home',
+  ht:'5-11',wt:'182',cls:'Junior',hometown:'Tyler, Texas',prev:'Tyler HS',
+  ratings:[['247Sports','4-star'],['ESPN','4-star'],['Rivals','3-star'],['On3','3-star']],
+  blurb:'A do-everything weapon from Tyler who splits time between the slot and the backfield. As a redshirt freshman in 2025 he scored six total touchdowns and earned an Earl Campbell Tyler Rose Award honorable mention.',
+  honors:['2025 Preseason: Doak Walker Award Watch List','2025 In-Season: Earl Campbell Tyler Rose Award Honorable Mention (Nov. 11)'],
+  season:{label:'2026 season (through Oct. 24)',stats:[['REC',8],['REC YDS',124],['YDS/REC',15.5],['REC TD',3],['RUSH',14],['RUSH YDS',85],['YDS/CAR',6.1]]},
+  career:{cols:['Year','Team','Rush','Rush Yds','Avg','Rush TD','Rec','Rec Yds','Rec TD'],
+   rows:[['2024','SMU',26,106,4.1,2,3,30,0],['2025','SMU',35,189,5.4,4,19,160,2],['2026*','SMU',14,85,6.1,0,8,124,3]],
+   total:['Career','',75,380,5.1,6,30,314,5]},
+  log:{label:'2026 game log',cols:['Date','Opp','Result','Rec','Yds','TD','Car','Rush Yds','Rush TD'],
+   rows:[['9/7','@ Florida State','W 27-24',1,12,0,0,0,0],['9/12','vs UC Davis','W 56-10',2,57,1,6,46,0],['9/19','@ Louisville','L 31-41',0,0,0,1,0,0],['9/26','vs Missouri State','W 34-24',1,1,0,0,0,0],['10/3','vs Boston College','W 25-16',3,33,1,5,23,0],['10/17','vs Virginia','W 23-13',0,0,0,2,16,0],['10/24','vs California','W 59-20',1,21,1,0,0,0]]},
+  news:['Redshirt freshman 2025: season-best 64 rushing yards and three TDs at Boston College (Nov. 8), including a 48-yard run.','Three catches for 58 yards against No. 10 Miami on Nov. 1, 2025.','2024: made his SMU debut against Houston Christian with 69 rushing yards and a touchdown.'],
+  src:[['SMU Athletics bio',SMU+'derrick-mcfall/15560'],['ESPN stats',ESPN+'stats/_/id/5079523/derrick-mcfall'],['ESPN 2026 game log',ESPN+'gamelog/_/id/5079523/derrick-mcfall/type/college-football/year/2026'],['cfbstats 2025',"https://cfbstats.com/2025/player/663/50304430/index.html"]]},
+ {id:'kevin-jennings',name:'Kevin Jennings',first:'Kevin',last:'Jennings',num:'7',pos:'QB',sport:'football',kit:'alt',
+  ht:'6-0',wt:'195',cls:'5th Year',hometown:'Oak Cliff, Texas',prev:'South Oak Cliff HS',
+  ratings:null,
+  blurb:'The Oak Cliff native has started under center for three seasons. He threw for 3,641 yards and 26 touchdowns in 2025 and is completing 72.6% of his passes through seven games in 2026.',
+  honors:[],
+  season:{label:'2026 season (through Oct. 24)',stats:[['CMP-ATT','156-215'],['CMP%',72.6],['PASS YDS','2,062'],['PASS TD',19],['INT',5],['RTG',177.8],['RUSH TD',2]]},
+  career:{cols:['Year','Team','Cmp','Att','Pct','Yds','TD','Int','Rtg'],
+   rows:[['2022','SMU',17,22,77.3,205,1,0,170.5],['2023','SMU',61,105,58.1,618,5,2,119.4],['2024','SMU',247,380,65.0,'3,245',23,11,150.9],['2025','SMU',300,454,66.1,'3,641',26,13,146.6],['2026*','SMU',156,215,72.6,'2,062',19,5,177.8]],
+   total:['Career','',781,'1,176',66.4,'9,771',74,31,151.7]},
+  log:{label:'2026 game log',cols:['Date','Opp','Result','Cmp-Att','Yds','TD','Int','Rtg','Rush Yds'],
+   rows:[['9/7','@ Florida State','W 27-24','26-36',430,3,2,188.9,33],['9/12','vs UC Davis','W 56-10','14-16',337,5,0,367.6,5],['9/19','@ Louisville','L 31-41','24-35',222,1,2,119.9,35],['9/26','vs Missouri State','W 34-24','33-39',439,3,1,199.4,3],['10/3','vs Boston College','W 25-16','20-30',160,2,0,133.5,-7],['10/17','vs Virginia','W 23-13','23-36',251,2,0,140.8,26],['10/24','vs California','W 59-20','16-23',223,3,0,194.1,26]]},
+  news:['2026: five touchdown passes on 14-of-16 passing against UC Davis (Sept. 12).','2026: 430 passing yards in the opener at Florida State (Sept. 7), a 27-24 win.','2025: 3,641 passing yards, 26 TD, 66.1% completions over 13 games.'],
+  src:[['SMU Athletics roster',"https://smumustangs.com/sports/football/roster"],['ESPN stats',ESPN+'stats/_/id/5084084/kevin-jennings'],['ESPN 2026 game log',ESPN+'gamelog/_/id/5084084/kevin-jennings/type/college-football/year/2026'],['SMU 2025 cumulative stats',"https://smumustangs.com/sports/football/stats/2025"]]},
+ {id:'yamir-knight',name:'Yamir Knight',first:'Yamir',last:'Knight',num:'8',pos:'WR',sport:'football',kit:'away',
+  ht:'5-8',wt:'185',cls:'Senior',hometown:'Smyrna, Delaware',prev:'James Madison / Smyrna HS',
+  ratings:null,
+  blurb:'A James Madison transfer who plays slot receiver and returns punts. He was named Offensive MVP of the Trust & Will Holiday Bowl after a seven-catch, 104-yard day against Arizona.',
+  honors:['2025 Postseason: All-ACC Honorable Mention','Trust & Will Holiday Bowl Offensive MVP (Jan. 2, 2026)','2025 In-Season: Earl Campbell Tyler Rose Award Honorable Mention'],
+  season:{label:'2026 season (through Oct. 24)',stats:[['REC',38],['REC YDS',443],['YDS/REC',11.7],['REC TD',2],['LONG',33],['PR',14],['PR YDS',153]]},
+  career:{cols:['Year','Team','Rec','Yds','Avg','TD','Long','PR','PR Yds'],
+   rows:[['2023','JMU',8,73,9.1,0,16,'-','-'],['2024','JMU',53,605,11.4,4,68,21,173],['2025','SMU',54,637,11.8,5,61,17,168],['2026*','SMU',38,443,11.7,2,33,14,153]],
+   total:['Career','',153,'1,758',11.5,11,68,52,494]},
+  log:{label:'2026 game log',cols:['Date','Opp','Result','Rec','Yds','Avg','TD','Long'],
+   rows:[['9/7','@ Florida State','W 27-24',6,49,8.2,0,18],['9/12','vs UC Davis','W 56-10',3,62,20.7,0,33],['9/19','@ Louisville','L 31-41',7,70,10.0,1,19],['9/26','vs Missouri State','W 34-24',11,164,14.9,1,29],['10/3','vs Boston College','W 25-16',2,22,11.0,0,12],['10/17','vs Virginia','W 23-13',6,51,8.5,0,17],['10/24','vs California','W 59-20',3,25,8.3,0,10]]},
+  news:['2026: 11 catches for 164 yards against Missouri State (Sept. 26).','2025: season-high 162 receiving yards on seven catches at Boston College, including a 61-yard reception.','2025: averaged 9.9 yards per punt return, fifth in the ACC.'],
+  src:[['SMU Athletics bio',SMU+'yamir-knight/15549'],['ESPN stats',ESPN+'stats/_/id/5121750/yamir-knight'],['ESPN 2026 game log',ESPN+'gamelog/_/id/5121750/yamir-knight/type/college-football/year/2026'],['Sports-Reference 2025 game log',"https://www.sports-reference.com/cfb/players/yamir-knight-1/gamelog/2025"]]},
+ {id:'ahmaad-moses',name:'Ahmaad Moses',first:'Ahmaad',last:'Moses',num:'7',pos:'S',sport:'football',kit:'home',
+  ht:'5-10',wt:'205',cls:'5th Year',hometown:'Arlington, Texas',prev:'Mansfield Summit HS',
+  ratings:[['247Sports','3-star'],['Rivals','3-star'],['ESPN','3-star']],
+  blurb:'A team captain who was AP All-ACC First Team in 2025. He led SMU with 104 tackles and five interceptions and was Defensive MVP of the Trust & Will Holiday Bowl.',
+  honors:['2025: AP All-ACC First Team','2025: Phil Steele All-America Fourth Team','Trust & Will Holiday Bowl Defensive MVP','Walter Camp National Defensive Player of the Week (Nov. 4, 2025)'],
+  season:{label:'2025 season (no 2026 stats listed by ESPN as of Oct. 25)',stats:[['TKL',104],['SOLO',54],['TFL',5.5],['SACK',1],['INT',5],['INT YDS',110],['PD',3]]},
+  career:{cols:['Year','Team','Tkl','Solo','Ast','Sack','Int','Int Yds','PD'],
+   rows:[['2022','SMU',27,21,6,1,0,0,1],['2023','SMU',46,34,12,1,0,0,1],['2024','SMU',73,38,35,0,3,97,6],['2025','SMU',104,54,50,1,5,110,3]],
+   total:['Career','',250,147,103,3,8,207,11]},
+  log:{label:'2025 game log',cols:['Date','Opp','Result','Tkl','Solo','Sack','Int','Int Yds','PD'],
+   rows:[['8/30','vs East Texas A&M','W 42-13',4,4,0,1,95,0],['9/6','vs Baylor','L 45-48 2OT',8,4,1,0,0,0],['9/13','@ Missouri State','W 28-10',6,2,0,0,0,0],['9/20','@ TCU','L 24-35',6,2,0,0,0,0],['10/4','vs Syracuse','W 31-18',9,4,0,1,0,0],['10/11','vs Stanford','W 34-10',11,5,0,0,0,0],['10/18','@ Clemson','W 35-24',6,4,0,0,0,1],['10/25','@ Wake Forest','L 12-13',4,1,0,1,0,0],['11/1','vs Miami','W 26-20 OT',15,5,0,2,15,0],['11/8','@ Boston College','W 45-13',4,2,0,0,0,0],['11/22','vs Louisville','W 38-6',8,6,0,0,0,0],['11/29','@ California','L 35-38',10,5,0,0,0,1],['1/2','vs Arizona (Holiday Bowl)','W 24-19',13,10,0,0,0,1]]},
+  news:['2025: 95-yard interception return for a touchdown in the opener against East Texas A&M.','2025: career-high 15 tackles and two interceptions against No. 10 Miami.','2024: 73 tackles and three interceptions, including a pick-six against TCU.'],
+  src:[['SMU Athletics bio',SMU+'ahmaad-moses/16145'],['ESPN stats',ESPN+'stats/_/id/4715349/ahmaad-moses'],['ESPN 2025 game log',ESPN+'gamelog/_/id/4715349/ahmaad-moses']]}
+];
+MP.athleteBy=function(id){for(var i=0;i<MP.ATHLETES.length;i++)if(MP.ATHLETES[i].id===id)return MP.ATHLETES[i];return null};
+})();
