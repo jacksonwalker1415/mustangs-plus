@@ -56,9 +56,21 @@
     MP.THREADS=(MP.THREADS||[]).filter(function(t){return t.f!=='recruiting'&&(!MP.recOK||MP.recOK(t))})}
 
   /* ---------- users shown on the boards ---------- */
-  function ensureUser(id,name,tier,since){MP.USERS=MP.USERS||{};
+  function ensureUser(id,name,tier,since,av){MP.USERS=MP.USERS||{};
     if(!MP.USERS[id])MP.USERS[id]={n:name||'Member',tier:TIERS[tier]||'Member',since:since||String(new Date().getFullYear()),posts:'',real:true};
-    else if(name)MP.USERS[id].n=name;return id}
+    else if(name)MP.USERS[id].n=name;
+    if(av!==undefined)MP.USERS[id].av=avOK(av)?av:null;return id}
+  /* ---------- profile photos (supabase/RUN_ME_15_avatars.sql) ----------
+     Demo mode: always on, the photo is a small data: URL kept in this browser with the demo account.
+     Live: off until MP.FEATURES.avatars is true (flip it only after RUN_ME_15 has run), so the site never asks
+     Supabase for a column or bucket that isn't there yet. Only URLs in our own avatars bucket are ever shown. */
+  var AV_LIVE=new RegExp('^'+String(CFG.SUPABASE_URL||'').replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'/storage/v1/object/public/avatars/[0-9a-f-]{36}/[A-Za-z0-9._-]{1,80}$');
+  var AV_TYPES=['image/jpeg','image/png','image/webp'],AV_MAX=2*1024*1024;
+  function avOn(){return !SMU.live||!!(MP.FEATURES&&MP.FEATURES.avatars===true)}
+  function avOK(u){if(typeof u!=='string'||u.length>200000)return false;
+    return SMU.live?!!configured&&AV_LIVE.test(u):/^data:image\/(webp|jpeg|png);base64,[A-Za-z0-9+\/=]+$/.test(u)}
+  function blobURL(b){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(r.result)};r.onerror=function(){rej(new Error('Could not read that photo.'))};r.readAsDataURL(b)})}
+  function avCheck(b){if(!b||AV_TYPES.indexOf(b.type)<0)return 'Use a JPEG, PNG or WebP image.';if(b.size>AV_MAX)return 'That photo is over 2 MB. Pick a smaller one.';return ''}
   /* every author on the boards needs a USERS entry (e.g. posts written in this browser before signing out) */
   function fillUsers(){(MP.THREADS||[]).forEach(function(t){[t.by].concat((t.posts||[]).map(function(p){return p[0]})).forEach(function(id){
     if(id&&!(MP.USERS&&MP.USERS[id]))ensureUser(id,id==='me'?(ls('mp_lastname')||'Demo member'):'Member')})})}
@@ -74,14 +86,17 @@
 
   /* ================= DEMO backend (localStorage) ================= */
   var demo={
-    init:function(){var u=lj('mp_user',null);SMU.user=u;if(u)ensureUser('me',u.name,demo.tier(),String(new Date(u.since||Date.now()).getFullYear()));demo.mergeThreads();realCounts();fillUsers();applyBoards(countBoards());return Promise.resolve()},
+    init:function(){var u=lj('mp_user',null);SMU.user=u;if(u)ensureUser('me',u.name,demo.tier(),String(new Date(u.since||Date.now()).getFullYear()),u.avatar||null);demo.mergeThreads();realCounts();fillUsers();applyBoards(countBoards());return Promise.resolve()},
     signUp:function(o){var u={id:uid(),email:String(o.email).trim().toLowerCase(),name:(o.name||'').trim()||nameFromEmail(o.email),since:Date.now()};
-      sj('mp_user',u);ls('mp_lastname',u.name);SMU.user=u;ensureUser('me',u.name,demo.tier());MP.USERS.me.n=u.name;emit('auth',u);return Promise.resolve({user:u,confirm:false})},
+      sj('mp_user',u);ls('mp_lastname',u.name);SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,null);MP.USERS.me.n=u.name;emit('auth',u);return Promise.resolve({user:u,confirm:false})},
     signIn:function(o){var u=lj('mp_user',null),em=String(o.email).trim().toLowerCase();
       if(!u||u.email!==em){u={id:uid(),email:em,name:nameFromEmail(em),since:Date.now()};sj('mp_user',u)}
-      SMU.user=u;ensureUser('me',u.name,demo.tier());emit('auth',u);return Promise.resolve({user:u})},
+      SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,u.avatar||null);emit('auth',u);return Promise.resolve({user:u})},
     magic:function(email){return demo.signIn({email:email}).then(function(r){r.instant=true;return r})},
-    signOut:function(){ls('mp_user',null);SMU.user=null;emit('auth',null);return Promise.resolve()},
+    signOut:function(){ls('mp_user',null);SMU.user=null;if(MP.USERS&&MP.USERS.me)MP.USERS.me.av=null;emit('auth',null);return Promise.resolve()},
+    setAvatar:function(b){var u=lj('mp_user',null),bad=avCheck(b);if(!u)return Promise.reject(new Error('Sign in to add a photo.'));if(bad)return Promise.reject(new Error(bad));
+      return blobURL(b).then(function(d){u.avatar=d;sj('mp_user',u);SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,d);emit('avatar',d);return d})},
+    removeAvatar:function(){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Not signed in'));delete u.avatar;sj('mp_user',u);SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,null);emit('avatar',null);return Promise.resolve()},
     updateName:function(n){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Not signed in'));u.name=n;sj('mp_user',u);ls('mp_lastname',n);SMU.user=u;MP.USERS.me&&(MP.USERS.me.n=n);emit('auth',u);return Promise.resolve(u)},
     tier:function(){var t=ls('mp_tier');return TIERS[t]?t:(ls('mp_member')==='1'?'pony':'free')},
     setTier:function(t){ls('mp_tier',t);ls('mp_member',t!=='free'?'1':'0');emit('tier',t);return Promise.resolve(t)},
@@ -118,15 +133,18 @@
     document.head.appendChild(s)})}
   var tierCache='free',savedCache=[];
   function toThread(r){
-    var by=r.author_handle||ensureUser('u:'+r.author_id,r.author&&r.author.display_name);
+    var by=r.author_handle||ensureUser('u:'+r.author_id,r.author&&r.author.display_name,undefined,undefined,avOf(r.author));
     var posts=(r.posts||[]).slice().sort(function(a,b){return a.created_at<b.created_at?-1:1});
     var idx={};posts.forEach(function(p,i){idx[p.id]=i});
-    var P=posts.map(function(p){var u=p.author_handle||ensureUser('u:'+p.author_id,p.author&&p.author.display_name);
+    var P=posts.map(function(p){var u=p.author_handle||ensureUser('u:'+p.author_id,p.author&&p.author.display_name,undefined,undefined,avOf(p.author));
       return [u,p.body,p.quote_post_id!=null&&idx[p.quote_post_id]!=null?idx[p.quote_post_id]:null,p.created_at,p.id]});
     return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,by:by,ago:ago(r.created_at),replies:P.length?P.length-1:(r.author_handle?null:Math.max(0,r.reply_count||0)),views:r.author_handle?null:kfmt(r.view_count),
       pin:!!r.pinned,hot:!!r.hot,posts:P.length?P:[[by,'',null,r.created_at]],locked:!P.length,live:true,mine:SMU.user&&r.author_id===SMU.user.id}}
-  var THREAD_SEL='id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,author:profiles!threads_author_id_fkey(display_name),'+
-    'posts(id,author_handle,author_id,body,quote_post_id,created_at,author:profiles!posts_author_id_fkey(display_name))';
+  function threadSel(){var pf=avOn()?'display_name,avatar_url':'display_name';
+    return 'id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,author:profiles!threads_author_id_fkey('+pf+'),'+
+      'posts(id,author_handle,author_id,body,quote_post_id,created_at,author:profiles!posts_author_id_fkey('+pf+'))'}
+  function avOf(a){return avOn()&&a?(a.avatar_url||null):undefined}
+  var myAv={id:null,url:null};
   var live={
     init:function(){
       return loadScript(SUPA_SRC,SUPA_SRI).then(function(){
@@ -139,7 +157,24 @@
         /* Never break the site: fall back to demo mode if Supabase can't be reached */
         SMU.live=false;SMU.mode='demo';SMU.reason='unreachable';sb=null;console.warn('[SMU+] Live backend unavailable, using demo mode.',e);
         emit('error',fail('connect',e));return demo.init()})},
-    afterSignIn:function(){return Promise.all([live.fetchTier(),live.fetchSaved(),live.ensureProfileName()]).catch(function(){})},
+    afterSignIn:function(){return Promise.all([live.fetchTier(),live.fetchSaved(),live.ensureProfileName(),live.fetchAvatar()]).catch(function(){})},
+    fetchAvatar:function(){if(!avOn()||!SMU.user)return Promise.resolve(null);var id=SMU.user.id;
+      return q('avatar',sb.from('profiles').select('avatar_url').eq('id',id).maybeSingle()).then(function(r){var url=r&&avOK(r.avatar_url)?r.avatar_url:null;live.useAvatar(id,url);return url})},
+    useAvatar:function(id,url){myAv={id:id,url:url};if(SMU.user&&SMU.user.id===id){SMU.user.avatar=url;ensureUser('u:'+id,SMU.user.name,tierCache,undefined,url)}emit('avatar',url)},
+    /* Upload goes to avatars/<user id>/avatar-<time>.webp (a new name each time, so caches never show the old photo),
+       then the profile points at it, then older files in the folder are removed. */
+    avFiles:function(id){return q('avatar',sb.storage.from('avatars').list(id,{limit:100})).then(function(rows){return (rows||[]).map(function(x){return id+'/'+x.name}).filter(function(n){return !/\/\.emptyFolderPlaceholder$/.test(n)})})},
+    setAvatar:function(b){if(!SMU.user)return Promise.reject(new Error('Sign in to add a photo.'));if(!avOn())return Promise.reject(new Error('Profile photos aren\u2019t switched on yet.'));
+      var bad=avCheck(b);if(bad)return Promise.reject(new Error(bad));
+      var id=SMU.user.id,path=id+'/avatar-'+Date.now().toString(36)+(b.type==='image/webp'?'.webp':b.type==='image/png'?'.png':'.jpg'),st=sb.storage.from('avatars');
+      return q('avatar',st.upload(path,b,{contentType:b.type,cacheControl:'31536000',upsert:false})).then(function(){
+        var url=st.getPublicUrl(path).data.publicUrl;
+        return q('avatar',sb.from('profiles').update({avatar_url:url}).eq('id',id)).then(function(){return url},function(e){st.remove([path]).then(function(){},function(){});throw e})
+      }).then(function(url){live.useAvatar(id,url);
+        live.avFiles(id).then(function(all){var old=all.filter(function(n){return n!==path});if(old.length)return st.remove(old)}).catch(function(){});return url})},
+    removeAvatar:function(){if(!SMU.user)return Promise.reject(new Error('Not signed in'));var id=SMU.user.id,st=sb.storage.from('avatars');
+      return live.avFiles(id).then(function(all){return all.length?q('avatar',st.remove(all)):null})
+        .then(function(){return q('avatar',sb.from('profiles').update({avatar_url:null}).eq('id',id))}).then(function(){live.useAvatar(id,null)})},
     ensureProfileName:function(){var u=SMU.user;if(!u)return;ensureUser('u:'+u.id,u.name,tierCache)},
     loadForums:function(strict){return q('forums',sb.from('forums').select('id,name,description,premium,grp,sort').order('sort')).then(function(rows){
       if(rows&&rows.length)MP.FORUMS=rows.map(function(f){var old=(MP.FORUMS||[]).filter(function(x){return x.id===f.id})[0]||{};
@@ -187,14 +222,14 @@
     toggleSave:function(id){if(!SMU.user)return Promise.reject(new Error('Sign in to save athletes.'));var has=savedCache.indexOf(id)>=0;
       var op=has?sb.from('saved_athletes').delete().eq('user_id',SMU.user.id).eq('athlete_id',id):sb.from('saved_athletes').insert({user_id:SMU.user.id,athlete_id:id});
       return q('saved',op).then(function(){if(has)savedCache=savedCache.filter(function(x){return x!==id});else savedCache.unshift(id);emit('saved',savedCache);return savedCache})},
-    loadThreads:function(){return q('threads',sb.from('threads').select(THREAD_SEL).order('last_post_at',{ascending:false}).limit(200)).then(function(rows){
+    loadThreads:function(){return q('threads',sb.from('threads').select(threadSel()).order('last_post_at',{ascending:false}).limit(200)).then(function(rows){
       MP.THREADS=(rows||[]).map(toThread);recFilter();fillUsers();
       /* Members-only posts aren't readable signed out, so their reply counts stay hidden. Once supabase/PROPOSED_8_board_counts.sql
          has run, set THREAD_STATS to true and the real totals come from the thread_stats view (kept off until then to avoid a 404). */
       if(!THREAD_STATS||!MP.THREADS.some(function(t){return t.replies==null}))return;
       return sb.from('thread_stats').select('thread_id,posts').then(function(r){if(r&&!r.error&&r.data){var m={};r.data.forEach(function(x){m[x.thread_id]=x.posts});
         MP.THREADS.forEach(function(t){if(t.replies==null&&m[t.id]!=null)t.replies=Math.max(0,m[t.id]-1)})}},function(){})}).then(function(){emit('threads');return MP.THREADS})},
-    loadThread:function(id){return q('thread',sb.from('threads').select(THREAD_SEL).eq('id',id).maybeSingle()).then(function(r){if(!r||(recOff()&&r.forum_id==='recruiting'))return null;var t=toThread(r);
+    loadThread:function(id){return q('thread',sb.from('threads').select(threadSel()).eq('id',id).maybeSingle()).then(function(r){if(!r||(recOff()&&r.forum_id==='recruiting'))return null;var t=toThread(r);
       MP.THREADS=MP.THREADS.filter(function(x){return x.id!==id});MP.THREADS.unshift(t);
       sb.rpc('bump_thread_view',{tid:id}).then(function(){},function(){});return t})},
     createThread:function(o){if(!SMU.user)return Promise.reject(new Error('Sign in to start a thread.'));
@@ -208,17 +243,18 @@
       return function(){try{sb.removeChannel(ch)}catch(e){}}}
   };
   function setSession(s){var u=s&&s.user;SMU.user=u?{id:u.id,email:u.email,name:(u.user_metadata&&u.user_metadata.display_name)||nameFromEmail(u.email),confirmed:!!u.email_confirmed_at||!!u.confirmed_at}:null;
+    if(SMU.user&&myAv.id===SMU.user.id)SMU.user.avatar=myAv.url;  /* token refreshes rebuild the user object; keep the photo */
     if(SMU.user)ensureUser('u:'+SMU.user.id,SMU.user.name,tierCache)}
 
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
-  ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch'].forEach(function(k){
+  ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch','setAvatar','removeAvatar'].forEach(function(k){
     SMU[k]=function(){var b=B();return b[k].apply(b,arguments)}});
   SMU.reset=function(e){return SMU.live?live.reset(e):Promise.reject(new Error('Password reset needs the live database. In demo mode, just sign in with your email.'))};
   SMU.newPassword=function(p){return SMU.live?live.newPassword(p):Promise.reject(new Error('Not available in demo mode.'))};
   SMU.tier=function(){return B().tier()};
   SMU.saved=function(){return B().saved()};
-  SMU.me=meKey;
+  SMU.me=meKey;SMU.avatarsOn=avOn;SMU.avatarOK=avOK;SMU.avatarCheck=avCheck;
   realCounts();applyBoards(countBoards());  /* replace the sample totals and per-thread counts before anything renders */
   SMU.ready=(configured?live.init():demo.init()).then(function(){emit('ready',SMU.mode);return SMU.mode});
   if(typeof window!=='undefined'){window.addEventListener('offline',function(){emit('net',false)});window.addEventListener('online',function(){emit('net',true)})}

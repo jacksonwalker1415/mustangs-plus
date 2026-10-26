@@ -1294,3 +1294,33 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .mm-nav .mm-sports a{display:flex;grid-template-columns:none;align-items:center;gap:12px;min-height:44px;padding:0 var(--s2);border-radius:0;border-bottom:0;background:none;font-size:16px;font-weight:600;color:rgba(255,255,255,.92)}
 .mm-nav .mm-sports a svg{flex:none;width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .mm-nav .mm-sports a:hover,.mm-nav .mm-sports a:focus-visible{background:rgba(255,255,255,.08)}
+
+/* Member profile photos: the photo covers the initial; if it fails to load, the initial shows (app.js avFix) */
+.av{position:relative;overflow:hidden}
+.av-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;background:#fff}
+.av.xl{width:96px;height:96px;font-size:36px}
+.acct-av{position:relative;overflow:hidden}
+.acct-av.has-ph{background:#fff}
+.acct-btn.in .acct-av.has-ph{background:#fff;box-shadow:0 0 0 2px #fff}
+.post-f .rep-ph{margin-left:0}
+.post-f button{white-space:nowrap}
+.pf{display:flex;gap:20px;align-items:flex-start;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.pf-av{flex:none}
+.pf-ctl{min-width:0;flex:1}
+.pf-l{font-weight:800;color:var(--ink);margin:0 0 2px}
+.pf-s{font-size:14px;color:var(--ink-3);margin:0 0 12px;max-width:44ch}
+.pf-btns{display:flex;flex-wrap:wrap;gap:8px}
+.pf-btns .btn{min-height:44px;height:auto}
+.pf-rules{font-size:14px;line-height:1.45;color:var(--ink-2,#333);margin:12px 0 0;padding-left:10px;border-left:3px solid var(--red);max-width:46ch}
+.pf .auth-m:empty{display:none}
+.brules{margin-top:var(--s5);padding:var(--s4) var(--s5);background:#fff;border:1px solid var(--line);border-radius:var(--r2);max-width:80ch}
+.brules h3{font-size:16px;margin:0 0 var(--s2);color:var(--ink)}
+.brules ul{margin:0;padding-left:1.2em;font-size:14px;color:var(--ink-2,#333)}
+.brules li+li{margin-top:4px}
+@media(max-width:639px){
+  .pf{flex-direction:column;gap:14px}
+  .av.xl{width:80px;height:80px;font-size:30px}
+  .pf-btns .btn{flex:1 1 140px}
+  .brules{padding:var(--s4)}
+  .post-f{flex-wrap:wrap;row-gap:0}
+}
