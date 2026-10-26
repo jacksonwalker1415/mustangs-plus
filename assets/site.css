@@ -1519,10 +1519,36 @@ nav.main .nav-dd-btn.nav-x{display:none}
 header.site{padding-top:env(safe-area-inset-top)}
 .jump{top:var(--hdr-h,var(--hdr))}
 html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
-/* Phones: no small kicker above each home section heading */
 
 /* Continue watching (Library) and About-page sources */
 #continue.tight{padding-bottom:0}
 .src-list{margin:var(--s3) 0 0;padding-left:1.2em;display:grid;gap:6px}
 .src-list a{text-decoration:underline}
 .cmp-key{margin-top:var(--s2);font-size:13px;color:var(--ink-2)}
+/* ---------- Free Student plan: entry band (home plans, Join pop-up, account), form, badge ---------- */
+.st-band{display:flex;align-items:center;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;margin:0 0 24px;padding:20px 24px;background:#fff;color:var(--ink);border:1px solid var(--line-2);border-left:4px solid var(--red);border-radius:var(--r2)}
+.st-b{min-width:0;flex:1 1 320px}
+.st-k{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin:0 0 2px}
+.st-band h4{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.05;text-transform:uppercase;letter-spacing:.01em;color:var(--blue);margin:0 0 4px}
+.st-band p:not(.st-k){font-size:15px;color:var(--ink-2);margin:0;max-width:56ch}
+.st-band .st-go{flex:none;min-height:48px;padding:0 22px}
+.dlg-join .st-band{margin:0 0 22px;border-color:#fff;border-left-color:var(--red)}
+.st-acct{margin-top:20px}
+.st-consent{margin:4px 0 8px}
+.st-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;vertical-align:2px;line-height:1.4}
+.st-status{font-weight:700;color:var(--ink);margin:8px 0 0}
+.st-lede{font-size:15px;color:var(--ink-2);margin:0 0 16px;max-width:52ch}
+.fld-n{font-size:13px;line-height:1.45;color:var(--ink-3);margin:6px 0 0;max-width:52ch}
+.st-f .st-submit{width:100%;min-height:48px;margin-top:4px}
+.st-sent{padding:16px 18px;border:1px solid var(--line-2);border-left:4px solid var(--blue);border-radius:var(--r1);background:#fff}
+.st-sent h4{font-size:17px;color:var(--ink);margin:0 0 4px}
+.st-sent p{margin:0;font-size:15px;color:var(--ink-2)}
+#studentDlg .cnotice{margin-top:16px}
+.st-card p{color:var(--ink-2);margin:0 0 12px}
+.st-card .btn{min-height:44px;height:auto}
+@media(max-width:639px){
+  .st-band{padding:16px;gap:12px}
+  .st-band h4{font-size:23px}
+  .st-band .st-go{width:100%}
+  #studentDlg .fld-row{grid-template-columns:1fr}
+}
