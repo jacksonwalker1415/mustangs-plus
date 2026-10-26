@@ -1793,11 +1793,9 @@ body[data-page="home"] #feeds{background:#f2f4fa}
 /* =====================================================================
    Round 8: polish-next (audit next-up items 11, 12, 16). Inserted above the 6.12 guard.
    ===================================================================== */
-/* ---- 8.1 Sport/profile jump bar on phones: sits flush under the header (the old +44px
-   offset left a gap), and a solid "More ›" end chip pinned to the right edge shows there is more.
+/* ---- 8.1 Sport/profile jump bar on phones (main c73dccf owns its sticky offset via the measured --hdr-h): a solid "More ›" end chip pinned to the right edge shows there is more.
    The chip rides at the end of the row, so Board and Other sports always scroll fully into view;
    where scroll-driven animations exist it hides itself at the end of the row. ---- */
-@media(max-width:959px){.jump{top:var(--hdr)}}
 @media(max-width:639px){
   .jump .wrap{gap:var(--s4);scroll-snap-type:x proximity;scroll-padding-inline:var(--gut)}
   .jump a{scroll-snap-align:start}
