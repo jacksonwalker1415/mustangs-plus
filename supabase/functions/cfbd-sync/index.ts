@@ -1,6 +1,6 @@
 // cfbd-sync: pulls SMU football scores and play-by-play from CollegeFootballData.com into public.live_games / public.game_plays.
 // The API key lives in Supabase Vault (secret "cfbd_api_key") and is read here with the service role. It is never in this repo.
-// Called by pg_cron (see supabase/RUN_ME_25_cfbd_live.sql) with the Vault "cfbd_cron_token" in the x-cron-token header.
+// Called by pg_cron (see supabase/RUN_ME_27_cfbd_live.sql) with the Vault "cfbd_cron_token" in the x-cron-token header.
 //   POST {"mode":"schedule"}  SMU's season games (scores, final line scores) + full play-by-play once per finished game
 //   POST {"mode":"live"}      the SMU game in its live window: score, quarter, clock, possession, recent plays
 import { createClient } from "jsr:@supabase/supabase-js@2";
