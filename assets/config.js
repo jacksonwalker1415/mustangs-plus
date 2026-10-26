@@ -5,7 +5,7 @@
    The anon key is meant to be public: Row Level Security in supabase/schema.sql protects the data.
    NEVER put the service_role key (or any secret key) in this file or anywhere in this repo. */
 window.SMU_CONFIG = {
-  SUPABASE_URL: '',        // e.g. 'https://abcdefghijklmno.supabase.co'
-  SUPABASE_ANON_KEY: '',   // Project Settings > API > Project API keys > anon / public
+  SUPABASE_URL: 'https://lpoguzstqpwzcmjxeaik.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxwb2d1enN0cXB3emNtanhlYWlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI5OTMzMjksImV4cCI6MjEwODU2OTMyOX0.beC7fma6vWOXKS5zfgGJV1-BzJAKRvT8ZBiLDyoA5sU', // anon / public key (role=anon). Safe to publish; RLS protects the data.
   SITE_URL: 'https://jacksonwalker1415.github.io/mustangs-plus/'
 };

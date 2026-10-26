@@ -104,15 +104,15 @@
         sb.auth.onAuthStateChange(function(ev,session){var was=SMU.user&&SMU.user.id;setSession(session);
           if((SMU.user&&SMU.user.id)!==was){emit('auth',SMU.user);if(SMU.user)live.afterSignIn()}});
         return q('session',sb.auth.getSession()).then(function(d){setSession(d&&d.session);if(SMU.user)return live.afterSignIn()})
-      }).then(function(){return live.loadForums()}).catch(function(e){
+      }).then(function(){return live.loadForums(true)}).catch(function(e){
         /* Never break the site: fall back to demo mode if Supabase can't be reached */
         SMU.live=false;SMU.mode='demo';SMU.reason='unreachable';sb=null;console.warn('[SMU+] Live backend unavailable, using demo mode.',e);
         emit('error',fail('connect',e));return demo.init()})},
     afterSignIn:function(){return Promise.all([live.fetchTier(),live.fetchSaved(),live.ensureProfileName()]).catch(function(){})},
     ensureProfileName:function(){var u=SMU.user;if(!u)return;ensureUser('u:'+u.id,u.name,tierCache)},
-    loadForums:function(){return q('forums',sb.from('forums').select('id,name,description,premium,grp,sort').order('sort')).then(function(rows){
+    loadForums:function(strict){return q('forums',sb.from('forums').select('id,name,description,premium,grp,sort').order('sort')).then(function(rows){
       if(rows&&rows.length)MP.FORUMS=rows.map(function(f){var old=(MP.FORUMS||[]).filter(function(x){return x.id===f.id})[0]||{};
-        return {id:f.id,name:f.name,desc:f.description,prem:f.premium,group:f.grp,threads:old.threads||0,posts:old.posts||0}})}).catch(function(){})},
+        return {id:f.id,name:f.name,desc:f.description,prem:f.premium,group:f.grp,threads:old.threads||0,posts:old.posts||0}})}).catch(function(e){if(strict)throw e})},
     signUp:function(o){return q('signup',sb.auth.signUp({email:o.email,password:o.password,options:{data:{display_name:o.name||nameFromEmail(o.email)},emailRedirectTo:CFG.SITE_URL+'account/'}}))
       .then(function(d){return {user:d.user,confirm:!d.session}})},
     signIn:function(o){return q('signin',sb.auth.signInWithPassword({email:o.email,password:o.password})).then(function(d){return {user:d.user}})},
