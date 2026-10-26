@@ -1296,23 +1296,21 @@ main .mcard:focus-visible{outline-offset:4px}
 
 /* ---- 6.3 Type hierarchy ---- */
 .sec-t{font-size:var(--d-sec);line-height:.94;letter-spacing:var(--trk-display)}
-.page-hero .display{font-size:var(--d-page)}
 .hero .display{font-size:var(--d-hero);line-height:.92}
 .sec-hd{margin-bottom:var(--s6);align-items:flex-end}
 .sec-hd.sm .sec-t{font-size:var(--d-card)}
 .eyebrow{font-size:var(--fs-12);letter-spacing:var(--trk-label);color:var(--ink-3);gap:10px}
 .eyebrow::before{content:"";flex:none;width:18px;height:2px;background:var(--red)}
 .eyebrow.red{color:var(--red)}
-.dark .eyebrow,.page-hero .eyebrow,.hero .eyebrow,.ap-hero .eyebrow,.brief-panel .eyebrow,.gd-in .eyebrow,.reader-hd .eyebrow{color:rgba(255,255,255,.86);opacity:1}
-.hero .eyebrow::before,.page-hero .eyebrow::before,.ap-hero .eyebrow::before{background:var(--red)}
+.dark .eyebrow,.hero .eyebrow,.brief-panel .eyebrow,.gd-in .eyebrow{color:rgba(255,255,255,.86);opacity:1}
+.hero .eyebrow::before{background:var(--red)}
 .eyebrow:has(.live-dot)::before,.gd-in .eyebrow::before,.hero .eyebrow:has(.live-dot)::before{display:none}
-.reader-hd.tone-white .eyebrow{color:var(--blue)}
 .see-all{font-size:var(--fs-14);font-weight:700;letter-spacing:.01em;display:inline-flex;align-items:center;gap:2px}
 .see-all span{display:inline-block;transition:transform var(--t-fast) var(--ease)}
 .see-all:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
 .see-all:hover span{transform:translateX(3px)}
 .lede{color:var(--ink-2)}
-@media(min-width:960px){.lede{font-size:var(--fs-18)}.page-hero .lede,.hero .lede{font-size:19px}}
+@media(min-width:960px){.lede{font-size:var(--fs-18)}.hero .lede{font-size:19px}}
 /* card text: meta label vs title vs body are now three distinct roles */
 .mcard-b{gap:6px}
 .mcard-b .meta{font-size:var(--fs-12);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
@@ -1413,23 +1411,12 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 .chip[aria-pressed="true"]{background:var(--b-800);border-color:var(--b-800)}
 .chip[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
 
-/* ---- 6.8 Reader header without a photo: textured navy (no-photo posters themselves use main's flat-by-type cards) ---- */
-.reader-hd.tone-white{background:var(--hair),linear-gradient(155deg,var(--b-700),var(--b-900));color:#fff}
-.reader-hd.tone-white .eyebrow{color:rgba(255,255,255,.86)}
 
-/* ---- 6.9 Heroes and section rhythm ---- */
+/* ---- 6.9 Section rhythm (inner-page headers are main's; only the home hero keeps its red rule) ---- */
 .sec{padding:var(--sec-y) 0}
 .sec.tight{padding-top:0}
 .sec.alt{background:#f2f4fa}
-.page-hero:not(.has-photo){position:relative;background:var(--hair),linear-gradient(180deg,var(--b-800) 0%,var(--b-900) 100%)}
-.page-hero,.hero.has-photo{border-bottom:3px solid var(--red)}
-.page-hero{padding:clamp(48px,6vw,80px) 0 clamp(48px,6vw,88px)}
-.page-hero.compact{padding:var(--s7) 0}
-.page-hero .lede{margin-top:var(--s4)}
-.sp-ic{border-radius:var(--r-card);background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28)}
-.statbar{border-radius:var(--r-card)}
-.statbar.plain>div{border-left-width:3px}
-.statbar dd{letter-spacing:var(--trk-display)}
+.hero.has-photo{border-bottom:3px solid var(--red)}
 .jump{box-shadow:0 1px 0 var(--card-line)}
 .jump a{position:relative;transition:color var(--t-fast)}
 .brief-panel,.band{background:var(--hair),linear-gradient(135deg,var(--b-800) 0%,var(--b-900) 100%);box-shadow:inset 4px 0 0 var(--red)}
@@ -1437,9 +1424,7 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 .sec.dark{background:var(--hair),var(--b-800)}
 .site-ft{box-shadow:inset 0 3px 0 var(--red)}
 #acctMain{background:#f2f4fa}
-#acctMain .page-hero{background-color:var(--b-900)}
 .acct-card{box-shadow:var(--sh-2)}
-@media(max-width:639px){.page-hero{padding:var(--s6) 0 var(--s7)}}
 
 /* ---- 6.10 Sport tiles, roster and profile cards ---- */
 .sport-grid{gap:var(--s2)}
