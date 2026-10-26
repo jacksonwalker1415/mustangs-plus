@@ -1759,9 +1759,6 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 /* ---- 7.3 Decorative symbols: CSS check glyph becomes a drawn tick, like the waitlist list ---- */
 .brief-pts li{position:relative;padding-left:22px}
 .brief-pts li::before{content:"";position:absolute;left:2px;top:.45em;width:10px;height:5px;margin:0;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
-/* the heart in the plan NIL line is decorative: hide the glyph, keep the words */
-.nilchip{display:inline-block}
-.nilchip::first-letter{font-size:0}
 
 /* ---- 7.4 Left-aligned, editorial blocks instead of centered-everything ---- */
 .empty-state{align-items:flex-start;text-align:left;border-style:solid;border-color:var(--card-line);padding:var(--s6)}
