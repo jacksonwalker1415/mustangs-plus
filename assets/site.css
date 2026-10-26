@@ -731,6 +731,7 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .sc-f b{font-size:12px;font-weight:800;letter-spacing:0;color:var(--black)}
 .gd-hb h3{font-size:18px;font-weight:800}
 @media(max-width:639px){.gd-in{padding:var(--s5)}.gd-facts{grid-template-columns:1fr 1fr}.cd div{min-width:0;flex:1}.cd b{font-size:24px}.gd-next{min-height:0}}
+@media(max-width:899px){.gd-facts dd a{display:inline-flex;align-items:center;min-height:44px}}
 #gameday{scroll-margin-top:120px}
 
 /* Filters */
