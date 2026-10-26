@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T15:18:11Z",
+ "updated": "2026-10-26T15:32:54Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -502,6 +502,7 @@
    "key": "all-access-am",
    "name": "All-Access AM",
    "url": "https://www.youtube.com/@All-AccessAM",
+   "broad": true,
    "videos": [
     {
      "id": "QIQnnJdWmA4",
@@ -576,6 +577,7 @@
    "key": "acc-digital-network",
    "name": "ACC Digital Network",
    "url": "https://www.youtube.com/@ACCDigitalNetwork",
+   "broad": true,
    "videos": [
     {
      "id": "AR4Hod120fk",
@@ -589,6 +591,7 @@
    "key": "locked-on-acc",
    "name": "Locked On ACC",
    "url": "https://www.youtube.com/@LockedOnACC",
+   "broad": true,
    "videos": [
     {
      "id": "2WjiqbydpwI",
@@ -608,36 +611,42 @@
    "key": "wfaa",
    "name": "WFAA",
    "url": "https://www.youtube.com/@Wfaa8",
+   "broad": true,
    "videos": []
   },
   {
    "key": "fox4",
    "name": "FOX 4 Dallas-Fort Worth",
    "url": "https://www.youtube.com/@fox4news",
+   "broad": true,
    "videos": []
   },
   {
    "key": "nbcdfw",
    "name": "NBC DFW",
    "url": "https://www.youtube.com/@nbcdfw",
+   "broad": true,
    "videos": []
   },
   {
    "key": "cbstexas",
    "name": "CBS Texas",
    "url": "https://www.youtube.com/@CBSTexas",
+   "broad": true,
    "videos": []
   },
   {
    "key": "dallasnews",
    "name": "The Dallas Morning News",
    "url": "https://www.youtube.com/@dallasnews",
+   "broad": true,
    "videos": []
   },
   {
    "key": "1053thefan",
    "name": "105.3 The Fan",
    "url": "https://www.youtube.com/@1053TheFan",
+   "broad": true,
    "videos": []
   }
  ],

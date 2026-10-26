@@ -112,6 +112,8 @@ def main():
     channels, failed = [], []
     for ch in cfg["channels"]:
         meta = {"key": ch["key"], "name": ch["name"], "url": ch["url"]}
+        if ch.get("filter", "none") != "none":
+            meta["broad"] = True  # covers more than SMU; the game-day hub asks for "SMU vs. <opponent>" in the title
         before = prev.get(ch["key"], {}).get("videos", [])
         try:
             entries = feed(ch["id"])

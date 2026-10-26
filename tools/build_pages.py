@@ -5,11 +5,11 @@
   - account/index.html and 404.html shells, sitemap.xml, robots.txt, manifest.webmanifest
 Usage: python3 build_pages.py [VERSION]   (default: current time, YYYYMMDDHHMM)"""
 import re,sys,glob,os,time,json,html
-REPO='/workspace/mustangs-plus'
+REPO=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE='https://jacksonwalker1415.github.io/mustangs-plus/'
 VER=sys.argv[1] if len(sys.argv)>1 else time.strftime('%Y%m%d%H%M')
 # Order matters: config -> data -> app. supabase-js is loaded lazily by sb.js only when config has keys.
-SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','sport-icons.js','sb.js','app.js']
+SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','sport-icons.js','games.js','sb.js','app.js']
 def DISC(root):
     # One wording site-wide (Business Ops lock-exposure notice). build_pages.py rewrites it on every page.
     # Full wording on tablets/desktop; phones get the short line (CSS swaps them) so the bar stays two lines max.
