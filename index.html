@@ -74,11 +74,11 @@ w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610265040">
+<link rel="stylesheet" href="assets/site.css?v=202610265070">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->
-<div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU or Learfield. No payments taken.</span> <a href="privacy/#about">About this project</a></div>
+<div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU, Mustang Partners or Learfield. No payments taken.</span> <a href="privacy/#about">About this project</a></div>
 <div id="site-header"></div>
 <main id="top">
 <!-- Home hero: desktop and tablet only (hidden under 720px, where the page starts with the Upcoming games ribbon) -->
@@ -87,7 +87,7 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1 id="hero-h" class="display">Every Moment.<br><span>Every Mustang.</span></h1>
-      <p class="lede on-dark">Official SMU Athletics video, sourced stories and podcasts from every Mustang sport.</p>
+      <p class="lede on-dark">Video from SMU Athletics on YouTube, sourced stories and podcasts from every Mustang sport.</p>
       <div class="ctas"><a href="account/" class="btn btn-red btn-lg">Join free</a></div>
     </div>
     <div class="hero-feature" id="heroFeature"><div class="hero-sk" aria-hidden="true"><i class="sk hero-sk-p"></i><i class="sk hero-sk-b"></i></div><span class="sr">Loading</span></div>
@@ -100,17 +100,24 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <section class="sec tight" id="watch"><div class="wrap" id="railWatch"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
 <section class="sec tight hill-sec" id="hilltop" aria-labelledby="hill-h">
   <div class="wrap">
-    <div class="sec-hd"><div><h2 class="sec-t" id="hill-h">Latest from the Hilltop</h2></div></div>
+    <div class="sec-hd"><div><h2 class="sec-t" id="hill-h">Latest from The Expressway message boards</h2></div></div>
     <ol class="hill-list" id="hillList"></ol>
-    <div class="hill-ctas"><a class="btn btn-navy" href="boards/?f=hilltop">View message board</a></div>
+    <div class="hill-ctas"><a class="btn btn-navy" href="boards/?f=hilltop">Open the message boards</a></div>
   </div>
 </section>
 
 <section class="sec tight" id="read"><div class="wrap" id="railTabs"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
 <section class="sec dark" id="recruiting" data-feature="recruiting"><div class="wrap" id="recruitBand"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
+<section class="sec" id="athletes" aria-labelledby="ath-h">
+  <div class="wrap">
+    <div class="sec-hd"><div><h2 class="sec-t" id="ath-h">Meet the Mustangs.</h2></div><a class="see-all" href="athletes/">All profiles<span aria-hidden="true"> →</span></a></div>
+    <div id="athRow"><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div>
+  </div>
+</section>
+
 <section class="sec alt" id="board" aria-labelledby="board-h">
   <div class="wrap">
-    <div class="sec-hd"><div><h2 class="sec-t" id="board-h">Where Mustang fans talk.</h2></div><a class="see-all" href="boards/">Open boards<span aria-hidden="true"> →</span></a></div>
+    <div class="sec-hd"><div><h2 class="sec-t" id="board-h">Where Mustang fans talk.</h2></div><a class="see-all" href="boards/">Open The Expressway<span aria-hidden="true"> →</span></a></div>
     <p class="board-stats"><span><b id="homeThreads">&nbsp;</b> threads</span><span><b id="homePosts">&nbsp;</b> posts</span></p>
     <div class="board-preview">
       <div class="box"><div class="box-h"><h3>Hot right now</h3></div><div id="boardHot"></div></div>
@@ -123,85 +130,36 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
   <div class="wrap">
     <div class="sec-hd"><div><h2 class="sec-t" id="tiers-h">Pick your seat.</h2></div></div>
     <p class="lede">Fans and SMU students can join free today.</p>
-    <!-- Paid plan cards hidden for now (Jackson, Oct 26). Kept as the single source of tier copy; app.js SHOW_PAID_PLANS=true unhides them. -->
-    <div class="tiers" data-paid-plans hidden>
-      <article class="tier soon">
-        <span class="tag tag-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>Coming soon</span>
-        <h3>Mustang</h3><p class="for">For every fan, everywhere</p>
-        <div class="price"><b>$9.99</b><span>/mo</span></div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Original articles &amp; features</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>SMU+ original podcasts</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Original video series &amp; film breakdowns</li>
-        </ul>
-        <button type="button" class="btn btn-wl" data-join="mustang">Join the waitlist<span class="sr"> for Mustang</span></button>
-      </article>
-      <article class="tier soon">
-        <span class="tag tag-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>Coming soon</span>
-        <h3>All-Access</h3><p class="for">For the die-hards</p>
-        <div class="price"><b>$24.99</b><span>/mo</span></div>
-        <ul>
-          <li class="inc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Mustang</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Live monthly Q&amp;As with athletes &amp; coaches</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Early access to merch drops</li>
-        </ul>
-        <button type="button" class="btn btn-wl" data-join="pony">Join the waitlist<span class="sr"> for All-Access</span></button>
-      </article>
-      <article class="tier soon">
-        <span class="tag tag-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>Coming soon</span>
-        <h3>Red &amp; Blue</h3><p class="for">The inner circle</p>
-        <div class="price"><b>$99</b><span>/mo</span></div>
-        <ul>
-          <li class="inc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in All-Access</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Select open-practice access</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Tailgate invites</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Signed gear each season</li>
-        </ul>
-        <button type="button" class="btn btn-wl" data-join="club">Join the waitlist<span class="sr"> for Red &amp; Blue</span></button>
-      </article>
-    </div>
-    
-    <p class="note center">Sample pricing for concept purposes only. No real payments are collected.</p>
-  </div>
-</section>
-
-<section class="sec" id="athletes" aria-labelledby="ath-h">
-  <div class="wrap">
-    <div class="sec-hd"><div><h2 class="sec-t" id="ath-h">Meet the Mustangs.</h2></div><a class="see-all" href="athletes/">All profiles<span aria-hidden="true"> →</span></a></div>
-    <div id="athRow"><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div>
+    <p class="ctas"><a class="btn btn-red" href="#waitlist">Join the waitlist</a></p>
+    <p class="note center">Paid plans are not available. No payments are collected.</p>
   </div>
 </section>
 
 <section class="sec brief-sec" id="brief" aria-labelledby="brief-h">
   <div class="wrap"><div class="brief-panel">
     <div><h2 class="sec-t" id="brief-h">SMU+ Weekly</h2>
-    <p class="brief-copy">One email on Friday mornings in season. The practice notes worth knowing, who is on the visit list, three things to watch Saturday, and which end of the Boulevard has the shortest line.</p>
+    <p class="brief-copy">One email on Friday mornings in season. The games worth knowing about, three things to watch Saturday, and which end of the Boulevard has the shortest line.</p>
     <ul class="brief-pts"><li>Free for everyone</li><li>No spam, one-click unsubscribe</li><li>Sunday film notes included</li></ul></div>
     <div id="briefHome"><div class="skel-block" aria-hidden="true" style="min-height:120px"><i class="sk"></i></div><span class="sr">Loading</span></div>
   </div></div>
 </section>
 
-<!-- Paid plans hidden for now (Jackson, Oct 26). app.js SHOW_PAID_PLANS=true unhides [data-paid-plans]. -->
-<section class="sec" id="plans-band" data-paid-plans hidden>
-  <div class="wrap"><div class="band"><div><h2 class="sec-t">Every Mustang. One membership.</h2><p>Plans from $9.99/mo.</p></div><a href="#membership" class="btn btn-white">See plans</a></div></div>
-</section>
-
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610265040"></script>
-<script src="assets/data.js?v=202610265040"></script>
-<script src="assets/content.js?v=202610265040"></script>
-<script src="assets/real.js?v=202610265040"></script>
-<script src="assets/athletes.js?v=202610265040"></script>
-<script src="assets/socials.js?v=202610265040"></script>
-<script src="assets/sport-icons.js?v=202610265040"></script>
-<script src="assets/games.js?v=202610265040"></script>
-<script src="assets/upcoming.js?v=202610265040"></script>
-<script src="assets/boxscores.js?v=202610265040"></script>
-<script src="assets/gamestats.js?v=202610265040"></script>
-<script src="assets/sb.js?v=202610265040"></script>
-<script src="assets/ads.js?v=202610265040"></script>
-<script src="assets/app.js?v=202610265040"></script>
-<script src="assets/cfbd-live.js?v=202610265040"></script>
+<script src="assets/config.js?v=202610265070"></script>
+<script src="assets/data.js?v=202610265070"></script>
+<script src="assets/content.js?v=202610265070"></script>
+<script src="assets/real.js?v=202610265070"></script>
+<script src="assets/athletes.js?v=202610265070"></script>
+<script src="assets/socials.js?v=202610265070"></script>
+<script src="assets/sport-icons.js?v=202610265070"></script>
+<script src="assets/games.js?v=202610265070"></script>
+<script src="assets/upcoming.js?v=202610265070"></script>
+<script src="assets/boxscores.js?v=202610265070"></script>
+<script src="assets/gamestats.js?v=202610265070"></script>
+<script src="assets/sb.js?v=202610265070"></script>
+<script src="assets/ads.js?v=202610265070"></script>
+<script src="assets/app.js?v=202610265070"></script>
+<script src="assets/cfbd-live.js?v=202610265070"></script>
 </body>
 </html>
