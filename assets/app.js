@@ -153,7 +153,7 @@
   document.addEventListener('click',function(e){if(!e.target.closest('[data-wl-undo]'))return;try{localStorage.removeItem('mp_waitlist')}catch(x){}syncWaitlist();var i=$('input[type=email]',e.target.closest('[data-waitlist]'));if(i)i.focus()});
 
   /* ---------- Shell ---------- */
-  var NAV=[['Watch',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards'],['Athletes',ROOT+'athletes/','athlete'],['Membership',ROOT+'#membership','membership']]);
+  var NAV=[['Watch',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards'],['Membership',ROOT+'#membership','membership']]);
   /* Sports is a dropdown (desktop) / accordion (phone menu) listing all 12 programs; #sports links anywhere open it */
   var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
   function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
@@ -508,7 +508,7 @@
         '<div class="gd-act"><a class="btn btn-red btn-sm" href="'+ROOT+'sports/football/#schedule">Full schedule</a><a class="btn btn-ghost btn-sm" href="'+threadUrl(2)+'">Game thread</a></div>'+
         (n.note?'<p class="gd-note">'+esc(n.note)+'</p>':'')+'</div></div>':'<div class="gd-next"><div class="gd-in"><p class="eyebrow">Football</p><h2 class="gd-title">Season complete</h2></div></div>')+
       (l?'<article class="gd-hurry"><div class="gd-hph">'+photo((H&&H.photo&&H.photo[l.d])||'jennings-celebrate',{small:1})+CREDIT+'</div><div class="gd-hb">'+
-        '<p class="eyebrow red">Hurry Up · Postgame</p><div class="score"><span class="sc-t"><b>SMU</b><em>'+us+'</em></span><span class="sc-t"><b>'+esc(l.opp)+'</b><em>'+them+'</em></span><span class="sc-f">Final · '+gDate(l)+'</span></div>'+
+        '<div class="score" role="group" aria-label="Final, '+gDate(l)+': SMU '+us+', '+esc(l.opp)+' '+them+'"><span class="sc-t'+(us>them?' win':'')+'"><b>SMU</b><em>'+us+'</em></span><span class="sc-f"><b>Final</b>'+gDate(l)+'</span><span class="sc-t sc-r'+(them>us?' win':'')+'"><em>'+them+'</em><b>'+esc(l.opp)+'</b></span></div>'+
         '</div></article>':'')+
       '</div>'}
   function tickCountdowns(){$$('.cd[data-ko]').forEach(function(el){var t=+el.dataset.ko,d=Math.max(0,t-Date.now()),b=$$('b',el);
@@ -524,8 +524,8 @@
     var c=$('#clearHist');if(c)c.addEventListener('click',function(){try{localStorage.removeItem('mp_history')}catch(e){}continueRow()})}
 
   /* ---------- From the feeds (media batch 1): official X posts + verified accounts to follow ----------
-     Nothing from X loads until the visitor taps "Load posts from X": no script, no iframe, no request. Then X's own embed
-     (blockquote + platform.twitter.com/widgets.js) shows each post with its author and a link back.
+     Posts load from X on their own: X's widgets.js is added once, when a feed row comes within ~400px of the viewport, and turns each
+     blockquote into X's official embed. Each blockquote is also the fallback card (author, date, link to the post on X) if X is blocked or fails.
      data-no-ads: keep ad slots out of this section and away from embedded posts and videos (ad-mock copy follows this). */
   var FEEDS=MP.FEEDS||{posts:{},follow:{}},FO_L={x:'X',instagram:'Instagram',youtube:'YouTube',tiktok:'TikTok'};
   /* Follow rows: each account as a mini X-style profile card (banner, round avatar, name, handle, the account's own bio, icon links),
@@ -549,14 +549,10 @@
   function followRow(list,h){if(!list||!list.length)return '';var id='fo-track-'+(++SLN);
     return '<div class="follow"><div class="follow-hd"><h3 class="follow-h">'+h+'</h3>'+navHTML(id,'accounts')+'</div><ul class="follow-l" id="'+id+'" data-slider role="list" aria-label="'+h+' accounts, scrolls sideways" tabindex="0">'+list.map(foCard).join('')+'</ul></div>'}
   function feedsHTML(key){var P=FEEDS.posts[key]||[],F=FEEDS.follow[key]||[],home=key==='home';if(!P.length&&!F.length)return '';
-    var who={};P.forEach(function(x){who['@'+x[1]]=1});var hs=Object.keys(who);
     return '<section class="sec feeds" id="feeds" data-no-ads aria-labelledby="feeds-h"><div class="wrap">'+
       '<div class="sec-hd"><div><h2 class="sec-t" id="feeds-h">'+(P.length?'From the feeds':'Follow along')+'</h2></div>'+
       (P.length?navHTML('xtrack-'+key,'posts'):'')+'</div>'+
-      (P.length?'<div class="xgate" data-xgate="'+key+'"><span class="xg-x" aria-hidden="true">X</span><p class="xg-b"><b>'+P.length+' '+(P.length===1?'post':'posts')+'</b><span class="xg-w"> from '+esc(hs.slice(0,2).join(', '))+(hs.length>2?' and more':'')+'</span>'+
-        '<span class="xg-n"> · load from X only when you tap · <a href="'+ROOT+'privacy/">Privacy</a></span></p>'+
-        '<button type="button" class="btn btn-navy xg-btn" data-load-x>Load posts from X</button></div>'+
-        '<div class="xposts" id="xtrack-'+key+'" data-xposts data-slider role="region" aria-label="Posts from X, scrolls sideways" tabindex="0" hidden></div>':'')+
+      (P.length?'<div class="xposts" id="xtrack-'+key+'" data-xposts="'+key+'" data-slider role="region" aria-label="Posts from X, scrolls sideways" tabindex="0">'+P.map(function(x,i){return xPost(x,i,P.length)}).join('')+'</div>':'')+
       followRow(F,home?'Follow SMU':'Follow SMU '+esc((sportBy(key)||{}).name||''))+
       (home?followRow(FEEDS.media,'Conference and beat coverage'):'')+
       '</div></section>'}
@@ -565,13 +561,20 @@
   function slSyncAll(){[].forEach.call(document.querySelectorAll('[data-slider]'),xNavSync)}
   document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.hasAttribute&&t.hasAttribute('data-slider'))xNavSync(t)},{capture:true,passive:true});
   window.addEventListener('resize',slSyncAll);window.addEventListener('load',slSyncAll);setTimeout(slSyncAll,0);setTimeout(slSyncAll,800);
-  function loadX(btn){var gate=btn.closest('[data-xgate]'),key=gate.dataset.xgate,box=document.getElementById('xtrack-'+key),P=FEEDS.posts[key]||[];
-    box.innerHTML=P.map(function(x,i){return '<div class="xpost" role="group" aria-label="Post '+(i+1)+' of '+P.length+'"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none" data-width="320"><p>Post from '+esc(x[2])+' (@'+esc(x[1])+'), '+esc(x[3])+'.</p><a href="'+esc(x[0])+'">View this post on X</a></blockquote></div>'}).join('');
-    box.hidden=false;gate.hidden=true;xNavSync(box);setTimeout(function(){xNavSync(box)},1500);setTimeout(function(){xNavSync(box)},4000);
+  function xPost(x,i,n){return '<div class="xpost" role="group" aria-label="Post '+(i+1)+' of '+n+'"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none" data-width="320"><p>Post from '+esc(x[2])+' (@'+esc(x[1])+'), '+esc(x[3])+'.</p><a href="'+esc(x[0])+'">View this post on X</a></blockquote></div>'}
+  function loadX(box){if(box.dataset.xon)return;box.dataset.xon='1';[0,1500,4000].forEach(function(t){setTimeout(function(){xNavSync(box)},t)});
+    /* a post X could not show (deleted, private, blocked) gets its fallback card back instead of an empty frame */
+    setTimeout(function(){var P=FEEDS.posts[box.dataset.xposts]||[];[].forEach.call(box.querySelectorAll('.xpost'),function(el,i){var f=el.querySelector('iframe');
+      if(!el.querySelector('blockquote')&&(!f||f.offsetHeight<60)&&P[i])el.outerHTML=xPost(P[i],i,P.length).replace('class="twitter-tweet"','class="twitter-tweet x-fb"')})},12000);
     if(window.twttr&&twttr.widgets&&twttr.widgets.load){twttr.widgets.load(box);return}
-    if(!document.getElementById('x-wjs')){var sc=document.createElement('script');sc.id='x-wjs';sc.async=true;sc.charset='utf-8';sc.src='https://platform.twitter.com/widgets.js';document.body.appendChild(sc)}}
-  document.addEventListener('click',function(e){var b=e.target.closest('[data-load-x]');if(b){e.preventDefault();loadX(b);return}
-    var a=e.target.closest('[data-xdir]');if(a){var box=document.getElementById(a.getAttribute('aria-controls'));if(!box)return;var c=box.firstElementChild,st=c?c.getBoundingClientRect().width+16:box.clientWidth*.8;
+    if(!document.getElementById('x-wjs')){var sc=document.createElement('script');sc.id='x-wjs';sc.async=true;sc.charset='utf-8';sc.src='https://platform.twitter.com/widgets.js';
+      sc.onerror=function(){[].forEach.call(document.querySelectorAll('[data-xposts]'),function(b){b.classList.add('x-off')})};document.body.appendChild(sc)}}
+  function watchX(){var L=document.querySelectorAll('[data-xposts]:not([data-xw])');if(!L.length)return;
+    [].forEach.call(L,function(b){b.setAttribute('data-xw','1')});
+    if(!('IntersectionObserver' in window)){[].forEach.call(L,loadX);return}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.unobserve(e.target);loadX(e.target)}})},{rootMargin:'400px 0px'});
+    [].forEach.call(L,function(b){io.observe(b)})}
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-xdir]');if(a){var box=document.getElementById(a.getAttribute('aria-controls'));if(!box)return;var c=box.firstElementChild,st=c?c.getBoundingClientRect().width+16:box.clientWidth*.8;
       box.scrollBy({left:st*(+a.dataset.xdir),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}});
   function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&(c.sport===slug||(c.also||[]).indexOf(slug)>=0)}).sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')})}
   function mediaSection(slug,name){var L=thirdFor(slug);if(!L.length)return '';
@@ -623,7 +626,7 @@
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Official SMU Athletics video')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['film','Film Room',libUrl('film'),'Breakdowns',byCat('film')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
-    var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before NIL) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));
+    var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before the Mustang Board) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));watchX();
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
     hilltop();
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
@@ -1271,6 +1274,6 @@
     var s=SMU.user&&SMU.tier();if(SMU.user){store('mp_member',paidT(s)?'1':'0');syncMember()}});
   syncAcct();
 
-  aboutSources();if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='account')account();
+  aboutSources();if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='account')account();watchX();
   articleFromHash();
 })();
