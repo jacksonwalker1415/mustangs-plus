@@ -649,10 +649,15 @@
     if(!CATNAME[st.cat])st.cat='all';if(!/^(all|video|article|podcast)$/.test(st.type))st.type='all';if(!/^(all|free|members)$/.test(st.access))st.access='all';
     var chips=$('#libChips'),grid=$('#libGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty');
     chips.innerHTML=MP.CATS.map(function(c){var n=c[0]==='all'?MP.LIB.length:MP.LIB.filter(function(x){return x.cat===c[0]}).length;return '<button type="button" class="chip" data-cat="'+c[0]+'" aria-pressed="false">'+c[1]+'<span>'+n+'</span></button>'}).join('');
+    /* phones: the same filters as two native dropdowns (counts kept in the labels) */
+    var catSel=$('#libCatSel'),typeSel=$('#libTypeSel');
+    if(catSel)catSel.innerHTML=MP.CATS.map(function(c){var n=c[0]==='all'?MP.LIB.length:MP.LIB.filter(function(x){return x.cat===c[0]}).length;return '<option value="'+c[0]+'">'+c[1]+' ('+n+')</option>'}).join('');
+    if(typeSel)typeSel.innerHTML=$$('#libType button').map(function(b){var t=b.dataset.type,n=t==='all'?MP.LIB.length:MP.LIB.filter(function(x){return x.t===t}).length;return '<option value="'+t+'">'+(t==='all'?'Format':b.textContent.trim())+'</option>'}).join('');
     grid.innerHTML=MP.LIB.map(function(c){return cardHTML(c)}).join('');q.value=st.q;
     function apply(push){var toks=st.q.toLowerCase().split(/\s+/).filter(Boolean),n=0;
       $$('.chip',chips).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cat===st.cat?'true':'false')});
       $$('#libType button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.type===st.type?'true':'false')});
+      if(catSel)catSel.value=st.cat;if(typeSel)typeSel.value=st.type;
       $$('.mcard',grid).forEach(function(el){var c=LIBBY[el.dataset.item],hay=(c.title+' '+c.desc+' '+c.label).toLowerCase();
         var show=(st.cat==='all'||c.cat===st.cat)&&(st.type==='all'||c.t===st.type)&&(st.access==='all'||(st.access==='free')===!c.lock)&&toks.every(function(t){return hay.indexOf(t)>=0});
         el.hidden=!show;if(show)n++});
@@ -664,6 +669,8 @@
     chips.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b){st.cat=b.dataset.cat;apply(true)}});
     $('#libType').addEventListener('click',function(e){var b=e.target.closest('button');if(b){st.type=b.dataset.type;apply(true)}});
     q.addEventListener('input',function(){st.q=q.value.trim();apply(true)});
+    if(catSel)catSel.addEventListener('change',function(){st.cat=catSel.value;apply(true)});
+    if(typeSel)typeSel.addEventListener('change',function(){st.type=typeSel.value;apply(true)});
     document.addEventListener('click',function(e){if(e.target.closest('[data-lib-clear],#libClear'))clear()});
     apply(false);
   }
