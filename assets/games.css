@@ -277,7 +277,7 @@ body[data-page="games"] main .credit{font-size:13px}
 /* ---------- live football (cfbd-live.js): score and status in the sticky scoreboard, Live card first on phones ---------- */
 .gc-on{color:var(--red)}
 .gc-sb.is-live .gc-st{font-size:15px}
-.gm-live.gm-wait:not(:has(.cf-score)){display:block;min-height:188px}
+.gm-live.gm-wait:not(:has(.cf-score)){display:block;min-height:204px}
 .gc-ball{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin:0 6px;vertical-align:middle}
 .gm-live .cf-score{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:var(--s3)}
 .gm-live .cf-score .sc-t{min-width:0}
