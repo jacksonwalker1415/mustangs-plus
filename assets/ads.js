@@ -88,7 +88,21 @@ MP.adsMount=function(ctx){if(!ADS.enabled)return;var pg=page();
     if((p.ctx||'')!==(ctx||''))return;if(p.page&&p.page!==pg)return;if(p.noSkin&&ADS.skinOn)return;
     var hold=document.querySelector('[data-ad-hold="'+id+'"]');if(hold){hold.outerHTML=MP.ad(id);return}
     var a=document.querySelector(p.at[0]);if(!a||document.querySelector('[data-ad-slot="'+id+'"]'))return;
-    a.insertAdjacentHTML(p.at[1],MP.ad(id))})};
+    a.insertAdjacentHTML(p.at[1],MP.ad(id))});MP.adsCap()};
+
+/* At most ADS.max (3) ad slots showing on any page, the sticky bar included (the skin is a page background, not a slot).
+   Order of who keeps a slot: the sticky bar, then slots in an open reader (the article you are reading), then the page's own
+   slots top to bottom. Slots over the cap get class ad-capped (display:none, no gap) and come back when room frees up: closing the
+   article, dismissing the sticky bar, or a resize that hides a wide-only or phone-only slot. Re-run after every mount and change. */
+ADS.max=3;
+MP.adsCap=function(){var all=[].slice.call(document.querySelectorAll('[data-ad-slot]')).filter(function(e){return e.getAttribute('data-ad-slot')!=='skin'&&!e.hasAttribute('data-ad-hold')});
+  all.forEach(function(e){e.classList.remove('ad-capped')});
+  var vis=all.filter(function(e){return e.getClientRects().length>0}),rd=document.getElementById('reader'),open=rd&&!rd.hidden;
+  function rank(e){return e.classList.contains('ad-sticky')?0:(open&&rd.contains(e))?1:2}
+  vis.map(function(e,i){return [rank(e),i,e]}).sort(function(a,b){return a[0]-b[0]||a[1]-b[1]}).forEach(function(x,i){if(i>=ADS.max)x[2].classList.add('ad-capped')})};
+var capT;function capSoon(){clearTimeout(capT);capT=setTimeout(MP.adsCap,60)}
+addEventListener('resize',capSoon);
+if(window.MutationObserver)new MutationObserver(capSoon).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
 
 /* skin takeover (called by app.js on the one game page that carries it) */
 MP.adSkin=function(){if(!ADS.enabled||!ADS.skin)return;ADS.skinOn=true;var b=ADS.brands[ADS.skin.brand];if(!b)return;
@@ -104,7 +118,7 @@ function sticky(){var S=ADS.sticky;if(!S||S.noPages.indexOf(page())>=0||ss('mp_a
     '<span class="ad-lbl">'+esc(ADS.label)+'</span><button type="button" class="ad-x" aria-label="Close this sample ad">Close<span aria-hidden="true"> \u00d7</span></button>'+
     '<div class="ad-st-ph">'+creative('sticky',b)+'</div><div class="ad-st-dk">'+creative('leaderboard',b)+'</div></div>');
   document.documentElement.classList.add('ad-sticky-on');
-  document.querySelector('.ad-sticky .ad-x').addEventListener('click',function(){ss('mp_ad_sticky_x','1');var el=document.querySelector('.ad-sticky');if(el)el.remove();document.documentElement.classList.remove('ad-sticky-on')})}
+  document.querySelector('.ad-sticky .ad-x').addEventListener('click',function(){ss('mp_ad_sticky_x','1');var el=document.querySelector('.ad-sticky');if(el)el.remove();document.documentElement.classList.remove('ad-sticky-on');MP.adsCap()})}
 function interstitial(){var I=ADS.interstitial;if(!I)return;var n=(+ss('mp_ad_pv')||0)+1;ss('mp_ad_pv',String(n));
   if(n<I.fromPage||ss('mp_ad_ist')||I.noPages.indexOf(page())>=0)return;
   setTimeout(function(){var h=document.documentElement;
@@ -118,6 +132,6 @@ function interstitial(){var I=ADS.interstitial;if(!I)return;var n=(+ss('mp_ad_pv
     function key(e){if(e.key==='Escape')close()}
     el.addEventListener('click',function(e){if(e.target===el||e.target.closest('.ad-x,.ad-ist-go'))close()});document.addEventListener('keydown',key);
     el.querySelector('.ad-x').focus()},I.delay||1500)}
-function boot(){if(!ADS.enabled)return;MP.adsMount();sticky();interstitial()}
+function boot(){if(!ADS.enabled)return;MP.adsMount();sticky();MP.adsCap();interstitial()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else setTimeout(boot,0);
 })();

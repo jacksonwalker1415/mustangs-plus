@@ -2420,6 +2420,7 @@ header.site .acct-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
   .hdr-act .af-hdr{display:none}
 }
 html.adfree [data-ad-slot],html.adfree .ad-slot{display:none!important}
+[data-ad-slot].ad-capped{display:none!important} /* over the 3-per-page cap: assets/ads.js MP.adsCap */
 
 /* ---------- Account page: Settings (Profile / Subscriptions / Transactions) ---------- */
 .set{background:#fff;padding:40px 0 64px}
@@ -2577,7 +2578,7 @@ mark{background:var(--blue-10)}
 .ad-st-ph,.ad-st-dk{display:flex;justify-content:center;width:100%}
 .ad-st-dk{display:none}
 @media(min-width:760px){.ad-st-ph{display:none}.ad-st-dk{display:flex}}
-.ad-sticky{box-sizing:border-box;max-width:100%;overflow:hidden}.ad-st-ph>*,.ad-st-dk>*{max-width:100%;box-sizing:border-box}
+.ad-sticky{box-sizing:border-box;max-width:100%;overflow:visible;overflow-x:clip} /* clip sideways only: the Label and Close tabs sit above the bar and must stay clickable */.ad-st-ph>*,.ad-st-dk>*{max-width:100%;box-sizing:border-box}
 html.ad-sticky-on:not(.adfree) body{padding-bottom:calc(106px + env(safe-area-inset-bottom))}
 @media(min-width:760px){html.ad-sticky-on:not(.adfree) body{padding-bottom:146px}}
 html.ad-sticky-on:not(.adfree) .fx-fab.show{bottom:calc(116px + env(safe-area-inset-bottom))}
