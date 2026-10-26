@@ -7,5 +7,7 @@
 window.SMU_CONFIG = {
   SUPABASE_URL: 'https://lpoguzstqpwzcmjxeaik.supabase.co',
   SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxwb2d1enN0cXB3emNtanhlYWlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI5OTMzMjksImV4cCI6MjEwODU2OTMyOX0.beC7fma6vWOXKS5zfgGJV1-BzJAKRvT8ZBiLDyoA5sU', // anon / public key (role=anon). Safe to publish; RLS protects the data.
+  // Email-link return URL. Kept on the github.io address (already in Supabase Auth's allow-list; GitHub redirects it to fanplatformdemo.com).
+  // Switch to 'https://fanplatformdemo.com/' once Auth > URL Configuration lists https://fanplatformdemo.com/**.
   SITE_URL: 'https://jacksonwalker1415.github.io/mustangs-plus/'
 };
