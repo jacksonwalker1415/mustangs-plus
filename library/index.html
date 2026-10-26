@@ -3,11 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Library | Mustangs+</title>
-<meta name="description" content="Mustangs+ library: docuseries, insider reports, recruiting, portal, film room and podcasts (concept mockup).">
+<title>Library | SMU+</title>
+<meta name="description" content="SMU+ library: docuseries, insider reports, recruiting, portal, film room and podcasts (concept mockup).">
 <meta name="theme-color" content="#262626">
-<meta property="og:title" content="Library | Mustangs+">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23354CA1'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14z' fill='%23CC0035'/%3E%3C/svg%3E">
+<meta property="og:site_name" content="SMU+">
+<meta property="og:title" content="Library | SMU+">
+<meta property="og:description" content="SMU+ library: docuseries, insider reports, recruiting, portal, film room and podcasts (concept mockup).">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Library | SMU+">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/brand/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body data-page="library" data-root="../">
@@ -16,8 +21,15 @@
 <main id="top">
 <section class="page-hero compact"><div class="wrap"><p class="eyebrow">Watch · Read · Listen</p><h1 class="display" id="libTitle">Library</h1><p class="lede on-dark">Docuseries, insider reports, recruiting notes, portal analysis, film breakdowns and podcasts. Everything here is fictional sample content for this concept.</p></div></section>
 <section class="sec"><div class="wrap">
-  <div class="toolbar"><div class="chips" id="libChips" role="group" aria-label="Filter by category"></div><span class="meta" id="libCount"></span></div>
-  <div class="lgrid" id="libGrid"></div>
+  <div class="chips lib-chips" id="libChips" role="group" aria-label="Filter by category"></div>
+  <div class="filters">
+    <label class="fsearch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><span class="sr">Filter titles</span><input id="libQ" type="search" placeholder="Filter titles" autocomplete="off"></label>
+    <div class="seg" id="libType" role="group" aria-label="Format"><button type="button" data-type="all" aria-pressed="true">All</button><button type="button" data-type="video" aria-pressed="false">Watch</button><button type="button" data-type="article" aria-pressed="false">Read</button><button type="button" data-type="podcast" aria-pressed="false">Listen</button></div>
+    <label class="fsel"><span class="sr">Access</span><select id="libAccess"><option value="all">Free + Members</option><option value="free">Free only</option><option value="members">Members only</option></select></label>
+    <span class="meta" id="libCount"></span><button type="button" class="linkish" id="libClear" hidden>Clear filters</button>
+  </div>
+  <div class="lgrid" id="libGrid"><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div>
+  <div id="libEmpty" hidden></div>
 </div></section>
 </main>
 <div id="site-footer"></div>

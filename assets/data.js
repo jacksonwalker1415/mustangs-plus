@@ -1,4 +1,4 @@
-/* Mustangs+ concept data. Every athlete, coach, user, opponent and number here is fictional sample data. */
+/* SMU+ concept data. Every athlete, coach, user, opponent and number here is fictional sample data. */
 window.MP = window.MP || {};
 
 MP.SPORTS = [
@@ -45,7 +45,7 @@ MP.FORUMS = [
   {id:'boulevard',name:'The Boulevard',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
 ];
 MP.USERS = {
-  staff:{n:'Sam Reyes',tier:'Mustangs+ Insider',staff:true,since:'2024',posts:'6,102'},
+  staff:{n:'Sam Reyes',tier:'SMU+ Insider',staff:true,since:'2024',posts:'6,102'},
   pete:{n:'PonyUpPete',tier:'Boulevard Club',since:'2025',posts:'4,388'},
   hank:{n:'HilltopHank',tier:'Pony Express',since:'2025',posts:'2,911'},
   belle:{n:'BoulevardBelle',tier:'Boulevard Club',since:'2025',posts:'1,764'},
@@ -64,12 +64,12 @@ MP.THREADS = [
      ['staff','Kicker looked sharp. Hit from 48 twice in the period I watched. I would not read too much into one game.'],
      ['grace','Love the detail. Can we get a film breakdown of the 3rd-and-long package on the podcast?']
    ]},
-  {id:2,f:'hilltop',sport:'football',hot:true,title:'Official Game Thread: SMU vs. Gulf Coast',by:'mike',ago:'2h',replies:1832,views:'41k',pin:true,
+  {id:2,f:'hilltop',sport:'football',hot:true,title:'Official Game Thread: SMU at Syracuse (Sat., 11 a.m. CT, ESPN2)',by:'mike',ago:'2h',replies:1832,views:'41k',pin:true,
    posts:[
-     ['mike','Kickoff 7:00 on the Boulevard. Drop your score predictions and keep it civil. Pony Up!'],
+     ['mike','Early one in upstate New York: 11 a.m. CT on ESPN2. Drop your score predictions and keep it civil. Pony Up!'],
      ['dallas','34-17 Mustangs. Defense gets two picks.'],
      ['ray','31-24. Too many people sleeping on their run game.'],
-     ['belle','Tailgate is at our usual tent, near the big oak. Red and blue cookies again this week.']
+     ['belle','Watch party at our usual spot off Lovers Lane. Breakfast tacos because of the 11 a.m. kick.']
    ]},
   {id:3,f:'recruiting',sport:'mens-basketball',hot:true,title:'Visit weekend recap: two guards on campus, both left impressed',by:'staff',ago:'5h',replies:388,views:'12.1k',
    posts:[
@@ -79,7 +79,7 @@ MP.THREADS = [
    ]},
   {id:4,f:'hilltop',sport:'womens-soccer',hot:true,title:"Women's soccer clinches a top seed. Who's traveling for the tourney?",by:'grace',ago:'6h',replies:146,views:'3.9k',
    posts:[
-     ['grace','What a season. Who is road tripping? Thinking of organizing a Mustangs+ meetup.'],
+     ['grace','What a season. Who is road tripping? Thinking of organizing an SMU+ meetup.'],
      ['belle','Count me in. The Club tier tailgate invite included a postseason watch party too.'],
      ['cox','The back line has been ridiculous all year. Seven clean sheets.']
    ]},
@@ -103,7 +103,7 @@ MP.THREADS = [
   {id:8,f:'paddock',sport:'swimming-diving',title:'Taper week insight from the pool deck',by:'staff',ago:'1d',replies:58,views:'1.6k',
    posts:[
      ['staff','Spent the morning on deck. The distance group is ahead of last year\'s splits. The diving coach thinks a fictional sophomore has a real shot at the podium.'],
-     ['grace','Didn\'t know I cared about swim until Mustangs+. Now I\'m hooked.']
+     ['grace','Didn\'t know I cared about swim until SMU+. Now I\'m hooked.']
    ]},
   {id:9,f:'hilltop',sport:null,title:'Where does the NIL money actually go? Read the Q3 fund report',by:'staff',ago:'2d',replies:512,views:'18.7k',pin:true,
    posts:[
@@ -114,8 +114,8 @@ MP.THREADS = [
   {id:10,f:'recruiting',sport:'football',title:'Offer tracker: 2028 class (updated weekly)',by:'staff',ago:'2d',replies:691,views:'22k',
    posts:[['staff','Updated tracker. All prospects referenced on this demo board are fictional.'],['ray','The DL haul is going to be special.']]},
   {id:11,f:'hilltop',sport:'golf',title:'Golf team wins the fall invitational. Shoutout to the freshman!',by:'cox',ago:'3d',replies:44,views:'980',
-   posts:[['cox','Won by six strokes. Freshman shot -9 over three rounds.'],['pete','The swing breakdown video on Mustangs+ was great.']]},
-  {id:12,f:'boulevard',sport:null,title:'Mustangs+ app feature requests thread',by:'mike',ago:'4d',replies:131,views:'3.2k',
+   posts:[['cox','Won by six strokes. Freshman shot -9 over three rounds.'],['pete','The swing breakdown video on SMU+ was great.']]},
+  {id:12,f:'boulevard',sport:null,title:'SMU+ app feature requests thread',by:'mike',ago:'4d',replies:131,views:'3.2k',
    posts:[['mike','Mine: picture-in-picture for live Q&As, and a dark mode.'],['grace','Push alerts when an athlete I follow posts.']]},
   {id:13,f:'hilltop',sport:'track-field',title:'XC regionals: 2nd place finish, what a run',by:'grace',ago:'4d',replies:37,views:'860',
    posts:[['grace','Huge day for the distance squad. Three runners in the top 20.']]},
@@ -134,10 +134,10 @@ MP.THREADS = [
 /* Board upgrade: forum groups, more users, longer threads with quoted replies. All fictional. */
 (function(){var MP=window.MP;
 MP.FORUMS.forEach(function(f){f.group=f.prem?'Premium':'Community'});
-MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame breakdowns with the Mustangs+ film staff. Members only.',prem:true,threads:388,posts:9140,group:'Premium'});
+MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame breakdowns with the SMU+ film staff. Members only.',prem:true,threads:388,posts:9140,group:'Premium'});
 MP.FORUMS.push({id:'help',name:'Site Help & Feedback',desc:'Bugs, feature requests and membership questions.',prem:false,threads:214,posts:1630,group:'Community'});
-MP.USERS.dre={n:'Dre Coleman',tier:'Mustangs+ Film Room',staff:true,since:'2024',posts:'2,214'};
-MP.USERS.jt={n:'J.T. Barlow',tier:'Mustangs+ Recruiting',staff:true,since:'2024',posts:'3,377'};
+MP.USERS.dre={n:'Dre Coleman',tier:'SMU+ Film Room',staff:true,since:'2024',posts:'2,214'};
+MP.USERS.jt={n:'J.T. Barlow',tier:'SMU+ Recruiting',staff:true,since:'2024',posts:'3,377'};
 MP.USERS.peruna={n:'PerunaPapa',tier:'Boulevard Club',since:'2025',posts:'5,920'};
 MP.USERS.ford={n:'FordStadiumFaithful',tier:'Pony Express',since:'2025',posts:'1,408'};
 MP.USERS.snider={n:'SniderPlazaSam',tier:'Mustang',since:'2026',posts:'233'};
@@ -171,9 +171,9 @@ MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: 
   ['peruna','Is this sustainable? Feels like good offenses will motion the back out and stress it.'],
   ['dre','Exactly the counter. Two teams did it in the second half. Staff has an answer, but I\'ll save it for Thursday.',2],
   ['grace','This is the best thing on the site. Worth the membership by itself.']]});
-MP.THREADS.push({id:21,f:'recruiting',sport:'football',hot:true,title:'Visit list for the Nov. 7 home game (fictional names, updated)',by:'jt',ago:'7h',replies:244,views:'8.8k',
+MP.THREADS.push({id:21,f:'recruiting',sport:'football',hot:true,title:'Visit list for the Nov. 6 Virginia Tech game (fictional names, updated)',by:'jt',ago:'7h',replies:244,views:'8.8k',
  posts:[['jt','Current list: one official, three unofficial. The QB is back for a third trip. All names on this demo board are fictional.'],
-  ['ford','Third visit is the one that matters. Hoping he sees a full Ford.',0],
+  ['ford','Third visit is the one that matters. Friday night under the lights at Ford should help.',0],
   ['hank','Any OL on the list? That\'s the need.'],
   ['jt','One tackle from East Texas, unofficial. Staff likes him a lot.',2]]});
 MP.THREADS.push({id:22,f:'boulevard',sport:null,title:'Mustang Band halftime show was unreal. Who has video?',by:'band',ago:'1d',replies:88,views:'2.2k',
