@@ -1524,6 +1524,12 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 }
 @keyframes jump-end{0%,88%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
 
+/* ---- 8.2 One self-hosted serif for long-form article body only (Source Serif 4 subset,
+   renamed per its OFL licence: assets/fonts/OFL.txt). One weight, the only one .prose uses. ---- */
+@font-face{font-family:"Story Serif";font-style:normal;font-weight:400;font-display:swap;
+  src:url("fonts/story-serif-400.woff2") format("woff2")}
+.prose p{font-family:"Story Serif",var(--serif)}
+
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn,.btn-sm{min-height:44px}
