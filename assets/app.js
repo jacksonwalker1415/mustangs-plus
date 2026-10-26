@@ -725,17 +725,7 @@
       '<ul class="rb-l" id="'+id+'" data-slider aria-label="Upcoming SMU games, scrolls sideways" tabindex="0">'+L.map(function(e,i){return ribbonCard(e,i,L.length)}).join('')+'</ul>'+
       '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Later games" aria-controls="'+id+'">'+XARR+'</button></div>'+
       '</div></section>');
-    slSyncAll();rbFit()}
-  /* The track is as tall as its tallest card (a football card with a score and Live stats runs ~110px taller), which left a big white
-     gap under short cards. Size the track to the cards actually on screen, re-measured as it scrolls or resizes. */
-  function rbFit(){var l=$('#rb-track');if(!l)return;var raf=0;
-    function fit(){raf=0;var lr=l.getBoundingClientRect(),mx=0;if(!lr.width)return;
-      Array.prototype.forEach.call(l.children,function(c){var r=c.getBoundingClientRect();if(r.right>lr.left+1&&r.left<lr.right-1)mx=Math.max(mx,r.height)});
-      if(mx)l.style.height=Math.ceil(mx+6)+'px'}
-    function q(){if(!raf)raf=requestAnimationFrame(fit)}
-    l.addEventListener('scroll',q,{passive:true});addEventListener('resize',q);if(window.ResizeObserver)new ResizeObserver(q).observe(l);
-    if(window.MutationObserver)new MutationObserver(q).observe(l,{childList:true,subtree:true});fit()}
-
+    slSyncAll()}
   /* ---------- Search results page (search/?q=...). Static content comes from data/search-index.json (tools/build_search.js);
      forum threads and posts come live from Supabase (public read). Results update as you type; the URL keeps the query. ---------- */
   function searchPage(){var main=$('#searchMain');if(!main)return;

@@ -2281,7 +2281,6 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 /* ---------- Home calendar ribbon (upcoming games, every sport) ---------- */
 .ribbon .rb-hd{margin-bottom:var(--s4)}
 .sec.ribbon{padding-bottom:var(--s6)}
-.rb-l{transition:height .2s ease}
 .ribbon .rb-hd h2{font-family:inherit;text-transform:none;letter-spacing:0;font-weight:800;font-size:clamp(22px,2.4vw,28px);line-height:1.2;color:var(--ink)}
 .ribbon .rb-hd p{margin-top:var(--s1);font-size:15px;color:var(--ink-2)}
 .ribbon .rb-hd a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
@@ -2514,3 +2513,8 @@ mark{background:var(--blue-10)}
   .rb-stats{min-height:44px}
   .pc-links a,.orow-sec .see-all{display:inline-flex;align-items:center;min-height:44px}
 }
+
+/* Upcoming games: fixed-height track, equal cards; only horizontal movement (Oct 26) */
+.rb-l{align-items:stretch!important;height:auto!important;overflow-y:hidden;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
+.rb-card{display:flex;flex-direction:column}
+.rb-card .rb-tv{margin-top:auto}
