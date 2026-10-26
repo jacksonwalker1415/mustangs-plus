@@ -1294,6 +1294,121 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .mm-nav .mm-sports a{display:flex;grid-template-columns:none;align-items:center;gap:12px;min-height:44px;padding:0 var(--s2);border-radius:0;border-bottom:0;background:none;font-size:16px;font-weight:600;color:rgba(255,255,255,.92)}
 .mm-nav .mm-sports a svg{flex:none;width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .mm-nav .mm-sports a:hover,.mm-nav .mm-sports a:focus-visible{background:rgba(255,255,255,.08)}
+.tier li .soon{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:rgba(204,0,53,.1);color:var(--red);vertical-align:1px}
+.tier.dark li .soon{background:rgba(255,255,255,.14);color:#fff}
+/* ---------- Media batch 1: link-out articles, Apple Podcasts player, "From the feeds" ---------- */
+.ext-ic{width:12px;height:12px;fill:currentColor;flex:none;vertical-align:-1px}
+.poster-verb .ext-ic{width:12px;height:12px}
+.mcard.ext .poster{background:var(--blue-10);color:var(--blue)}
+.mcard.ext .poster .np-kick{color:var(--blue)}
+.mcard.ext .poster .np-art svg *{stroke:var(--blue)}
+.mcard.ext .poster-verb{background:var(--blue)}
+.mcard.ext .dur{background:rgba(53,76,161,.14);color:var(--blue)}
+.mcard-b .outlet{color:var(--ink);font-weight:700}
+.ext-cta{display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:var(--s1);font-size:14px;font-weight:700;color:var(--blue)}
+.ext-cta small{flex-basis:100%;font-size:12px;font-weight:500;color:var(--ink-3)}
+.mcard.ext:hover .ext-cta{text-decoration:underline}
+.player.ap{background:var(--red)}
+.player.ap.on{display:block;aspect-ratio:auto;background:var(--surface);padding:var(--s4)}
+.player.ap iframe{display:block;width:100%;max-width:660px;height:175px;margin:0 auto;border:0;border-radius:var(--r2);overflow:hidden;background:#fff}
+.feeds .xgate{display:flex;align-items:center;justify-content:space-between;gap:var(--s4) var(--s5);flex-wrap:wrap;padding:var(--s5);border:1px solid var(--line-2);border-left:4px solid var(--blue);border-radius:var(--r2);background:#fff}
+.feeds .xg-b{min-width:0;flex:1 1 320px}
+.feeds .xg-b b{display:block;font-size:17px;color:var(--ink)}
+.feeds .xg-b p{margin:var(--s1) 0 0;font-size:14px;color:var(--ink-2)}
+.feeds .xg-b a{color:var(--blue);font-weight:700;text-decoration:underline}
+.feeds .xposts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:0 var(--s5);align-items:start}
+.feeds .xpost{min-width:0}
+.feeds .xpost .twitter-tweet{margin:var(--s3) 0!important}
+.feeds blockquote.twitter-tweet{margin:var(--s3) 0;padding:var(--s4);border:1px solid var(--line-2);border-radius:var(--r2);background:#fff;font-size:14px;color:var(--ink-2)}
+.feeds blockquote.twitter-tweet a{color:var(--blue);font-weight:700}
+.feeds .follow{margin-top:var(--s6)}
+.feeds .follow+.follow{margin-top:var(--s5)}
+.follow-h{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:var(--s3)}
+.follow-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:var(--s3)}
+.follow-l li{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;padding:var(--s3) var(--s4);border:1px solid var(--line);border-radius:var(--r1);background:var(--surface);min-width:0}
+.fo-n{min-width:0;flex:1 1 140px}
+.fo-n b{display:block;font-size:15px;color:var(--ink)}
+.fo-n small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.fo-links{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.fo-a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 var(--s3);border-radius:var(--r1);border:1px solid var(--line-2);background:#fff;font-size:13px;font-weight:700;color:var(--blue)}
+.fo-a:hover{border-color:var(--blue);background:var(--blue-10)}
+@media(max-width:639px){.feeds .xgate{padding:var(--s4)}.feeds .xgate .btn{width:100%}}
+/* SMU-style card template (no YouTube thumbnail): real SMU Athletics photo left, flat SMU-blue panel right. Sized off the card's own width. */
+.tpl-card{container-type:inline-size;background:var(--blue);color:#fff}
+.tpl-card .tpl-ph{position:absolute;inset:0 auto 0 0;width:40%;overflow:hidden;background:var(--b-900)}
+.tpl-card .tpl-ph .ph{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.mcard:hover .tpl-card .tpl-ph .ph{transform:scale(1.04)}
+.tpl-card .tpl-ph .credit{left:var(--s2);right:auto;bottom:var(--s2);top:auto;font-size:9px}
+.tpl-card .tpl-p{position:absolute;inset:0 0 0 40%;background:var(--blue);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:1.4cqw;padding:0 6cqw 0 5.5cqw;min-width:0}
+.tpl-mark{display:inline-flex;align-items:center;gap:1cqw;font-family:var(--display);font-size:max(10px,3.6cqw);letter-spacing:.03em;line-height:1;color:#fff}
+.tpl-mark i{display:grid;place-items:center;width:max(11px,3.8cqw);height:max(11px,3.8cqw);border-radius:22%;background:var(--red)}
+.tpl-mark svg{width:70%;height:70%}
+.tpl-k{font-size:max(9px,2.7cqw);font-weight:800;letter-spacing:.09em;text-transform:uppercase;line-height:1.25;color:rgba(255,255,255,.9);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tpl-w{font-family:var(--display);font-size:10.5cqw;line-height:.9;text-transform:uppercase;letter-spacing:.005em;color:#fff;max-width:100%;overflow-wrap:anywhere}
+.tpl-d{font-size:max(9px,2.6cqw);font-weight:600;color:rgba(255,255,255,.85)}
+.tpl-card>.tag,.tpl-card>.lock-ov{z-index:2}
+.tpl-card>.poster-verb{left:calc(40% + var(--s3));z-index:2;background:rgba(16,24,60,.35)}
+.tpl-card>.dur{z-index:2;background:rgba(16,24,60,.4)}
+.player.tpl-card{display:block}
+.player.tpl-card .play{position:absolute;left:70%;top:50%;transform:translate(-50%,-50%);z-index:3}
+.player.tpl-card .tpl-p{padding-bottom:8cqw}
+.player.tpl-card .pbar{z-index:3}
+.player.tpl-card.locked .tpl-ph .ph{filter:blur(6px)}
+.mcard.ext .poster.tpl-card{background:var(--blue);color:#fff}
+.mcard.ext .poster.tpl-card .poster-verb{background:rgba(16,24,60,.35)}
+.mcard.ext .poster.tpl-card .dur{background:rgba(16,24,60,.4);color:#fff}
+
+/* ---------- Join pop-up (On3-style plans sheet). Blue sheet, white plan cards, red CTAs. No gradients. ---------- */
+.dlg.dlg-join{background:rgba(16,24,60,.78);padding:24px 16px}
+.dlg-join .dlg-sheet{width:min(1060px,100%);max-height:calc(100dvh - 48px);padding:0;display:flex;flex-direction:column;overflow:hidden;background:var(--blue);color:#fff;border-radius:18px}
+.dlg-join .dlg-x{top:14px;right:14px;width:44px;height:44px;background:rgba(255,255,255,.14);color:#fff;font-size:26px}
+.dlg-join .dlg-x:hover{background:rgba(255,255,255,.26)}
+.jm-hd{flex:none;padding:26px 72px 22px 36px;border-bottom:1px solid rgba(255,255,255,.16);display:grid;grid-template-columns:auto 1fr;column-gap:22px;align-items:center}
+.jm-logo{grid-row:span 3;padding-right:22px;border-right:1px solid rgba(255,255,255,.22)}
+.jm-logo img{height:44px;width:auto}
+.jm-wm{font-family:var(--display);font-size:34px}
+.jm-eb{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.78}
+.jm-hd h3{font-family:var(--display);font-weight:400;font-size:34px;line-height:1.05;text-transform:uppercase;letter-spacing:.01em;margin:2px 0 4px}
+.jm-lede{font-size:15px;color:rgba(255,255,255,.86);max-width:62ch}
+.jm-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:30px 36px 26px}
+.jm-tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.jm-card{position:relative;display:flex;flex-direction:column;background:#fff;color:var(--ink);border-radius:14px;padding:28px 24px 24px;border:2px solid transparent}
+.jm-card.pop{border-color:var(--red)}
+.jm-pill{position:absolute;top:-13px;left:22px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:5px 10px;border-radius:99px;line-height:1.2}
+.jm-card h4{font-family:var(--display);font-weight:400;font-size:26px;text-transform:uppercase;letter-spacing:.01em;color:var(--blue)}
+.jm-for{font-size:14px;color:var(--ink-3);margin-top:2px}
+.jm-price{display:flex;align-items:baseline;gap:4px;margin-top:18px}
+.jm-price b{font-family:var(--display);font-weight:400;font-size:52px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.jm-price span{color:var(--ink-3);font-weight:500}
+.jm-fine{font-size:12.5px;color:var(--ink-3);margin:6px 0 16px}
+.jm-go{width:100%;min-height:48px;font-size:15px}
+.jm-card .nilchip{margin:16px 0 0;font-size:12.5px}
+.jm-card ul{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:11px}
+.jm-card li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.4}
+.jm-card li svg{flex:none;width:19px;height:19px;margin-top:1px}
+.jm-card li.inc{font-weight:700}
+.jm-wl{background:#fff;color:var(--ink);border-radius:14px;padding:22px 26px 24px;max-width:620px;margin:0 auto}
+.jm-back{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:700;color:var(--blue);margin:-8px 0 2px -4px;padding:0 4px}
+.jm-back:hover{text-decoration:underline}
+.jm-pick{font-size:15px;color:var(--ink-2);margin-bottom:14px}
+.jm-pick b{font-family:var(--display);font-weight:400;font-size:24px;text-transform:uppercase;color:var(--blue);letter-spacing:.01em;margin:0 4px}
+.jm-pick span{font-size:13px;color:var(--ink-3)}
+.dlg-join .jm-cn{margin:22px auto 0;max-width:none;background:rgba(255,255,255,.1);color:#fff;border-left-color:var(--red)}
+.dlg-join .jm-cn a{color:#fff}
+@media(max-width:959px){.jm-tiers{grid-template-columns:1fr;max-width:520px;margin:0 auto;gap:24px}}
+@media(max-width:639px){
+  .dlg.dlg-join{padding:12px 0 0;place-items:end center}
+  .dlg-join .dlg-sheet{max-height:calc(100dvh - 12px);border-radius:18px 18px 0 0;padding:0}
+  .dlg-join .dlg-x{top:10px;right:10px}
+  .jm-hd{padding:16px 64px 14px 18px;grid-template-columns:1fr;row-gap:2px}
+  .jm-logo{grid-row:auto;border:0;padding:0 0 6px}.jm-logo img{height:30px}
+  .jm-hd h3{font-size:28px}.jm-lede{font-size:14px}
+  .jm-body{padding:24px 16px max(20px,env(safe-area-inset-bottom))}
+  .jm-card{padding:24px 18px 20px}.jm-price b{font-size:44px}
+  .jm-wl{padding:16px 16px 20px}
+  .jm-wl select,.jm-wl input:not([type=checkbox]){min-height:44px}
+}
+.jm-soon{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:rgba(204,0,53,.1);color:var(--red);vertical-align:1px}
 
 /* =====================================================================
    Round 6: design tokens + polish. One layer, appended last.
