@@ -165,10 +165,10 @@
     var idx={};posts.forEach(function(p,i){idx[p.id]=i});
     var P=posts.map(function(p){var u=p.author_handle||ensureUser('u:'+p.author_id,p.author&&p.author.display_name,undefined,undefined,avOf(p.author));
       return [u,p.body,p.quote_post_id!=null&&idx[p.quote_post_id]!=null?idx[p.quote_post_id]:null,p.created_at,p.id]});
-    return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,by:by,ago:ago(r.created_at),replies:P.length?P.length-1:(r.author_handle?null:Math.max(0,r.reply_count||0)),views:r.author_handle?null:kfmt(r.view_count),
+    return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,game:r.game_id||null,by:by,ago:ago(r.created_at),replies:P.length?P.length-1:(r.author_handle?null:Math.max(0,r.reply_count||0)),views:r.author_handle?null:kfmt(r.view_count),
       pin:!!r.pinned,hot:!!r.hot,posts:P.length?P:[[by,'',null,r.created_at]],locked:!P.length,live:true,mine:SMU.user&&r.author_id===SMU.user.id}}
   function threadSel(){var pf=avOn()?'display_name,avatar_url':'display_name';
-    return 'id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,author:profiles!threads_author_id_fkey('+pf+'),'+
+    return 'id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,game_id,author:profiles!threads_author_id_fkey('+pf+'),'+
       'posts(id,author_handle,author_id,body,quote_post_id,created_at,author:profiles!posts_author_id_fkey('+pf+'))'}
   function avOf(a){return avOn()&&a?(a.avatar_url||null):undefined}
   var myAv={id:null,url:null};
@@ -340,6 +340,8 @@
   function B(){return SMU.live?live:demo}
   ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch','setAvatar','removeAvatar','studentJoin','claimStudent'].forEach(function(k){
     SMU[k]=function(){var b=B();return b[k].apply(b,arguments)}});
+  /* Game threads (RUN_ME_24): the thread for a game page, created with a staff opening post on first visit. Live database only. */
+  SMU.gameThread=function(g){return SMU.live?q('gamethread',SMU.client.rpc('game_thread',{p_game:String(g).slice(0,40)})).then(function(id){return id==null?null:+id}):Promise.resolve(null)};
   SMU.reset=function(e){return SMU.live?live.reset(e):Promise.reject(new Error('Password reset needs the live database. In demo mode, just sign in with your email.'))};
   SMU.newPassword=function(p){return SMU.live?live.newPassword(p):Promise.reject(new Error('Not available in demo mode.'))};
   SMU.tier=function(){return B().tier()};
