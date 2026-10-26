@@ -80,7 +80,8 @@
 
   /* ---------- Local state: member preview, watch history, photos ---------- */
   function isMember(){return store('mp_member')==='1'}
-  function gated(c){return !!(c&&c.lock&&(c.t==='video'||c.cat==='film'))}
+  /* Third-party embeds (official SMU Athletics YouTube videos) are never behind the members gate */
+  function gated(c){return !!(c&&c.lock&&!c.yt&&(c.t==='video'||c.cat==='film'))}
   function blocked(c){return gated(c)&&!isMember()}
   function getJSON(k,d){try{return JSON.parse(store(k)||'null')||d}catch(e){return d}}
   function hist(){return getJSON('mp_history',[])}

@@ -190,14 +190,15 @@ MP.NOTES=[
    3) MP.ACCESS: hand-picked "All Access" items per sport page (replaces the templated three cards; see app.js edit list). */
 (function(){
  var YT='https://www.youtube.com/watch?v=',CAL='https://smumustangs.com/news/2026/10/24/football-dominating-second-half-leads-smu-to-59-20-win-over-cal',ESPN='https://www.espn.com/college-football/player/';
- function V(id,yt,label,title,desc,dur,lock,tone,big){return {id:id,t:'video',cat:'watch',label:label,title:title,desc:desc,dur:dur,lock:lock,tone:tone,big:big,isNew:true,
+ /* Official SMU Athletics YouTube embeds are never members-only (third-party embeds stay free) */
+ function V(id,yt,label,title,desc,dur,lock,tone,big){return {id:id,t:'video',cat:'watch',label:label,title:title,desc:desc,dur:dur,lock:false,tone:tone,big:big,isNew:true,
   yt:yt,src:YT+yt,credit:'Video: SMU Athletics',channel:['SMU Mustangs on YouTube','https://www.youtube.com/@SMUMustangs'],real:true}}
  var vids=[
   V('smu-fb-cal-highlights','LB5w29jU2eo','Football · Official highlights','SMU Athletics: Football highlights vs. Cal','Down 20-17 at the half, then 42 unanswered. Official highlights from the 59-20 win at Ford Stadium, Oct. 24.','7:59',false,'red','59-20'),
   V('smu-fb-uva-highlights','NvnyYRJyu_8','Football · Official highlights','SMU Athletics: Football highlights vs. Virginia','The 23-13 win over Virginia on Oct. 17, the day Kendrick Raphael ran for 119.','8:00',false,'blue','23-13'),
   V('smu-msoc-cal-highlights','lKfL7DCU0-c',"Men's Soccer · Official highlights","SMU Athletics: Men's soccer highlights at Cal",'Berkeley, Oct. 24: a 2-0 win, the tenth clean sheet of an unbeaten season.','4:00',false,'black','2-0'),
   V('smu-vb-gt-highlights','RijJO1t8894','Volleyball · Official highlights','SMU Athletics: Volleyball highlights at Georgia Tech','Atlanta, Oct. 25. Straight sets, the second road sweep in three days.','6:16',false,'red','3-0'),
-  V('smu-micd-up-s2e6','XQQceIGoFzc',"Mic'd Up · Members","SMU Athletics: Mustangs Mic'd Up, Season 2, Episode 6","SMU's own series puts the microphones on. This episode features Kyle Ward, Riley Dodge and head coach Rhett Lashlee.",'42:51',true,'black','MIC\'D')];
+  V('smu-micd-up-s2e6','XQQceIGoFzc',"Mic'd Up · Official","SMU Athletics: Mustangs Mic'd Up, Season 2, Episode 6","SMU's own series puts the microphones on. This episode features Kyle Ward, Riley Dodge and head coach Rhett Lashlee.",'42:51',false,'black','MIC\'D')];
  Array.prototype.splice.apply(MP.LIB,[0,0].concat(vids));
 
  function at(id){for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id===id)return i;return MP.LIB.length}
@@ -617,7 +618,7 @@ MP.PHOTOS={
    or a short original summary that links out to the official story. Embed only, never rehosted; no article text copied; no quotes.
    Fictional items with no real equivalent stay, labeled "Sample" (see KEEP). Recruiting stays paused: nothing here touches recruiting/portal items. */
 (function(){var MP=window.MP,YT='https://www.youtube.com/watch?v=',CH=['SMU Mustangs on YouTube','https://www.youtube.com/@SMUMustangs'],N='https://smumustangs.com/news/2026/';
- function V(id,yt,sport,label,title,desc,dur,lock,big,o){var c={id:id,t:'video',cat:'watch',sport:sport,label:label,title:title,desc:desc,dur:dur,lock:!!lock,tone:'black',big:big,
+ function V(id,yt,sport,label,title,desc,dur,lock,big,o){var c={id:id,t:'video',cat:'watch',sport:sport,label:label,title:title,desc:desc,dur:dur,lock:false,tone:'black',big:big,
    yt:yt,src:YT+yt,credit:'Video: SMU Athletics',channel:CH,real:true};for(var k in o||{})c[k]=o[k];return c}
  function MIC(id,yt,sport,title,desc,dur,lock){return V(id,yt,sport,"Mustangs Mic'd Up · Official podcast",title,desc,dur,lock,'MIC\'D',{t:'podcast',cat:'podcasts',credit:"Mustangs Mic'd Up · SMU Athletics"})}
  function A(id,sport,label,title,desc,dur,lock,big,art){MP.ARTICLES[id]=Object.assign({by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true},art);
