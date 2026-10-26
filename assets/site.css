@@ -501,8 +501,6 @@ blockquote b{color:var(--ink);display:block;font-size:13px;margin-bottom:2px}
 .price{display:flex;align-items:baseline;gap:var(--s1);margin:var(--s5) 0 var(--s3)}
 .price b{font-family:var(--display);font-weight:400;font-size:48px;line-height:1;font-variant-numeric:tabular-nums}
 .price span{color:var(--ink-3)}.tier.dark .price span{color:rgba(255,255,255,.8)}
-.nilchip{align-self:flex-start;font-size:13px;font-weight:700;color:var(--red);background:color-mix(in srgb,var(--red) 8%,#fff);padding:4px 10px;border-radius:99px}
-.tier.dark .nilchip{background:rgba(255,255,255,.1);color:#fff}
 .tier ul{margin:var(--s5) 0 var(--s6);display:flex;flex-direction:column;gap:var(--s3);flex:1}
 .tier li{display:flex;gap:var(--s3);align-items:flex-start;font-size:15px}
 .tier li svg{flex:none;width:20px;height:20px;margin-top:1px}
@@ -1294,8 +1292,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .mm-nav .mm-sports a{display:flex;grid-template-columns:none;align-items:center;gap:12px;min-height:44px;padding:0 var(--s2);border-radius:0;border-bottom:0;background:none;font-size:16px;font-weight:600;color:rgba(255,255,255,.92)}
 .mm-nav .mm-sports a svg{flex:none;width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .mm-nav .mm-sports a:hover,.mm-nav .mm-sports a:focus-visible{background:rgba(255,255,255,.08)}
-.tier li .soon{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:rgba(204,0,53,.1);color:var(--red);vertical-align:1px}
-.tier.dark li .soon{background:rgba(255,255,255,.14);color:#fff}
 /* ---------- Media batch 1: link-out articles, Apple Podcasts player, "From the feeds" ---------- */
 .ext-ic{width:12px;height:12px;fill:currentColor;flex:none;vertical-align:-1px}
 .poster-verb .ext-ic{width:12px;height:12px}
@@ -1382,7 +1378,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .jm-price span{color:var(--ink-3);font-weight:500}
 .jm-fine{font-size:12.5px;color:var(--ink-3);margin:6px 0 16px}
 .jm-go{width:100%;min-height:48px;font-size:15px}
-.jm-card .nilchip{margin:16px 0 0;font-size:12.5px}
 .jm-card ul{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:11px}
 .jm-card li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.4}
 .jm-card li svg{flex:none;width:19px;height:19px;margin-top:1px}
@@ -1408,7 +1403,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
   .jm-wl{padding:16px 16px 20px}
   .jm-wl select,.jm-wl input:not([type=checkbox]){min-height:44px}
 }
-.jm-soon{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:rgba(204,0,53,.1);color:var(--red);vertical-align:1px}
 
 /* Member profile photos: the photo covers the initial; if it fails to load, the initial shows (app.js avFix) */
 .av{position:relative;overflow:hidden}
