@@ -70,7 +70,7 @@ MP.THREADS = [
      ['staff','Closed practice, but here is what I can share. The WR rotation looked different in team periods: the junior slot took most of the first-team reps and the true freshman got real run on the outside. Defensive line was healthy and loud. More in the Thursday report.'],
      ['pete','This is exactly why I pay for the Red & Blue tier. Freshman getting first-team reps in late October tells you everything.'],
      ['hank','Any word on the kicking battle? Last week was rough.'],
-     ['staff','Kicker looked sharp. Hit from 48 twice in the period I watched. I would not read too much into one game.'],
+     ['staff','Kicker looked sharp from distance in the period I watched. I would not read too much into one practice.'],
      ['grace','Love the detail. Can we get a film breakdown of the 3rd-and-long package on the podcast?']
    ]},
   {id:2,f:'hilltop',sport:'football',hot:true,title:'Official Game Thread: SMU at Syracuse (Sat., 11 a.m. CT, ESPN2)',by:'mike',ago:'2h',replies:1832,views:'41k',pin:true,
@@ -157,7 +157,7 @@ T(1).posts=[
  ['staff','Closed practice, but here\'s what I can share. The WR rotation looked different in team periods: the junior slot took most of the first-team reps and the true freshman got real run on the outside. Defensive line was healthy and loud. More in Thursday\'s report.'],
  ['pete','Freshman getting first-team reps in late October tells you everything. This is why I pay for the Red & Blue tier.',0],
  ['hank','Any word on the kicking battle? Last week was rough to watch from the south end zone.'],
- ['staff','Kicker looked sharp. Hit from 48 twice in the period I watched. I wouldn\'t read too much into one game.',2],
+ ['staff','Kicker looked sharp from distance in the period I watched. I wouldn\'t read too much into one practice.',2],
  ['ford','Good to hear. I was sitting right behind the uprights for the miss and the groan from our section was audible in Snider Plaza.',3],
  ['grace','Love the detail. Can we get a film breakdown of the 3rd-and-long package on the Paddock Report?'],
  ['dre','Already cut it up. It\'s going in the Film Room Lounge tomorrow morning.',5],
@@ -174,11 +174,11 @@ T(2).posts=[
  ['ray','Hank stealing my take. I\'m sticking with 31-24.',2]];
 MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how premium boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
  posts:[['staff','Welcome. Be civil, no posting about players\' families, no screenshots of premium posts. The Paddock and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
-MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, all 11 snaps from Saturday',by:'dre',ago:'4h',replies:167,views:'5.1k',
- posts:[['dre','Cut up every snap of the A-gap sim pressure from Saturday. Watch the boundary linebacker: he shows blitz on all 11, comes on three. QB sees six, gets four.'],
+MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, snap by snap',by:'dre',ago:'4h',replies:167,views:'5.1k',
+ posts:[['dre','Cut up the A-gap sim pressure snap by snap. Watch the boundary linebacker: he always shows blitz and only sometimes comes. QB sees six, gets four.'],
   ['ray','The free safety not moving until the snap is so disciplined. You can see the QB staring at him.',0],
   ['peruna','Is this sustainable? Feels like good offenses will motion the back out and stress it.'],
-  ['dre','Exactly the counter. Two teams did it in the second half. Staff has an answer, but I\'ll save it for Thursday.',2],
+  ['dre','Exactly the counter. Staff has an answer, but I\'ll save it for Thursday.',2],
   ['grace','This is the best thing on the site. Worth the membership by itself.']]});
 MP.THREADS.push({id:21,f:'recruiting',sport:'football',hot:true,title:'Visit list for the Nov. 6 Virginia Tech game (fictional names, updated)',by:'jt',ago:'7h',replies:244,views:'8.8k',
  posts:[['jt','Current list: one official, three unofficial. The QB is back for a third trip. All names on this demo board are fictional.'],
