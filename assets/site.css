@@ -2382,10 +2382,16 @@ header.site.hs-open .hs-btn{background:rgba(255,255,255,.18)}
 .lib-bar{border-bottom:1px solid var(--line)}
 .lib-bar .filters{margin-bottom:0}
 .lib-bar.sec.tight{padding-bottom:var(--s5)}
-.lib-shows{margin-bottom:var(--s4)}
-.lib-shows::-webkit-scrollbar{display:none}
-.lib-shows .chip[aria-pressed="true"],.lib-chips .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
-@media(max-width:639px){.lib-shows{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:calc(var(--gut)*-1);padding-right:var(--gut);padding-bottom:2px}.lib-shows .chip{flex:none;height:44px}}
+.lib-chips .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.lib-show{display:inline-flex;align-items:center;gap:var(--s2);min-width:0}
+.lib-show-l{font-size:14px;font-weight:700;color:var(--ink)}
+.lib-show-dd{position:relative;display:block;min-width:0}
+.lib-show-dd::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;margin-top:-6px;border:solid var(--blue);border-width:0 2px 2px 0;transform:rotate(45deg);pointer-events:none}
+.filters .lib-show select{-webkit-appearance:none;appearance:none;width:230px;max-width:100%;height:40px;padding:0 32px 0 12px;border:1px solid rgba(22,33,79,.2);border-radius:var(--r-ctl,var(--r1));background:#fff;color:var(--ink);font:inherit;font-size:14px;font-weight:600;text-overflow:ellipsis;cursor:pointer}
+.filters .lib-show select:hover{border-color:var(--blue)}
+.filters .lib-show select:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:2px;border-color:var(--blue)}
+.filters .lib-show select.on{border-color:var(--blue);color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+@media(max-width:699px){.lib-show{display:flex;width:100%}.lib-show-dd{flex:1}.filters .lib-show select{width:100%;height:44px;font-size:16px;border-color:var(--blue);color:var(--blue)}}
 .is-off{display:none!important}
 #libRead{border-top:1px solid var(--line)}
 /* ---------- Game thread score box (pinned at the top of a game's thread) ---------- */

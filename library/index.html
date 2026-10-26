@@ -48,7 +48,7 @@ var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=se
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../assets/site.css?v=202610264190">
+<link rel="stylesheet" href="../assets/site.css?v=202610264400">
 </head>
 <body data-page="library" data-root="../">
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="../assets/brand/smu-plus-logo-lg.webp"><img src="../assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-ring" aria-hidden="true"></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
@@ -59,9 +59,9 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <section class="sec tight lib-bar" id="libBar" aria-label="Filter the library"><div class="wrap">
   <div class="chips lib-chips" id="libChips" role="group" aria-label="Filter by category"></div>
   <div class="lib-dd"><label class="dd"><span class="sr">Category</span><select id="libCatSel"></select></label><label class="dd"><span class="sr">Format</span><select id="libTypeSel"></select></label></div>
-  <div class="chips lib-shows" id="libShows" role="group" aria-label="Filter by show" hidden></div>
   <div class="filters">
     <label class="fsearch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><span class="sr">Filter titles</span><input id="libQ" type="search" placeholder="Filter titles" autocomplete="off"></label>
+    <label class="lib-show"><span class="lib-show-l">Show</span><span class="lib-show-dd"><select id="libShowSel"><option value="all">All shows</option></select></span></label>
     <div class="seg" id="libType" role="group" aria-label="Format"><button type="button" data-type="all" aria-pressed="true">All</button><button type="button" data-type="video" aria-pressed="false">Watch</button><button type="button" data-type="article" aria-pressed="false">Read</button><button type="button" data-type="podcast" aria-pressed="false">Listen</button></div>
     <span class="meta" id="libCount"></span><button type="button" class="linkish" id="libClear" hidden>Clear filters</button>
   </div>
@@ -78,18 +78,19 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <section class="sec tight" id="libNone" hidden><div class="wrap"><div id="libEmpty"></div></div></section>
 </main>
 <div id="site-footer"></div>
-<script src="../assets/config.js?v=202610264190"></script>
-<script src="../assets/data.js?v=202610264190"></script>
-<script src="../assets/content.js?v=202610264190"></script>
-<script src="../assets/real.js?v=202610264190"></script>
-<script src="../assets/athletes.js?v=202610264190"></script>
-<script src="../assets/socials.js?v=202610264190"></script>
-<script src="../assets/sport-icons.js?v=202610264190"></script>
-<script src="../assets/games.js?v=202610264190"></script>
-<script src="../assets/upcoming.js?v=202610264190"></script>
-<script src="../assets/boxscores.js?v=202610264190"></script>
-<script src="../assets/gamestats.js?v=202610264190"></script>
-<script src="../assets/sb.js?v=202610264190"></script>
-<script src="../assets/app.js?v=202610264190"></script>
+<script src="../assets/config.js?v=202610264400"></script>
+<script src="../assets/data.js?v=202610264400"></script>
+<script src="../assets/content.js?v=202610264400"></script>
+<script src="../assets/real.js?v=202610264400"></script>
+<script src="../assets/athletes.js?v=202610264400"></script>
+<script src="../assets/socials.js?v=202610264400"></script>
+<script src="../assets/sport-icons.js?v=202610264400"></script>
+<script src="../assets/games.js?v=202610264400"></script>
+<script src="../assets/upcoming.js?v=202610264400"></script>
+<script src="../assets/boxscores.js?v=202610264400"></script>
+<script src="../assets/gamestats.js?v=202610264400"></script>
+<script src="../assets/sb.js?v=202610264400"></script>
+<script src="../assets/app.js?v=202610264400"></script>
+<script src="../assets/cfbd-live.js?v=202610264400"></script>
 </body>
 </html>

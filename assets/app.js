@@ -262,7 +262,7 @@
      SMU-blue panel with the SMU+ mark, a small kicker, one or two big words and the date when there is one. HTML and CSS only. */
   var TPL_PH={football:['ford','helmet','runout','hype'],'mens-basketball':['moody-bowl','students'],'womens-basketball':['wbb-drive','students'],volleyball:['vb-spike'],
     'mens-soccer':['msoc'],'womens-soccer':['wsoc'],'swimming-diving':['swim'],golf:['golf'],tennis:['tennis'],'track-field':['track'],rowing:['rowing'],equestrian:['equestrian'],'':['ford','students','hype','storm']};
-  var TPL_W=[[/mic'?d up/i,"MIC'D UP"],[/hall of fame|feature|profile/i,'FEATURE'],[/recap|final from|results/i,'RECAP'],[/preview/i,'PREVIEW'],[/film/i,'FILM ROOM'],
+  var TPL_W=[[/mic'?d up/i,"MIC'D UP"],[/hall of fame|feature|profile/i,'FEATURE'],[/recap|final from|results/i,'RECAP'],[/preview/i,'PREVIEW'],[/film/i,'BREAKDOWN'],
     [/season notes/i,'SEASON NOTES'],[/roundup/i,'ROUNDUP'],[/poll|top 25|ranked|rankings/i,'RANKINGS'],[/record/i,'RECORD'],[/champion|title/i,'CHAMPIONS'],
     [/award|watch list|finalist|of the week/i,'HONORS'],[/schedule|slate|televised/i,'SCHEDULE'],[/patch|partnership|business|lacrosse|launch/i,'BUSINESS'],
     [/docuseries|boulevard/i,'DOCUSERIES'],[/interview/i,'INTERVIEW'],[/highlights/i,'HIGHLIGHTS'],[/press conference|availability|tipoff|postgame|postmatch/i,'MEDIA DAY'],[/coach/i,'STAFF']];
@@ -857,10 +857,11 @@
       '<audio class="pc-au" controls preload="none" src="'+esc(e.audio)+'" aria-label="Play '+esc(sh.name)+' episode: '+esc(e.title)+'"></audio>'+
       '<p class="pc-links">'+(ap?'<a href="'+esc(ap)+'" target="_blank" rel="noopener" aria-label="'+(e.apple?'This episode':esc(sh.name))+' on Apple Podcasts (opens in a new tab)">Apple Podcasts</a>':'')+
       (sh.spotify?'<a href="'+esc(sh.spotify)+'" target="_blank" rel="noopener" aria-label="'+esc(sh.name)+' on Spotify (opens in a new tab)">Spotify</a>':'')+'</p></article>'}
+  /* data-pod, not data-item: the document click handler treats any [data-item] ancestor as a library card and swallows the click (that broke the Apple/Spotify links) */
   function podRail(items,label){var id='prow-'+(++ORN);
     return '<div class="xwrap prow" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Previous episodes" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
       '<div class="rail" id="'+id+'" data-slider role="list" aria-label="'+esc(label)+', scrolls sideways" tabindex="0">'+items.map(function(x){var id='pod-'+x[1].id;PODBY[id]={id:id,t:'podcast',cat:'podcasts',title:x[1].title,desc:x[0].name,label:x[0].name};
-        return '<div class="rail-i" role="listitem" data-show="'+esc(x[0].key)+'" data-item="'+id+'">'+podCard(x[0],x[1])+'</div>'}).join('')+'</div>'+
+        return '<div class="rail-i" role="listitem" data-show="'+esc(x[0].key)+'" data-pod="'+id+'">'+podCard(x[0],x[1])+'</div>'}).join('')+'</div>'+
       '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next episodes" aria-controls="'+id+'">'+XARR+'</button></div>'}
   function podsRow(){var el=$('#railPods');if(!el||!window.fetch)return Promise.resolve();
     return fetch(ROOT+'data/podcasts-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){
@@ -952,7 +953,7 @@
   function library(){continueRow();document.addEventListener('mp:history',continueRow);
     var P=new URLSearchParams(location.search),st={cat:P.get('cat')||'all',type:P.get('type')||'all',access:'all',q:P.get('q')||'',show:P.get('show')||'all'};
     if(!CATNAME[st.cat])st.cat='all';if(!/^(all|video|article|podcast)$/.test(st.type))st.type='all';if(!/^(all|free|members)$/.test(st.access))st.access='all';if(!/^[\w-]+$/.test(st.show))st.show='all';
-    var chips=$('#libChips'),grid=$('#libGrid'),rgrid=$('#libReadGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty'),shows=$('#libShows');
+    var chips=$('#libChips'),grid=$('#libGrid'),rgrid=$('#libReadGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty'),showSel=$('#libShowSel');
     chips.innerHTML=MP.CATS.map(function(c){return '<button type="button" class="chip" data-cat="'+c[0]+'" aria-pressed="false">'+c[1]+'</button>'}).join('');
     /* phones: category and format as two native dropdowns; the show chips scroll sideways */
     var catSel=$('#libCatSel'),typeSel=$('#libTypeSel');
@@ -960,13 +961,13 @@
     if(typeSel)typeSel.innerHTML=$$('#libType button').map(function(b){var t=b.dataset.type;return '<option value="'+t+'">'+(t==='all'?'Format':b.textContent.trim())+'</option>'}).join('');
     grid.innerHTML=MP.LIB.filter(function(c){return c.t!=='article'}).map(function(c){return cardHTML(c)}).join('');
     rgrid.innerHTML=MP.LIB.filter(function(c){return c.t==='article'}).map(function(c){return cardHTML(c)}).join('');q.value=st.q;
-    function itemOf(el){var id=el.dataset.item||(el.querySelector('[data-item]')||{dataset:{}}).dataset.item;return PODBY[id]||LIBBY[id]}
+    function itemOf(el){var id=el.dataset.pod||el.dataset.item||(el.querySelector('[data-item]')||{dataset:{}}).dataset.item;return PODBY[id]||LIBBY[id]}
     function ok(c,show){if(!c)return false;var hay=(c.title+' '+c.desc+' '+c.label).toLowerCase();
       return (st.cat==='all'||c.cat===st.cat)&&(st.type==='all'||c.t===st.type)&&(st.access==='all'||(st.access==='free')===!c.lock)&&(st.show==='all'||show===st.show)&&
         st.q.toLowerCase().split(/\s+/).filter(Boolean).every(function(t){return hay.indexOf(t)>=0})}
     function apply(push){var seen={},n=0;function hit(c){if(!seen[c.id]){seen[c.id]=1;n++}}
       $$('.chip',chips).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cat===st.cat?'true':'false')});
-      $$('.chip',shows).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.show===st.show?'true':'false')});
+      if(showSel){showSel.value=st.show;if(showSel.value!==st.show)showSel.value='all';showSel.classList.toggle('on',st.show!=='all')}
       $$('#libType button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.type===st.type?'true':'false')});
       if(catSel)catSel.value=st.cat;if(typeSel)typeSel.value=st.type;
       [grid,rgrid].forEach(function(g){var k=0;$$('.mcard',g).forEach(function(el){var c=LIBBY[el.dataset.item],y=ok(c,libShow(c));el.hidden=!y;if(y){k++;hit(c)}});g.closest('section').classList.toggle('is-off',!k)});
@@ -982,7 +983,7 @@
       if(push){var u=new URLSearchParams();['cat','type','access','show'].forEach(function(k){if(st[k]!=='all')u.set(k,st[k])});if(st.q)u.set('q',st.q);var s=u.toString();history.replaceState(null,'',location.pathname+(s?'?'+s:'')+location.hash)}}
     function clear(){st={cat:'all',type:'all',access:'all',q:'',show:'all'};q.value='';apply(true)}
     chips.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b){st.cat=b.dataset.cat;apply(true)}});
-    shows.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b){st.show=b.dataset.show;apply(true)}});
+    if(showSel)showSel.addEventListener('change',function(){st.show=showSel.value;apply(true)});
     $('#libType').addEventListener('click',function(e){var b=e.target.closest('button');if(b){st.type=b.dataset.type;apply(true)}});
     q.addEventListener('input',function(){st.q=q.value.trim();apply(true)});
     if(catSel)catSel.addEventListener('change',function(){st.cat=catSel.value;apply(true)});
@@ -990,7 +991,7 @@
     document.addEventListener('click',function(e){if(e.target.closest('[data-lib-clear],#libClear'))clear()});
     apply(false);
     Promise.all([outletsRow().catch(function(){}),podsRow().catch(function(){})]).then(function(){
-      if(LIB_SHOWS.length){LIB_SHOWS.sort(function(a,b){return a[2]-b[2]});shows.innerHTML=[['all','All shows']].concat(LIB_SHOWS).map(function(x){return '<button type="button" class="chip" data-show="'+esc(x[0])+'" aria-pressed="false">'+esc(x[1])+'</button>'}).join('');shows.hidden=false}
+      if(LIB_SHOWS.length){LIB_SHOWS.sort(function(a,b){return a[2]-b[2]});if(showSel)showSel.innerHTML=[['all','All shows']].concat(LIB_SHOWS).map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>'}).join('')}
       if(st.show!=='all'&&!LIB_SHOWS.some(function(x){return x[0]===st.show}))st.show='all';
       apply(false)})
   }

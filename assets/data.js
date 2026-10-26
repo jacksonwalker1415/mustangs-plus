@@ -140,7 +140,7 @@ MP.THREADS = [
    posts:[['mike','Mine: picture-in-picture for live Q&As, and a dark mode.'],['grace','Push alerts when an athlete I follow posts.']]},
   {id:13,f:'hilltop',sport:'track-field',title:'XC heads to the ACC Championships on Friday',by:'grace',ago:'4d',replies:37,views:'860',
    posts:[['grace','Two team wins in September (John McKenzie and the Texas A&M Invitational). ACCs are Oct. 30 in Blacksburg. Who is watching?']]},
-  {id:14,f:'paddock',sport:'womens-basketball',title:'Film room: breaking down the new press',by:'staff',ago:'5d',replies:76,views:'2.1k',
+  {id:14,f:'paddock',sport:'womens-basketball',title:'Breaking down the new press',by:'staff',ago:'5d',replies:76,views:'2.1k',
    posts:[['staff','The new full-court press is aggressive. Here is how it works and why the staff thinks it fits this roster.'],['belle','Loved the telestrator clips.']]},
   {id:15,f:'hilltop',sport:'rowing',title:'Head of the Charles thread: who watched the stream?',by:'hank',ago:'6d',replies:21,views:'540',
    posts:[['hank','Great to see SMU racing in Cambridge. Next up is Texas at White Rock Lake on Nov. 8.']]},
