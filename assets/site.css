@@ -2420,8 +2420,8 @@ nav.main a.nav-search svg{width:16px;height:16px;fill:currentColor;flex:none}
 .gt-final .gt-st{background:var(--blue);color:#fff}
 .gt-live .gt-st{border-color:var(--red);color:var(--red)}
 .gt-box .score{border-bottom:0;padding:var(--s3) 0 var(--s2)}
-/* score box: losing side solid #536197 like the game pages (5.96:1 on #fff); Final label and date 13px */
-.gt-box .sc-t:not(.win){opacity:1;color:#536197}.gt-box .sc-f,.gt-box .sc-f b{font-size:13px}
+/* score box: losing side stays solid SMU blue #354CA1 (higher contrast than the game pages grey); Final label and date 13px */
+.gt-box .sc-t:not(.win){opacity:1;color:#354CA1}.gt-box .sc-f,.gt-box .sc-f b{font-size:13px}
 .gt-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s2) var(--s4);margin:var(--s3) 0 0}
 .gt-facts dt{font-size:13px;font-weight:700;color:var(--ink-2)}
 .gt-facts dd{margin:0;font-size:15px;color:var(--ink);overflow-wrap:anywhere}
