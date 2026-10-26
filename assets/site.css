@@ -29,7 +29,7 @@ html{-webkit-tap-highlight-color:transparent}
 :focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
 html.pointer :focus-visible{outline:none}
 header.site :focus-visible,.mmenu :focus-visible,footer :focus-visible,.hero :focus-visible,.page-hero :focus-visible,.gameday :focus-visible,.sec.dark :focus-visible,.brief-panel :focus-visible,.band :focus-visible,.disclaimer :focus-visible{outline-color:#fff}
-.disclaimer :focus-visible{outline-color:var(--black)}
+.disclaimer :focus-visible{outline-color:#fff}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 [hidden]{display:none!important}
 
@@ -62,7 +62,7 @@ h4{font-size:15px;font-weight:700}
 @media(max-width:639px){.lede{font-size:16px;margin-bottom:var(--s5)}}
 
 /* ---------- Disclaimer ---------- */
-.disclaimer{background:var(--yellow);color:var(--black);font-size:13px;line-height:1.4;text-align:center;padding:var(--s2) var(--gut)}
+.disclaimer{background:#CC0035;color:#fff;font-size:13px;line-height:1.4;text-align:center;padding:var(--s2) var(--gut)}
 .disclaimer b{font-weight:800}
 
 /* ---------- Buttons ---------- */
@@ -1116,7 +1116,8 @@ nav.main{min-width:0}
 }
 
 /* ---------- Concept notice (one wording site-wide) + waitlist + privacy notice ---------- */
-.disclaimer a{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.disclaimer a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.disclaimer a:hover,.disclaimer a:focus-visible,.disclaimer a:visited{color:#fff;background:none;text-decoration-thickness:2px}
 .cnotice{margin:14px 0 4px;padding:12px 14px;border-radius:var(--r1);background:var(--blue-10);color:var(--ink);font-size:14px;line-height:1.5;border-left:3px solid var(--blue);max-width:80ch}
 .cnotice b{font-weight:800}
 .cnotice a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:2px}
