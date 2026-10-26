@@ -22,13 +22,13 @@ body[data-page="games"] main .gm-pn a{border-color:var(--gm-hair-2)}
 .gmx-meta{font-size:16px;font-weight:600;color:rgba(255,255,255,.86);margin:0}
 .gmx-h1{font-family:var(--display);font-weight:400;letter-spacing:.01em;line-height:.92;font-size:clamp(52px,6.4vw,96px);margin:0;overflow-wrap:anywhere}
 .gmx-vs{font-size:.5em;color:rgba(255,255,255,.7);vertical-align:.32em;margin:0 .06em}
-.gmx-score{display:flex;align-items:flex-end;flex-wrap:wrap;gap:var(--s2) var(--s5);margin-top:var(--s2)}
-.gmx-n{display:flex;flex-direction:column;gap:2px;opacity:.62}
+/* final scoreline: centred in the band's text column (full band width on phones), a single F for final between the scores */
+.gmx-score{display:flex;align-items:flex-end;justify-content:center;gap:var(--s5);margin:var(--s2) 0 0;align-self:stretch}
+.gmx-n{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;text-align:center;opacity:.62}
 .gmx-n.win{opacity:1}
-.gmx-n small{font-size:14px;font-weight:700;color:#fff;line-height:1.2}
+.gmx-n small{font-size:14px;font-weight:700;color:#fff;line-height:1.2;max-width:14ch;overflow-wrap:anywhere}
 .gmx-n b{font-family:var(--display);font-weight:400;font-size:clamp(64px,8vw,120px);line-height:.9;font-variant-numeric:tabular-nums}
-.gmx-dash{font-family:var(--display);font-size:clamp(40px,5vw,72px);line-height:1;color:rgba(255,255,255,.5);padding-bottom:.18em}
-.gmx-st{align-self:center;display:inline-flex;align-items:center;height:32px;padding:0 var(--s3);border-radius:99px;background:var(--red);color:#fff;font-size:14px;font-weight:800}
+.gmx-f{font-family:var(--display);font-weight:400;font-size:clamp(32px,3.4vw,52px);line-height:1;color:#fff;padding-bottom:.42em}
 .gmx-when{display:flex;flex-direction:column;gap:var(--s4)}
 .gmx-ko{display:flex;flex-direction:column;gap:var(--s1);margin:0}
 .gmx-ko b{font-family:var(--display);font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1}
@@ -171,7 +171,8 @@ body[data-page="games"] .gm-h{font-size:18px;color:var(--blue)}
   .gmx-h1{font-size:clamp(44px,13vw,60px)}
   .gmx-meta{font-size:15px}
   .gmx-n b{font-size:76px}
-  .gmx-dash{font-size:44px}
+  .gmx-f{font-size:34px;padding-bottom:.4em}
+  .gmx-score{gap:var(--s4)}
   .gmx .gm-cd div{min-width:0;flex:1;padding:var(--s2) var(--s1)}
   .gmx .gm-cd b{font-size:28px}
   .gmx-links{gap:0 var(--s4)}
