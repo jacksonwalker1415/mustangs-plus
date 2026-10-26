@@ -118,6 +118,8 @@ def cards(slug, pre, path, year):
             if k and k not in links and not h.startswith("/sidearm-icons"):
                 links[k] = absu(h)
         links["gamecenter"] = absu(gc)
+        # SMU's official StatBroadcast box score for this game, when the schedule card links one (link out only)
+        sbm = next((re.search(r"statbroadcast\.com/broadcast/\?id=(\d+)", html.unescape(h)) for h, t in a if "statbroadcast.com/broadcast/" in h), None)
         home = bool(venue) or "Dallas" in city
         # the card prints any note (event name, promo) right after the radio line
         rad, note = (radio.group(1).strip(" |") if radio else ""), ""
@@ -129,6 +131,8 @@ def cards(slug, pre, path, year):
              "venue": venue, "city": city, "time": nice_time(dm.group(4)), "ko": ct_iso(d, dm.group(4)),
              "tv": (tv.group(1).strip(" |") if tv else "") or None, "radio": rad or None,
              "res": f"{res.group(1)} {res.group(2)}-{res.group(3)}" if res else None, "links": links}
+        if sbm:
+            g["sb"] = int(sbm.group(1))
         note = re.sub(r"\s*\bAll News\b", "", note).strip()
         if note:
             g["note"] = note.replace(" - ", " · ").rstrip("!")
