@@ -136,7 +136,7 @@ MP.NOTES=[
    1) Official SMU Athletics videos. Embed-only YouTube IDs from SMU's official channel (@SMUMustangs), checked via
       YouTube oEmbed on Oct. 26, 2026. Never download or rehost. yt = video ID, credit is shown with the player.
       They share the "SMU Athletics:" title prefix, so the watch page lists them together as one series (Up next).
-   2) Sourced pieces (sourced:true + sources) and one fictional recruiting update (labeled).
+   2) Sourced pieces (sourced:true + sources).
    3) MP.ACCESS: hand-picked "All Access" items per sport page (replaces the templated three cards; see app.js edit list). */
 (function(){
  var YT='https://www.youtube.com/watch?v=',CAL='https://smumustangs.com/news/2026/10/24/football-dominating-second-half-leads-smu-to-59-20-win-over-cal',ESPN='https://www.espn.com/college-football/player/';
@@ -156,7 +156,6 @@ MP.NOTES=[
   {id:'feature-raphael',t:'article',cat:'insider',label:'Player Feature',title:"Same opponent, other sideline: Kendrick Raphael's full circle",desc:'Last November his late touchdown beat SMU. On Saturday he scored three for the Mustangs against the team he left.',dur:'4 min read',lock:false,tone:'black',big:'#6',isNew:true},
   {id:'feature-jennings-record',t:'article',cat:'insider',label:'Player Feature',title:'Seventy-four: Kevin Jennings and the record Oak Cliff built',desc:'Twenty-two passes as a freshman. Now the most touchdown passes in SMU history. Five seasons, by the numbers.',dur:'4 min read',lock:true,tone:'blue',big:'74',isNew:true}];
  Array.prototype.splice.apply(MP.LIB,[at('walk-on'),0].concat(reads));
- MP.LIB.splice(at('visit-weekend'),0,{id:'rec-update-nov',t:'article',cat:'recruiting',label:'Recruiting Update',title:'Four names for Friday night, one hole on the line',desc:'The Virginia Tech visit list, where the 2028 board stands, and why offensive tackle keeps coming up. Every prospect named is fictional.',dur:'5 min read',lock:true,tone:'blue',big:'NOV 6',isNew:true});
 
  MP.ARTICLES['recap-cal']={by:'SMU+ Staff',date:'Oct. 25, 2026',sourced:true,sources:[['SMU Athletics recap, scoring summary and game notes, Oct. 24',CAL],['SMU Athletics 2026 football schedule','https://smumustangs.com/sports/football/schedule/2026']],
   dek:'Cal led at halftime. After that the Bears didn\'t score again, and Kevin Jennings set the school record for touchdown passes.',
@@ -194,22 +193,6 @@ MP.NOTES=[
   "The games that made the line: 430 yards and three touchdowns in the 27-24 opener at Florida State. Five touchdowns on 14-of-16 passing against UC Davis. 439 yards on 33-of-39 against Missouri State. Then the record against Cal: 16 of 23, 223 yards, three touchdowns.",
   "This is Jennings's third season as SMU's starter, and the Mustangs are 25-8 with him in that role. In October he and Yamir Knight were named to the Pony Express Award watch list.",
   "He has five regular-season games left, starting Saturday at Syracuse. Every touchdown pass from here adds to the record."]};
-
- /* FICTIONAL recruiting update. Every prospect and transfer named below already exists in the fictional MP.VISITS / MP.PORTAL / MP.NOTES tables.
-    If the Recruiting lane renames them in recruiting-data.js, update the names here to match. Uses the default fictional footer. */
- MP.ARTICLES['rec-update-nov']={by:'jt',date:'Oct. 26, 2026',
-  dek:'This is a fictional recruiting report for the SMU+ class concept. Every prospect, school and transfer named here is made up. The games are real.',
-  related:['board-2028','recruiting-notebook','portal-primer'],body:[
-  "Everyone named in this report is a fictional prospect created for the SMU+ concept.",
-  "Friday night on Nov. 6 matters more to recruiting than any other date this fall. Virginia Tech comes to Ford Stadium at 6 p.m. on ESPN, and it's a Wear Blue night. On a recruiting weekend, a Friday kickoff under the lights is a big selling point. Four prospects are on the list.",
-  "Jace Pemberton, QB, 2028, Katy (four stars, official visit). This is his third trip to campus and the first one on an official visit. He's the top name on the 2028 board, and the staff has treated him that way since summer. Our status: SMU lean. We mean that literally. A lean isn't a commitment, and quarterbacks in this class have a long way to go.",
-  "Tre Whitlock, DE, 2028, Dallas (four stars, unofficial). He had two sacks before halftime the night we rode along in Dallas ISD. Then he sat the rest of the game because it was out of hand. SMU is in his top five. He's set an unofficial visit for the Virginia Tech game, which will be his third time on campus this fall.",
-  "Andre Kincaid, OT, 2028, Tyler (three stars, unofficial). He's the most important name on the list, and the reason is depth, not stars. The staff wants two offensive tackles in this class and doesn't have a clear leader for either spot. Kincaid is uncommitted, and he hears about that need every time he talks to SMU.",
-  "Malik Holloway, CB, 2029, DeSoto (three stars, unofficial). He's a sophomore. This is an early relationship visit, and you'll keep hearing the name.",
-  "Offensive tackle has been the staff's top concern for weeks, and it hasn't eased. The portal board shows why. The only tackle coming in so far is Cole Ashford, a graduate transfer from North Plains State who committed Oct. 21. One graduate tackle doesn't fix the long-term problem. Expect tackle to be the first position the staff targets when the December window opens.",
-  "The Nov. 14 Wake Forest game brings another group: safety Isaiah Calloway (2029, Mesquite), the sophomore who blocked a punt the night we first saw him; Frisco receiver Bryce Okoro (2028, official visit), who is committed elsewhere and still visiting; and San Antonio offensive lineman Luis Quintero (2028, SMU lean). An official visit from a committed player always gets noticed. That doesn't make it a flip.",
-  "Portal watch: since our last update the incoming list has added Ashford and cornerback Darius Navarro from Gulf Coast. Defensive tackle Reggie Sutton (Red River) has visited, and receiver Elijah Merritt (Harbor State) has a visit set. On the outgoing side, linebacker Owen Stratton and quarterback Hudson Lachance are in the portal without a destination. Running back Grant Fairbanks has committed to Mesa A&M.",
-  "The full tracker is on the Recruiting page. If something real happens, only the official SMU announcement counts."]};
 
  /* Hand-written "All Access" picks for each sport page. Strings are MP.LIB ids (missing ids are skipped).
     Objects are sport-only cards, sourced from that program's SMU Athletics schedule (sources on each). */
