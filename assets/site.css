@@ -2365,7 +2365,7 @@ nav.main a.nav-search svg{width:16px;height:16px;fill:currentColor;flex:none}
 .srch-note{margin-top:var(--s2);font-size:14px;color:var(--ink-2)}
 
 /* Watch page: filter bar on top, show chips, written pieces at the bottom */
-.lib-bar{border-bottom:1px solid var(--line)}
+.lib-bar{border-bottom:0}
 .lib-bar .filters{margin-bottom:0}
 .lib-bar.sec.tight{padding-bottom:var(--s5)}
 .lib-show{display:inline-flex;align-items:center;gap:var(--s2);min-width:0}
