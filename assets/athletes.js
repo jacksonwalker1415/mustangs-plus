@@ -57,6 +57,34 @@ MP.ATHLETES = [
    rows:[['8/30','vs East Texas A&M','W 42-13',4,4,0,1,95,0],['9/6','vs Baylor','L 45-48 2OT',8,4,1,0,0,0],['9/13','@ Missouri State','W 28-10',6,2,0,0,0,0],['9/20','@ TCU','L 24-35',6,2,0,0,0,0],['10/4','vs Syracuse','W 31-18',9,4,0,1,0,0],['10/11','vs Stanford','W 34-10',11,5,0,0,0,0],['10/18','@ Clemson','W 35-24',6,4,0,0,0,1],['10/25','@ Wake Forest','L 12-13',4,1,0,1,0,0],['11/1','vs Miami','W 26-20 OT',15,5,0,2,15,0],['11/8','@ Boston College','W 45-13',4,2,0,0,0,0],['11/22','vs Louisville','W 38-6',8,6,0,0,0,0],['11/29','@ California','L 35-38',10,5,0,0,0,1],['1/2','vs Arizona (Holiday Bowl)','W 24-19',13,10,0,0,0,1]]},
   news:['2025: 95-yard interception return for a touchdown in the opener against East Texas A&M.','2025: career-high 15 tackles and two interceptions against No. 10 Miami.','2024: 73 tackles and three interceptions, including a pick-six against TCU.'],
   src:[['SMU Athletics bio',SMU+'ahmaad-moses/16145'],['ESPN stats',ESPN+'stats/_/id/4715349/ahmaad-moses'],['ESPN 2025 game log',ESPN+'gamelog/_/id/4715349/ahmaad-moses']]}
+ ,{id:'kendrick-raphael',name:'Kendrick Raphael',first:'Kendrick',last:'Raphael',num:'6',pos:'RB',sport:'football',kit:'alt',
+  ht:'5-11',wt:'201',cls:'Senior',hometown:'Naples, Florida',prev:'Cal / NC State / Naples HS',
+  ratings:null,
+  blurb:'A veteran back who came to SMU after stops at NC State and Cal. Through seven games in 2026 he leads the Mustangs with 641 rushing yards and eight rushing touchdowns, including 197 yards and three scores at Louisville.',
+  honors:[],
+  season:{label:'2026 season (through Oct. 24)',stats:[['RUSH',121],['RUSH YDS',641],['YDS/CAR',5.3],['RUSH TD',8],['REC',10],['REC YDS',94],['REC TD',1]]},
+  career:{cols:['Year','Team','Rush','Yds','Avg','TD','Rec','Rec Yds','Rec TD'],
+   rows:[['2023','Prev.',67,309,4.6,1,10,96,0],['2024','Prev.',78,425,5.4,3,10,41,0],['2025','Prev.',232,943,4.1,13,34,245,1],['2026*','SMU',121,641,5.3,8,10,94,1]],
+   total:['Career','',498,'2,318',4.7,25,64,476,2]},
+  log:{label:'2026 rushing game log',cols:['Date','Opp','Result','Car','Yds','Avg','TD'],
+   rows:[['9/7','@ Florida State','W 27-24',12,75,6.3,0],['9/12','vs UC Davis','W 56-10',3,3,1.0,1],['9/19','@ Louisville','L 31-41',24,197,8.2,3],['9/26','vs Missouri State','W 34-24',23,98,4.3,1],['10/3','vs Boston College','W 25-16',15,45,3.0,1],['10/17','vs Virginia','W 23-13',22,119,5.4,0],['10/24','vs California','W 59-20',22,104,4.7,2]]},
+  news:['2026: 197 rushing yards and three touchdowns at Louisville (Sept. 19).','2026: 104 yards and two touchdowns against California (Oct. 24).','2025: 943 rushing yards and 13 touchdowns before transferring to SMU.'],
+  src:[['SMU Athletics roster',"https://smumustangs.com/sports/football/roster"],['ESPN player page',ESPN+'_/id/4899368/kendrick-raphael'],['cfbstats 2026 rushing log',"https://cfbstats.com/2026/player/663/2001305/rushing/gamelog.html"],['Sports-Reference SMU 2026',"https://www.sports-reference.com/cfb/schools/southern-methodist/2026.html"]],
+  notes:'Prior-school seasons (2023–25) are shown as "Prev." because the sources list the stat lines but we did not confirm which school each year belongs to. Career totals are the sum of the rows shown.'}
+ ,{id:'alexander-kilgore',name:'Alexander Kilgore',first:'Alexander',last:'Kilgore',num:'23',pos:'LB',sport:'football',kit:'away',
+  ht:'6-2',wt:'231',cls:'Senior',hometown:'Katy, Texas',prev:'Katy Paetow HS',
+  ratings:null,
+  blurb:'A four-year Mustang from Katy who leads the 2026 defense in tackles. He had two interceptions in 2025, one returned for a touchdown.',
+  honors:[],
+  season:{label:'2026 season (through Oct. 24)',stats:[['TKL',39],['SOLO',19],['AST',20],['TFL',3.5],['SACK',0],['INT',0]]},
+  career:{cols:['Year','Team','Tkl','Solo','Ast','Sack','Int','PD'],
+   rows:[['2023','SMU',36,27,9,4,1,0],['2024','SMU',56,19,37,1,0,3],['2025','SMU',60,31,29,0,2,2],['2026*','SMU',39,19,20,0,0,'-']],
+   total:['Career','',191,96,95,5,3,'-']},
+  log:{label:'2026 game log (through Oct. 17)',cols:['Date','Opp','Result','Tkl','Solo','TFL'],
+   rows:[['9/7','@ Florida State','W 27-24',6,2,1.0],['9/12','vs UC Davis','W 56-10',4,2,0.0],['9/19','@ Louisville','L 31-41',5,3,0.0],['9/26','vs Missouri State','W 34-24',5,0,0.5],['10/3','vs Boston College','W 25-16',5,3,1.0],['10/17','vs Virginia','W 23-13',10,5,0.0]]},
+  news:['2026: season-high 10 tackles against Virginia (Oct. 17).','2025: 60 tackles and two interceptions, including a pick-six.','2023: four sacks as a freshman.'],
+  src:[['SMU Athletics roster',"https://smumustangs.com/sports/football/roster"],['ESPN career stats',ESPN+'stats/_/id/5076108/alexander-kilgore'],['Sports-Reference SMU 2026',"https://www.sports-reference.com/cfb/schools/southern-methodist/2026.html"],['cfbstats 2026 TFL log',"https://cfbstats.com/2026/player/663/2000627/tackleforloss/gamelog.html"],['boxscore 2026 tackle log',"https://boxscore.email/ncaaf/player/alexander-kilgore-5076108"]],
+  notes:'2026 season totals come from Sports-Reference and include the Oct. 24 California game; the per-game log is only available through Oct. 17. 2026 passes defended were not listed.'}
 ];
 MP.athleteBy=function(id){for(var i=0;i<MP.ATHLETES.length;i++)if(MP.ATHLETES[i].id===id)return MP.ATHLETES[i];return null};
 })();

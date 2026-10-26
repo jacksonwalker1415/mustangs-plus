@@ -1,4 +1,5 @@
-/* Mustangs+ concept site. Shared header/footer, demo modal and per-page renderers. */
+/* Mustangs+ concept site: shell, media cards, library, recruiting, boards, sport pages and athlete profiles.
+   Class-project mockup. Content is fictional except the athlete profiles, which cite public sources. */
 (function(){
   var MP=window.MP, body=document.body, ROOT=body.dataset.root||'', PAGE=body.dataset.page||'home';
   function $(s,el){return (el||document).querySelector(s)}
@@ -6,7 +7,6 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function money(n){return '$'+Math.round(n).toLocaleString()}
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
-
   var PLUS='<svg viewBox="0 0 20 20"><path d="M8 2h4v6h6v4h-6v6H8v-6H2V8h6z" fill="#fff"/></svg>';
   var LOCK='<svg viewBox="0 0 24 24"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>';
   var CHAT='<svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/></svg>';
@@ -22,7 +22,7 @@
       :'<path d="M50 6Q60 15 70 6" fill="none" stroke="'+k.t+'" stroke-width="5"/><path d="M14 35L24 40M106 35L96 40M17 29L27 34M103 29L93 34" stroke="'+k.t+'" stroke-width="3.5"/><path d="M33 104H87" stroke="'+k.t+'" stroke-width="4"/>';
     return '<svg class="kit" viewBox="0 0 120 120" aria-hidden="true"><path d="'+body+'" fill="'+k.b+'" stroke="'+k.s+'" stroke-width="2" stroke-linejoin="round"/>'+trim+
       '<text x="60" y="'+(singlet?84:82)+'" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="'+(n.length>2?26:n.length>1?36:40)+'" fill="'+k.n+'" stroke="'+k.o+'" stroke-width="3" paint-order="stroke" letter-spacing="-1">'+esc(n)+'</text></svg>'}
-  var KIT_BG={home:'linear-gradient(170deg,#354CA1,#262626)',away:'linear-gradient(170deg,#CC0035,#262626)',alt:'linear-gradient(170deg,#FFFFFF,rgba(53,76,161,.35))'};
+  var KIT_BG={home:'#354CA1',away:'#262626',alt:'color-mix(in srgb,#354CA1 10%,#fff)'};
   var JERSEY_SPORTS=/football|basketball|soccer|volleyball/;
   var ICON={
     'football':'<ellipse cx="16" cy="16" rx="13" ry="8" transform="rotate(-35 16 16)"/><path d="M12 20l8-8M13.5 15.5l3 3M15.5 13.5l3 3"/>',
@@ -42,326 +42,224 @@
   function sportBy(slug){for(var i=0;i<MP.SPORTS.length;i++)if(MP.SPORTS[i].slug===slug)return MP.SPORTS[i];return null}
   function sportUrl(slug){return ROOT+'sports/'+slug+'/'}
   function threadUrl(id){return ROOT+'boards/#t'+id}
-
-  /* ---------- Shell: header, footer, thumb bar, modal ---------- */
-  var navItems=[['Watch',ROOT+'#watch','watch'],['Sports',ROOT+'#sports','sports'],['Boards',ROOT+'boards/','boards'],['Athletes',ROOT+'#athletes','athletes'],['Membership',ROOT+'#membership','membership']];
-  var subItems=navItems.slice(0,4).concat([['Your Impact',ROOT+'#nil','nil'],['Membership',ROOT+'#membership','membership']]);
-  function navLinks(items){return items.map(function(n){
-    var on=(PAGE==='boards'&&n[2]==='boards')||(PAGE==='sport'&&n[2]==='sports')||(PAGE==='athlete'&&n[2]==='athletes');
-    return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+(n[2]==='watch'?' data-filter-link="video"':'')+'>'+n[0]+'</a>'}).join('')}
-  var wordmark=function(cls){return '<a href="'+(ROOT||'./')+'" class="wordmark'+(cls||'')+'" aria-label="Mustangs+ home"><span class="m">Mustangs</span><span class="plus" aria-hidden="true">'+PLUS+'</span></a>'};
-
-  $('#site-header').outerHTML='<header class="site"><div class="wrap hdr">'+wordmark()+
-    '<nav class="main" aria-label="Primary">'+navLinks(navItems)+'</nav>'+
-    '<button class="btn btn-red btn-sm" data-demo="Join Mustangs+">Join Now</button></div>'+
-    '<nav class="subnav" aria-label="Sections">'+navLinks(subItems)+'</nav></header>';
-
-  var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
-  $('#site-footer').outerHTML='<footer><div class="wrap ft"><div>'+wordmark(' lg')+
-    '<p style="margin:14px 0 14px;max-width:340px">Every moment. Every Mustang. A fan membership where your subscription helps pay the athletes you cheer for.</p>'+
-    '<span class="powered">Powered by Learfield <em>(concept)</em></span></div>'+
-    '<div class="cols">'+
-    '<div><h4>Fall &amp; Winter</h4><ul>'+sportLinks.slice(0,6).join('')+'</ul></div>'+
-    '<div><h4>More Sports</h4><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
-    '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">Message Boards</a></li><li><a href="'+ROOT+'#watch">Watch</a></li><li><a href="'+ROOT+'#athletes">Athletes</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li></ul></div>'+
-    '<div><h4>Members</h4><ul><li><a href="'+ROOT+'#membership">Plans</a></li><li><a href="'+ROOT+'#nil">NIL Fund</a></li><li><a href="'+ROOT+'#faq">FAQ</a></li></ul></div>'+
-    '</div><div class="legal" style="grid-column:1/-1">'+
-    '<p style="margin:0 0 8px"><strong>Concept mockup for an SMU Cox class project. Not affiliated with or endorsed by SMU Athletics or Learfield.</strong></p>'+
-    '<p style="margin:0">All content, athletes, coaches, board users, schedules, prices and figures are fictional sample data. No SMU or Learfield logos or trademarks are used; the Mustangs+ wordmark is an original design for this demo. No payments are processed.'+(MP.ATHLETES?' Exception: the Player Profiles pages show real SMU football players using public stats, with sources linked on each profile; NIL values and film there are illustrative.':'')+'</p>'+
-    '</div></div></footer>';
-
-  document.body.insertAdjacentHTML('beforeend',
-    '<div class="thumbbar" id="thumbbar" aria-hidden="true"><a href="'+ROOT+'#nil" class="btn btn-outline">Where $ goes</a><a href="'+ROOT+'#membership" class="btn btn-red">See Plans</a></div>'+
-    '<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-h"><div class="sheet">'+
-    '<div class="ic"><svg width="30" height="30" viewBox="0 0 20 20"><path d="M8 2h4v6h6v4h-6v6H8v-6H2V8h6z" fill="#CC0035"/></svg></div>'+
-    '<h3 id="modal-h">Demo only</h3><p><span class="what" id="modalWhat">Join Mustangs+</span><br>This is a concept mockup for a class presentation. No sign-up, posting or payment happens here.</p>'+
-    '<button class="btn btn-red" id="modalClose">Got it</button></div></div>');
-
-  var modal=$('#modal'),what=$('#modalWhat');
-  document.addEventListener('click',function(e){
-    var el=e.target.closest('[data-demo]');if(!el)return;
-    e.preventDefault();what.textContent=el.dataset.demo;modal.classList.add('open');$('#modalClose').focus();
-  });
-  function closeModal(){modal.classList.remove('open')}
-  $('#modalClose').addEventListener('click',closeModal);
-  modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-
-  // Sticky thumb bar: after the first screen, hidden while the plans are on screen
-  var bar=$('#thumbbar'),heroEl=$('.hero,.sp-hero,.board-hero,.ap-hero'),tiers=$('#membership'),pastHero=false,onTiers=false;
-  function upd(){var s=pastHero&&!onTiers;bar.classList.toggle('show',s);bar.setAttribute('aria-hidden',!s)}
-  if('IntersectionObserver' in window){
-    if(heroEl)new IntersectionObserver(function(es){pastHero=!es[0].isIntersecting;upd()},{rootMargin:'-120px 0px 0px 0px'}).observe(heroEl);
-    if(tiers)new IntersectionObserver(function(es){onTiers=es[0].isIntersecting;upd()},{threshold:.25}).observe(tiers);
-  }
-
-  /* ---------- Shared pieces ---------- */
-  function avatar(uid,lg){var u=MP.USERS[uid],n=u.n.replace(/[^A-Za-z]/g,'');
-    var hues=['#354CA1','#CC0035','#59C3C3','#262626','#354CA1'],h=0;for(var i=0;i<n.length;i++)h+=n.charCodeAt(i);
-    return '<span class="av'+(lg?' lg':'')+(u.staff?' staff':'')+'" style="'+(u.staff?'':'background:'+hues[h%hues.length])+'" aria-hidden="true">'+n.charAt(0).toUpperCase()+'</span>'}
-  function forumBy(id){for(var i=0;i<MP.FORUMS.length;i++)if(MP.FORUMS[i].id===id)return MP.FORUMS[i]}
-  function threadRow(t){
-    var f=forumBy(t.f),u=MP.USERS[t.by],s=t.sport&&sportBy(t.sport),pills='';
-    if(t.pin)pills+='<span class="pill pin">'+PIN+'Pinned</span>';
-    if(t.hot)pills+='<span class="pill hot">'+FLAME+'Hot</span>';
-    if(f.prem)pills+='<span class="pill red">'+LOCK+'Members</span>';
-    pills+='<span class="pill">'+esc(f.name)+'</span>';
-    if(s)pills+='<span class="pill navy">'+esc(s.name)+'</span>';
-    return '<a class="thread" href="'+threadUrl(t.id)+'">'+avatar(t.by)+'<div><div class="t-pills">'+pills+'</div>'+
-      '<p class="t-title">'+esc(t.title)+'</p><div class="t-meta"><span>by <b>'+esc(u.n)+'</b></span><span>'+t.ago+' ago</span><span>'+t.replies.toLocaleString()+' replies</span><span>'+t.views+' views</span></div></div></a>'}
-
-  function cardHTML(c){
-    var IC={video:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',article:'<svg viewBox="0 0 24 24"><path d="M5 4h14v2H5zm0 4h14v2H5zm0 4h14v2H5zm0 4h9v2H5z"/></svg>',podcast:'<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg>'};
-    return '<button class="card" data-type="'+c.t+'" '+(c.t==='article'&&c.id?'data-article="'+c.id+'"':'data-demo="'+esc(c.title)+'"')+'>'+
-      '<div class="thumb"><div class="art" style="background:'+c.art+'"></div><span class="glyph" aria-hidden="true">'+IC[c.t]+'</span>'+
-      '<span class="badge">'+({video:'Watch',article:'Read',podcast:'Listen'})[c.t]+'</span>'+
-      (c.lock?'<span class="lock">'+LOCK+'Members</span>':'<span class="free">Free</span>')+'<span class="dur">'+c.dur+'</span></div>'+
-      '<div class="card-b"><div class="meta">'+esc(c.label)+'</div><h3>'+esc(c.title)+'</h3><p>'+esc(c.desc)+'</p></div></button>'}
-
-  /* Deterministic "random" generator so every visitor sees the same made-up roster */
+  function athleteUrl(id){return ROOT+'athletes/?id='+id}
+  function libUrl(cat){return ROOT+'library/'+(cat&&cat!=='all'?'?cat='+cat:'')}
   function rng(seed){var h=1779033703^seed.length;for(var i=0;i<seed.length;i++){h=Math.imul(h^seed.charCodeAt(i),3432918353);h=h<<13|h>>>19}
     return function(){h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);var t=(h^=h>>>16)>>>0;return t/4294967296}}
   function pick(r,a){return a[Math.floor(r()*a.length)]}
+  function secHead(title,href,link,kicker){return '<div class="sec-hd"><div>'+(kicker?'<p class="eyebrow">'+kicker+'</p>':'')+'<h2 class="sec-t">'+title+'</h2></div>'+(href?'<a class="see-all" href="'+href+'">'+(link||'See all')+'<span aria-hidden="true"> →</span></a>':'')+'</div>'}
 
-  /* ---------- Home content + fictional articles ---------- */
-  var ART={blue:'linear-gradient(160deg,#262626 0%,#354CA1 60%,#59C3C3 130%)',red:'linear-gradient(135deg,#CC0035 0%,#262626 60%,#354CA1 100%)',
-    pod:'radial-gradient(circle at 30% 30%,#FF1053 0%,#CC0035 35%,#262626 100%)',stripe:'linear-gradient(115deg,#354CA1 0 45%,#CC0035 45% 52%,#262626 52% 100%)',
-    light:'linear-gradient(200deg,#ffffff 0%,#59C3C3 45%,#354CA1 100%)',conic:'conic-gradient(from 210deg at 70% 40%,#CC0035,#262626,#354CA1,#CC0035)',
-    night:'radial-gradient(120% 90% at 80% 10%,#F9C80E 0%,rgba(249,200,14,0) 30%),linear-gradient(160deg,#354CA1,#262626)',
-    pool:'linear-gradient(180deg,#59C3C3 0%,#354CA1 55%,#262626 100%)',court:'linear-gradient(135deg,#354CA1 0%,#262626 70%),#262626',
-    gold:'linear-gradient(150deg,#262626 0%,#354CA1 55%,#F9C80E 140%)'};
-  var HOME_CONTENT=[
-    {t:'video',label:'Video Series',title:'Hilltop Unfiltered: Fall Camp',desc:'Ep. 4 · All-access cameras inside two-a-days and the locker room.',dur:'24:18',lock:true,art:ART.red},
-    {t:'article',id:'walk-on',label:'Player Feature',title:'From walk-on to Saturday starter',desc:'How one fictional linebacker rewrote his path in four years.',dur:'8 min read',lock:true,art:ART.blue},
-    {t:'video',label:'Docuseries',title:'Boulevard Nights',desc:'Ep. 1 · Tents, tailgates and the hours before kickoff on the Boulevard.',dur:'21:40',lock:true,art:ART.night},
-    {t:'podcast',label:'Podcast',title:"The Coach's Corner",desc:'A weekly sit-down with the head coach on scheme, recruiting and culture.',dur:'41 min',lock:true,art:ART.pod},
-    {t:'article',id:'coachs-corner-acc',label:"Coach's Corner",title:"Coach's Corner: Year two in the ACC",desc:'What changed when the road trips got longer and the stadiums got louder.',dur:'7 min read',lock:false,art:ART.gold},
-    {t:'video',label:'Game Week',title:'Game Week Access: Rivalry Week',desc:'Walkthroughs, film room and the bus ride to kickoff.',dur:'18:02',lock:true,art:ART.stripe},
-    {t:'article',id:'building-contender',label:'Coach Interview',title:'Building a contender in 90 days',desc:"Women's basketball's head coach on roster building in the NIL era.",dur:'6 min read',lock:false,art:ART.light},
-    {t:'article',id:'building-roster',label:'Front Office',title:'Building the Roster: NIL, the portal and fit',desc:'Inside the (fictional) war room where every scholarship spot gets debated.',dur:'9 min read',lock:true,art:ART.court},
-    {t:'podcast',label:'Podcast',title:'Pony Up: The Locker Room Pod',desc:'Athletes host. Unscripted stories, playlists and pregame rituals.',dur:'33 min',lock:true,art:ART.conic},
-    {t:'video',label:'Swimming & Diving',title:'5 a.m. Laps',desc:'Lane lines before sunrise with the swim and dive team during taper week.',dur:'12:55',lock:true,art:ART.pool},
-    {t:'video',label:"Mic'd Up",title:"Mic'd Up: The Setter",desc:'Every call, every timeout huddle, from the floor general of volleyball.',dur:'9:47',lock:false,art:ART.red},
-    {t:'article',id:'visit-weekend',label:'Recruiting',title:'Visit Weekend: 48 hours on the Hilltop',desc:'Inside an official visit, from the Friday dinner to the Sunday handshake.',dur:'6 min read',lock:true,art:ART.stripe}
-  ];
-  var STAFF={sam:'Sam Reyes, Mustangs+ Insider',lena:'Lena Ortiz, Mustangs+ Features',jt:'J.T. Barlow, Mustangs+ Recruiting'};
-  var ARTICLES={
-    'walk-on':{by:STAFF.lena,date:'Oct. 21, 2026',dek:'No scholarship, no guarantees and a 5:30 a.m. alarm. A fictional linebacker shares four years of earning it.',body:[
-      'Marcus Delgado did not get a recruiting visit. He got a parking pass, a practice jersey with no name on the back and a locker by the laundry room. Four years later, he takes the field with the first-team defense on Saturdays. (Delgado is a fictional athlete created for this concept.)',
-      '"The first year, nobody knew my name," he says. "Coaches called me \'forty-four\' because that was the number on my practice shirt. I decided I was going to be the best forty-four they had ever seen."',
-      'Walk-ons do most of the scout-team work. Delgado spent his first two seasons playing the opposing team\'s best linebacker in practice. He learned every blitz package the Mustangs would face, and the defensive staff noticed.',
-      'The turning point came in fall camp of his third year. A run of injuries opened up reps on special teams, and Delgado made three tackles in the first scrimmage. By October he was on every coverage unit. By the bowl game he had a scholarship.',
-      'NIL changed the math too. Through the Mustangs+ fan fund, members paid Delgado for a Game Week vlog and two youth clinics in Dallas. "It covered rent," he says. "For a guy who paid his own way for two years, that is not small."',
-      'His advice to the next walk-on is simple: "Show up first and leave last. Somebody is always watching."'],related:['building-roster','visit-weekend','coachs-corner-acc']},
-    'coachs-corner-acc':{by:STAFF.sam,date:'Oct. 18, 2026',dek:'The (fictional) head coach on cross-country road trips, packed visiting stadiums and what a second season in a power conference teaches you.',body:[
-      'Year one in the ACC was about proving the Mustangs belonged. In year two, the question is whether they can do it again with every opponent circling the date. Coach Darren Ellsworth, a fictional coach for this concept, sat down with Mustangs+ before the open week.',
-      '"The travel is real," he says. "We have trips where you leave Thursday afternoon and land after midnight. We had to rebuild the week around sleep, hydration and keeping the guys on their class schedule."',
-      'The staff added a recovery day after long road games and moved the Tuesday film session to the plane on the way home. "You find hours where you can. The guys watch film at 35,000 feet now."',
-      'On recruiting, the conference has opened doors. "When a kid from Houston or Atlanta knows he will play in front of 80,000 people on the road, that conversation is easier. Our pitch is simple: big stage, Dallas, a degree that means something."',
-      'He credits the fan base too. "Our traveling crowd has shown up everywhere. Members ask me about it at every Q&A. When you look up and see red and blue in a road stadium, the guys feel it."'],related:['building-roster','walk-on','building-contender']},
-    'building-contender':{by:STAFF.lena,date:'Oct. 14, 2026',dek:"Women's basketball rebuilt its roster in one offseason. The (fictional) head coach explains how.",body:[
-      'When Coach Renee Castillo, a fictional coach for this concept, took over in the spring, she had six scholarship players and ninety days before summer workouts. She now has a full roster, three starters back and a team the conference coaches picked to finish in the top half.',
-      '"We started with identity," Castillo says. "Before we talked about anybody\'s jump shot, we decided we would be the best defensive team in the league and play fast. Then we recruited to that."',
-      'Four transfers joined from the portal, and two freshmen signed in the late period. Every player met the existing roster before committing. "Culture is not a poster on the wall. It is the players you bring in."',
-      'NIL was part of every conversation, and Castillo is direct about it. "Families ask, and they should. Our answer is the fan fund. Members pay athletes for real work like camps, content and appearances. It is transparent and we can explain it."',
-      'The first test comes in November with a road trip to a ranked opponent. "We will find out a lot that night," she says. "I like finding out early."'],related:['building-roster','coachs-corner-acc','visit-weekend']},
-    'building-roster':{by:STAFF.jt,date:'Oct. 9, 2026',dek:'Inside a (fictional) roster meeting where the portal, NIL budgets and scheme fit all meet on one whiteboard.',body:[
-      'There is a whiteboard in the football offices with every scholarship spot on it, color-coded by position, class and contract length. Staff call it "the board." This concept story imagines a Tuesday meeting where the staff argue about it.',
-      'Building a roster today is part scouting and part capital budgeting. Every portal target has a fit score from the position coach, a projected role, and a number from the NIL collective the team works with. The general manager role in this story is fictional but modeled on how many programs now operate.',
-      '"Fit beats stars," the general manager says. "A three-star who knows our system and wants to be here will outplay a five-star who is here for one year and a check."',
-      'Retention matters as much as recruiting. The staff hold meetings with every returning starter in December, and fan-funded NIL from memberships like Mustangs+ helps keep players who could leave for more money elsewhere.',
-      'By the end of the meeting the board has three new names in pencil. Pencil, not marker, because nothing is final until signing day.'],related:['walk-on','visit-weekend','building-contender']},
-    'visit-weekend':{by:STAFF.jt,date:'Oct. 2, 2026',dek:'Forty-eight hours, a lot of barbecue and one big decision. What an official visit looks like from the inside.',body:[
-      'An official visit is a scripted weekend, and the script matters. Every minute of the 48 hours is planned, from the airport pickup to the goodbye at the athletics building. This recap follows two fictional guards on a basketball visit.',
-      'Friday starts with dinner at a Dallas steakhouse, with players, coaches and families at one long table. "The players do most of the talking," a staffer says. "Recruits want to hear from the guys they will be in the locker room with."',
-      'Saturday is the full tour: academic advising, the Cox business school, the training room and a scrimmage with the visitors courtside. At halftime the student section chants their names. That part is not in the script, but the staff do not discourage it.',
-      'The NIL conversation happens Saturday night with the families and compliance staff present. The program walks through the fan-funded model: what athletes are paid for, how payments are reported and what members see each quarter.',
-      'Sunday is brunch, a last meeting with the head coach and a handshake. Both guards left without committing. A week later, one did.'],related:['building-roster','walk-on','coachs-corner-acc']}
-  };
-  var ART_CARDS={};HOME_CONTENT.forEach(function(c){if(c.id)ART_CARDS[c.id]=c});
+  /* ---------- Shell ---------- */
+  var NAV=[['Watch',libUrl(),'library'],['Recruiting',ROOT+'recruiting/','recruiting'],['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards'],['Athletes',ROOT+'athletes/','athlete'],['Membership',ROOT+'#membership','membership']];
+  function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')}
+  function wordmark(cls){return '<a href="'+(ROOT||'./')+'" class="wordmark'+(cls||'')+'" aria-label="Mustangs+ home"><span class="m">Mustangs</span><span class="plus" aria-hidden="true">'+PLUS+'</span></a>'}
+  $('#site-header').outerHTML='<header class="site"><div class="wrap hdr">'+wordmark()+'<nav class="main" aria-label="Primary">'+navLinks()+'</nav>'+
+    '<div class="hdr-act"><button class="btn btn-quiet btn-sm" data-demo="Sign in">Sign in</button><button class="btn btn-red btn-sm" data-demo="Join Mustangs+">Join</button></div></div>'+
+    '<nav class="subnav" aria-label="Sections"><div class="wrap">'+navLinks()+'</div></nav></header>';
+  var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
+  $('#site-footer').outerHTML='<footer class="site-ft"><div class="wrap"><div class="ft">'+
+    '<div class="ft-brand">'+wordmark(' lg')+'<p>Every moment. Every Mustang. A fan membership where your subscription helps pay the athletes you cheer for.</p><span class="powered">Powered by Learfield <em>(concept)</em></span></div>'+
+    '<div class="ft-cols"><div><h4>Fall &amp; Winter</h4><ul>'+sportLinks.slice(0,6).join('')+'</ul></div><div><h4>More Sports</h4><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
+    '<div><h4>Watch &amp; Read</h4><ul><li><a href="'+libUrl()+'">Library</a></li><li><a href="'+libUrl('film')+'">Film Room</a></li><li><a href="'+libUrl('podcasts')+'">Podcasts</a></li><li><a href="'+ROOT+'recruiting/">Recruiting</a></li></ul></div>'+
+    '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">Message Boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li><li><a href="'+ROOT+'#membership">Plans</a></li><li><a href="'+ROOT+'#faq">FAQ</a></li></ul></div></div></div>'+
+    '<div class="legal"><p><strong>Concept mockup for an SMU Cox class project. Not affiliated with or endorsed by SMU Athletics or Learfield.</strong></p>'+
+    '<p>All stories, athletes, coaches, recruits, portal names, board users, schedules, prices and figures are fictional sample data, except the Player Profiles, which show real SMU football players using public stats with sources linked on each page (NIL values and film there are illustrative). No SMU or Learfield logos or trademarks are used. No payments are processed.</p></div></div></footer>';
 
-  /* Article sheet: opens for any card with data-article; hash #article=<id> deep-links */
-  document.body.insertAdjacentHTML('beforeend','<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="reader-h" hidden><div class="reader-sheet" tabindex="-1"><button class="reader-x" id="readerClose" aria-label="Close article">×</button><div id="readerBody"></div></div></div>');
-  var reader=$('#reader'),readerBody=$('#readerBody'),lastFocus=null;
+  body.insertAdjacentHTML('beforeend',
+    '<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-h"><div class="sheet"><div class="ic">'+PLUS+'</div>'+
+    '<h3 id="modal-h">Demo only</h3><p><span class="what" id="modalWhat">Join Mustangs+</span><br>This is a concept mockup for a class presentation. No sign-up, streaming, posting or payment happens here.</p>'+
+    '<button class="btn btn-red" id="modalClose">Got it</button></div></div>'+
+    '<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="reader-h" hidden><div class="reader-sheet"><button class="reader-x" id="readerClose" aria-label="Close article">×</button><div id="readerBody" tabindex="-1"></div></div></div>');
+  var modal=$('#modal'),what=$('#modalWhat');
+  document.addEventListener('click',function(e){var el=e.target.closest('[data-demo]');if(!el)return;e.preventDefault();what.textContent=el.dataset.demo;modal.classList.add('open');$('#modalClose').focus()});
+  function closeModal(){modal.classList.remove('open')}
+  $('#modalClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
+
+  /* ---------- Media cards ---------- */
+  var LIBBY={};MP.LIB.forEach(function(c){LIBBY[c.id]=c});
+  var CATNAME={};MP.CATS.forEach(function(c){CATNAME[c[0]]=c[1]});
+  var TICON={video:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',article:'<svg viewBox="0 0 24 24"><path d="M5 4h14v2H5zm0 4h14v2H5zm0 4h14v2H5zm0 4h9v2H5z"/></svg>',podcast:'<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg>'};
+  var VERB={video:'Watch',article:'Read',podcast:'Listen'};
+  function poster(c){return '<div class="poster tone-'+(c.tone||'blue')+'"><span class="poster-type" aria-hidden="true">'+esc(c.big||'')+'</span>'+
+      '<span class="poster-verb">'+TICON[c.t]+VERB[c.t]+'</span>'+(c.isNew?'<span class="tag tag-new">New</span>':'')+
+      (c.lock?'<span class="tag tag-lock">'+LOCK+'Members</span>':'<span class="tag tag-free">Free</span>')+'<span class="dur">'+esc(c.dur)+'</span></div>'}
+  function cardHTML(c){
+    var act=c.t==='article'?'data-article="'+c.id+'" href="#article='+c.id+'"':'data-demo="'+esc(VERB[c.t]+': '+c.title)+'" href="#"';
+    return '<a class="mcard" data-type="'+c.t+'" data-cat="'+c.cat+'" '+act+'>'+poster(c)+
+      '<div class="mcard-b"><span class="meta">'+esc(c.label)+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.desc)+'</p></div></a>'}
+  function rail(items){return '<div class="rail" role="list">'+items.map(function(c){return '<div class="rail-i" role="listitem">'+cardHTML(c)+'</div>'}).join('')+'</div>'}
+  function byCat(cat,n){return MP.LIB.filter(function(c){return c.cat===cat}).slice(0,n||8)}
+
+  /* ---------- Article reader ---------- */
+  function articleCard(id){return LIBBY[id]}
+  var lastFocus=null,reader=$('#reader'),readerBody=$('#readerBody'),baseTitle=document.title;
   function openArticle(id,push){
-    var a=ARTICLES[id],c=ART_CARDS[id];if(!a||!c)return false;
-    lastFocus=lastFocus||document.activeElement;
-    var rel=(a.related||[]).filter(function(r){return ARTICLES[r]&&ART_CARDS[r]}).map(function(r){var rc=ART_CARDS[r];
-      return '<a class="rel" href="#article='+r+'" data-article="'+r+'"><span class="rel-art" style="background:'+rc.art+'"></span><span><small>'+esc(rc.label)+' · '+esc(rc.dur)+'</small><b>'+esc(rc.title)+'</b></span></a>'}).join('');
-    readerBody.innerHTML='<div class="reader-hero" style="background:'+c.art+'"><div><span class="kicker">'+esc(c.label)+(c.lock?' · Members':' · Free')+'</span><h2 id="reader-h">'+esc(c.title)+'</h2></div></div>'+
-      '<div class="reader-in"><p class="dek">'+esc(a.dek)+'</p><div class="byline"><span class="av staff" aria-hidden="true">'+a.by.charAt(0)+'</span><div><b>'+esc(a.by)+'</b><small>'+a.date+' · '+esc(c.dur)+'</small></div></div>'+
-      a.body.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
-      '<p class="demo-note">Fictional story written for a class-project concept. People, quotes and events are made up unless noted.</p>'+
-      (rel?'<h3 class="rel-h">Related on Mustangs+</h3><div class="rels">'+rel+'</div>':'')+'</div>';
-    reader.hidden=false;document.documentElement.classList.add('noscroll');$('.reader-sheet').scrollTop=0;$('.reader-sheet').focus();
+    var a=MP.ARTICLES[id],c=articleCard(id);if(!a||!c)return false;
+    lastFocus=lastFocus||document.activeElement;var st=MP.STAFF[a.by]||{n:a.by,role:'Mustangs+'};
+    var rel=(a.related||[]).filter(function(r){return MP.ARTICLES[r]&&articleCard(r)}).map(function(r){var rc=articleCard(r);
+      return '<a class="rel" href="#article='+r+'" data-article="'+r+'"><span class="rel-p">'+poster(rc)+'</span><span class="rel-b"><small>'+esc(rc.label)+' · '+esc(rc.dur)+'</small><b>'+esc(rc.title)+'</b></span></a>'}).join('');
+    readerBody.innerHTML='<header class="reader-hd tone-'+(c.tone||'blue')+'"><p class="eyebrow">'+esc(c.label)+(c.lock?' · Members':' · Free')+'</p><h2 id="reader-h">'+esc(c.title)+'</h2></header>'+
+      '<div class="reader-in"><p class="dek">'+esc(a.dek)+'</p><div class="byline"><span class="av staff" aria-hidden="true">'+st.n.charAt(0)+'</span><div><b>'+esc(st.n)+'</b><small>'+esc(st.role)+' · '+a.date+' · '+esc(c.dur)+'</small></div><button class="btn btn-outline btn-sm" data-demo="Share this story">Share</button></div>'+
+      '<div class="prose">'+a.body.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>'+
+      '<p class="note">Fictional story written for an SMU Cox class-project concept. Characters and quotes are invented; real places are used as setting only.</p>'+
+      (rel?'<div class="sec-hd sm"><h3 class="sec-t">Keep reading</h3></div><div class="rels">'+rel+'</div>':'')+'</div>';
+    reader.hidden=false;document.documentElement.classList.add('noscroll');readerBody.scrollTop=0;readerBody.focus();
     if(push!==false&&location.hash!=='#article='+id)history.pushState(null,'','#article='+id);
-    document.title=c.title+' | Mustangs+';return true;
-  }
-  var baseTitle=document.title;
+    document.title=c.title+' | Mustangs+';return true}
   function closeArticle(fromHash){if(reader.hidden)return;reader.hidden=true;document.documentElement.classList.remove('noscroll');document.title=baseTitle;
     if(!fromHash&&/^#article=/.test(location.hash))history.pushState(null,'',location.pathname+location.search);
     if(lastFocus&&lastFocus.focus)lastFocus.focus();lastFocus=null}
   document.addEventListener('click',function(e){var el=e.target.closest('[data-article]');if(!el)return;e.preventDefault();openArticle(el.dataset.article)});
   $('#readerClose').addEventListener('click',function(){closeArticle()});
   reader.addEventListener('click',function(e){if(e.target===reader)closeArticle()});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeArticle()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeArticle()}});
   function articleFromHash(){var m=location.hash.match(/^#article=([\w-]+)$/);if(m)openArticle(m[1],false);else closeArticle(true)}
   window.addEventListener('popstate',articleFromHash);
-  /* ---------- Real-athlete profiles (On3-style) ---------- */
-  function athleteUrl(id){return ROOT+'athletes/?id='+id}
+
+  /* ---------- Shared bits ---------- */
+  function avatar(uid,lg){var u=MP.USERS[uid],n=u.n.replace(/[^A-Za-z]/g,'');
+    var hues=['#354CA1','#262626','#354CA1','#262626','#CC0035'],h=0;for(var i=0;i<n.length;i++)h+=n.charCodeAt(i);
+    return '<span class="av'+(lg?' lg':'')+(u.staff?' staff':'')+'" style="'+(u.staff?'':'background:'+hues[h%hues.length])+'" aria-hidden="true">'+n.charAt(0).toUpperCase()+'</span>'}
+  function forumBy(id){for(var i=0;i<MP.FORUMS.length;i++)if(MP.FORUMS[i].id===id)return MP.FORUMS[i]}
+  function pills(t){var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),p='';
+    if(t.pin)p+='<span class="pill pill-pin">'+PIN+'Pinned</span>';if(t.hot)p+='<span class="pill pill-hot">'+FLAME+'Hot</span>';
+    if(f.prem)p+='<span class="pill pill-prem">'+LOCK+'Members</span>';p+='<span class="pill">'+esc(f.name)+'</span>';if(s)p+='<span class="pill">'+esc(s.name)+'</span>';return p}
+  function lastBy(t){var p=t.posts[t.posts.length-1];return p[0]}
+  function lastAgo(t){var m={m:1,h:60,d:1440,w:10080},x=t.ago.match(/(\d+)(\w)/),v=x?(+x[1])*(m[x[2]]||1):60;v=Math.max(1,Math.round(v/(t.posts.length+1)));return v<60?v+'m':v<1440?Math.round(v/60)+'h':Math.round(v/1440)+'d'}
+  function threadRow(t,compact){var u=MP.USERS[t.by],lu=MP.USERS[lastBy(t)];
+    return '<a class="trow'+(compact?' compact':'')+'" href="'+threadUrl(t.id)+'">'+avatar(t.by)+'<div class="trow-main"><div class="pills">'+pills(t)+'</div><p class="t-title">'+esc(t.title)+'</p>'+
+      '<p class="t-meta">Started by <b>'+esc(u.n)+'</b> · '+t.ago+' ago<span class="t-mob"> · '+t.replies.toLocaleString()+' replies</span></p></div>'+
+      (compact?'':'<span class="num">'+t.replies.toLocaleString()+'</span><span class="num">'+t.views+'</span><span class="t-last"><b>'+esc(lu.n)+'</b><small>'+lastAgo(t)+' ago</small></span>')+'</a>'}
   function profileCard(a){
-    return '<a class="pcard" href="'+athleteUrl(a.id)+'"><span class="pc-pic" style="background:'+KIT_BG[a.kit]+'">'+kit(a.num,a.kit)+'<span class="pc-real">Real stats</span></span>'+
-      '<span class="pc-b"><small>#'+a.num+' · '+a.pos+' · '+a.cls+'</small><b>'+esc(a.name)+'</b><span>'+esc(a.hometown)+'</span><em>View profile →</em></span></a>'}
-  function athlete(){
-    var main=$('#athleteMain'),id=new URLSearchParams(location.search).get('id'),a=MP.athleteBy&&MP.athleteBy(id);
-    if(!a){main.innerHTML='<section class="sec"><div class="wrap"><p class="kicker">Athlete profiles</p><h2>Pick a Mustang.</h2><p class="lede">Profiles use public stats; sources are listed on each page.</p><div class="pgrid">'+MP.ATHLETES.map(profileCard).join('')+'</div></div></section>';return}
-    var s=sportBy(a.sport);document.title=a.name+' | Mustangs+ Profile';
-    function table(t,cls){return '<div class="tbl-wrap"><table class="tbl '+(cls||'')+'"><thead><tr>'+t.cols.map(function(c){return '<th>'+c+'</th>'}).join('')+'</tr></thead><tbody>'+
-      t.rows.map(function(r){return '<tr>'+r.map(function(v){return '<td>'+esc(v)+'</td>'}).join('')+'</tr>'}).join('')+
-      (t.total?'<tr class="tot">'+t.total.map(function(v){return '<td>'+esc(v)+'</td>'}).join('')+'</tr>':'')+'</tbody></table></div>'}
-    var others=MP.ATHLETES.filter(function(x){return x.id!==a.id});
-    main.innerHTML=
-      '<section class="ap-hero" aria-labelledby="ap-h"><div class="wrap ap-in">'+
-        '<p class="crumbs"><a href="'+ROOT+'#athletes">Athletes</a> › <a href="'+sportUrl(a.sport)+'">'+s.name+'</a> › <span>'+esc(a.name)+'</span></p>'+
-        '<div class="ap-top"><div class="ap-photo" style="background:'+KIT_BG[a.kit]+'" role="img" aria-label="Photo placeholder: jersey number '+a.num+'">'+kit(a.num,a.kit)+'<span>Photo placeholder</span></div>'+
-        '<div class="ap-id"><span class="ap-num">#'+a.num+'</span><h1 id="ap-h"><span>'+esc(a.first)+'</span> '+esc(a.last)+'</h1>'+
-        '<p class="ap-sub"><b>'+a.pos+'</b> · SMU Mustangs · '+s.name+'</p>'+
-        '<div class="ap-metrics">'+
-          '<div><small>HT / WT</small><b>'+a.ht+' / '+a.wt+'</b></div><div><small>Class</small><b>'+a.cls+'</b></div>'+
-          '<div><small>Hometown</small><b>'+esc(a.hometown)+'</b></div><div><small>High school / prev.</small><b>'+esc(a.prev)+'</b></div>'+
-          '<div class="mock"><small>NIL value <i>illustrative</i></small><b>Not public</b></div>'+
-          '<div class="mock"><small>Mustangs+ backers <i>illustrative</i></small><b>'+(900+a.name.length*97).toLocaleString()+'</b></div>'+
-        '</div></div></div>'+
-      '</div></section>'+
-      '<div class="wrap ap-body">'+
-        '<div class="ap-grid"><div>'+
-          '<section class="panel"><h3>About</h3><p>'+esc(a.blurb)+'</p>'+(a.honors.length?'<ul class="honors">'+a.honors.map(function(h){return '<li>'+esc(h)+'</li>'}).join('')+'</ul>':'')+'</section>'+
-          '<section class="panel"><div class="panel-h"><h3>'+a.season.label+'</h3></div><div class="statline">'+a.season.stats.map(function(x){return '<div><b>'+esc(x[1])+'</b><small>'+x[0]+'</small></div>'}).join('')+'</div></section>'+
-          '<section class="panel"><h3>Career stats</h3>'+table(a.career)+'<p class="demo-note">* 2026 season in progress, through Oct. 24.</p></section>'+
-          '<section class="panel"><h3>'+a.log.label+'</h3>'+table(a.log,'log')+'</section>'+
-        '</div><aside>'+
-          '<section class="panel"><h3>Recruiting ratings</h3>'+(a.ratings?'<ul class="ratings">'+a.ratings.map(function(r){return '<li><span>'+r[0]+'</span><b>'+r[1]+'</b></li>'}).join('')+'</ul><p class="demo-note">Star ratings as listed on the SMU Athletics bio.</p>':'<p class="muted">No ratings listed in the public sources we used.</p>')+'</section>'+
-          '<section class="panel"><h3>Film room</h3><div class="film">'+['Season highlights','Best plays: 2026','Mic\'d up at practice'].map(function(f,i){return '<button class="film-i" data-demo="'+esc(a.name)+': '+f+'"><span class="film-art" style="background:'+(i%2?KIT_BG.away:KIT_BG.home)+'"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span><b>'+f+'</b><small>Members · demo video</small></span></button>'}).join('')+'</div></section>'+
-          '<section class="panel"><h3>News &amp; notes</h3><ul class="news">'+a.news.map(function(n){return '<li>'+esc(n)+'</li>'}).join('')+'</ul></section>'+
-          '<section class="panel"><h3>More profiles</h3><div class="mini">'+others.map(function(o){return '<a href="'+athleteUrl(o.id)+'"><b>#'+o.num+'</b> '+esc(o.name)+'<small>'+o.pos+'</small></a>'}).join('')+'</div></section>'+
-        '</aside></div>'+
-        '<section class="sources"><h3>Sources &amp; credits</h3><p>Bio, measurements and stats come from public pages, checked Oct. 25, 2026: '+a.src.map(function(x){return '<a href="'+x[1]+'" target="_blank" rel="noopener">'+esc(x[0])+'</a>'}).join(' · ')+'. ESPN lists defensive stats as unofficial.</p>'+
-          '<p>NIL value, backer counts and film items are <b>illustrative mock content</b> for this class concept. They are not real figures, and no photos of the athlete are used.</p></section>'+
-      '</div>';
-  }
+    return '<a class="pcard" href="'+athleteUrl(a.id)+'"><span class="pc-pic" style="background:'+KIT_BG[a.kit]+'">'+kit(a.num,a.kit)+'</span>'+
+      '<span class="pc-b"><span class="tag tag-real">Real stats</span><small>#'+a.num+' · '+a.pos+' · '+a.cls+'</small><b>'+esc(a.name)+'</b><span>'+esc(a.hometown)+'</span></span></a>'}
+  function countUp(numEl,barEl,target,goal){var done=false;
+    function run(){if(done)return;done=true;barEl.style.width=(target/goal*100)+'%';var t0=performance.now();
+      (function step(t){var k=Math.min(1,(t-t0)/1400);k=1-Math.pow(1-k,3);numEl.textContent=money(target*k);if(k<1)requestAnimationFrame(step)})(t0)}
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){run();o.disconnect()}})},{threshold:.3}).observe(barEl);else run()}
+  function table(t,opt){opt=opt||{};var numCol=t.cols.map(function(c,i){return t.rows.every(function(r){return /^[-+]?[\d,.]+\*?$|^-$|^\d+-\d+$/.test(String(r[i]))})&&!/^(Year|Date)$/.test(c)});
+    var cell=function(v,i,tag){return '<'+tag+(numCol[i]?' class="n"':'')+'>'+esc(v)+'</'+tag+'>'};
+    return '<div class="tbl-wrap"><table class="tbl'+(opt.cls?' '+opt.cls:'')+'">'+(opt.caption?'<caption class="sr">'+opt.caption+'</caption>':'')+'<thead><tr>'+t.cols.map(function(c,i){return cell(c,i,'th')}).join('')+'</tr></thead><tbody>'+
+      t.rows.map(function(r){return '<tr>'+r.map(function(v,i){return cell(v,i,'td')}).join('')+'</tr>'}).join('')+
+      (t.total?'<tr class="tot">'+t.total.map(function(v,i){return cell(v,i,'td')}).join('')+'</tr>':'')+'</tbody></table></div>'}
+  function stars(n){return '<span class="stars" aria-label="'+n+' stars">'+'★★★★★'.slice(0,n)+'<i>'+'★★★★★'.slice(n)+'</i></span>'}
 
   /* ---------- Home ---------- */
+  function recruitBand(){
+    return '<div class="rb-grid">'+
+      '<div class="panel dark"><div class="panel-h"><h3>Insider notes</h3><a class="see-all" href="'+ROOT+'recruiting/#notes">All notes →</a></div><ul class="notes">'+MP.NOTES.slice(0,4).map(function(n){return '<li><span class="note-t">'+n[0]+' · '+n[1]+'</span><p>'+esc(n[2])+'</p></li>'}).join('')+'</ul></div>'+
+      '<div class="panel dark"><div class="panel-h"><h3>Portal tracker</h3><a class="see-all" href="'+ROOT+'recruiting/#portal">Full tracker →</a></div>'+
+        '<ul class="plist">'+MP.PORTAL.in.slice(0,3).map(function(p){return '<li><span class="dir in">In</span><b>'+p[0]+'</b><small>'+p[1]+' · from '+p[3]+'</small><em>'+p[4]+'</em></li>'}).join('')+
+        MP.PORTAL.out.slice(0,2).map(function(p){return '<li><span class="dir out">Out</span><b>'+p[0]+'</b><small>'+p[1]+' · to '+p[3]+'</small><em>'+p[4]+'</em></li>'}).join('')+'</ul></div>'+
+      '<div class="panel dark"><div class="panel-h"><h3>Visit list · '+MP.VISITS[0].date+'</h3><a class="see-all" href="'+ROOT+'recruiting/#visits">All visits →</a></div>'+
+        '<ul class="plist">'+MP.VISITS[0].list.map(function(v){return '<li><span class="dir '+(v[5]==='Official'?'in':'neutral')+'">'+(v[5]==='Official'?'OV':'UV')+'</span><b>'+v[0]+'</b><small>'+v[1]+' · '+v[2]+' · '+v[3]+'</small>'+stars(v[4])+'</li>'}).join('')+'</ul></div>'+
+      '</div><p class="note on-dark">Every recruit, portal name and school in this section is fictional.</p>'}
   function home(){
-    var content=HOME_CONTENT;
-    var grid=$('#grid');grid.innerHTML=content.map(cardHTML).join('');
-    function setFilter(f){
-      $$('.chip').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.filter===f)});
-      $$('.card',grid).forEach(function(c){c.hidden=!(f==='all'||c.dataset.type===f)});
-    }
-    $$('.chip').forEach(function(b){b.addEventListener('click',function(){setFilter(b.dataset.filter)})});
-    $$('[data-filter-link]').forEach(function(a){a.addEventListener('click',function(){setFilter(a.dataset.filterLink)})});
-
-    // Sports grid
-    $('#sportGrid').innerHTML=MP.SPORTS.map(function(s){
-      return '<a class="sport-tile" href="'+sportUrl(s.slug)+'">'+sportIcon(s.slug)+'<b>'+s.name+'</b><span>'+s.season+' · '+s.record+'</span></a>'}).join('');
-
-    // Board preview
-    var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,5);
-    $('#boardHot').innerHTML=hot.map(threadRow).join('');
-    $('#boardForums').innerHTML=MP.FORUMS.map(function(f){
-      return '<a class="forum'+(f.prem?' prem':'')+'" style="text-decoration:none" href="'+ROOT+'boards/?f='+f.id+'"><span class="fi">'+(f.prem?LOCK:CHAT)+'</span><div><h3>'+f.name+(f.prem?' <span class="pill red">Members</span>':' <span class="pill">Free</span>')+'</h3><p>'+f.desc+'</p><small>'+f.threads.toLocaleString()+' threads · '+f.posts.toLocaleString()+' posts</small></div></a>'}).join('');
-
-    // Featured athletes (fictional)
-    var athletes=[
-      {n:'Jalen Whitaker',v:'home',num:'7',sport:'Football',slug:'football',pos:'Wide Receiver · Jr.',bio:"Track-speed slot receiver and film-room junkie who hosts the team's Game Week vlog.",fans:'2,140',g:'linear-gradient(170deg,#CC0035,#262626)'},
-      {n:'Maya Okonkwo',v:'alt',num:'23',sport:'Basketball',slug:'womens-basketball',pos:'Guard · So.',bio:'Floor general with a 40% three-point clip. Mentors kids at a Dallas youth league.',fans:'1,860',g:'linear-gradient(170deg,#354CA1,#354CA1)'},
-      {n:'Diego Castellanos',v:'away',num:'10',sport:'Soccer',slug:'mens-soccer',pos:'Forward · Sr.',bio:'Team captain and Cox finance major. Co-hosts the Pony Up podcast.',fans:'1,205',g:'linear-gradient(170deg,#59C3C3,#354CA1)'},
-      {n:'Ava Lindqvist',v:'home',single:1,num:'4',sport:'Swim & Dive',slug:'swimming-diving',pos:'Freestyle · Jr.',bio:'Conference finalist in the 200 free. Documents early-morning practices on Mustangs+.',fans:'980',g:'linear-gradient(170deg,#CC0035,#354CA1)'}
-    ];
-    $('#athRow').innerHTML=(MP.ATHLETES||[]).map(function(a){return '<article class="ath real"><a class="pic" href="'+athleteUrl(a.id)+'" style="background:'+KIT_BG[a.kit]+'" aria-label="'+esc(a.name)+' profile"><span class="sport">Football</span><span class="pc-real">Real stats</span>'+kit(a.num,a.kit)+'</a>'+
-        '<div class="b"><h3><a href="'+athleteUrl(a.id)+'">'+esc(a.name)+'</a></h3><div class="pos">#'+a.num+' · '+a.pos+' · '+a.cls+'</div><p>'+esc(a.blurb)+'</p>'+
-        '<div class="sup"><span>'+esc(a.hometown)+'</span><a href="'+athleteUrl(a.id)+'" style="color:var(--red);font-weight:800;text-decoration:none">Profile →</a></div></div></article>'}).join('')+athletes.map(function(a){
-      return '<article class="ath"><div class="pic" style="background:'+KIT_BG[a.v]+'"><span class="sport">'+a.sport+'</span>'+kit(a.num,a.v,a.single)+'</div>'+
-        '<div class="b"><h3>'+a.n+'</h3><div class="pos">'+a.pos+'</div><p>'+a.bio+'</p>'+
-        '<div class="sup"><span><b>'+a.fans+'</b> members supporting</span><a href="'+sportUrl(a.slug)+'" style="color:var(--red);font-weight:800;text-decoration:none">Team →</a></div></div></article>'}).join('');
-
-    // Money split toggle
+    var feat=LIBBY['boulevard-nights-1'];
+    $('#heroFeature').innerHTML='<a class="hero-card" href="#" data-demo="Watch: '+esc(feat.title)+'">'+poster(feat)+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
+    $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Docuseries & originals')+rail(byCat('watch'));
+    $('#railInsider').innerHTML=secHead('Insider',libUrl('insider'),'See all','Features & practice reports')+rail(byCat('insider'));
+    $('#railFilm').innerHTML=secHead('Film Room',libUrl('film'),'See all','Breakdowns')+rail(byCat('film'));
+    $('#railPods').innerHTML=secHead('Podcasts',libUrl('podcasts'),'See all','Listen')+rail(MP.LIB.filter(function(c){return c.t==='podcast'}));
+    $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
+    $('#sportGrid').innerHTML=MP.SPORTS.map(function(s){return '<a class="sport-tile" href="'+sportUrl(s.slug)+'">'+sportIcon(s.slug)+'<span><b>'+s.name+'</b><small>'+s.season+' · '+s.record+'</small></span></a>'}).join('');
+    var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
+    $('#boardHot').innerHTML=hot.map(function(t){return threadRow(t,true)}).join('');
+    $('#boardForums').innerHTML=MP.FORUMS.slice(0,5).map(function(f){return '<a class="forum-mini" href="'+ROOT+'boards/?f='+f.id+'"><span class="fi'+(f.prem?' prem':'')+'">'+(f.prem?LOCK:CHAT)+'</span><span><b>'+f.name+'</b><small>'+f.threads.toLocaleString()+' threads · '+f.posts.toLocaleString()+' posts</small></span>'+(f.prem?'<span class="pill pill-prem">Members</span>':'<span class="pill">Free</span>')+'</a>'}).join('');
+    $('#athRow').innerHTML='<div class="rail rail-ath" role="list">'+MP.ATHLETES.map(function(a){return '<div class="rail-i" role="listitem">'+profileCard(a)+'</div>'}).join('')+'</div>';
     var nilAmt=$('#nilAmt');function fmt(n){return '$'+n.toFixed(2)}
     $$('.tier-toggle button').forEach(function(b){b.addEventListener('click',function(){
       $$('.tier-toggle button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-      var p=parseFloat(b.dataset.price);nilAmt.textContent=fmt(p*0.40);
-      $$('.legend .amt').forEach(function(el){el.textContent=fmt(p*parseFloat(el.dataset.share))});
-    })});
+      var p=parseFloat(b.dataset.price);nilAmt.textContent=fmt(p*0.40);$$('.legend .amt').forEach(function(el){el.textContent=fmt(p*parseFloat(el.dataset.share))})})});
     countUp($('#fundNum'),$('#fundBar'),1284550,2500000);
   }
 
-  function countUp(numEl,barEl,target,goal){
-    var done=false;
-    function run(){if(done)return;done=true;barEl.style.width=(target/goal*100)+'%';var t0=performance.now();
-      (function step(t){var k=Math.min(1,(t-t0)/1400);k=1-Math.pow(1-k,3);numEl.textContent=money(target*k);if(k<1)requestAnimationFrame(step)})(t0)}
-    if('IntersectionObserver' in window)new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){run();o.disconnect()}})},{threshold:.3}).observe(barEl);else run();
+  /* ---------- Library ---------- */
+  function library(){
+    var cat=new URLSearchParams(location.search).get('cat')||'all';if(!CATNAME[cat])cat='all';
+    var chips=$('#libChips'),grid=$('#libGrid'),count=$('#libCount');
+    chips.innerHTML=MP.CATS.map(function(c){var n=c[0]==='all'?MP.LIB.length:MP.LIB.filter(function(x){return x.cat===c[0]}).length;return '<button class="chip" data-cat="'+c[0]+'" aria-pressed="false">'+c[1]+'<span>'+n+'</span></button>'}).join('');
+    grid.innerHTML=MP.LIB.map(cardHTML).join('');
+    function set(c,push){cat=c;$$('.chip',chips).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cat===c)});
+      var n=0;$$('.mcard',grid).forEach(function(el){var show=c==='all'||el.dataset.cat===c;el.hidden=!show;if(show)n++});
+      count.textContent=n+' '+(n===1?'title':'titles')+(c==='all'?'':' in '+CATNAME[c]);
+      $('#libTitle').textContent=c==='all'?'Library':CATNAME[c];
+      if(push)history.replaceState(null,'',c==='all'?location.pathname:'?cat='+c)}
+    chips.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b)set(b.dataset.cat,true)});
+    set(cat,false);
   }
 
-  /* ---------- Message boards ---------- */
+  /* ---------- Recruiting hub ---------- */
+  function recruiting(){
+    $('#recNotes').innerHTML='<ul class="notes feed">'+MP.NOTES.map(function(n){return '<li><span class="note-t">'+n[0]+' ago · '+n[1]+'</span><p>'+esc(n[2])+'</p></li>'}).join('')+'</ul>';
+    $('#recVisits').innerHTML=MP.VISITS.map(function(w){return '<div class="visit-wk"><div class="visit-h"><b>'+w.date+'</b><span>'+w.game+'</span><em>'+w.list.length+' visitors</em></div>'+
+      table({cols:['Prospect','Pos','Class','Hometown','Rating','Visit','Status'],rows:w.list.map(function(v){return [v[0],v[1],v[2],v[3],'★'.repeat(v[4]),v[5],v[6]]})},{cls:'vis'})+'</div>'}).join('');
+    function ptable(rows,dir){return table({cols:['Player','Pos','Class',dir==='in'?'From':'To','Status','Date'],rows:rows},{cls:'portal'})}
+    var pin=$('#portalIn'),pout=$('#portalOut');pin.innerHTML=ptable(MP.PORTAL.in,'in');pout.innerHTML=ptable(MP.PORTAL.out,'out');
+    $$('#portalTabs button').forEach(function(b){b.addEventListener('click',function(){$$('#portalTabs button').forEach(function(x){x.setAttribute('aria-selected',x===b)});pin.hidden=b.dataset.p!=='in';pout.hidden=b.dataset.p!=='out'})});
+    $('#recCount').textContent=MP.PORTAL.in.length+' in · '+MP.PORTAL.out.length+' out';
+    $('#recRail').innerHTML=secHead('Recruiting reads',libUrl('recruiting'),'See all')+rail(byCat('recruiting').concat(byCat('portal')));
+  }
+
+  /* ---------- Boards ---------- */
   function boards(){
     var params=new URLSearchParams(location.search),state={f:params.get('f')||'all',sport:params.get('sport')||'',sort:'hot'};
-    var member=store('mp_member')==='1';
-    var listView=$('#listView'),threadView=$('#threadView');
-
-    $('#forums').innerHTML='<button class="forum" data-f="all"><span class="fi">'+CHAT+'</span><div><h3>All Boards</h3><p>Everything happening across the Mustang Board.</p><small>'+MP.THREADS.length+' active threads in this demo</small></div></button>'+
-      MP.FORUMS.map(function(f){return '<button class="forum'+(f.prem?' prem':'')+'" data-f="'+f.id+'"><span class="fi">'+(f.prem?LOCK:CHAT)+'</span><div><h3>'+f.name+(f.prem?' <span class="pill red">Members</span>':' <span class="pill">Free</span>')+'</h3><p>'+f.desc+'</p><small>'+f.threads.toLocaleString()+' threads · '+f.posts.toLocaleString()+' posts</small></div></button>'}).join('');
-    var sel=$('#sportFilter');
-    sel.innerHTML='<option value="">All sports</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'">'+s.name+'</option>'}).join('');
-    sel.value=state.sport;
+    var member=store('mp_member')==='1',listView=$('#listView'),threadView=$('#threadView');
+    function lastIn(f){var l=MP.THREADS.filter(function(t){return t.f===f.id});return l[0]}
+    var groups=['Premium','Community'];
+    $('#forumIndex').innerHTML=groups.map(function(g){return '<div class="fgroup"><div class="fgroup-h"><h3>'+g+(g==='Premium'?' <span class="pill pill-prem">'+LOCK+'Members</span>':'')+'</h3><span class="num">Threads</span><span class="num">Posts</span><span class="f-last-h">Last post</span></div>'+
+      MP.FORUMS.filter(function(f){return f.group===g}).map(function(f){var t=lastIn(f);
+        return '<button class="frow" data-f="'+f.id+'"><span class="fi'+(f.prem?' prem':'')+'">'+(f.prem?LOCK:CHAT)+'</span><span class="frow-main"><b>'+f.name+'</b><small>'+f.desc+'</small></span>'+
+        '<span class="num">'+f.threads.toLocaleString()+'</span><span class="num">'+f.posts.toLocaleString()+'</span>'+
+        '<span class="f-last">'+(t?'<b>'+esc(t.title)+'</b><small>'+esc(MP.USERS[lastBy(t)].n)+' · '+lastAgo(t)+' ago</small>':'<small>No posts yet</small>')+'</span></button>'}).join('')+'</div>'}).join('')+
+      '<div class="fgroup"><div class="fgroup-h"><h3>Team boards</h3><span class="f-last-h">12 programs</span></div><div class="team-boards">'+
+      MP.SPORTS.map(function(s){var n=MP.THREADS.filter(function(t){return t.sport===s.slug}).length;return '<button class="tb" data-sport="'+s.slug+'">'+sportIcon(s.slug)+'<b>'+s.name+'</b><small>'+(n*37+40)+' threads</small></button>'}).join('')+'</div></div>';
+    var sel=$('#sportFilter');sel.innerHTML='<option value="">All sports</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'">'+s.name+'</option>'}).join('');sel.value=state.sport;
     sel.addEventListener('change',function(){state.sport=sel.value;renderList()});
-    $$('#forums .forum').forEach(function(b){b.addEventListener('click',function(){state.f=b.dataset.f;renderList();$('#threadList').scrollIntoView({behavior:'smooth',block:'start'})})});
+    var fsel=$('#forumFilter');fsel.innerHTML='<option value="all">All boards</option>'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'">'+f.name+'</option>'}).join('');fsel.value=state.f;
+    fsel.addEventListener('change',function(){state.f=fsel.value;renderList()});
+    $('#forumIndex').addEventListener('click',function(e){var b=e.target.closest('[data-f],[data-sport]');if(!b)return;
+      if(b.dataset.f){state.f=b.dataset.f;state.sport=''}else{state.sport=b.dataset.sport;state.f='all'}
+      fsel.value=state.f;sel.value=state.sport;renderList();$('#threadList').scrollIntoView({behavior:'smooth',block:'start'})});
     $$('.sort button').forEach(function(b){b.addEventListener('click',function(){state.sort=b.dataset.sort;renderList()})});
-
     function renderList(){
-      $$('#forums .forum').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===state.f)});
       $$('.sort button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.sort===state.sort)});
       var list=MP.THREADS.filter(function(t){return (state.f==='all'||t.f===state.f)&&(!state.sport||t.sport===state.sport)});
-      if(state.sort==='hot')list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||b.replies-a.replies});
-      var f=forumBy(state.f),s=sportBy(state.sport);
-      $('#listTitle').textContent=(f?f.name:'All Boards')+(s?' · '+s.name:'');
-      $('#threadRows').innerHTML=list.length?list.map(threadRow).join(''):'<div class="empty">No threads here yet. <button class="btn btn-red btn-sm" data-demo="Start a thread">Start one</button></div>';
+      if(state.sort==='hot')list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||b.replies-a.replies});else list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||(b.id-a.id)});
+      var f=forumBy(state.f),s=sportBy(state.sport);$('#listTitle').textContent=(f?f.name:'All threads')+(s?' · '+s.name:'');
+      $('#threadRows').innerHTML=list.length?list.map(function(t){return threadRow(t)}).join(''):'<div class="empty">No threads here yet. <button class="btn btn-red btn-sm" data-demo="Start a thread">Start one</button></div>';
     }
-
     function renderThread(id){
-      var t=null;MP.THREADS.forEach(function(x){if(x.id===id)t=x});
-      if(!t){location.hash='';return}
-      var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),locked=f.prem&&!member;
-      var postHTML=t.posts.map(function(p,i){var u=MP.USERS[p[0]];
-        return '<article class="post'+(i===0?' op':'')+'"><div class="post-h">'+avatar(p[0],true)+'<div class="who"><b>'+esc(u.n)+(u.staff?' <span class="pill red">Insider</span>':'')+'</b><small>'+esc(u.tier)+' · Member since '+u.since+' · '+u.posts+' posts</small></div><span class="when">'+(i===0?t.ago+' ago':'#'+(i+1))+'</span></div>'+
-          '<p>'+esc(p[1])+'</p><div class="post-f"><button data-demo="Like this post">♥ '+(7+((t.id*13+i*29)%90))+'</button><button data-demo="Quote and reply">Quote</button><button data-demo="Reply">Reply</button></div></article>'});
-      var shown=locked?postHTML.slice(0,1).join('')+'<div class="gate">'+postHTML.slice(1).join('')+(postHTML.length<3?'<article class="post"><p>Members are discussing this thread. Lorem ipsum preview text hidden.</p></article><article class="post"><p>More member replies hidden.</p></article>':'')+
-        '<div class="gate-cta"><div><span class="pill red">'+LOCK+'Members only</span><h4>Join to read the full thread</h4><p>'+t.replies.toLocaleString()+' replies in '+esc(f.name)+'. Every membership funds SMU athlete NIL.</p><a class="btn btn-red" style="width:100%;padding:12px" href="'+ROOT+'#membership">See Plans</a><button class="btn btn-outline" style="width:100%;padding:10px;margin-top:8px" id="asMember">Preview as a member (demo)</button></div></div></div>':postHTML.join('');
-      threadView.innerHTML='<p class="crumbs"><a href="#">Boards</a> › <a href="?f='+f.id+'">'+esc(f.name)+'</a>'+(s?' › <a href="'+sportUrl(s.slug)+'">'+esc(s.name)+'</a>':'')+'</p>'+
-        '<div class="t-pills" style="display:flex;gap:6px;flex-wrap:wrap">'+(t.pin?'<span class="pill pin">'+PIN+'Pinned</span>':'')+(t.hot?'<span class="pill hot">'+FLAME+'Hot</span>':'')+(f.prem?'<span class="pill red">'+LOCK+'Members</span>':'<span class="pill">Free board</span>')+'</div>'+
-        '<h1 class="tv-title">'+esc(t.title)+'</h1><div class="board-stats"><span>'+t.replies.toLocaleString()+' replies</span><span>'+t.views+' views</span><span class="online">'+(12+t.id*7%60)+' reading now</span></div>'+
+      var t=null;MP.THREADS.forEach(function(x){if(x.id===id)t=x});if(!t){location.hash='';return}
+      var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),locked=f.prem&&!member,n=t.posts.length;
+      var times=t.posts.map(function(p,i){if(!i)return t.ago+' ago';var m={m:1,h:60,d:1440,w:10080},x=t.ago.match(/(\d+)(\w)/),tot=x?(+x[1])*(m[x[2]]||1):60,v=Math.max(1,Math.round(tot*(1-i/(n+1))));return (v<60?v+'m':v<1440?Math.round(v/60)+'h':Math.round(v/1440)+'d')+' ago'});
+      var postHTML=t.posts.map(function(p,i){var u=MP.USERS[p[0]],q=p[2]!=null?t.posts[p[2]]:null,likes=3+((t.id*13+i*29)%90);
+        return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+' · '+u.posts+' posts</small></div></aside>'+
+          '<div class="post-body"><div class="post-h"><span>'+times[i]+'</span><a href="#t'+t.id+'" class="post-n">#'+(i+1)+'</a></div>'+
+          (q?'<blockquote><b>'+esc(MP.USERS[q[0]].n)+' said:</b> '+esc(q[1].length>140?q[1].slice(0,140)+'…':q[1])+'</blockquote>':'')+
+          '<p>'+esc(p[1])+'</p><div class="post-f"><button data-demo="Like this post">♥ <span>'+likes+'</span></button><button data-demo="Quote and reply">Quote</button><button data-demo="Reply">Reply</button><button data-demo="Report post" class="rep">Report</button></div></div></article>'});
+      var shown=locked?postHTML[0]+'<div class="gate">'+postHTML.slice(1,3).join('')+'<div class="gate-cta"><div>'+LOCK+'<h4>Members-only board</h4><p>'+t.replies.toLocaleString()+' replies in '+esc(f.name)+'. Join any plan to read and post.</p><a class="btn btn-red" href="'+ROOT+'#membership">See plans</a> <button class="btn btn-outline" id="asMember">Preview as member</button></div></div></div>':postHTML.join('');
+      threadView.innerHTML='<nav class="crumbs"><a href="#">Boards</a> › <a href="?f='+f.id+'" data-f-link="'+f.id+'">'+esc(f.name)+'</a>'+(s?' › <span>'+esc(s.name)+'</span>':'')+'</nav>'+
+        '<div class="tv-head"><div class="pills">'+pills(t)+'</div><h1 class="tv-title">'+esc(t.title)+'</h1><p class="t-meta">Started by <b>'+esc(MP.USERS[t.by].n)+'</b> · '+t.ago+' ago · '+t.replies.toLocaleString()+' replies · '+t.views+' views · <span class="online">'+(12+t.id*7%60)+' reading now</span></p></div>'+
+        '<div class="pager"><span>Page 1 of '+Math.max(1,Math.ceil(t.replies/20))+'</span><div><button class="btn btn-outline btn-sm" data-demo="Watch thread">Watch</button><button class="btn btn-red btn-sm" data-demo="Reply to thread">Reply</button></div></div>'+
         '<div class="posts">'+shown+'</div>'+
         (locked?'':'<div class="reply">'+avatar('mike')+'<input type="text" placeholder="Write a reply…" aria-label="Write a reply" readonly data-demo="Post a reply"><button class="btn btn-red btn-sm" data-demo="Post a reply">Post</button></div>')+
-        (member&&f.prem?'<p class="demo-note">Viewing as a member (demo). <button class="see-all" style="border:0;background:none;padding:0" id="asGuest">Switch back to guest view</button></p>':'')+
-        '<p class="demo-note">All usernames and posts are fictional sample content.</p>';
+        (member&&f.prem?'<p class="note">Viewing as a member (demo). <button class="linkish" id="asGuest">Switch back to guest view</button></p>':'')+
+        '<p class="note">All usernames and posts are fictional sample content.</p>';
       var am=$('#asMember');if(am)am.addEventListener('click',function(){member=true;store('mp_member','1');renderThread(id)});
       var ag=$('#asGuest');if(ag)ag.addEventListener('click',function(){member=false;store('mp_member','0');renderThread(id)});
     }
-
-    function route(){
-      var m=location.hash.match(/^#t(\d+)$/);
+    function route(){var m=location.hash.match(/^#t(\d+)$/);
       if(m){listView.hidden=true;threadView.hidden=false;renderThread(+m[1]);window.scrollTo(0,0)}
-      else{threadView.hidden=true;listView.hidden=false;renderList()}
-    }
+      else if(!/^#article=/.test(location.hash)){threadView.hidden=true;listView.hidden=false;renderList()}}
     window.addEventListener('hashchange',route);route();
   }
 
   /* ---------- Sport program page ---------- */
   function sport(){
     var s=sportBy(body.dataset.sport);if(!s)return;
-    var r=rng(s.slug),main=$('#sportMain');
-    document.title=s.name+' | Mustangs+';
-
-    // Roster: made-up names, deterministic per sport
+    var r=rng(s.slug),main=$('#sportMain');document.title=s.name+' | Mustangs+';
     var size=Math.max(8,Math.min(12,s.pos.length+3)),used={},nums={},roster=[];
     for(var i=0;i<size;i++){
       var g=s.g==='X'?(i%2?'W':'M'):s.g,name,tries=0;
@@ -392,67 +290,88 @@
       }else{res=(home?'7:00 PM':'TBA');}
       games.push({d:d,o:teamSport?opp[n]:opp[n]+' Invitational',home:home,res:res,cls:cls,past:past});
     }
-
+    var realLog=s.slug==='football'&&MP.athleteBy&&MP.athleteBy('derrick-mcfall'),record=s.record;
+    if(realLog){realLog=realLog.log.rows.map(function(r){return [r[0],r[1],r[2]]});var w=realLog.filter(function(r){return /^W/.test(r[2])}).length;record=w+'-'+(realLog.length-w)}
+    var feature={id:'feature-'+s.slug,t:'article',cat:'insider',label:'Player Feature',title:'A Tuesday with '+star.name,desc:'Class, film, practice and a late dinner. One ordinary, very long day.',dur:(5+Math.floor(r()*4))+' min read',lock:true,tone:'white',big:s.season.split('/')[0].toUpperCase()};
+    LIBBY[feature.id]=feature;var first=star.name.split(' ')[0];
+    MP.ARTICLES[feature.id]={by:'lena',date:'Oct. 20, 2026',dek:'One ordinary Tuesday in the life of a fictional '+s.name.toLowerCase()+' athlete, from a 6:15 alarm to lights out.',related:['walk-on','visit-weekend','film-pressure'],body:[
+      'The alarm goes off at 6:15. '+star.name+' (a fictional athlete created for this concept) is out the door of a dorm on the north side of campus by 6:40, headed for treatment before an 8 a.m. accounting class in Fincher.',
+      'Breakfast is eaten walking. Nobody on the team claims otherwise.',
+      'Between classes there is film, usually alone in a meeting room with a laptop and a cold brew from the Dallas Hall lawn cart. "I watch everything twice," '+first+' says. "Once for me, once for whoever is next to me."',
+      s.name+' practice runs through the afternoon under '+s.coach+' (also fictional). The '+s.season.toLowerCase()+' schedule means weekends on the road are normal, and homework happens on buses and in hotel lobbies in cities '+first+' has mostly seen through a window.',
+      'Fan-funded NIL is part of the week too. Through Mustangs+, members pay athletes for youth clinics, behind-the-scenes content and Q&As. '+first+' did a clinic in University Park last month and signed more shin guards than expected.',
+      'Dinner is late, sometimes at the training table and sometimes at a taco place on Lovers Lane. Lights out is around 11. Then it starts again.']};
     var content=[
-      {t:'video',label:'Video Series',title:'Hilltop Unfiltered: '+s.name,desc:'All-access cameras inside practice, the locker room and road trips.',dur:(14+Math.floor(r()*14))+':'+(10+Math.floor(r()*49)),lock:true,art:'linear-gradient(135deg,#CC0035 0%,#262626 55%,#354CA1 100%)'},
-      {t:'article',id:'feature-'+s.slug,label:'Player Feature',title:'Inside the grind with '+star.name,desc:'A day in the life of a Mustang (fictional athlete).',dur:(5+Math.floor(r()*6))+' min read',lock:true,art:'linear-gradient(160deg,#354CA1 0%,#354CA1 60%,#59C3C3 100%)'},
-      {t:'podcast',label:'Podcast',title:s.coach+' on the season ahead',desc:'Expectations, culture and how NIL is changing the program.',dur:(25+Math.floor(r()*25))+' min',lock:false,art:'radial-gradient(circle at 30% 30%,#FF1053 0%,#CC0035 35%,#354CA1 100%)'}
-    ];
-    ART_CARDS['feature-'+s.slug]=content[1];
-    ARTICLES['feature-'+s.slug]={by:STAFF.lena,date:'Oct. 20, 2026',dek:'A day in the life of a fictional Mustang, from the first alarm to the last film clip.',body:[
-      star.name+' (a fictional athlete created for this concept) is up before 6 a.m. most days. Breakfast at the training table, then treatment, then class. '+s.name+' practice does not start until the afternoon, but the day is already full.',
-      'Between classes there is film. "I watch every rep twice," '+star.name.split(' ')[0]+' says. "Once for me, once for the person next to me. If we are both right, the play works."',
-      'Afternoons belong to '+s.coach+' (also fictional) and the rest of the staff. The '+s.season.toLowerCase()+' schedule means practice, lifting and meetings run until dinner, and road trips take whole weekends.',
-      'Fan-funded NIL is part of the routine too. Through Mustangs+, members pay athletes like '+star.name.split(' ')[0]+' for clinics, behind-the-scenes content and Q&As. "It makes you feel like the city is behind you," '+star.name.split(' ')[0]+' says.',
-      'Lights out is around 11. Then the alarm goes off and it starts again.'],related:['walk-on','building-roster','visit-weekend']};
-    var threads=MP.THREADS.filter(function(t){return t.sport===s.slug});
-    var others=MP.SPORTS.filter(function(x){return x.slug!==s.slug});
-
+      {id:'unfiltered-'+s.slug,t:'video',cat:'watch',label:'Video Series',title:'Hilltop Unfiltered: '+s.name,desc:'All-access cameras inside practice, the locker room and road trips.',dur:(14+Math.floor(r()*14))+':'+(10+Math.floor(r()*49)),lock:true,tone:'blue',big:'EP 0'+(1+Math.floor(r()*6))},
+      feature,
+      {id:'pod-'+s.slug,t:'podcast',cat:'podcasts',label:'Podcast',title:s.coach+' on the season ahead',desc:'Expectations, culture and how NIL is changing the program.',dur:(25+Math.floor(r()*25))+' min',lock:false,tone:'black',big:'POD'}];
+    var threads=MP.THREADS.filter(function(t){return t.sport===s.slug}),others=MP.SPORTS.filter(function(x){return x.slug!==s.slug});
+    var profs=(MP.ATHLETES||[]).filter(function(a){return a.sport===s.slug});
     main.innerHTML=
-      '<section class="sp-hero" aria-labelledby="sp-h"><div class="wrap sp-in">'+
-        '<p class="crumbs"><a href="'+ROOT+'#sports">Sports</a> › <span>'+s.name+'</span></p>'+
-        '<div class="sp-top"><span class="sp-ic">'+sportIcon(s.slug)+'</span><div><span class="eyebrow" style="padding:4px 9px"><span class="dot"></span>'+s.season+' sport</span></div></div>'+
-        '<h1 id="sp-h">'+s.name+'</h1>'+
-        '<p class="sub" style="margin-top:10px">'+s.blurb+' <strong style="color:#fff">40% of every membership funds Mustang NIL.</strong></p>'+
-        '<div class="sp-stats"><div><b>'+s.record+'</b><span>'+s.conf+'</span></div><div><b>'+s.members.toLocaleString()+'</b><span>members backing</span></div><div><b>'+roster.length+'</b><span>athletes featured</span></div></div>'+
-        '<div class="sp-fund"><div class="row"><span>Program NIL fund (2026–27)</span><b id="spFund">$0</b></div><div class="bar"><i id="spBar"></i></div><div class="row"><small>Sample data</small><small>Goal '+money(s.fund*1.8)+'</small></div></div>'+
-        '<div class="hero-ctas"><a href="'+ROOT+'#membership" class="btn btn-red btn-lg">Back '+s.name+'</a><a href="#board" class="btn btn-ghost btn-lg">Team Board</a></div>'+
+      '<section class="page-hero"><div class="wrap">'+
+        '<nav class="crumbs"><a href="'+ROOT+'#sports">Sports</a> › <span>'+s.name+'</span></nav>'+
+        '<div class="ph-row"><span class="sp-ic">'+sportIcon(s.slug)+'</span><div><p class="eyebrow">'+s.season+' sport · '+s.conf+'</p><h1 class="display">'+s.name+'</h1></div></div>'+
+        '<p class="lede on-dark">'+s.blurb+' <strong>40% of every membership funds Mustang NIL.</strong></p>'+
+        '<dl class="statbar"><div><dt>Record'+(realLog?'':' <span>sample</span>')+'</dt><dd>'+record+'</dd></div><div><dt>Members backing</dt><dd>'+s.members.toLocaleString()+'</dd></div><div><dt>Athletes featured</dt><dd>'+roster.length+'</dd></div><div class="fundcell"><dt>Program NIL fund <span>sample</span></dt><dd id="spFund">$0</dd><div class="bar"><i id="spBar"></i></div><small>Goal '+money(s.fund*1.8)+'</small></div></dl>'+
+        '<div class="ctas"><a href="'+ROOT+'#membership" class="btn btn-red">Back '+s.name+'</a><a href="#board" class="btn btn-ghost">Team board</a></div>'+
       '</div></section>'+
-      '<div class="wrap"><nav class="jump" aria-label="On this page"><a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Listen</a><a href="#board">Board</a><a href="#more">Other Sports</a></nav></div>'+
-      '<section class="sec" id="roster" aria-labelledby="r-h" style="padding-top:28px"><div class="wrap">'+
-        '<div class="sec-hd"><div><p class="kicker">Roster spotlight</p><h2 id="r-h">Meet the team.</h2><p class="lede">'+(s.slug==='football'&&MP.ATHLETES?'The player profiles use real public stats with sources. The roster cards below are made-up placeholders for this concept.':'Every athlete below is a made-up placeholder for this concept, not a real SMU student-athlete.')+'</p></div></div>'+
-        '<div class="roster">'+roster.map(function(a,i){
-          return '<button class="rcard" data-demo="'+esc(a.name)+'\'s athlete profile"><span class="rnum" style="background:'+KIT_BG[a.v]+'">'+kit(a.kn,a.v,!JERSEY_SPORTS.test(s.slug))+'</span><div><h4>'+esc(a.name)+'</h4><div class="rp">'+esc(a.pos)+(s.g==='X'?' · '+(a.g==='M'?"Men's":"Women's"):'')+'</div>'+
-            '<div class="rm">'+a.cls+(a.ht?' · '+a.ht:'')+' · '+esc(a.town)+'</div><div class="rs"><b>'+a.fans.toLocaleString()+'</b> members supporting · <span style="color:var(--red);font-weight:800">NIL ✓</span></div></div></button>'}).join('')+'</div>'+
-        (s.slug==='football'&&MP.ATHLETES?'<div class="profiles-strip"><div class="ps-h"><p class="kicker">Player profiles · real public stats</p><a class="see-all" href="'+ROOT+'athletes/">All profiles →</a></div><div class="pgrid">'+MP.ATHLETES.filter(function(a){return a.sport===s.slug}).map(profileCard).join('')+'</div></div>':'')+
-        '<div class="coach">'+'<span class="av lg staff">'+s.coach.split(' ')[1].charAt(0)+'</span><div><b style="color:var(--navy)">'+s.coach+'</b><div style="font-size:13px;color:var(--muted)">Head Coach (fictional) · Monthly live Q&amp;A for Pony Express members</div></div></div>'+
+      '<nav class="jump" aria-label="On this page"><div class="wrap"><a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Read</a><a href="#board">Board</a><a href="#more">Other sports</a></div></nav>'+
+      '<section class="sec" id="roster"><div class="wrap">'+
+        (profs.length?secHead('Player profiles',ROOT+'athletes/','All profiles','Real public stats')+'<div class="pgrid">'+profs.map(profileCard).join('')+'</div><div class="gap"></div>':'')+
+        secHead('Roster spotlight',null,null,profs.length?'Fictional placeholder roster':'Meet the team')+
+        '<p class="lede">'+(profs.length?'The profiles above are real players with sourced stats. The roster cards below are made-up placeholders for this concept.':'Every athlete below is a made-up placeholder for this concept, not a real SMU student-athlete.')+'</p>'+
+        '<div class="roster">'+roster.map(function(a){return '<button class="rcard" data-demo="'+esc(a.name)+'\'s athlete profile"><span class="rnum" style="background:'+KIT_BG[a.v]+'">'+kit(a.kn,a.v,!JERSEY_SPORTS.test(s.slug))+'</span><span class="rc-b"><b>'+esc(a.name)+'</b><span class="rp">'+esc(a.pos)+(s.g==='X'?' · '+(a.g==='M'?"Men's":"Women's"):'')+'</span><small>'+a.cls+(a.ht?' · '+a.ht:'')+' · '+esc(a.town)+'</small><small><b>'+a.fans.toLocaleString()+'</b> members supporting</small></span></button>'}).join('')+'</div>'+
+        '<div class="coach">'+'<span class="av lg staff">'+s.coach.split(' ')[1].charAt(0)+'</span><div><b>'+s.coach+'</b><small>Head Coach (fictional) · Monthly live Q&amp;A for Pony Express members</small></div></div>'+
       '</div></section>'+
-      '<section class="sec soft" id="schedule" aria-labelledby="s-h"><div class="wrap">'+
-        '<div class="sec-hd"><div><p class="kicker">Schedule &amp; results</p><h2 id="s-h">'+(teamSport?'Game':'Meet')+' by '+(teamSport?'game':'meet')+'.</h2></div></div>'+
-        '<div class="sched">'+games.map(function(g){
-          return '<div class="game"><div class="d">'+mo[g.d.getMonth()]+'<b>'+g.d.getDate()+'</b></div><div class="o">'+(teamSport?(g.home?'vs. ':'at '):'')+esc(g.o)+'<small>'+(g.home?'Home · Dallas, TX':'Away')+(g.past?'':' · Mustangs+ live Q&amp;A after')+'</small></div><span class="res '+g.cls+'">'+g.res+'</span></div>'}).join('')+'</div>'+
-        '<p class="demo-note">Sample schedule with fictional opponents.</p>'+
-      '</div></section>'+
-      '<section class="sec" id="content" aria-labelledby="c-h"><div class="wrap">'+
-        '<div class="sec-hd"><div><p class="kicker">Only on Mustangs+</p><h2 id="c-h">'+s.name+' all access.</h2></div></div>'+
-        '<div class="grid">'+content.map(cardHTML).join('')+'</div>'+
-      '</div></section>'+
-      '<section class="sec soft" id="board" aria-labelledby="b-h"><div class="wrap">'+
-        '<div class="sec-hd"><div><p class="kicker">Team board</p><h2 id="b-h">Talk '+s.name+'.</h2></div><a class="see-all" href="'+ROOT+'boards/?sport='+s.slug+'">Open board →</a></div>'+
-        '<div class="threads"><div class="th-head"><h3>Latest threads</h3><button class="btn btn-red btn-sm" data-demo="Start a '+esc(s.name)+' thread">New thread</button></div>'+
-        (threads.length?threads.map(threadRow).join(''):'<div class="empty">No threads yet. Be the first to start the conversation.</div>')+'</div>'+
-      '</div></section>'+
-      '<section class="sec" id="more" aria-labelledby="m-h"><div class="wrap">'+
-        '<div class="sec-hd"><div><p class="kicker">Every program</p><h2 id="m-h">More Mustang sports.</h2></div></div>'+
-        '<div class="other">'+others.map(function(o){return '<a href="'+sportUrl(o.slug)+'">'+o.name+'</a>'}).join('')+'</div>'+
-        '<div class="band" style="margin-top:32px"><div><h2>Back '+s.name+'.</h2><p>Plans from $9.99/mo. 40% goes to Mustang NIL.</p></div><a href="'+ROOT+'#membership" class="btn btn-lg">See Plans</a></div>'+
-      '</div></section>';
-
+      '<section class="sec alt" id="schedule"><div class="wrap">'+secHead((teamSport?'Schedule':'Meets')+' &amp; results',null,null,realLog?'2026 season · real results':'2026–27 · sample data')+
+        (realLog?table({cols:['Date','Opponent','Result'],rows:realLog},{cls:'sched'})+'<p class="note">2026 results through Oct. 24 from the public ESPN game logs linked on each player profile.</p>':
+        table({cols:['Date',teamSport?'Opponent':'Event','Site','Result'],rows:games.map(function(g){return [mo[g.d.getMonth()]+' '+g.d.getDate(),(teamSport?(g.home?'vs. ':'at '):'')+g.o,g.home?'Home · Dallas':'Away',g.res]})},{cls:'sched'})+
+        '<p class="note">Sample schedule with fictional opponents.</p>')+'</div></section>'+
+      '<section class="sec" id="content"><div class="wrap">'+secHead(s.name+' all access',libUrl(),'Library','Only on Mustangs+')+'<div class="cgrid">'+content.map(cardHTML).join('')+'</div></div></section>'+
+      '<section class="sec alt" id="board"><div class="wrap">'+secHead('Team board',ROOT+'boards/?sport='+s.slug,'Open board','Talk '+s.name)+
+        '<div class="box">'+(threads.length?threads.map(function(t){return threadRow(t,true)}).join(''):'<div class="empty">No threads yet. Be the first to start the conversation.</div>')+'</div></div></section>'+
+      '<section class="sec" id="more"><div class="wrap">'+secHead('More Mustang sports',ROOT+'#sports','All sports')+
+        '<div class="chips">'+others.map(function(o){return '<a class="chip" href="'+sportUrl(o.slug)+'">'+o.name+'</a>'}).join('')+'</div>'+
+        '<div class="band"><div><h2 class="sec-t">Back '+s.name+'.</h2><p>Plans from $9.99/mo. 40% goes to Mustang NIL.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div></div></section>';
+    $$('.sched td:last-child').forEach(function(td){var v=td.textContent;td.innerHTML='<span class="res '+(/^W|^1st|^2nd/.test(v)?'w':/^L/.test(v)?'l':/^T|^\d/.test(v)&&!/PM|TBA/.test(v)?'t':'up')+'">'+esc(v)+'</span>'});
     countUp($('#spFund'),$('#spBar'),s.fund,s.fund*1.8);
-    heroEl=$('.sp-hero');
-    if(heroEl&&'IntersectionObserver' in window)new IntersectionObserver(function(es){pastHero=!es[0].isIntersecting;upd()},{rootMargin:'-120px 0px 0px 0px'}).observe(heroEl);
   }
 
-  if(PAGE==='home')home();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();
+  /* ---------- Athletes ---------- */
+  function athlete(){
+    var main=$('#athleteMain'),id=new URLSearchParams(location.search).get('id'),a=MP.athleteBy&&MP.athleteBy(id);
+    if(!a){document.title='Player Profiles | Mustangs+';
+      main.innerHTML='<section class="page-hero compact"><div class="wrap"><p class="eyebrow">Real players · public stats</p><h1 class="display">Player profiles</h1><p class="lede on-dark">Current SMU football players. Every stat on these pages comes from a public source linked at the bottom of the profile.</p></div></section>'+
+        '<section class="sec"><div class="wrap"><div class="pgrid three">'+MP.ATHLETES.map(profileCard).join('')+'</div><p class="note">NIL values, backer counts and film on profiles are illustrative mock content.</p></div></section>';return}
+    var s=sportBy(a.sport);document.title=a.name+' | Mustangs+ Profile';
+    var others=MP.ATHLETES.filter(function(x){return x.id!==a.id});
+    var rating=a.ratings?a.ratings[0][1]+' ('+a.ratings[0][0]+')':'Not listed';
+    main.innerHTML=
+      '<section class="ap-hero"><div class="wrap">'+
+        '<nav class="crumbs"><a href="'+ROOT+'athletes/">Player profiles</a> › <a href="'+sportUrl(a.sport)+'">'+s.name+'</a> › <span>'+esc(a.name)+'</span></nav>'+
+        '<div class="ap-top"><div class="ap-photo" style="background:'+KIT_BG[a.kit]+'" role="img" aria-label="Photo placeholder, jersey number '+a.num+'">'+kit(a.num,a.kit)+'<span>Photo placeholder</span></div>'+
+        '<div class="ap-id"><p class="eyebrow">#'+a.num+' · '+a.pos+' · SMU Mustangs</p><h1 class="display"><span>'+esc(a.first)+'</span> '+esc(a.last)+'</h1>'+
+        '<p class="ap-sub">'+s.name+' · '+a.cls+' · '+esc(a.hometown)+'</p><div class="ctas"><button class="btn btn-red btn-sm" data-demo="Follow '+esc(a.name)+'">Follow</button><button class="btn btn-ghost btn-sm" data-demo="Back '+esc(a.name)+' through the NIL fund">Back via NIL fund</button></div></div></div>'+
+      '</div></section>'+
+      '<div class="metricbar"><div class="wrap"><dl>'+
+        [['HT',a.ht],['WT',a.wt],['Class',a.cls],['Hometown',a.hometown],['High school / prev.',a.prev],['Rating',rating],['NIL value','Not public',1]].map(function(m){return '<div'+(m[2]?' class="mock"':'')+'><dt>'+m[0]+(m[2]?' <i>illustrative</i>':'')+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join('')+
+      '</dl></div></div>'+
+      '<nav class="jump" aria-label="Profile sections"><div class="wrap"><a href="#overview">Overview</a><a href="#stats">Stats</a><a href="#gamelog">Game log</a><a href="#film">Film</a><a href="#news">News</a></div></nav>'+
+      '<div class="wrap ap-body"><div class="ap-grid"><div class="ap-main">'+
+        '<section class="panel" id="overview"><div class="panel-h"><h3>'+a.season.label+'</h3></div><div class="statline" style="--n:'+a.season.stats.length+'">'+a.season.stats.map(function(x){return '<div><b>'+esc(x[1])+'</b><small>'+x[0]+'</small></div>'}).join('')+'</div></section>'+
+        '<section class="panel" id="stats"><div class="panel-h"><h3>Career stats</h3><span class="meta">* 2026 in progress</span></div>'+table(a.career,{caption:'Career stats'})+(a.notes?'<p class="note">'+esc(a.notes)+'</p>':'')+'</section>'+
+        '<section class="panel" id="gamelog"><div class="panel-h"><h3>'+a.log.label+'</h3></div>'+table(a.log,{cls:'log',caption:'Game log'})+'</section>'+
+        '<section class="panel" id="film"><div class="panel-h"><h3>Film room</h3><span class="meta">Demo videos</span></div><div class="film">'+['Season highlights','Best plays: 2026','Mic\'d up at practice'].map(function(f,i){return '<button class="film-i" data-demo="'+esc(a.name)+': '+f+'"><span class="film-art tone-'+(i===1?'black':'blue')+'">'+TICON.video+'</span><b>'+f+'</b><small>Members · illustrative</small></button>'}).join('')+'</div></section>'+
+      '</div><aside class="ap-side">'+
+        '<section class="panel"><div class="panel-h"><h3>About</h3></div><p>'+esc(a.blurb)+'</p>'+(a.honors.length?'<ul class="honors">'+a.honors.map(function(h){return '<li>'+esc(h)+'</li>'}).join('')+'</ul>':'')+'</section>'+
+        '<section class="panel"><div class="panel-h"><h3>Recruiting</h3></div>'+(a.ratings?'<dl class="ratings">'+a.ratings.map(function(x){return '<div><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join('')+'</dl><p class="note">As listed on the SMU Athletics bio.</p>':'<p class="muted">No star ratings listed in the sources used.</p>')+'</section>'+
+        '<section class="panel" id="news"><div class="panel-h"><h3>News &amp; notes</h3></div><ul class="news">'+a.news.map(function(n){return '<li>'+esc(n)+'</li>'}).join('')+'</ul></section>'+
+        '<section class="panel"><div class="panel-h"><h3>More profiles</h3></div><div class="mini">'+others.map(function(o){return '<a href="'+athleteUrl(o.id)+'"><b>#'+o.num+'</b><span>'+esc(o.name)+'</span><small>'+o.pos+'</small></a>'}).join('')+'</div></section>'+
+      '</aside></div>'+
+      '<section class="sources"><h3>Sources &amp; credits</h3><p>Bio, measurements and stats from public pages, checked Oct. 25, 2026: '+a.src.map(function(x){return '<a href="'+x[1]+'" target="_blank" rel="noopener">'+esc(x[0])+'</a>'}).join(' · ')+'. ESPN lists defensive stats as unofficial.</p>'+
+        '<p>NIL value and film items are <b>illustrative mock content</b> for this class concept. No photos of the athlete are used.</p></section></div>';
+  }
+
+  if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();
   articleFromHash();
 })();

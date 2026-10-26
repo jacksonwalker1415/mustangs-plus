@@ -2,7 +2,7 @@
 window.MP = window.MP || {};
 
 MP.SPORTS = [
-  {slug:'football',name:'Football',season:'Fall',g:'M',record:'7-1',conf:'5-0 Conf.',coach:'Coach Darren Ellsworth',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
+  {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Darren Ellsworth',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
    blurb:'Saturdays on the Boulevard, Friday night walkthroughs and every rep in between.'},
   {slug:'mens-basketball',name:"Men's Basketball",season:'Winter',g:'M',record:'2-0',conf:'Preseason',coach:'Coach Marcus Halloway',members:2380,fund:228900,pos:['PG','SG','SG','SF','SF','PF','PF','C'],num:[0,35],ht:[73,85],
    blurb:'From open gym to tip-off at Moody, all access to the hardwood.'},
@@ -130,3 +130,52 @@ MP.THREADS = [
   {id:18,f:'hilltop',sport:'mens-soccer',title:"Men's soccer: must-win stretch to close the season",by:'dallas',ago:'1w',replies:55,views:'1.2k',
    posts:[['dallas','Three to play. Win two and we are in.']]}
 ];
+
+/* Board upgrade: forum groups, more users, longer threads with quoted replies. All fictional. */
+(function(){var MP=window.MP;
+MP.FORUMS.forEach(function(f){f.group=f.prem?'Premium':'Community'});
+MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame breakdowns with the Mustangs+ film staff. Members only.',prem:true,threads:388,posts:9140,group:'Premium'});
+MP.FORUMS.push({id:'help',name:'Site Help & Feedback',desc:'Bugs, feature requests and membership questions.',prem:false,threads:214,posts:1630,group:'Community'});
+MP.USERS.dre={n:'Dre Coleman',tier:'Mustangs+ Film Room',staff:true,since:'2024',posts:'2,214'};
+MP.USERS.jt={n:'J.T. Barlow',tier:'Mustangs+ Recruiting',staff:true,since:'2024',posts:'3,377'};
+MP.USERS.peruna={n:'PerunaPapa',tier:'Boulevard Club',since:'2025',posts:'5,920'};
+MP.USERS.ford={n:'FordStadiumFaithful',tier:'Pony Express',since:'2025',posts:'1,408'};
+MP.USERS.snider={n:'SniderPlazaSam',tier:'Mustang',since:'2026',posts:'233'};
+MP.USERS.band={n:'MustangBandAlum04',tier:'Pony Express',since:'2025',posts:'967'};
+function T(id){for(var i=0;i<MP.THREADS.length;i++)if(MP.THREADS[i].id===id)return MP.THREADS[i]}
+/* posts: [user, text, quotedPostIndex?] */
+T(1).posts=[
+ ['staff','Closed practice, but here\'s what I can share. The WR rotation looked different in team periods: the junior slot took most of the first-team reps and the true freshman got real run on the outside. Defensive line was healthy and loud. More in Thursday\'s report.'],
+ ['pete','Freshman getting first-team reps in late October tells you everything. This is why I pay for the Club tier.',0],
+ ['hank','Any word on the kicking battle? Last week was rough to watch from the south end zone.'],
+ ['staff','Kicker looked sharp. Hit from 48 twice in the period I watched. I wouldn\'t read too much into one game.',2],
+ ['ford','Good to hear. I was sitting right behind the uprights for the miss and the groan from our section was audible in Snider Plaza.',3],
+ ['grace','Love the detail. Can we get a film breakdown of the 3rd-and-long package on the Paddock Report?'],
+ ['dre','Already cut it up. It\'s going in the Film Room Lounge tomorrow morning.',5],
+ ['peruna','Dre with the assist. Somebody get this man a corny dog.',6]];
+T(2).posts=[
+ ['mike','Kickoff 7:00 at Ford. Drop your score predictions and keep it civil. Pony Up!'],
+ ['dallas','34-17 Mustangs. Defense gets two picks.'],
+ ['ray','31-24. Too many people sleeping on their run game.',1],
+ ['belle','Tailgate is at our usual tent near the big oak on the Boulevard. Red and blue cookies again this week.'],
+ ['band','Band alumni block is in 113 if anybody wants to yell the fight song with people who actually know the words.'],
+ ['snider','First game as a member. Where do people park if they don\'t want to sit in traffic on Mockingbird for an hour?'],
+ ['peruna','Park east of 75 and walk over. Or take the DART to Mockingbird Station and walk. Thank me later.',5],
+ ['hank','HALFTIME: that two-minute drive was the best they\'ve looked all year.'],
+ ['ray','I\'ll take my 31-24 prediction back and politely ask for a mulligan.',2]];
+MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how premium boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
+ posts:[['staff','Welcome. Be civil, no posting about recruits\' families, no screenshots of premium posts. The Paddock, Recruiting Trail and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
+MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, all 11 snaps from Saturday',by:'dre',ago:'4h',replies:167,views:'5.1k',
+ posts:[['dre','Cut up every snap of the A-gap sim pressure from Saturday. Watch the boundary linebacker: he shows blitz on all 11, comes on three. QB sees six, gets four.'],
+  ['ray','The free safety not moving until the snap is so disciplined. You can see the QB staring at him.',0],
+  ['peruna','Is this sustainable? Feels like good offenses will motion the back out and stress it.'],
+  ['dre','Exactly the counter. Two teams did it in the second half. Staff has an answer, but I\'ll save it for Thursday.',2],
+  ['grace','This is the best thing on the site. Worth the membership by itself.']]});
+MP.THREADS.push({id:21,f:'recruiting',sport:'football',hot:true,title:'Visit list for the Nov. 7 home game (fictional names, updated)',by:'jt',ago:'7h',replies:244,views:'8.8k',
+ posts:[['jt','Current list: one official, three unofficial. The QB is back for a third trip. All names on this demo board are fictional.'],
+  ['ford','Third visit is the one that matters. Hoping he sees a full Ford.',0],
+  ['hank','Any OL on the list? That\'s the need.'],
+  ['jt','One tackle from East Texas, unofficial. Staff likes him a lot.',2]]});
+MP.THREADS.push({id:22,f:'boulevard',sport:null,title:'Mustang Band halftime show was unreal. Who has video?',by:'band',ago:'1d',replies:88,views:'2.2k',
+ posts:[['band','Fifteen years out of the band and that show still gave me chills. Anyone get the full thing from the west side?'],['belle','Got most of it. Uploading tonight.'],['snider','The drumline feature at the end. Wow.',0]]});
+})();
