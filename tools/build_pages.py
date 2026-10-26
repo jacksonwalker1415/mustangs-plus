@@ -13,7 +13,7 @@ SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js'
 def DISC(root):
     # One wording site-wide (Business Ops lock-exposure notice). build_pages.py rewrites it on every page.
     # Full wording on tablets/desktop; phones get the short line (CSS swaps them) so the bar stays two lines max.
-    return ('<div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU or Learfield. No payments taken.</span> '
+    return ('<div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU, Mustang Partners or Learfield. No payments taken.</span> '
             f'<a href="{root}privacy/#about">About this project</a></div>')
 
 def head(title,desc,page,root,extra=''):
@@ -44,14 +44,14 @@ PRIVACY_BODY='''<main id="top"><section class="page-hero has-photo"><div class="
 <nav class="policy-toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol><li><a href="#about">About this project</a></li><li><a href="#collect">What we collect</a></li><li><a href="#why">Why we collect it</a></li><li><a href="#where">Where it’s stored</a></li><li><a href="#share">Selling and sharing</a></li><li><a href="#delete">Deleting your data</a></li><li><a href="#browser">Your browser</a></li><li><a href="#contact">Contact</a></li></ol></nav>
 <div class="policy-body">
 <section id="about"><h2>About this project</h2>
-<p>SMU+ was built for an SMU Cox MBA class project. It is <strong>not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown</strong>.</p>
+<p>SMU+ was built for an SMU Cox MBA class project. It is <strong>not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown</strong>.</p>
 <p><strong>Memberships are for demonstration only.</strong> No payments are taken and no real product or service is offered. For educational purposes only.</p></section>
 <section id="collect"><h2>What we collect</h2>
 <ul><li><strong>Waitlist:</strong> your email address, your name, SMU affiliation and the plan you’d be interested in if you choose to give them, the date you joined, that you agreed to this notice, and how you found the site (the campaign tag in the link you used, such as a QR code, and the name of the website that linked you, if any).</li>
-<li><strong>Page visits:</strong> a simple visit count. For each page load we save the page address, the campaign tags and linking website (if any), whether you’re on a phone or a computer, and a random code that lasts only until you close the tab, so visits in one session can be counted once. No cookies, no IP address, no browser details, nothing that identifies you. Visit records are deleted automatically after 90 days.</li>
+<li><strong>Page visits:</strong> a simple visit count. For each page load we save the page address, the campaign tags and linking website (if any), whether you’re on a phone or a computer, and a random code that lasts only until you close the tab, so visits in one session can be counted once. No cookies and no browser details are saved with the visit. Our hosting and database providers may log IP addresses in their standard request logs. Visit records are deleted automatically after 90 days.</li>
 <li><strong>SMU+ Weekly sign-up:</strong> your email address.</li>
 <li><strong>Accounts</strong> (if you create one): your email address, the display name you choose, your board posts, the players you save, how far you got in videos, and your demo membership tier. Your password is handled by Supabase’s sign-in service and is never visible to us.</li></ul>
-<p>We don’t collect payment details, and we don’t use advertising trackers, third-party analytics or cookies. The visit count above is our own and stays in the SMU+ database. Official SMU Athletics videos are YouTube embeds: the video player loads from YouTube only when you press play (the preview picture comes from YouTube’s image server), and from then on YouTube’s own privacy policy applies.</p></section>
+<p>We don’t collect payment details, and we don’t use advertising trackers, third-party analytics or cookies. The visit count above is our own and stays in the SMU+ database. Videos from SMU Athletics on YouTube are YouTube embeds: the video player loads from YouTube only when you press play (the preview picture comes from YouTube’s image server), and from then on YouTube’s own privacy policy applies.</p></section>
 <section id="why"><h2>Why we collect it</h2>
 <p>Waitlist and newsletter addresses are used only to contact you about this student project. Account details are used only to run the account features you use, such as posting on the boards and keeping your saved players.</p></section>
 <section id="where"><h2>Where it’s stored</h2>
@@ -71,7 +71,7 @@ PRIVACY_BODY='''<main id="top"><section class="page-hero has-photo"><div class="
 '''
 SHELLS={
  'privacy/index.html': head('Privacy notice | SMU+','What the SMU+ student concept project collects, why, where it is stored and how to have it deleted.','privacy','../')+PRIVACY_BODY,
- 'account/index.html': head('Your account | SMU+','Sign in to SMU+ to save players, post on The Mustang Board and keep your place in videos (concept site).','account','../')+
+ 'account/index.html': head('Your account | SMU+','Sign in to SMU+ to save players, post on The Expressway message boards and keep your place in videos (concept site).','account','../')+
    '<main id="acctMain"><section class="page-hero acct-hero"><div class="wrap"><p class="eyebrow">SMU+ account</p><h1 class="display">Your account</h1><p class="lede on-dark">Loading your account\u2026</p></div></section>'
    '<noscript><section class="sec"><div class="wrap"><p>Your account needs JavaScript turned on.</p></div></section></noscript></main>\n<div id="site-footer"></div>\n</body>\n</html>\n',
  'search/index.html': head('Search | SMU+','Search SMU+ videos, articles, podcasts, players and forum posts (class-project concept).','search','../')+
@@ -85,7 +85,7 @@ SHELLS={
    '<main id="top"><section class="page-hero nf-hero"><div class="wrap"><h1 class="display">Off the field</h1>'
    '<p class="lede on-dark">We couldn\u2019t find that page. It may have moved, or the link has a typo.</p>'
    '<form class="srch-f nf-sf" role="search" action="search/" method="get"><label class="sr" for="nfQ">Search SMU+</label><input id="nfQ" name="q" type="search" placeholder="Search players, games and videos" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"><button type="submit">Search</button></form>'
-   '<p class="nf-act"><a class="btn btn-red" href="./">Go to the home page</a> <a class="btn btn-ghost" href="library/">Browse the library</a> <a class="btn btn-ghost" href="boards/">The Mustang Board</a></p></div></section></main>\n'
+   '<p class="nf-act"><a class="btn btn-red" href="./">Go to the home page</a> <a class="btn btn-ghost" href="library/">Browse the library</a> <a class="btn btn-ghost" href="boards/">The Expressway message boards</a></p></div></section></main>\n'
    '<div id="site-footer"></div>\n</body>\n</html>\n',
 }
 for rel,src in SHELLS.items():
@@ -208,7 +208,7 @@ open(REPO+'/sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<ur
   ''.join(f'  <url><loc>{html.escape(u)}</loc><lastmod>{today}</lastmod></url>\n' for u in urls)+'</urlset>\n')
 # Approved 2026-10-26: keep the concept out of search engines (same URL keeps serving).
 open(REPO+'/robots.txt','w').write('User-agent: *\nDisallow: /\n')
-json.dump({'id':'./','name':'SMU+','short_name':'SMU+','description':'Concept SMU fan membership site for an SMU Cox class project. Not affiliated with or endorsed by SMU Athletics or Learfield.',
+json.dump({'id':'./','name':'SMU+','short_name':'SMU+','description':'Concept SMU fan membership site for an SMU Cox class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners or Learfield.',
   'lang':'en-US','dir':'ltr','start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#23347a','categories':['sports','entertainment'],
   'icons':[{'src':'assets/brand/icon-192.png','sizes':'192x192','type':'image/png','purpose':'any'},
            {'src':'assets/brand/icon-512.png','sizes':'512x512','type':'image/png','purpose':'any'},

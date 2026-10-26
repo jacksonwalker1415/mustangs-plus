@@ -21,7 +21,9 @@ function add(d, yt) {
   if (d.t === 'video') { const a = yt && 'yt:' + yt, b = 'ti:' + vidKey(d.ti); if ((a && seenVid.has(a)) || seenVid.has(b)) return; if (a) seenVid.add(a); seenVid.add(b) }
   d.h = norm([d.ti, d.s, d.h].join(' ')); docs.push(d) }
 const KIND = { video: 'video', article: 'article', podcast: 'podcast' };
-MP.LIB.forEach(c => {
+/* Recruiting is unpublished: none of its items go in the index */
+const REC_RE = /recruit|portal|visit weekend|visit list|offer tracker|commitment|2028 (board|class)/i;
+MP.LIB.filter(c => c.cat !== 'recruiting' && !REC_RE.test([c.title, c.label, c.desc].join(' '))).forEach(c => {
   add({ t: KIND[c.t], ti: c.title, s: c.label + (c.dur ? ' · ' + c.dur : ''), u: (c.t === 'article' ? '#article=' : '#watch=') + c.id,
         h: [c.desc, sportName[c.sport] || '', c.credit || ''].join(' '), ...(c.expires ? { x: c.expires } : {}) }, c.yt);
 });
@@ -70,7 +72,7 @@ const PAGES = [
   ['Community rules', 'The rules for the message boards', 'rules/', 'rules guidelines conduct code of conduct moderation report'],
   ['Your account', 'Sign in, your profile, saved players and settings', 'account/', 'account sign in signin login log in profile settings password saved'],
   ...(MP.FEATURES && MP.FEATURES.students !== false ? [['Student sign-up', 'SMU students sign up with an @smu.edu email', 'account/#student', 'student students smu edu sign up']] : []),
-  ['Message Boards', 'The Mustang Board: talk SMU sports with other fans', 'boards/', 'boards board forum forums message boards mustang board community'],
+  ['The Expressway message boards', 'Talk SMU sports with other fans', 'boards/', 'boards board forum forums message boards expressway mustang board community'],
   ['Media library', 'Every video, podcast and story on SMU+', 'library/', 'media library watch videos podcasts articles stories'],
   ['Videos', 'Highlights, press conferences and series', 'library/?type=video', 'videos video highlights watch'],
   ['Podcasts', 'SMU podcasts and episodes', 'library/?type=podcast', 'podcasts podcast episodes listen'],

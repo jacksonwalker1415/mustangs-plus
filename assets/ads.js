@@ -35,12 +35,16 @@ var ADS=MP.ADS={
     'library-billboard':{unit:'billboard',brand:'kestrelvale',page:'library',at:['#libBar','afterend'],wide:1},
     'library-mpu':{unit:'mpu',brand:'marrowbys',page:'library',at:['#libView [data-ad-after]','afterend'],band:1},
     'games-billboard':{unit:'billboard',brand:'pelloway',page:'games',at:['.gmi-hero','afterend'],wide:1},
-    'game-presented':{unit:'presented',brand:'tellivant',page:'games',at:['.gc-hd','afterend']},
+    'game-presented':{unit:'presented',brand:'tellivant',page:'games',at:['.gc-hd','beforebegin']},
+    /* every game page (/games/?id=...): the sponsor strip above the title (between the scoreboard and the page title, well away from
+       Game leaders headshots and player stats) and a 300x250 at the end of the right column (Game info,
+       How to watch, Game links), away from Game leaders and player stats; with the sticky bar that is the 3-ad cap.
+       noSkin: hidden only where the skin takeover actually shows (1300px+), so the skin game still has it on phones and laptops. */
     'game-mpu':{unit:'mpu',brand:'wrenhollow',page:'games',at:['.gc-c3 .gc-links','afterend'],noSkin:1},
     'boards-halfpage':{unit:'halfpage',brand:'pelloway',page:'boards',at:['#indexView .fx-side','beforeend'],wide:1},
     'thread-mpu':{unit:'mpu',brand:'brindlecup',page:'boards',at:['#threadView .fx-msgs > :nth-child(3)','afterend'],ctx:'thread'},
-    'article-mid':{unit:'mpu',brand:'wrenhollow',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',tab:1},
-    'article-mid-phone':{unit:'interscroller',brand:'tellivant',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',phone:1},
+    'article-mid':{unit:'mpu',brand:'wrenhollow',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',tab:1,noAthlete:1},
+    'article-mid-phone':{unit:'interscroller',brand:'tellivant',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',phone:1,noAthlete:1},
     'article-end':{unit:'mpu',brand:'pelloway',at:['#readerBody .prose:not(.teaser) ~ .note','afterend'],ctx:'article'}
   },
   /* site-wide sticky bar (320x50 phones, 728x90 desktop), dismissible for the session. Not on athlete, roster, recruiting or account pages. */
@@ -81,11 +85,11 @@ MP.ad=function(id){var p=ADS.placements[id];if(!ADS.enabled||!p)return '';
       '<span class="ad-pr-b" style="--adac:'+b.bg+'">'+mark(b)+'<b>'+esc(b.name)+'</b></span>'+lbl(p)+'</div></div>'}
   if(p.unit==='interscroller')return '<div class="'+cls+'" data-ad-slot="'+id+'">'+lbl(p)+'<div class="ad-is-win"><div class="ad-is-fix">'+slotBody(id,p)+'</div></div><span class="ad-is-note">Keep scrolling</span></div>';
   var inner='<div class="ad-box">'+lbl(p)+slotBody(id,p)+'</div>';
-  return '<div class="'+cls+'" data-ad-slot="'+id+'">'+(p.band?'<div class="wrap">'+inner+'</div>':inner)+'</div>'};
+  return '<div class="'+cls+'" data-ad-slot="'+id+'"'+(p.noSkin?' data-noskin':'')+'>'+(p.band?'<div class="wrap">'+inner+'</div>':inner)+'</div>'};
 /* insert every placement whose anchor exists (once each). ctx limits to one render context (article, thread). */
 MP.adsMount=function(ctx){if(!ADS.enabled)return;var pg=page();
   Object.keys(ADS.placements).forEach(function(id){var p=ADS.placements[id];if(!p.at)return;
-    if((p.ctx||'')!==(ctx||''))return;if(p.page&&p.page!==pg)return;if(p.noSkin&&ADS.skinOn)return;
+    if((p.ctx||'')!==(ctx||''))return;if(p.page&&p.page!==pg)return;if(p.noAthlete&&document.querySelector('#readerBody[data-athlete]'))return;
     var hold=document.querySelector('[data-ad-hold="'+id+'"]');if(hold){hold.outerHTML=MP.ad(id);return}
     var a=document.querySelector(p.at[0]);if(!a||document.querySelector('[data-ad-slot="'+id+'"]'))return;
     a.insertAdjacentHTML(p.at[1],MP.ad(id))});MP.adsCap()};
@@ -132,6 +136,17 @@ function interstitial(){var I=ADS.interstitial;if(!I)return;var n=(+ss('mp_ad_pv
     function key(e){if(e.key==='Escape')close()}
     el.addEventListener('click',function(e){if(e.target===el||e.target.closest('.ad-x,.ad-ist-go'))close()});document.addEventListener('keydown',key);
     el.querySelector('.ad-x').focus()},I.delay||1500)}
+/* Game pages render in app.js from ?id= (preview, live or final). Mount their slots in the same task as that render (a
+   MutationObserver callback runs before the next paint), so the ads never push the gamecast down after it shows. No app.js hook needed. */
+if(page()==='games'&&window.MutationObserver){var gmo=new MutationObserver(function(){if(document.querySelector('.gc-hd')&&!document.querySelector('[data-ad-slot="game-presented"]'))MP.adsMount()});
+  gmo.observe(document.documentElement,{childList:true,subtree:true});addEventListener('load',function(){setTimeout(function(){gmo.disconnect()},4000)})}
 function boot(){if(!ADS.enabled)return;MP.adsMount();sticky();MP.adsCap();interstitial()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else setTimeout(boot,0);
+/* No ads next to athlete content: while the home "Meet the Mustangs" row is on screen the sticky bar steps aside (class ad-quiet on <html>).
+   Also covers any athlete section on athletes/ pages (where the sticky bar is already off). visibility only, so nothing shifts. */
+(function(){if(!('IntersectionObserver' in window))return;var on=new Set(),seen=new WeakSet(),io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting)on.add(e.target);else on.delete(e.target)});document.documentElement.classList.toggle('ad-quiet',on.size>0)});
+  function scan(){var sel='#athletes,#athRow,.rail-ath'+(page()==='athlete'?',main section':'');
+    Array.prototype.forEach.call(document.querySelectorAll(sel),function(el){if(!seen.has(el)){seen.add(el);io.observe(el)}})}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scan);else scan();setTimeout(scan,1500);setTimeout(scan,4000)})();
 })();
