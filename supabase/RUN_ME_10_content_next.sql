@@ -1,0 +1,45 @@
+-- SMU+ RUN_ME_10: board text and content descriptions from bot/content-next (no invented practice numbers, fictional cards labeled).
+-- Run after RUN_ME_6. Safe to run more than once: targeted updates by id plus a content_items upsert. No DROP, no DELETE.
+
+update public.threads set title='Breakdown: the third-down sim pressure, snap by snap' where id=20;
+update public.posts set body='Kicker looked sharp from distance in the period I watched. I wouldn''t read too much into one practice.' where id=104;
+update public.posts set body='Cut up the A-gap sim pressure snap by snap. Watch the boundary linebacker: he always shows blitz and only sometimes comes. QB sees six, gets four.' where id=2001;
+update public.posts set body='Exactly the counter. Staff has an answer, but I''ll save it for Thursday.' where id=2004;
+
+insert into public.content_items (id,type,category,label,title,description,duration,members_only,sport,sort) values
+  ('smu-fb-cal-highlights','video','watch','Football · Official highlights','SMU Athletics: Football highlights vs. Cal','Down 20-17 at the half, then 42 unanswered. Official highlights from the 59-20 win at Ford Stadium, Oct. 24.','7:59',false,null,0),
+  ('smu-fb-uva-highlights','video','watch','Football · Official highlights','SMU Athletics: Football highlights vs. Virginia','The 23-13 win over Virginia on Oct. 17, the day Kendrick Raphael ran for 119.','8:00',false,null,1),
+  ('smu-msoc-cal-highlights','video','watch','Men''s Soccer · Official highlights','SMU Athletics: Men''s soccer highlights at Cal','Berkeley, Oct. 24: a 2-0 win, the tenth clean sheet of an unbeaten season.','4:00',false,null,2),
+  ('smu-vb-gt-highlights','video','watch','Volleyball · Official highlights','SMU Athletics: Volleyball highlights at Georgia Tech','Atlanta, Oct. 25. Straight sets, the second road sweep in three days.','6:16',false,null,3),
+  ('smu-micd-up-s2e6','video','watch','Mic''d Up · Members','SMU Athletics: Mustangs Mic''d Up, Season 2, Episode 6','SMU''s own series puts the microphones on. This episode features Kyle Ward, Riley Dodge and head coach Rhett Lashlee.','42:51',true,null,4),
+  ('boulevard-nights-1','video','watch','Docuseries · Ep. 1','Boulevard Nights: The Tent Line','Six hours before kickoff, from the first canopy on Bishop Boulevard to the Mustang Band''s walk.','21:40',true,null,5),
+  ('boulevard-nights-2','video','watch','Docuseries · Ep. 2','Boulevard Nights: Band Day','Three hundred instruments, one halftime show and a drumline that practices in the parking garage.','19:12',true,null,6),
+  ('hilltop-unfiltered','video','watch','Video Series','Hilltop Unfiltered: Fall Camp','Ep. 4 · Two-a-days, the cold tub and the meeting room nobody films. Until now.','24:18',true,null,7),
+  ('rivalry-week','video','watch','Game Week','Game Week Access: Rivalry Week','Thursday walkthrough, Friday film, and the short bus ride down Mockingbird to Ford Stadium.','18:02',true,null,8),
+  ('five-am-laps','video','watch','Swimming & Diving','5 a.m. Laps','Taper week at the natatorium, filmed before most of campus is awake.','12:55',true,null,9),
+  ('micd-setter','video','watch','Mic''d Up','Mic''d Up: The Setter','Every call, every timeout huddle and one very honest conversation with an official.','9:47',false,null,10),
+  ('moody-opening','video','watch','Basketball','Opening Night at Moody','Lights out, smoke on, and the walk from the locker room to the tunnel.','14:30',true,null,11),
+  ('preview-syracuse','article','insider','Game Preview','SMU at Syracuse: one trip north, then back to the lights','Four straight wins, a 42-0 second half in the rearview and the only road date in a seven-week stretch. Sat., 11 a.m. CT, ESPN2.','4 min read',false,null,12),
+  ('preview-msoc-louisville','article','insider','Men''s Soccer · Preview','Fourteen games, no losses: men''s soccer hosts Louisville','Ten clean sheets, 41 goals and a Friday night on ACC Network. The unbeaten Mustangs come home to Washburne.','3 min read',false,null,13),
+  ('vb-road-sweep','article','insider','Volleyball','Six sets, zero dropped: volleyball sweeps its way out of a rough week','Two home losses, then straight-set wins at Clemson and Georgia Tech. Two more road matches, then four straight at Moody.','3 min read',false,null,14),
+  ('recap-cal','article','insider','Recap','Forty-two unanswered: how SMU turned a halftime deficit into 59-20','Down 20-17 at the break, the Mustangs scored on six straight drives and Kevin Jennings took the school record for touchdown passes.','4 min read',false,null,15),
+  ('feature-raphael','article','insider','Player Feature','Same opponent, other sideline: Kendrick Raphael''s full circle','Last November his late touchdown beat SMU. On Saturday he scored three for the Mustangs against the team he left.','4 min read',false,null,16),
+  ('feature-jennings-record','article','insider','Player Feature','Seventy-four: Kevin Jennings and the record Oak Cliff built','Twenty-two passes as a freshman. Now the most touchdown passes in SMU history. Five seasons, by the numbers.','4 min read',false,null,17),
+  ('walk-on','article','insider','Feature','From walk-on to Saturday starter','Four years, no scholarship, and a locker next to the laundry room.','8 min read',false,null,18),
+  ('coachs-corner-acc','article','insider','Insider','Year three in the ACC','Nobody is curious about SMU anymore. Longer flights, louder road stadiums and opponents who game-plan for the Mustangs.','7 min read',false,null,19),
+  ('thursday-notes','article','insider','Practice Report','Thursday notes: what changed after the open week','A five-wide look on third down, a kicker who finally relaxed, and a freshman corner who won''t come off the field. A fictional practice report.','5 min read',false,null,20),
+  ('building-contender','article','insider','Interview','How a roster gets rebuilt in one spring','Portal windows, dinner tests and the NIL conversation. A fictional walk-through of how a modern staff fills a roster.','6 min read',false,null,21),
+  ('visit-weekend','article','recruiting','Recruiting','Visit Weekend: 48 hours on the Hilltop','Steak dinner in Uptown, a Saturday on the Boulevard and a very quiet Sunday brunch.','6 min read',false,null,22),
+  ('recruiting-notebook','article','recruiting','Notebook','Recruiting notebook: a Friday night in Dallas ISD','Three stadiums, two staff cars and one sophomore everybody is about to know.','5 min read',false,null,23),
+  ('board-2028','article','recruiting','Big Board','The 2028 board, as of late October','Where the (fictional) top targets stand, and which ones are coming back for an official visit.','7 min read',false,null,24),
+  ('building-roster','article','portal','Portal','Building the Roster: the whiteboard in the war room','Pencil, never marker. Inside the meeting where portal targets get ranked, priced and argued about.','9 min read',false,null,25),
+  ('portal-primer','article','portal','Portal','Portal season, explained without the jargon','The portal is just a database. Here''s what happens between a name going in and a player arriving for spring ball.','6 min read',false,null,26),
+  ('film-pressure','article','film','Film Room','Film Room: the third-down pressure that keeps working','Two linebackers show blitz, one drops, and the quarterback throws into a safety who never moved.','6 min read',true,null,27),
+  ('film-screen','article','film','Film Room','Film Room: why the slot screen sets up everything','Four yards, then six, then 41. A fictional breakdown of how one cheap play gets a defense out of position.','5 min read',true,null,28),
+  ('film-rotation','article','film','Film Room','Film Room: volleyball''s rotation four problem','The weak rotation every team has, and the serve-receive tweak that fixes it. A fictional breakdown.','5 min read',false,null,29),
+  ('film-session-redzone','video','film','Film Session','Film Session: red zone, frame by frame','A former linebacker on the telestrator for 20 minutes of goal-line snaps.','20:05',true,null,30),
+  ('coachs-corner-pod','podcast','podcasts','Podcast','The Sideline Hour','Weekly with the SMU+ football desk: scheme, the week ahead and whatever went wrong Saturday. A concept show with fictional hosts.','41 min',false,null,31),
+  ('pony-up-pod','podcast','podcasts','Podcast','Pony Up: The Locker Room Pod','Athletes host. Pregame playlists, roommate disputes and the best taco place on Lower Greenville.','33 min',false,null,32),
+  ('paddock-report','podcast','podcasts','Insider Pod','The Paddock Report','Sam Reyes and J.T. Barlow on practice notes, game previews and the rumor of the week.','52 min',false,null,33),
+  ('trail-live','podcast','recruiting','Podcast','Recruiting Trail Live','Call-in show every Tuesday night. Yes, someone always asks about the kicker.','48 min',false,null,34)
+on conflict (id) do update set type=excluded.type,category=excluded.category,label=excluded.label,title=excluded.title,description=excluded.description,duration=excluded.duration,members_only=excluded.members_only,sport=excluded.sport,sort=excluded.sort;
