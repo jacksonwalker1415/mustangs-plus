@@ -68,15 +68,17 @@
   var AV_TYPES=['image/jpeg','image/png','image/webp'],AV_MAX=2*1024*1024;
   /* ---------- free Student plan (supabase/RUN_ME_16_students.sql) ----------
      Demo: always on, saved in this browser. Live: off until MP.FEATURES.students is true (after RUN_ME_16 has run).
-     'student' is a free plan, never a paid membership, so it doesn't unlock members-only content. The student ID is sent once
-     to claim_student_membership() and never read back; only the class year and verified date come back. */
+     'student' is a free plan, never a paid membership, so it doesn't unlock members-only content. No student ID is asked for
+     (RUN_ME_17): claim_student_membership() verifies the confirmed @smu.edu email; only the class year and verified date come back. */
   function paid(t){return !!t&&t!=='free'&&t!=='student'&&!!TIERS[t]}
-  var SMU_EMAIL=/^[^@\s]+@smu\.edu$/i,SID_RE=/^[0-9]{6,10}$/,stCache=null,stMsg='';
+  var SMU_EMAIL=/^[^@\s]+@smu\.edu$/i,stCache=null,stMsg='';
+  /* Student IDs are no longer collected: clear any this browser saved for the old on-device claim */
+  (function(){try{ls('mp_student_ids',null);var u=lj('mp_user',null);if(u&&u.student&&'sid' in u.student){delete u.student.sid;sj('mp_user',u)}
+    var p=lj('mp_student_pending',null);if(p&&'sid' in p){delete p.sid;ls('mp_student_pending',JSON.stringify(p))}}catch(e){}})();
   function stOn(){/* decided from config, not SMU.live (set only after supabase-js loads), so pages that render early stay flag-gated */return !configured||SMU.reason==='unreachable'||!!(MP.FEATURES&&MP.FEATURES.students===true)}
   function stYears(){var y=new Date().getFullYear(),out=[];for(var i=Math.max(2026,y);i<=Math.min(2034,y+6);i++)out.push(i);return out}
-  function stCheck(o){var em=String(o.email||'').trim().toLowerCase(),sid=String(o.sid||'').trim(),yr=+o.year;
+  function stCheck(o){var em=String(o.email||'').trim().toLowerCase(),yr=+o.year;
     if(o.email!==undefined&&!SMU_EMAIL.test(em))return 'Use your SMU email, ending in @smu.edu.';
-    if(!SID_RE.test(sid))return 'Student ID is 6 to 10 digits, numbers only.';
     if(stYears().indexOf(yr)<0)return 'Pick your class year.';return ''}
   function avOn(){return !SMU.live||!!(MP.FEATURES&&MP.FEATURES.avatars===true)}
   function avOK(u){if(typeof u!=='string'||u.length>200000)return false;
@@ -111,20 +113,16 @@
     removeAvatar:function(){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Not signed in'));delete u.avatar;sj('mp_user',u);SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,null);emit('avatar',null);return Promise.resolve()},
     updateName:function(n){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Not signed in'));u.name=n;sj('mp_user',u);ls('mp_lastname',n);SMU.user=u;MP.USERS.me&&(MP.USERS.me.n=n);emit('auth',u);return Promise.resolve(u)},
     tier:function(){var t=ls('mp_tier');return TIERS[t]?t:(ls('mp_member')==='1'?'pony':'free')},
-    /* Demo student sign-up: no email is sent, so the account is created and confirmed at once. One ID per email in this browser. */
+    /* Demo student sign-up: no email is sent, so the account is created and confirmed at once. */
     studentJoin:function(o){var bad=stCheck(o);if(bad)return Promise.reject(new Error(bad));
-      var em=String(o.email).trim().toLowerCase(),sid=String(o.sid).trim(),ids=lj('mp_student_ids',{});
-      if(ids[sid]&&ids[sid]!==em)return Promise.reject(new Error('That student ID is already linked to another SMU+ account.'));
+      var em=String(o.email).trim().toLowerCase();
       var u=lj('mp_user',null);if(u&&u.email!==em)return Promise.reject(new Error('Sign out first, then join with your SMU email.'));
       var p=u?Promise.resolve({user:u}):demo.signUp({email:em,name:o.name});
-      return p.then(function(){return demo.claimStudent(sid,+o.year)}).then(function(r){r.demo=true;return r})},
-    claimStudent:function(sid,year){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Sign in first.'));
+      return p.then(function(){return demo.claimStudent(+o.year)}).then(function(r){r.demo=true;return r})},
+    claimStudent:function(year){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Sign in first.'));
       if(!SMU_EMAIL.test(u.email))return Promise.reject(new Error('Student membership needs an @smu.edu email.'));
-      var st=u.student,ids=lj('mp_student_ids',{});
-      if(st&&sid&&st.sid!==sid)return Promise.reject(new Error('This account is already linked to a different student ID.'));
-      if(!st){var bad=stCheck({sid:sid,year:year});if(bad)return Promise.reject(new Error(bad));
-        if(ids[sid]&&ids[sid]!==u.email)return Promise.reject(new Error('That student ID is already linked to another SMU+ account.'));
-        ids[sid]=u.email;sj('mp_student_ids',ids);st={sid:sid,year:year,at:new Date().toISOString()}}
+      var st=u.student;
+      if(!st){var bad=stCheck({year:year});if(bad)return Promise.reject(new Error(bad));st={year:year,at:new Date().toISOString()}}
       else if(year)st.year=year;
       u.student=st;sj('mp_user',u);SMU.user=u;var t=demo.tier();if(!paid(t))demo.setTier('student');emit('student',demo.student());return Promise.resolve({ok:true,tier:demo.tier(),class_year:st.year})},
     student:function(){var u=lj('mp_user',null);return u&&u.student?{year:u.student.year,at:u.student.at}:null},
@@ -167,10 +165,10 @@
     var idx={};posts.forEach(function(p,i){idx[p.id]=i});
     var P=posts.map(function(p){var u=p.author_handle||ensureUser('u:'+p.author_id,p.author&&p.author.display_name,undefined,undefined,avOf(p.author));
       return [u,p.body,p.quote_post_id!=null&&idx[p.quote_post_id]!=null?idx[p.quote_post_id]:null,p.created_at,p.id]});
-    return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,by:by,ago:ago(r.created_at),replies:P.length?P.length-1:(r.author_handle?null:Math.max(0,r.reply_count||0)),views:r.author_handle?null:kfmt(r.view_count),
+    return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,game:r.game_id||null,by:by,ago:ago(r.created_at),replies:P.length?P.length-1:(r.author_handle?null:Math.max(0,r.reply_count||0)),views:r.author_handle?null:kfmt(r.view_count),
       pin:!!r.pinned,hot:!!r.hot,posts:P.length?P:[[by,'',null,r.created_at]],locked:!P.length,live:true,mine:SMU.user&&r.author_id===SMU.user.id}}
   function threadSel(){var pf=avOn()?'display_name,avatar_url':'display_name';
-    return 'id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,author:profiles!threads_author_id_fkey('+pf+'),'+
+    return 'id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,game_id,author:profiles!threads_author_id_fkey('+pf+'),'+
       'posts(id,author_handle,author_id,body,quote_post_id,created_at,author:profiles!posts_author_id_fkey('+pf+'))'}
   function avOf(a){return avOn()&&a?(a.avatar_url||null):undefined}
   var myAv={id:null,url:null};
@@ -191,16 +189,16 @@
     studentAfter:function(){if(!stOn()||!SMU.user)return;
       return live.fetchStudent().then(function(st){var pend=null;try{pend=JSON.parse(ls('mp_student_pending')||'null')}catch(e){}
         if(!pend||st||String(pend.email||'')!==String(SMU.user.email||'').toLowerCase())return;
-        return live.claimStudent(pend.sid,pend.year).then(function(){ls('mp_student_pending',null)},function(e){stMsg=e.message;if(e.final)ls('mp_student_pending',null);emit('student',null)})}).catch(function(){})},
+        return live.claimStudent(pend.year).then(function(){ls('mp_student_pending',null)},function(e){stMsg=e.message;if(e.final)ls('mp_student_pending',null);emit('student',null)})}).catch(function(){})},
     fetchStudent:function(){return q('student',sb.from('student_verifications').select('class_year,verified_at').eq('user_id',SMU.user.id).maybeSingle())
       .then(function(r){stCache=r?{year:r.class_year,at:r.verified_at}:null;emit('student',stCache);return stCache})},
     studentJoin:function(o){var bad=stCheck(o);if(bad)return Promise.reject(new Error(bad));if(!stOn())return Promise.reject(new Error('Student sign-up isn\u2019t open yet.'));
       var em=String(o.email).trim().toLowerCase();
-      ls('mp_student_pending',JSON.stringify({email:em,sid:String(o.sid).trim(),year:+o.year,t:Date.now()}));
+      ls('mp_student_pending',JSON.stringify({email:em,year:+o.year,t:Date.now()}));
       return q('student',sb.auth.signInWithOtp({email:em,options:{shouldCreateUser:true,data:{display_name:String(o.name||'').trim().slice(0,40)||nameFromEmail(em)},emailRedirectTo:CFG.SITE_URL+'account/#student'}}))
         .then(function(){return {sent:true,email:em}})},
-    claimStudent:function(sid,year){if(!SMU.user)return Promise.reject(new Error('Sign in first.'));
-      return q('student',sb.rpc('claim_student_membership',{p_student_id:sid||null,p_class_year:year||null})).then(function(r){
+    claimStudent:function(year){if(!SMU.user)return Promise.reject(new Error('Sign in first.'));
+      return q('student',sb.rpc('claim_student_membership',{p_student_id:null,p_class_year:year||null})).then(function(r){
         if(!r||!r.ok){var e=new Error((r&&r.message)||'Couldn\u2019t start your Student membership.');e.reason=r&&r.reason;e.final=/^(id_taken|id_mismatch|not_smu|bad_id)$/.test(e.reason||'');throw e}
         stMsg='';tierCache=r.tier||'student';ls('mp_tier',tierCache);ls('mp_member',paid(tierCache)?'1':'0');emit('tier',tierCache);
         return live.fetchStudent().then(function(){return r})})},
@@ -313,10 +311,37 @@
         console.warn('[SMU+] reports table unavailable, keeping the report in this browser',r.error);return reportLocal(o,'browser')}
       reportLocal(o,'server');return {dup:false,where:'server'}},function(e){console.warn('[SMU+] report not sent, kept in this browser',e);return reportLocal(o,'browser')})};
 
+  /* ---------- Post likes (supabase/RUN_ME_20_post_likes.sql) ----------
+     Demo mode: kept in this browser (localStorage mp_likes), only the demo account's own likes.
+     Live: public.post_likes, with the liker's display name for "Liked by". If the table is missing (RUN_ME_20 not run yet)
+     or unreachable, likes fall back to this browser instead of failing. Nothing is ever seeded: counts are real likes only. */
+  var LIKES=true,likesOff=false;
+  function likeKey(t,i){return t.id+':'+i}
+  function likesLocal(t){var all=lj('mp_likes',{}),out={},me=SMU.user?'me':null,nm=SMU.user&&(SMU.user.name||'You');
+    t.posts.forEach(function(p,i){var on=me&&all[likeKey(t,i)];if(on)out[i]={names:[nm],mine:true}});return out}
+  function likesMissing(r){var e=r&&r.error;return !!e&&(e.code==='PGRST205'||e.code==='42P01'||r.status===404||/does not exist|schema cache/i.test(e.message||''))}
+  function likesLive(){return SMU.live&&LIKES&&!likesOff&&!!sb}
+  SMU.likes=function(t){if(!t||!t.posts)return Promise.resolve({});
+    var ids=t.posts.map(function(p){return p[4]}).filter(function(x){return x!=null});
+    if(!likesLive()||!ids.length)return Promise.resolve(likesLocal(t));
+    return withTimeout(Promise.resolve(sb.from('post_likes').select('post_id,user_id,profiles(display_name)').in('post_id',ids).order('created_at')),12000).then(function(r){
+      if(r&&r.error){if(likesMissing(r))likesOff=true;return likesLocal(t)}
+      var at={},out={};t.posts.forEach(function(p,i){if(p[4]!=null)at[p[4]]=i});
+      (r.data||[]).forEach(function(x){var i=at[x.post_id];if(i==null)return;var o=out[i]=out[i]||{names:[],mine:false};
+        var mine=SMU.user&&x.user_id===SMU.user.id;if(mine){o.mine=true;o.names.unshift(SMU.user.name||'You')}else o.names.push((x.profiles&&x.profiles.display_name)||'Member')});
+      return out},function(){return likesLocal(t)})};
+  SMU.toggleLike=function(t,i,on){if(!SMU.user)return Promise.reject(new Error('Sign in to like a post.'));var p=t.posts[i];if(!p)return Promise.reject(new Error('Post not found.'));
+    function local(){var all=lj('mp_likes',{}),k=likeKey(t,i);if(on)all[k]=1;else delete all[k];sj('mp_likes',all);return on}
+    if(!likesLive()||p[4]==null)return Promise.resolve(local());
+    var op=on?sb.from('post_likes').insert({post_id:p[4]}):sb.from('post_likes').delete().eq('post_id',p[4]).eq('user_id',SMU.user.id);
+    return withTimeout(Promise.resolve(op),12000).then(function(r){if(r&&r.error){if(likesMissing(r)){likesOff=true;return local()}if(r.error.code==='23505')return on;throw fail('like',r.error)}return on})};
+
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
   ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch','setAvatar','removeAvatar','studentJoin','claimStudent'].forEach(function(k){
     SMU[k]=function(){var b=B();return b[k].apply(b,arguments)}});
+  /* Game threads (RUN_ME_24): the thread for a game page, created with a staff opening post on first visit. Live database only. */
+  SMU.gameThread=function(g){return SMU.live?q('gamethread',SMU.client.rpc('game_thread',{p_game:String(g).slice(0,40)})).then(function(id){return id==null?null:+id}):Promise.resolve(null)};
   SMU.reset=function(e){return SMU.live?live.reset(e):Promise.reject(new Error('Password reset needs the live database. In demo mode, just sign in with your email.'))};
   SMU.newPassword=function(p){return SMU.live?live.newPassword(p):Promise.reject(new Error('Not available in demo mode.'))};
   SMU.tier=function(){return B().tier()};

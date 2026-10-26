@@ -1,7 +1,7 @@
 -- SMU+ RUN_ME_11: mirror of media batch 1 + 2 (bot/media-batch1) in content_items (44 rows, after the URL dedupe against bot/content-real). OPTIONAL: the site reads library items from assets/content.js, not from this table.
 -- Insert-only and idempotent: on conflict (id) do nothing. No updates, no deletes. Every id starts with mb- or mb2-, so it never touches RUN_ME_4/6/10 rows.
 -- Third-party media (YouTube, Apple Podcasts, link-out articles), all free: members_only = false. The walk-on swap is client-side only; its old row is left alone.
--- Do not run without Jackson's approval.
+-- Do not run without the project owner's approval.
 insert into public.content_items (id,type,category,label,title,description,duration,members_only,sport,sort) values
   ('mb-fb-cal-presser','video','watch','Football · Press conference','SMU Football: Postgame press conference vs. Cal','The Mustangs on the 59-20 win over Cal and the 42-0 second half, Oct. 24.','22:26',false,'football',1000),
   ('mb-msoc-uca-presser','video','watch','Men''s Soccer · Press conference','SMU Men''s Soccer: Postgame press conference vs. Central Arkansas','After the 5-2 win over Central Arkansas, Oct. 20.','17:12',false,'mens-soccer',1001),

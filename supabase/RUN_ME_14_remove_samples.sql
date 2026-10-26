@@ -1,4 +1,4 @@
--- SMU+ RUN_ME_14: remove the fictional sample library items from content_items (approved by Jackson, Oct. 26, 4:29 AM CT).
+-- SMU+ RUN_ME_14: remove the fictional sample library items from content_items (approved by the project owner, Oct. 26, 4:29 AM CT).
 -- content_items has no published/visible column, so this deletes ONLY the 17 fictional ids listed below, by exact id.
 -- Kept: every official SMU Athletics item (smu-*), every sourced SMU+ Staff story, boulevard-nights-1 (official ACC Huddle video),
 -- and the 6 fictional recruiting/portal items (visit-weekend, recruiting-notebook, board-2028, building-roster, portal-primer,

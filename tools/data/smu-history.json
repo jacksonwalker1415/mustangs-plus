@@ -1,0 +1,6848 @@
+{
+"football": {
+"2014": [
+{
+"box": null,
+"d": "2014-09-06",
+"ha": "away",
+"opp": "North Texas (FSN)",
+"res": "L 6-43",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": null,
+"d": "2015-04-18",
+"ha": "neutral",
+"opp": "Skip Ad",
+"res": null,
+"site": ""
+}
+],
+"2015": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/baylor-espn-/boxscore/606",
+"d": "2015-09-04",
+"ha": "neutral",
+"opp": "Baylor (ESPN)",
+"res": "L 21-56",
+"site": "http://www.baylorbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/north-texas-espn3-/boxscore/607",
+"d": "2015-09-12",
+"ha": "neutral",
+"opp": "North Texas (ESPN3)",
+"res": "W 31-13",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/tcu-fsn-/boxscore/608",
+"d": "2015-09-19",
+"ha": "away",
+"opp": "TCU (FSN)",
+"res": "L 37-56",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/james-madison-espn3-homecoming-/boxscore/609",
+"d": "2015-09-26",
+"ha": "neutral",
+"opp": "James Madison (ESPN3) (Homecoming)",
+"res": "L 45-48",
+"site": "http://www.jmusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/east-carolina-espnews-/boxscore/610",
+"d": "2015-10-03",
+"ha": "neutral",
+"opp": "East Carolina (ESPNews)",
+"res": "L 23-49",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/houston-espn2-/boxscore/611",
+"d": "2015-10-08",
+"ha": "away",
+"opp": "Houston (ESPN2)",
+"res": "L 28-49",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/usf/boxscore/612",
+"d": "2015-10-24",
+"ha": "away",
+"opp": "USF",
+"res": "L 14-38",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/tulsa-family-weekend-/boxscore/613",
+"d": "2015-10-31",
+"ha": "neutral",
+"opp": "Tulsa (Family Weekend)",
+"res": "L 31-40",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/temple-espn2-/boxscore/614",
+"d": "2015-11-06",
+"ha": "neutral",
+"opp": "Temple (ESPN2)",
+"res": "L 40-60",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/navy-cbs-sports-network-/boxscore/615",
+"d": "2015-11-14",
+"ha": "away",
+"opp": "Navy (CBS Sports Network)",
+"res": "L 14-55",
+"site": "http://www.navysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/tulane/boxscore/616",
+"d": "2015-11-21",
+"ha": "neutral",
+"opp": "Tulane",
+"res": "W 49-21",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2015/memphis/boxscore/617",
+"d": "2015-11-28",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 0-63",
+"site": "http://gotigersgo.com"
+}
+],
+"2016": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/north-texas/boxscore/618",
+"d": "2016-09-03",
+"ha": "away",
+"opp": "North Texas",
+"res": "W 34-21",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/-23-19-baylor/boxscore/619",
+"d": "2016-09-10",
+"ha": "away",
+"opp": "Baylor",
+"res": "L 13-40",
+"site": "http://www.baylorbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/liberty/boxscore/620",
+"d": "2016-09-17",
+"ha": "home",
+"opp": "Liberty",
+"res": "W 29-14",
+"site": "http://www.libertyflames.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/-rv-t-21-tcu-family-weekend-/boxscore/621",
+"d": "2016-09-23",
+"ha": "home",
+"opp": "TCU (Family Weekend)",
+"res": "L 3-33",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/temple/boxscore/622",
+"d": "2016-10-01",
+"ha": "away",
+"opp": "Temple",
+"res": "L 20-45",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/tulsa/boxscore/623",
+"d": "2016-10-07",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 40-43",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/-11-11-houston/boxscore/624",
+"d": "2016-10-22",
+"ha": "home",
+"opp": "Houston",
+"res": "W 38-16",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/tulane/boxscore/625",
+"d": "2016-10-29",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 35-31",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/memphis-homecoming-/boxscore/626",
+"d": "2016-11-05",
+"ha": "home",
+"opp": "Memphis (Homecoming)",
+"res": "L 7-51",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/east-carolina/boxscore/627",
+"d": "2016-11-12",
+"ha": "away",
+"opp": "East Carolina",
+"res": "W 55-31",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/usf/boxscore/628",
+"d": "2016-11-19",
+"ha": "home",
+"opp": "USF",
+"res": "L 27-35",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2016/navy/boxscore/629",
+"d": "2016-11-26",
+"ha": "home",
+"opp": "Navy",
+"res": "L 31-75",
+"site": "http://www.navysports.com/"
+}
+],
+"2017": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/stephen-f-austin/boxscore/5520",
+"d": "2017-09-02",
+"ha": "home",
+"opp": "Stephen F. Austin",
+"res": "W 58-14",
+"site": "http://www.sfajacks.com/sports/m-footbl/sasu-m-footbl-body.html"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/north-texas/boxscore/5521",
+"d": "2017-09-09",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 54-32",
+"site": "http://www.meangreensports.com/sports/m-footbl/ntex-m-footbl-body.html"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/tcu/boxscore/5522",
+"d": "2017-09-16",
+"ha": "away",
+"opp": "TCU",
+"res": "L 36-56",
+"site": "http://www.gofrogs.com/sports/m-footbl/tcu-m-footbl-body.html"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/arkansas-state-family-weekend-/boxscore/5523",
+"d": "2017-09-23",
+"ha": "home",
+"opp": "Arkansas State (Family Weekend)",
+"res": "W 44-21",
+"site": "http://www.astateredwolves.com/SportSelect.dbml?SPID=2798"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/connecticut/boxscore/5524",
+"d": "2017-09-30",
+"ha": "home",
+"opp": "Connecticut",
+"res": "W 49-28",
+"site": "http://www.uconnhuskies.com/sports/m-footbl/conn-m-footbl-body.html"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/houston/boxscore/5525",
+"d": "2017-10-07",
+"ha": "away",
+"opp": "Houston",
+"res": "L 22-35",
+"site": "http://www.uhcougars.com/sports/m-footbl/hou-m-footbl-body.html"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/cincinnati/boxscore/5526",
+"d": "2017-10-21",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "W 31-28",
+"site": "http://www.gobearcats.com/sports/m-footbl/cinn-m-footbl-body-main.html"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/tulsa/boxscore/5527",
+"d": "2017-10-27",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 38-34",
+"site": "http://tulsahurricane.com/index.aspx?path=football"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/ucf-homecoming-/boxscore/5528",
+"d": "2017-11-04",
+"ha": "home",
+"opp": "UCF (Homecoming)",
+"res": "L 24-31",
+"site": "http://ucfknights.com/index.aspx?path=football"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/navy/boxscore/5529",
+"d": "2017-11-11",
+"ha": "away",
+"opp": "Navy",
+"res": "L 40-43",
+"site": "http://www.navysports.com/sports/m-footbl/navy-m-footbl-body.html"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/memphis/boxscore/5530",
+"d": "2017-11-18",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 45-66",
+"site": "http://www.gotigersgo.com/index.aspx?path=football"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/tulane/boxscore/5531",
+"d": "2017-11-25",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 41-38",
+"site": "http://tulanegreenwave.com/index.aspx?path=football"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2017/louisiana-tech/boxscore/8909",
+"d": "2017-12-20",
+"ha": "neutral",
+"opp": "Louisiana Tech",
+"res": "L 10-51",
+"site": "http://www.latechsports.com/"
+}
+],
+"2018": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/north-texas/boxscore/6613",
+"d": "2018-09-01",
+"ha": "away",
+"opp": "North Texas",
+"res": "L 23-46",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/tcu/boxscore/6614",
+"d": "2018-09-07",
+"ha": "home",
+"opp": "TCU",
+"res": "L 12-42",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/michigan/boxscore/6615",
+"d": "2018-09-15",
+"ha": "away",
+"opp": "Michigan",
+"res": "L 20-45",
+"site": "http://www.mgoblue.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/navy/boxscore/8993",
+"d": "2018-09-22",
+"ha": "home",
+"opp": "Navy",
+"res": "W 31-30",
+"site": "http://www.navysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/hbu-family-weekend-/boxscore/6616",
+"d": "2018-09-29",
+"ha": "home",
+"opp": "HBU (Family Weekend)",
+"res": "W 63-27",
+"site": "http://www.hcuhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/ucf/boxscore/8994",
+"d": "2018-10-06",
+"ha": "away",
+"opp": "UCF",
+"res": "L 20-48",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/tulane/boxscore/8995",
+"d": "2018-10-20",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 27-23",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/cincinnati/boxscore/8996",
+"d": "2018-10-27",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "L 20-26",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/houston-homecoming-/boxscore/8997",
+"d": "2018-11-03",
+"ha": "home",
+"opp": "Houston (Homecoming)",
+"res": "W 45-31",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/connecticut/boxscore/8998",
+"d": "2018-11-10",
+"ha": "away",
+"opp": "Connecticut",
+"res": "W 62-50",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/memphis/boxscore/8999",
+"d": "2018-11-16",
+"ha": "home",
+"opp": "Memphis",
+"res": "L 18-28",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2018/tulsa/boxscore/9000",
+"d": "2018-11-24",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 24-27",
+"site": "http://tulsahurricane.com"
+}
+],
+"2019": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/arkansas-state/boxscore/6617",
+"d": "2019-08-31",
+"ha": "away",
+"opp": "Arkansas State",
+"res": "W 37-30",
+"site": "http://www.astateredwolves.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/north-texas/boxscore/6618",
+"d": "2019-09-07",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 49-27",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/texas-state/boxscore/6620",
+"d": "2019-09-14",
+"ha": "home",
+"opp": "Texas State",
+"res": "W 47-17",
+"site": "http://www.txstatebobcats.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/tcu/boxscore/6619",
+"d": "2019-09-21",
+"ha": "away",
+"opp": "/ RV TCU",
+"res": "W 41-38",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/south-florida/boxscore/10389",
+"d": "2019-09-28",
+"ha": "away",
+"opp": "South Florida",
+"res": "W 48-21",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/tulsa-family-weekend-/boxscore/10390",
+"d": "2019-10-05",
+"ha": "home",
+"opp": "Tulsa (Family Weekend)",
+"res": "W 43-37",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/temple/boxscore/10391",
+"d": "2019-10-19",
+"ha": "home",
+"opp": "RV / #25 Temple",
+"res": "W 45-21",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/houston/boxscore/10392",
+"d": "2019-10-24",
+"ha": "away",
+"opp": "Houston",
+"res": "W 34-31",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/memphis/boxscore/10393",
+"d": "2019-11-02",
+"ha": "away",
+"opp": "/ #23 Memphis",
+"res": "L 48-54",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/ecu-homecoming-/boxscore/10394",
+"d": "2019-11-09",
+"ha": "home",
+"opp": "ECU (Homecoming)",
+"res": "W 59-51",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/navy/boxscore/10395",
+"d": "2019-11-23",
+"ha": "away",
+"opp": "Navy",
+"res": "L 28-35",
+"site": "http://www.navysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/tulane/boxscore/10396",
+"d": "2019-11-30",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 37-20",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2019/fau/boxscore/11762",
+"d": "2019-12-21",
+"ha": "away",
+"opp": "FAU",
+"res": "L 28-52",
+"site": "http://www.fausports.com"
+}
+],
+"2020": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/texas-state/boxscore/11765",
+"d": "2020-09-05",
+"ha": "away",
+"opp": "Texas State",
+"res": "W 31-24",
+"site": "http://www.txstatebobcats.com"
+},
+{
+"box": null,
+"d": "2020-09-11",
+"ha": "away",
+"opp": "TCU",
+"res": null,
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/north-texas/boxscore/11766",
+"d": "2020-09-19",
+"ha": "away",
+"opp": "North Texas",
+"res": "W 65-35",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/stephen-f-austin/boxscore/11751",
+"d": "2020-09-26",
+"ha": "home",
+"opp": "Stephen F. Austin",
+"res": "W 50-7",
+"site": "http://www.sfajacks.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/memphis/boxscore/11785",
+"d": "2020-10-03",
+"ha": "home",
+"opp": "/24 Memphis",
+"res": "W 30-27",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/tulane/boxscore/11786",
+"d": "2020-10-16",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 37-34",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/cincinnati/boxscore/11787",
+"d": "2020-10-24",
+"ha": "home",
+"opp": "/10 Cincinnati",
+"res": "L 13-42",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/navy/boxscore/11788",
+"d": "2020-10-31",
+"ha": "home",
+"opp": "Navy",
+"res": "W 51-37",
+"site": "http://www.navysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/temple/boxscore/11789",
+"d": "2020-11-07",
+"ha": "away",
+"opp": "Temple",
+"res": "W 47-23",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/tulsa/boxscore/11790",
+"d": "2020-11-14",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 24-28",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2020/ecu/boxscore/11792",
+"d": "2020-11-28",
+"ha": "away",
+"opp": "ECU",
+"res": "L 38-52",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": null,
+"d": "2020-12-05",
+"ha": "home",
+"opp": "Houston",
+"res": null,
+"site": "http://www.uhcougars.com"
+},
+{
+"box": null,
+"d": "2020-12-19",
+"ha": "neutral",
+"opp": "UTSA",
+"res": null,
+"site": "http://www.goutsa.com/"
+}
+],
+"2021": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/abilene-christian/boxscore/11903",
+"d": "2021-09-04",
+"ha": "home",
+"opp": "Abilene Christian",
+"res": "W 56-9",
+"site": "http://www.acusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/north-texas/boxscore/11904",
+"d": "2021-09-11",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 35-12",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/louisiana-tech/boxscore/11905",
+"d": "2021-09-18",
+"ha": "away",
+"opp": "Louisiana Tech",
+"res": "W 39-37",
+"site": "http://www.latechsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/tcu/boxscore/11752",
+"d": "2021-09-25",
+"ha": "away",
+"opp": "TCU",
+"res": "W 42-34",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/south-florida/boxscore/12137",
+"d": "2021-10-02",
+"ha": "home",
+"opp": "South Florida",
+"res": "W 41-17",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/navy/boxscore/12138",
+"d": "2021-10-09",
+"ha": "away",
+"opp": "Navy",
+"res": "W 31-24",
+"site": "http://www.navysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/tulane/boxscore/12139",
+"d": "2021-10-21",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 55-26",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/houston/boxscore/12140",
+"d": "2021-10-30",
+"ha": "away",
+"opp": "Houston",
+"res": "L 37-44",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/memphis/boxscore/12141",
+"d": "2021-11-06",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 25-28",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/ucf/boxscore/12142",
+"d": "2021-11-13",
+"ha": "home",
+"opp": "UCF",
+"res": "W 55-28",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/cincinnati/boxscore/12143",
+"d": "2021-11-20",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "L 14-48",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2021/tulsa/boxscore/12144",
+"d": "2021-11-27",
+"ha": "home",
+"opp": "Tulsa",
+"res": "L 31-34",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": null,
+"d": "2021-12-29",
+"ha": "neutral",
+"opp": "Virginia",
+"res": null,
+"site": "http://virginiasports.com/"
+}
+],
+"2022": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/north-texas/boxscore/12525",
+"d": "2022-09-03",
+"ha": "away",
+"opp": "North Texas",
+"res": "W 48-10",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/lamar/boxscore/11701",
+"d": "2022-09-10",
+"ha": "home",
+"opp": "Lamar",
+"res": "W 45-16",
+"site": "http://www.lamarcardinals.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/maryland/boxscore/11498",
+"d": "2022-09-17",
+"ha": "away",
+"opp": "Maryland",
+"res": "L 27-34",
+"site": "http://www.umterps.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/tcu/boxscore/11906",
+"d": "2022-09-24",
+"ha": "home",
+"opp": "TCU",
+"res": "L 34-42",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/ucf/boxscore/12548",
+"d": "2022-10-05",
+"ha": "away",
+"opp": "UCF",
+"res": "L 19-41",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/navy/boxscore/12549",
+"d": "2022-10-14",
+"ha": "home",
+"opp": "Navy",
+"res": "W 40-34",
+"site": "http://www.navysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/cincinnati/boxscore/12550",
+"d": "2022-10-22",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "L 27-29",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/tulsa/boxscore/12551",
+"d": "2022-10-29",
+"ha": "away",
+"opp": "Tulsa",
+"res": "W 45-34",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/houston/boxscore/12552",
+"d": "2022-11-05",
+"ha": "home",
+"opp": "Houston",
+"res": "W 77-63",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/south-florida/boxscore/12553",
+"d": "2022-11-12",
+"ha": "away",
+"opp": "South Florida",
+"res": "W 41-23",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/tulane/boxscore/12554",
+"d": "2022-11-17",
+"ha": "away",
+"opp": "Tulane",
+"res": "L 24-59",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/memphis/boxscore/12555",
+"d": "2022-11-26",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 34-31",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2022/byu/boxscore/13033",
+"d": "2022-12-17",
+"ha": "neutral",
+"opp": "BYU",
+"res": "L 23-24",
+"site": "http://www.byucougars.com"
+}
+],
+"2023": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/louisiana-tech/boxscore/13035",
+"d": "2023-09-02",
+"ha": "home",
+"opp": "Louisiana Tech",
+"res": "W 38-14",
+"site": "http://www.latechsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/oklahoma/boxscore/12941",
+"d": "2023-09-09",
+"ha": "away",
+"opp": "No. 18 Oklahoma",
+"res": "L 11-28",
+"site": "http://www.soonersports.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/prairie-view-am/boxscore/13038",
+"d": "2023-09-16",
+"ha": "home",
+"opp": "Prairie View A&M",
+"res": "W 69-0",
+"site": "http://www.pvpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/tcu/boxscore/11908",
+"d": "2023-09-23",
+"ha": "away",
+"opp": "TCU",
+"res": "L 17-34",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/charlotte/boxscore/13052",
+"d": "2023-09-30",
+"ha": "home",
+"opp": "Charlotte",
+"res": "W 34-16",
+"site": "http://www.charlotte49ers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/east-carolina/boxscore/13053",
+"d": "2023-10-12",
+"ha": "away",
+"opp": "East Carolina",
+"res": "W 31-10",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/temple/boxscore/13054",
+"d": "2023-10-20",
+"ha": "away",
+"opp": "Temple",
+"res": "W 55-0",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/tulsa/boxscore/13055",
+"d": "2023-10-28",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 69-10",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/rice/boxscore/13056",
+"d": "2023-11-04",
+"ha": "away",
+"opp": "Rice",
+"res": "W 36-31",
+"site": "http://www.riceowls.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/north-texas/boxscore/13057",
+"d": "2023-11-10",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 45-21",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/memphis/boxscore/13058",
+"d": "2023-11-18",
+"ha": "away",
+"opp": "Memphis",
+"res": "W 38-34",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/navy/boxscore/13059",
+"d": "2023-11-25",
+"ha": "home",
+"opp": "Navy",
+"res": "W 59-14",
+"site": "http://www.navysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/tulane/boxscore/13060",
+"d": "2023-12-02",
+"ha": "away",
+"opp": "No. 17 Tulane",
+"res": "W 26-14",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2023/boston-college/boxscore/13503",
+"d": "2023-12-28",
+"ha": "neutral",
+"opp": "Boston College",
+"res": "L 14-23",
+"site": "http://bceagles.com/"
+}
+],
+"2024": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/nevada/boxscore/13557",
+"d": "2024-08-24",
+"ha": "away",
+"opp": "Nevada",
+"res": "W 29-24",
+"site": "http://nevadawolfpack.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/hcu/boxscore/13535",
+"d": "2024-08-31",
+"ha": "home",
+"opp": "HCU",
+"res": "W 59-7",
+"site": "http://www.hcuhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/byu/boxscore/13536",
+"d": "2024-09-06",
+"ha": "home",
+"opp": "BYU",
+"res": "L 15-18",
+"site": "http://www.byucougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/tcu/boxscore/11907",
+"d": "2024-09-21",
+"ha": "home",
+"opp": "TCU",
+"res": "W 66-42",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/florida-state/boxscore/13537",
+"d": "2024-09-28",
+"ha": "home",
+"opp": "Florida State",
+"res": "W 42-16",
+"site": "http://www.seminoles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/louisville/boxscore/13538",
+"d": "2024-10-05",
+"ha": "away",
+"opp": "No. 22 Louisville",
+"res": "W 34-27",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/stanford/boxscore/13539",
+"d": "2024-10-19",
+"ha": "away",
+"opp": "Stanford",
+"res": "W 40-10",
+"site": "http://www.gostanford.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/duke/boxscore/13540",
+"d": "2024-10-26",
+"ha": "away",
+"opp": "Duke",
+"res": "W 28-27",
+"site": "http://www.goduke.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/pittsburgh/boxscore/13541",
+"d": "2024-11-02",
+"ha": "home",
+"opp": "No. 18 Pittsburgh",
+"res": "W 48-25",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/boston-college/boxscore/13542",
+"d": "2024-11-16",
+"ha": "home",
+"opp": "Boston College",
+"res": "W 38-28",
+"site": "http://bceagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/virginia/boxscore/13543",
+"d": "2024-11-23",
+"ha": "away",
+"opp": "Virginia",
+"res": "W 33-7",
+"site": "http://virginiasports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/cal/boxscore/13544",
+"d": "2024-11-30",
+"ha": "home",
+"opp": "Cal",
+"res": "W 38-6",
+"site": "http://www.calbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/clemson/boxscore/13875",
+"d": "2024-12-07",
+"ha": "neutral",
+"opp": "Clemson",
+"res": "L 31-34",
+"site": "https://www.clemsontigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2024/penn-state/boxscore/13937",
+"d": "2024-12-21",
+"ha": "away",
+"opp": "Penn State",
+"res": "L 10-38",
+"site": "https://www.gopsusports.com/"
+}
+],
+"2025": [
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/east-texas-am/boxscore/13978",
+"d": "2025-08-30",
+"ha": "home",
+"opp": "East Texas A&M",
+"res": "W 42-13",
+"site": "http://www.lionathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/baylor/boxscore/13641",
+"d": "2025-09-06",
+"ha": "home",
+"opp": "Baylor",
+"res": "L 45-48",
+"site": "http://www.baylorbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/missouri-state/boxscore/13684",
+"d": "2025-09-13",
+"ha": "away",
+"opp": "Missouri State",
+"res": "W 28-10",
+"site": "http://www.missouristatebears.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/tcu/boxscore/13752",
+"d": "2025-09-20",
+"ha": "away",
+"opp": "TCU",
+"res": "L 24-35",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/syracuse/boxscore/13979",
+"d": "2025-10-04",
+"ha": "home",
+"opp": "Syracuse",
+"res": "W 31-18",
+"site": "http://www.cuse.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/stanford/boxscore/13986",
+"d": "2025-10-11",
+"ha": "home",
+"opp": "Stanford",
+"res": "W 34-10",
+"site": "http://www.gostanford.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/clemson/boxscore/13987",
+"d": "2025-10-18",
+"ha": "away",
+"opp": "Clemson",
+"res": "W 35-24",
+"site": "http://www.clemsontigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/wake-forest/boxscore/13988",
+"d": "2025-10-25",
+"ha": "away",
+"opp": "Wake Forest",
+"res": "L 12-13",
+"site": "http://www.godeacs.com"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/miami/boxscore/13989",
+"d": "2025-11-01",
+"ha": "home",
+"opp": "Miami",
+"res": "W 26-20",
+"site": "http://www.hurricanesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/boston-college/boxscore/13990",
+"d": "2025-11-08",
+"ha": "away",
+"opp": "Boston College",
+"res": "W 45-13",
+"site": "http://bceagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/louisville/boxscore/13991",
+"d": "2025-11-22",
+"ha": "home",
+"opp": "Louisville",
+"res": "W 38-6",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/cal/boxscore/13992",
+"d": "2025-11-29",
+"ha": "away",
+"opp": "Cal",
+"res": "L 35-38",
+"site": "http://www.calbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/football/stats/2025/arizona/boxscore/14411",
+"d": "2026-01-02",
+"ha": "neutral",
+"opp": "Arizona",
+"res": "W 24-19",
+"site": "https://arizonawildcats.com"
+}
+]
+},
+"mens-basketball": {
+"2014": [
+{
+"box": null,
+"d": "2015-03-19",
+"ha": "neutral",
+"opp": "UCLA (truTV)",
+"res": "L 59-60",
+"site": "http://www.uclabruins.com/"
+}
+],
+"2015": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/sam-houston-state-espn3-/boxscore/439",
+"d": "2015-11-14",
+"ha": "neutral",
+"opp": "Sam Houston State (ESPN3)",
+"res": "W 85-50",
+"site": "http://www.gobearkats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/stanford-espn2-/boxscore/440",
+"d": "2015-11-19",
+"ha": "away",
+"opp": "Stanford (ESPN2)",
+"res": "W 85-70",
+"site": "http://www.gostanford.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/yale-espnews-/boxscore/441",
+"d": "2015-11-22",
+"ha": "neutral",
+"opp": "Yale (ESPNews)",
+"res": "W 71-69",
+"site": "http://www.yalebulldogs.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/brown-espn3-twc-/boxscore/442",
+"d": "2015-11-29",
+"ha": "neutral",
+"opp": "Brown (ESPN3&TWC)",
+"res": "W 77-69",
+"site": "http://brownbears.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/tcu-fssw-/boxscore/443",
+"d": "2015-12-02",
+"ha": "away",
+"opp": "TCU (FSSW)",
+"res": "W 75-70",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/new-hampshire-espn3-twc-/boxscore/444",
+"d": "2015-12-05",
+"ha": "neutral",
+"opp": "New Hampshire (ESPN3&TWC)",
+"res": "W 98-44",
+"site": "http://www.unhwildcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/michigan-espn2-/boxscore/445",
+"d": "2015-12-08",
+"ha": "neutral",
+"opp": "Michigan (ESPN2)",
+"res": "W 82-58",
+"site": "http://www.mgoblue.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/nicholls-state-espn3-twc-/boxscore/446",
+"d": "2015-12-16",
+"ha": "neutral",
+"opp": "Nicholls State (ESPN3&TWC)",
+"res": "W 86-42",
+"site": "http://geauxcolonels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/hampton-espn3-twc-/boxscore/447",
+"d": "2015-12-17",
+"ha": "neutral",
+"opp": "Hampton (ESPN3&TWC)",
+"res": "W 105-72",
+"site": "http://www.hamptonpirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/kent-state/boxscore/448",
+"d": "2015-12-22",
+"ha": "neutral",
+"opp": "Kent State",
+"res": "W 90-74",
+"site": "http://www.kentstatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/colorado-fs1-/boxscore/449",
+"d": "2015-12-23",
+"ha": "neutral",
+"opp": "Colorado (FS1)",
+"res": "W 70-66",
+"site": "http://www.cubuffs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/tulsa-espn2-/boxscore/450",
+"d": "2015-12-29",
+"ha": "away",
+"opp": "Tulsa (ESPN2)",
+"res": "W 81-69",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/usf-espnews-/boxscore/451",
+"d": "2016-01-02",
+"ha": "neutral",
+"opp": "USF (ESPNews)",
+"res": "W 72-58",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/cincinnati-espn-/boxscore/452",
+"d": "2016-01-07",
+"ha": "neutral",
+"opp": "Cincinnati (ESPN)",
+"res": "W 59-57",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/ucf-espnu-/boxscore/453",
+"d": "2016-01-10",
+"ha": "neutral",
+"opp": "UCF (ESPNU)",
+"res": "W 88-73",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/east-carolina-espnews-/boxscore/454",
+"d": "2016-01-13",
+"ha": "away",
+"opp": "East Carolina (ESPNews)",
+"res": "W 79-55",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/tulane-espn3-/boxscore/455",
+"d": "2016-01-17",
+"ha": "away",
+"opp": "Tulane (ESPN3)",
+"res": "W 60-45",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/houston-espnu-/boxscore/456",
+"d": "2016-01-19",
+"ha": "neutral",
+"opp": "Houston (ESPNU)",
+"res": "W 77-73",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/temple-espn2-/boxscore/457",
+"d": "2016-01-24",
+"ha": "away",
+"opp": "Temple (ESPN2)",
+"res": "L 80-89",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/memphis-espnu-/boxscore/458",
+"d": "2016-01-30",
+"ha": "neutral",
+"opp": "Memphis (ESPNU)",
+"res": "W 80-68",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/houston-cbssn-/boxscore/459",
+"d": "2016-02-01",
+"ha": "away",
+"opp": "Houston (CBSSN)",
+"res": "L 68-71",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/usf-cbssn-/boxscore/460",
+"d": "2016-02-07",
+"ha": "away",
+"opp": "USF (CBSSN)",
+"res": "W 92-58",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/tulsa-cbssn-/boxscore/461",
+"d": "2016-02-10",
+"ha": "neutral",
+"opp": "Tulsa (CBSSN)",
+"res": "L 77-82",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/gonzaga-espn2-/boxscore/462",
+"d": "2016-02-13",
+"ha": "neutral",
+"opp": "Gonzaga (ESPN2)",
+"res": "W 69-60",
+"site": "http://www.gozags.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/connecticut-espn2-/boxscore/463",
+"d": "2016-02-18",
+"ha": "away",
+"opp": "Connecticut (ESPN2)",
+"res": "L 62-68",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/east-carolina-espnews-/boxscore/464",
+"d": "2016-02-21",
+"ha": "neutral",
+"opp": "East Carolina (ESPNews)",
+"res": "W 74-63",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/memphis-espn2-/boxscore/465",
+"d": "2016-02-25",
+"ha": "away",
+"opp": "Memphis (ESPN2)",
+"res": "W 69-62",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/tulane-cbssn-/boxscore/466",
+"d": "2016-02-28",
+"ha": "neutral",
+"opp": "Tulane (CBSSN)",
+"res": "W 74-53",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/connecticut-espn2-/boxscore/467",
+"d": "2016-03-03",
+"ha": "neutral",
+"opp": "Connecticut (ESPN2)",
+"res": "W 80-54",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2015-16/cincinnati-cbs-/boxscore/468",
+"d": "2016-03-06",
+"ha": "away",
+"opp": "Cincinnati (CBS)",
+"res": "L 54-61",
+"site": "http://www.gobearcats.com/"
+}
+],
+"2016": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/gardner-webb-espn3-/boxscore/5089",
+"d": "2016-11-11",
+"ha": "home",
+"opp": "Gardner-Webb (ESPN3)",
+"res": "W 72-44",
+"site": "http://www.gwusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/eastern-michigan-espn3-/boxscore/5090",
+"d": "2016-11-13",
+"ha": "home",
+"opp": "Eastern Michigan (ESPN3)",
+"res": "W 91-64",
+"site": "http://www.emueagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/pittsburgh-espn2-/boxscore/469",
+"d": "2016-11-17",
+"ha": "neutral",
+"opp": "Pittsburgh (ESPN2)",
+"res": "W 76-67",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/michigan-espn2-/boxscore/470",
+"d": "2016-11-18",
+"ha": "neutral",
+"opp": "Michigan (ESPN2)",
+"res": "L 54-76",
+"site": "http://www.mgoblue.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/uc-santa-barbara-spectrum-espn3-/boxscore/5310",
+"d": "2016-11-22",
+"ha": "home",
+"opp": "UC Santa Barbara (Spectrum & ESPN3)",
+"res": "W 84-57",
+"site": "http://www.ucsbgauchos.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/usc-pac-12-network-/boxscore/471",
+"d": "2016-11-25",
+"ha": "away",
+"opp": "USC (Pac-12 Network)",
+"res": "L 73-78",
+"site": "http://www.usctrojans.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/boise-state-mw-network-/boxscore/5311",
+"d": "2016-11-30",
+"ha": "away",
+"opp": "Boise State (MW Network)",
+"res": "L 62-71",
+"site": "http://www.broncosports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/csu-bakersfield-spectrum-espn3-/boxscore/5312",
+"d": "2016-12-02",
+"ha": "home",
+"opp": "CSU Bakersfield (Spectrum & ESPN3)",
+"res": "W 49-43",
+"site": "http://gorunners.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/delaware-state-spectrum-espn3-/boxscore/5313",
+"d": "2016-12-04",
+"ha": "home",
+"opp": "Delaware State (Spectrum & ESPN3)",
+"res": "W 74-60",
+"site": "http://www.dsuhornets.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/tcu-espnews-/boxscore/5314",
+"d": "2016-12-07",
+"ha": "home",
+"opp": "TCU (ESPNEWS)",
+"res": "W 74-59",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/mcneese-spectrum-espn3-/boxscore/5315",
+"d": "2016-12-14",
+"ha": "home",
+"opp": "McNeese (Spectrum & ESPN3)",
+"res": "W 92-56",
+"site": "http://www.mcneesesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/stanford-espn2-/boxscore/5316",
+"d": "2016-12-19",
+"ha": "home",
+"opp": "Stanford (ESPN2)",
+"res": "W 72-49",
+"site": "http://www.gostanford.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/albany-espn3-/boxscore/5442",
+"d": "2016-12-20",
+"ha": "home",
+"opp": "Albany (ESPN3)",
+"res": "W 71-53",
+"site": "http://www.ualbanysports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/memphis-espnu-/boxscore/5345",
+"d": "2016-12-27",
+"ha": "away",
+"opp": "Memphis (ESPNU)",
+"res": "W 58-54",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/east-carolina-espn3-asn-/boxscore/5346",
+"d": "2016-12-31",
+"ha": "away",
+"opp": "East Carolina (ESPN3/ASN)",
+"res": "W 75-44",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/temple-cbssn-/boxscore/5347",
+"d": "2017-01-04",
+"ha": "home",
+"opp": "Temple (CBSSN)",
+"res": "W 79-65",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/usf-espnews-/boxscore/5348",
+"d": "2017-01-07",
+"ha": "home",
+"opp": "USF (ESPNEWS)",
+"res": "W 84-65",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/cincinnati-espn-/boxscore/5349",
+"d": "2017-01-12",
+"ha": "away",
+"opp": "Cincinnati (ESPN)",
+"res": "L 64-66",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/tulane-cbssn-/boxscore/5350",
+"d": "2017-01-15",
+"ha": "away",
+"opp": "Tulane (CBSSN)",
+"res": "W 80-64",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/connecticut-espn2-/boxscore/5351",
+"d": "2017-01-19",
+"ha": "home",
+"opp": "Connecticut (ESPN2)",
+"res": "W 69-49",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/houston-espnu-/boxscore/5352",
+"d": "2017-01-21",
+"ha": "home",
+"opp": "Houston (ESPNU)",
+"res": "W 85-64",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/ucf-espnews-/boxscore/5353",
+"d": "2017-01-25",
+"ha": "away",
+"opp": "UCF (ESPNEWS)",
+"res": "W 65-60",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/east-carolina-espnews-/boxscore/5354",
+"d": "2017-02-01",
+"ha": "home",
+"opp": "East Carolina (ESPNEWS)",
+"res": "W 86-46",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/tulsa-espnews-/boxscore/5355",
+"d": "2017-02-04",
+"ha": "away",
+"opp": "Tulsa (ESPNEWS)",
+"res": "W 76-53",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/temple-espn2-/boxscore/5356",
+"d": "2017-02-09",
+"ha": "away",
+"opp": "Temple (ESPN2)",
+"res": "W 66-50",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/cincinnati-espn-/boxscore/5357",
+"d": "2017-02-12",
+"ha": "home",
+"opp": "Cincinnati (ESPN)",
+"res": "W 60-51",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/tulane-espn3-asn-/boxscore/5358",
+"d": "2017-02-15",
+"ha": "home",
+"opp": "Tulane (ESPN3/ASN)",
+"res": "W 80-75",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/houston-espn2-/boxscore/5359",
+"d": "2017-02-18",
+"ha": "away",
+"opp": "Houston (ESPN2)",
+"res": "W 76-66",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/connecticut-cbs-/boxscore/5360",
+"d": "2017-02-25",
+"ha": "away",
+"opp": "Connecticut (CBS)",
+"res": "W 69-61",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/tulsa-cbssn-/boxscore/5361",
+"d": "2017-03-02",
+"ha": "home",
+"opp": "Tulsa (CBSSN)",
+"res": "W 93-70",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/memphis-espn2-/boxscore/5362",
+"d": "2017-03-04",
+"ha": "home",
+"opp": "Memphis (ESPN2)",
+"res": "W 103-62",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/east-carolina/boxscore/473",
+"d": "2017-03-10",
+"ha": "neutral",
+"opp": "No. 9 Seed East Carolina",
+"res": "W 81-77",
+"site": "http://www.ecupirates.com/index.aspx?path=mbball"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/ucf/boxscore/474",
+"d": "2017-03-11",
+"ha": "neutral",
+"opp": "No. 4 Seed UCF",
+"res": "W 70-59",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/cincinnati/boxscore/475",
+"d": "2017-03-12",
+"ha": "neutral",
+"opp": "No. 2 Seed Cincinnati",
+"res": "W 71-56",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2016-17/usc/boxscore/5543",
+"d": "2017-03-17",
+"ha": "neutral",
+"opp": "No. 11 SEED USC",
+"res": "L 65-66",
+"site": "http://www.usctrojans.com/"
+}
+],
+"2017": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/umbc/boxscore/6604",
+"d": "2017-11-10",
+"ha": "home",
+"opp": "UMBC",
+"res": "W 78-67",
+"site": "http://www.umbcretrievers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/louisiana-monroe/boxscore/6605",
+"d": "2017-11-12",
+"ha": "home",
+"opp": "Louisiana Monroe",
+"res": "W 83-65",
+"site": "https://ulmwarhawks.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/northwestern-state/boxscore/6606",
+"d": "2017-11-15",
+"ha": "home",
+"opp": "Northwestern State",
+"res": "W 81-35",
+"site": "http://www.nsudemons.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/arkansas-pine-bluff/boxscore/8782",
+"d": "2017-11-18",
+"ha": "home",
+"opp": "Arkansas - Pine Bluff",
+"res": "W 72-37",
+"site": "http://www.uapblionsroar.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/northern-iowa/boxscore/5549",
+"d": "2017-11-22",
+"ha": "neutral",
+"opp": "Northern Iowa",
+"res": "L 58-61",
+"site": "http://www.unipanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/arizona/boxscore/5550",
+"d": "2017-11-23",
+"ha": "neutral",
+"opp": "No. 2/4 Arizona",
+"res": "W 66-60",
+"site": "http://arizonawildcats.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/western-kentucky/boxscore/5551",
+"d": "2017-11-24",
+"ha": "neutral",
+"opp": "Western Kentucky",
+"res": "L 61-63",
+"site": "http://www.wkusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/utrgv/boxscore/6607",
+"d": "2017-11-28",
+"ha": "home",
+"opp": "UTRGV",
+"res": "W 95-64",
+"site": "http://goutrgv.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/usc/boxscore/6608",
+"d": "2017-12-02",
+"ha": "home",
+"opp": "No. 14/18 USC",
+"res": "W 72-55",
+"site": "http://www.usctrojans.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/tcu/boxscore/6609",
+"d": "2017-12-05",
+"ha": "away",
+"opp": "No. 20/20 TCU",
+"res": "L 83-94",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/new-orleans/boxscore/6610",
+"d": "2017-12-13",
+"ha": "home",
+"opp": "New Orleans",
+"res": "W 79-66",
+"site": "http://www.unoprivateers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/boise-state/boxscore/6611",
+"d": "2017-12-18",
+"ha": "home",
+"opp": "-/RV Boise State",
+"res": "W 86-63",
+"site": "http://www.broncosports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/cal-poly/boxscore/6612",
+"d": "2017-12-19",
+"ha": "home",
+"opp": "Cal Poly",
+"res": "W 84-64",
+"site": "http://www.gopoly.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/ucf/boxscore/8729",
+"d": "2017-12-27",
+"ha": "home",
+"opp": "UCF",
+"res": "W 56-51",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/usf/boxscore/8730",
+"d": "2017-12-31",
+"ha": "home",
+"opp": "USF",
+"res": "W 79-39",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/tulane/boxscore/8731",
+"d": "2018-01-04",
+"ha": "away",
+"opp": "Tulane",
+"res": "L 70-73",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/cincinnati/boxscore/8732",
+"d": "2018-01-07",
+"ha": "away",
+"opp": "No. 19/20 Cincinnati",
+"res": "L 56-76",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/temple/boxscore/8733",
+"d": "2018-01-10",
+"ha": "home",
+"opp": "Temple",
+"res": "L 64-66",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/wichita-state/boxscore/8734",
+"d": "2018-01-17",
+"ha": "away",
+"opp": "No. 7/4 Wichita State",
+"res": "W 83-78",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/tulane/boxscore/8735",
+"d": "2018-01-20",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 73-62",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/connecticut/boxscore/8736",
+"d": "2018-01-25",
+"ha": "away",
+"opp": "Connecticut",
+"res": "L 52-63",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/east-carolina/boxscore/8737",
+"d": "2018-01-28",
+"ha": "home",
+"opp": "East Carolina",
+"res": "W 86-61",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/tulsa/boxscore/8738",
+"d": "2018-02-01",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 67-76",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/houston/boxscore/8739",
+"d": "2018-02-08",
+"ha": "away",
+"opp": "RV/RV Houston",
+"res": "L 58-67",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/cincinnati/boxscore/8740",
+"d": "2018-02-11",
+"ha": "home",
+"opp": "No. 6/6 Cincinnati",
+"res": "L 51-76",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/memphis/boxscore/8741",
+"d": "2018-02-14",
+"ha": "home",
+"opp": "Memphis",
+"res": "L 67-70",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/ucf/boxscore/8742",
+"d": "2018-02-17",
+"ha": "away",
+"opp": "UCF",
+"res": "L 37-52",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/east-carolina/boxscore/8743",
+"d": "2018-02-21",
+"ha": "away",
+"opp": "East Carolina",
+"res": "W 77-58",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/wichita-state/boxscore/8744",
+"d": "2018-02-24",
+"ha": "home",
+"opp": "No. 13/12 Wichita State",
+"res": "L 78-84",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/houston/boxscore/8745",
+"d": "2018-02-28",
+"ha": "home",
+"opp": "No.25/rv Houston",
+"res": "L 56-69",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/usf/boxscore/8746",
+"d": "2018-03-04",
+"ha": "away",
+"opp": "USF",
+"res": "L 54-65",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/connecticut/boxscore/5552",
+"d": "2018-03-08",
+"ha": "neutral",
+"opp": "Seed Connecticut",
+"res": "W 80-73",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2017-18/cincinnati/boxscore/5553",
+"d": "2018-03-09",
+"ha": "neutral",
+"opp": "Seed (No.8/8) Cincinnati",
+"res": "L 51-61",
+"site": "http://www.gobearcats.com/"
+}
+],
+"2018": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/northwestern-state/boxscore/9228",
+"d": "2018-11-08",
+"ha": "home",
+"opp": "Northwestern State",
+"res": "W 69-58",
+"site": "http://www.nsudemons.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/southern-miss/boxscore/9083",
+"d": "2018-11-11",
+"ha": "home",
+"opp": "Southern Miss",
+"res": "L 64-74",
+"site": "http://southernmiss.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/western-carolina/boxscore/9084",
+"d": "2018-11-14",
+"ha": "home",
+"opp": "Western Carolina",
+"res": "W 98-65",
+"site": "http://www.catamountsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/lipscomb/boxscore/9229",
+"d": "2018-11-17",
+"ha": "home",
+"opp": "Lipscomb",
+"res": "L 73-79",
+"site": "http://www.lipscombsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/bradley/boxscore/9085",
+"d": "2018-11-20",
+"ha": "neutral",
+"opp": "Bradley",
+"res": "L 62-75",
+"site": "http://www.bubraves.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/wright-state/boxscore/9086",
+"d": "2018-11-21",
+"ha": "neutral",
+"opp": "Wright State",
+"res": "W 77-76",
+"site": "http://www.wsuraiders.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/lamar/boxscore/9230",
+"d": "2018-11-27",
+"ha": "home",
+"opp": "Lamar",
+"res": "W 79-65",
+"site": "http://www.lamarcardinals.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/mcneese/boxscore/9231",
+"d": "2018-11-29",
+"ha": "home",
+"opp": "McNeese",
+"res": "W 91-59",
+"site": "http://www.mcneesesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/oral-roberts/boxscore/9232",
+"d": "2018-12-02",
+"ha": "home",
+"opp": "Oral Roberts",
+"res": "W 79-67",
+"site": "http://oruathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/tcu/boxscore/9233",
+"d": "2018-12-05",
+"ha": "home",
+"opp": "TCU",
+"res": "L 59-67",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/georgetown/boxscore/9156",
+"d": "2018-12-15",
+"ha": "away",
+"opp": "Georgetown",
+"res": "W 81-73",
+"site": "http://www.guhoyas.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/cornell/boxscore/9234",
+"d": "2018-12-22",
+"ha": "home",
+"opp": "Cornell",
+"res": "W 81-53",
+"site": "http://www.cornellbigred.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/east-carolina/boxscore/9310",
+"d": "2019-01-02",
+"ha": "home",
+"opp": "East Carolina",
+"res": "W 82-54",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/tulane/boxscore/9311",
+"d": "2019-01-04",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 74-65",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/connecticut/boxscore/9312",
+"d": "2019-01-10",
+"ha": "away",
+"opp": "Connecticut",
+"res": "L 64-76",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/tulsa/boxscore/9313",
+"d": "2019-01-12",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 77-57",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/houston/boxscore/9314",
+"d": "2019-01-16",
+"ha": "home",
+"opp": "Houston",
+"res": "L 58-69",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/memphis/boxscore/9315",
+"d": "2019-01-19",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 61-83",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/tulane/boxscore/9316",
+"d": "2019-01-26",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 85-75",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/wichita-state/boxscore/9317",
+"d": "2019-01-30",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 83-85",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/cincinnati/boxscore/9318",
+"d": "2019-02-02",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "L 68-73",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/usf/boxscore/9319",
+"d": "2019-02-07",
+"ha": "home",
+"opp": "USF",
+"res": "L 66-67",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/ucf/boxscore/9320",
+"d": "2019-02-10",
+"ha": "home",
+"opp": "UCF",
+"res": "L 65-71",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/temple/boxscore/9321",
+"d": "2019-02-13",
+"ha": "away",
+"opp": "Temple",
+"res": "L 74-82",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/connecticut/boxscore/9322",
+"d": "2019-02-21",
+"ha": "home",
+"opp": "Connecticut",
+"res": "W 77-59",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/ucf/boxscore/9323",
+"d": "2019-02-24",
+"ha": "away",
+"opp": "UCF",
+"res": "L 48-95",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/cincinnati/boxscore/9324",
+"d": "2019-02-27",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "L 49-52",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/wichita-state/boxscore/9325",
+"d": "2019-03-03",
+"ha": "home",
+"opp": "Wichita State",
+"res": "L 55-67",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/houston/boxscore/9326",
+"d": "2019-03-07",
+"ha": "away",
+"opp": "Houston",
+"res": "L 79-90",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/usf/boxscore/9327",
+"d": "2019-03-10",
+"ha": "away",
+"opp": "USF",
+"res": "W 77-71",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/tulsa/boxscore/9087",
+"d": "2019-03-14",
+"ha": "neutral",
+"opp": "Tulsa",
+"res": "W 74-65",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2018-19/cincinnati/boxscore/9088",
+"d": "2019-03-15",
+"ha": "neutral",
+"opp": "Cincinnati",
+"res": "L 74-82",
+"site": "http://www.gobearcats.com/"
+}
+],
+"2019": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/jacksonville-state/boxscore/11675",
+"d": "2019-11-05",
+"ha": "home",
+"opp": "Jacksonville State",
+"res": "W 74-65",
+"site": "http://jaxstatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/new-orleans/boxscore/11676",
+"d": "2019-11-12",
+"ha": "home",
+"opp": "New Orleans",
+"res": "W 77-64",
+"site": "http://www.unoprivateers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/jackson-state/boxscore/11678",
+"d": "2019-11-16",
+"ha": "home",
+"opp": "Jackson State",
+"res": "W 80-63",
+"site": "http://www.gojsutigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/evansville/boxscore/11606",
+"d": "2019-11-18",
+"ha": "away",
+"opp": "Evansville",
+"res": "W 59-57",
+"site": "http://www.gopurpleaces.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/unlv/boxscore/10486",
+"d": "2019-11-23",
+"ha": "away",
+"opp": "UNLV",
+"res": "W 72-68",
+"site": "http://unlvrebels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/hartford/boxscore/11679",
+"d": "2019-11-27",
+"ha": "home",
+"opp": "Hartford",
+"res": "W 90-58",
+"site": "http://www.hartfordhawks.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/abilene-christian/boxscore/11680",
+"d": "2019-11-29",
+"ha": "home",
+"opp": "Abilene Christian",
+"res": "W 70-51",
+"site": "http://www.acusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/northwestern-state/boxscore/11681",
+"d": "2019-12-03",
+"ha": "home",
+"opp": "Northwestern State",
+"res": "W 77-51",
+"site": "http://www.nsudemons.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/georgetown/boxscore/10497",
+"d": "2019-12-07",
+"ha": "home",
+"opp": "Georgetown",
+"res": "L 74-91",
+"site": "http://www.guhoyas.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/georgia/boxscore/10496",
+"d": "2019-12-20",
+"ha": "away",
+"opp": "Georgia",
+"res": "L 85-87",
+"site": "http://www.georgiadogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/georgia-state/boxscore/11682",
+"d": "2019-12-23",
+"ha": "home",
+"opp": "Georgia State",
+"res": "W 85-76",
+"site": "http://www.georgiastatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/usf/boxscore/11683",
+"d": "2020-01-01",
+"ha": "home",
+"opp": "USF",
+"res": "W 82-64",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/vanderbilt/boxscore/11550",
+"d": "2020-01-04",
+"ha": "away",
+"opp": "Vanderbilt",
+"res": "W 92-81",
+"site": "http://www.vucommodores.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/ucf/boxscore/11684",
+"d": "2020-01-08",
+"ha": "home",
+"opp": "UCF",
+"res": "W 81-74",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/ecu/boxscore/11685",
+"d": "2020-01-11",
+"ha": "away",
+"opp": "ECU",
+"res": "L 68-71",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/houston/boxscore/11686",
+"d": "2020-01-15",
+"ha": "away",
+"opp": "Houston",
+"res": "L 62-71",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/temple/boxscore/11687",
+"d": "2020-01-18",
+"ha": "home",
+"opp": "Temple",
+"res": "W 68-52",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/ecu/boxscore/11688",
+"d": "2020-01-22",
+"ha": "home",
+"opp": "ECU",
+"res": "W 84-64",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/memphis/boxscore/11689",
+"d": "2020-01-25",
+"ha": "away",
+"opp": "Memphis",
+"res": "W 74-70",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/cincinnati/boxscore/11690",
+"d": "2020-01-28",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "L 43-65",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/tulane/boxscore/11691",
+"d": "2020-02-01",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 82-67",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/temple/boxscore/11692",
+"d": "2020-02-08",
+"ha": "away",
+"opp": "Temple",
+"res": "L 90-97",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/connecticut/boxscore/11693",
+"d": "2020-02-12",
+"ha": "home",
+"opp": "Connecticut",
+"res": "W 79-75",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/houston/boxscore/11694",
+"d": "2020-02-15",
+"ha": "home",
+"opp": "Houston",
+"res": "W 73-72",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/tulane/boxscore/11695",
+"d": "2020-02-19",
+"ha": "away",
+"opp": "Tulane",
+"res": "L 72-80",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/tulsa/boxscore/11696",
+"d": "2020-02-22",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 57-79",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/memphis/boxscore/11697",
+"d": "2020-02-25",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 58-53",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/wichita-state/boxscore/11698",
+"d": "2020-03-01",
+"ha": "home",
+"opp": "Wichita State",
+"res": "L 62-66",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/ucf/boxscore/11699",
+"d": "2020-03-04",
+"ha": "away",
+"opp": "UCF",
+"res": "L 58-61",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2019-20/usf/boxscore/11700",
+"d": "2020-03-07",
+"ha": "away",
+"opp": "USF",
+"res": "L 60-61",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": null,
+"d": "2020-03-12",
+"ha": "neutral",
+"opp": "Seed Temple",
+"res": null,
+"site": "https://owlsports.com"
+}
+],
+"2020": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/sam-houston-state/boxscore/11924",
+"d": "2020-11-25",
+"ha": "home",
+"opp": "Sam Houston State",
+"res": "W 97-67",
+"site": "http://www.gobearkats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/texas-am-corpus-christi/boxscore/11925",
+"d": "2020-11-30",
+"ha": "home",
+"opp": "Texas A&M - Corpus Christi",
+"res": "W 91-54",
+"site": "http://www.goislanders.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/houston-baptist/boxscore/11926",
+"d": "2020-12-02",
+"ha": "home",
+"opp": "Houston Baptist",
+"res": "W 102-75",
+"site": "http://www.hcuhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/dayton/boxscore/11927",
+"d": "2020-12-05",
+"ha": "away",
+"opp": "Dayton",
+"res": "W 66-64",
+"site": "http://www.daytonflyers.com"
+},
+{
+"box": null,
+"d": "2020-12-08",
+"ha": "home",
+"opp": "Vanderbilt",
+"res": null,
+"site": "http://www.vucommodores.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/ecu/boxscore/11939",
+"d": "2020-12-16",
+"ha": "home",
+"opp": "ECU",
+"res": "W 70-55",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/temple/boxscore/11940",
+"d": "2020-12-30",
+"ha": "away",
+"opp": "Temple",
+"res": "W 79-71",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/houston/boxscore/11941",
+"d": "2021-01-03",
+"ha": "home",
+"opp": "Houston",
+"res": "L 60-74",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/cincinnati/boxscore/11942",
+"d": "2021-01-07",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "L 69-76",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/temple/boxscore/11943",
+"d": "2021-01-11",
+"ha": "home",
+"opp": "Temple",
+"res": "W 79-68",
+"site": "https://owlsports.com"
+},
+{
+"box": null,
+"d": "2021-01-14",
+"ha": "away",
+"opp": "Memphis",
+"res": null,
+"site": "http://gotigersgo.com"
+},
+{
+"box": null,
+"d": "2021-01-17",
+"ha": "home",
+"opp": "Wichita State",
+"res": null,
+"site": "https://goshockers.com/"
+},
+{
+"box": null,
+"d": "2021-01-20",
+"ha": "away",
+"opp": "Tulane",
+"res": null,
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/ucf/boxscore/11947",
+"d": "2021-01-23",
+"ha": "away",
+"opp": "UCF",
+"res": "W 78-65",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/memphis/boxscore/12111",
+"d": "2021-01-26",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 72-76",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/memphis/boxscore/11949",
+"d": "2021-01-28",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 67-65",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/houston/boxscore/11950",
+"d": "2021-01-31",
+"ha": "away",
+"opp": "Houston",
+"res": "L 48-70",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/tulsa/boxscore/11954",
+"d": "2021-02-03",
+"ha": "away",
+"opp": "Tulsa",
+"res": "W 65-63",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": null,
+"d": "2021-02-06",
+"ha": "home",
+"opp": "USF",
+"res": null,
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/ecu/boxscore/11953",
+"d": "2021-02-08",
+"ha": "away",
+"opp": "ECU",
+"res": "W 71-56",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": null,
+"d": "2021-02-14",
+"ha": "home",
+"opp": "Wichita State",
+"res": null,
+"site": "https://goshockers.com/"
+},
+{
+"box": null,
+"d": "2021-02-17",
+"ha": "home",
+"opp": "Tulane",
+"res": null,
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": null,
+"d": "2021-02-20",
+"ha": "home",
+"opp": "USF",
+"res": null,
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": null,
+"d": "2021-02-23",
+"ha": "home",
+"opp": "UCF",
+"res": null,
+"site": "http://ucfknights.com"
+},
+{
+"box": null,
+"d": "2021-02-25",
+"ha": "away",
+"opp": "Wichita State",
+"res": null,
+"site": "https://goshockers.com/"
+},
+{
+"box": null,
+"d": "2021-02-28",
+"ha": "home",
+"opp": "Wichita State",
+"res": null,
+"site": "https://goshockers.com/"
+},
+{
+"box": null,
+"d": "2021-03-04",
+"ha": "away",
+"opp": "Cincinnati",
+"res": null,
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": null,
+"d": "2021-03-07",
+"ha": "home",
+"opp": "Tulsa",
+"res": null,
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/cincinnati/boxscore/10492",
+"d": "2021-03-12",
+"ha": "neutral",
+"opp": "Cincinnati",
+"res": "L 71-74",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2020-21/boise-state/boxscore/12174",
+"d": "2021-03-18",
+"ha": "neutral",
+"opp": "Seed Boise State",
+"res": "L 84-85",
+"site": "http://www.broncosports.com/"
+}
+],
+"2021": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/mcneese/boxscore/12294",
+"d": "2021-11-09",
+"ha": "home",
+"opp": "McNeese",
+"res": "W 86-62",
+"site": "http://www.mcneesesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/oregon/boxscore/12295",
+"d": "2021-11-12",
+"ha": "away",
+"opp": "Oregon",
+"res": "L 63-86",
+"site": "http://goducks.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/northwestern-state/boxscore/12296",
+"d": "2021-11-15",
+"ha": "home",
+"opp": "Northwestern State",
+"res": "W 95-48",
+"site": "http://www.nsudemons.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/southeastern-louisiana/boxscore/12337",
+"d": "2021-11-18",
+"ha": "home",
+"opp": "Southeastern Louisiana",
+"res": "W 78-61",
+"site": "http://www.lionsports.net/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/missouri/boxscore/12298",
+"d": "2021-11-21",
+"ha": "neutral",
+"opp": "Missouri",
+"res": "L 75-80",
+"site": "http:///www.mutigers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/lmu/boxscore/12297",
+"d": "2021-11-22",
+"ha": "neutral",
+"opp": "LMU",
+"res": "L 70-76",
+"site": "http://www.lmulions.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/sam-houston/boxscore/12299",
+"d": "2021-11-24",
+"ha": "home",
+"opp": "Sam Houston",
+"res": "W 75-66",
+"site": "http://www.gobearkats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/ulm/boxscore/12300",
+"d": "2021-11-28",
+"ha": "home",
+"opp": "ULM",
+"res": "W 74-67",
+"site": "https://ulmwarhawks.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/unlv/boxscore/12353",
+"d": "2021-12-01",
+"ha": "home",
+"opp": "UNLV",
+"res": "W 83-64",
+"site": "http://unlvrebels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/vanderbilt/boxscore/12301",
+"d": "2021-12-04",
+"ha": "home",
+"opp": "Vanderbilt",
+"res": "W 84-72",
+"site": "http://www.vucommodores.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/dayton/boxscore/12302",
+"d": "2021-12-08",
+"ha": "home",
+"opp": "Dayton",
+"res": "W 77-69",
+"site": "http://www.daytonflyers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/new-mexico/boxscore/12303",
+"d": "2021-12-19",
+"ha": "away",
+"opp": "New Mexico",
+"res": "W 90-72",
+"site": "http://www.golobos.com/"
+},
+{
+"box": null,
+"d": "2021-12-21",
+"ha": "home",
+"opp": "Evansville",
+"res": null,
+"site": "http://www.gopurpleaces.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/tulsa/boxscore/12410",
+"d": "2021-12-29",
+"ha": "away",
+"opp": "Tulsa",
+"res": "W 74-69",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/ucf/boxscore/12411",
+"d": "2022-01-02",
+"ha": "home",
+"opp": "UCF",
+"res": "W 72-60",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/cincinnati/boxscore/12412",
+"d": "2022-01-06",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "L 60-77",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/usf/boxscore/12413",
+"d": "2022-01-12",
+"ha": "home",
+"opp": "USF",
+"res": "W 77-65",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/tulane/boxscore/12414",
+"d": "2022-01-15",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 75-66",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/memphis/boxscore/12415",
+"d": "2022-01-20",
+"ha": "away",
+"opp": "Memphis",
+"res": "W 70-62",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/usf/boxscore/12417",
+"d": "2022-01-26",
+"ha": "away",
+"opp": "USF",
+"res": "W 74-54",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/temple/boxscore/12418",
+"d": "2022-01-29",
+"ha": "home",
+"opp": "Temple",
+"res": "W 69-61",
+"site": "https://owlsports.com"
+},
+{
+"box": null,
+"d": "2022-02-03",
+"ha": "home",
+"opp": "Wichita State",
+"res": null,
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/wichita-state/boxscore/12419",
+"d": "2022-02-05",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 57-72",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/houston/boxscore/12420",
+"d": "2022-02-09",
+"ha": "home",
+"opp": "Houston",
+"res": "W 85-83",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/east-carolina/boxscore/12421",
+"d": "2022-02-12",
+"ha": "away",
+"opp": "East Carolina",
+"res": "W 80-66",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/temple/boxscore/12422",
+"d": "2022-02-16",
+"ha": "away",
+"opp": "Temple",
+"res": "L 57-64",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/memphis/boxscore/12423",
+"d": "2022-02-20",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 73-57",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/tulsa/boxscore/12424",
+"d": "2022-02-23",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 75-61",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/houston/boxscore/12425",
+"d": "2022-02-27",
+"ha": "away",
+"opp": "Houston",
+"res": "L 61-75",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/cincinnati/boxscore/12426",
+"d": "2022-03-03",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "W 76-71",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/tulane/boxscore/12427",
+"d": "2022-03-06",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 74-68",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/tulsa/boxscore/12307",
+"d": "2022-03-11",
+"ha": "neutral",
+"opp": "Seed Tulsa",
+"res": "W 83-58",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/memphis/boxscore/12308",
+"d": "2022-03-12",
+"ha": "neutral",
+"opp": "Seed Memphis",
+"res": "L 63-70",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/nicholls/boxscore/12567",
+"d": "2022-03-16",
+"ha": "home",
+"opp": "Nicholls",
+"res": "W 68-58",
+"site": "http://geauxcolonels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2021-22/washington-state/boxscore/12569",
+"d": "2022-03-20",
+"ha": "home",
+"opp": "Washington State",
+"res": "L 63-75",
+"site": "http://www.wsucougars.com/"
+}
+],
+"2022": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/paul-quinn-exh-/boxscore/12710",
+"d": "2022-10-29",
+"ha": "home",
+"opp": "Paul Quinn (Exh.)",
+"res": "W 80-66",
+"site": "http://www.pqc.edu/athletics/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/texas-am-commerce/boxscore/12711",
+"d": "2022-11-07",
+"ha": "home",
+"opp": "Texas A&M - Commerce",
+"res": "W 77-60",
+"site": "http://www.lionathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/dayton/boxscore/12712",
+"d": "2022-11-11",
+"ha": "away",
+"opp": "Dayton",
+"res": "L 62-74",
+"site": "http://www.daytonflyers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/new-mexico/boxscore/12713",
+"d": "2022-11-15",
+"ha": "home",
+"opp": "New Mexico",
+"res": "L 63-84",
+"site": "http://www.golobos.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/evansville/boxscore/12714",
+"d": "2022-11-19",
+"ha": "home",
+"opp": "Evansville",
+"res": "W 55-47",
+"site": "http://www.gopurpleaces.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/louisiana/boxscore/12715",
+"d": "2022-11-22",
+"ha": "home",
+"opp": "Louisiana",
+"res": "L 72-76",
+"site": "http://www.ragincajuns.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/lamar/boxscore/12716",
+"d": "2022-11-27",
+"ha": "home",
+"opp": "Lamar",
+"res": "W 75-50",
+"site": "http://www.lamarcardinals.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/texas-am/boxscore/12717",
+"d": "2022-11-30",
+"ha": "away",
+"opp": "Texas A&M",
+"res": "L 64-83",
+"site": "http://www.12thman.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/jackson-state/boxscore/12718",
+"d": "2022-12-03",
+"ha": "home",
+"opp": "Jackson State",
+"res": "L 68-69",
+"site": "http://www.gojsutigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/arizona-state/boxscore/12719",
+"d": "2022-12-07",
+"ha": "home",
+"opp": "Arizona State",
+"res": "L 57-75",
+"site": "http://www.thesundevils.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/tcu/boxscore/12720",
+"d": "2022-12-10",
+"ha": "neutral",
+"opp": "TCU",
+"res": "L 75-83",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/iona/boxscore/12721",
+"d": "2022-12-22",
+"ha": "neutral",
+"opp": "Iona",
+"res": "W 85-81",
+"site": "http://www.ionagaels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/utah-state/boxscore/12722",
+"d": "2022-12-23",
+"ha": "neutral",
+"opp": "Utah State",
+"res": "W 77-74",
+"site": "http://www.utahstateaggies.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/hawaii/boxscore/12723",
+"d": "2022-12-25",
+"ha": "away",
+"opp": "Hawaii",
+"res": "L 57-58",
+"site": "http://hawaiiathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/tulsa/boxscore/12942",
+"d": "2023-01-01",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 92-67",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/houston/boxscore/12943",
+"d": "2023-01-05",
+"ha": "away",
+"opp": "Houston",
+"res": "L 53-87",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/ucf/boxscore/12944",
+"d": "2023-01-08",
+"ha": "away",
+"opp": "UCF",
+"res": "L 53-85",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/tulane/boxscore/12945",
+"d": "2023-01-11",
+"ha": "home",
+"opp": "Tulane",
+"res": "L 88-97",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/cincinnati/boxscore/12946",
+"d": "2023-01-14",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "L 52-54",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/tulsa/boxscore/12947",
+"d": "2023-01-18",
+"ha": "away",
+"opp": "Tulsa",
+"res": "W 79-76",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/wichita-state/boxscore/12948",
+"d": "2023-01-22",
+"ha": "home",
+"opp": "Wichita State",
+"res": "L 69-71",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/memphis/boxscore/12949",
+"d": "2023-01-26",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 84-99",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/usf/boxscore/12950",
+"d": "2023-01-29",
+"ha": "home",
+"opp": "USF",
+"res": "W 82-80",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/tulane/boxscore/12951",
+"d": "2023-02-01",
+"ha": "away",
+"opp": "Tulane",
+"res": "L 52-74",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/east-carolina/boxscore/12952",
+"d": "2023-02-04",
+"ha": "away",
+"opp": "East Carolina",
+"res": "L 72-77",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/temple/boxscore/12953",
+"d": "2023-02-08",
+"ha": "home",
+"opp": "Temple",
+"res": "W 72-71",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/wichita-state/boxscore/12954",
+"d": "2023-02-12",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 89-91",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/houston/boxscore/12955",
+"d": "2023-02-16",
+"ha": "home",
+"opp": "Houston",
+"res": "L 65-80",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/east-carolina/boxscore/12956",
+"d": "2023-02-19",
+"ha": "home",
+"opp": "East Carolina",
+"res": "W 86-70",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/usf/boxscore/12957",
+"d": "2023-02-25",
+"ha": "away",
+"opp": "USF",
+"res": "L 67-71",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/memphis/boxscore/12958",
+"d": "2023-03-02",
+"ha": "home",
+"opp": "Memphis",
+"res": "L 62-81",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/cincinnati/boxscore/12959",
+"d": "2023-03-05",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "L 74-97",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2022-23/ucf/boxscore/12724",
+"d": "2023-03-09",
+"ha": "neutral",
+"opp": "Seed UCF",
+"res": "L 70-76",
+"site": "https://ucfknights.com"
+}
+],
+"2023": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/southwestern-assemblies-of-god/boxscore/13320",
+"d": "2023-11-06",
+"ha": "home",
+"opp": "Southwestern Assemblies of God",
+"res": "W 82-63",
+"site": "https://nelsonlions.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/western-illinois/boxscore/13321",
+"d": "2023-11-08",
+"ha": "home",
+"opp": "Western Illinois",
+"res": "W 90-53",
+"site": "http://www.goleathernecks.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/lamar/boxscore/13322",
+"d": "2023-11-09",
+"ha": "home",
+"opp": "Lamar",
+"res": "W 78-67",
+"site": "http://www.lamarcardinals.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/texas-am/boxscore/13323",
+"d": "2023-11-14",
+"ha": "home",
+"opp": "Texas A&M",
+"res": "L 66-79",
+"site": "http://www.12thman.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/west-virginia/boxscore/13237",
+"d": "2023-11-20",
+"ha": "neutral",
+"opp": "West Virginia",
+"res": "W 70-58",
+"site": "http://www.wvusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/wisconsin/boxscore/13238",
+"d": "2023-11-22",
+"ha": "neutral",
+"opp": "Wisconsin",
+"res": "L 61-69",
+"site": "http://www.uwbadgers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/ulm/boxscore/13324",
+"d": "2023-11-26",
+"ha": "home",
+"opp": "ULM",
+"res": "W 70-57",
+"site": "https://ulmwarhawks.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/dayton/boxscore/13333",
+"d": "2023-11-29",
+"ha": "home",
+"opp": "Dayton",
+"res": "L 63-65",
+"site": "http://www.daytonflyers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/texas-am-commerce/boxscore/13326",
+"d": "2023-12-03",
+"ha": "home",
+"opp": "Texas A&M - Commerce",
+"res": "W 90-47",
+"site": "http://www.lionathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/arizona-state/boxscore/13327",
+"d": "2023-12-06",
+"ha": "away",
+"opp": "Arizona State",
+"res": "L 74-76",
+"site": "http://www.thesundevils.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/florida-state/boxscore/13328",
+"d": "2023-12-16",
+"ha": "away",
+"opp": "Florida State",
+"res": "W 68-57",
+"site": "http://www.seminoles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/houston-christian/boxscore/13329",
+"d": "2023-12-19",
+"ha": "home",
+"opp": "Houston Christian",
+"res": "W 89-53",
+"site": "http://www.hcuhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/murray-state/boxscore/13330",
+"d": "2023-12-22",
+"ha": "away",
+"opp": "Murray State",
+"res": "W 92-65",
+"site": "http://www.goracers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/charlotte/boxscore/13368",
+"d": "2024-01-02",
+"ha": "home",
+"opp": "Charlotte",
+"res": "W 66-54",
+"site": "http://www.charlotte49ers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/memphis/boxscore/13369",
+"d": "2024-01-07",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 59-62",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/east-carolina/boxscore/13370",
+"d": "2024-01-13",
+"ha": "away",
+"opp": "East Carolina",
+"res": "W 75-64",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/temple/boxscore/13371",
+"d": "2024-01-16",
+"ha": "home",
+"opp": "Temple",
+"res": "W 77-64",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/tulsa/boxscore/13376",
+"d": "2024-01-20",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 103-70",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/north-texas/boxscore/13377",
+"d": "2024-01-25",
+"ha": "away",
+"opp": "North Texas",
+"res": "L 66-68",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/wichita-state/boxscore/13378",
+"d": "2024-01-28",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 72-77",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/tulane/boxscore/13379",
+"d": "2024-02-01",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 80-76",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/uab/boxscore/13380",
+"d": "2024-02-04",
+"ha": "home",
+"opp": "UAB",
+"res": "W 72-69",
+"site": "http://uabsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/rice/boxscore/13381",
+"d": "2024-02-07",
+"ha": "away",
+"opp": "Rice",
+"res": "W 95-69",
+"site": "http://www.riceowls.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/north-texas/boxscore/13382",
+"d": "2024-02-11",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 71-68",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/tulane/boxscore/13383",
+"d": "2024-02-15",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 87-79",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/memphis/boxscore/13384",
+"d": "2024-02-18",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 106-79",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/florida-atlantic/boxscore/13385",
+"d": "2024-02-22",
+"ha": "away",
+"opp": "Florida Atlantic",
+"res": "L 70-80",
+"site": "http://www.fausports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/usf/boxscore/13386",
+"d": "2024-02-25",
+"ha": "away",
+"opp": "USF",
+"res": "L 68-79",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/utsa/boxscore/13387",
+"d": "2024-03-02",
+"ha": "home",
+"opp": "UTSA",
+"res": "L 73-77",
+"site": "http://www.goutsa.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/east-carolina/boxscore/13388",
+"d": "2024-03-06",
+"ha": "home",
+"opp": "East Carolina",
+"res": "W 80-77",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/uab/boxscore/13389",
+"d": "2024-03-10",
+"ha": "away",
+"opp": "UAB",
+"res": "L 70-74",
+"site": "http://uabsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/temple/boxscore/13391",
+"d": "2024-03-14",
+"ha": "neutral",
+"opp": "Seed Temple",
+"res": "L 60-75",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2023-24/indiana-state/boxscore/13568",
+"d": "2024-03-20",
+"ha": "away",
+"opp": "Seed Indiana State",
+"res": "L 92-101",
+"site": "http://www.gosycamores.com/"
+}
+],
+"2024": [
+{
+"box": null,
+"d": "2024-10-26",
+"ha": "away",
+"opp": "Oklahoma State (exh.)",
+"res": "L 78-89",
+"site": "http://www.okstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/tarleton-state/boxscore/13728",
+"d": "2024-11-04",
+"ha": "home",
+"opp": "Tarleton State",
+"res": "W 96-62",
+"site": "http://www.tarletonsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/florida-am/boxscore/13729",
+"d": "2024-11-07",
+"ha": "home",
+"opp": "Florida A&M",
+"res": "W 102-73",
+"site": "http://www.famuathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/unc-greensboro/boxscore/13730",
+"d": "2024-11-11",
+"ha": "home",
+"opp": "UNC Greensboro",
+"res": "W 81-68",
+"site": "http://www.uncgspartans.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/butler/boxscore/13731",
+"d": "2024-11-15",
+"ha": "away",
+"opp": "Butler",
+"res": "L 70-81",
+"site": "http://butlersports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/prairie-view-am/boxscore/13732",
+"d": "2024-11-18",
+"ha": "home",
+"opp": "Prairie View A&M",
+"res": "W 110-69",
+"site": "http://www.pvpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/mississippi-state/boxscore/13671",
+"d": "2024-11-22",
+"ha": "home",
+"opp": "Mississippi State",
+"res": "L 79-84",
+"site": "http://www.hailstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/cal-baptist/boxscore/13656",
+"d": "2024-11-26",
+"ha": "neutral",
+"opp": "Cal Baptist",
+"res": "W 79-77",
+"site": "http://www.cbulancers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/washington-state/boxscore/13657",
+"d": "2024-11-27",
+"ha": "neutral",
+"opp": "Washington State",
+"res": "W 77-60",
+"site": "http://www.wsucougars.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/alabama-state/boxscore/13733",
+"d": "2024-12-03",
+"ha": "home",
+"opp": "Alabama State",
+"res": "W 101-72",
+"site": "http://bamastatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/virginia/boxscore/13825",
+"d": "2024-12-07",
+"ha": "home",
+"opp": "Virginia",
+"res": "W 63-51",
+"site": "http://virginiasports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/lsu/boxscore/13734",
+"d": "2024-12-14",
+"ha": "neutral",
+"opp": "LSU",
+"res": "W 74-64",
+"site": "http://www.lsusports.net/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/boston-college/boxscore/13826",
+"d": "2024-12-21",
+"ha": "away",
+"opp": "Boston College",
+"res": "W 103-77",
+"site": "http://bceagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/longwood/boxscore/13735",
+"d": "2024-12-29",
+"ha": "home",
+"opp": "Longwood",
+"res": "W 98-82",
+"site": "http://www.longwoodlancers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/duke/boxscore/13827",
+"d": "2025-01-04",
+"ha": "home",
+"opp": "Duke",
+"res": "L 62-89",
+"site": "http://www.goduke.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/north-carolina/boxscore/13828",
+"d": "2025-01-07",
+"ha": "away",
+"opp": "North Carolina",
+"res": "L 67-82",
+"site": "http://goheels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/georgia-tech/boxscore/13829",
+"d": "2025-01-11",
+"ha": "home",
+"opp": "Georgia Tech",
+"res": "W 93-71",
+"site": "http://www.ramblinwreck.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/virginia/boxscore/13830",
+"d": "2025-01-15",
+"ha": "away",
+"opp": "Virginia",
+"res": "W 54-52",
+"site": "http://virginiasports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/miami/boxscore/13831",
+"d": "2025-01-18",
+"ha": "away",
+"opp": "Miami",
+"res": "W 117-74",
+"site": "http://www.hurricanesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/louisville/boxscore/13832",
+"d": "2025-01-21",
+"ha": "home",
+"opp": "Louisville",
+"res": "L 73-98",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/nc-state/boxscore/13833",
+"d": "2025-01-25",
+"ha": "away",
+"opp": "NC State",
+"res": "W 63-57",
+"site": "http://gopack.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/california/boxscore/13834",
+"d": "2025-01-29",
+"ha": "home",
+"opp": "California",
+"res": "W 76-65",
+"site": "http://www.calbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/stanford/boxscore/13835",
+"d": "2025-02-01",
+"ha": "home",
+"opp": "Stanford",
+"res": "W 85-61",
+"site": "http://www.gostanford.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/virginia-tech/boxscore/13836",
+"d": "2025-02-05",
+"ha": "away",
+"opp": "Virginia Tech",
+"res": "W 81-75",
+"site": "http://www.hokiesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/pittsburgh/boxscore/13837",
+"d": "2025-02-11",
+"ha": "home",
+"opp": "Pittsburgh",
+"res": "W 83-63",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/wake-forest/boxscore/13838",
+"d": "2025-02-15",
+"ha": "home",
+"opp": "Wake Forest",
+"res": "L 66-77",
+"site": "http://www.godeacs.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/notre-dame/boxscore/13839",
+"d": "2025-02-19",
+"ha": "away",
+"opp": "Notre Dame",
+"res": "W 97-73",
+"site": "http://www.und.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/clemson/boxscore/13840",
+"d": "2025-02-22",
+"ha": "home",
+"opp": "Clemson",
+"res": "L 69-79",
+"site": "http://www.clemsontigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/california/boxscore/13841",
+"d": "2025-02-26",
+"ha": "away",
+"opp": "California",
+"res": "W 81-77",
+"site": "http://www.calbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/stanford/boxscore/13842",
+"d": "2025-03-01",
+"ha": "away",
+"opp": "Stanford",
+"res": "L 68-73",
+"site": "http://www.gostanford.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/syracuse/boxscore/13843",
+"d": "2025-03-04",
+"ha": "home",
+"opp": "Syracuse",
+"res": "W 77-75",
+"site": "http://www.cuse.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/florida-state/boxscore/13844",
+"d": "2025-03-08",
+"ha": "away",
+"opp": "Florida State",
+"res": "L 69-76",
+"site": "http://www.seminoles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/syracuse/boxscore/13846",
+"d": "2025-03-12",
+"ha": "neutral",
+"opp": "Seed Syracuse",
+"res": "W 73-53",
+"site": "https://www.cuse.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/clemson/boxscore/13847",
+"d": "2025-03-13",
+"ha": "neutral",
+"opp": "Seed Clemson",
+"res": "L 54-57",
+"site": "https://www.clemsontigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/northern-iowa/boxscore/14014",
+"d": "2025-03-19",
+"ha": "home",
+"opp": "Northern Iowa",
+"res": "W 73-63",
+"site": "https://www.unipanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2024-25/oklahoma-state/boxscore/14017",
+"d": "2025-03-23",
+"ha": "home",
+"opp": "Seed Oklahoma State",
+"res": "L 83-85",
+"site": "https://www.okstate.com"
+}
+],
+"2025": [
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/oklahoma-state-exh-/boxscore/14219",
+"d": "2025-10-25",
+"ha": "home",
+"opp": "Oklahoma State (exh.)",
+"res": "W 86-71",
+"site": "http://www.okstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/tarleton-state/boxscore/14220",
+"d": "2025-11-03",
+"ha": "home",
+"opp": "Tarleton State",
+"res": "W 96-76",
+"site": "http://www.tarletonsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/texas-am-corpus-christi/boxscore/14221",
+"d": "2025-11-06",
+"ha": "home",
+"opp": "Texas A&M - Corpus Christi",
+"res": "W 69-58",
+"site": "http://www.goislanders.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/murray-state/boxscore/14222",
+"d": "2025-11-11",
+"ha": "home",
+"opp": "Murray State",
+"res": "W 102-91",
+"site": "http://www.goracers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/butler/boxscore/14064",
+"d": "2025-11-15",
+"ha": "home",
+"opp": "Butler",
+"res": "W 87-85",
+"site": "http://butlersports.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/arkansas-pine-bluff/boxscore/14223",
+"d": "2025-11-18",
+"ha": "home",
+"opp": "Arkansas - Pine Bluff",
+"res": "W 106-60",
+"site": "http://www.uapblionsroar.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/arkansas-state/boxscore/14224",
+"d": "2025-11-21",
+"ha": "home",
+"opp": "Arkansas State",
+"res": "W 100-69",
+"site": "http://www.astateredwolves.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/radford/boxscore/14225",
+"d": "2025-11-24",
+"ha": "home",
+"opp": "Radford",
+"res": "W 89-72",
+"site": "https://radfordathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/mississippi-state/boxscore/14058",
+"d": "2025-11-28",
+"ha": "away",
+"opp": "Mississippi State",
+"res": "W 87-81",
+"site": "http://www.hailstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/vanderbilt/boxscore/14082",
+"d": "2025-12-03",
+"ha": "away",
+"opp": "Vanderbilt",
+"res": "L 69-88",
+"site": "http://www.vucommodores.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/texas-am/boxscore/14228",
+"d": "2025-12-07",
+"ha": "neutral",
+"opp": "Texas A&M",
+"res": "W 93-80",
+"site": "http://www.12thman.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/lsu/boxscore/14229",
+"d": "2025-12-13",
+"ha": "neutral",
+"opp": "LSU",
+"res": "L 77-89",
+"site": "http://www.lsusports.net/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/central-arkansas/boxscore/14226",
+"d": "2025-12-21",
+"ha": "home",
+"opp": "Central Arkansas",
+"res": "W 99-82",
+"site": "http://www.ucasports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/cal-state-fullerton/boxscore/14227",
+"d": "2025-12-28",
+"ha": "home",
+"opp": "Cal State Fullerton",
+"res": "W 110-63",
+"site": "http://www.fullertontitans.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/north-carolina/boxscore/14288",
+"d": "2026-01-03",
+"ha": "home",
+"opp": "North Carolina",
+"res": "W 97-83",
+"site": "http://goheels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/clemson/boxscore/14289",
+"d": "2026-01-07",
+"ha": "away",
+"opp": "Clemson",
+"res": "L 70-74",
+"site": "http://www.clemsontigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/duke/boxscore/14290",
+"d": "2026-01-10",
+"ha": "away",
+"opp": "Duke",
+"res": "L 75-82",
+"site": "http://www.goduke.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/virginia-tech/boxscore/14291",
+"d": "2026-01-14",
+"ha": "home",
+"opp": "Virginia Tech",
+"res": "W 77-76",
+"site": "http://www.hokiesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/virginia/boxscore/14292",
+"d": "2026-01-17",
+"ha": "home",
+"opp": "Virginia",
+"res": "L 68-72",
+"site": "http://virginiasports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/wake-forest/boxscore/14310",
+"d": "2026-01-20",
+"ha": "away",
+"opp": "Wake Forest",
+"res": "W 91-79",
+"site": "http://www.godeacs.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/florida-state/boxscore/14294",
+"d": "2026-01-24",
+"ha": "home",
+"opp": "Florida State",
+"res": "W 83-80",
+"site": "http://www.seminoles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/louisville/boxscore/14296",
+"d": "2026-01-31",
+"ha": "away",
+"opp": "Louisville",
+"res": "L 74-88",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/nc-state/boxscore/14297",
+"d": "2026-02-03",
+"ha": "home",
+"opp": "NC State",
+"res": "L 83-84",
+"site": "http://gopack.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/pittsburgh/boxscore/14298",
+"d": "2026-02-07",
+"ha": "away",
+"opp": "Pittsburgh",
+"res": "W 86-67",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/notre-dame/boxscore/14299",
+"d": "2026-02-10",
+"ha": "home",
+"opp": "Notre Dame",
+"res": "W 89-81",
+"site": "http://www.und.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/syracuse/boxscore/14300",
+"d": "2026-02-14",
+"ha": "away",
+"opp": "Syracuse",
+"res": "L 78-79",
+"site": "http://www.cuse.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/louisville/boxscore/14304",
+"d": "2026-02-17",
+"ha": "home",
+"opp": "Louisville",
+"res": "W 95-85",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/boston-college/boxscore/14305",
+"d": "2026-02-21",
+"ha": "home",
+"opp": "Boston College",
+"res": "W 94-70",
+"site": "http://bceagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/california/boxscore/14306",
+"d": "2026-02-25",
+"ha": "away",
+"opp": "California",
+"res": "L 69-73",
+"site": "http://www.calbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/stanford/boxscore/14307",
+"d": "2026-02-28",
+"ha": "away",
+"opp": "Stanford",
+"res": "L 75-95",
+"site": "https://gostanford.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/miami/boxscore/14308",
+"d": "2026-03-04",
+"ha": "home",
+"opp": "Miami",
+"res": "L 69-77",
+"site": "http://www.hurricanesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/florida-state/boxscore/14309",
+"d": "2026-03-07",
+"ha": "away",
+"opp": "Florida State",
+"res": "L 78-91",
+"site": "http://www.seminoles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/syracuse/boxscore/14059",
+"d": "2026-03-10",
+"ha": "neutral",
+"opp": "Syracuse",
+"res": "W 86-69",
+"site": "http://www.cuse.com"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/louisville/boxscore/14060",
+"d": "2026-03-11",
+"ha": "neutral",
+"opp": "Louisville",
+"res": "L 58-62",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2025-26/miami-oh-/boxscore/14500",
+"d": "2026-03-18",
+"ha": "neutral",
+"opp": "Miami (OH)",
+"res": "L 79-89",
+"site": "http://miamiredhawks.com"
+}
+]
+},
+"womens-basketball": {
+"2014": [
+{
+"box": null,
+"d": "2014-12-03",
+"ha": "neutral",
+"opp": "North Texas",
+"res": "W 62-55",
+"site": "http://www.meangreensports.com/"
+}
+],
+"2015": [
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/northwestern-state/boxscore/2414",
+"d": "2015-11-15",
+"ha": "neutral",
+"opp": "Northwestern State",
+"res": "W 74-36",
+"site": "http://www.nsudemons.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/tcu/boxscore/2415",
+"d": "2015-11-18",
+"ha": "neutral",
+"opp": "TCU",
+"res": "L 79-89",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/arizona-state/boxscore/2416",
+"d": "2015-11-21",
+"ha": "neutral",
+"opp": "Arizona State",
+"res": "L 57-64",
+"site": "http://www.thesundevils.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/cal-state-fullerton/boxscore/2417",
+"d": "2015-11-27",
+"ha": "neutral",
+"opp": "Cal State Fullerton",
+"res": "W 74-53",
+"site": "http://www.fullertontitans.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/kansas/boxscore/2418",
+"d": "2015-11-28",
+"ha": "neutral",
+"opp": "Kansas",
+"res": "W 73-64",
+"site": "http://www.kuathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/north-texas/boxscore/2419",
+"d": "2015-12-01",
+"ha": "away",
+"opp": "North Texas",
+"res": "L 57-60",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/new-mexico/boxscore/2420",
+"d": "2015-12-05",
+"ha": "neutral",
+"opp": "New Mexico",
+"res": "L 58-63",
+"site": "http://www.golobos.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/texas-am/boxscore/2421",
+"d": "2015-12-07",
+"ha": "away",
+"opp": "Texas A&M",
+"res": "L 55-67",
+"site": "http://www.12thman.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/arizona/boxscore/2422",
+"d": "2015-12-19",
+"ha": "neutral",
+"opp": "Arizona",
+"res": "W 58-46",
+"site": "http://arizonawildcats.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/gardner-webb/boxscore/2423",
+"d": "2015-12-20",
+"ha": "neutral",
+"opp": "Gardner-Webb",
+"res": "W 69-61",
+"site": "http://www.gwusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/mississippi-state/boxscore/2424",
+"d": "2015-12-21",
+"ha": "neutral",
+"opp": "Mississippi State",
+"res": "L 70-72",
+"site": "http://www.hailstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/tulsa-american-/boxscore/2425",
+"d": "2016-01-02",
+"ha": "away",
+"opp": "Tulsa (American)",
+"res": "L 54-56",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/temple/boxscore/2426",
+"d": "2016-01-05",
+"ha": "neutral",
+"opp": "Temple",
+"res": "W 69-67",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/usf-american-/boxscore/2427",
+"d": "2016-01-07",
+"ha": "away",
+"opp": "USF (American)",
+"res": "L 56-83",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/houston/boxscore/2428",
+"d": "2016-01-10",
+"ha": "away",
+"opp": "Houston",
+"res": "W 50-48",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/memphis/boxscore/2429",
+"d": "2016-01-16",
+"ha": "neutral",
+"opp": "Memphis",
+"res": "W 58-49",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/tulane-espn3-/boxscore/2430",
+"d": "2016-01-20",
+"ha": "neutral",
+"opp": "Tulane (ESPN3)",
+"res": "L 42-54",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/uconn-espn3-sny-/boxscore/2431",
+"d": "2016-01-23",
+"ha": "neutral",
+"opp": "Uconn (ESPN3/SNY)",
+"res": "L 37-90",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/cincinnati/boxscore/2432",
+"d": "2016-01-27",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "W 73-55",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/usf-espnu-/boxscore/2433",
+"d": "2016-01-31",
+"ha": "neutral",
+"opp": "USF (ESPNU)",
+"res": "L 48-66",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/temple-american-/boxscore/2434",
+"d": "2016-02-03",
+"ha": "away",
+"opp": "Temple (American)",
+"res": "L 35-55",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/ucf-american-/boxscore/2435",
+"d": "2016-02-06",
+"ha": "neutral",
+"opp": "UCF (American)",
+"res": "W 65-50",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/east-carolina/boxscore/2436",
+"d": "2016-02-09",
+"ha": "neutral",
+"opp": "East Carolina",
+"res": "W 74-67",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/tulane-american-/boxscore/2437",
+"d": "2016-02-14",
+"ha": "away",
+"opp": "Tulane (American)",
+"res": "L 64-76",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/tulsa-espn3-/boxscore/2438",
+"d": "2016-02-17",
+"ha": "neutral",
+"opp": "Tulsa (ESPN3)",
+"res": "W 62-45",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/ucf/boxscore/2439",
+"d": "2016-02-20",
+"ha": "away",
+"opp": "UCF",
+"res": "L 54-66",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/uconn-espn3-sny-/boxscore/2440",
+"d": "2016-02-24",
+"ha": "away",
+"opp": "Uconn (ESPN3/SNY)",
+"res": "L 41-88",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/houston/boxscore/2441",
+"d": "2016-02-27",
+"ha": "neutral",
+"opp": "Houston",
+"res": "L 54-63",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/east-carolina/boxscore/2442",
+"d": "2016-02-29",
+"ha": "away",
+"opp": "East Carolina",
+"res": "L 61-78",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/ucf-espn3-/boxscore/2443",
+"d": "2016-03-04",
+"ha": "neutral",
+"opp": "UCF (ESPN3)",
+"res": "W 83-74",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2015-16/no-20-usf-espn3-/boxscore/2444",
+"d": "2016-03-05",
+"ha": "neutral",
+"opp": "No. 20 USF (ESPN3)",
+"res": "L 60-73",
+"site": "http://www.GoUSFBulls.com"
+}
+],
+"2016": [
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/texas-state/boxscore/5076",
+"d": "2016-11-11",
+"ha": "home",
+"opp": "Texas State",
+"res": "W 64-56",
+"site": "http://www.txstatebobcats.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/kansas/boxscore/5077",
+"d": "2016-11-16",
+"ha": "away",
+"opp": "Kansas",
+"res": "W 75-63",
+"site": "http://www.kuathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/tcu/boxscore/5078",
+"d": "2016-11-20",
+"ha": "away",
+"opp": "TCU",
+"res": "L 67-76",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/prairie-view-am/boxscore/5079",
+"d": "2016-11-22",
+"ha": "home",
+"opp": "Prairie View A&M",
+"res": "W 61-54",
+"site": "http://www.pvpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/boston-college/boxscore/5080",
+"d": "2016-11-25",
+"ha": "neutral",
+"opp": "Boston College",
+"res": "W 72-64",
+"site": "http://bceagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/colorado/boxscore/5081",
+"d": "2016-11-26",
+"ha": "away",
+"opp": "Colorado",
+"res": "L 50-67",
+"site": "http://www.cubuffs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/north-texas/boxscore/5082",
+"d": "2016-11-30",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 65-51",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/new-mexico/boxscore/5083",
+"d": "2016-12-03",
+"ha": "away",
+"opp": "New Mexico",
+"res": "L 49-64",
+"site": "http://www.golobos.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/no-19-texas-am/boxscore/5084",
+"d": "2016-12-05",
+"ha": "home",
+"opp": "No. 19 Texas A&M",
+"res": "W 54-53",
+"site": "http://www.12thman.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/no-5-mississippi-state/boxscore/5085",
+"d": "2016-12-16",
+"ha": "neutral",
+"opp": "No. 5 Mississippi State",
+"res": "L 42-91",
+"site": "http://www.hailstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/grambling-state/boxscore/5086",
+"d": "2016-12-18",
+"ha": "neutral",
+"opp": "Grambling State",
+"res": "W 56-36",
+"site": "http://www.gsutigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/texas-southern/boxscore/5087",
+"d": "2016-12-19",
+"ha": "home",
+"opp": "Texas Southern",
+"res": "W 61-36",
+"site": "http://athletics.tsu.edu/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/seattle/boxscore/5088",
+"d": "2016-12-21",
+"ha": "home",
+"opp": "Seattle",
+"res": "W 77-43",
+"site": "http://www.goseattleu.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/cincinnati/boxscore/5409",
+"d": "2016-12-31",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "W 64-47",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/east-carolina/boxscore/5410",
+"d": "2017-01-07",
+"ha": "away",
+"opp": "East Carolina",
+"res": "L 57-58",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/tulane/boxscore/5411",
+"d": "2017-01-11",
+"ha": "home",
+"opp": "Tulane",
+"res": "L 59-71",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/no-1-connecticut/boxscore/5412",
+"d": "2017-01-14",
+"ha": "home",
+"opp": "No. 1 Connecticut",
+"res": "L 48-88",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/cincinnati/boxscore/5413",
+"d": "2017-01-17",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "L 65-67",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/houston/boxscore/5414",
+"d": "2017-01-21",
+"ha": "away",
+"opp": "Houston",
+"res": "W 66-45",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/no-23-23-south-florida/boxscore/5415",
+"d": "2017-01-25",
+"ha": "home",
+"opp": "No. 23/23 South Florida",
+"res": "L 51-52",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/tulsa/boxscore/5416",
+"d": "2017-01-28",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 59-66",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/memphis/boxscore/5417",
+"d": "2017-01-31",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 53-44",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/ucf/boxscore/5418",
+"d": "2017-02-04",
+"ha": "home",
+"opp": "UCF",
+"res": "W 63-58",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/no-1-connecticut/boxscore/5419",
+"d": "2017-02-11",
+"ha": "away",
+"opp": "No. 1 Connecticut",
+"res": "L 41-83",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/temple/boxscore/5420",
+"d": "2017-02-15",
+"ha": "away",
+"opp": "Temple",
+"res": "L 52-66",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/tulsa/boxscore/5421",
+"d": "2017-02-18",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 62-41",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/memphis/boxscore/5422",
+"d": "2017-02-22",
+"ha": "away",
+"opp": "Memphis",
+"res": "W 60-39",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/ucf/boxscore/5423",
+"d": "2017-02-25",
+"ha": "away",
+"opp": "UCF",
+"res": "L 37-63",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/houston/boxscore/5424",
+"d": "2017-02-27",
+"ha": "home",
+"opp": "Houston",
+"res": "W 74-45",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/east-carolina-no-11-seed-/boxscore/5425",
+"d": "2017-03-03",
+"ha": "neutral",
+"opp": "East Carolina (No. 11 seed)",
+"res": "W 60-54",
+"site": "http://theamerican.org/sports/2016/11/8/2017%20WBB%20Championship.aspx"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/south-florida-no-3-seed-/boxscore/5426",
+"d": "2017-03-04",
+"ha": "neutral",
+"opp": "South Florida (No. 3 seed)",
+"res": "L 55-62",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/louisiana-tech/boxscore/5544",
+"d": "2017-03-17",
+"ha": "home",
+"opp": "Louisiana Tech",
+"res": "W 75-70",
+"site": "http://www.latechsports.com/sports/w-baskbl/latc-w-baskbl-body.html"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/abilene-christian/boxscore/5546",
+"d": "2017-03-20",
+"ha": "home",
+"opp": "Abilene Christian",
+"res": "W 59-52",
+"site": "http://www.acusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2016-17/indiana/boxscore/5548",
+"d": "2017-03-23",
+"ha": "away",
+"opp": "Indiana",
+"res": "L 44-64",
+"site": "http://iuhoosiers.com/index.aspx?path=wbball"
+}
+],
+"2017": [
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/nicholls/boxscore/8747",
+"d": "2017-11-10",
+"ha": "home",
+"opp": "Nicholls",
+"res": "W 68-61",
+"site": "http://geauxcolonels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/tcu/boxscore/8748",
+"d": "2017-11-14",
+"ha": "home",
+"opp": "TCU",
+"res": "L 58-64",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/no-21-oklahoma/boxscore/8749",
+"d": "2017-11-17",
+"ha": "away",
+"opp": "No. 21 Oklahoma",
+"res": "L 75-87",
+"site": "http://www.soonersports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/ut-arlington/boxscore/8750",
+"d": "2017-11-19",
+"ha": "away",
+"opp": "UT Arlington",
+"res": "L 55-58",
+"site": "http://www.utamavs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/abilene-christian/boxscore/8751",
+"d": "2017-11-21",
+"ha": "home",
+"opp": "Abilene Christian",
+"res": "W 65-44",
+"site": "http://www.acusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/uc-riverside/boxscore/8752",
+"d": "2017-11-24",
+"ha": "neutral",
+"opp": "UC Riverside",
+"res": "W 73-51",
+"site": "http://www.gohighlanders.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/nevada/boxscore/8753",
+"d": "2017-11-26",
+"ha": "away",
+"opp": "Nevada",
+"res": "L 72-80",
+"site": "http://nevadawolfpack.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/north-texas/boxscore/8754",
+"d": "2017-11-29",
+"ha": "away",
+"opp": "North Texas",
+"res": "L 40-47",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/csu-bakersfield/boxscore/8755",
+"d": "2017-12-03",
+"ha": "home",
+"opp": "CSU Bakersfield",
+"res": "W 41-29",
+"site": "http://gorunners.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/alabama/boxscore/8756",
+"d": "2017-12-17",
+"ha": "away",
+"opp": "Alabama",
+"res": "L 44-59",
+"site": "http://www.rolltide.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/loyola-marymount/boxscore/8757",
+"d": "2017-12-20",
+"ha": "home",
+"opp": "Loyola Marymount",
+"res": "W 63-60",
+"site": "http://www.lmulions.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/mcneese/boxscore/8758",
+"d": "2017-12-22",
+"ha": "home",
+"opp": "McNeese",
+"res": "W 65-59",
+"site": "http://www.mcneesesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/no-22-texas-am/boxscore/8759",
+"d": "2017-12-28",
+"ha": "away",
+"opp": "No. 22 Texas A&M",
+"res": "L 57-79",
+"site": "http://www.12thman.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/houston/boxscore/8760",
+"d": "2017-12-30",
+"ha": "home",
+"opp": "Houston",
+"res": "L 75-85",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/ucf/boxscore/8761",
+"d": "2018-01-03",
+"ha": "home",
+"opp": "UCF",
+"res": "L 42-60",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/temple/boxscore/8762",
+"d": "2018-01-07",
+"ha": "away",
+"opp": "Temple",
+"res": "L 52-55",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/east-carolina/boxscore/8763",
+"d": "2018-01-13",
+"ha": "home",
+"opp": "East Carolina",
+"res": "W 65-51",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/wichita-state/boxscore/8764",
+"d": "2018-01-16",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 43-66",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/ucf/boxscore/8765",
+"d": "2018-01-20",
+"ha": "away",
+"opp": "UCF",
+"res": "L 43-58",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/cincinnati/boxscore/8766",
+"d": "2018-01-24",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "L 40-58",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/houston/boxscore/8767",
+"d": "2018-01-27",
+"ha": "away",
+"opp": "Houston",
+"res": "L 56-60",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/temple/boxscore/8768",
+"d": "2018-01-31",
+"ha": "home",
+"opp": "Temple",
+"res": "W 60-56",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/east-carolina/boxscore/8769",
+"d": "2018-02-03",
+"ha": "away",
+"opp": "East Carolina",
+"res": "L 47-76",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/tulsa/boxscore/8770",
+"d": "2018-02-07",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 74-70",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/memphis/boxscore/8771",
+"d": "2018-02-10",
+"ha": "away",
+"opp": "Memphis",
+"res": "W 53-35",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/no-22-usf/boxscore/8772",
+"d": "2018-02-14",
+"ha": "away",
+"opp": "No. 22 USF",
+"res": "L 54-64",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/wichita-state/boxscore/8773",
+"d": "2018-02-17",
+"ha": "home",
+"opp": "Wichita State",
+"res": "L 45-52",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/no-1-connecticut/boxscore/8774",
+"d": "2018-02-24",
+"ha": "home",
+"opp": "No. 1 Connecticut",
+"res": "L 36-80",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/tulane/boxscore/8775",
+"d": "2018-02-26",
+"ha": "away",
+"opp": "Tulane",
+"res": "L 46-52",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2017-18/east-carolina/boxscore/8776",
+"d": "2018-03-03",
+"ha": "neutral",
+"opp": "East Carolina",
+"res": "L 74-85",
+"site": "http://www.ecupirates.com/"
+}
+],
+"2018": [
+{
+"box": null,
+"d": "2018-10-28",
+"ha": "home",
+"opp": "Lubbock Christian (Exh.)",
+"res": null,
+"site": "http://www.lcuchaps.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/ul-monroe/boxscore/9290",
+"d": "2018-11-09",
+"ha": "home",
+"opp": "UL Monroe",
+"res": "W 49-38",
+"site": "https://ulmwarhawks.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/mississippi-valley-state/boxscore/9291",
+"d": "2018-11-12",
+"ha": "home",
+"opp": "Mississippi Valley State",
+"res": "W 62-47",
+"site": "http://mvsusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/alabama/boxscore/9292",
+"d": "2018-11-15",
+"ha": "home",
+"opp": "Alabama",
+"res": "L 61-62",
+"site": "http://www.rolltide.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/tcu/boxscore/9293",
+"d": "2018-11-18",
+"ha": "away",
+"opp": "TCU",
+"res": "L 63-65",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/southeastern-louisiana/boxscore/9294",
+"d": "2018-11-20",
+"ha": "home",
+"opp": "Southeastern Louisiana",
+"res": "L 62-63",
+"site": "http://www.lionsports.net/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/robert-morris/boxscore/9295",
+"d": "2018-11-23",
+"ha": "neutral",
+"opp": "Robert Morris",
+"res": "W 60-55",
+"site": "http://www.rmucolonials.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/northern-arizona/boxscore/9296",
+"d": "2018-11-24",
+"ha": "neutral",
+"opp": "Northern Arizona",
+"res": "W 55-48",
+"site": "http://www.nauathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/north-texas/boxscore/9297",
+"d": "2018-11-28",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 73-66",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/northern-colorado/boxscore/9298",
+"d": "2018-12-01",
+"ha": "away",
+"opp": "Northern Colorado",
+"res": "L 57-58",
+"site": "http://uncbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/rice/boxscore/9299",
+"d": "2018-12-15",
+"ha": "away",
+"opp": "Rice",
+"res": "L 52-66",
+"site": "http://www.riceowls.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/csu-bakersfield/boxscore/9300",
+"d": "2018-12-19",
+"ha": "home",
+"opp": "CSU Bakersfield",
+"res": "W 49-43",
+"site": "http://gorunners.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/oklahoma/boxscore/9301",
+"d": "2018-12-22",
+"ha": "home",
+"opp": "Oklahoma",
+"res": "L 61-77",
+"site": "http://www.soonersports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/ut-arlington/boxscore/9302",
+"d": "2018-12-29",
+"ha": "home",
+"opp": "UT Arlington",
+"res": "L 41-66",
+"site": "http://www.utamavs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/cincinnati/boxscore/9328",
+"d": "2019-01-06",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "L 57-69",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/houston/boxscore/9329",
+"d": "2019-01-09",
+"ha": "home",
+"opp": "Houston",
+"res": "L 61-72",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/tulane/boxscore/9330",
+"d": "2019-01-12",
+"ha": "home",
+"opp": "Tulane",
+"res": "L 43-61",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/wichita-state/boxscore/9331",
+"d": "2019-01-15",
+"ha": "home",
+"opp": "Wichita State",
+"res": "W 78-50",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/ucf/boxscore/9332",
+"d": "2019-01-19",
+"ha": "away",
+"opp": "UCF",
+"res": "L 43-55",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/connecticut/boxscore/9333",
+"d": "2019-01-23",
+"ha": "away",
+"opp": "Connecticut",
+"res": "L 39-79",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/usf/boxscore/9334",
+"d": "2019-01-26",
+"ha": "home",
+"opp": "USF",
+"res": "W 46-44",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/houston/boxscore/9335",
+"d": "2019-02-02",
+"ha": "away",
+"opp": "Houston",
+"res": "L 68-69",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/tulsa/boxscore/9336",
+"d": "2019-02-06",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 35-49",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/ucf/boxscore/9337",
+"d": "2019-02-09",
+"ha": "home",
+"opp": "UCF",
+"res": "L 54-66",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/east-carolina/boxscore/9338",
+"d": "2019-02-14",
+"ha": "home",
+"opp": "East Carolina",
+"res": "L 54-64",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/wichita-state/boxscore/9339",
+"d": "2019-02-17",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 42-53",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/temple/boxscore/9340",
+"d": "2019-02-20",
+"ha": "home",
+"opp": "Temple",
+"res": "W 53-52",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/tulane/boxscore/9341",
+"d": "2019-02-24",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 64-60",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/memphis/boxscore/9342",
+"d": "2019-03-02",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 71-48",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/east-carolina/boxscore/9343",
+"d": "2019-03-04",
+"ha": "away",
+"opp": "East Carolina",
+"res": "L 61-67",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2018-19/east-carolina/boxscore/10403",
+"d": "2019-03-08",
+"ha": "neutral",
+"opp": "Seed East Carolina",
+"res": "L 48-50",
+"site": "http://www.ecupirates.com/"
+}
+],
+"2019": [
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/mcneese/boxscore/11551",
+"d": "2019-11-05",
+"ha": "home",
+"opp": "McNeese",
+"res": "W 81-60",
+"site": "http://www.mcneesesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/rice/boxscore/11552",
+"d": "2019-11-13",
+"ha": "home",
+"opp": "Rice",
+"res": "W 55-43",
+"site": "http://www.riceowls.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/northern-colorado/boxscore/11553",
+"d": "2019-11-16",
+"ha": "home",
+"opp": "Northern Colorado",
+"res": "L 52-61",
+"site": "http://uncbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/tcu/boxscore/11554",
+"d": "2019-11-20",
+"ha": "home",
+"opp": "TCU",
+"res": "L 56-57",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/csun/boxscore/11556",
+"d": "2019-11-29",
+"ha": "neutral",
+"opp": "CSUN",
+"res": "W 68-58",
+"site": "http://www.gomatadors.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/pacific/boxscore/11557",
+"d": "2019-11-30",
+"ha": "away",
+"opp": "Pacific",
+"res": "L 49-77",
+"site": "http://www.pacifictigers.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/wright-state/boxscore/11558",
+"d": "2019-12-06",
+"ha": "home",
+"opp": "Wright State",
+"res": "L 61-69",
+"site": "http://www.wsuraiders.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/north-dakota/boxscore/11559",
+"d": "2019-12-09",
+"ha": "home",
+"opp": "North Dakota",
+"res": "W 66-51",
+"site": "https://fightinghawks.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/utep/boxscore/11560",
+"d": "2019-12-19",
+"ha": "home",
+"opp": "UTEP",
+"res": "W 60-56",
+"site": "http://utepathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/ut-arlington/boxscore/11561",
+"d": "2019-12-22",
+"ha": "away",
+"opp": "UT Arlington",
+"res": "L 46-51",
+"site": "http://www.utamavs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/uc-irvine/boxscore/11562",
+"d": "2019-12-29",
+"ha": "home",
+"opp": "UC Irvine",
+"res": "W 59-56",
+"site": "http://www.ucirvinesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/george-mason/boxscore/11563",
+"d": "2019-12-31",
+"ha": "home",
+"opp": "George Mason",
+"res": "L 58-59",
+"site": "http://gomason.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/no-1-connecticut/boxscore/11659",
+"d": "2020-01-05",
+"ha": "home",
+"opp": "No. 1 Connecticut",
+"res": "L 42-80",
+"site": "http://www.uconnhuskies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/east-carolina/boxscore/11660",
+"d": "2020-01-08",
+"ha": "away",
+"opp": "East Carolina",
+"res": "W 55-47",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/temple/boxscore/11661",
+"d": "2020-01-11",
+"ha": "away",
+"opp": "Temple",
+"res": "L 62-85",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/tulane/boxscore/11662",
+"d": "2020-01-15",
+"ha": "home",
+"opp": "Tulane",
+"res": "L 66-67",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/memphis/boxscore/11663",
+"d": "2020-01-21",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 52-57",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/tulsa/boxscore/11664",
+"d": "2020-01-25",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 57-38",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/wichita-state/boxscore/11665",
+"d": "2020-01-29",
+"ha": "home",
+"opp": "Wichita State",
+"res": "W 64-44",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/ucf/boxscore/11666",
+"d": "2020-02-01",
+"ha": "away",
+"opp": "UCF",
+"res": "L 57-67",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/houston/boxscore/11667",
+"d": "2020-02-05",
+"ha": "away",
+"opp": "Houston",
+"res": "L 53-55",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/cincinnati/boxscore/11668",
+"d": "2020-02-08",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "L 58-73",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/east-carolina/boxscore/11669",
+"d": "2020-02-11",
+"ha": "home",
+"opp": "East Carolina",
+"res": "W 53-45",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/tulsa/boxscore/11670",
+"d": "2020-02-15",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 58-65",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/wichita-state/boxscore/11671",
+"d": "2020-02-19",
+"ha": "away",
+"opp": "Wichita State",
+"res": "W 72-67",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/houston/boxscore/11672",
+"d": "2020-02-22",
+"ha": "home",
+"opp": "Houston",
+"res": "W 60-47",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/usf/boxscore/11673",
+"d": "2020-02-29",
+"ha": "away",
+"opp": "USF",
+"res": "L 62-85",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/memphis/boxscore/11674",
+"d": "2020-03-02",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 69-60",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2019-20/memphis/boxscore/11796",
+"d": "2020-03-06",
+"ha": "neutral",
+"opp": "Seed Memphis",
+"res": "L 65-76",
+"site": "http://gotigersgo.com"
+}
+],
+"2020": [
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2020-21/texas/boxscore/11910",
+"d": "2020-11-25",
+"ha": "away",
+"opp": "Texas",
+"res": "L 51-90",
+"site": "https://texaslonghorns.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2020-21/texas-state/boxscore/11911",
+"d": "2020-12-03",
+"ha": "home",
+"opp": "Texas State",
+"res": "L 70-74",
+"site": "http://www.txstatebobcats.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2020-21/oklahoma-state/boxscore/11912",
+"d": "2020-12-07",
+"ha": "away",
+"opp": "Oklahoma State",
+"res": "L 63-75",
+"site": "http://www.okstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2020-21/arkansas/boxscore/11913",
+"d": "2020-12-09",
+"ha": "home",
+"opp": "Arkansas",
+"res": "L 47-79",
+"site": "http://www.arkansasrazorbacks.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2020-21/ecu/boxscore/11948",
+"d": "2020-12-16",
+"ha": "home",
+"opp": "ECU",
+"res": "L 46-50",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2020-21/temple/boxscore/11960",
+"d": "2020-12-20",
+"ha": "away",
+"opp": "Temple",
+"res": "L 57-73",
+"site": "https://owlsports.com"
+},
+{
+"box": null,
+"d": "2020-12-23",
+"ha": "away",
+"opp": "Wichita State",
+"res": null,
+"site": "https://goshockers.com/"
+},
+{
+"box": null,
+"d": "2020-12-30",
+"ha": "home",
+"opp": "Cincinnati",
+"res": null,
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": null,
+"d": "2021-01-02",
+"ha": "home",
+"opp": "Tulsa",
+"res": null,
+"site": "http://tulsahurricane.com"
+},
+{
+"box": null,
+"d": "2021-01-06",
+"ha": "away",
+"opp": "Memphis",
+"res": null,
+"site": "http://gotigersgo.com"
+},
+{
+"box": null,
+"d": "2021-01-09",
+"ha": "home",
+"opp": "Houston",
+"res": null,
+"site": "http://www.uhcougars.com"
+},
+{
+"box": null,
+"d": "2021-01-16",
+"ha": "home",
+"opp": "Temple",
+"res": null,
+"site": "https://owlsports.com"
+},
+{
+"box": null,
+"d": "2021-01-20",
+"ha": "away",
+"opp": "UCF",
+"res": null,
+"site": "http://ucfknights.com"
+},
+{
+"box": null,
+"d": "2021-01-23",
+"ha": "away",
+"opp": "Tulane",
+"res": null,
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": null,
+"d": "2021-01-27",
+"ha": "home",
+"opp": "Memphis",
+"res": null,
+"site": "http://gotigersgo.com"
+},
+{
+"box": null,
+"d": "2021-01-30",
+"ha": "away",
+"opp": "Houston",
+"res": null,
+"site": "http://www.uhcougars.com"
+},
+{
+"box": null,
+"d": "2021-02-03",
+"ha": "home",
+"opp": "USF",
+"res": null,
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": null,
+"d": "2021-02-06",
+"ha": "away",
+"opp": "Tulsa",
+"res": null,
+"site": "http://tulsahurricane.com"
+},
+{
+"box": null,
+"d": "2021-02-10",
+"ha": "away",
+"opp": "ECU",
+"res": null,
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": null,
+"d": "2021-02-14",
+"ha": "home",
+"opp": "Tulane",
+"res": null,
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": null,
+"d": "2021-02-17",
+"ha": "away",
+"opp": "USF",
+"res": null,
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": null,
+"d": "2021-02-24",
+"ha": "home",
+"opp": "UCF",
+"res": null,
+"site": "http://ucfknights.com"
+},
+{
+"box": null,
+"d": "2021-02-27",
+"ha": "home",
+"opp": "Wichita State",
+"res": null,
+"site": "https://goshockers.com/"
+},
+{
+"box": null,
+"d": "2021-03-02",
+"ha": "away",
+"opp": "Cincinnati",
+"res": null,
+"site": "http://www.gobearcats.com/"
+}
+],
+"2021": [
+{
+"box": null,
+"d": "2021-11-01",
+"ha": "home",
+"opp": "Texas A&M - Commerce (Exh.)",
+"res": "W 66-58",
+"site": "http://www.lionathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/kansas-city/boxscore/12322",
+"d": "2021-11-09",
+"ha": "home",
+"opp": "Kansas City",
+"res": "W 75-63",
+"site": "https://kcroos.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/oklahoma-state/boxscore/12323",
+"d": "2021-11-14",
+"ha": "home",
+"opp": "Oklahoma State",
+"res": "L 50-67",
+"site": "http://www.okstate.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/oral-roberts/boxscore/12324",
+"d": "2021-11-17",
+"ha": "home",
+"opp": "Oral Roberts",
+"res": "W 81-44",
+"site": "http://oruathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/arkansas/boxscore/12325",
+"d": "2021-11-22",
+"ha": "away",
+"opp": "Arkansas",
+"res": "L 58-65",
+"site": "http://www.arkansasrazorbacks.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/seattle-university/boxscore/12394",
+"d": "2021-11-25",
+"ha": "neutral",
+"opp": "Seattle University",
+"res": "L 66-70",
+"site": "http://www.goseattleu.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/green-bay/boxscore/12395",
+"d": "2021-11-27",
+"ha": "neutral",
+"opp": "Green Bay",
+"res": "W 53-43",
+"site": "http://www.greenbayphoenix.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/oklahoma/boxscore/12326",
+"d": "2021-11-30",
+"ha": "home",
+"opp": "Oklahoma",
+"res": "L 72-84",
+"site": "http://www.soonersports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/north-texas/boxscore/12397",
+"d": "2021-12-03",
+"ha": "away",
+"opp": "North Texas",
+"res": "L 58-84",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/delaware/boxscore/12327",
+"d": "2021-12-07",
+"ha": "home",
+"opp": "Delaware",
+"res": "W 61-55",
+"site": "http://www.bluehens.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/colorado/boxscore/12396",
+"d": "2021-12-17",
+"ha": "away",
+"opp": "Colorado",
+"res": "L 55-78",
+"site": "http://www.cubuffs.com/"
+},
+{
+"box": null,
+"d": "2021-12-21",
+"ha": "home",
+"opp": "UT Arlington",
+"res": null,
+"site": "http://www.utamavs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/arkansas-pine-bluff/boxscore/12329",
+"d": "2021-12-28",
+"ha": "home",
+"opp": "Arkansas - Pine Bluff",
+"res": "W 86-74",
+"site": "http://www.uapblionsroar.com"
+},
+{
+"box": null,
+"d": "2022-01-01",
+"ha": "home",
+"opp": "ECU",
+"res": null,
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/tcu/boxscore/12538",
+"d": "2022-01-02",
+"ha": "away",
+"opp": "TCU",
+"res": "W 79-53",
+"site": "http://www.gofrogs.com/"
+},
+{
+"box": null,
+"d": "2022-01-05",
+"ha": "away",
+"opp": "Temple",
+"res": null,
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/memphis/boxscore/12430",
+"d": "2022-01-08",
+"ha": "away",
+"opp": "Memphis",
+"res": "W 63-44",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/ecu/boxscore/12539",
+"d": "2022-01-13",
+"ha": "home",
+"opp": "ECU",
+"res": "W 60-49",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/tulane/boxscore/12431",
+"d": "2022-01-15",
+"ha": "home",
+"opp": "Tulane",
+"res": "W 67-62",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": null,
+"d": "2022-01-19",
+"ha": "home",
+"opp": "UCF",
+"res": null,
+"site": "http://ucfknights.com"
+},
+{
+"box": null,
+"d": "2022-01-22",
+"ha": "away",
+"opp": "Tulsa",
+"res": null,
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/usf/boxscore/12434",
+"d": "2022-01-26",
+"ha": "home",
+"opp": "USF",
+"res": "L 56-62",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/ecu/boxscore/12435",
+"d": "2022-02-03",
+"ha": "away",
+"opp": "ECU",
+"res": "W 58-46",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/houston/boxscore/12436",
+"d": "2022-02-06",
+"ha": "home",
+"opp": "Houston",
+"res": "L 55-60",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/cincinnati/boxscore/12437",
+"d": "2022-02-09",
+"ha": "away",
+"opp": "Cincinnati",
+"res": "W 71-66",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/wichita-state/boxscore/12438",
+"d": "2022-02-12",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 47-58",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/memphis/boxscore/12439",
+"d": "2022-02-16",
+"ha": "home",
+"opp": "Memphis",
+"res": "L 54-72",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/tulsa/boxscore/12440",
+"d": "2022-02-19",
+"ha": "away",
+"opp": "Tulsa",
+"res": "W 75-42",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/tulane/boxscore/12441",
+"d": "2022-02-23",
+"ha": "away",
+"opp": "Tulane",
+"res": "L 58-67",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/houston/boxscore/12442",
+"d": "2022-02-26",
+"ha": "away",
+"opp": "Houston",
+"res": "L 36-65",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/temple/boxscore/12540",
+"d": "2022-02-28",
+"ha": "home",
+"opp": "Temple",
+"res": "W 65-61",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/temple/boxscore/12443",
+"d": "2022-03-02",
+"ha": "home",
+"opp": "Temple",
+"res": "L 48-56",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/temple/boxscore/12503",
+"d": "2022-03-08",
+"ha": "neutral",
+"opp": "Seed Temple",
+"res": "W 63-55",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/ucf/boxscore/12561",
+"d": "2022-03-09",
+"ha": "neutral",
+"opp": "seed UCF",
+"res": "L 28-61",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2021-22/tennessee-tech/boxscore/12568",
+"d": "2022-03-17",
+"ha": "home",
+"opp": "Tennessee Tech",
+"res": "L 62-73",
+"site": "http://www.ttusports.com/"
+}
+],
+"2022": [
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/texas-am-international-exh-/boxscore/12939",
+"d": "2022-11-01",
+"ha": "home",
+"opp": "Texas A&M International (Exh.)",
+"res": "W 88-54",
+"site": "http://www.godustdevils.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/alabama-state/boxscore/12927",
+"d": "2022-11-07",
+"ha": "home",
+"opp": "Alabama State",
+"res": "W 76-39",
+"site": "http://bamastatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/oklahoma/boxscore/12928",
+"d": "2022-11-11",
+"ha": "away",
+"opp": "Oklahoma",
+"res": "L 74-97",
+"site": "http://www.soonersports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/baylor/boxscore/12938",
+"d": "2022-11-15",
+"ha": "away",
+"opp": "Baylor",
+"res": "L 55-58",
+"site": "http://www.baylorbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/texas-am-commerce/boxscore/12937",
+"d": "2022-11-18",
+"ha": "home",
+"opp": "Texas A&M - Commerce",
+"res": "W 86-57",
+"site": "http://www.lionathletics.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/louisiana-tech/boxscore/12936",
+"d": "2022-11-22",
+"ha": "home",
+"opp": "Louisiana Tech",
+"res": "W 63-59",
+"site": "http://www.latechsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/oral-roberts/boxscore/12935",
+"d": "2022-11-26",
+"ha": "away",
+"opp": "Oral Roberts",
+"res": "W 72-55",
+"site": "http://oruathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/arkansas-pine-bluff/boxscore/12934",
+"d": "2022-11-29",
+"ha": "home",
+"opp": "Arkansas - Pine Bluff",
+"res": "W 74-45",
+"site": "http://www.uapblionsroar.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/gardner-webb/boxscore/12932",
+"d": "2022-12-03",
+"ha": "neutral",
+"opp": "Gardner-Webb",
+"res": "W 84-71",
+"site": "http://www.gwusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/university-of-california/boxscore/12933",
+"d": "2022-12-04",
+"ha": "away",
+"opp": "University of California",
+"res": "W 70-56",
+"site": "http://www.calbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/north-texas/boxscore/12931",
+"d": "2022-12-07",
+"ha": "home",
+"opp": "North Texas",
+"res": "W 64-46",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/texas-am/boxscore/12930",
+"d": "2022-12-18",
+"ha": "away",
+"opp": "Texas A&M",
+"res": "L 49-57",
+"site": "http://www.12thman.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/uiw/boxscore/12929",
+"d": "2022-12-21",
+"ha": "home",
+"opp": "UIW",
+"res": "W 57-44",
+"site": "http://www.cardinalathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/houston/boxscore/12960",
+"d": "2022-12-30",
+"ha": "away",
+"opp": "Houston",
+"res": "L 44-60",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/ucf/boxscore/12961",
+"d": "2023-01-03",
+"ha": "home",
+"opp": "UCF",
+"res": "W 61-51",
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/memphis/boxscore/12962",
+"d": "2023-01-06",
+"ha": "away",
+"opp": "Memphis",
+"res": "L 51-80",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/cincinnati/boxscore/12963",
+"d": "2023-01-10",
+"ha": "home",
+"opp": "Cincinnati",
+"res": "W 55-44",
+"site": "http://www.gobearcats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/ecu/boxscore/12964",
+"d": "2023-01-14",
+"ha": "home",
+"opp": "ECU",
+"res": "W 68-66",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/wichita-state/boxscore/12965",
+"d": "2023-01-18",
+"ha": "away",
+"opp": "Wichita State",
+"res": "L 65-73",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/houston/boxscore/12966",
+"d": "2023-01-21",
+"ha": "home",
+"opp": "Houston",
+"res": "W 53-50",
+"site": "http://www.uhcougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/tulsa/boxscore/12967",
+"d": "2023-01-28",
+"ha": "away",
+"opp": "Tulsa",
+"res": "W 61-54",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": null,
+"d": "2023-02-01",
+"ha": "away",
+"opp": "UCF",
+"res": null,
+"site": "http://ucfknights.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/usf/boxscore/12969",
+"d": "2023-02-04",
+"ha": "home",
+"opp": "USF",
+"res": "L 63-65",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/tulsa/boxscore/12970",
+"d": "2023-02-07",
+"ha": "home",
+"opp": "Tulsa",
+"res": "W 81-58",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/tulane/boxscore/12971",
+"d": "2023-02-15",
+"ha": "away",
+"opp": "Tulane",
+"res": "L 50-52",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/usf/boxscore/12972",
+"d": "2023-02-18",
+"ha": "away",
+"opp": "USF",
+"res": "L 62-70",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/wichita-state/boxscore/12973",
+"d": "2023-02-22",
+"ha": "home",
+"opp": "Wichita State",
+"res": "W 69-51",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/memphis/boxscore/12974",
+"d": "2023-02-26",
+"ha": "home",
+"opp": "Memphis",
+"res": "L 68-69",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/temple/boxscore/12975",
+"d": "2023-03-01",
+"ha": "away",
+"opp": "Temple",
+"res": "L 62-68",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/little-rock/boxscore/13068",
+"d": "2023-03-16",
+"ha": "home",
+"opp": "Little Rock",
+"res": "W 68-42",
+"site": "http://lrtrojans.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2022-23/texas-tech/boxscore/13071",
+"d": "2023-03-20",
+"ha": "away",
+"opp": "Texas Tech",
+"res": "L 49-61",
+"site": "http://www.texastech.com"
+}
+],
+"2023": [
+{
+"box": null,
+"d": "2023-11-01",
+"ha": "home",
+"opp": "Southern Nazarene",
+"res": "W 74-58",
+"site": "http://www.snuathletics.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/uc-riverside/boxscore/13307",
+"d": "2023-11-06",
+"ha": "home",
+"opp": "UC Riverside",
+"res": "W 78-55",
+"site": "http://www.gohighlanders.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/alabama-state/boxscore/13308",
+"d": "2023-11-11",
+"ha": "home",
+"opp": "Alabama State",
+"res": "W 96-47",
+"site": "http://bamastatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/nicholls/boxscore/13309",
+"d": "2023-11-14",
+"ha": "home",
+"opp": "Nicholls",
+"res": "W 69-54",
+"site": "http://geauxcolonels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/colorado/boxscore/13310",
+"d": "2023-11-18",
+"ha": "home",
+"opp": "Colorado",
+"res": "L 69-84",
+"site": "http://www.cubuffs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/toledo/boxscore/13311",
+"d": "2023-11-24",
+"ha": "neutral",
+"opp": "Toledo",
+"res": "L 73-74",
+"site": "http://www.utrockets.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/harvard/boxscore/13312",
+"d": "2023-11-25",
+"ha": "neutral",
+"opp": "Harvard",
+"res": "L 67-80",
+"site": "http://www.gocrimson.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/baylor/boxscore/13313",
+"d": "2023-11-30",
+"ha": "home",
+"opp": "Baylor",
+"res": "L 61-85",
+"site": "http://www.baylorbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/arkansas-pine-bluff/boxscore/13314",
+"d": "2023-12-04",
+"ha": "home",
+"opp": "Arkansas - Pine Bluff",
+"res": "L 76-78",
+"site": "http://www.uapblionsroar.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/louisiana-tech/boxscore/13315",
+"d": "2023-12-14",
+"ha": "away",
+"opp": "Louisiana Tech",
+"res": "W 69-53",
+"site": "http://www.latechsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/sam-houston/boxscore/13316",
+"d": "2023-12-18",
+"ha": "home",
+"opp": "Sam Houston",
+"res": "W 69-64",
+"site": "http://www.gobearkats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/air-force/boxscore/13317",
+"d": "2023-12-21",
+"ha": "home",
+"opp": "Air Force",
+"res": "W 75-44",
+"site": "http://www.goairforcefalcons.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/south-florida/boxscore/13348",
+"d": "2023-12-30",
+"ha": "away",
+"opp": "South Florida",
+"res": "L 61-70",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/florida-atlantic/boxscore/13349",
+"d": "2024-01-04",
+"ha": "home",
+"opp": "Florida Atlantic",
+"res": "W 57-52",
+"site": "http://www.fausports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/rice/boxscore/13350",
+"d": "2024-01-07",
+"ha": "home",
+"opp": "Rice",
+"res": "L 63-65",
+"site": "http://www.riceowls.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/memphis/boxscore/13351",
+"d": "2024-01-11",
+"ha": "away",
+"opp": "Memphis",
+"res": "W 91-86",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/uab/boxscore/13352",
+"d": "2024-01-14",
+"ha": "away",
+"opp": "UAB",
+"res": "L 75-84",
+"site": "http://uabsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/north-texas/boxscore/13353",
+"d": "2024-01-17",
+"ha": "home",
+"opp": "North Texas",
+"res": "L 61-76",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/ecu/boxscore/13354",
+"d": "2024-01-20",
+"ha": "away",
+"opp": "ECU",
+"res": "L 61-68",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/temple/boxscore/13355",
+"d": "2024-01-24",
+"ha": "home",
+"opp": "Temple",
+"res": "W 68-66",
+"site": "https://owlsports.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/utsa/boxscore/13356",
+"d": "2024-01-27",
+"ha": "home",
+"opp": "UTSA",
+"res": "W 75-58",
+"site": "http://www.goutsa.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/rice/boxscore/13357",
+"d": "2024-01-31",
+"ha": "away",
+"opp": "Rice",
+"res": "L 60-69",
+"site": "http://www.riceowls.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/memphis/boxscore/13358",
+"d": "2024-02-03",
+"ha": "home",
+"opp": "Memphis",
+"res": "W 81-73",
+"site": "http://gotigersgo.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/north-texas/boxscore/13359",
+"d": "2024-02-10",
+"ha": "away",
+"opp": "North Texas",
+"res": "L 65-78",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/tulane/boxscore/13360",
+"d": "2024-02-14",
+"ha": "away",
+"opp": "Tulane",
+"res": "W 63-53",
+"site": "http://www.tulanegreenwave.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/charlotte/boxscore/13361",
+"d": "2024-02-18",
+"ha": "home",
+"opp": "Charlotte",
+"res": "W 64-49",
+"site": "http://www.charlotte49ers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/ecu/boxscore/13362",
+"d": "2024-02-24",
+"ha": "home",
+"opp": "ECU",
+"res": "L 64-74",
+"site": "http://www.ecupirates.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/wichita-state/boxscore/13363",
+"d": "2024-02-28",
+"ha": "away",
+"opp": "Wichita State",
+"res": "W 88-84",
+"site": "https://goshockers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/tulsa/boxscore/13364",
+"d": "2024-03-02",
+"ha": "away",
+"opp": "Tulsa",
+"res": "L 73-91",
+"site": "http://tulsahurricane.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/south-florida/boxscore/13367",
+"d": "2024-03-05",
+"ha": "home",
+"opp": "South Florida",
+"res": "L 61-68",
+"site": "http://www.GoUSFBulls.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2023-24/tulane/boxscore/13372",
+"d": "2024-03-09",
+"ha": "neutral",
+"opp": "Seed Tulane",
+"res": "L 62-68",
+"site": "http://www.tulanegreenwave.com/"
+}
+],
+"2024": [
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/north-carolina-a-t/boxscore/13751",
+"d": "2024-11-04",
+"ha": "home",
+"opp": "North Carolina A&T",
+"res": "W 77-64",
+"site": "http://www.ncataggies.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/old-dominion/boxscore/13797",
+"d": "2024-11-09",
+"ha": "home",
+"opp": "Old Dominion",
+"res": "L 70-79",
+"site": "http://www.odusports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/western-michigan/boxscore/13798",
+"d": "2024-11-12",
+"ha": "home",
+"opp": "Western Michigan",
+"res": "W 72-44",
+"site": "http://www.wmubroncos.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/arizona-state/boxscore/13799",
+"d": "2024-11-16",
+"ha": "away",
+"opp": "Arizona State",
+"res": "L 73-80",
+"site": "http://www.thesundevils.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/minnesota/boxscore/13800",
+"d": "2024-11-17",
+"ha": "neutral",
+"opp": "Minnesota",
+"res": "L 56-65",
+"site": "https://gophersports.com/index.aspx"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/lamar/boxscore/13801",
+"d": "2024-11-22",
+"ha": "home",
+"opp": "Lamar",
+"res": "W 56-54",
+"site": "http://www.lamarcardinals.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/arkansas-pine-bluff/boxscore/13802",
+"d": "2024-11-25",
+"ha": "home",
+"opp": "Arkansas - Pine Bluff",
+"res": "W 82-58",
+"site": "http://www.uapblionsroar.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/ut-arlington/boxscore/13803",
+"d": "2024-11-29",
+"ha": "home",
+"opp": "UT Arlington",
+"res": "W 71-46",
+"site": "http://www.utamavs.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/missouri/boxscore/13804",
+"d": "2024-12-05",
+"ha": "away",
+"opp": "Missouri",
+"res": "L 61-68",
+"site": "http:///www.mutigers.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/florida-state/boxscore/13850",
+"d": "2024-12-08",
+"ha": "away",
+"opp": "Florida State",
+"res": "L 85-93",
+"site": "http://www.seminoles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/texas-tech/boxscore/13805",
+"d": "2024-12-11",
+"ha": "home",
+"opp": "Texas Tech",
+"res": "W 61-57",
+"site": "http://www.texastech.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/north-texas/boxscore/13806",
+"d": "2024-12-19",
+"ha": "away",
+"opp": "North Texas",
+"res": "W 74-66",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/chicago-state/boxscore/13807",
+"d": "2024-12-20",
+"ha": "neutral",
+"opp": "Chicago State",
+"res": "W 73-52",
+"site": "http://www.gocsucougars.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/stanford/boxscore/13851",
+"d": "2025-01-02",
+"ha": "home",
+"opp": "Stanford",
+"res": "W 67-63",
+"site": "http://www.gostanford.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/california/boxscore/13852",
+"d": "2025-01-05",
+"ha": "home",
+"opp": "California",
+"res": "L 66-81",
+"site": "http://www.calbears.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/syracuse/boxscore/13853",
+"d": "2025-01-09",
+"ha": "away",
+"opp": "Syracuse",
+"res": "W 72-71",
+"site": "http://www.cuse.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/pitt/boxscore/13854",
+"d": "2025-01-12",
+"ha": "away",
+"opp": "Pitt",
+"res": "L 59-72",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/north-carolina/boxscore/13855",
+"d": "2025-01-16",
+"ha": "home",
+"opp": "North Carolina",
+"res": "L 33-64",
+"site": "http://goheels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/notre-dame/boxscore/13856",
+"d": "2025-01-19",
+"ha": "away",
+"opp": "Notre Dame",
+"res": "L 64-88",
+"site": "http://www.und.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/duke/boxscore/13857",
+"d": "2025-01-23",
+"ha": "home",
+"opp": "Duke",
+"res": "L 46-81",
+"site": "http://www.goduke.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/miami/boxscore/13858",
+"d": "2025-01-26",
+"ha": "away",
+"opp": "Miami",
+"res": "L 63-70",
+"site": "http://www.hurricanesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/louisville/boxscore/13859",
+"d": "2025-01-30",
+"ha": "home",
+"opp": "Louisville",
+"res": "L 75-80",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/virginia-tech/boxscore/13860",
+"d": "2025-02-02",
+"ha": "away",
+"opp": "Virginia Tech",
+"res": "L 71-79",
+"site": "http://www.hokiesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/georgia-tech/boxscore/13861",
+"d": "2025-02-06",
+"ha": "away",
+"opp": "Georgia Tech",
+"res": "L 69-70",
+"site": "http://www.ramblinwreck.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/pitt/boxscore/13862",
+"d": "2025-02-09",
+"ha": "home",
+"opp": "Pitt",
+"res": "L 57-58",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/clemson/boxscore/13863",
+"d": "2025-02-16",
+"ha": "home",
+"opp": "Clemson",
+"res": "L 46-72",
+"site": "http://www.clemsontigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/wake-forest/boxscore/13864",
+"d": "2025-02-20",
+"ha": "away",
+"opp": "Wake Forest",
+"res": "L 64-67",
+"site": "http://www.godeacs.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/boston-college/boxscore/13865",
+"d": "2025-02-23",
+"ha": "away",
+"opp": "Boston College",
+"res": "L 78-87",
+"site": "http://bceagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/virginia/boxscore/13866",
+"d": "2025-02-27",
+"ha": "home",
+"opp": "Virginia",
+"res": "L 51-63",
+"site": "http://virginiasports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2024-25/nc-state/boxscore/13867",
+"d": "2025-03-02",
+"ha": "home",
+"opp": "NC State",
+"res": "L 45-69",
+"site": "http://gopack.com/"
+}
+],
+"2025": [
+{
+"box": null,
+"d": "2025-10-21",
+"ha": "home",
+"opp": "West Texas A&M (exh.)",
+"res": null,
+"site": "http://www.gobuffsgo.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/grambling-state/boxscore/14205",
+"d": "2025-11-04",
+"ha": "home",
+"opp": "Grambling State",
+"res": "W 96-70",
+"site": "http://www.gsutigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/kansas-state/boxscore/14232",
+"d": "2025-11-08",
+"ha": "home",
+"opp": "Kansas State",
+"res": "L 44-46",
+"site": "http://www.kstatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/texas-tech/boxscore/14233",
+"d": "2025-11-13",
+"ha": "away",
+"opp": "Texas Tech",
+"res": "L 60-91",
+"site": "http://www.texastech.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/grand-canyon/boxscore/14234",
+"d": "2025-11-18",
+"ha": "away",
+"opp": "Grand Canyon",
+"res": "L 60-76",
+"site": "http://www.gculopes.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/north-texas/boxscore/14235",
+"d": "2025-11-22",
+"ha": "home",
+"opp": "North Texas",
+"res": "L 55-58",
+"site": "http://www.meangreensports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/saint-louis/boxscore/14236",
+"d": "2025-11-25",
+"ha": "neutral",
+"opp": "Saint Louis",
+"res": "L 67-70",
+"site": "http://www.slubillikens.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/winthrop/boxscore/14237",
+"d": "2025-11-26",
+"ha": "neutral",
+"opp": "Winthrop",
+"res": "W 84-61",
+"site": "http://www.winthropeagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/southern-miss/boxscore/14238",
+"d": "2025-12-01",
+"ha": "home",
+"opp": "Southern Miss",
+"res": "W 83-70",
+"site": "http://southernmiss.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/arkansas/boxscore/14081",
+"d": "2025-12-04",
+"ha": "home",
+"opp": "Arkansas",
+"res": "W 78-63",
+"site": "http://www.arkansasrazorbacks.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/syracuse/boxscore/14266",
+"d": "2025-12-07",
+"ha": "home",
+"opp": "Syracuse",
+"res": "L 69-78",
+"site": "http://www.cuse.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/coppin-state/boxscore/14239",
+"d": "2025-12-10",
+"ha": "home",
+"opp": "Coppin State",
+"res": "W 57-49",
+"site": "http://www.coppinstatesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/sam-houston/boxscore/14240",
+"d": "2025-12-19",
+"ha": "away",
+"opp": "Sam Houston",
+"res": "W 73-69",
+"site": "http://www.gobearkats.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/southern/boxscore/14241",
+"d": "2025-12-21",
+"ha": "home",
+"opp": "Southern",
+"res": "W 74-62",
+"site": "http://gojagsports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/virginia/boxscore/14267",
+"d": "2025-12-29",
+"ha": "away",
+"opp": "Virginia",
+"res": "L 52-76",
+"site": "http://virginiasports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/louisville/boxscore/14268",
+"d": "2026-01-01",
+"ha": "away",
+"opp": "Louisville",
+"res": "L 58-91",
+"site": "http://www.gocards.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/georgia-tech/boxscore/14269",
+"d": "2026-01-04",
+"ha": "home",
+"opp": "Georgia Tech",
+"res": "L 59-67",
+"site": "http://www.ramblinwreck.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/nc-state/boxscore/14270",
+"d": "2026-01-11",
+"ha": "away",
+"opp": "NC State",
+"res": "L 54-91",
+"site": "http://gopack.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/virginia-tech/boxscore/14271",
+"d": "2026-01-15",
+"ha": "home",
+"opp": "Virginia Tech",
+"res": "L 42-79",
+"site": "http://www.hokiesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/pittsburgh/boxscore/14272",
+"d": "2026-01-18",
+"ha": "away",
+"opp": "Pittsburgh",
+"res": "W 83-76",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/florida-state/boxscore/14273",
+"d": "2026-01-22",
+"ha": "home",
+"opp": "Florida State",
+"res": "L 51-73",
+"site": "http://www.seminoles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/miami/boxscore/14274",
+"d": "2026-01-25",
+"ha": "home",
+"opp": "Miami",
+"res": "L 66-75",
+"site": "http://www.hurricanesports.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/clemson/boxscore/14275",
+"d": "2026-01-29",
+"ha": "away",
+"opp": "Clemson",
+"res": "L 54-83",
+"site": "http://www.clemsontigers.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/wake-forest/boxscore/14276",
+"d": "2026-02-05",
+"ha": "home",
+"opp": "Wake Forest",
+"res": "L 65-70",
+"site": "http://www.godeacs.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/duke/boxscore/14277",
+"d": "2026-02-08",
+"ha": "away",
+"opp": "Duke",
+"res": "L 36-95",
+"site": "http://www.goduke.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/north-carolina/boxscore/14278",
+"d": "2026-02-12",
+"ha": "away",
+"opp": "North Carolina",
+"res": "L 42-94",
+"site": "http://goheels.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/pittsburgh/boxscore/14279",
+"d": "2026-02-15",
+"ha": "home",
+"opp": "Pittsburgh",
+"res": "W 79-78",
+"site": "http://www.pittsburghpanthers.com"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/boston-college/boxscore/14280",
+"d": "2026-02-19",
+"ha": "home",
+"opp": "Boston College",
+"res": "L 59-77",
+"site": "http://bceagles.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/notre-dame/boxscore/14281",
+"d": "2026-02-22",
+"ha": "home",
+"opp": "Notre Dame",
+"res": "L 63-88",
+"site": "http://www.und.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/stanford/boxscore/14282",
+"d": "2026-02-26",
+"ha": "away",
+"opp": "Stanford",
+"res": "L 57-87",
+"site": "https://gostanford.com/"
+},
+{
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2025-26/california/boxscore/14283",
+"d": "2026-03-01",
+"ha": "away",
+"opp": "California",
+"res": "L 34-78",
+"site": "http://www.calbears.com/"
+}
+]
+}
+}

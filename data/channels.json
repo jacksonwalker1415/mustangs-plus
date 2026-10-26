@@ -1,0 +1,33 @@
+{
+  "about": "YouTube channels on the Watch page (library/). IDs resolved from each channel page on Oct. 26, 2026 and cross-checked against the Media Curator list. filter: none = every full video; title = title must say SMU, Mustangs or Ponies; smu = title must say SMU (local TV and radio, where Mustangs or Ponies can be a high school). Channels sharing a row are shown together, each video credited to its own outlet. Read by tools/fetch_youtube.py.",
+  "rows": [
+    {"key": "smu-mustangs", "name": "SMU Mustangs"},
+    {"key": "smu-football", "name": "SMU Football"},
+    {"key": "mustang-studios", "name": "Mustang Studios"},
+    {"key": "on-the-pony-express", "name": "On The Pony Express"},
+    {"key": "locked-on-smu", "name": "Locked On SMU"},
+    {"key": "mustang-mood", "name": "The Mustang Mood"},
+    {"key": "all-access-am", "name": "All-Access AM"},
+    {"key": "pony-up-productions", "name": "Pony Up Productions"},
+    {"key": "acc-media", "name": "ACC media"},
+    {"key": "dallas-media", "name": "Dallas media"}
+  ],
+  "channels": [
+    {"key": "smu-mustangs", "row": "smu-mustangs", "name": "SMU Mustangs", "id": "UC_vKL25z2ipN8Jhgu7pmqWw", "url": "https://www.youtube.com/@SMUMustangs", "filter": "none"},
+    {"key": "smu-football", "row": "smu-football", "name": "SMU Football", "id": "UC_jQQC6fFxfaiMaL97pKbTA", "url": "https://www.youtube.com/@SMUFB", "filter": "none"},
+    {"key": "mustang-studios", "row": "mustang-studios", "name": "Mustang Studios", "id": "UC3Qu7pzDeaA6x9cSe5pc7kg", "url": "https://www.youtube.com/@MustangStudiosCo", "filter": "none"},
+    {"key": "on-the-pony-express", "row": "on-the-pony-express", "name": "On The Pony Express", "id": "UC2NkpjKqIsCtv8cF1l-HITQ", "url": "https://www.youtube.com/@smumustangson3", "filter": "none"},
+    {"key": "locked-on-smu", "row": "locked-on-smu", "name": "Locked On SMU", "id": "UCWC1sn7XM0ruoGFfzNfW-eA", "url": "https://www.youtube.com/@LockedOnSMU", "filter": "none"},
+    {"key": "mustang-mood", "row": "mustang-mood", "name": "The Mustang Mood", "id": "UCr5QX9kyoheOoPfcNP_7EvA", "url": "https://www.youtube.com/@TheMustangMood", "filter": "none"},
+    {"key": "all-access-am", "row": "all-access-am", "name": "All-Access AM", "id": "UCwTdGClH5OwCJDJMqvtyxvQ", "url": "https://www.youtube.com/@All-AccessAM", "filter": "title"},
+    {"key": "pony-up-productions", "row": "pony-up-productions", "name": "Pony Up Productions", "id": "UC7VvaXeUv7hWB5d7padrd4Q", "url": "https://www.youtube.com/@PonyUpProductions", "filter": "none"},
+    {"key": "acc-digital-network", "row": "acc-media", "name": "ACC Digital Network", "id": "UC0hy7TcR1gGD8nQBqrF2FaA", "url": "https://www.youtube.com/@ACCDigitalNetwork", "filter": "title"},
+    {"key": "locked-on-acc", "row": "acc-media", "name": "Locked On ACC", "id": "UC9BgKWUwwYmR9pDoAPElUFg", "url": "https://www.youtube.com/@LockedOnACC", "filter": "title"},
+    {"key": "wfaa", "row": "dallas-media", "name": "WFAA", "id": "UCBu0KdNokE4MqdkacvH37_A", "url": "https://www.youtube.com/@Wfaa8", "filter": "smu"},
+    {"key": "fox4", "row": "dallas-media", "name": "FOX 4 Dallas-Fort Worth", "id": "UCruQg25yVBppUWjza8AlyZA", "url": "https://www.youtube.com/@fox4news", "filter": "smu"},
+    {"key": "nbcdfw", "row": "dallas-media", "name": "NBC DFW", "id": "UC_0RDXvWZPaveq0fcYZhE6A", "url": "https://www.youtube.com/@nbcdfw", "filter": "smu"},
+    {"key": "cbstexas", "row": "dallas-media", "name": "CBS Texas", "id": "UCxMXl9L79X1Mq_4iwCOyPFg", "url": "https://www.youtube.com/@CBSTexas", "filter": "smu"},
+    {"key": "dallasnews", "row": "dallas-media", "name": "The Dallas Morning News", "id": "UCACRim7l0tmc5lhNnDQyUvQ", "url": "https://www.youtube.com/@dallasnews", "filter": "smu"},
+    {"key": "1053thefan", "row": "dallas-media", "name": "105.3 The Fan", "id": "UCCbEanUewt86Ou8GZpCi2QQ", "url": "https://www.youtube.com/@1053TheFan", "filter": "smu"}
+  ]
+}

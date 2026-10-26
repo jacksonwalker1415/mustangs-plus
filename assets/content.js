@@ -2,7 +2,7 @@
    written for an SMU Cox class-project concept. Real places (Ford Stadium, Moody, the Boulevard) are used for setting only. */
 window.MP = window.MP || {};
 (function(){var MP=window.MP;
-MP.CATS=[['all','All'],['watch','Watch'],['insider','Insider'],['recruiting','Recruiting'],['portal','Portal'],['film','Film Room'],['podcasts','Podcasts']];
+MP.CATS=[['all','All'],['watch','Watch'],['insider','Insider'],['recruiting','Recruiting'],['portal','Portal'],['podcasts','Podcasts']];
 MP.STAFF={sam:{n:'Sam Reyes',role:'SMU+ Insider'},lena:{n:'Lena Ortiz',role:'Features'},jt:{n:'J.T. Barlow',role:'Recruiting'},dre:{n:'Dre Coleman',role:'Film Room'}};
 
 /* tone = poster color, big = poster type */
@@ -25,7 +25,7 @@ MP.LIB=[
  {id:'portal-primer',t:'article',cat:'portal',label:'Portal',title:'Portal season, explained without the jargon',desc:'The portal is just a database. Here\'s what happens between a name going in and a player arriving for spring ball.',dur:'6 min read',lock:false,tone:'white',big:'101'},
  {id:'film-pressure',t:'article',cat:'film',label:'Film Room',title:'Film Room: the third-down pressure that keeps working',desc:'Two linebackers show blitz, one drops, and the quarterback throws into a safety who never moved.',dur:'6 min read',lock:true,tone:'black',big:'3RD'},
  {id:'film-screen',t:'article',cat:'film',label:'Film Room',title:'Film Room: why the slot screen sets up everything',desc:'Four yards, then six, then 41. A fictional breakdown of how one cheap play gets a defense out of position.',dur:'5 min read',lock:true,tone:'blue',big:'SCRN'},
- {id:'film-rotation',t:'article',cat:'film',label:'Film Room',title:'Film Room: volleyball\'s rotation four problem',desc:'The weak rotation every team has, and the serve-receive tweak that fixes it. A fictional breakdown.',dur:'5 min read',lock:false,tone:'red',big:'R4'},
+ {id:'film-rotation',t:'article',cat:'watch',label:'Film Room',title:'Film Room: volleyball\'s rotation four problem',desc:'The weak rotation every team has, and the serve-receive tweak that fixes it. A fictional breakdown.',dur:'5 min read',lock:false,tone:'red',big:'R4'},
  {id:'film-session-redzone',t:'video',cat:'film',label:'Film Session',title:'Film Session: red zone, frame by frame',desc:'A former linebacker on the telestrator for 20 minutes of goal-line snaps.',dur:'20:05',lock:true,tone:'black',big:'RZ'},
  {id:'coachs-corner-pod',t:'podcast',cat:'podcasts',label:'Podcast',title:'The Sideline Hour',desc:'Weekly with the SMU+ football desk: scheme, the week ahead and whatever went wrong Saturday. A concept show with fictional hosts.',dur:'41 min',lock:true,tone:'blue',big:'CC'},
  {id:'pony-up-pod',t:'podcast',cat:'podcasts',label:'Podcast',title:'Pony Up: The Locker Room Pod',desc:'Athletes host. Pregame playlists, roommate disputes and the best taco place on Lower Greenville.',dur:'33 min',lock:true,tone:'red',big:'PONY UP'},
@@ -367,7 +367,6 @@ MP.PHOTOS={
  'wbb-drive':{file:'wbb-2-drive-vs-notre-dame-wide.webp',small:'wbb-2-drive-vs-notre-dame-900.webp',pos:'45% 30%',alt:'An SMU women\'s basketball player, number 2 in white, sizes up the defense against Notre Dame at Moody Coliseum'},
  'wsoc':{file:'wsoc-13-dribble-vs-virginia-wide.webp',small:'wsoc-13-dribble-vs-virginia-900.webp',pos:'55% 45%',alt:'SMU\'s number 13 in blue dribbles toward a Virginia defender'},
  'golf':{file:'wgolf-haskins-fairway-wide.webp',small:'wgolf-haskins-fairway-900.webp',pos:'50% 20%',alt:'SMU women\'s golfers walk the fairway beside their SMU golf bags at the Haskins Intercollegiate'},
- 'tennis':{file:'wten-mustang-ready-wide.webp',small:'wten-mustang-ready-900.webp',pos:'35% 30%',alt:'An SMU women\'s tennis player in a black Mustang top readies her racket'},
  'track':{file:'tf-ncaa-west-stride-wide.webp',small:'tf-ncaa-west-stride-900.webp',pos:'70% 35%',alt:'An SMU runner in red races down the straightaway at the NCAA West First Round'},
  'rowing':{file:'rowing-eight-blue-blades-wide.webp',small:'rowing-eight-blue-blades-900.webp',pos:'65% 40%',alt:'An SMU rowing crew with blue Mustang blades pulls through calm water'},
  'equestrian':{file:'eq-practice-arena-wide.webp',small:'eq-practice-arena-900.webp',pos:'40% 45%',alt:'SMU equestrian riders work their horses in a covered arena at practice'},
@@ -744,6 +743,23 @@ MP.PHOTOS={
  'eq-hs-katelyn-vandenburg':{file:'eq-katelyn-vandenburg-headshot.webp',small:'eq-katelyn-vandenburg-headshot-900.webp',pos:'50% 22%',alt:'Katelyn VanDenburg, SMU equestrian, official headshot'},
  'eq-hs-paige-walkenbach':{file:'eq-paige-walkenbach-headshot.webp',small:'eq-paige-walkenbach-headshot-900.webp',pos:'50% 22%',alt:'Paige Walkenbach, SMU equestrian, official headshot'},
  'eq-hs-sakari-wilkinson':{file:'eq-sakari-wilkinson-headshot.webp',small:'eq-sakari-wilkinson-headshot-900.webp',pos:'50% 22%',alt:'Sakari Wilkinson, SMU equestrian, official headshot'},
+ /* Coach headshots (official SMU Athletics coach bio pages, 4:5). Mapped by MP.COACH_PHOTOS in athletes.js. */
+ 'fb-coach-rhett-lashlee':{file:'fb-coach-rhett-lashlee.webp',small:'fb-coach-rhett-lashlee-900.webp',pos:'50% 20%',alt:'Rhett Lashlee, head coach, SMU football, official headshot'},
+ 'mbb-coach-andy-enfield':{file:'mbb-coach-andy-enfield.webp',small:'mbb-coach-andy-enfield-900.webp',pos:'50% 20%',alt:'Andy Enfield, head coach, SMU men\'s basketball, official headshot'},
+ 'wbb-coach-adia-barnes':{file:'wbb-coach-adia-barnes.webp',small:'wbb-coach-adia-barnes-900.webp',pos:'50% 20%',alt:'Adia Barnes, head coach, SMU women\'s basketball, official headshot'},
+ 'wsoc-coach-nicole-nelson':{file:'wsoc-coach-nicole-nelson.webp',small:'wsoc-coach-nicole-nelson-900.webp',pos:'50% 20%',alt:'Nicole Nelson, head coach, SMU women\'s soccer, official headshot'},
+ 'msoc-coach-kevin-hudson':{file:'msoc-coach-kevin-hudson.webp',small:'msoc-coach-kevin-hudson-900.webp',pos:'50% 20%',alt:'Kevin Hudson, head coach, SMU men\'s soccer, official headshot'},
+ 'vb-coach-sam-erger':{file:'vb-coach-sam-erger.webp',small:'vb-coach-sam-erger-900.webp',pos:'50% 20%',alt:'Sam Erger, head coach, SMU volleyball, official headshot'},
+ 'swim-coach-greg-rhodenbaugh':{file:'swim-coach-greg-rhodenbaugh.webp',small:'swim-coach-greg-rhodenbaugh-900.webp',pos:'50% 20%',alt:'Greg Rhodenbaugh, head coach, SMU men\'s swimming and diving, official headshot'},
+ 'swim-coach-darian-schmidt':{file:'swim-coach-darian-schmidt.webp',small:'swim-coach-darian-schmidt-900.webp',pos:'50% 20%',alt:'Darian Schmidt, head diving coach, SMU swimming and diving, official headshot'},
+ 'swim-coach-ozzie-quevedo':{file:'swim-coach-ozzie-quevedo.webp',small:'swim-coach-ozzie-quevedo-900.webp',pos:'50% 20%',alt:'Ozzie Quevedo, head coach, SMU women\'s swimming and diving, official headshot'},
+ 'mgolf-coach-chris-parra':{file:'mgolf-coach-chris-parra.webp',small:'mgolf-coach-chris-parra-900.webp',pos:'50% 20%',alt:'Chris Parra, head coach, SMU men\'s golf, official headshot'},
+ 'wgolf-coach-lauren-mason':{file:'wgolf-coach-lauren-mason.webp',small:'wgolf-coach-lauren-mason-900.webp',pos:'50% 20%',alt:'Lauren Mason, head coach, SMU women\'s golf, official headshot'},
+ 'mten-coach-grant-chen':{file:'mten-coach-grant-chen.webp',small:'mten-coach-grant-chen-900.webp',pos:'50% 20%',alt:'Grant Chen, head coach, SMU men\'s tennis, official headshot'},
+ 'wten-coach-kelcy-mckenna':{file:'wten-coach-kelcy-mckenna.webp',small:'wten-coach-kelcy-mckenna-900.webp',pos:'50% 20%',alt:'Kelcy McKenna, head coach, SMU women\'s tennis, official headshot'},
+ 'tf-coach-a-havahla-haynes':{file:'tf-coach-a-havahla-haynes.webp',small:'tf-coach-a-havahla-haynes-900.webp',pos:'50% 20%',alt:'\'A Havahla Haynes, head coach, SMU cross country, official headshot'},
+ 'rowing-coach-chase-graham':{file:'rowing-coach-chase-graham.webp',small:'rowing-coach-chase-graham-900.webp',pos:'50% 20%',alt:'Chase Graham, head coach, SMU rowing, official headshot'},
+ 'eq-coach-brad-kearns':{file:'eq-coach-brad-kearns.webp',small:'eq-coach-brad-kearns-900.webp',pos:'50% 20%',alt:'Brad Kearns, head coach, SMU equestrian, official headshot'},
  'msoc':{file:'msoc-salute-night.webp',pos:'50% 62%',alt:'The SMU men\'s soccer team salutes the crowd under the lights'}};
 (function(){var IMG={'boulevard-nights-1':'students','boulevard-nights-2':'hype','hilltop-unfiltered':'hurdle','rivalry-week':'catch-cal','moody-opening':'moody-bowl','five-am-laps':'swim','film-rotation':'vb-spike','building-contender':'wbb-jumper',
  'film-pressure':'ol-59','film-screen':'snap','film-session-redzone':'carrier-2','building-roster':'huddle','pony-up-pod':'students'};
@@ -803,7 +819,7 @@ MP.PHOTOS={
   'moody-opening':V('smu-mbb-enfield-tipoff','G2j2BzUhIIQ','mens-basketball','Men\'s Basketball · ACC Tipoff','SMU Men\'s Basketball: Andy Enfield at ACC Tipoff','The head coach, live at the ACC\'s preseason media event.','4:15',true,'TIPOFF'),
   'building-contender':V('smu-wbb-tipoff','WqyK1ihLuS0','womens-basketball','Women\'s Basketball · ACC Tipoff','SMU Women\'s Basketball: Zahra King and Theresa Hagans Jr. at ACC Tipoff','Two Mustangs, live at the ACC\'s preseason media event.','2:06',false,'TIPOFF',{cat:'insider'}),
   'five-am-laps':SWIM,
-  'film-rotation':V('smu-vb-pitt-highlights','UsFpeU8zQc8','volleyball','Film Room · Official highlights','SMU Volleyball: Highlights at Pittsburgh','Oct. 7: SMU wins 3-1 at No. 2 Pitt and ends the nation\'s longest home winning streak.','6:52',false,'3-1',{cat:'film'}),
+  'film-rotation':V('smu-vb-pitt-highlights','UsFpeU8zQc8','volleyball','Volleyball · Official highlights','SMU Volleyball: Highlights at Pittsburgh','Oct. 7: SMU wins 3-1 at No. 2 Pitt and ends the nation\'s longest home winning streak.','6:52',false,'3-1'),
   'coachs-corner-pod':MIC('smu-micd-s2e1','ci3EFPGK9ug','football',"Mustangs Mic'd Up: S2E1 with Kevin Jennings, Yamir Knight and Rhett Lashlee","SMU's official podcast-style show, hosted by Rich Phillips and Breanna Sorensen. Season 2 opener.",'55:09',true),
   'pony-up-pod':MIC('smu-micd-s2e4','OeuSowGSDKc','football',"Mustangs Mic'd Up: S2E4 with Josh Bates, Malcom Alcorn-Crowder and Rhett Lashlee","SMU's official podcast-style show. Two Mustangs and the head coach.",'44:17',true),
   'paddock-report':MIC('smu-micd-s2e2','6HGaxWi0pgc','football',"Mustangs Mic'd Up: S2E2 with Yannick Smith, Aakil Washington and Rhett Lashlee","SMU's official podcast-style show. Two Mustangs and the head coach.",'43:35',true)
@@ -918,7 +934,7 @@ MP.PHOTOS={
   A('mb-gen-lacrosse',null,'SMU Athletics · New sport','SMU Athletics to Launch Texas\u2019 First NCAA Division I Men\u2019s Lacrosse Program','SMU Athletics','Oct. 15, 2026','SMU is adding men\u2019s lacrosse, the first Division I men\u2019s program in Texas.',SMUN+'10/15/general-smu-athletics-to-launch-texas-first-ncaa-division-i-mens-lacrosse-program')];
  /* Videos go right after SMU's other official videos; podcasts after the SMU+ shows; articles get their own "In the news" category. */
  /* ---------- Media batch 2 (Oct. 26, 2026): every sport page gets real coverage ----------
-    Left out: the Walking 'Strong podcast (sponsor read, held for Jackson) and the Oziyah Sellers signing story (transfer/portal coverage while recruiting is hidden).
+    Left out: the Walking 'Strong podcast (sponsor read, held back) and the Oziyah Sellers signing story (transfer/portal coverage while recruiting is hidden).
     Videos with no confirmed upload date show the match or press-conference date, labeled as such, or no date. On3 items are teaser-only link-outs.
     iso = date used to sort sport-page media (newest first); undated items sort last. */
  function V2(id,sport,yt,label,title,desc,iso,acc){var c=V(id,sport,yt,label,title,desc,'Video',['blue','black','red'][title.length%3]);c.iso=iso;
@@ -1031,4 +1047,39 @@ MP.PHOTOS={
   'swimming-diving':[A0.swimm,A0.swimw],'track-field':[A0.xc],equestrian:[A0.eq],rowing:[A0.row],golf:[A0.wgolf,A0.mgolf],tennis:[A0.mten,A0.wten],
   home:[A0.dept,A0.football,A0.mbb,A0.wbb,A0.vb,A0.msoc]},
   media:[A0.on3,A0.embody,A0.acc,A0.accn]};
+})();
+/* Sharper photos (Oct. 26, 2026) from the SMU+ photo library (official smumustangs.com galleries, all credited "Photo: SMU Athletics"
+   in the library manifest). Files live in assets/photos/lib/. src = base name; big = width of the large variant (2400, or the
+   2000 px original where SMU has nothing larger). Heroes and game-day backgrounds get srcset 1200/big; cards use the 1200 file.
+   cardSrc = a different 1200 photo for cards only (hero unchanged). 2019-2022 frames never name an athlete (uniforms/rosters are older). */
+(function(){var P=MP.PHOTOS,C='Photo: SMU Athletics';
+ function S(k,src,big,pos,alt,o){var e={src:src,big:big,pos:pos,alt:alt,credit:C};for(var x in o||{})e[x]=o[x];P[k]=e}
+ function CARD(k,src,alt){P[k]=Object.assign({},P[k],{cardSrc:src,cardAlt:alt,credit:C})}
+ /* sport heroes (these keys also feed their sport's Watch & Read cards) */
+ S('runout','football-catch-at-maryland-2022',2400,'50% 35%','An SMU football receiver in white leaps to make a catch on the road');
+ S('swim','swimming-diving-butterfly-pool-wide-2021',2400,'50% 45%','An SMU swimmer in a red cap stretches out at the start of a race at the SMU pool');
+ S('vb-spike','volleyball-moody-match-wide-2021-a',2400,'55% 30%','SMU volleyball players in white go up at the net during a match at Moody Coliseum');
+ S('mbb-jumper','mens-basketball-moody-court-wide-virginia-2026',2000,'50% 60%','SMU men\u2019s basketball plays Virginia on the Moody Coliseum court in front of a full crowd');
+ S('wbb-drive','womens-basketball-13-jumper-vs-houston-2020',2400,'50% 30%','An SMU women\u2019s basketball player in white rises for a jump shot against Houston at Moody Coliseum');
+ S('msoc','mens-soccer-celebration-vs-duke-2019',2400,'50% 35%','SMU men\u2019s soccer players in red celebrate a goal against Duke');
+ S('golf','golf-womens-drive-tree-line-2021',2400,'50% 30%','An SMU women\u2019s golfer holds her finish after a drive along a tree-lined fairway');
+ S('track','track-field-xc-race-start-2019',2400,'50% 35%','SMU cross country runners in blue race in a pack at the start of a meet');
+ S('rowing','rowing-eight-on-water-ncaa-2021',2400,'50% 55%','An SMU eight rows across open water at the NCAA championships');
+ /* game-day backgrounds (game-day blocks only) and last-game photos */
+ S('gd-football','football-tunnel-crowd-louisville-night',2000,'50% 45%','SMU football players wait in the tunnel before a night game as the band and crowd fill the stands');
+ S('gd-mbb','mens-basketball-moody-court-overhead-boston-college',2000,'50% 50%','Overhead view of the Moody Coliseum court and its Moody Coliseum lettering during an SMU men\u2019s basketball game');
+ S('gd-wbb','womens-basketball-moody-anthem-flag-wide',2000,'50% 50%','A giant American flag is spread across the Moody Coliseum floor for the anthem before an SMU women\u2019s basketball game');
+ S('mbb-layup','mens-basketball-dunk-pitt',1200,'50% 25%','An SMU men\u2019s basketball player in red, number 24, rises for a dunk at Pitt');
+ S('wbb-jumper','womens-basketball-layup-arena-dec-2025',1200,'50% 35%','An SMU women\u2019s basketball player goes up for a layup at Moody Coliseum');
+ /* Watch & Read card images */
+ S('ford','football-touchdown-celebration-boston-college',1200,'50% 30%','SMU football players in blue celebrate a touchdown against Boston College');
+ S('helmet','football-helmet-on-turf-2020',1200,'50% 50%','A white SMU football helmet with a red stripe resting on the turf');
+ S('moody-bowl','mens-basketball-team-huddle-north-carolina',1200,'50% 40%','SMU men\u2019s basketball players in red huddle on the bench against North Carolina');
+ S('storm','mens-basketball-court-drive-boston-college',1200,'50% 35%','An SMU men\u2019s basketball player drives to the basket against Boston College');
+ S('wsoc','womens-soccer-attack-wide',2000,'50% 40%','SMU women\u2019s soccer players in blue run onto the field together');
+ S('tennis','tennis-womens-doubles-smu-banner-2026',1200,'45% 28%','Two SMU women\u2019s tennis players in black high-five in front of an SMU banner');
+ CARD('wsoc','womens-soccer-goal-celebration','SMU women\u2019s soccer players in red and blue celebrate a goal');
+ CARD('equestrian','equestrian-jump-smu-banner-2025','An SMU equestrian rider clears a jump in front of an SMU banner');
+ /* home player cards: the full 969 px headshot instead of the 720 px -900 copy */
+ ['mcfall-hs','knight-hs','moses-hs','raphael-bc'].forEach(function(k){if(P[k])P[k].small=P[k].file});
 })();
