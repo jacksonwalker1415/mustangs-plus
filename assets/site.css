@@ -2723,3 +2723,8 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+/* Waitlist price survey (radio group) */
+.wl-q{border:0;padding:0;min-width:0}.wl-q legend{font-weight:700;font-size:14px;line-height:1.45;color:var(--ink);padding:0;margin-bottom:6px}.wl-q legend small{font-weight:500;color:var(--ink-3)}
+.wl-opt{display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 12px;border:1px solid var(--line-2);border-radius:var(--r1);background:#fff;font-size:15px;color:var(--ink);cursor:pointer}
+.wl-opt input{width:18px;height:18px;margin:0;accent-color:#354CA1;flex:none}.wl-opt:has(input:checked){border-color:#354CA1;box-shadow:inset 0 0 0 1px #354CA1}
+.wl-opt input:focus-visible{outline:2px solid #354CA1;outline-offset:2px}
