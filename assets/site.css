@@ -1880,3 +1880,57 @@ main[tabindex="-1"]:focus{outline:none}
 @media(max-width:639px){.disclaimer .disc-full{display:none}.disclaimer .disc-short{display:inline}}
 .outlets .mcard-b .meta{text-transform:none;letter-spacing:0;font-size:13px}
 .outlets .mcard-b h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ---------- Game-day hub (games/): flat SMU blue header, white cards, red accents only on actions ---------- */
+.gm-hero{background:var(--blue)}
+.gm-h1 span{color:rgba(255,255,255,.75)}
+.gm-top{padding-bottom:0}
+.gm-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s5);align-items:start}
+@media(max-width:959px){.gm-grid{grid-template-columns:minmax(0,1fr)}}
+.gm-card{background:#fff;border:1px solid var(--line-2);border-radius:var(--r2);padding:var(--s6);display:flex;flex-direction:column;gap:var(--s4)}
+@media(max-width:639px){.gm-card{padding:var(--s5)}}
+.gm-h{font-size:20px;font-weight:800;color:var(--ink)}
+.gm-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s4) var(--s5)}
+.gm-facts dt{font-size:13px;font-weight:600;color:var(--ink-3)}
+.gm-facts dd{font-size:16px;font-weight:700;color:var(--ink);margin-top:2px}
+.gm-cd div{background:var(--blue);border-color:var(--blue);color:#fff}
+.gm-cd small{color:rgba(255,255,255,.85)}
+.gm-score{border-bottom:1px solid var(--line)}
+.gm-links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5)}
+.gm-links:empty{display:none}
+.gm-out{display:inline-flex;align-items:center;gap:4px;min-height:44px;font-weight:700;font-size:15px;color:var(--blue)}
+.gm-out:hover{color:var(--red)}
+.gm-out .ext-ic{width:14px;height:14px;fill:currentColor}
+.gm-how-i{padding-top:var(--s4);border-top:1px solid var(--line)}
+.gm-how-i:first-of-type{border-top:0;padding-top:0}
+.gm-how-i h3{font-size:15px;font-weight:800;color:var(--blue)}
+.gm-how-i p{margin-top:2px;color:var(--ink);font-size:15px}
+.gm-empty{color:var(--ink-2);font-size:15px}
+.gm-team{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.gm-tl{display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s5);border:1.5px solid var(--blue);border-radius:99px;font-weight:700;color:var(--blue);background:#fff}
+.gm-tl:hover{background:var(--blue);color:#fff}
+.gm-pn{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s6)}
+.gm-pn a{display:flex;flex-direction:column;gap:2px;padding:var(--s4) var(--s5);border:1px solid var(--line-2);border-radius:var(--r2);color:var(--ink)}
+.gm-pn a:hover{border-color:var(--blue)}
+.gm-pn small{font-size:13px;color:var(--ink-3)}
+.gm-pn b{font-size:15px;color:var(--blue)}
+.gm-n{text-align:right;grid-column:2}
+@media(max-width:639px){.gm-pn{grid-template-columns:1fr}.gm-n{grid-column:auto;text-align:left}}
+.gm-src{margin-top:var(--s5);font-size:14px;color:var(--ink-2)}
+.gm-src a{color:var(--blue);font-weight:600}
+.gm-idx+.gm-idx{padding-top:0}
+.gm-list{display:flex;flex-direction:column;border:1px solid var(--line-2);border-radius:var(--r2);overflow:hidden;background:#fff}
+.gm-list li+li{border-top:1px solid var(--line)}
+.gm-li{display:grid;grid-template-columns:110px minmax(0,1fr) auto;align-items:center;gap:var(--s4);padding:var(--s4) var(--s5);color:var(--ink);min-height:64px}
+.gm-li:hover{background:#F3F5FB}
+.gm-li-d{font-weight:700;color:var(--blue)}
+.gm-li-m b{display:block;font-size:16px}
+.gm-li-m small{font-size:14px;color:var(--ink-2)}
+.gm-li-go{color:var(--blue);font-weight:700}
+@media(max-width:639px){.gm-li{grid-template-columns:76px minmax(0,1fr) auto;gap:var(--s3);padding:var(--s3) var(--s4)}}
+.gm-src-sec{padding-top:0}
+/* game-day block + schedule links into the hub */
+.gd-glink{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:15px;color:var(--blue)}
+.gd-glink:hover{color:var(--red)}
+a.r-game{color:var(--blue);font-weight:700;text-decoration:underline;text-decoration-color:rgba(53,76,161,.35);text-underline-offset:3px}
+a.r-game:hover{text-decoration-color:var(--blue)}
