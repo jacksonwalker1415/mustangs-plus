@@ -52,7 +52,7 @@ var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=se
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610261045">
+<link rel="stylesheet" href="assets/site.css?v=202610261100">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="assets/brand/smu-plus-logo-lg.webp"><img src="assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-bar" aria-hidden="true"><i></i></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
@@ -80,6 +80,14 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <section class="gameday" aria-label="Game day"><div class="wrap" id="gameday"><div class="skel-block" aria-hidden="true" style="min-height:360px"><i class="sk"></i></div><span class="sr">Loading</span></div></section>
 <section class="sec" id="continue"><div class="wrap" id="railContinue"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
 <section class="sec tight" id="watch"><div class="wrap" id="railWatch"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
+<section class="sec tight hill-sec" id="hilltop" aria-labelledby="hill-h">
+  <div class="wrap">
+    <div class="sec-hd"><div><p class="eyebrow">The Mustang Board</p><h2 class="sec-t" id="hill-h">Latest from the Hilltop</h2></div></div>
+    <ol class="hill-list" id="hillList"></ol>
+    <div class="hill-ctas"><a class="btn btn-navy" href="boards/?f=hilltop">Browse the Hilltop</a><button type="button" class="btn btn-outline" data-compose>Join the conversation</button></div>
+    <p class="note hill-note">Usernames and posts are sample content for this concept. <a href="rules/">Community rules</a></p>
+  </div>
+</section>
 <section class="sec tight" id="read"><div class="wrap" id="railInsider"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
 <section class="sec tight"><div class="wrap" id="railFilm"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
 <section class="sec dark" id="recruiting" data-feature="recruiting"><div class="wrap" id="recruitBand"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
@@ -213,13 +221,13 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 </section>
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610261045"></script>
-<script src="assets/data.js?v=202610261045"></script>
-<script src="assets/content.js?v=202610261045"></script>
-<script src="assets/real.js?v=202610261045"></script>
-<script src="assets/athletes.js?v=202610261045"></script>
-<script src="assets/sport-icons.js?v=202610261045"></script>
-<script src="assets/sb.js?v=202610261045"></script>
-<script src="assets/app.js?v=202610261045"></script>
+<script src="assets/config.js?v=202610261100"></script>
+<script src="assets/data.js?v=202610261100"></script>
+<script src="assets/content.js?v=202610261100"></script>
+<script src="assets/real.js?v=202610261100"></script>
+<script src="assets/athletes.js?v=202610261100"></script>
+<script src="assets/sport-icons.js?v=202610261100"></script>
+<script src="assets/sb.js?v=202610261100"></script>
+<script src="assets/app.js?v=202610261100"></script>
 </body>
 </html>

@@ -555,6 +555,18 @@
       '<div class="panel dark"><div class="panel-h"><h3>Visit list · '+MP.VISITS[0].date+'</h3><a class="see-all" href="'+ROOT+'recruiting/#visits">All visits →</a></div>'+
         '<ul class="plist">'+MP.VISITS[0].list.map(function(v){return '<li><span class="dir '+(v[5]==='Official'?'in':'neutral')+'">'+(v[5]==='Official'?'OV':'UV')+'</span><b>'+v[0]+'</b><small>'+v[1]+' · '+v[2]+' · '+v[3]+'</small>'+stars(v[4])+'</li>'}).join('')+'</ul></div>'+
       '</div><p class="note on-dark">Every recruit, portal name and school in this section is fictional.</p>'}
+  /* ---------- Home: Latest from the Hilltop (components from bot/forum-first). Newest activity first; replies are counted from real posts only ---------- */
+  function hilltop(){var box=$('#hillList');if(!box)return;
+    function replies(t){if(t.locked)return null;return t.replies!=null?t.replies:Math.max(0,t.posts.length-1)}
+    function lastMin(t){var p=t.posts[t.posts.length-1];if(p&&p[3]&&!isNaN(Date.parse(p[3])))return (Date.now()-Date.parse(p[3]))/60000;var m={m:1,h:60,d:1440,w:10080},x=String(lastAgo(t)).match(/(\d+)(\w)/);return x?(+x[1])*(m[x[2]]||1):1e9}
+    function plural(n,a,b){return n.toLocaleString()+' '+(n===1?a:b)}
+    function render(){var hill=MP.THREADS.filter(function(t){return t.f==='hilltop'&&t.posts&&t.posts.length}).sort(function(a,b){return lastMin(a)-lastMin(b)}).slice(0,6);
+      box.innerHTML=hill.length?hill.map(function(t){var s=t.sport&&sportBy(t.sport),r=replies(t),lu=MP.USERS[lastBy(t)];
+        return '<li><a class="hill-row" href="'+threadUrl(t.id)+'"><span class="hill-ic" aria-hidden="true">'+(s?sportIcon(t.sport):CHAT)+'</span><span class="hill-main"><b>'+esc(t.title)+'</b>'+
+          '<small><span class="hill-sp">'+(s?esc(s.name):'Around SMU')+'</span>'+(r==null?'':' \u00b7 '+plural(r,'reply','replies'))+' \u00b7 last post '+lastAgo(t)+' ago'+(lu?' by '+esc(lu.n):'')+'</small></span></a></li>'}).join('')
+        :'<li class="hill-empty">Quiet on the Hilltop. Start the first thread.</li>'}
+    render();SMU.on('threads',render);
+    (SMU.ready||Promise.resolve()).then(function(){if(SMU.live&&SMU.loadThreads)SMU.loadThreads().then(render,function(){})})}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist()}
@@ -569,6 +581,7 @@
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
     var ls=$('#listen');if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
+    hilltop();
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
     $('#boardHot').innerHTML=hot.map(function(t){return threadRow(t,true)}).join('');
     function homeBoards(){var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});var a=$('#homeThreads'),b=$('#homePosts');if(a)a.textContent=tt.toLocaleString();if(b)b.textContent=tp.toLocaleString();
@@ -688,7 +701,7 @@
         return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+(pc==null?'':' · '+pc.toLocaleString()+(pc===1?' post':' posts')+' here')+'</small></div></aside>'+
           '<div class="post-body"><div class="post-h"><span>'+times[i]+'</span><a href="#t'+t.id+'" class="post-n">#'+(i+1)+'</a></div>'+
           (q?'<blockquote><b>'+esc(MP.USERS[q[0]].n)+' said:</b> '+esc(q[1].length>140?q[1].slice(0,140)+'…':q[1])+'</blockquote>':'')+
-          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" data-demo="Report post" class="rep">Report</button></div></div></article>'});
+          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" class="rep" data-report="'+i+'" aria-label="Report post #'+(i+1)+'"'+(SMU.reported&&SMU.reported(t.id,i)?' data-done="1"':'')+'>'+(SMU.reported&&SMU.reported(t.id,i)?'Reported':'Report')+'</button></div></div></article>'});
       var shown=locked?postHTML[0]+'<div class="gate">'+postHTML.slice(1,3).join('')+'<div class="gate-cta"><div>'+LOCK+'<h4>Members-only board</h4><p>'+(t.replies?nReplies(t)+(t.replies===1?' reply':' replies')+' in ':'This thread is in ')+esc(f.name)+'. Join any plan to read and post.</p><a class="btn btn-red" href="'+ROOT+'#membership">See plans</a> <button class="btn btn-outline" id="asMember">Preview as member</button></div></div></div>':postHTML.join('');
       threadView.innerHTML='<nav class="crumbs"><a href="#">Boards</a> › <a href="?f='+f.id+'" data-f-link="'+f.id+'">'+esc(f.name)+'</a>'+(s?' › <span>'+esc(s.name)+'</span>':'')+'</nav>'+
         '<div class="tv-head"><div class="pills">'+pills(t)+'</div><h1 class="tv-title">'+esc(t.title)+'</h1><p class="t-meta">Started by <b>'+esc(MP.USERS[t.by].n)+'</b> · '+t.ago+' ago'+(t.replies==null?'':' · '+nReplies(t)+(t.replies===1?' reply':' replies'))+(t.views?' · '+t.views+' views':'')+'</p></div>'+
@@ -696,15 +709,15 @@
         '<div class="posts">'+shown+'</div>'+
         (locked?'':replyBox(t))+
         (member&&f.prem?'<p class="note">Viewing as a member (demo). <button class="linkish" id="asGuest">Switch back to guest view</button></p>':'')+
-        '<p class="note">All usernames and posts are fictional sample content.</p>';
+        '<p class="note">All usernames and posts are fictional sample content. <a href="'+ROOT+'rules/">Community rules</a></p>';
       var am=$('#asMember');if(am)am.addEventListener('click',function(){setMember(true)});
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});
         watching={id:t.id,off:function(){u1();u2()}}}
       var ag=$('#asGuest');if(ag)ag.addEventListener('click',function(){setMember(false)});
     }
     var watching={id:null,off:function(){}};
-    function replyBox(t){if(!SMU.user)return '<div class="reply reply-out"><p><b>Join the conversation.</b> Sign in to reply'+(SMU.live?'':' (demo accounts are saved in this browser)')+'.</p><button type="button" class="btn btn-red btn-sm" data-auth>Sign in to reply</button></div>';
-      var me=SMU.me();return '<form class="reply" id="replyForm" data-thread="'+t.id+'" novalidate>'+avatar(me)+'<div class="reply-main"><p class="reply-q" id="replyQ" hidden></p><label class="sr" for="replyText">Write a reply</label><textarea id="replyText" rows="2" maxlength="5000" placeholder="Write a reply…" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p></div><button class="btn btn-red btn-sm" type="submit">Post</button></form>'}
+    function replyBox(t){if(!SMU.user)return '<div class="reply reply-out"><p><b>Join the conversation.</b> Sign in to reply'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><button type="button" class="btn btn-red btn-sm" data-auth>Sign in to reply</button></div>';
+      var me=SMU.me();return '<form class="reply" id="replyForm" data-thread="'+t.id+'" novalidate>'+avatar(me)+'<div class="reply-main"><p class="reply-q" id="replyQ" hidden></p><label class="sr" for="replyText">Write a reply</label><textarea id="replyText" rows="2" maxlength="5000" placeholder="Write a reply…" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p><p class="reply-rules">Keep it civil: <a href="'+ROOT+'rules/">community rules</a></p></div><button class="btn btn-red btn-sm" type="submit">Post</button></form>'}
     var quoteIdx=null;
     threadView.addEventListener('click',function(e){var qb=e.target.closest('[data-quote]'),rb=e.target.closest('[data-reply]');if(!qb&&!rb)return;
       var ta=$('#replyText');if(!ta){var a=$('[data-auth]',threadView);if(a)a.click();return}
@@ -1046,11 +1059,37 @@
       '<div class="fld"><label for="cpSport">Sport (optional)</label><select id="cpSport"><option value="">None</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'"'+(s.slug===sport?' selected':'')+'>'+esc(s.name)+'</option>'}).join('')+'</select></div></div>'+
       '<div class="fld"><label for="cpTitle">Title</label><input id="cpTitle" maxlength="140" required placeholder="What do you want to talk about?"></div>'+
       '<div class="fld"><label for="cpBody">First post</label><textarea id="cpBody" rows="5" maxlength="5000" required></textarea></div>'+
+      '<p class="cp-rules">Keep it civil and read the <a href="'+ROOT+'rules/">community rules</a> before you post. Mods may remove posts that break them.</p>'+
       '<p class="auth-m" aria-live="polite"></p><div class="dlg-act"><button class="btn btn-red" type="submit">Post thread</button></div></form>'+(SMU.live?'':'<p class="dlg-mode"><b>Demo mode.</b> Your thread is saved in this browser only.</p>'));
     $('form',d).addEventListener('submit',function(e){e.preventDefault();var ti=$('#cpTitle',d).value.trim(),bo=$('#cpBody',d).value.trim(),m=$('.auth-m',d);
       if(ti.length<3){m.textContent='Give your thread a title (3+ characters).';$('#cpTitle',d).focus();return}if(bo.length<2){m.textContent='Write a first post.';$('#cpBody',d).focus();return}
       var b=$('button[type=submit]',d);b.disabled=true;m.textContent='Posting\u2026';
       SMU.createThread({f:$('#cpForum',d).value,sport:$('#cpSport',d).value,title:ti,body:bo}).then(function(t){d.close();toast('Thread posted.');location.href=threadUrl(t.id)},function(err){b.disabled=false;m.textContent=err.message})})}
+  /* ---------- Report a post: reason picker, then a confirmation. Demo (and live until REPORTS is on in sb.js) keeps it in this browser. ---------- */
+  var REPORT_WHY={harassment:['Harassment','Goes after an athlete, a coach, their family or another fan'],recruit_minor:['Recruit or minor info','Rumors or personal details about a recruit or anyone under 18'],
+    doxxing:['Doxxing','Shares an address, phone number, schedule or other private info'],spam:['Spam','Ads, scams, links or the same post over and over'],other:['Something else','Tell the mods below']};
+  function reportDone(d,dup,where,n){var sh=$('.dlg-sheet',d);
+    sh.innerHTML='<button type="button" class="reader-x dlg-x" aria-label="Close">\u00d7</button><div class="rp-done" role="status"><span class="rp-ic" aria-hidden="true">\u2713</span>'+
+      '<h3 id="reportDlg-h" class="dlg-h">'+(dup?'You already reported this post':'Thanks, we got it')+'</h3>'+
+      '<p>'+(dup?'Your report on post #'+n+' is already with the moderators. You only need to send it once.':'Your report on post #'+n+' is with the moderators. They\u2019ll check it against the <a href="'+ROOT+'rules/">community rules</a> and may remove the post. The poster isn\u2019t told who reported it.')+'</p>'+
+      (where==='browser'?'<p class="dlg-mode"><b>'+(SMU.live?'Preview.':'Demo mode.')+'</b> This report is saved in this browser only.</p>':'')+
+      '<div class="dlg-act"><button type="button" class="btn btn-navy" data-rp-close>Done</button></div></div>';
+    $('[data-rp-close]',d).focus()}
+  function reportPost(t,i,btn){var p=t.posts[i],u=MP.USERS[p[0]],n=i+1;
+    if(SMU.reported(t.id,i)){var dd=dialog('reportDlg','<h3 id="reportDlg-h" class="dlg-h">Report</h3>');reportDone(dd,true,'browser',n);wire(dd);return}
+    var d=dialog('reportDlg','<h3 id="reportDlg-h" class="dlg-h">Report this post</h3><p class="rp-sub">What\u2019s wrong with <b>'+esc(u?u.n:'this member')+'</b>\u2019s post (#'+n+')? Pick the closest reason.</p>'+
+      '<form class="rp-form" novalidate><fieldset class="rp-set"><legend class="sr">Reason for reporting</legend>'+SMU.REPORT_REASONS.map(function(k){return '<label class="rp-opt"><input type="radio" name="rpReason" value="'+k+'"><span><b>'+REPORT_WHY[k][0]+'</b><small>'+REPORT_WHY[k][1]+'</small></span></label>'}).join('')+'</fieldset>'+
+      '<div class="fld"><label for="rpNote">Anything the mods should know? (optional)</label><textarea id="rpNote" rows="2" maxlength="500"></textarea></div>'+
+      '<p class="auth-m" aria-live="polite"></p><div class="dlg-act"><button type="button" class="btn btn-outline" data-rp-close>Cancel</button><button class="btn btn-red" type="submit">Send report</button></div></form>'+
+      '<p class="dlg-mode">Only moderators see reports. <a href="'+ROOT+'rules/">Community rules</a></p>','Report this post');
+    wire(d);
+    $('form',d).addEventListener('submit',function(e){e.preventDefault();var r=$('input[name=rpReason]:checked',d),m=$('.auth-m',d);if(!r){m.textContent='Pick a reason so the mods know what to look for.';$('input[name=rpReason]',d).focus();return}
+      var b=$('button[type=submit]',d);b.disabled=true;m.textContent='Sending\u2026';
+      SMU.report({thread:t.id,post:i,postId:p[4]||null,reason:r.value,note:$('#rpNote',d).value.trim().slice(0,500)}).then(function(res){
+        reportDone(d,res.dup,res.where,n);if(btn&&document.contains(btn)){btn.textContent='Reported';btn.dataset.done='1'}},function(err){b.disabled=false;m.textContent=err.message||'Couldn\u2019t send that. Try again.'})})
+    function wire(x){x.addEventListener('click',function(e){if(e.target.closest('[data-rp-close]'))x.close()})}}
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-report]');if(!b)return;e.preventDefault();var m=location.hash.match(/^#t(\d+)$/),t=m&&MP.THREADS.filter(function(x){return x.id===+m[1]})[0];if(!t)return;
+    var i=+b.dataset.report;requireUser('Sign in to report a post.',function(){reportPost(t,i,b)})});
   document.addEventListener('click',function(e){var b=e.target.closest('[data-compose]');if(!b)return;e.preventDefault();var sp=b.dataset.sport||'';requireUser('Sign in to start a thread.',function(){compose(sp)})});
 
   /* ---------- Account page ---------- */
