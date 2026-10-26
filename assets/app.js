@@ -1030,8 +1030,7 @@
     var lsTable=LS?'<table class="gc-ls"><caption class="sr">Score by '+per+'</caption><thead><tr><th scope="col"><span class="sr">Team</span></th>'+LS.h.map(function(h){return '<th scope="col">'+esc(h)+'</th>'}).join('')+'<th scope="col">T</th></tr></thead><tbody>'+
       lsRows.map(function(r){return '<tr'+(r.smu?' class="smu"':'')+'><th scope="row">'+esc(r.smu?'SMU':g.opp)+'</th>'+r.s.map(function(v){return '<td>'+v+'</td>'}).join('')+'<td class="t">'+r.tot+'</td></tr>'}).join('')+'</tbody></table>':'';
     var mid=m?'<div class="gc-mid"><p class="gc-st">Final'+(g.ex?' \u00b7 Exhibition':'')+'</p>'+(lsTable?'<details class="gc-lsd" open><summary>Score by '+per+'</summary>'+lsTable+'</details>':'')+'</div>':
-      '<div class="gc-mid"><p class="gc-st">'+gmDate(g,1)+'</p><p class="gc-ko">'+esc(g.time||'Time TBA')+(g.tv?' \u00b7 '+esc(g.tv):'')+'</p>'+
-        (isNext?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+'</div>';
+      '<div class="gc-mid"><p class="gc-st">'+gmDate(g,1)+'</p><p class="gc-ko">'+esc(g.time||'Time TBA')+(g.tv?' \u00b7 '+esc(g.tv):'')+'</p>'+'</div>';
     var sb='<section class="gc-sb'+(m?' is-final':' is-pre')+'" aria-label="Scoreboard"><div class="wrap gc-sb-in"'+(m?' role="group" aria-label="Final'+(g.ex?', exhibition':'')+': SMU '+us+', '+esc(g.opp)+' '+them+'"':'')+'>'+team(1)+mid+team(0)+'</div></section>';
     /* left column */
     var left='',box='',stats='',pbp='',recap='',right='';
@@ -1094,7 +1093,6 @@
     var grid=$('.gc-grid',main);if(!left)grid.classList.add('no-c1');
     function layout(){grid.classList.toggle('no-c2',!$$('.gc-c2>.gc-card',main).some(function(c){return !c.hidden}))}layout();
     var lsd=$('.gc-lsd',main);if(lsd&&window.matchMedia&&matchMedia('(max-width:759px)').matches)lsd.open=false;
-    startCountdowns();
     if(isNext&&g.sport==='football'&&MP.adSkin)MP.adSkin();
     function tab(id,on){var t=$('.gc-tabs [data-tab="'+id+'"]',main);if(t)t.hidden=!on}
     $('.gc-tabs',main).addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;
