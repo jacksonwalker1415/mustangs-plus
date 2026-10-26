@@ -1008,8 +1008,8 @@
   /* ---------- Join pop-up (On3-style): every Join / See plans / Join SMU+ CTA opens this instead of scrolling to #waitlist.
      Same three tiers, prices and perks as the home #membership cards. Each card's button opens the existing free waitlist form
      inline (same SMU.waitlist insert, utm attribution and tier_interest column). No payment. ---------- */
-  /* Tier copy has ONE source: the home page #membership cards (index.html). The modal reads names, prices, perks and any
-     'Coming soon' labels from that markup (this page's DOM on home, a fetched copy elsewhere), so perk edits there show up here too. */
+  /* Tier copy has ONE source: the home page #membership cards (index.html). The modal reads names, prices and perks from that
+     markup (any 'Coming soon' text is dropped; no pills) (this page's DOM on home, a fetched copy elsewhere), so perk edits there show up here too. */
   var JOIN_ORDER=['mustang','pony','club'],JOIN_WL={mustang:'mustang',pony:'all_access',club:'red_blue'},joinTiers=null;
   function readTiers(doc){var out=[];$$('#membership .tier',doc).forEach(function(c){var b=$('[data-join],[data-plan]',c),k=b&&(b.getAttribute('data-join')||b.getAttribute('data-plan'));if(!JOIN_WL[k])return;
       var pr=$('.price b',c),h=$('h3',c),f=$('.for',c);
@@ -1026,15 +1026,14 @@
     '<h4 id="jm-'+t.k+'">'+esc(t.name)+'</h4>'+(t.for?'<p class="jm-for">'+esc(t.for)+'</p>':'')+
     '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Sample price. Nothing is charged.</p>'+
     '<button type="button" class="btn btn-red jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
-    '<span class="nilchip">\u2665 40% to SMU\u2019s official NIL programs (proposed)</span>'+
-    (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+(x.soon?' soon':'')+'">'+JCHK+'<span>'+esc(x.t)+(x.soon?' <span class="jm-soon">'+esc(x.sl)+'</span>':'')+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
+    (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+'">'+JCHK+'<span>'+esc(x.t)+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
   var joinDlg=null;
   function openJoin(tier){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
     if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier)})}
   function buildJoin(T,tier){
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
     var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div><p class="jm-eb">Membership</p><h3 id="joinDlg-h">Pick your seat.</h3>'+
-      '<p class="jm-lede">Every plan: 40% to SMU\u2019s official NIL programs (proposed). Join the free waitlist for the plan you want. There is nothing to buy.</p></div>'+
+      '<p class="jm-lede">Join the free waitlist for the plan you want. There is nothing to buy.</p></div>'+
       '<div class="jm-body"><div class="jm-plans"><div class="jm-tiers">'+T.map(joinCard).join('')+'</div></div>'+
       '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
