@@ -563,7 +563,7 @@
         (n.note?'<p class="gd-note">'+esc(n.note)+'</p>':'')+'</div></div>':'<div class="gd-next"><div class="gd-in"><p class="eyebrow">'+esc(name)+'</p><h2 class="gd-title">Season complete</h2></div></div>')+
       (l&&sc?'<article class="gd-hurry"><div class="gd-hph">'+photo((H&&H.photo&&H.photo[l.d])||C.act,{small:1})+creditOf((H&&H.photo&&H.photo[l.d])||C.act)+'</div><div class="gd-hb">'+
         '<div class="score" role="group" aria-label="Final'+(l.ex?', exhibition':'')+', '+gDate(l)+': SMU '+us+', '+esc(l.opp)+' '+them+'"><span class="sc-t'+(us>them?' win':'')+'"><b>SMU</b><em>'+us+'</em></span><span class="sc-f"><b>Final'+(l.ex?' · Exh.':'')+'</b>'+gDate(l)+'</span><span class="sc-t sc-r'+(them>us?' win':'')+'"><em>'+them+'</em><b>'+esc(l.opp)+'</b></span></div>'+
-        (gameFor(slug,l.d)?'<a class="gd-glink" href="'+gameUrl(gameFor(slug,l.d))+'">'+esc(matchup(l))+' game page<span aria-hidden="true"> \u2192</span></a>':'')+
+        (gameFor(slug,l.d)?'<a class="btn btn-red gd-glink" href="'+gameUrl(gameFor(slug,l.d))+'" aria-label="View game details: '+esc(matchup(l))+'">View Game Details</a>':'')+
         '</div></article>':'')+
       '</div>'}
   function tickCountdowns(){$$('.cd[data-ko]').forEach(function(el){var t=+el.dataset.ko,d=Math.max(0,t-Date.now()),b=$$('b',el);

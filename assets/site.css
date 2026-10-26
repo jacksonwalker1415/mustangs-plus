@@ -2651,3 +2651,6 @@ main.lib-wait #libView > section:not(#libVh):not(#libSkel),main.lib-wait #libAll
 .ad-hold-cr{background:#fff}
 /* inside a type view the rows sit under the view heading (Videos / Podcasts / Articles), so their titles step down a size */
 main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30px)}
+/* Last-game card: centered red View Game Details button (Jackson, Oct 26) */
+.gd-hurry .gd-glink.btn{align-self:center;color:#fff;margin-top:var(--s2)}
+.gd-hurry .gd-glink.btn:hover{color:#fff}
