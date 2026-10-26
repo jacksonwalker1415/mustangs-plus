@@ -464,13 +464,15 @@
     var member=isMember(),listView=$('#listView'),threadView=$('#threadView');
     function lastIn(f){var l=MP.THREADS.filter(function(t){return t.f===f.id});return l[0]}
     var groups=['Premium','Community'];
-    function renderIndex(){$('#forumIndex').innerHTML=groups.map(function(g){return '<div class="fgroup"><div class="fgroup-h"><h3>'+g+(g==='Premium'?' <span class="pill pill-prem">'+LOCK+'Members</span>':'')+'</h3><span class="num">Threads</span><span class="num">Posts</span><span class="f-last-h">Last post</span></div>'+
+    function renderIndex(){if(!SMU.live)SMU.boardStats();
+      var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});[['#statBoards',MP.FORUMS.length],['#statThreads',tt],['#statPosts',tp]].forEach(function(x){var el=$(x[0]);if(el)el.textContent=x[1].toLocaleString()});
+      $('#forumIndex').innerHTML=groups.map(function(g){return '<div class="fgroup"><div class="fgroup-h"><h3>'+g+(g==='Premium'?' <span class="pill pill-prem">'+LOCK+'Members</span>':'')+'</h3><span class="num">Threads</span><span class="num">Posts</span><span class="f-last-h">Last post</span></div>'+
       MP.FORUMS.filter(function(f){return f.group===g}).map(function(f){var t=lastIn(f);
         return '<button class="frow" data-f="'+f.id+'"><span class="fi'+(f.prem?' prem':'')+'">'+(f.prem?LOCK:CHAT)+'</span><span class="frow-main"><b>'+f.name+'</b><small>'+f.desc+'</small></span>'+
         '<span class="num">'+f.threads.toLocaleString()+'</span><span class="num">'+f.posts.toLocaleString()+'</span>'+
         '<span class="f-last">'+(t?'<b>'+esc(t.title)+'</b><small>'+esc(MP.USERS[lastBy(t)].n)+' · '+lastAgo(t)+' ago</small>':'<small>No posts yet</small>')+'</span></button>'}).join('')+'</div>'}).join('')+
       '<div class="fgroup"><div class="fgroup-h"><h3>Team boards</h3><span class="f-last-h">12 programs</span></div><div class="team-boards">'+
-      MP.SPORTS.map(function(s){var n=MP.THREADS.filter(function(t){return t.sport===s.slug}).length;return '<button class="tb" data-sport="'+s.slug+'">'+sportIcon(s.slug)+'<b>'+s.name+'</b><small>'+(n*37+40)+' threads</small></button>'}).join('')+'</div></div>'}
+      MP.SPORTS.map(function(s){var n=((MP.SPORT_STATS||{})[s.slug]||{}).threads||0;return '<button class="tb" data-sport="'+s.slug+'">'+sportIcon(s.slug)+'<b>'+s.name+'</b><small>'+(n?n.toLocaleString()+(n===1?' thread':' threads'):'No threads yet')+'</small></button>'}).join('')+'</div></div>'}
     renderIndex();
     var sel=$('#sportFilter');sel.innerHTML='<option value="">All sports</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'">'+s.name+'</option>'}).join('');sel.value=state.sport;
     sel.addEventListener('change',function(){state.sport=sel.value;renderList()});
@@ -538,7 +540,7 @@
       else if(!/^#(article|watch)=/.test(location.hash)){threadView.hidden=true;listView.hidden=false;renderList()}}
     window.addEventListener('hashchange',route);route();
     SMU.ready.then(function(){if(!SMU.live)return;$('#threadRows').setAttribute('aria-busy','true');
-      return SMU.loadThreads().then(function(){renderIndex();route()},function(){/* keep the sample boards on screen; the toast explains */}).then(function(){$('#threadRows').removeAttribute('aria-busy')})});
+      return Promise.all([SMU.loadThreads(),SMU.boardStats()]).then(function(){renderIndex();route()},function(){/* keep the sample boards on screen; the toast explains */}).then(function(){$('#threadRows').removeAttribute('aria-busy')})});
   }
 
   /* ---------- Real non-football data (MP.REAL, from smumustangs.com) ---------- */
