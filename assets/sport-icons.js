@@ -39,7 +39,7 @@
     tennis:function(n,p){return '<g transform="rotate(-35 54 54)"><ellipse cx="54" cy="44" rx="24" ry="30" fill="none" stroke="'+p.line+'" stroke-width="5"/>'+
       '<path d="M42 20 V68 M54 14 V74 M66 20 V68 M31 32 H77 M30 44 H78 M31 56 H77" stroke="'+p.line+'" stroke-width="1.6" opacity=".7"/>'+
       '<path d="M54 74 V82" stroke="'+p.line+'" stroke-width="5" stroke-linecap="round"/><rect x="49" y="82" width="10" height="28" rx="4" fill="'+p.acc+'" stroke="'+p.line+'"'+S+'/></g>'+
-      '<circle cx="92" cy="88" r="12" fill="'+(p.body===WHITE?'#F9C80E':'#F9C80E')+'" stroke="'+p.line+'"'+S+'/><path d="M82 82 Q92 88 82 95 M102 81 Q92 88 102 95" fill="none" stroke="'+p.line+'" stroke-width="2"/>'},
+      '<circle cx="92" cy="88" r="12" fill="#fff" stroke="'+p.line+'"'+S+'/><path d="M82 82 Q92 88 82 95 M102 81 Q92 88 102 95" fill="none" stroke="'+p.line+'" stroke-width="2"/>'},
     /* racing singlet with a bib number */
     track:function(n,p){return '<path d="M45 12 Q60 26 75 12 L82 14 Q82 36 94 46 V108 H26 V46 Q38 36 38 14 Z" fill="'+p.body+'" stroke="'+p.line+'"'+S+'/>'+
       '<path d="M45 12 Q60 26 75 12" fill="none" stroke="'+p.acc+'" stroke-width="3.5" stroke-linecap="round"/>'+
