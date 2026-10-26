@@ -730,8 +730,9 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .sc-t.sc-r{justify-content:flex-start}
 .sc-t b{font-size:15px;font-weight:800;letter-spacing:0}
 .sc-t em{font-style:normal;font-family:var(--display);font-size:48px;line-height:1;font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
-.sc-t:not(.win){opacity:.5}
-.sc-t.win em{color:var(--blue)}
+/* losing side: solid SMU blue instead of 50% opacity (was #919abd on white, 2.77:1); the winning score carries the red accent */
+.sc-t:not(.win){color:var(--blue)}.sc-t:not(.win) b{font-weight:600}
+.sc-t.win em{color:var(--red)}
 .sc-f{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:600;color:var(--ink-3);text-align:center;white-space:nowrap}
 .sc-f b{font-size:12px;font-weight:800;letter-spacing:0;color:var(--black)}
 .gd-hb h3{font-size:18px;font-weight:800}
@@ -1713,7 +1714,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 
 /* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
 .tag:not(.tag-new){border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:0;padding:3px 7px;line-height:1.25}
-.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(10,16,40,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
+.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(0,0,0,.6);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
 .poster-verb{padding:4px 9px 4px 7px}
 .tone-white .poster-verb,.tone-white .dur{background:rgba(10,16,40,.62);color:#fff}
 /* board pills: status labels stay as compact labels, board and sport names become plain text */
@@ -1908,6 +1909,8 @@ html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden
 .fx-hsearch input{border-color:#fff}
 .fx-hsearch .btn{height:44px;flex:none}
 .fx-hero :focus-visible,.fx-tabs :focus-visible{outline-color:#fff}
+.fx-sbtn{display:none}
+.fx-thr .fx-hero-in{display:none}
 .fx-tabs{background:var(--b-700)}
 .fx-tabs .wrap{display:flex;align-items:stretch;gap:2px;overflow-x:auto;scrollbar-width:none}
 .fx-tabs .wrap::-webkit-scrollbar{display:none}
@@ -1926,9 +1929,13 @@ html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden
 .fx-node{display:grid;grid-template-columns:minmax(0,1fr) 170px 280px;gap:var(--s4);align-items:center;padding:14px 16px;border-top:1px solid var(--fx-line)}
 .fx-node:first-child{border-top:0}
 .fx-node-t{font:700 16px/1.3 var(--sans);display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
-.fx-node-t a:hover,.fx-crumbs a:hover,.fx-subs a:hover,.fx-latest a:hover,.fx-node-lt:hover,.fx-row-f:hover{text-decoration:underline}
+.fx-node-t a:hover,.fx-crumbs a:hover,.fx-latest a:hover,.fx-node-lt:hover,.fx-row-f:hover{text-decoration:underline}
 .fx-node-d{margin-top:2px;font-size:14px;color:var(--ink-2)}
-.fx-subs{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;font-weight:600}
+/* sport chips: the link is the full 44px tap target; the visible pill is drawn inside it */
+.fx-subs{margin-top:2px;display:flex;flex-wrap:wrap;gap:0 6px;font-size:13px;font-weight:600}
+.fx-subs a{position:relative;z-index:0;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 12px}
+.fx-subs a::before{content:'';position:absolute;inset:6px 0;z-index:-1;border:1px solid var(--fx-line-2);border-radius:16px;background:#fff}
+.fx-subs a:hover::before{border-color:var(--blue)}
 .fx-node-mob,.fx-row-mob,.fx-time-m{display:none}
 .fx-node-stats,.fx-row-stats{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;text-align:center}
 .fx-node-stats dt,.fx-row-stats dt{font-size:12px;color:var(--fx-mute)}
@@ -2093,7 +2100,6 @@ a.fx-quote-h:hover{text-decoration:underline}
   .fx-node-stats{display:none}
   .fx-node-mob{display:block;margin-top:4px;font-size:13px;color:var(--fx-mute)}
   .fx-node-last{grid-column:1}
-  .fx-subs{gap:0 16px;margin-top:2px}.fx-subs a{display:inline-flex;align-items:center;min-height:44px}
   .fx-head{flex-direction:column;align-items:stretch}
   .fx-head h1,.fx-th-t{font-size:23px}
   .fx-head .btn{width:100%}
@@ -2146,7 +2152,7 @@ a.fx-quote-h:hover{text-decoration:underline}
 @media(max-width:767px){.fx-user{padding-right:12px}.fx-user-d{min-width:0;flex:1}.fx-name{padding-right:124px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 @media(max-width:767px){
   .fx-node-t a{display:inline-flex;align-items:center;min-height:44px}
-  .fx-node-lt{display:block;padding:11px 0}
+  .fx-node-lt{display:block;padding:11px 0;min-height:44px}
   .fx-node-last span{margin-top:-8px}
   .fx-crumbs a{min-height:44px}
   .fx-quote-h{display:flex;align-items:center;min-height:44px;padding-top:0;padding-bottom:0}
@@ -2154,6 +2160,18 @@ a.fx-quote-h:hover{text-decoration:underline}
 @media(max-width:767px){.fx-latest a{min-height:44px;padding-top:3px}}
 @media(max-width:767px){.fx-rules a{display:inline-flex;align-items:center;min-height:44px}}
 @media(max-width:767px){.fx-row-f{pointer-events:none;color:inherit;z-index:auto}.fx-reply-tip a,.fx-reply.out a{display:inline-flex;align-items:center;min-height:44px}}
+/* compact phone hero: title and a search icon on one row; the search form opens under it (app.js boards(), #fxSBtn) */
+@media(max-width:767px){
+  .fx-hero-in,.fx-sub .fx-hero-in{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 12px;padding-top:10px;padding-bottom:10px}
+  .fx-hero-t{flex:1 1 0;min-width:0}
+  .fx-hero-t h1,.fx-brand,.fx-sub .fx-brand{font-size:22px;line-height:1.2}
+  .fx-hero-t p{display:none}
+  .fx-sbtn{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:var(--r1);color:#fff}
+  .fx-sbtn svg{width:22px;height:22px;fill:currentColor}
+  .fx-sbtn:hover,.fx-sbtn[aria-expanded=true]{background:rgba(255,255,255,.12)}
+  .fx-hsearch,.fx-sub .fx-hsearch{display:none;flex:1 1 100%}
+  .fx-hero.fx-so .fx-hsearch{display:flex}
+}
 .outlets .mcard-b .meta{text-transform:none;letter-spacing:0;font-size:13px}
 .outlets .mcard-b h3{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis}
 
@@ -2278,6 +2296,19 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 /* ---------- Home calendar ribbon (upcoming games, every sport) ---------- */
 .ribbon .rb-hd{margin-bottom:var(--s4)}
 .sec.ribbon{padding-bottom:var(--s6)}
+/* Home CLS (Oct. 26): placeholders in index.html match the rendered ribbon list and game day cards, measured in Chromium at 320-1920px.
+   Ribbon list: 238.6px phone (+56px arrow row), then the tallest card row per breakpoint. Game day: the real .gd-next/.gd-hurry boxes,
+   .gd-hph keeps its 21:9 photo ratio and .gd-hb-sk stands in for the 185px score block. Re-measure if card content changes. */
+.rb-skel{display:flex;height:238.6px;margin-bottom:56px}.rb-skel .sk{flex:1;border-radius:12px}
+@media(min-width:720px){.rb-skel{height:350.1px;margin-bottom:0}}
+@media(min-width:768px){.rb-skel{height:326.4px}}
+@media(min-width:900px){.rb-skel{height:303.5px}}
+@media(min-width:960px){.rb-skel{height:327.2px}}
+@media(min-width:1024px){.rb-skel{height:303.5px}}
+.gd-skel .gd-next{display:flex}.gd-skel .gd-next .sk{flex:1;border-radius:0}
+.gd-skel .gd-hph{display:flex}.gd-skel .gd-hph .sk{flex:1;border-radius:0}
+.gd-skel .gd-hb-sk{height:185px}
+@media(max-width:639px){.gd-skel .gd-next{min-height:372.5px}}
 .ribbon .rb-hd h2{font-family:inherit;text-transform:none;letter-spacing:0;font-weight:800;font-size:clamp(22px,2.4vw,28px);line-height:1.2;color:var(--ink)}
 .ribbon .rb-hd p{margin-top:var(--s1);font-size:15px;color:var(--ink-2)}
 .ribbon .rb-hd a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
@@ -2619,7 +2650,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-main{gap:3px;padding:var(--s3) var(--s3) var(--s2)}
   .rb-tv{padding:8px var(--s3);gap:4px 14px;align-items:baseline;font-size:14px;line-height:1.4}
   .rb-tv div{align-items:baseline;gap:5px}
-  .rb-tv a{display:inline-block;min-height:0;padding:12px 4px;margin:-12px -4px}
+  .rb-tv a{display:inline-block;min-height:0;padding:13px 4px;margin:-13px -4px}
   .rb-wrap{padding-bottom:56px}
   .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:44px;height:44px}
   .rb-wrap .xside.xprev{left:auto;right:54px}
@@ -2730,14 +2761,57 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 .wl-opt input{width:18px;height:18px;margin:0;accent-color:#354CA1;flex:none}.wl-opt:has(input:checked){border-color:#354CA1;box-shadow:inset 0 0 0 1px #354CA1}
 .wl-opt input:focus-visible{outline:2px solid #354CA1;outline-offset:2px}
 
+/* ---------- Account page: sign-in and Settings polish (Oct. 26, bot/account-signin-polish). Account-only selectors. ---------- */
+body[data-page="account"] .auth-tabs button{min-height:44px}
+.btn.set-out{height:44px;min-height:44px}
+.auth-inl .fld-hint{margin:0;font-size:14px;color:var(--ink-3)}
+.auth-inl .fld-err{margin:0;font-size:14px;font-weight:600;color:var(--red-dk)}
+.auth-inl .fld input[aria-invalid="true"],.set-f input[aria-invalid="true"]{border-color:var(--red)}
+.auth-inl .auth-forgot-note{margin:16px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2)}
+.auth-inl .auth-forgot-note .linkish,.auth-inl .auth-up-note .linkish{display:inline-block;padding:11px 0;margin:-11px 0}
+.acct-skel-out{min-height:560px}
+.acct-skel-in{min-height:640px;margin-top:20px}
+.set-af{margin-top:16px}
+.set-af button.adfree.af-set{height:44px;padding:0 6px 0 16px;border-color:var(--line-2);color:var(--ink)}
+.set-af button.adfree.af-set:hover{border-color:var(--blue)}
+.set-af button.adfree.af-set:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.set-af button.adfree.af-set .af-sw{background:var(--line-2)}
+.set-af button.adfree.af-set[aria-checked="true"] .af-sw{background:var(--blue)}
+.set-af button.adfree.af-set[aria-checked="true"] .af-sw::after{background:#fff}
+.set-top{min-height:44px}
 /* Legal cleanup (Oct 26): Sample tag on seeded board posts, plain-text Follow cards, sticky ad steps aside next to athletes */
-.tag-sample{display:inline-block;vertical-align:2px;margin-right:6px;padding:1px 6px;border:1px solid #354CA1;border-radius:4px;color:#354CA1;background:#fff;font-size:11px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none}
+.tag-sample{display:inline-block;vertical-align:2px;margin-right:6px;padding:1px 6px;border:1px solid #354CA1;border-radius:4px;color:#354CA1;background:#fff;font-size:12px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none}
 .fo-plain .fo-body{padding:var(--s3)}
 .fo-plain .fo-h a{color:var(--blue);font-weight:700}
 html.ad-quiet .ad-sticky{visibility:hidden;pointer-events:none}
 .auth .f-age{margin:var(--s2) 0}
 .legal-doc h2{margin-top:var(--s4)}
 .legal-doc{max-width:760px}
+
+/* Sport page record + next game strip (app.js recStrip). Flat SMU blue, red accent bar on the next-game link, 12px+ text, 44px tap target.
+   Rendered in the same pass as the rest of the page, so it never pushes content down after paint. */
+.sp-rec{background:#354CA1;color:#fff}
+.sp-rec-in{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s6);min-height:60px;padding-top:var(--s2);padding-bottom:var(--s2)}
+.sp-rec-i{display:flex;flex-wrap:wrap;align-items:baseline;align-content:center;gap:2px var(--s2);margin:0;min-height:44px;font-size:15px;line-height:1.35;color:#fff}
+.sp-rec-i>span:first-child{font-weight:600;color:rgba(255,255,255,.88)}
+.sp-rec-i b{font-weight:800;color:#fff}
+.sp-rec-c{font-size:14px;color:rgba(255,255,255,.88)}
+a.sp-rec-nx{border-left:3px solid #CC0035;padding-left:var(--s3);text-decoration:none}
+a.sp-rec-nx b{text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:3px}
+a.sp-rec-nx:hover b,a.sp-rec-nx:focus-visible b{text-decoration-color:#fff}
+a.sp-rec-nx:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media(max-width:639px){.sp-rec-in{flex-direction:column;align-items:stretch;gap:var(--s1)}.sp-rec-i{font-size:15px}}
+
+/* Sport pages: no backdrop-filter on card tags (WebKit memory/compositing cost with ~27 blurred tags on football); solid navy instead */
+body[data-page=sport] .poster-verb,body[data-page=sport] .dur{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,33,79,.85)}
+/* Tap targets and contrast (Oct. 26 audit, 390px). Inline links get vertical padding: it widens the tap area to 44px+ without moving any text.
+   Shared: .site-ft .legal a (footer) and .cnotice a (concept notice component). Home: ribbon header link. */
+.ribbon .rb-hd p a{padding:1px 0}
+.cnotice a{padding:13px 0}
+.site-ft .legal a{padding:14px 0}
+.fo-plain .fo-h a{padding:13px 0}
+/* Game day final: the losing side was opacity .5 (#919abd on white, 2.77:1). Solid ink-3 is 5.9:1; the winner keeps SMU blue. */
+.gameday .sc-t:not(.win){opacity:1;color:var(--ink-3)}
 /* Search page: filter chips stay on one row on phones and scroll sideways inside their strip (the page itself never scrolls sideways) */
 @media(max-width:699px){
   .srch-tabs{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:calc(var(--s4) - 4px) calc(-1*var(--gut)) -4px 0;padding:4px var(--gut) 4px 0}
