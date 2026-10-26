@@ -2732,4 +2732,5 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
   #more .chip{min-height:44px;display:inline-flex;align-items:center}
   .sport-tile{min-height:56px}
   .fsearch{height:46px}
+  .cnotice a{display:inline-flex;align-items:center;min-height:44px}  /* Round 9: 'About this project' link was 18px tall */
 }
