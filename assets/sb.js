@@ -10,6 +10,22 @@
   var SUPA_SRI='sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK';
   var TIERS=(window.MP&&MP.TIER_LABELS)||{free:'Free',mustang:'Mustang',pony:'All-Access',club:'Red & Blue'};
   var AFFIL=['student','alum','fan','parent','other'],PRIVACY_VERSION='2026-10-26';
+  var INTEREST=['free','mustang','all_access','red_blue','not_sure'];
+  /* Attribution (D4): utm_* + referrer host from the landing URL, kept in sessionStorage only (no cookies). A new URL with utm_* replaces it. */
+  function ss(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v)}catch(e){return null}}
+  function clip(v,n){v=String(v||'').trim().slice(0,n||100);return v||null}
+  var ATTR=(function(){var a=null;try{a=JSON.parse(ss('smu_attr')||'null')}catch(e){}
+    var q;try{q=new URLSearchParams(location.search)}catch(e){q=null}
+    var u=q?{utm_source:clip(q.get('utm_source')),utm_medium:clip(q.get('utm_medium')),utm_campaign:clip(q.get('utm_campaign')),utm_content:clip(q.get('utm_content'))}:{};
+    var ref=null;try{if(document.referrer){var h=new URL(document.referrer).hostname;if(h&&h!==location.hostname)ref=clip(h,200)}}catch(e){}
+    if(u.utm_source||u.utm_medium||u.utm_campaign||u.utm_content||!a){a={utm_source:u.utm_source||null,utm_medium:u.utm_medium||null,utm_campaign:u.utm_campaign||null,utm_content:u.utm_content||null,referrer_host:ref||(a&&a.referrer_host)||null};ss('smu_attr',JSON.stringify(a))}
+    return a})();
+  /* Cookie-free visit counter: one insert per page load, live mode only, never in automated browsers. Fire-and-forget. */
+  function pageView(sb){try{if(navigator.webdriver||window.__SMU_NOBOOT||ss('smu_pv_off'))return;
+    var path=(location.pathname.replace(/^\/mustangs-plus/,'')||'/').slice(0,200),mob=window.matchMedia&&matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+    sb.from('page_views').insert({path:path,utm_source:ATTR.utm_source,utm_medium:ATTR.utm_medium,utm_campaign:ATTR.utm_campaign,referrer_host:ATTR.referrer_host,session_id:sid(),device:mob?'mobile':'desktop'})
+      .then(function(r){if(r&&r.error&&(r.status===404||r.error.code==='PGRST205'||r.error.code==='42P01'))ss('smu_pv_off','1')},function(){})}catch(e){}}
+  function sid(){var v=ss('smu_sid');if(!v||!/^[A-Za-z0-9-]{8,64}$/.test(v)){v=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():(Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12));ss('smu_sid',v)}return v}
   var configured=!!(CFG.SUPABASE_URL&&CFG.SUPABASE_ANON_KEY&&/^https:\/\/.+/.test(CFG.SUPABASE_URL));
 
   /* ---------- tiny utils ---------- */
@@ -32,7 +48,7 @@
 
   var SMU={live:false,configured:configured,mode:'demo',user:null,TIERS:TIERS,on:on,ago:ago,
     reason:configured?'connecting':'no-config'};
-  window.SMU=SMU;
+  window.SMU=SMU;SMU.attr=ATTR;
   var sb=null;
   /* Feature flag (data.js): with recruiting off, the Recruiting Trail forum and its threads are hidden client-side. Nothing is deleted in Supabase. */
   function recOff(){return !!(MP.FEATURES&&MP.FEATURES.recruiting===false)}
@@ -106,7 +122,7 @@
     init:function(){
       return loadScript(SUPA_SRC,SUPA_SRI).then(function(){
         sb=window.supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
-        SMU.client=sb;SMU.live=true;SMU.mode='live';SMU.reason='ok';
+        SMU.client=sb;SMU.live=true;SMU.mode='live';SMU.reason='ok';pageView(sb);
         sb.auth.onAuthStateChange(function(ev,session){var was=SMU.user&&SMU.user.id;setSession(session);
           if((SMU.user&&SMU.user.id)!==was){emit('auth',SMU.user);if(SMU.user)live.afterSignIn()}});
         return q('session',sb.auth.getSession()).then(function(d){setSession(d&&d.session);if(SMU.user)return live.afterSignIn()})
@@ -140,7 +156,12 @@
       if(!o.consent)return Promise.reject(new Error('Please agree to the privacy notice first.'));
       function done(table,r){if(r.error&&r.error.code!=='23505')throw r.error;ls('mp_waitlist',email);return {ok:true,dupe:!!r.error,table:table}}
       function missing(r){var e=r&&r.error;return !!e&&(e.code==='PGRST205'||e.code==='42P01'||r.status===404||/does not exist|schema cache/i.test(e.message||''))}
-      return withTimeout(sb.from('waitlist').insert({email:email,name:name,affiliation:aff,consent:true,consent_version:PRIVACY_VERSION,source:'site'}),12000).then(function(r){
+      var base={email:email,name:name,affiliation:aff,consent:true,consent_version:PRIVACY_VERSION,source:'site'};
+      var full=Object.assign({},base,{utm_source:ATTR.utm_source,utm_medium:ATTR.utm_medium,utm_campaign:ATTR.utm_campaign,utm_content:ATTR.utm_content,referrer_host:ATTR.referrer_host,tier_interest:INTEREST.indexOf(o.tier_interest)>=0?o.tier_interest:null});
+      function nocol(r){var e=r&&r.error;return !!e&&(e.code==='PGRST204'||e.code==='42703'||/column/i.test(e.message||'')&&/(find|exist)/i.test(e.message||''))}
+      return withTimeout(sb.from('waitlist').insert(full),12000).then(function(r){
+        if(nocol(r))return withTimeout(sb.from('waitlist').insert(base),12000);  /* RUN_ME_2.sql not applied yet: save without attribution */
+        return r}).then(function(r){
         if(!missing(r))return done('waitlist',r);
         return withTimeout(sb.from('newsletter_signups').insert({email:email,source:'waitlist'+(aff?':'+aff:'')}),12000).then(function(r2){return done('newsletter_signups',r2)})
       }).catch(function(e){throw fail('waitlist',e)})},
