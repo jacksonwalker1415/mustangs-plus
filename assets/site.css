@@ -1497,6 +1497,14 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 #more .chip:hover{text-decoration:underline;text-underline-offset:4px;background:none}
 #more .chip+.chip::before{content:"";display:inline-block;width:1px;height:14px;background:var(--line-2);margin:0 var(--s4)}
 
+/* ---- 7.5 Density and hierarchy closer to On3 / smumustangs.com: tighter display sizes, tighter rails ---- */
+:root{--d-sec:clamp(28px,3.2vw,44px);--d-page:clamp(44px,6vw,80px)}
+.mcard-b h3{font-size:17px}
+.sec-hd{margin-bottom:var(--s5)}
+.cgrid,.lgrid{gap:var(--s6) var(--s4)}
+.rail{gap:var(--s4)}
+@media(min-width:960px){.rail{grid-auto-columns:calc((100% - var(--s4)*3)/4)}}
+
 @media(max-width:639px){#more .chips{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s4);row-gap:0}#more .chip+.chip::before{display:none}}
 .plans-cn{margin-left:0}
 
