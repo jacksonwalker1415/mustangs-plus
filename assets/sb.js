@@ -311,6 +311,31 @@
         console.warn('[SMU+] reports table unavailable, keeping the report in this browser',r.error);return reportLocal(o,'browser')}
       reportLocal(o,'server');return {dup:false,where:'server'}},function(e){console.warn('[SMU+] report not sent, kept in this browser',e);return reportLocal(o,'browser')})};
 
+  /* ---------- Post likes (supabase/RUN_ME_20_post_likes.sql) ----------
+     Demo mode: kept in this browser (localStorage mp_likes), only the demo account's own likes.
+     Live: public.post_likes, with the liker's display name for "Liked by". If the table is missing (RUN_ME_20 not run yet)
+     or unreachable, likes fall back to this browser instead of failing. Nothing is ever seeded: counts are real likes only. */
+  var LIKES=true,likesOff=false;
+  function likeKey(t,i){return t.id+':'+i}
+  function likesLocal(t){var all=lj('mp_likes',{}),out={},me=SMU.user?'me':null,nm=SMU.user&&(SMU.user.name||'You');
+    t.posts.forEach(function(p,i){var on=me&&all[likeKey(t,i)];if(on)out[i]={names:[nm],mine:true}});return out}
+  function likesMissing(r){var e=r&&r.error;return !!e&&(e.code==='PGRST205'||e.code==='42P01'||r.status===404||/does not exist|schema cache/i.test(e.message||''))}
+  function likesLive(){return SMU.live&&LIKES&&!likesOff&&!!sb}
+  SMU.likes=function(t){if(!t||!t.posts)return Promise.resolve({});
+    var ids=t.posts.map(function(p){return p[4]}).filter(function(x){return x!=null});
+    if(!likesLive()||!ids.length)return Promise.resolve(likesLocal(t));
+    return withTimeout(Promise.resolve(sb.from('post_likes').select('post_id,user_id,profiles(display_name)').in('post_id',ids).order('created_at')),12000).then(function(r){
+      if(r&&r.error){if(likesMissing(r))likesOff=true;return likesLocal(t)}
+      var at={},out={};t.posts.forEach(function(p,i){if(p[4]!=null)at[p[4]]=i});
+      (r.data||[]).forEach(function(x){var i=at[x.post_id];if(i==null)return;var o=out[i]=out[i]||{names:[],mine:false};
+        var mine=SMU.user&&x.user_id===SMU.user.id;if(mine){o.mine=true;o.names.unshift(SMU.user.name||'You')}else o.names.push((x.profiles&&x.profiles.display_name)||'Member')});
+      return out},function(){return likesLocal(t)})};
+  SMU.toggleLike=function(t,i,on){if(!SMU.user)return Promise.reject(new Error('Sign in to like a post.'));var p=t.posts[i];if(!p)return Promise.reject(new Error('Post not found.'));
+    function local(){var all=lj('mp_likes',{}),k=likeKey(t,i);if(on)all[k]=1;else delete all[k];sj('mp_likes',all);return on}
+    if(!likesLive()||p[4]==null)return Promise.resolve(local());
+    var op=on?sb.from('post_likes').insert({post_id:p[4]}):sb.from('post_likes').delete().eq('post_id',p[4]).eq('user_id',SMU.user.id);
+    return withTimeout(Promise.resolve(op),12000).then(function(r){if(r&&r.error){if(likesMissing(r)){likesOff=true;return local()}if(r.error.code==='23505')return on;throw fail('like',r.error)}return on})};
+
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
   ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch','setAvatar','removeAvatar','studentJoin','claimStudent'].forEach(function(k){

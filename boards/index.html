@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Message Boards | SMU+</title>
-<meta name="description" content="The Mustang Board: free and members-only message boards for SMU fans (concept mockup).">
+<meta name="description" content="The Mustang Board: message boards for SMU fans. Game threads, team boards and fan takes (concept mockup).">
 <meta name="theme-color" content="#23347a">
 <meta property="og:site_name" content="SMU+">
 <meta property="og:title" content="Message Boards | SMU+">
-<meta property="og:description" content="The Mustang Board: free and members-only message boards for SMU fans (concept mockup).">
+<meta property="og:description" content="The Mustang Board: message boards for SMU fans. Game threads, team boards and fan takes (concept mockup).">
 <meta name="twitter:title" content="Message Boards | SMU+">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/brand/favicon-64.png">
 <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jacksonwalker1415.github.io/mustangs-plus/assets/brand/og-share.png">
 <meta name="twitter:image:alt" content="The SMU+ logo on flat SMU blue, with the line SMU+ · fan concept, not affiliated with SMU">
-<meta name="twitter:description" content="The Mustang Board: free and members-only message boards for SMU fans (concept mockup).">
+<meta name="twitter:description" content="The Mustang Board: message boards for SMU fans. Game threads, team boards and fan takes (concept mockup).">
 <link rel="manifest" href="../manifest.webmanifest">
 <!--/meta-->
 <!--boot--><style>#boot{display:none}html.booting #boot,html.booted #boot{display:grid}
@@ -54,26 +54,42 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="../assets/brand/smu-plus-logo-lg.webp"><img src="../assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-ring" aria-hidden="true"></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
 <div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU or Learfield. No payments taken.</span> <a href="../privacy/#about">About this project</a></div>
 <div id="site-header"></div>
-<main id="top">
-<section class="page-hero compact has-photo"><div class="bgph"><picture><img class="ph" src="../assets/photos/lib/mens-basketball-team-huddle-north-carolina-1200.webp" srcset="../assets/photos/lib/mens-basketball-team-huddle-north-carolina-1200.webp 1200w, ../assets/photos/lib/mens-basketball-team-huddle-north-carolina-2000.webp 2000w" sizes="100vw" alt="SMU men’s basketball players huddle together on the court" style="object-position:50% 40%" fetchpriority="high" decoding="async"></picture></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><p class="eyebrow">Community</p><h1 class="display">The Mustang Board</h1><p class="lede on-dark">Game threads, practice reports and fan takes. <strong>Free boards for every fan. Premium boards for members.</strong></p>
-<dl class="statbar plain"><div><dt>Boards</dt><dd id="statBoards">5</dd></div><div><dt>Threads</dt><dd id="statThreads">19</dd></div><div><dt>Posts</dt><dd id="statPosts">54</dd></div></dl></div></section>
-<section class="sec"><div class="wrap">
-  <div id="listView">
-    <div class="sec-hd"><div><h2 class="sec-t">Boards</h2></div><button type="button" class="btn btn-red btn-sm" data-compose>New thread</button></div>
-    <div class="findex" id="forumIndex"><div class="skel-rows" aria-hidden="true"><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div></div><span class="sr">Loading</span></div>
-    <div class="box" id="threadList">
-      <div class="box-h"><h3 id="listTitle">All threads</h3><div class="sort" role="group" aria-label="Sort threads"><button data-sort="hot" aria-pressed="true">Hot</button><button data-sort="new" aria-pressed="false">New</button></div></div>
-      <div class="filters-row"><label class="fsearch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><span class="sr">Search threads</span><input id="threadQ" type="search" placeholder="Search threads" autocomplete="off"></label><label>Board <select id="forumFilter"></select></label><label>Sport <select id="sportFilter"></select></label><button type="button" class="linkish" id="boardClear" hidden>Clear filters</button></div>
-      <div class="thead"><span>Thread</span><span class="num">Replies</span><span>Last post</span></div>
-      <div id="threadRows"><div class="skel-rows" aria-hidden="true"><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><div class="skel-row"><i class="sk sk-av"></i><div><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div></div><span class="sr">Loading</span></div>
+<main id="top" class="fx">
+<section class="fx-hero"><div class="wrap fx-hero-in">
+  <div class="fx-hero-t"><h1 id="fxBrand">The Mustang Board</h1><p>Game threads, practice reports and fan takes from the SMU+ community.</p></div>
+  <form class="fx-hsearch" action="./" method="get" role="search"><label class="sr" for="fxQ">Search the boards</label><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><input id="fxQ" name="q" type="search" placeholder="Search the boards" autocomplete="off"><button class="btn btn-white btn-sm" type="submit">Search</button></form>
+</div>
+<nav class="fx-tabs" aria-label="Boards"><div class="wrap"><a href="./">Forums</a><a href="?f=all">New posts</a><a href="../rules/">Rules</a><button type="button" class="fx-tab-btn" data-mark-all>Mark all read</button></div></nav>
+</section>
+<div class="wrap fx-page">
+  <div id="indexView" class="fx-index">
+    <div class="fx-index-main">
+      <div class="fx-index-bar"><button type="button" class="btn btn-red" data-compose>Post thread</button></div>
+      <div id="fxNodes"><p class="fx-loading" role="status">Loading the boards…</p></div>
     </div>
-    <section class="brules" id="rules" aria-labelledby="rules-h"><h3 id="rules-h">Board rules</h3><ul>
-      <li>Be civil. No posts about players&rsquo; families, and no screenshots of members-only posts.</li>
-      <li><b>Profile photos:</b> no SMU logos, no photos of athletes or other people, nothing offensive. Use <b>Report</b> on a post to flag a member&rsquo;s photo, and photos that break these rules are removed.</li>
-    </ul></section>
+    <aside class="fx-side" aria-label="Board info">
+      <section class="fx-widget"><h2>Latest posts</h2><ul class="fx-latest" id="fxLatest"></ul></section>
+      <section class="fx-widget"><h2>Board statistics</h2><dl class="fx-stats" id="fxStats"></dl></section>
+      <section class="fx-widget" id="rules"><h2>Board rules</h2><ul class="fx-rules">
+        <li>Be civil. No posts about players&rsquo; families.</li>
+        <li>Profile photos: no SMU logos, no photos of athletes or other people, nothing offensive. Use Report on a post to flag a member&rsquo;s photo.</li>
+        <li><a href="../rules/">Read the full community rules</a></li>
+      </ul></section>
+    </aside>
+  </div>
+  <div id="listView" hidden>
+    <div id="fxListCrumbs"></div>
+    <div class="fx-head"><div><h1 id="fxListTitle">Threads</h1><p id="fxListDesc"></p></div><button type="button" class="btn btn-red" id="fxPostThread" data-compose>Post thread</button></div>
+    <div class="fx-filter">
+      <div class="fx-sort" id="fxSort" role="group" aria-label="Sort threads"><button type="button" data-sort="latest" aria-pressed="true"><span class="fx-lg">Latest activity</span><span class="fx-sm">Latest</span></button><button type="button" data-sort="new" aria-pressed="false">New</button><button type="button" data-sort="top" aria-pressed="false">Top</button></div>
+      <form class="fx-lsearch" id="fxListSearch" role="search"><label class="sr" for="fxListQ">Search threads</label><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><input id="fxListQ" type="search" placeholder="Search threads" autocomplete="off"></form>
+      <span class="fx-count" id="fxListCount"></span>
+    </div>
+    <div class="fx-list"><div class="fx-list-h" id="fxListHead" aria-hidden="true"></div><div id="fxRows"></div></div>
+    <div id="fxListPages"></div>
   </div>
   <div id="threadView" hidden></div>
-</div></section>
+</div>
 </main>
 <div id="site-footer"></div>
 <script src="../assets/config.js?v=202610262800"></script>

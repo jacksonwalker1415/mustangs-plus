@@ -846,92 +846,239 @@
     $('#recRail').innerHTML=secHead('Recruiting reads',libUrl('recruiting'),'See all')+rail(byCat('recruiting').concat(byCat('portal')));
   }
 
-  /* ---------- Boards ---------- */
+  /* ---------- Boards: a traditional forum (XenForo/On3-style index, thread list and thread view, Reddit-style sorting).
+     Every number shown is counted from real threads and posts (or the database's views); nothing is seeded.
+     Unread tracking, bookmarks and the "mark all read" cutoff live in this browser (localStorage). ---------- */
   function boards(){
-    var params=new URLSearchParams(location.search),state={f:params.get('f')||'all',sport:params.get('sport')||'',sort:'hot',q:''};
-    var member=seesMember(),listView=$('#listView'),threadView=$('#threadView');
-    function lastIn(f){var l=MP.THREADS.filter(function(t){return t.f===f.id});return l[0]}
-    var groups=['Premium','Community'];
-    function renderIndex(){if(!SMU.live)SMU.boardStats();
-      var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});[['#statBoards',MP.FORUMS.length],['#statThreads',tt],['#statPosts',tp]].forEach(function(x){var el=$(x[0]);if(el)el.textContent=x[1].toLocaleString()});
-      $('#forumIndex').innerHTML=groups.map(function(g){return '<div class="fgroup"><div class="fgroup-h"><h3>'+g+(GATING&&g==='Premium'?' <span class="pill pill-prem">'+LOCK+'Members</span>':'')+'</h3><span class="num">Threads</span><span class="num">Posts</span><span class="f-last-h">Last post</span></div>'+
-      MP.FORUMS.filter(function(f){return f.group===g}).map(function(f){var t=lastIn(f);
-        return '<button class="frow" data-f="'+f.id+'"><span class="fi'+(GATING&&f.prem?' prem':'')+'">'+(GATING&&f.prem?LOCK:CHAT)+'</span><span class="frow-main"><b>'+f.name+'</b><small>'+(GATING?f.desc:String(f.desc||'').replace(/\s*Members only\.?$/,''))+'</small></span>'+
-        '<span class="num">'+f.threads.toLocaleString()+'</span><span class="num">'+f.posts.toLocaleString()+'</span>'+
-        '<span class="f-last">'+(t?'<b>'+esc(t.title)+'</b><small>'+esc(MP.USERS[lastBy(t)].n)+' · '+lastAgo(t)+' ago</small>':'<small>No posts yet</small>')+'</span></button>'}).join('')+'</div>'}).join('')+
-      '<div class="fgroup"><div class="fgroup-h"><h3>Team boards</h3><span class="f-last-h">12 programs</span></div><div class="team-boards">'+
-      MP.SPORTS.map(function(s){var n=((MP.SPORT_STATS||{})[s.slug]||{}).threads||0;return '<button class="tb" data-sport="'+s.slug+'">'+sportIcon(s.slug)+'<b>'+s.name+'</b><small>'+(n?n.toLocaleString()+(n===1?' thread':' threads'):'No threads yet')+'</small></button>'}).join('')+'</div></div>'}
-    renderIndex();
-    var sel=$('#sportFilter');sel.innerHTML='<option value="">All sports</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'">'+s.name+'</option>'}).join('');sel.value=state.sport;
-    sel.addEventListener('change',function(){state.sport=sel.value;renderList()});
-    var fsel=$('#forumFilter');fsel.innerHTML='<option value="all">All boards</option>'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'">'+f.name+'</option>'}).join('');fsel.value=state.f;
-    fsel.addEventListener('change',function(){state.f=fsel.value;renderList()});
-    $('#forumIndex').addEventListener('click',function(e){var b=e.target.closest('[data-f],[data-sport]');if(!b)return;
-      if(b.dataset.f){state.f=b.dataset.f;state.sport=''}else{state.sport=b.dataset.sport;state.f='all'}
-      fsel.value=state.f;sel.value=state.sport;renderList();$('#threadList').scrollIntoView({behavior:'smooth',block:'start'})});
-    $$('.sort button').forEach(function(b){b.addEventListener('click',function(){state.sort=b.dataset.sort;renderList()})});
-    var tq=$('#threadQ');tq.addEventListener('input',function(){state.q=tq.value.trim().toLowerCase();renderList()});
-    function clearAll(){state.f='all';state.sport='';state.q='';tq.value='';fsel.value='all';sel.value='';renderList()}
-    $('#boardClear').addEventListener('click',clearAll);
-    $('#threadRows').addEventListener('click',function(e){if(e.target.closest('[data-board-clear]'))clearAll()});
-    document.addEventListener('mp:member',function(){member=seesMember();var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1])});
-    function renderList(){
-      $$('.sort button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.sort===state.sort)});
-      var list=MP.THREADS.filter(function(t){return (state.f==='all'||t.f===state.f)&&(!state.sport||t.sport===state.sport)&&(!state.q||(t.title+' '+t.posts.map(function(p){return p[1]}).join(' ')).toLowerCase().indexOf(state.q)>=0)});
-      $('#boardClear').hidden=!(state.f!=='all'||state.sport||state.q);
-      if(state.sort==='hot')list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||(b.replies||0)-(a.replies||0)});else list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||(b.id-a.id)});
-      var f=forumBy(state.f),s=sportBy(state.sport);$('#listTitle').textContent=(f?f.name:'All threads')+(s?' · '+s.name:'');
-      $('#threadRows').innerHTML=list.length?list.map(function(t){return threadRow(t)}).join(''):(state.q?emptyState('search','No threads match \u201c'+esc(tq.value.trim())+'\u201d','Try fewer words, or clear the filters and browse every board.','<button type="button" class="btn btn-navy btn-sm" data-board-clear>Clear filters</button>'):emptyState('chat','Quiet in here so far','No threads on this board yet. Start the first one, or clear the filters to see everything.','<button type="button" class="btn btn-red btn-sm" data-compose>Start a thread</button><button type="button" class="btn btn-outline btn-sm" data-board-clear>Clear filters</button>'));
-    }
-    function renderThread(id){
-      var t=null;MP.THREADS.forEach(function(x){if(x.id===id)t=x});if(!t){location.hash='';return}
-      var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),locked=f.prem&&!member,n=t.posts.length;
-      var times=t.posts.map(function(p,i){if(p[3])return SMU.ago(p[3])+' ago';if(!i)return t.ago+' ago';var m={m:1,h:60,d:1440,w:10080},x=t.ago.match(/(\d+)(\w)/),tot=x?(+x[1])*(m[x[2]]||1):60,v=Math.max(1,Math.round(tot*(1-i/(n+1))));return (v<60?v+'m':v<1440?Math.round(v/60)+'h':Math.round(v/1440)+'d')+' ago'});
-      /* Post counts only when every post is loaded; signed-out live visitors can't see members-only posts, so a count would be short. */
-      var allPosts=!SMU.live||paidT(SMU.tier());
-      var postHTML=t.posts.map(function(p,i){var u=MP.USERS[p[0]],q=p[2]!=null?t.posts[p[2]]:null,pc=allPosts?postsBy(p[0]):null;
-        return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+(pc==null?'':' · '+pc.toLocaleString()+(pc===1?' post':' posts')+' here')+'</small></div></aside>'+
-          '<div class="post-body"><div class="post-h"><span>'+times[i]+'</span><a href="#t'+t.id+'" class="post-n">#'+(i+1)+'</a></div>'+
-          (q?'<blockquote><b>'+esc(MP.USERS[q[0]].n)+' said:</b> '+esc(q[1].length>140?q[1].slice(0,140)+'…':q[1])+'</blockquote>':'')+
-          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" class="rep" data-report="'+i+'" aria-label="Report post #'+(i+1)+'"'+(SMU.reported&&SMU.reported(t.id,i)?' data-done="1"':'')+'>'+(SMU.reported&&SMU.reported(t.id,i)?'Reported':'Report')+'</button>'+(avPhoto(u)?'<button type="button" data-demo="Report profile photo" class="rep-ph" aria-label="Report '+esc(u.n)+'\u2019s profile photo">Report photo</button>':'')+'</div></div></article>'});
-      var shown=locked?postHTML[0]+'<div class="gate">'+postHTML.slice(1,3).join('')+'<div class="gate-cta"><div>'+LOCK+'<h4>Members-only board</h4><p>'+(t.replies?nReplies(t)+(t.replies===1?' reply':' replies')+' in ':'This thread is in ')+esc(f.name)+'. Join any plan to read and post.</p><a class="btn btn-red" href="'+ROOT+'#membership">See plans</a> <button class="btn btn-outline" id="asMember">Preview as member</button></div></div></div>':postHTML.join('');
-      threadView.innerHTML='<nav class="crumbs"><a href="#">Boards</a> › <a href="?f='+f.id+'" data-f-link="'+f.id+'">'+esc(f.name)+'</a>'+(s?' › <span>'+esc(s.name)+'</span>':'')+'</nav>'+
-        '<div class="tv-head"><div class="pills">'+pills(t)+'</div><h1 class="tv-title">'+esc(t.title)+'</h1><p class="t-meta">Started by <b>'+esc(MP.USERS[t.by].n)+'</b> · '+t.ago+' ago'+(t.replies==null?'':' · '+nReplies(t)+(t.replies===1?' reply':' replies'))+(t.views?' · '+t.views+' views':'')+'</p></div>'+
-        '<div class="pager"><span>Page 1 of '+Math.max(1,Math.ceil((t.replies||0)/20))+'</span><div><button class="btn btn-outline btn-sm" data-demo="Watch thread">Watch</button><button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
-        '<div class="posts">'+shown+'</div>'+
-        (locked?'':replyBox(t))+
-        (GATING&&member&&f.prem?'<p class="note">Viewing as a member (demo). <button class="linkish" id="asGuest">Switch back to guest view</button></p>':'')+
-        '';
-      var am=$('#asMember');if(am)am.addEventListener('click',function(){setMember(true)});
-      if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});
-        watching={id:t.id,off:function(){u1();u2()}}}
-      var ag=$('#asGuest');if(ag)ag.addEventListener('click',function(){setMember(false)});
-    }
-    var watching={id:null,off:function(){}};
-    function replyBox(t){if(!SMU.user)return '<div class="reply reply-out"><p><b>Join the conversation.</b> Sign in to reply'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><button type="button" class="btn btn-red btn-sm" data-auth>Sign in to reply</button></div>';
-      var me=SMU.me();return '<form class="reply" id="replyForm" data-thread="'+t.id+'" novalidate>'+avatar(me)+'<div class="reply-main"><p class="reply-q" id="replyQ" hidden></p><label class="sr" for="replyText">Write a reply</label><textarea id="replyText" rows="2" maxlength="5000" placeholder="Write a reply…" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p><p class="reply-rules">Keep it civil: <a href="'+ROOT+'rules/">community rules</a></p></div><button class="btn btn-red btn-sm" type="submit">Post</button></form>'}
-    var quoteIdx=null;
-    threadView.addEventListener('click',function(e){var qb=e.target.closest('[data-quote]'),rb=e.target.closest('[data-reply]');if(!qb&&!rb)return;
-      var ta=$('#replyText');if(!ta){var a=$('[data-auth]',threadView);if(a)a.click();return}
-      if(qb){quoteIdx=+qb.dataset.quote;var m=location.hash.match(/^#t(\d+)$/),t=m&&MP.THREADS.filter(function(x){return x.id===+m[1]})[0],p=t&&t.posts[quoteIdx];
-        var rq=$('#replyQ');if(p){rq.hidden=false;rq.innerHTML='Quoting <b>'+esc(MP.USERS[p[0]]?MP.USERS[p[0]].n:'a member')+'</b> <button type="button" class="linkish" id="unquote">Remove quote</button>'}}
+    var Q=new URLSearchParams(location.search),PER=20,PPER=20;
+    var indexView=$('#indexView'),listView=$('#listView'),threadView=$('#threadView');
+    var state={f:Q.get('f')||'',sport:Q.get('sport')||'',team:Q.get('team')||'',sort:Q.get('sort')||'latest',q:(Q.get('q')||'').trim(),page:Math.max(1,parseInt(Q.get('page'),10)||1)};
+    if(['latest','new','top'].indexOf(state.sort)<0)state.sort='latest';
+    var TEAMS=[{id:'football',name:'Football',desc:'Game threads, depth chart talk and everything on the gridiron.',sports:['football']},
+      {id:'basketball',name:'Basketball',desc:'Men\u2019s and women\u2019s hoops at Moody Coliseum.',sports:['mens-basketball','womens-basketball']},
+      {id:'olympic',name:'Olympic sports',desc:'Soccer, volleyball, swimming and diving, golf, tennis, track, rowing and equestrian.',sports:null}];
+    var MAIN=['football','mens-basketball','womens-basketball'];
+    function teamSports(tm){return tm.sports||MP.SPORTS.map(function(s){return s.slug}).filter(function(s){return MAIN.indexOf(s)<0})}
+    function teamBy(id){for(var i=0;i<TEAMS.length;i++)if(TEAMS[i].id===id)return TEAMS[i];return null}
+    var CATS=[{name:'SMU sports talk',ids:['hilltop','paddock','filmroom','recruiting']},{name:'Team boards',teams:true},{name:'Around the Hilltop',ids:['boulevard','help']}];
+    var DESC={hilltop:'The main board for every Mustang fan. Game talk, takes and hype.',paddock:'Insider notes, practice reports and staff intel.',filmroom:'Frame-by-frame breakdowns with the SMU+ film staff.'};
+    function fdesc(f){return DESC[f.id]||String(f.desc||'').replace(/\s*Members[- ]only[^.]*\.?/ig,'').trim()}
+    /* ---- time: real timestamps when the post has one; sample posts are spread between the thread's start and now ---- */
+    var NOW=Date.now(),DAY=864e5;
+    var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function agoMs(s){var m={m:6e4,h:36e5,d:DAY,w:7*DAY},x=String(s||'').match(/(\d+)\s*(\w)/);return x?(+x[1])*(m[x[2]]||6e4):36e5}
+    function okT(v){return v&&!isNaN(Date.parse(v))}
+    function times(t){var n=t.posts.length;if(t._ts&&t._tn===n)return t._ts;
+      var start=t.posts[0]&&okT(t.posts[0][3])?Date.parse(t.posts[0][3]):NOW-agoMs(t.ago),tot=Math.max(6e4,NOW-start);
+      t._ts=t.posts.map(function(p,i){return okT(p[3])?Date.parse(p[3]):Math.round(start+tot*(i/(n+1)))});t._tn=n;return t._ts}
+    function startT(t){return times(t)[0]}
+    function lastT(t){var a=times(t);return a[a.length-1]}
+    function clock(d){var h=d.getHours(),m=d.getMinutes();return (h%12||12)+':'+(m<10?'0':'')+m+' '+(h<12?'AM':'PM')}
+    function when(ms){var s=(Date.now()-ms)/1000;if(s<60)return 'A moment ago';if(s<3600){var m=Math.round(s/60);return m+(m===1?' minute ago':' minutes ago')}
+      var d=new Date(ms),t0=new Date();t0.setHours(0,0,0,0);t0=t0.getTime();
+      if(ms>=t0)return 'Today at '+clock(d);if(ms>=t0-DAY)return 'Yesterday at '+clock(d);if(ms>=t0-6*DAY)return DAYS[d.getDay()]+' at '+clock(d);
+      return MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()}
+    function full(ms){var d=new Date(ms);return MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' at '+clock(d)}
+    function tm(ms){return '<time datetime="'+new Date(ms).toISOString()+'" title="'+full(ms)+'">'+when(ms)+'</time>'}
+    /* ---- this browser's read state: {all: cutoff ms, t: {threadId: posts seen}} and bookmarks ---- */
+    function lsj(k,d){try{return JSON.parse(localStorage.getItem(k)||'null')||d}catch(e){return d}}
+    function lss(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+    var READ=lsj('mp_fx_read',{});READ.t=READ.t||{};var MARKS=lsj('mp_fx_marks',{});
+    function seen(t){var v=READ.t[t.id];if(v!=null)return Math.min(v,t.posts.length);var cut=Math.max(READ.all||0,NOW-3*DAY),n=0;times(t).forEach(function(x){if(x<=cut)n++});return n}
+    function unread(t){return !t.locked&&t.posts.length>seen(t)}
+    function markRead(t){READ.t[t.id]=t.posts.length;var k=Object.keys(READ.t);if(k.length>400)k.slice(0,k.length-400).forEach(function(x){delete READ.t[x]});lss('mp_fx_read',READ)}
+    function markAll(){READ={all:Date.now(),t:{}};lss('mp_fx_read',READ)}
+    /* ---- shared helpers ---- */
+    var RANKS=[[500,'All-American'],[150,'All-Conference'],[50,'Senior'],[15,'Junior'],[5,'Sophomore'],[0,'Freshman']];
+    function rank(n){for(var i=0;i<RANKS.length;i++)if(n>=RANKS[i][0])return RANKS[i][1];return 'Freshman'}
+    function U(id){return MP.USERS[id]||{n:'Member',since:''}}
+    function prefix(t){var s=t.sport&&sportBy(t.sport);return s?'<span class="fx-pre">'+esc(s.name)+'</span>':''}
+    function num(n){return (+n||0).toLocaleString()}
+    function nRep(t){return t.locked?null:(t.replies!=null?t.replies:Math.max(0,t.posts.length-1))}
+    function inTeam(t,tm){return !!t.sport&&teamSports(tm).indexOf(t.sport)>=0}
+    function newest(list){var b=null;list.forEach(function(t){if(!b||lastT(t)>lastT(b))b=t});return b}
+    function stat(k){return (MP.SPORT_STATS||{})[k]||{threads:0,posts:0}}
+    function teamStats(tm){var o={threads:0,posts:0};teamSports(tm).forEach(function(s){var x=stat(s);o.threads+=x.threads||0;o.posts+=x.posts||0});return o}
+    function fmt(s){var h=esc(String(s||'')).replace(/\r\n?/g,'\n');
+      h=h.replace(/\bhttps?:\/\/[^\s<]+[^\s<.,;:!?)]/g,function(u){return '<a href="'+u+'" rel="nofollow noopener" target="_blank">'+u+'</a>'});
+      h=h.replace(/(^|[\s(])@([A-Za-z0-9_][A-Za-z0-9_.-]{1,29}[A-Za-z0-9_])/g,'$1<span class="fx-at">@$2</span>');
+      return h.split(/\n{2,}/).map(function(par){return '<p>'+par.replace(/\n/g,'<br>')+'</p>'}).join('')}
+    function crumbs(items){return '<nav class="fx-crumbs" aria-label="Breadcrumb"><ol>'+items.map(function(x,i){return '<li>'+(x[1]?'<a href="'+x[1]+'">'+esc(x[0])+'</a>':'<span aria-current="page">'+esc(x[0])+'</span>')+'</li>'}).join('')+'</ol></nav>'}
+    function pager(cur,pages,href){if(pages<2)return '';var out=[],sh={};[1,pages,cur-1,cur,cur+1].forEach(function(p){if(p>=1&&p<=pages)sh[p]=1});var last=0;
+      for(var p=1;p<=pages;p++){if(!sh[p])continue;if(last&&p-last>1)out.push('<span class="fx-pg-gap" aria-hidden="true">\u2026</span>');
+        out.push(p===cur?'<span class="fx-pg cur" aria-current="page">'+p+'</span>':'<a class="fx-pg" href="'+href(p)+'">'+p+'</a>');last=p}
+      return '<nav class="fx-pages" aria-label="Pages">'+(cur>1?'<a class="fx-pg nav" href="'+href(cur-1)+'">Prev</a>':'')+out.join('')+(cur<pages?'<a class="fx-pg nav" href="'+href(cur+1)+'">Next</a>':'')+'</nav>'}
+    var BOOK='<svg class="fx-book" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11v16.6l-5.5-3.7-5.5 3.7z"/></svg>',SHARE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7a3 3 0 0 0 .1.8L8.4 11.2a3 3 0 1 0 0 3.6l6.7 3.4A3 3 0 1 0 18 16z"/></svg>';
+    var HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>';
+    /* ================= Board index ================= */
+    function nodeRow(o){var t=o.last,lu=t&&U(t.posts[t.posts.length-1][0]),un=o.list.some(unread);
+      return '<div class="fx-node'+(un?' unread':'')+'">'+
+        '<div class="fx-node-main"><h3 class="fx-node-t"><a href="'+o.href+'">'+esc(o.name)+'</a>'+(un?'<span class="fx-new">New</span>':'')+'</h3><p class="fx-node-d">'+esc(o.desc)+'</p>'+
+        (o.subs?'<p class="fx-subs">'+o.subs+'</p>':'')+
+        '<p class="fx-node-mob">'+num(o.threads)+(o.threads===1?' thread':' threads')+' \u00b7 '+num(o.posts)+(o.posts===1?' message':' messages')+'</p></div>'+
+        '<dl class="fx-node-stats"><div><dt>Threads</dt><dd>'+num(o.threads)+'</dd></div><div><dt>Messages</dt><dd>'+num(o.posts)+'</dd></div></dl>'+
+        '<div class="fx-node-last">'+(t?avatar(t.posts[t.posts.length-1][0])+'<div><a class="fx-node-lt" href="#t'+t.id+'-last">'+esc(t.title)+'</a><span>'+tm(lastT(t))+' \u00b7 '+esc(lu.n)+'</span></div>':'<span class="fx-none">No posts yet</span>')+'</div></div>'}
+    function renderIndex(){var used={},html='';
+      CATS.forEach(function(c,ci){var rows=[];
+        if(c.teams)TEAMS.forEach(function(tm){var list=MP.THREADS.filter(function(t){return inTeam(t,tm)}),st=teamStats(tm);
+          rows.push(nodeRow({name:tm.name,desc:tm.desc,href:'?team='+tm.id,list:list,last:newest(list),threads:st.threads||list.length,posts:st.posts,
+            subs:tm.sports&&tm.sports.length===1?'':teamSports(tm).map(function(s){var sp=sportBy(s);return sp?'<a href="?sport='+s+'">'+esc(sp.name)+'</a>':''}).join('')}))});
+        else{var ids=c.ids.slice();if(ci===CATS.length-1)MP.FORUMS.forEach(function(f){if(!used[f.id]&&ids.indexOf(f.id)<0&&!CATS.some(function(x){return x.ids&&x.ids.indexOf(f.id)>=0}))ids.push(f.id)});
+          ids.forEach(function(id){var f=forumBy(id);if(!f)return;used[id]=1;var list=MP.THREADS.filter(function(t){return t.f===id});
+            rows.push(nodeRow({name:f.name,desc:fdesc(f),href:'?f='+id,list:list,last:newest(list),threads:f.threads,posts:f.posts}))})}
+        if(rows.length)html+='<section class="fx-cat"><h2 class="fx-cat-h">'+esc(c.name)+'</h2><div class="fx-nodes">'+rows.join('')+'</div></section>'});
+      $('#fxNodes').innerHTML=html;
+      var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads||0;tp+=f.posts||0});
+      var posters={};MP.THREADS.forEach(function(t){if(!t.locked)t.posts.forEach(function(p){posters[p[0]]=1})});
+      $('#fxStats').innerHTML='<div><dt>Threads</dt><dd>'+num(tt)+'</dd></div><div><dt>Messages</dt><dd>'+num(tp)+'</dd></div><div><dt>Posters</dt><dd>'+num(Object.keys(posters).length)+'</dd></div>';
+      var lp=MP.THREADS.filter(function(t){return !t.locked}).slice().sort(function(a,b){return lastT(b)-lastT(a)}).slice(0,6);
+      $('#fxLatest').innerHTML=lp.length?lp.map(function(t){var p=t.posts[t.posts.length-1];return '<li>'+avatar(p[0])+'<div><a href="#t'+t.id+'-last">'+esc(t.title)+'</a><span>'+esc(U(p[0]).n)+' \u00b7 '+tm(lastT(t))+'</span></div></li>'}).join(''):'<li class="fx-none">No posts yet</li>'}
+    /* ================= Thread list ================= */
+    function scope(){var f=state.f&&state.f!=='all'?forumBy(state.f):null,tmm=!f&&state.team?teamBy(state.team):null,sp=!f&&!tmm&&state.sport?sportBy(state.sport):null;
+      var title=f?f.name:tmm?tmm.name:sp?sp.name:state.q?'Search results':'New posts',desc=f?fdesc(f):tmm?tmm.desc:sp?'Every thread tagged '+sp.name+', across all boards.':state.q?'Threads matching \u201c'+state.q+'\u201d across every board.':'The latest activity across every board.';
+      var test=function(t){return f?t.f===f.id:tmm?inTeam(t,tmm):sp?t.sport===sp.slug:true};
+      var crumb=[['Boards','./']];if(sp&&!f)crumb.push(['Team boards','./#team-boards']);
+      return {f:f,team:tmm,sp:sp,title:title,desc:desc,test:test,crumb:crumb,all:!f}}
+    function qs(o){var p=new URLSearchParams();var s=Object.assign({},state,o||{});
+      if(s.f)p.set('f',s.f);if(s.team&&!s.f)p.set('team',s.team);if(s.sport&&!s.f&&!s.team)p.set('sport',s.sport);if(s.q)p.set('q',s.q);if(s.sort!=='latest')p.set('sort',s.sort);if(s.page>1)p.set('page',s.page);
+      var x=p.toString();return x?'?'+x:'./'}
+    function matches(t){if(!state.q)return true;var q=state.q.toLowerCase();return (t.title+' '+t.posts.map(function(p){return p[1]}).join(' ')).toLowerCase().indexOf(q)>=0}
+    function threadRow(t,all){var last=t.posts[t.posts.length-1],lu=U(last[0]),r=nRep(t),un=unread(t),pages=Math.ceil(t.posts.length/PPER),f=forumBy(t.f);
+      var jump='';if(pages>1){jump='<span class="fx-pj">';for(var p=1;p<=pages;p++)if(p<=3||p===pages)jump+='<a href="#t'+t.id+'-page'+p+'">'+p+'</a>';jump+='</span>'}
+      return '<div class="fx-row'+(un?' unread':'')+(t.pin?' pinned':'')+'">'+'<span class="fx-row-av">'+avatar(t.by)+'</span>'+
+        '<div class="fx-row-main"><p class="fx-row-t">'+(t.pin?'<span class="fx-pin" title="Pinned">'+PIN+'<span class="sr">Pinned</span></span>':'')+(un?'<span class="fx-new">New</span>':'')+prefix(t)+
+          '<a class="fx-row-link" href="#t'+t.id+(un&&seen(t)>0?'-new':'')+'">'+esc(t.title)+'</a></p>'+
+          '<p class="fx-row-m"><span>'+esc(U(t.by).n)+'</span> \u00b7 '+tm(startT(t))+(all&&f?' \u00b7 <a class="fx-row-f" href="?f='+f.id+'">'+esc(f.name)+'</a>':'')+jump+'</p>'+
+          '<p class="fx-row-mob">'+(r==null?'':num(r)+(r===1?' reply':' replies')+' \u00b7 ')+'Last: '+esc(lu.n)+', '+tm(lastT(t))+'</p></div>'+
+        '<dl class="fx-row-stats"><div><dt>Replies</dt><dd>'+(r==null?'\u2013':num(r))+'</dd></div>'+(VIEWS?'<div><dt>Views</dt><dd>'+(t.views?esc(t.views):'\u2013')+'</dd></div>':'')+'</dl>'+
+        '<div class="fx-row-last"><a href="#t'+t.id+'-last">'+tm(lastT(t))+'</a><span>'+esc(lu.n)+'</span></div><span class="fx-row-lav">'+avatar(last[0])+'</span></div>'}
+    var VIEWS=false;
+    function renderList(){var sc=scope();
+      var list=MP.THREADS.filter(function(t){return sc.test(t)&&matches(t)});
+      VIEWS=!!SMU.live&&list.some(function(t){return !!t.views});  /* views only where the database really counted them */
+      var by={latest:function(a,b){return lastT(b)-lastT(a)},'new':function(a,b){return startT(b)-startT(a)},top:function(a,b){return (nRep(b)||0)-(nRep(a)||0)||lastT(b)-lastT(a)}}[state.sort];
+      var pins=list.filter(function(t){return t.pin}).sort(by),rest=list.filter(function(t){return !t.pin}).sort(by);
+      var pages=Math.max(1,Math.ceil(rest.length/PER));if(state.page>pages)state.page=pages;var slice=rest.slice((state.page-1)*PER,state.page*PER);
+      $('#fxListCrumbs').innerHTML=crumbs(sc.crumb.concat([[sc.title]]));
+      $('#fxListTitle').textContent=sc.title;$('#fxListDesc').textContent=sc.desc;
+      var pt=$('#fxPostThread');pt.dataset.forum=sc.f?sc.f.id:'';pt.dataset.sport=sc.sp?sc.sp.slug:sc.team&&sc.team.sports&&sc.team.sports.length===1?sc.team.sports[0]:'';
+      $$('#fxSort button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.sort===state.sort))});
+      var lq=$('#fxListQ');if(document.activeElement!==lq)lq.value=state.q;lq.placeholder=sc.f?'Search '+sc.f.name:'Search threads';
+      $('#fxListHead').innerHTML='<span class="fx-c-t">Thread</span><span class="fx-c-n"><span>Replies</span>'+(VIEWS?'<span>Views</span>':'')+'</span><span class="fx-c-l">Last post</span>';
+      $('#fxListHead').classList.toggle('views',VIEWS);
+      var rows='';if(pins.length&&state.page===1)rows+='<p class="fx-group">Pinned threads</p>'+pins.map(function(t){return threadRow(t,sc.all)}).join('')+(slice.length?'<p class="fx-group">Threads</p>':'');
+      rows+=slice.map(function(t){return threadRow(t,sc.all)}).join('');
+      $('#fxRows').classList.toggle('views',VIEWS);
+      $('#fxRows').innerHTML=rows||(state.q?emptyState('search','No threads match \u201c'+esc(state.q)+'\u201d','Try fewer words, or search every board.','<a class="btn btn-outline btn-sm" href="'+qs({q:'',page:1})+'">Clear search</a>'):emptyState('chat','No threads here yet','Start the first one.','<button type="button" class="btn btn-red btn-sm" data-compose'+(sc.f?' data-forum="'+sc.f.id+'"':'')+(sc.sp?' data-sport="'+sc.sp.slug+'"':'')+'>Post thread</button>'));
+      $('#fxListPages').innerHTML=pager(state.page,pages,function(p){return qs({page:p})});
+      $('#fxListCount').textContent=list.length?num(list.length)+(list.length===1?' thread':' threads'):'';
+      document.title=sc.title+' | The Mustang Board | SMU+'}
+    $('#fxSort').addEventListener('click',function(e){var b=e.target.closest('[data-sort]');if(!b)return;state.sort=b.dataset.sort;state.page=1;history.replaceState(null,'',qs());renderList()});
+    var qT;$('#fxListQ').addEventListener('input',function(){var v=this.value.trim();clearTimeout(qT);qT=setTimeout(function(){state.q=v;state.page=1;history.replaceState(null,'',qs());renderList()},150)});
+    $('#fxListSearch').addEventListener('submit',function(e){e.preventDefault()});
+    document.addEventListener('click',function(e){var b=e.target.closest('[data-mark-all]');if(!b)return;markAll();toast('Everything is marked as read.');renderIndex();if(!listView.hidden)renderList()});
+    /* ================= Thread view ================= */
+    var likes={},quoteIdx=null;
+    function likeLine(o){if(!o||!o.names.length)return '';var n=o.names.slice();if(o.mine)n[0]='You';var s=n.length===1?n[0]:n.length===2?n[0]+' and '+n[1]:n.length===3?n[0]+', '+n[1]+' and '+n[2]:n[0]+', '+n[1]+' and '+(n.length-2)+' others';
+      return '<span class="fx-likes-ic">'+HEART+'</span><span>'+esc(s)+'</span>'}
+    function paintLikes(t){var m=likes[t.id]||{};$$('.fx-msg',threadView).forEach(function(el){var i=+el.dataset.i,o=m[i],bar=$('.fx-likes',el),b=$('[data-like]',el);
+      if(bar){bar.innerHTML=likeLine(o);bar.hidden=!(o&&o.names.length)}if(b){b.setAttribute('aria-pressed',String(!!(o&&o.mine)));$('span',b).textContent=o&&o.mine?'Liked':'Like'}})}
+    function loadLikes(t){SMU.likes(t).then(function(m){likes[t.id]=m;var cur=hashT();if(cur&&cur.id===t.id)paintLikes(t)},function(){})}
+    function hashT(){var m=location.hash.match(/^#t(\d+)(?:-(p\d+|new|last|page\d+))?$/);return m?{id:+m[1],x:m[2]||''}:null}
+    function findT(id){var t=null;MP.THREADS.forEach(function(x){if(x.id===id)t=x});return t}
+    function msg(t,p,i,ctx){var u=U(p[0]),q=p[2]!=null?t.posts[p[2]]:null,me=SMU.me(),cnt=ctx.counts[p[0]]||0,ts=times(t)[i],st=u.staff,isNew=ctx.seen>0&&i>=ctx.seen&&ctx.unread;
+      var badge=st?'<span class="fx-banner staff">Staff</span>':(p[0]===me&&SMU.tier&&SMU.tier()==='student')?'<span class="fx-banner">Student</span>':'<span class="fx-banner">Member</span>';
+      var title=st?esc(u.tier||'SMU+ staff'):rank(cnt);
+      var mk=MARKS[t.id+':'+i];
+      return (isNew&&i===ctx.seen&&i>0?'<div class="fx-newline" id="t'+t.id+'-newline"><span>New</span></div>':'')+
+        '<article class="fx-msg'+(i===0?' op':'')+'" id="t'+t.id+'-p'+(i+1)+'" data-i="'+i+'">'+
+        '<div class="fx-user">'+avatar(p[0],true,true)+'<div class="fx-user-d"><b class="fx-name">'+esc(u.n)+'</b><span class="fx-rank">'+title+'</span>'+badge+
+          '<span class="fx-time-m">'+tm(ts)+'</span></div>'+
+          '<dl class="fx-user-x">'+(u.since?'<div><dt>Joined</dt><dd>'+esc(u.since)+'</dd></div>':'')+(ctx.all?'<div><dt>Messages</dt><dd>'+num(cnt)+'</dd></div>':'')+'</dl></div>'+
+        '<div class="fx-main"><header class="fx-attr"><a class="fx-time" href="#t'+t.id+'-p'+(i+1)+'">'+tm(ts)+'</a>'+(p[0]===t.by&&i>0?'<span class="fx-op">Thread starter</span>':'')+
+          '<span class="fx-attr-r">'+(isNew?'<span class="fx-new">New</span>':'')+
+          '<button type="button" class="fx-ico" data-share="'+(i+1)+'" aria-label="Share post #'+(i+1)+'">'+SHARE+'</button>'+
+          '<button type="button" class="fx-ico'+(mk?' on':'')+'" data-mark="'+i+'" aria-pressed="'+(mk?'true':'false')+'" aria-label="Bookmark post #'+(i+1)+'">'+BOOK+'</button>'+
+          '<a class="fx-n" href="#t'+t.id+'-p'+(i+1)+'">#'+(i+1)+'</a></span></header>'+
+        '<div class="fx-body">'+(q?'<blockquote class="fx-quote"><a class="fx-quote-h" href="#t'+t.id+'-p'+(p[2]+1)+'">'+esc(U(q[0]).n)+' said:</a><div class="fx-quote-b">'+fmt(q[1].length>400?q[1].slice(0,400)+'\u2026':q[1])+'</div></blockquote>':'')+
+          (t.locked&&i===0?'<p class="fx-locked">The posts in this thread can\u2019t be shown right now.</p>':fmt(p[1]))+'</div>'+
+        '<footer class="fx-act"><button type="button" class="fx-a rep" data-report="'+i+'" aria-label="Report post #'+(i+1)+'"'+(SMU.reported&&SMU.reported(t.id,i)?' data-done="1">Reported':'>Report')+'</button>'+
+          (avPhoto(u)?'<button type="button" data-demo="Report profile photo" class="fx-a rep" aria-label="Report '+esc(u.n)+'\u2019s profile photo">Report photo</button>':'')+
+          '<span class="fx-act-r"><button type="button" class="fx-a" data-like="'+i+'" aria-pressed="false">'+HEART+'<span>Like</span></button><button type="button" class="fx-a" data-quote="'+i+'">Quote</button><button type="button" class="fx-a" data-reply>Reply</button></span></footer>'+
+        '<div class="fx-likes" hidden></div></div></article>'}
+    function replyBox(t){if(!SMU.user)return '<div class="fx-reply out" id="fxReply"><p><b>Join the conversation.</b> Sign in to reply'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><button type="button" class="btn btn-red" data-auth>Sign in to reply</button></div>';
+      return '<form class="fx-reply" id="fxReply" data-thread="'+t.id+'" novalidate><span class="fx-reply-av">'+avatar(SMU.me(),true)+'</span><div class="fx-reply-main"><div id="replyQ" hidden></div><label class="sr" for="replyText">Write your reply</label>'+
+        '<textarea id="replyText" rows="4" maxlength="5000" placeholder="Write your reply\u2026" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p>'+
+        '<div class="fx-reply-f"><span class="fx-reply-tip">Type @ and a name to mention someone. Keep it civil: <a href="'+ROOT+'rules/">community rules</a></span><button class="btn btn-red" type="submit">Post reply</button></div></div></form>'}
+    function quotePreview(t){var rq=$('#replyQ');if(!rq)return;var p=quoteIdx!=null&&t.posts[quoteIdx];
+      if(!p){rq.hidden=true;rq.innerHTML='';return}
+      rq.hidden=false;rq.innerHTML='<blockquote class="fx-quote"><span class="fx-quote-h">'+esc(U(p[0]).n)+' said:</span><div class="fx-quote-b">'+fmt(p[1].length>240?p[1].slice(0,240)+'\u2026':p[1])+'</div><button type="button" class="fx-unquote" id="unquote" aria-label="Remove quote">Remove</button></blockquote>'}
+    function renderThread(h){var t=findT(h.id);if(!t){threadView.innerHTML=crumbs([['Boards','./'],['Thread not found']])+emptyState('chat','That thread isn\u2019t here','It may have been removed, or the link is wrong.','<a class="btn btn-navy btn-sm" href="./">Back to the boards</a>');return}
+      var f=forumBy(t.f)||{id:t.f,name:'Board'},n=t.posts.length,pages=Math.max(1,Math.ceil(n/PPER)),sn=seen(t),un=unread(t);
+      var target=null,page=1;
+      if(/^p\d+$/.test(h.x)){target=Math.min(n,Math.max(1,+h.x.slice(1)));page=Math.ceil(target/PPER)}
+      else if(h.x==='last'){target=n;page=pages}else if(h.x==='new'){target=un?sn+1:n;page=Math.ceil(target/PPER)}
+      else if(/^page\d+$/.test(h.x))page=Math.min(pages,Math.max(1,+h.x.slice(4)));
+      var counts={};MP.THREADS.forEach(function(x){if(!x.locked)x.posts.forEach(function(p){counts[p[0]]=(counts[p[0]]||0)+1})});
+      var ctx={counts:counts,seen:sn,unread:un,all:!SMU.live||paidT(SMU.tier())};
+      var from=(page-1)*PPER,posts=t.posts.slice(from,from+PPER).map(function(p,j){return msg(t,p,from+j,ctx)}).join('');
+      var r=nRep(t),ta=$('#replyText'),draft=ta&&+$('#fxReply').dataset.thread===t.id?ta.value:'';
+      var pg=pager(page,pages,function(p){return '#t'+t.id+'-page'+p});
+      var crumb=[['Boards','./'],[f.name,'?f='+f.id]];
+      threadView.innerHTML=crumbs(crumb)+
+        '<header class="fx-th"><h1 class="fx-th-t">'+prefix(t)+esc(t.title)+'</h1>'+
+          '<p class="fx-th-m">'+(t.pin?'<span class="fx-pin">'+PIN+'</span>Pinned \u00b7 ':'')+'Started by <b>'+esc(U(t.by).n)+'</b> \u00b7 '+tm(startT(t))+(r==null?'':' \u00b7 '+num(r)+(r===1?' reply':' replies'))+(SMU.live&&t.views?' \u00b7 '+esc(t.views)+' views':'')+'</p></header>'+
+        '<div class="fx-bar">'+pg+'<div class="fx-bar-r">'+(un&&sn>0?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-new">Jump to new</a>':'')+(n>1?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-last">Last post</a>':'')+'<button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
+        '<div class="fx-msgs">'+posts+'</div>'+
+        (pg?'<div class="fx-bar bottom">'+pg+'</div>':'')+
+        (page===pages?replyBox(t):'<p class="fx-more"><a class="btn btn-outline" href="#t'+t.id+'-page'+(page+1)+'">Next page</a></p>')+
+        '<button type="button" class="fx-fab" data-reply aria-label="Reply to this thread">Reply</button>';
+      var t2=$('#replyText');if(t2&&draft)t2.value=draft;quotePreview(t);
+      if(likes[t.id])paintLikes(t);loadLikes(t);
+      document.title=t.title+' | '+f.name+' | SMU+';
+      markRead(t);
+      if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});watching={id:t.id,off:function(){u1();u2()}}}
+      fab();
+      return target?(target===sn+1&&h.x==='new'&&$('#t'+t.id+'-newline')?'t'+t.id+'-newline':'t'+t.id+'-p'+target):null}
+    var watching={id:null,off:function(){}},io=null;
+    function fab(){var b=$('.fx-fab',threadView),els=[$('.fx-bar',threadView),$('#fxReply')].filter(Boolean),vis={};if(io)io.disconnect();if(!b)return;if(!('IntersectionObserver' in window)){b.classList.add('show');return}
+      /* phones: the floating Reply shows only while neither the top Reply button nor the reply box is on screen */
+      io=new IntersectionObserver(function(es){es.forEach(function(x){vis[els.indexOf(x.target)]=x.isIntersecting});b.classList.toggle('show',!els.some(function(_,i){return vis[i]}))});els.forEach(function(x){io.observe(x)})}
+    threadView.addEventListener('click',function(e){var h=hashT();var t=h&&findT(h.id);if(!t)return;
+      var qb=e.target.closest('[data-quote]'),rb=e.target.closest('[data-reply]'),lb=e.target.closest('[data-like]'),sb=e.target.closest('[data-share]'),mb=e.target.closest('[data-mark]');
+      if(e.target.id==='unquote'){quoteIdx=null;quotePreview(t);var tx=$('#replyText');if(tx)tx.focus();return}
+      if(lb){var i=+lb.dataset.like;requireUser('Sign in to like a post.',function(){var o=(likes[t.id]||{})[i],on=!(o&&o.mine);lb.disabled=true;
+        SMU.toggleLike(t,i,on).then(function(){var m=likes[t.id]=likes[t.id]||{},x=m[i]=m[i]||{names:[],mine:false};
+          if(on&&!x.mine){x.mine=true;x.names.unshift(SMU.user&&SMU.user.name||'You')}else if(!on&&x.mine){x.mine=false;x.names.shift()}lb.disabled=false;paintLikes(t)},function(err){lb.disabled=false;toast(err.message,'err')})});return}
+      if(sb){var url=location.href.split('#')[0]+'#t'+t.id+'-p'+sb.dataset.share;
+        if(navigator.share&&matchMedia('(pointer:coarse)').matches){navigator.share({title:t.title,url:url}).catch(function(){})}
+        else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){toast('Link to post #'+sb.dataset.share+' copied.')},function(){prompt('Copy this link:',url)})}else prompt('Copy this link:',url);return}
+      if(mb){var k=t.id+':'+mb.dataset.mark;if(MARKS[k])delete MARKS[k];else MARKS[k]=Date.now();lss('mp_fx_marks',MARKS);var on2=!!MARKS[k];mb.classList.toggle('on',on2);mb.setAttribute('aria-pressed',String(on2));toast(on2?'Bookmarked in this browser.':'Bookmark removed.');return}
+      if(!qb&&!rb)return;
+      var ta=$('#replyText');if(!ta){var a=$('[data-auth]',threadView);if(a)a.click();else{var nx=$('.fx-more a',threadView);if(nx)nx.click()}return}
+      if(qb){quoteIdx=+qb.dataset.quote;quotePreview(t)}
       ta.scrollIntoView({block:'center',behavior:'smooth'});ta.focus()});
-    threadView.addEventListener('click',function(e){if(e.target.id==='unquote'){quoteIdx=null;var rq=$('#replyQ');rq.hidden=true;rq.innerHTML='';$('#replyText').focus()}});
-    threadView.addEventListener('submit',function(e){var f=e.target;if(f.id!=='replyForm')return;e.preventDefault();var ta=$('#replyText'),m=$('#replyM'),v=ta.value.trim(),tid=+f.dataset.thread;
+    threadView.addEventListener('submit',function(e){var f=e.target;if(f.id!=='fxReply')return;e.preventDefault();var ta=$('#replyText'),m=$('#replyM'),v=ta.value.trim(),tid=+f.dataset.thread;
       if(v.length<2){m.textContent='Write a little more before posting.';ta.focus();return}
-      var b=$('button[type=submit]',f);b.disabled=true;m.textContent='Posting…';
-      SMU.reply(tid,v,quoteIdx).then(function(){quoteIdx=null;renderThread(tid);var posts=$$('.post',threadView);var last=posts[posts.length-1];if(last){last.classList.add('post-new');last.scrollIntoView({block:'center'})}toast('Reply posted.')},
+      var b=$('button[type=submit]',f);b.disabled=true;m.textContent='Posting\u2026';
+      SMU.reply(tid,v,quoteIdx).then(function(){quoteIdx=null;ta.value='';var t=findT(tid);location.hash='#t'+tid+'-p'+(t?t.posts.length:1);route();var el=$('#t'+tid+'-p'+(t?t.posts.length:1));if(el)el.classList.add('fx-just');toast('Reply posted.')},
         function(err){m.textContent=err.message||'Could not post. Try again.';b.disabled=false})});
-    SMU.on('auth',function(){var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1])});
-    SMU.on('avatar',function(){var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1]);else if(!listView.hidden)renderList()});
-    SMU.on('threads',function(){renderIndex();if(!listView.hidden)renderList()});
-    document.addEventListener('smu:post',function(ev){var m=location.hash.match(/^#t(\d+)$/);if(!m||+m[1]!==ev.detail)return;var ta=$('#replyText'),draft=ta?ta.value:'';renderThread(+m[1]);var t2=$('#replyText');if(t2&&draft){t2.value=draft}});
-    function route(){var m=location.hash.match(/^#t(\d+)$/);
-      if(m){renderList();listView.hidden=true;threadView.hidden=false;renderThread(+m[1]);window.scrollTo(0,0)}
-      else if(!/^#(article|watch)=/.test(location.hash)){threadView.hidden=true;listView.hidden=false;renderList()}}
-    window.addEventListener('hashchange',route);route();
-    SMU.ready.then(function(){if(!SMU.live)return;$('#threadRows').setAttribute('aria-busy','true');
-      return Promise.all([SMU.loadThreads(),SMU.boardStats()]).then(function(){renderIndex();route()},function(){/* keep the sample boards on screen; the toast explains */}).then(function(){$('#threadRows').removeAttribute('aria-busy')})});
+    function rerender(){var h=hashT();if(h)renderThread(h);else if(!listView.hidden)renderList();else renderIndex()}
+    SMU.on('auth',rerender);SMU.on('avatar',rerender);
+    SMU.on('threads',function(){if(!indexView.hidden)renderIndex();if(!listView.hidden)renderList()});
+    document.addEventListener('smu:post',function(ev){var h=hashT();if(!h||h.id!==ev.detail)return;renderThread({id:h.id,x:''})});
+    function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';var m=$('main.fx');if(m)m.classList.toggle('fx-sub',v!=='index');
+      /* one h1 per view: the board name on the index, the board or thread title elsewhere */
+      var br=$('#fxBrand'),want=v==='index'?'H1':'P';if(br&&br.tagName!==want){var nb=document.createElement(want);nb.id='fxBrand';nb.className='fx-brand';nb.textContent=br.textContent;br.replaceWith(nb)}
+      $$('.fx-tabs a').forEach(function(a){var h=a.getAttribute('href'),on=v==='index'?h==='./':v==='list'&&state.f==='all'&&!state.q?h==='?f=all':false;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
+    function route(){var h=hashT();
+      if(h){show('thread');var anchor=renderThread(h);
+        if(anchor){var el=document.getElementById(anchor);if(el)el.scrollIntoView({block:'start'})}else window.scrollTo(0,0);return}
+      if(state.f||state.team||state.sport||state.q){show('list');renderList()}else{show('index');renderIndex()}}
+    window.addEventListener('hashchange',function(){if(/^#(article|watch)=/.test(location.hash))return;route()});
+    route();
+    SMU.ready.then(function(){if(!SMU.live)return;$('#fxRows').setAttribute('aria-busy','true');
+      return Promise.all([SMU.loadThreads(),SMU.boardStats()]).then(function(){NOW=Date.now();route()},function(){/* keep what's on screen; the toast explains */}).then(function(){$('#fxRows').removeAttribute('aria-busy')})});
   }
 
   /* ---------- Real non-football data (MP.REAL, from smumustangs.com) ---------- */
@@ -1311,9 +1458,9 @@
       SMU.claimStudent(+yr).then(function(){toast('You\u2019re on the free Student plan.')},function(err){b.disabled=false;m.textContent=err.message})})}
 
   /* ---------- New thread ---------- */
-  function compose(sport){var member=window.SMU&&SMU.live?isMember():seesMember();
+  function compose(sport,forum){var member=window.SMU&&SMU.live?isMember():seesMember(),pf=forum&&forumBy(forum),pick=pf&&(!pf.prem||member)?forum:'hilltop';
     var d=dialog('composeDlg','<h3 id="composeDlg-h" class="dlg-h">Start a thread</h3><form class="compose" novalidate>'+
-      '<div class="fld-row"><div class="fld"><label for="cpForum">Board</label><select id="cpForum">'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'"'+(f.prem&&!member?' disabled':'')+(f.id==='hilltop'?' selected':'')+'>'+esc(f.name)+(GATING&&f.prem?(member?' (members)':' (members only)'):'')+'</option>'}).join('')+'</select></div>'+
+      '<div class="fld-row"><div class="fld"><label for="cpForum">Board</label><select id="cpForum">'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'"'+(f.prem&&!member?' disabled':'')+(f.id===pick?' selected':'')+'>'+esc(f.name)+(GATING&&f.prem?(member?' (members)':' (members only)'):'')+'</option>'}).join('')+'</select></div>'+
       '<div class="fld"><label for="cpSport">Sport (optional)</label><select id="cpSport"><option value="">None</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'"'+(s.slug===sport?' selected':'')+'>'+esc(s.name)+'</option>'}).join('')+'</select></div></div>'+
       '<div class="fld"><label for="cpTitle">Title</label><input id="cpTitle" maxlength="140" required placeholder="What do you want to talk about?"></div>'+
       '<div class="fld"><label for="cpBody">First post</label><textarea id="cpBody" rows="5" maxlength="5000" required></textarea></div>'+
@@ -1346,9 +1493,9 @@
       SMU.report({thread:t.id,post:i,postId:p[4]||null,reason:r.value,note:$('#rpNote',d).value.trim().slice(0,500)}).then(function(res){
         reportDone(d,res.dup,res.where,n);if(btn&&document.contains(btn)){btn.textContent='Reported';btn.dataset.done='1'}},function(err){b.disabled=false;m.textContent=err.message||'Couldn\u2019t send that. Try again.'})})
     function wire(x){x.addEventListener('click',function(e){if(e.target.closest('[data-rp-close]'))x.close()})}}
-  document.addEventListener('click',function(e){var b=e.target.closest('[data-report]');if(!b)return;e.preventDefault();var m=location.hash.match(/^#t(\d+)$/),t=m&&MP.THREADS.filter(function(x){return x.id===+m[1]})[0];if(!t)return;
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-report]');if(!b)return;e.preventDefault();var m=location.hash.match(/^#t(\d+)(?:-[a-z0-9]+)?$/),t=m&&MP.THREADS.filter(function(x){return x.id===+m[1]})[0];if(!t)return;
     var i=+b.dataset.report;requireUser('Sign in to report a post.',function(){reportPost(t,i,b)})});
-  document.addEventListener('click',function(e){var b=e.target.closest('[data-compose]');if(!b)return;e.preventDefault();var sp=b.dataset.sport||'';requireUser('Sign in to start a thread.',function(){compose(sp)})});
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-compose]');if(!b)return;e.preventDefault();var sp=b.dataset.sport||'',fo=b.dataset.forum||'';requireUser('Sign in to start a thread.',function(){compose(sp,fo)})});
 
   /* ---------- Profile photo (Account page) ----------
      Checks type and size first (JPEG/PNG/WebP, 2 MB), then center-crops to a 256x256 square in the browser and uploads that
