@@ -2741,3 +2741,4 @@ body[data-page="account"] .auth-tabs button{min-height:44px}
 .set-af button.adfree.af-set .af-sw{background:var(--line-2)}
 .set-af button.adfree.af-set[aria-checked="true"] .af-sw{background:var(--blue)}
 .set-af button.adfree.af-set[aria-checked="true"] .af-sw::after{background:#fff}
+.set-top{min-height:44px}
