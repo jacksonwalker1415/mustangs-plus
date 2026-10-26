@@ -2724,6 +2724,8 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 /* off-palette leftovers: a darker off-brand red and an unused gold fill */
 .rk-s.bad{color:var(--red)}
 .fo-v-g{fill:var(--red)}
+/* the sport jump bar belongs to Header & Nav: keep its hairline as it was until that owner signs off */
+nav.jump{--card-line:rgba(22,33,79,.10)}
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */
