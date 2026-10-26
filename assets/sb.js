@@ -72,7 +72,7 @@
      to claim_student_membership() and never read back; only the class year and verified date come back. */
   function paid(t){return !!t&&t!=='free'&&t!=='student'&&!!TIERS[t]}
   var SMU_EMAIL=/^[^@\s]+@smu\.edu$/i,SID_RE=/^[0-9]{6,10}$/,stCache=null,stMsg='';
-  function stOn(){return !SMU.live||!!(MP.FEATURES&&MP.FEATURES.students===true)}
+  function stOn(){/* decided from config, not SMU.live (set only after supabase-js loads), so pages that render early stay flag-gated */return !configured||SMU.reason==='unreachable'||!!(MP.FEATURES&&MP.FEATURES.students===true)}
   function stYears(){var y=new Date().getFullYear(),out=[];for(var i=Math.max(2026,y);i<=Math.min(2034,y+6);i++)out.push(i);return out}
   function stCheck(o){var em=String(o.email||'').trim().toLowerCase(),sid=String(o.sid||'').trim(),yr=+o.year;
     if(o.email!==undefined&&!SMU_EMAIL.test(em))return 'Use your SMU email, ending in @smu.edu.';
