@@ -2723,3 +2723,9 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+/* Footer and dropdown labels: no fine print (14px+); inline legal links get a 44px tap height on phones */
+.ft-cols h4,.ft-brief h4{font-size:15px}
+.ft-brief p{font-size:14px}
+.sdd-h{font-size:14px}
+.legal,.site-ft .legal{font-size:14px;line-height:1.55}
+@media(max-width:639px){.legal a{display:inline-flex;align-items:center;min-height:44px}}
