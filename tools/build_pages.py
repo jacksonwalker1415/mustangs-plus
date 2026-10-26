@@ -9,7 +9,7 @@ REPO=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE='https://fanplatformdemo.com/'
 VER=sys.argv[1] if len(sys.argv)>1 else time.strftime('%Y%m%d%H%M')
 # Order matters: config -> data -> app. supabase-js is loaded lazily by sb.js only when config has keys.
-SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js','sport-icons.js','games.js','upcoming.js','boxscores.js','gamestats.js','sb.js','app.js','cfbd-live.js']
+SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js','sport-icons.js','games.js','upcoming.js','boxscores.js','gamestats.js','sb.js','ads.js','app.js','cfbd-live.js']
 def DISC(root):
     # One wording site-wide (Business Ops lock-exposure notice). build_pages.py rewrites it on every page.
     # Full wording on tablets/desktop; phones get the short line (CSS swaps them) so the bar stays two lines max.

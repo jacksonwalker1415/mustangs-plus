@@ -185,8 +185,8 @@
   function wordmark(cls){return '<a href="'+(ROOT||'./')+'" class="wordmark'+(cls||'')+(BRAND_LOGO?' has-logo':'')+'" aria-label="SMU+ home">'+
     (BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="wm-txt">SMU</span><span class="wm-plus" aria-hidden="true">+</span><span class="sr">+</span>')+'</a>'}
   function memberSwitch(label){if(!GATING)return '';return '<button type="button" class="mtoggle" data-member-toggle role="switch" aria-checked="false"><span class="sw-t" aria-hidden="true"></span><span class="mt-l">'+(label||'Preview as member')+'</span></button>'}
-  /* Ad-free switch (header, and the phone menu). SMU+ runs no real ads, so this only hides sponsor or partner slots
-     (anything marked data-ad-slot or .ad-slot) for signed-in accounts. Signed out, it opens sign-in first. */
+  /* Ad-free switch (header, and the phone menu). SMU+ runs no real ads: the slots are made-up sample ads from assets/ads.js, and this
+     hides every one of them (anything marked data-ad-slot or .ad-slot) for signed-in accounts. Signed out, it opens sign-in first. */
   function adfreeSwitch(cls){return '<button type="button" class="adfree '+cls+'" data-adfree role="switch" aria-checked="false"><span class="af-l">Ad-free</span><span class="af-sw" aria-hidden="true"></span></button>'}
   /* Phone/tablet menu (under 960px). Every primary link, plus search, member preview and Join. */
   function mobileMenu(){
@@ -332,7 +332,7 @@
       '<div class="reader-in"><p class="dek">'+esc(a.dek)+'</p><div class="byline"><span class="av staff" aria-hidden="true">'+st.n.charAt(0)+'</span><div><b>'+esc(st.n)+'</b><small>'+esc(st.role)+' · '+a.date+' · '+esc(c.dur)+'</small></div><button class="btn btn-outline btn-sm" data-demo="Share this story">Share</button></div>'+
       '<div class="prose'+(lock?' teaser':'')+'">'+(lock?a.body.slice(0,2):a.body).map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>'+(lock?inlineGate(c):'')+
       (a.sourced?'<p class="note">Sourced story. Facts and stats from '+(a.sources||[]).map(function(x){return '<a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0])+'</a>'}).join(', ')+'. No quotes are used. SMU+ is an SMU Cox class-project concept, not affiliated with SMU Athletics.</p>':'<p class="note">Fictional story written for an SMU Cox class-project concept. Characters and quotes are invented; real places are used as setting only.</p>')+relatedHTML(c)+'</div>';
-    showReader(c,push);if(!lock)track(id,0.04);return true}
+    showReader(c,push);if(!lock)track(id,0.04);if(MP.adsMount)MP.adsMount('article');/* sample ad slots: assets/ads.js */return true}
   function secs(d){var m=String(d).match(/(\d+):(\d+)/);if(m)return (+m[1])*60+(+m[2]);m=String(d).match(/(\d+)\s*min/);return m?(+m[1])*60:600}
   function clock(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
   function openMedia(id,push){var c=LIBBY[id];if(!c)return false;lastFocus=lastFocus||document.activeElement;
@@ -1058,6 +1058,7 @@
     function layout(){grid.classList.toggle('no-c2',!$$('.gc-c2>.gc-card',main).some(function(c){return !c.hidden}))}layout();
     var lsd=$('.gc-lsd',main);if(lsd&&window.matchMedia&&matchMedia('(max-width:759px)').matches)lsd.open=false;
     startCountdowns();
+    if(isNext&&g.sport==='football'&&MP.adSkin)MP.adSkin();
     function tab(id,on){var t=$('.gc-tabs [data-tab="'+id+'"]',main);if(t)t.hidden=!on}
     $('.gc-tabs',main).addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;
       $$('.gc-tabs a',main).forEach(function(x){x.removeAttribute('aria-current')});a.setAttribute('aria-current','true')});
@@ -1344,7 +1345,7 @@
       var t2=$('#replyText');if(t2&&draft)t2.value=draft;quotePreview(t);
       if(likes[t.id])paintLikes(t);loadLikes(t);
       document.title=t.title+' | '+f.name+' | SMU+';
-      markRead(t);
+      markRead(t);if(MP.adsMount)MP.adsMount('thread');/* sample ad slot after the 3rd post: assets/ads.js */
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});watching={id:t.id,off:function(){u1();u2()}}}
       fab();
       return target?(target===sn+1&&h.x==='new'&&$('#t'+t.id+'-newline')?'t'+t.id+'-newline':'t'+t.id+'-p'+target):null}
@@ -1648,14 +1649,21 @@
   /* Ad-free: one preference per account, kept in this browser (mp_adfree, by account id) and, on the live database, in the
      account's own auth metadata so it follows the account to other devices. Only signed-in accounts get it. */
   function afKey(){return SMU.user?'mp_adfree:'+(SMU.user.id||SMU.user.email):null}
-  function adfreeOn(){var k=afKey();if(!k)return false;var v=store(k);if(v==null&&SMU.user.adfree!=null)return !!SMU.user.adfree;return v==='1'}
+  /* Paid gate: while SHOW_PAID_PLANS is false, any signed-in account can turn Ad-free on. Once paid plans are back, Ad-free comes with a
+     paid plan only: a free account that flips the switch gets the plans pop-up instead, the switch stays off and the ads stay, and the
+     choice is kept so ads go away as soon as the account has a paid plan (SMU.on('tier') re-syncs). */
+  function adfreeAllowed(){return !SHOW_PAID_PLANS||!!(SMU.user&&paidT(SMU.tier()))}
+  function adfreeUpsell(){var k=afKey();if(k)store(k,'1');syncAdfree();
+    openJoin(null,'Ad-free comes with a paid plan. Pick one below and ads go away as soon as your plan starts.')}
+  function adfreeOn(){var k=afKey();if(!k||!adfreeAllowed())return false;var v=store(k);if(v==null&&SMU.user.adfree!=null)return !!SMU.user.adfree;return v==='1'}
   function syncAdfree(){var on=adfreeOn();document.documentElement.classList.toggle('adfree',on);
     $$('[data-adfree]').forEach(function(b){b.setAttribute('aria-checked',on?'true':'false');
       b.setAttribute('aria-label',SMU.user?'Ad-free':'Ad-free, sign in to turn it on')})}
   function setAdfree(on){var k=afKey();if(!k)return;store(k,on?'1':'0');SMU.user.adfree=on;syncAdfree();toast(on?'Ad-free is on.':'Ad-free is off.');
     if(SMU.live&&SMU.client)SMU.client.auth.updateUser({data:{adfree:on}}).then(function(){},function(){})}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-adfree]');if(!b)return;e.preventDefault();
-    if(!SMU.user){openAuth('in','Sign in to turn on Ad-free.',function(){setAdfree(true)});return}
+    if(!SMU.user){openAuth('in','Sign in to turn on Ad-free.',function(){if(adfreeAllowed())setAdfree(true);else adfreeUpsell()});return}
+    if(!adfreeAllowed()){adfreeUpsell();return}
     setAdfree(!adfreeOn())});
   SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',paidT(t)?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
   SMU.on('saved',function(){$$('[data-save-athlete]').forEach(syncSaveBtn)});
@@ -1702,11 +1710,11 @@
     '<button type="button" class="btn btn-wl jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
     (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+'">'+JCHK+'<span>'+esc(x.t)+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
   var joinDlg=null;
-  function openJoin(tier){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
-    if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier)})}
-  function buildJoin(T,tier){
+  function openJoin(tier,note){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
+    if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier,note)})}
+  function buildJoin(T,tier,note){
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
-    var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div>'+(SHOW_PAID_PLANS?'<p class="jm-eb">Membership</p>':'')+'<h3 id="joinDlg-h">Pick your seat.</h3>'+
+    var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div>'+(SHOW_PAID_PLANS?'<p class="jm-eb">Membership</p>':'')+'<h3 id="joinDlg-h">Pick your seat.</h3>'+(note?'<p class="jm-lede jm-note">'+esc(note)+'</p>':'')+
       '<p class="jm-lede">Join free today with a Fan account, or a Student plan if you have an @smu.edu email.'+(SHOW_PAID_PLANS?' Paid plans are coming soon, and you can join the free waitlist for the one you want.':'')+' There is nothing to buy.</p></div>'+
       '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':'')+'</div>'+
       '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
