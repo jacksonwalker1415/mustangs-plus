@@ -31,7 +31,9 @@ dl,dd{margin:0}
 .wrap{width:100%;max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
 .sec{padding:var(--s8) 0}
 .sec.tight{padding-top:var(--s6)} /* breathing room above the heading now that section kickers are gone */
-.sec.alt{background:var(--surface)}
+/* .alt sections are white now (no gray bands); adjacent sections are split by one light SMU-blue hairline */
+.sec.alt{background:#fff}
+.sec+.sec{border-top:1px solid rgba(53,76,161,.12)}
 .sec.dark{background:var(--black);color:#fff}
 @media(max-width:639px){.sec{padding:var(--s7) 0}.sec.tight{padding-top:var(--s5)}}
 .gap{height:var(--s7)}
@@ -160,8 +162,8 @@ nav.main a.on,.subnav a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--red);borde
 .tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;line-height:1.3}
 .tag svg{width:11px;height:11px;fill:currentColor}
 .poster .tag{position:absolute;left:var(--s3);top:var(--s3)}
-.poster .tag-new+.tag{left:calc(var(--s3) + 50px)}
-.tag-new{background:var(--yellow);color:var(--black)}
+.poster .tag-new+.tag{left:calc(var(--s3) + 44px)}
+.tag-new{background:var(--blue);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.08em;padding:2px 6px;border-radius:3px;line-height:1.35;box-shadow:0 1px 3px rgba(22,33,79,.45)}
 .tag-lock{background:#fff;color:var(--black)}
 .mcard{display:flex;flex-direction:column;gap:var(--s3);height:100%}
 .mcard .poster{transition:transform .2s}
@@ -272,8 +274,6 @@ nav.main a.on,.subnav a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--red);borde
 .rnum .kit{width:60px;height:60px}
 .rc-b{display:flex;flex-direction:column;min-width:0;gap:2px}
 .rc-b b{font-size:15px}.rc-b .rp{font-size:13px;font-weight:700;color:var(--red)}.rc-b small{font-size:12px;color:var(--ink-3)}
-.coach{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s5);padding:var(--s4);background:var(--surface);border-radius:var(--r2)}
-.coach b{display:block}.coach small{color:var(--ink-3);font-size:13px}
 .band{display:flex;align-items:center;justify-content:space-between;gap:var(--s5);margin-top:var(--s7);padding:var(--s6);background:var(--blue);color:#fff;border-radius:var(--r3);flex-wrap:wrap}
 .band p{color:rgba(255,255,255,.8);margin-top:var(--s2)}
 @media(max-width:639px){.band{padding:var(--s5)}}
@@ -628,8 +628,6 @@ header.site .mtoggle{color:rgba(255,255,255,.85);padding:0 var(--s2)}
 .pw-pop{position:absolute;top:-9px;left:var(--s3);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:var(--red);color:#fff;padding:1px 6px;border-radius:3px}
 .pw-t b{font-size:14px}.pw-p{font-family:var(--display);font-size:26px;line-height:1.1}.pw-p small{font-family:var(--sans);font-size:12px;color:var(--ink-3)}
 .pw-n{font-size:12px;font-weight:700;color:var(--red)}
-.pw-nil{font-size:14px;color:var(--ink-2);background:var(--surface);border-left:3px solid var(--red);padding:var(--s3) var(--s4);border-radius:0 var(--r1) var(--r1) 0;margin-bottom:var(--s5)}
-.pw-nil b{color:var(--ink)}
 .pw-act{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4)}
 .pw .reader-x{z-index:4}
 @media(max-width:639px){.pw{padding:0;place-items:end center}.pw-sheet{border-radius:var(--r3) var(--r3) 0 0;max-height:100vh;overflow:auto}.pw-b{padding:var(--s5)}.pw-tiers{grid-template-columns:1fr;gap:var(--s3)}.pw-t{flex-direction:row;align-items:baseline;gap:var(--s3)}.pw-t b{flex:1}.pw-p{font-size:22px}}
@@ -827,7 +825,7 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .rk-s,.stat-chip{justify-self:start;font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--surface);color:var(--ink-2);white-space:nowrap}
 .rk-s.good,.stat-chip.good{background:color-mix(in srgb,var(--teal) 28%,#fff);color:#1d6060}
 .rk-s.bad{background:color-mix(in srgb,var(--salmon) 12%,#fff);color:#b0083a}
-.stat-chip.mid{background:color-mix(in srgb,var(--yellow) 30%,#fff);color:#6b5400}
+.stat-chip.mid{background:color-mix(in srgb,var(--blue) 12%,#fff);color:var(--black)}
 .ncards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
 @media(max-width:959px){.ncards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:639px){.ncards{grid-template-columns:1fr}}
@@ -932,7 +930,7 @@ header.site{background:var(--b-800);border-bottom-color:rgba(255,255,255,.12)}
 .mm-nav a{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:var(--s3);min-height:60px;padding:var(--s2) 0;border-bottom:1px solid rgba(255,255,255,.1)}
 .mm-nav b{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.01em;text-transform:uppercase;line-height:1.1}
 .mm-chev{grid-column:2;grid-row:1/3;font-size:26px;color:rgba(255,255,255,.55);line-height:1}
-.mm-nav a.on b{color:#fff;box-shadow:inset 0 -3px 0 var(--red)}
+.mm-nav a.on b,.mm-nav .mm-acc.on b{color:#fff;box-shadow:none;text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:3px;text-underline-offset:7px;text-decoration-skip-ink:none}
 .mm-h{margin:var(--s5) 0 var(--s2);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 .mm-sports{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
 .mm-sports a{display:flex;align-items:center;min-height:44px;padding:0 var(--s3);border-radius:var(--r1);background:rgba(255,255,255,.06);font-size:15px;font-weight:600;color:rgba(255,255,255,.92)}
@@ -982,7 +980,7 @@ html.menu-open header.site{border-bottom-color:transparent}
   /* body copy 15px+, fine print 13-14px */
   .mcard-b p,.panel p,.empty-state p,.pw-inline p,.ft-brand p,.post-body blockquote,.honors li,.news li,.sec p,.lede,.pw-lede{font-size:15px}
   #recruitBand p,#threadView p{font-size:15px}
-  .note,.muted,.meta,.t-meta,.sources,.pw-nil,.pw-b .note{font-size:14px}
+  .note,.muted,.meta,.t-meta,.sources,.pw-b .note{font-size:14px}
   .legal{font-size:13px}
 }
 /* Overlays respect the notch and home indicator */
@@ -1029,8 +1027,7 @@ a.rcard{text-decoration:none;color:inherit}
 a.rcard:hover b{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
 .r-bio{color:var(--blue);font-weight:600}
 .r-toggle{margin-top:var(--s4)}
-.coach-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--s3);margin-top:var(--s6)}
-.coach-row .coach{margin:0}
+.roster.r-coaches{margin-top:var(--s6)}
 .sb-sub{display:block;margin-top:4px;font-size:12px;opacity:.8;line-height:1.3}
 .r-team{display:inline-block;margin-right:6px;padding:1px 6px;border-radius:4px;background:color-mix(in srgb,#354CA1 10%,#fff);color:#354CA1;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
 .r-recap{font-size:12px;font-weight:600;color:var(--blue);white-space:nowrap}
@@ -1554,6 +1551,22 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   .filters{gap:var(--s2) var(--s3)}
 }
 
+/* From the feeds: cards grow to the full X embed (no inner scroll); row scrolls by side arrows, swipe or trackpad, no visible scroll bar */
+.feeds .xwrap{position:relative}
+.feeds .xposts{align-items:flex-start;scrollbar-width:none;padding-bottom:2px}
+.feeds .xposts::-webkit-scrollbar{display:none}
+.feeds .xpost,.feeds .xpost:has(.twitter-tweet-rendered){height:auto;overflow:visible}
+.feeds .xpost{min-height:420px}
+.feeds .xpost:has(.twitter-tweet-rendered){min-height:0}
+.feeds .xpost blockquote.twitter-tweet{min-height:418px;height:auto}
+.follow-l{scrollbar-width:none}.follow-l::-webkit-scrollbar{display:none}
+.xside{position:absolute;top:50%;z-index:3;width:44px;height:44px;margin-top:-22px;border:0;background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(22,33,79,.3);transition:opacity .2s}
+.xside.xprev{left:-14px}.xside.xnext{right:-14px}
+.xside:hover:not(:disabled){background:var(--b-700)}
+.xside:disabled,.xwrap.no-ovf .xside{opacity:0;pointer-events:none}
+.xside svg{width:18px;height:18px}
+@media(max-width:639px){.xside{width:44px;height:44px}.xside.xprev{left:-6px}.xside.xnext{right:-6px}}
+
 /* =====================================================================
    Round 6: design tokens + polish. One layer, appended last.
    Header and mobile menu rules (header.site, .hdr*, nav.main, .wordmark, .hsearch, .acct-btn, .hdr-join,
@@ -1586,7 +1599,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 /* ---- 6.2 Focus: blue ring on light surfaces, yellow stays on dark surfaces ---- */
 main :focus-visible,.site-ft :focus-visible,.dlg :focus-visible,.pw :focus-visible,.search :focus-visible,.reader :focus-visible,.modal :focus-visible,.disclaimer :focus-visible,.toasts :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .disclaimer:focus-visible{outline:3px solid var(--b-900);outline-offset:-3px}
-main :is(.hero,.page-hero,.ap-hero,.gameday,.sec.dark,.brief-panel,.band,.tier.dark,.pw-inline,.metricbar,.fgroup-h,.gd-next) :focus-visible,
+main :is(.hero,.page-hero,.ap-hero,.gameday,.sec.dark,.brief-panel,.band,.tier.dark,.metricbar,.fgroup-h,.gd-next) :focus-visible,
 .site-ft :focus-visible,main .poster:focus-visible{outline-color:var(--yellow)}
 main .mcard:focus-visible{outline-offset:4px}
 
@@ -1613,7 +1626,7 @@ main .mcard:focus-visible{outline-offset:4px}
 /* small UI type floor: 12px for table heads, 10px for photo credits */
 .tbl th,.thead,.thead .num,.cmp thead th,.fgroup-h .num,.fgroup-h .f-last-h{font-size:var(--fs-12);letter-spacing:var(--trk-label)}
 .credit,.pc-pic.has-photo .credit,.ap-photo.has-photo .credit{font-size:10px}
-.pw-pop,.badge-ins,.badge-tier{font-size:var(--fs-11)}
+.badge-tier{font-size:var(--fs-11)}
 /* article serif: kept, deliberately, for long-form article body text only */
 .prose p{font-family:var(--serif);line-height:var(--lh-prose)}
 
@@ -1653,13 +1666,12 @@ main .mcard:focus-visible{outline-offset:4px}
 .hero-card .poster{box-shadow:none}
 .hero-card{border-radius:var(--r-card)}
 .hero-card:hover{transform:none;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 28px 56px -16px rgba(10,16,40,.55)}
-.pcard,.rcard,.acct-card,.panel,.box,.fgroup,.empty-state,.mini-empty,.post,.reply,.fund,.coach{border-radius:var(--r-card)}
+.pcard,.rcard,.acct-card,.panel,.box,.fgroup,.empty-state,.mini-empty,.post,.reply{border-radius:var(--r-card)}
 .pcard,.rcard,.acct-card,.panel:not(.dark),.box,.fgroup,.post,.fund{border-color:var(--card-line);box-shadow:var(--sh-1)}
 a.pcard,a.rcard,.pcard{transition:box-shadow var(--t-med) var(--ease),border-color var(--t-fast)}
 a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in srgb,var(--blue) 35%,transparent);box-shadow:var(--sh-2)}
 .panel.dark{border-radius:var(--r-card);background:rgba(10,16,40,.22);border-color:rgba(255,255,255,.1)}
 .panel-h h3,.box-h h3{font-size:var(--fs-13);letter-spacing:var(--trk-label)}
-.coach{background:#fff;border:1px solid var(--card-line);box-shadow:var(--sh-1)}
 .tier{border-radius:var(--r-sheet);border-color:var(--card-line);box-shadow:var(--sh-1)}
 .tier.pop{box-shadow:var(--sh-3)}
 .tier>.tag{border-radius:var(--r-tag)}
@@ -1667,8 +1679,8 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 .statline,.tbl-wrap,.ratings div{border-radius:var(--r-card)}
 .tbl-wrap{border-color:var(--card-line);box-shadow:var(--sh-1)}
 .panel .tbl-wrap{box-shadow:none}
-.sheet,.dlg-sheet,.pw-sheet,.search-sheet,.reader-sheet,.gate-cta>div{border-radius:var(--r-sheet)}
-.dlg-sheet,.pw-sheet,.search-sheet{box-shadow:var(--sh-3)}
+.sheet,.dlg-sheet,.search-sheet,.reader-sheet{border-radius:var(--r-sheet)}
+.dlg-sheet,.search-sheet{box-shadow:var(--sh-3)}
 .gd-next,.gd-hurry,.brief-panel,.band{border-radius:var(--r-card)}
 .gallery figure,.film-art,.ep{border-radius:var(--r-media)}
 
@@ -1680,23 +1692,17 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 .auth-tabs,.auth-tabs button{border-radius:var(--r-ctl)}
 
 /* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
-.tag{border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:.08em;padding:3px 7px;line-height:1.25}
-.tag-lock{background:rgba(255,255,255,.94)}
-/* gated posters already say "Members only" in the center: drop the duplicate corner tag until the member view */
-html:not(.is-member) .gated .poster .tag-lock{display:none}
-html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
+.tag:not(.tag-new){border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:.08em;padding:3px 7px;line-height:1.25}
 .poster-verb,.dur{border-radius:var(--r-tag);background:rgba(10,16,40,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
 .poster-verb{padding:4px 9px 4px 7px}
 .tone-white .poster-verb,.tone-white .dur{background:rgba(10,16,40,.62);color:#fff}
-.lock-ov b{border-radius:var(--r-tag);background:rgba(10,16,40,.62);letter-spacing:.02em}
-.lock-ov svg{background:rgba(10,16,40,.55)}
 /* board pills: status labels stay as compact labels, board and sport names become plain text */
 .pills{gap:6px 8px;align-items:center}
 .pill{border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:.04em;padding:2px 7px}
 .pills .pill:not(.pill-pin):not(.pill-hot):not(.pill-prem){background:none;border:0;padding:0;color:var(--ink-3);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .pills .pill:not(.pill-pin):not(.pill-hot):not(.pill-prem)+.pill:not(.pill-pin):not(.pill-hot):not(.pill-prem)::before{content:"·";margin-right:6px;color:var(--line-2)}
 .forum-mini .pill,.fgroup-h .pill{border-radius:var(--r-tag)}
-.rk-s,.stat-chip,.vb,.res,.rk-c,.r-team,.badge-ins,.badge-tier,.dir,.pw-pop{border-radius:var(--r-tag)}
+.rk-s,.stat-chip,.vb,.res,.rk-c,.r-team,.badge-tier,.dir{border-radius:var(--r-tag)}
 /* filter chips are the one legit pill: keep the shape, firm up the states */
 .chip{border-color:rgba(22,33,79,.18);transition:border-color var(--t-fast),color var(--t-fast),background-color var(--t-fast)}
 .chip[aria-pressed="true"]{background:var(--b-800);border-color:var(--b-800)}
@@ -1706,9 +1712,6 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 /* ---- 6.9 Section rhythm (inner-page headers are main's; only the home hero keeps its red rule) ---- */
 .sec{padding:var(--sec-y) 0}
 /* .sec.tight top padding is main's (2297fae: room above headings now that kickers are gone); not overridden here */
-.sec.alt{background:#f2f4fa}
-/* home: main's "From the feeds" sits between the white content rails and the white Mustang Board, so it takes the alt tint (no two neighbours share a background) */
-body[data-page="home"] #feeds{background:#f2f4fa}
 .hero.has-photo{border-bottom:3px solid var(--red)}
 .jump{box-shadow:0 1px 0 var(--card-line)}
 .jump a{position:relative;transition:color var(--t-fast)}
@@ -1716,7 +1719,6 @@ body[data-page="home"] #feeds{background:#f2f4fa}
 .gameday{background:var(--hair),linear-gradient(180deg,var(--b-800) 0%,var(--b-900) 100%)}
 .sec.dark{background:var(--hair),var(--b-800)}
 .site-ft{box-shadow:inset 0 3px 0 var(--red)}
-#acctMain{background:#f2f4fa}
 .acct-card{box-shadow:var(--sh-2)}
 
 /* ---- 6.10 Sport tiles, roster and profile cards ---- */
@@ -1773,7 +1775,6 @@ body[data-page="home"] #feeds{background:#f2f4fa}
 .mini-empty{text-align:left;border-style:solid;border-color:var(--card-line)}
 .note.center{text-align:left;margin-left:0}
 .sheet{text-align:left}.sheet .ic{margin:0 0 var(--s4)}
-.gate-cta>div{text-align:left}.gate-cta svg{margin:0 0 var(--s3)}
 .wl-fine{text-align:left}
 /* "More sports" on sport pages: a plain inline index, not a cloud of pills */
 #more .chips{gap:0;row-gap:var(--s2)}
