@@ -12,10 +12,10 @@ if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
 /* avatars: member profile photos on the live site. On since supabase/RUN_ME_15_avatars.sql was applied (profiles.avatar_url and the
    'avatars' storage bucket exist). Set false to hide uploads and photos again (initials only); nothing is deleted. Demo mode always has photos (saved in the browser). */
 if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = true;
-/* students: the free Student sign-up (SMU email + student ID) on the live site. Keep false until supabase/RUN_ME_16_students.sql has run
+/* students: the free Student sign-up (SMU email + student ID) on the live site. On since supabase/RUN_ME_16_students.sql was applied (Oct 26, 2026)
    (student_verifications table, 'student' tier, claim_student_membership RPC); while false the live site shows no student option and never calls them.
    Demo mode always has the full student flow (saved in this browser). */
-if (MP.FEATURES.students == null) MP.FEATURES.students = false;
+if (MP.FEATURES.students == null) MP.FEATURES.students = true;
 
 MP.SPORTS = [
   {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Rhett Lashlee',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
