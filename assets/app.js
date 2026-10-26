@@ -1683,6 +1683,10 @@
       if(inl){var bad=0;m.textContent='';
         if(!em){fieldErr(root,'auEmail','Enter your email address.');bad=bad||'auEmail'}else if(!EMAIL_RE.test(em)){fieldErr(root,'auEmail','Enter a full email address, like name@example.com.');bad=bad||'auEmail'}
         if(SMU.live&&!pw){fieldErr(root,'auPw','Enter your password.');bad=bad||'auPw'}else if(SMU.live&&pw.length<8){fieldErr(root,'auPw','Use at least 8 characters.');bad=bad||'auPw'}
+        /* any required checkbox on sign-up (e.g. an age confirmation) gets the same error-under-the-field treatment */
+        if(mode==='up')$$('.auth-f input[type=checkbox][required]',root).forEach(function(cb){if(!cb.id||cb.offsetParent===null)return;
+          if(!$('#'+cb.id+'-err',root)){var pe=document.createElement('p');pe.className='fld-err';pe.id=cb.id+'-err';pe.hidden=true;(cb.closest('.fld,label')||cb).insertAdjacentElement('afterend',pe)}
+          if(!cb.checked){fieldErr(root,cb.id,'Check this box to create an account.');bad=bad||cb.id}});
         if(bad){$('#'+bad,root).focus();return}}
       else{if(!EMAIL_RE.test(em)){m.textContent='Enter a full email address.';$('#auEmail',root).focus();return}
       if(SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}}
