@@ -732,3 +732,88 @@ MP.PHOTOS={
  /* home hero pick (read by app.js once real-content.patch lands; until then the hero stays on boulevard-nights-1) */
  MP.FEATURED='smu-fb-cal-highlights';
 })();
+
+/* ---------- Media batch 1 (Oct. 26, 2026): real media from other sources ----------
+   Curated by SMU+ Media Curator (/workspace/smu-media/batch1.json). Rules:
+   - Never downloaded or re-hosted. YouTube and Apple Podcasts play through their official embeds, which load only when the visitor presses play.
+   - Articles are link-outs: headline, outlet, date and our own one-line summary. No copied text, no paywall workarounds.
+   - Every item here is FREE (lock:false). Third-party media never goes behind the members gate.
+   - third:true marks these items; ext = link-out URL for articles; apple = Apple Podcasts embed URL; yt = YouTube ID.
+   - Dedupe at load: an item is skipped when its URL is already a library card or a source of an SMU+ sourced story (e.g. bot/content-real).
+   - Left out: the ACC's Cal highlights (sensitive flag: injury commentary) and the duplicate @SMUSoccerM title post (same news as the
+     men's soccer title story below). Durations come from YouTube and Apple's public metadata, Oct. 26, 2026. */
+(function(){var MP=window.MP;
+ var YT='https://www.youtube.com/watch?v=',SMUYT=['SMU Mustangs on YouTube','https://www.youtube.com/@SMUMustangs'];
+ function V(id,sport,yt,label,title,desc,dur,tone){return {id:id,t:'video',cat:'watch',sport:sport,label:label,title:title,desc:desc,dur:dur,lock:false,tone:tone,isNew:true,
+  yt:yt,src:YT+yt,credit:'Video: SMU Athletics',channel:SMUYT,real:true,third:true}}
+ function A(id,sport,label,title,outlet,date,desc,url,note){return {id:id,t:'article',cat:'news',sport:sport,label:label,title:title,desc:desc,dur:date,lock:false,tone:'white',
+  ext:url,outlet:outlet,date:date,extNote:note||'',real:true,third:true}}
+ var AP='https://podcasts.apple.com/us/podcast/',ON3='On The Pony Express (On3)';
+ function P(id,path,title,desc,dur,show,showUrl){return {id:id,t:'podcast',cat:'podcasts',sport:'football',label:'Podcast · '+show,title:title,desc:desc,dur:dur,lock:false,tone:'red',isNew:true,
+  apple:'https://embed.podcasts.apple.com/us/podcast/'+path,src:AP+path,credit:'Podcast: '+show,channel:[show+' on Apple Podcasts',showUrl],real:true,third:true}}
+ var vids=[
+  V('mb-fb-cal-presser','football','pdggi5iV4aw','Football · Press conference','SMU Football: Postgame press conference vs. Cal','The Mustangs on the 59-20 win over Cal and the 42-0 second half, Oct. 24.','22:26','blue'),
+  V('mb-fb-lashlee-jennings','football','8dF4BnXUwFM','Football · Media availability','SMU Football: Rhett Lashlee and Kevin Jennings, Cal week','The head coach and the quarterback look ahead to Cal, four days before the game. Oct. 20.','11:55','black'),
+  V('mb-fb-kilgore-hale','football','pUxLSL-a9EA','Football · Media availability','SMU Football: Alexander Kilgore and Jalen Hale, Cal week','Two players talk about Cal week. Oct. 21.','7:52','red'),
+  V('mb-msoc-uca-highlights','mens-soccer','r8eRcnB6hgA',"Men's Soccer · Official highlights","SMU Men's Soccer: Highlights vs. Central Arkansas",'The 5-2 win over Central Arkansas on Oct. 20, with a Stephan Soghomonian hat trick.','5:00','black'),
+  V('mb-msoc-uca-presser','mens-soccer','jOkN8JuA0yA',"Men's Soccer · Press conference","SMU Men's Soccer: Postgame press conference vs. Central Arkansas",'After the 5-2 win over Central Arkansas, Oct. 20.','17:12','blue'),
+  V('mb-vb-fsu-highlights','volleyball','2Qgd-9EbTKQ','Volleyball · Official highlights','SMU Volleyball: Highlights vs. Florida State','The straight-sets win over Florida State on Oct. 18.','5:57','red'),
+  V('mb-vb-fsu-presser','volleyball','ODqjBmGmb54','Volleyball · Press conference','SMU Volleyball: Postmatch press conference vs. Florida State','Coach and player voices after the Florida State sweep, Oct. 18.','8:25','blue')];
+ var pods=[
+  P('mb-pod-on3-reaction','reaction-smu-vs-cal-postgame-show-takeaways-from-smu/id1604025463?i=1000797954976','After \u2019Stangs Show: SMU vs. Cal postgame reaction','Instant reaction to the 59-20 win from the On3 SMU beat team. Oct. 24.','26 min',ON3,AP+'id1604025463'),
+  P('mb-pod-on3-mood','smu-vs-cal-postgame-mustangs-dominate-2nd-half-in-59/id1604025463?i=1000798100689','Mustang Mood: the day after Cal','A day-after look at the second-half turnaround. Oct. 25.','23 min',ON3,AP+'id1604025463'),
+  P('mb-pod-on3-qb','pat-go-smu-vs-cal-game-preview-predictions-qb-chronicles/id1604025463?i=1000797726389','QB Chronicles: SMU vs. Cal preview','A quarterback-focused preview and predictions before the Cal game. Oct. 23.','15 min',ON3,AP+'id1604025463'),
+  P('mb-pod-lockedon','rout-kevin-jennings-sets-smus-all-time-touchdown-mark/id1824252582?i=1000798040007','Locked On SMU: Jennings sets the touchdown mark','A second independent show on the Cal win and the passing record. Oct. 25.','20 min','Locked On SMU',AP+'id1824252582')];
+ var SMUN='https://smumustangs.com/news/2026/';
+ var news=[
+  A('mb-fb-ap-19','football','Football · SMU Athletics','SMU Rises To 19th In AP Poll','SMU Athletics','Oct. 25, 2026','After the win over Cal, SMU moved up to No. 19 in the AP Top 25.',SMUN+'10/25/football-smu-rises-to-19th-in-ap-poll'),
+  A('mb-fb-espn-record','football','Football · ESPN','Kevin Jennings breaks SMU\u2019s TD passing record in win over Cal','ESPN','Oct. 24, 2026','National coverage of the day Jennings passed Tanner Mordecai for SMU\u2019s career touchdown-pass record, in a comeback win over Cal.','https://www.espn.com/college-football/story/_/id/50269946/kevin-jennings-breaks-smu-td-passing-record-win-cal'),
+  A('mb-msoc-acc-title','mens-soccer',"Men's Soccer · SMU Athletics",'Mustangs Are ACC Champions, Clinch A Share Of Regular Season Title','SMU Athletics','Oct. 25, 2026','No. 1 SMU has clinched at least a share of the 2026 ACC regular-season title, with Louisville still to come on Oct. 30.',SMUN+'10/25/mens-soccer-no-1-smu-clinches-a-share-of-acc-regular-season-title'),
+  A('mb-fb-golden-arm','football','Football · SMU Athletics','Jennings Among Top 15 For Golden Arm Award','SMU Athletics','Oct. 8, 2026','Jennings is one of 15 finalists for the Johnny Unitas Golden Arm Award. The winner is named in December.',SMUN+'10/8/football-jennings-among-top-15-for-golden-arm-award'),
+  A('mb-fb-dmn-paintings','football','Football · Dallas Morning News','In age of AI, SMU pivots to fine arts for promotion of its football program','The Dallas Morning News','Oct. 14, 2026','SMU\u2019s brand team is promoting home games with original paintings instead of AI-made graphics.','https://www.dallasnews.com/sports/smu-mustangs/article/smu-football-paintings-ai-kevin-jennings-22452877.php','May need a subscription'),
+  A('mb-gen-texas-capital',null,'SMU Athletics · Business','SMU Athletics, Texas Capital Announce First All-Sports Jersey Patch Partnership for a Texas Power Four Program','SMU Athletics','Oct. 13, 2026','A jersey-patch partnership with Texas Capital that covers every SMU sport, which SMU calls a first for a Power Four program in Texas.',SMUN+'10/13/general-smu-athletics-texas-capital-announce-first-all-sports-jersey-patch-partnership-for-a-texas-power-four-program'),
+  A('mb-gen-lacrosse',null,'SMU Athletics · New sport','SMU Athletics to Launch Texas\u2019 First NCAA Division I Men\u2019s Lacrosse Program','SMU Athletics','Oct. 15, 2026','SMU is adding men\u2019s lacrosse, the first Division I men\u2019s program in Texas.',SMUN+'10/15/general-smu-athletics-to-launch-texas-first-ncaa-division-i-mens-lacrosse-program')];
+ /* Videos go right after SMU's other official videos; podcasts after the SMU+ shows; articles get their own "In the news" category. */
+ /* One card per URL: skip anything already in the library (same YouTube ID or link) or already cited as a source of an SMU+ sourced story. */
+ var seen={};function key(u){var m=String(u||'').match(/[?&]v=([\w-]{11})/);return m?'yt:'+m[1]:String(u||'').replace(/^https?:\/\/(www\.)?/,'').replace(/[?#].*$/,'').replace(/\/$/,'')}
+ MP.LIB.forEach(function(c){[c.src,c.ext,c.yt&&YT+c.yt].forEach(function(u){if(u)seen[key(u)]=1})});
+ Object.keys(MP.ARTICLES||{}).forEach(function(k){((MP.ARTICLES[k]||{}).sources||[]).forEach(function(x){if(x&&x[1])seen[key(x[1])]=1})});
+ function fresh(c){var k=key(c.ext||c.src);if(seen[k])return false;seen[k]=1;return true}
+ vids=vids.filter(fresh);pods=pods.filter(fresh);news=news.filter(fresh);
+ var vi=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].real&&MP.LIB[i].t==='video'&&MP.LIB[i].cat==='watch')vi=i+1;
+ Array.prototype.splice.apply(MP.LIB,[vi,0].concat(vids));
+ MP.LIB=MP.LIB.concat(pods,news);
+ var ci=0;for(var k=0;k<MP.CATS.length;k++)if(MP.CATS[k][0]==='podcasts')ci=k;MP.CATS.splice(ci,0,['news','In the news']);
+
+ /* "From the feeds": official X posts (X's own embed, loaded only on tap) and verified accounts to follow.
+    Posts: [status URL, handle, display name, date]. Accounts: [name, handle, {x,instagram,youtube,tiktok}, note].
+    Facebook links are left out until they can be verified. */
+ function X(h,id){return 'https://twitter.com/'+h+'/status/'+id}
+ var posts={
+  football:[[X('SMUFB','2114420098052067656'),'SMUFB','SMU Football','Oct. 25, 2026'],[X('SMUFB','2114064058836300191'),'SMUFB','SMU Football','Oct. 24, 2026'],[X('SMUFB','2114145665747911129'),'SMUFB','SMU Football','Oct. 24, 2026'],[X('SMUFB','2114091190727606562'),'SMUFB','SMU Football','Oct. 24, 2026'],[X('SMUFB','2114096299041767607'),'SMUFB','SMU Football','Oct. 24, 2026']],
+  'mens-basketball':[[X('SMUBasketball','2114462560967971248'),'SMUBasketball','SMU Basketball','Oct. 25, 2026'],[X('SMUBasketball','2114470729282421047'),'SMUBasketball','SMU Basketball','Oct. 25, 2026']],
+  'mens-soccer':[[X('SMUSoccerM','2114152579756360170'),'SMUSoccerM',"SMU Men's Soccer",'Oct. 24, 2026']],
+  'womens-soccer':[[X('SMUSoccerW','2113382944081629536'),'SMUSoccerW',"SMU Women's Soccer",'Oct. 22, 2026']],
+  'womens-basketball':[[X('SMUWBB','2112915457850118363'),'SMUWBB',"SMU Women's Basketball",'Oct. 21, 2026']],
+  'swimming-diving':[[X('SMUSwimDiveM','2113767411627503899'),'SMUSwimDiveM',"SMU Men's Swimming & Diving",'Oct. 23, 2026']],
+  'track-field':[[X('SMUTrackAndXC','2112281454814417327'),'SMUTrackAndXC','SMU Track & Field/XC','Oct. 19, 2026']],
+  home:[[X('SMUMustangs','2112936960008552902'),'SMUMustangs','SMU Athletics','Oct. 21, 2026'],[X('SMUFB','2114064058836300191'),'SMUFB','SMU Football','Oct. 24, 2026'],[X('SMUBasketball','2114462560967971248'),'SMUBasketball','SMU Basketball','Oct. 25, 2026'],[X('SMUSoccerW','2113382944081629536'),'SMUSoccerW',"SMU Women's Soccer",'Oct. 22, 2026']]};
+ function ac(name,h,ig,more,note){var o={x:'https://x.com/'+h};if(ig)o.instagram='https://www.instagram.com/'+ig+'/';for(var k in more||{})o[k]=more[k];return [name,h,o,note||'']}
+ var A0={
+  dept:ac('SMU Athletics','SMUMustangs','smu.mustangs',{youtube:'https://www.youtube.com/@SMUMustangs'}),
+  football:ac('SMU Football','SMUFB','smufb',{youtube:'https://www.youtube.com/@smufb',tiktok:'https://www.tiktok.com/@smufb'}),
+  lashlee:ac('Rhett Lashlee','rhettlashlee',null,null,'Head coach (personal account)'),
+  mbb:ac('SMU Basketball','SMUBasketball','smubasketball'),wbb:ac("SMU Women's Basketball",'SMUWBB','smuwbb'),
+  vb:ac('SMU Volleyball','SMUVolleyball','smuvolleyball'),msoc:ac("SMU Men's Soccer",'SMUSoccerM','smu_msoc'),wsoc:ac("SMU Women's Soccer",'SMUSoccerW','smusoccerw'),
+  swimm:ac("SMU Men's Swimming & Diving",'SMUSwimDiveM','smuswimdivem'),swimw:ac("SMU Women's Swimming & Diving",'SMUSwimDiveW','smuswimdivew'),
+  xc:ac('SMU Track & Field/XC','SMUTrackAndXC','smutrackandxc'),eq:ac('SMU Equestrian','SMUEquestrian','smuequestrian'),row:ac('SMU Rowing','SMURowing','smurowing'),
+  wgolf:ac("SMU Women's Golf",'SMUWGolf','smuwgolf'),mgolf:ac("SMU Men's Golf",'SMUGolfM','smu_golf'),mten:ac("SMU Men's Tennis",'SMUMTennis','smumtennis'),wten:ac("SMU Women's Tennis",'SMUWTennis','smuwtennis'),
+  on3:ac('On The Pony Express (On3)','SMUMustangsOn3',null,null,'SMU news site, not affiliated with SMU'),
+  embody:ac('Billy Embody','BillyEmbody',null,null,'On3 SMU beat writer and podcast host. His X bio says he founded an NIL collective, so his coverage comes with that interest disclosed.'),
+  acc:ac('The ACC','theACC',null,{youtube:'https://www.youtube.com/@ACCDigitalNetwork'},'Atlantic Coast Conference'),accn:ac('ACC Network','accnetwork',null,null,'Conference TV network')};
+ MP.FEEDS={posts:posts,follow:{
+  football:[A0.football,A0.lashlee],'mens-basketball':[A0.mbb],'womens-basketball':[A0.wbb],volleyball:[A0.vb],'mens-soccer':[A0.msoc],'womens-soccer':[A0.wsoc],
+  'swimming-diving':[A0.swimm,A0.swimw],'track-field':[A0.xc],equestrian:[A0.eq],rowing:[A0.row],golf:[A0.wgolf,A0.mgolf],tennis:[A0.mten,A0.wten],
+  home:[A0.dept,A0.football,A0.mbb,A0.wbb,A0.vb,A0.msoc]},
+  media:[A0.on3,A0.embody,A0.acc,A0.accn]};
+})();
