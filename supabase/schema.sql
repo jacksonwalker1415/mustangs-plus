@@ -31,7 +31,7 @@ create table if not exists public.memberships (
 
 create or replace function public.is_member(uid uuid)
 returns boolean language sql stable security definer set search_path = public as $$
-  select exists(select 1 from public.memberships m where m.user_id = uid and m.tier <> 'free');
+  select exists(select 1 from public.memberships m where m.user_id = uid and m.tier not in ('free','student'));  -- 'student' = free Student plan (RUN_ME_16)
 $$;
 
 -- New auth user -> profile + free membership
@@ -203,8 +203,8 @@ create policy "edit own profile"         on public.profiles for update using (au
 
 -- memberships: see and (demo) change your own tier
 create policy "read own membership"      on public.memberships for select using (auth.uid() = user_id);
-create policy "demo: create own membership" on public.memberships for insert with check (auth.uid() = user_id and status = 'demo' and stripe_customer_id is null);
-create policy "demo: change own tier"    on public.memberships for update using (auth.uid() = user_id) with check (auth.uid() = user_id and status = 'demo' and stripe_customer_id is null);
+create policy "demo: create own membership" on public.memberships for insert with check (auth.uid() = user_id and status = 'demo' and stripe_customer_id is null and tier <> 'student');
+create policy "demo: change own tier"    on public.memberships for update using (auth.uid() = user_id) with check (auth.uid() = user_id and status = 'demo' and stripe_customer_id is null and tier <> 'student');
 
 -- reference data: read-only for everyone
 create policy "forums are public"        on public.forums        for select using (true);

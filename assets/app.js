@@ -91,8 +91,12 @@
   var progT={};function syncProgress(id,p){if(!window.SMU||!SMU.live||!SMU.user)return;clearTimeout(progT[id]);progT[id]=setTimeout(function(){SMU.progress(id,p).catch(function(){})},1500)}
   function syncMember(){var on=isMember();document.documentElement.classList.toggle('is-member',on);
     $$('[data-member-toggle]').forEach(function(b){b.setAttribute('aria-checked',on?'true':'false')})}
+  /* 'student' is the free Student plan: never a paid membership (sb.js paidTier) */
+  function paidT(t){return window.SMU&&SMU.paidTier?SMU.paidTier(t):!!t&&t!=='free'}
+  function stOn(){return !!(window.SMU&&SMU.studentsOn&&SMU.studentsOn())}
+  function backToStudent(){return stOn()&&SMU.student&&SMU.student()?SMU.claimStudent(null,null):null}
   function setMember(on,tier){store('mp_member',on?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));
-    if(window.SMU&&SMU.user){var t=on?(tier||(SMU.tier()!=='free'?SMU.tier():'pony')):'free';SMU.setTier(t).catch(function(e){toast(e.message,'err');store('mp_member',on?'0':'1');syncMember();document.dispatchEvent(new Event('mp:member'))})}
+    if(window.SMU&&SMU.user){var t=on?(tier||(paidT(SMU.tier())?SMU.tier():'pony')):'free';SMU.setTier(t).then(function(){if(!on)return backToStudent()}).catch(function(e){toast(e.message,'err');store('mp_member',on?'0':'1');syncMember();document.dispatchEvent(new Event('mp:member'))})}
     else{try{localStorage.setItem('mp_tier',on?(tier||'pony'):'free')}catch(e){}}}
   var PH=MP.PHOTOS||{},CREDIT='<span class="credit">Photo: SMU Athletics</span>';
   function photo(key,opt){var p=PH[key];if(!p)return '';opt=opt||{};
@@ -601,7 +605,8 @@
     (SMU.ready||Promise.resolve()).then(function(){if(SMU.live&&SMU.loadThreads)SMU.loadThreads().then(render,function(){})})}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
-      if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist()}
+      if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist();
+      var tiers=$('.tiers',mem);if(tiers&&stOn())tiers.insertAdjacentHTML('beforebegin',studentBand('home'))}
     var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
     $('#heroFeature').innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
     $('#gameday').innerHTML=gameStrip();startCountdowns();
@@ -728,7 +733,7 @@
       var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),locked=f.prem&&!member,n=t.posts.length;
       var times=t.posts.map(function(p,i){if(p[3])return SMU.ago(p[3])+' ago';if(!i)return t.ago+' ago';var m={m:1,h:60,d:1440,w:10080},x=t.ago.match(/(\d+)(\w)/),tot=x?(+x[1])*(m[x[2]]||1):60,v=Math.max(1,Math.round(tot*(1-i/(n+1))));return (v<60?v+'m':v<1440?Math.round(v/60)+'h':Math.round(v/1440)+'d')+' ago'});
       /* Post counts only when every post is loaded; signed-out live visitors can't see members-only posts, so a count would be short. */
-      var allPosts=!SMU.live||SMU.tier()!=='free';
+      var allPosts=!SMU.live||paidT(SMU.tier());
       var postHTML=t.posts.map(function(p,i){var u=MP.USERS[p[0]],q=p[2]!=null?t.posts[p[2]]:null,pc=allPosts?postsBy(p[0]):null;
         return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+(pc==null?'':' · '+pc.toLocaleString()+(pc===1?' post':' posts')+' here')+'</small></div></aside>'+
           '<div class="post-body"><div class="post-h"><span>'+times[i]+'</span><a href="#t'+t.id+'" class="post-n">#'+(i+1)+'</a></div>'+
@@ -1004,13 +1009,13 @@
       var mav=$('.mm-acct .acct-av');if(mav){mav.innerHTML=ph?avImg(ph,1):SVG.user;mav.classList.toggle('has-ph',!!ph)}b.setAttribute('aria-label',u?'Your account ('+(u.name||u.email)+')':'Sign in or create an account')}
     var ml=$('.mm-acct-l'),ms=$('.mm-acct-s');if(ml){ml.textContent=u?(u.name||'Your account'):'Sign in or create an account';ms.textContent=u?TIER_NAME[SMU.tier()]+' member \u00b7 '+(SMU.live?'synced':'demo account'):'Save athletes, post on the boards, sync what you watch'}
     /* Join CTA: signed out = Join; signed in, free = smaller Upgrade link; signed in member = hidden (header + phone menu) */
-    var st=!u?'out':(SMU.tier()!=='free'?'member':'free');
+    var st=!u?'out':(paidT(SMU.tier())?'member':'free');
     $$('.hdr-join,.mm-join').forEach(function(el){var mmj=el.classList.contains('mm-join');el.hidden=st==='member';el.classList.toggle('is-upgrade',st==='free');
       el.classList.toggle('btn-red',st!=='free');el.textContent=st==='free'?(mmj?'Upgrade your membership':'Upgrade'):(mmj?'Join SMU+':'Join');
       el.setAttribute('href',st==='free'?ROOT+'#membership':ROOT+'#waitlist')});
     if(window.fitNav)window.fitNav();
     $$('[data-save-athlete]').forEach(syncSaveBtn)}
-  SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',t!=='free'?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
+  SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',paidT(t)?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
   SMU.on('saved',function(){$$('[data-save-athlete]').forEach(syncSaveBtn)});
   function pullHistory(){SMU.pullProgress().then(function(rows){if(!rows||!rows.length)return;var local=hist(),by={};local.concat(rows).forEach(function(x){var o=by[x.id];if(!o||x.p>o.p||x.t>o.t)by[x.id]={id:x.id,p:Math.max(x.p,o?o.p:0),t:Math.max(x.t||0,o?o.t:0)}});
     var all=Object.keys(by).map(function(k){return by[k]}).sort(function(a,b){return b.t-a.t}).slice(0,24);store('mp_history',JSON.stringify(all));document.dispatchEvent(new Event('mp:history'))}).catch(function(){})}
@@ -1060,7 +1065,7 @@
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
     var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div><p class="jm-eb">Membership</p><h3 id="joinDlg-h">Pick your seat.</h3>'+
       '<p class="jm-lede">Join the free waitlist for the plan you want. There is nothing to buy.</p></div>'+
-      '<div class="jm-body"><div class="jm-plans"><div class="jm-tiers">'+T.map(joinCard).join('')+'</div></div>'+
+      '<div class="jm-body"><div class="jm-plans">'+(stOn()?studentBand('jm'):'')+'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div></div>'+
       '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
       conceptNotice('jm-cn')+'</div>');
@@ -1085,6 +1090,69 @@
   document.addEventListener('submit',function(e){if(e.target&&e.target.id==='wlJoin')setTimeout(syncWaitlist,0)});
   function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin()}
   window.addEventListener('hashchange',joinFromHash);setTimeout(joinFromHash,0);
+
+  /* ---------- Free Student plan (SMU email + student ID) ----------
+     Live: email-link sign-up on an @smu.edu address; the plan starts only after the email is confirmed and
+     claim_student_membership() (supabase/RUN_ME_16_students.sql) accepts it. Hidden on the live site while MP.FEATURES.students is false. */
+  var ST_NOTE='Used only to keep student memberships to one per student. It isn\u2019t shown on your profile or shared. SMU+ can\u2019t check it against SMU\u2019s records yet.';
+  function studentBand(where){if(!stOn())return '';
+    return '<div class="st-band st-'+where+'"><div class="st-b"><p class="st-k">SMU students</p><h4>SMU student? Join free.</h4>'+
+      '<p>Sign up with your @smu.edu email and student ID for a free Student plan. No card, nothing to buy.</p></div>'+
+      '<button type="button" class="btn btn-red st-go" data-student>Join free as a student</button></div>'}
+  function yearOpts(sel){return '<option value="">Choose</option>'+SMU.studentYears().map(function(y){return '<option value="'+y+'"'+(+sel===y?' selected':'')+'>Class of '+y+'</option>'}).join('')}
+  function sidField(id){return '<div class="fld"><label for="'+id+'">Student ID</label><input id="'+id+'" name="sid" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="10" required aria-describedby="'+id+'-n" placeholder="6 to 10 digits">'+
+    '<p class="fld-n" id="'+id+'-n">'+ST_NOTE+'</p></div>'}
+  function openStudent(){if(!stOn())return;if(/^#student$/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+    var open=$('#studentDlg');if(open){var fi=$('input',open);if(fi)fi.focus();return}
+    if(SMU.user){if(PAGE==='account'){var c=$('#acctStudent')||$('#acctPlan');if(c)c.scrollIntoView({block:'start'})}else location.href=ROOT+'account/#student';return}
+    var jd=$('#joinDlg');if(jd){var x=$('.dlg-x',jd);if(x)x.click()}
+    var d=dialog('studentDlg','<p class="eyebrow">Free Student plan</p><h3 id="studentDlg-h" class="dlg-h">Join free as an SMU student</h3>'+
+      '<p class="st-lede">'+(SMU.live?'Use your SMU email. We\u2019ll email you a link to confirm it, and your Student plan starts when you open that link.':'Use your SMU email. On the real site we email you a link to confirm it first; in this demo the account is confirmed right away.')+'</p>'+
+      '<form class="auth-f st-f" novalidate>'+
+        '<div class="fld"><label for="stEmail">SMU email</label><input id="stEmail" name="email" type="email" autocomplete="email" required placeholder="you@smu.edu"></div>'+
+        sidField('stId')+
+        '<div class="fld-row"><div class="fld"><label for="stName">Name</label><input id="stName" name="name" autocomplete="name" maxlength="40" required placeholder="How you appear on the boards"></div>'+
+        '<div class="fld"><label for="stYear">Class year</label><select id="stYear" name="year" required>'+yearOpts()+'</select></div></div>'+
+        '<label class="wl-consent st-consent" for="stOk"><input id="stOk" type="checkbox" name="consent" required><span class="wl-box" aria-hidden="true"></span><span>I agree that SMU+ can store these details for this student project, as described in the <a href="'+ROOT+'privacy/">privacy notice</a>.</span></label>'+
+        '<p class="auth-m" aria-live="polite"></p><button class="btn btn-red st-submit" type="submit">'+(SMU.live?'Email me a link':'Join free')+'</button>'+
+      '</form>'+conceptNotice('st-cn')+modeNote());
+    var f=$('form',d),m=$('.auth-m',d);
+    $('#stId',d).addEventListener('input',function(){var v=this.value.replace(/\D+/g,'').slice(0,10);if(v!==this.value)this.value=v});
+    f.addEventListener('submit',function(e){e.preventDefault();var o={email:$('#stEmail',d).value.trim(),sid:$('#stId',d).value.trim(),name:$('#stName',d).value.trim(),year:$('#stYear',d).value};
+      function bad(t,el){m.textContent=t;el.setAttribute('aria-invalid','true');el.focus()}
+      $$('[aria-invalid]',d).forEach(function(x){x.removeAttribute('aria-invalid')});
+      if(!SMU.isSmuEmail(o.email))return bad('Use your SMU email, ending in @smu.edu.',$('#stEmail',d));
+      if(!/^[0-9]{6,10}$/.test(o.sid))return bad('Student ID is 6 to 10 digits, numbers only.',$('#stId',d));
+      if(!o.name)return bad('Add your name.',$('#stName',d));
+      if(!o.year)return bad('Pick your class year.',$('#stYear',d));
+      if(!$('#stOk',d).checked)return bad('Please tick the box to agree to the privacy notice.',$('#stOk',d));
+      var b=$('.st-submit',d);b.disabled=true;m.textContent=SMU.live?'Sending\u2026':'One moment\u2026';
+      /* Also join the waitlist as a student (email, name, affiliation and tier_interest only; the student ID never goes there) */
+      SMU.waitlist({email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true}).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(r){b.disabled=false;
+        if(r&&r.sent){f.outerHTML='<div class="st-sent" role="status"><h4>Check your SMU inbox.</h4><p>We sent a link to <b>'+esc(r.email)+'</b>. Open it on this device and your free Student plan starts. Nothing happens until you do.</p></div>';return}
+        d.close();toast('You\u2019re in. Free Student plan, Class of '+o.year+'.');if(PAGE!=='account')location.href=ROOT+'account/#student'},
+        function(err){b.disabled=false;m.textContent=err.message||'Couldn\u2019t sign you up. Try again.'})});
+    $('#stEmail',d).focus()}
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-student]');if(!b)return;e.preventDefault();openStudent()});
+  /* home#student (e.g. a class QR code) opens the student form */
+  if(PAGE!=='account')(SMU.ready||Promise.resolve()).then(function(){if(location.hash==='#student'&&stOn())openStudent()});
+  function studentStatus(tier){var st=stOn()&&SMU.student&&SMU.student();if(!st)return '';
+    return '<p class="st-status">'+(tier==='student'?'':'Verified SMU student. ')+'Class of '+esc(st.year||'\u2014')+(st.at?' \u00b7 verified '+esc(new Date(st.at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})):'')+'</p>'+
+      '<p class="acct-meta">Checked with your @smu.edu email. SMU+ can\u2019t check student IDs against SMU\u2019s records yet.</p>'}
+  function studentCard(u,tier){if(!stOn()||tier==='student'||(SMU.student&&SMU.student()))return '';var msg=SMU.studentMsg?SMU.studentMsg():'';
+    if(!SMU.isSmuEmail(u.email))return '<div class="acct-card st-card" id="acctStudent"><h2 class="acct-h">SMU student?</h2><p>The free Student plan needs an @smu.edu email. You\u2019re signed in as '+esc(u.email)+'.</p>'+
+      '<button type="button" class="btn btn-outline btn-sm" id="stSwitch">Sign out and join with my SMU email</button></div>';
+    return '<div class="acct-card st-card" id="acctStudent"><h2 class="acct-h">SMU student? Join free</h2><p>Add your student ID to start the free Student plan on this account.</p>'+
+      '<form class="auth-f" id="stClaim" novalidate>'+sidField('stIdA')+'<div class="fld"><label for="stYearA">Class year</label><select id="stYearA" required>'+yearOpts()+'</select></div>'+
+      '<p class="auth-m" aria-live="polite">'+esc(msg)+'</p><button class="btn btn-red btn-sm" type="submit">Start my Student plan</button></form></div>'}
+  function wireStudentCard(root,render){var sw=$('#stSwitch',root);if(sw)sw.addEventListener('click',function(){SMU.signOut().then(function(){render();openStudent()})});
+    var f=$('#stClaim',root);if(!f)return;var m=$('.auth-m',f);
+    $('#stIdA',f).addEventListener('input',function(){var v=this.value.replace(/\D+/g,'').slice(0,10);if(v!==this.value)this.value=v});
+    f.addEventListener('submit',function(e){e.preventDefault();var sid=$('#stIdA',f).value.trim(),yr=$('#stYearA',f).value;
+      if(!/^[0-9]{6,10}$/.test(sid)){m.textContent='Student ID is 6 to 10 digits, numbers only.';$('#stIdA',f).focus();return}
+      if(!yr){m.textContent='Pick your class year.';$('#stYearA',f).focus();return}
+      var b=$('button[type=submit]',f);b.disabled=true;m.textContent='One moment\u2026';
+      SMU.claimStudent(sid,+yr).then(function(){toast('You\u2019re on the free Student plan.')},function(err){b.disabled=false;m.textContent=err.message})})}
 
   /* ---------- New thread ---------- */
   function compose(sport){var member=isMember();
@@ -1156,17 +1224,18 @@
   function account(){var main=$('#acctMain');document.title='Your account | SMU+';
     function render(){var u=SMU.user;
       if(!u){main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">SMU+ account</p><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'+
-        '<section class="sec"><div class="wrap acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div></div></section>';wireAuth(main,render);return}
+        '<section class="sec"><div class="wrap acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+studentBand('acct')+'</div></section>';wireAuth(main,render);
+        if(location.hash==='#student'&&stOn())setTimeout(function(){openStudent()},60);return}
       if(location.hash==='#reset'&&SMU.live){main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
         $('#npForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#npPw').value,m=$('.auth-m',main);if(v.length<8){m.textContent='At least 8 characters.';return}SMU.newPassword(v).then(function(){history.replaceState(null,'',location.pathname);toast('Password updated.');render()},function(err){m.textContent=err.message})});return}
       var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6),br=store('mp_brief');
-      main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">'+(SMU.live?'Your SMU+ account':'Demo account \u00b7 this browser only')+'</p><h1 class="display">'+esc(u.name||'Your account')+'</h1><p class="lede on-dark">'+esc(u.email)+' \u00b7 '+TIER_NAME[tier]+' member</p></div></section>'+
+      main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">'+(SMU.live?'Your SMU+ account':'Demo account \u00b7 this browser only')+'</p><h1 class="display">'+esc(u.name||'Your account')+'</h1><p class="lede on-dark">'+esc(u.email)+' \u00b7 '+TIER_NAME[tier]+' member'+(tier==='student'?' <span class="st-badge">Student</span>':'')+'</p></div></section>'+
         '<section class="sec"><div class="wrap">'+conceptNotice('acct-cn')+'</div><div class="wrap acct-grid">'+
           '<div class="acct-card"><h2 class="acct-h">Profile</h2>'+photoBlock(u)+'<form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
             '<p class="acct-meta">'+(SMU.live?'Signed in with '+esc(u.email)+'. Your data is stored in the SMU+ database.':'Demo mode: this account, your tier and your posts are saved only in this browser.')+'</p><button type="button" class="btn btn-outline btn-sm" id="signOut">Sign out</button></div>'+
-          '<div class="acct-card"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+TIER_NAME[tier]+'</b>'+(tier!=='free'?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+
+          '<div class="acct-card" id="acctPlan"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+(tier==='student'?'Free Student plan':TIER_NAME[tier])+'</b>'+(tier==='student'?' <span class="st-badge">Student</span>':'')+(paidT(tier)?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+studentStatus(tier)+
             '<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>'+
-            (tier!=='free'?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+'<p class="acct-meta">Demo membership: no payments are taken and no card is ever asked for.</p></div>'+
+            (paidT(tier)?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+'<p class="acct-meta">Demo membership: no payments are taken and no card is ever asked for.</p></div>'+studentCard(u,tier)+
           '<div class="acct-card"><h2 class="acct-h">Saved players</h2>'+(saved.length?'<ul class="acct-list">'+saved.map(function(a){return '<li><a href="'+athleteUrl(a.id)+'"><b>'+esc(a.name)+'</b><small>#'+a.num+' \u00b7 '+a.pos+'</small></a><button type="button" class="linkish" data-save-athlete="'+a.id+'" aria-pressed="true"><span>Saved</span></button></li>'}).join('')+'</ul>':'<p class="acct-empty">No saved players yet. Tap <b>Save player</b> on any <a href="'+ROOT+'athletes/">player profile</a>.</p>')+'</div>'+
           '<div class="acct-card"><h2 class="acct-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="acct-empty">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+
             '<p class="acct-meta">'+(SMU.live?'Synced to your account across devices.':'Saved in this browser.')+'</p></div>'+
@@ -1174,14 +1243,15 @@
         '</div></section>';
       syncBriefs();
       $('#signOut').addEventListener('click',function(){SMU.signOut().then(function(){toast('Signed out.');render()},function(err){toast(err.message,'err')})});
-      var cp=$('#cancelPlan');if(cp)cp.addEventListener('click',function(){SMU.setTier('free').then(function(){toast('Demo membership canceled.');render()},function(err){toast(err.message,'err')})});
-      wirePhoto(main);
+      var cp=$('#cancelPlan');if(cp)cp.addEventListener('click',function(){SMU.setTier('free').then(backToStudent).then(function(){toast(SMU.tier()==='student'?'Demo membership canceled. You\u2019re back on the free Student plan.':'Demo membership canceled.');render()},function(err){toast(err.message,'err')})});
+      wirePhoto(main);wireStudentCard(main,render);
+      if(location.hash==='#student'){var sc=$('#acctStudent')||$('#acctPlan');if(sc)setTimeout(function(){sc.scrollIntoView({block:'start'})},60)}
       $('#nameForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#dispName').value.trim(),m=$('.auth-m',this);if(!v){m.textContent='Enter a name.';return}SMU.updateName(v).then(function(){toast('Name saved.');render()},function(err){m.textContent=err.message})})}
     main.innerHTML='<div class="skel-block" aria-hidden="true" style="min-height:420px"><i class="sk"></i></div>';
-    SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('avatar',function(){if(SMU.user)render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()})}
+    SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('avatar',function(){if(SMU.user)render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()});SMU.on('student',function(){if(SMU.user)render()})}
 
   SMU.ready.then(function(){syncAcct();syncBriefs();syncWaitlist();if(SMU.user&&SMU.live)pullHistory();
-    var s=SMU.user&&SMU.tier();if(SMU.user){store('mp_member',s!=='free'?'1':'0');syncMember()}});
+    var s=SMU.user&&SMU.tier();if(SMU.user){store('mp_member',paidT(s)?'1':'0');syncMember()}});
   syncAcct();
 
   if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='account')account();

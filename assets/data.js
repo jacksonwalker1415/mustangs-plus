@@ -6,12 +6,16 @@ window.MP = window.MP || {};
 MP.FEATURES = MP.FEATURES || {};
 /* Contact for data-removal and privacy requests. ONE constant: put the address in email when it exists; until then the site shows the placeholder text. */
 /* Membership tier display names. Keys stay stable (DB + code use them); change a label here only. */
-MP.TIER_LABELS = {free:'Free', mustang:'Mustang', pony:'All-Access', club:'Red & Blue'};
+MP.TIER_LABELS = {free:'Free', mustang:'Mustang', pony:'All-Access', club:'Red & Blue', student:'Student'};  /* student = the free Student plan (RUN_ME_16), not a paid tier */
 MP.CONTACT = MP.CONTACT || {email:'', pending:'a dedicated SMU+ contact email will be posted here before launch'};
 if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
 /* avatars: member profile photos on the live site. On since supabase/RUN_ME_15_avatars.sql was applied (profiles.avatar_url and the
    'avatars' storage bucket exist). Set false to hide uploads and photos again (initials only); nothing is deleted. Demo mode always has photos (saved in the browser). */
 if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = true;
+/* students: the free Student sign-up (SMU email + student ID) on the live site. Keep false until supabase/RUN_ME_16_students.sql has run
+   (student_verifications table, 'student' tier, claim_student_membership RPC); while false the live site shows no student option and never calls them.
+   Demo mode always has the full student flow (saved in this browser). */
+if (MP.FEATURES.students == null) MP.FEATURES.students = false;
 
 MP.SPORTS = [
   {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Rhett Lashlee',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
