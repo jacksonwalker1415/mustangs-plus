@@ -7,40 +7,45 @@ MP.FEATURES = MP.FEATURES || {};
 /* Contact for data-removal and privacy requests. ONE constant: put the address in email when it exists; until then the site shows the placeholder text. */
 /* Membership tier display names. Keys stay stable (DB + code use them); change a label here only. */
 MP.TIER_LABELS = {free:'Free', mustang:'Mustang', pony:'All-Access', club:'Red & Blue', student:'Student'};  /* student = the free Student plan (RUN_ME_16), not a paid tier */
-MP.CONTACT = MP.CONTACT || {email:'', pending:'a dedicated SMU+ contact email will be posted here before launch'};
+MP.CONTACT = MP.CONTACT || {email:'smuplusmedia@gmail.com'};
 if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
 /* avatars: member profile photos on the live site. On since supabase/RUN_ME_15_avatars.sql was applied (profiles.avatar_url and the
    'avatars' storage bucket exist). Set false to hide uploads and photos again (initials only); nothing is deleted. Demo mode always has photos (saved in the browser). */
 if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = true;
-/* students: the free Student sign-up (SMU email + student ID) on the live site. Keep false until supabase/RUN_ME_16_students.sql has run
+/* students: the free Student sign-up (SMU email only; no student ID since RUN_ME_17) on the live site. On since supabase/RUN_ME_16_students.sql was applied (Oct 26, 2026)
    (student_verifications table, 'student' tier, claim_student_membership RPC); while false the live site shows no student option and never calls them.
    Demo mode always has the full student flow (saved in this browser). */
-if (MP.FEATURES.students == null) MP.FEATURES.students = false;
+if (MP.FEATURES.students == null) MP.FEATURES.students = true;
+/* Members gating (locks, blurs, 'Members only' gates, member preview switch). false = everyone sees the full member experience.
+   Code stays in app.js; set to true to bring the gates and the preview switch back. */
+if (MP.FEATURES.gating == null) MP.FEATURES.gating = false;
+// Student check-in spot on game-day pages (games/). Engagement features are on hold, so it stays off.
+if (MP.FEATURES.checkin == null) MP.FEATURES.checkin = false;
 
 MP.SPORTS = [
-  {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Rhett Lashlee',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
+  {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Rhett Lashlee',fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
    blurb:'Ford Stadium under the lights, the Boulevard before kickoff and an ACC season where every snap counts.'},
-  {slug:'mens-basketball',name:"Men's Basketball",season:'Winter',g:'M',record:'0-0',conf:'Opens Nov. 2',coach:'Coach Andy Enfield',members:2380,fund:228900,pos:['PG','SG','SG','SF','SF','PF','PF','C'],num:[0,35],ht:[73,85],
+  {slug:'mens-basketball',name:"Men's Basketball",season:'Winter',g:'M',record:'0-0',conf:'Opens Nov. 2',coach:'Coach Andy Enfield',fund:228900,pos:['PG','SG','SG','SF','SF','PF','PF','C'],num:[0,35],ht:[73,85],
    blurb:'Moody Coliseum, the student section on its feet, and ACC nights from November to March.'},
-  {slug:'womens-basketball',name:"Women's Basketball",season:'Winter',g:'W',record:'0-0',conf:'Opens Nov. 3',coach:'Coach Adia Barnes',members:1640,fund:151200,pos:['PG','G','G','F','F','F','C'],num:[0,35],ht:[66,77],
+  {slug:'womens-basketball',name:"Women's Basketball",season:'Winter',g:'W',record:'0-0',conf:'Opens Nov. 3',coach:'Coach Adia Barnes',fund:151200,pos:['PG','G','G','F','F','F','C'],num:[0,35],ht:[66,77],
    blurb:'Moody Coliseum, early mornings in the gym and every possession that decides a close one.'},
-  {slug:'womens-soccer',name:"Women's Soccer",season:'Fall',g:'W',record:'6-6-4',conf:'1-5-2 ACC',coach:'Coach Nicole Nelson',members:1120,fund:98400,pos:['GK','D','D','D','M','M','M','F','F'],num:[1,30],ht:[62,72],
+  {slug:'womens-soccer',name:"Women's Soccer",season:'Fall',g:'W',record:'6-6-4',conf:'1-5-2 ACC',coach:'Coach Nicole Nelson',fund:98400,pos:['GK','D','D','D','M','M','M','F','F'],num:[1,30],ht:[62,72],
    blurb:'Washburne under the lights and an ACC schedule that gives nothing away.'},
-  {slug:'mens-soccer',name:"Men's Soccer",season:'Fall',g:'M',record:'12-0-2',conf:'6-0-1 ACC',coach:'Coach Kevin Hudson',members:960,fund:87600,pos:['GK','D','D','D','M','M','M','F','F'],num:[1,30],ht:[67,76],
+  {slug:'mens-soccer',name:"Men's Soccer",season:'Fall',g:'M',record:'12-0-2',conf:'6-0-1 ACC',coach:'Coach Kevin Hudson',fund:87600,pos:['GK','D','D','D','M','M','M','F','F'],num:[1,30],ht:[67,76],
    blurb:'Friday nights at Washburne and a back line that takes every goal against personally.'},
-  {slug:'volleyball',name:'Volleyball',season:'Fall',g:'W',record:'16-4',conf:'8-2 ACC',coach:'Coach Sam Erger',members:1010,fund:93100,pos:['OH','OH','MB','MB','S','L','OPP','DS'],num:[1,25],ht:[65,77],
+  {slug:'volleyball',name:'Volleyball',season:'Fall',g:'W',record:'16-4',conf:'8-2 ACC',coach:'Coach Sam Erger',fund:93100,pos:['OH','OH','MB','MB','S','L','OPP','DS'],num:[1,25],ht:[65,77],
    blurb:'Match night at Moody: every kill, every dig, every timeout huddle.'},
-  {slug:'swimming-diving',name:'Swimming & Diving',season:'Winter',g:'X',record:'M 3-1 · W 2-2',conf:'Dual meets',coach:'Coaches Greg Rhodenbaugh & Ozzie Quevedo',members:640,fund:52300,pos:['Freestyle','Backstroke','Breaststroke','Butterfly','IM','Distance','Diving'],
+  {slug:'swimming-diving',name:'Swimming & Diving',season:'Winter',g:'X',record:'M 3-1 · W 2-2',conf:'Dual meets',coach:'Coaches Greg Rhodenbaugh & Ozzie Quevedo',fund:52300,pos:['Freestyle','Backstroke','Breaststroke','Butterfly','IM','Distance','Diving'],
    blurb:'Lane lines at 5 a.m., dual meets in the fall and a championship season in Greensboro and Austin.'},
-  {slug:'golf',name:'Golf',season:'Fall/Spring',g:'X',record:'W: 4 top-6 finishes',conf:'Fall season',coach:'Coaches Chris Parra & Lauren Mason',members:520,fund:41800,pos:['Golfer'],
+  {slug:'golf',name:'Golf',season:'Fall/Spring',g:'X',record:'W: 4 top-6 finishes',conf:'Fall season',coach:'Coaches Chris Parra & Lauren Mason',fund:41800,pos:['Golfer'],
    blurb:'Dawn practice rounds, three-day weeks on the road and a spring with an NCAA Regional in Dallas.'},
-  {slug:'tennis',name:'Tennis',season:'Spring',g:'X',record:'Fall invites',conf:'Duals in spring',coach:'Coaches Grant Chen & Kelcy McKenna',members:480,fund:39500,pos:['Singles','Singles','Doubles','Singles/Doubles'],
+  {slug:'tennis',name:'Tennis',season:'Spring',g:'X',record:'Fall invites',conf:'Duals in spring',coach:'Coaches Grant Chen & Kelcy McKenna',fund:39500,pos:['Singles','Singles','Doubles','Singles/Doubles'],
    blurb:'Fall invitationals, then a dual season where one tiebreak swings a whole afternoon.'},
-  {slug:'track-field',name:'Track & Field / XC',season:'Year-round',g:'W',record:'XC: 2 team wins',conf:'ACCs Oct. 30',coach:'Coach A Havahla Haynes',members:560,fund:46200,pos:['Sprints','Distance','Hurdles','Jumps','Throws','Mid-distance'],
+  {slug:'track-field',name:'Track & Field / XC',season:'Year-round',g:'W',record:'XC: 2 team wins',conf:'ACCs Oct. 30',coach:'Coach A Havahla Haynes',fund:46200,pos:['Sprints','Distance','Hurdles','Jumps','Throws','Mid-distance'],
    blurb:'Cross country in the fall, the track in winter and spring, and long runs on the Katy Trail.'},
-  {slug:'rowing',name:'Rowing',season:'Fall/Spring',g:'W',record:'Head races',conf:'Spring sprints',coach:'Coach Chase Graham',members:300,fund:22900,pos:['Stroke','Bow','Port','Starboard','Coxswain'],
+  {slug:'rowing',name:'Rowing',season:'Fall/Spring',g:'W',record:'Head races',conf:'Spring sprints',coach:'Coach Chase Graham',fund:22900,pos:['Stroke','Bow','Port','Starboard','Coxswain'],
    blurb:'Dawn on White Rock Lake. Erg tests, seat races and race day.'},
-  {slug:'equestrian',name:'Equestrian',season:'Fall/Spring',g:'W',record:'1-2',conf:'Fall slate',coach:'Coach Brad Kearns',members:340,fund:27400,pos:['Hunt Seat','Hunt Seat','Western','Western'],
+  {slug:'equestrian',name:'Equestrian',season:'Fall/Spring',g:'W',record:'1-2',conf:'Fall slate',coach:'Coach Brad Kearns',fund:27400,pos:['Hunt Seat','Hunt Seat','Western','Western'],
    blurb:'Riders, horses and the barn crew behind every point at the Dallas Equestrian Center.'}
 ];
 
@@ -55,7 +60,7 @@ MP.CLASSES = ['Fr.','R-Fr.','So.','Jr.','Sr.','Gr.'];
 
 /* Message board (fictional users and posts) */
 MP.FORUMS = [
-  {id:'paddock',name:'The Paddock',desc:'Members-only premium board. Insider intel and practice reports.',prem:true,threads:1284,posts:48211},
+  {id:'paddock',name:'The Paddock',desc:'Insider intel and practice reports from SMU+ staff.',prem:true,threads:1284,posts:48211},
   {id:'hilltop',name:'The Hilltop',desc:'Free board for every Mustang fan. Game talk, takes and hype.',prem:false,threads:3907,posts:122640},
   {id:'recruiting',name:'Recruiting Trail',desc:'Visits, offers and commitments across every sport.',prem:true,threads:612,posts:20975},
   {id:'boulevard',name:'The Boulevard',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
@@ -123,7 +128,7 @@ MP.THREADS = [
    ]},
   {id:9,f:'hilltop',sport:null,title:'Where would the NIL money go? How the proposed model works',by:'staff',ago:'2d',replies:512,views:'18.7k',pin:true,
    posts:[
-     ['staff','Pinned. How the proposed model works: 40% of membership revenue would go to SMU Athletics\u2019 official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse. SMU+ would not pick or pay individual athletes or teams. (Sample post for this concept.)'],
+     ['staff','Pinned. How the proposed model works: a share of membership revenue would support SMU Athletics\u2019 official NIL and revenue-sharing programs, with exact terms still to be decided and athlete deals disclosed through the NIL Go clearinghouse. SMU+ would not pick or pay individual athletes or teams. (Sample post for this concept.)'],
      ['cox','Clear rules like this are why I joined.'],
      ['hank','Good that it runs through SMU\u2019s official programs.']
    ]},
@@ -150,9 +155,8 @@ MP.THREADS = [
 /* Board upgrade: forum groups, more users, longer threads with quoted replies. All fictional. */
 (function(){var MP=window.MP;
 MP.FORUMS.forEach(function(f){f.group=f.prem?'Premium':'Community'});
-MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame breakdowns with the SMU+ film staff. Members only.',prem:true,threads:388,posts:9140,group:'Premium'});
 MP.FORUMS.push({id:'help',name:'Site Help & Feedback',desc:'Bugs, feature requests and membership questions.',prem:false,threads:214,posts:1630,group:'Community'});
-MP.USERS.dre={n:'Dre Coleman',tier:'SMU+ Film Room',staff:true,since:'2024',posts:'2,214'};
+MP.USERS.dre={n:'Dre Coleman',tier:'SMU+ Staff',staff:true,since:'2024',posts:'2,214'};
 MP.USERS.jt={n:'J.T. Barlow',tier:'SMU+ Recruiting',staff:true,since:'2024',posts:'3,377'};
 MP.USERS.peruna={n:'PerunaPapa',tier:'Red & Blue',since:'2025',posts:'5,920'};
 MP.USERS.ford={n:'FordStadiumFaithful',tier:'All-Access',since:'2025',posts:'1,408'};
@@ -167,7 +171,7 @@ T(1).posts=[
  ['staff','Kicker looked sharp from distance in the period I watched. I wouldn\'t read too much into one practice.',2],
  ['ford','Good to hear. I was sitting right behind the uprights for the miss and the groan from our section was audible in Snider Plaza.',3],
  ['grace','Love the detail. Can we get a film breakdown of the 3rd-and-long package on the Paddock Report?'],
- ['dre','Already cut it up. It\'s going in the Film Room Lounge tomorrow morning.',5],
+ ['dre','Already cut it up. It\'s going in The Paddock tomorrow morning.',5],
  ['peruna','Dre with the assist. Somebody get this man a corny dog.',6]];
 T(2).posts=[
  ['mike','Kickoff is 11 a.m. CT Saturday in Syracuse, on ESPN2. Drop your score predictions and keep it civil. Pony Up!'],
@@ -179,14 +183,8 @@ T(2).posts=[
  ['peruna','11 a.m. Central, noon in Syracuse. Set an alarm and get the queso going early.',5],
  ['hank','Bold call: if they run it like they did against Cal, this one is decided by halftime.'],
  ['ray','Hank stealing my take. I\'m sticking with 31-24.',2]];
-MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how premium boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
- posts:[['staff','Welcome. Be civil, no posting about players\' families, no screenshots of premium posts. Profile photos: no SMU logos, no photos of athletes or other people, nothing offensive. Use Report on a post to flag a photo. The Paddock and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
-MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, snap by snap',by:'dre',ago:'4h',replies:167,views:'5.1k',
- posts:[['dre','Cut up the A-gap sim pressure snap by snap. Watch the boundary linebacker: he always shows blitz and only sometimes comes. QB sees six, gets four.'],
-  ['ray','The free safety not moving until the snap is so disciplined. You can see the QB staring at him.',0],
-  ['peruna','Is this sustainable? Feels like good offenses will motion the back out and stress it.'],
-  ['dre','Exactly the counter. Staff has an answer, but I\'ll save it for Thursday.',2],
-  ['grace','This is the best thing on the site. Worth the membership by itself.']]});
+MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how the boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
+ posts:[['staff','Welcome. Be civil, no posting about players\' families, don\'t copy whole staff reports to other sites. Profile photos: no SMU logos, no photos of athletes or other people, nothing offensive. Use Report on a post to flag a photo. Anyone can read every board. Sign in to post. Every username and post on this demo board is fictional.'],['cox','Appreciate the rule on staff reports. Keeps the good info coming.']]});
 MP.THREADS.push({id:21,f:'recruiting',sport:'football',hot:true,title:'Visit list for the Nov. 6 Virginia Tech game (fictional names, updated)',by:'jt',ago:'7h',replies:244,views:'8.8k',
  posts:[['jt','Current list: one official, three unofficial. The QB is back for a third trip. All names on this demo board are fictional.'],
   ['ford','Third visit is the one that matters. Friday night under the lights at Ford should help.',0],

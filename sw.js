@@ -1,9 +1,11 @@
 /* SMU+ service worker (installable web app shell).
    Rules, in order. Anything not matched is left alone (no respondWith), so the browser handles it
    exactly as if there were no service worker:
-   - only GET requests, only this origin, only URLs inside this worker's scope (/mustangs-plus/)
-   - never anything on *.supabase.co or any other origin (CDNs, YouTube, X), never auth callbacks
-     (?code=, ?access_token=, ?token_hash=, ?error=...), never Range/media requests
+   - only GET requests, only this origin, only URLs inside this worker's scope (the site root on
+     fanplatformdemo.com; registration uses relative paths, so a subpath also works)
+   - never anything on *.supabase.co or any other origin (CollegeFootballData, StatBroadcast, podcast
+     hosts, CDNs, YouTube, X), never audio/video (media element or Range requests), never auth callbacks
+     (?code=, ?access_token=, ?token_hash=, ?error=...)
    - page navigations: network first; the cached copy (or offline.html) is used only when offline
    - static files (css, js, images, fonts): network first too, cached by full URL including ?v=.
      When a new ?v= of a file is stored, older ?v= copies of that file are deleted, so a stale
@@ -16,7 +18,7 @@ var PREFIX = 'smu-pwa-';
 var SHELL = VERSION + '-shell';
 var RUNTIME = VERSION + '-runtime';
 var MAX_RUNTIME = 150;
-var SCOPE = self.registration.scope;              // e.g. https://jacksonwalker1415.github.io/mustangs-plus/
+var SCOPE = self.registration.scope;              // e.g. https://fanplatformdemo.com/
 var OFFLINE = new URL('offline.html', SCOPE).href;
 var PRECACHE = ['offline.html', 'assets/brand/smu-plus-logo-lg.png', 'assets/brand/icon-192.png']
   .map(function (p) { return new URL(p, SCOPE).href; });
@@ -42,6 +44,7 @@ self.addEventListener('activate', function (e) {
 function handled(req) {
   if (req.method !== 'GET') return false;
   if (req.headers.has('range')) return false;
+  if (req.destination === 'audio' || req.destination === 'video' || req.destination === 'track') return false;
   var url = new URL(req.url);
   if (url.origin !== self.location.origin) return false;   // covers *.supabase.co, CDNs, embeds
   if (/(^|\.)supabase\.(co|in)$/i.test(url.hostname)) return false;

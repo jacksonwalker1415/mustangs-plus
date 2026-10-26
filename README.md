@@ -2,7 +2,7 @@
 
 Concept fan membership site for an SMU Cox class project. Not affiliated with or endorsed by SMU Athletics or Learfield.
 
-Live: https://jacksonwalker1415.github.io/mustangs-plus/
+Live: https://fanplatformdemo.com/ (the old https://jacksonwalker1415.github.io/mustangs-plus/ URL redirects here)
 
 - `index.html`: home page (game day strip, Continue Watching, SMU+ Weekly signup)
 - `library/`: content library with filters
