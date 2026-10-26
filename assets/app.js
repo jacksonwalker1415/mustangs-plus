@@ -528,7 +528,7 @@
     if(window.twttr&&twttr.widgets&&twttr.widgets.load){twttr.widgets.load(box);return}
     if(!document.getElementById('x-wjs')){var sc=document.createElement('script');sc.id='x-wjs';sc.async=true;sc.charset='utf-8';sc.src='https://platform.twitter.com/widgets.js';document.body.appendChild(sc)}}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-load-x]');if(b){e.preventDefault();loadX(b)}});
-  function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&c.sport===slug})}
+  function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&(c.sport===slug||(c.also||[]).indexOf(slug)>=0)}).sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')})}
   function mediaSection(slug,name){var L=thirdFor(slug);if(!L.length)return '';
     return '<section class="sec alt" id="media"><div class="wrap">'+secHead('Video, podcasts &amp; coverage',libUrl('all'),'Library','Free · official channels and the press')+
       '<p class="lede">Real '+esc(name.toLowerCase())+' media from SMU Athletics and outside outlets, credited to each source. Videos and podcasts play through YouTube and Apple Podcasts; articles open on the outlet\u2019s own site.</p>'+rail(L)+'</div></section>'}
