@@ -262,7 +262,7 @@
      SMU-blue panel with the SMU+ mark, a small kicker, one or two big words and the date when there is one. HTML and CSS only. */
   var TPL_PH={football:['ford','helmet','runout','hype'],'mens-basketball':['moody-bowl','students'],'womens-basketball':['wbb-drive','students'],volleyball:['vb-spike'],
     'mens-soccer':['msoc'],'womens-soccer':['wsoc'],'swimming-diving':['swim'],golf:['golf'],tennis:['tennis'],'track-field':['track'],rowing:['rowing'],equestrian:['equestrian'],'':['ford','students','hype','storm']};
-  var TPL_W=[[/mic'?d up/i,"MIC'D UP"],[/hall of fame|feature|profile/i,'FEATURE'],[/recap|final from|results/i,'RECAP'],[/preview/i,'PREVIEW'],[/film/i,'FILM ROOM'],
+  var TPL_W=[[/mic'?d up/i,"MIC'D UP"],[/hall of fame|feature|profile/i,'FEATURE'],[/recap|final from|results/i,'RECAP'],[/preview/i,'PREVIEW'],[/film/i,'BREAKDOWN'],
     [/season notes/i,'SEASON NOTES'],[/roundup/i,'ROUNDUP'],[/poll|top 25|ranked|rankings/i,'RANKINGS'],[/record/i,'RECORD'],[/champion|title/i,'CHAMPIONS'],
     [/award|watch list|finalist|of the week/i,'HONORS'],[/schedule|slate|televised/i,'SCHEDULE'],[/patch|partnership|business|lacrosse|launch/i,'BUSINESS'],
     [/docuseries|boulevard/i,'DOCUSERIES'],[/interview/i,'INTERVIEW'],[/highlights/i,'HIGHLIGHTS'],[/press conference|availability|tipoff|postgame|postmatch/i,'MEDIA DAY'],[/coach/i,'STAFF']];
