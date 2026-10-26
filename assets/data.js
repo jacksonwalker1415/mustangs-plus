@@ -9,9 +9,9 @@ MP.FEATURES = MP.FEATURES || {};
 MP.TIER_LABELS = {free:'Free', mustang:'Mustang', pony:'All-Access', club:'Red & Blue'};
 MP.CONTACT = MP.CONTACT || {email:'', pending:'a dedicated SMU+ contact email will be posted here before launch'};
 if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
-/* avatars: member profile photos on the live site. Keep false until supabase/RUN_ME_15_avatars.sql has run (adds profiles.avatar_url and the
-   'avatars' storage bucket); while false the live site shows initials only and never queries either. Demo mode always has photos (saved in the browser). */
-if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = false;
+/* avatars: member profile photos on the live site. On since supabase/RUN_ME_15_avatars.sql was applied (profiles.avatar_url and the
+   'avatars' storage bucket exist). Set false to hide uploads and photos again (initials only); nothing is deleted. Demo mode always has photos (saved in the browser). */
+if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = true;
 
 MP.SPORTS = [
   {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Rhett Lashlee',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
