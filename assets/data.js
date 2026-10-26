@@ -76,7 +76,7 @@ MP.THREADS = [
    posts:[
      ['staff','Big visit weekend for the hoops staff. Both guards (fictional, for this demo) sat courtside for the scrimmage and met with the Cox business school. Early read: very positive.'],
      ['ray','Whoever runs the visit itinerary deserves a raise.'],
-     ['hank','The NIL fund numbers matter here. Fans actually moved the needle this year.']
+     ['hank','NIL matters here. Fan support through SMU\u2019s official programs could move the needle.']
    ]},
   {id:4,f:'hilltop',sport:'womens-soccer',hot:true,title:"Women's soccer wins 3-1 at Cal. Who's going to the Pitt match?",by:'grace',ago:'3d',replies:146,views:'3.9k',
    posts:[
@@ -106,11 +106,11 @@ MP.THREADS = [
      ['staff','Spent the morning on deck. The distance group is ahead of last year\'s splits. The diving coach thinks a fictional sophomore has a real shot at the podium.'],
      ['grace','Didn\'t know I cared about swim until SMU+. Now I\'m hooked.']
    ]},
-  {id:9,f:'hilltop',sport:null,title:'Where does the NIL money actually go? Read the Q3 fund report',by:'staff',ago:'2d',replies:512,views:'18.7k',pin:true,
+  {id:9,f:'hilltop',sport:null,title:'Where would the NIL money go? How the proposed model works',by:'staff',ago:'2d',replies:512,views:'18.7k',pin:true,
    posts:[
-     ['staff','Pinned. The quarterly fund report is up for members. 40% of every membership is in the NIL pool. This quarter it paid athletes across all 12 programs for content, Q&As and fan events. (Sample data for this concept.)'],
-     ['cox','Transparency like this is why I joined.'],
-     ['hank','Love that Olympic sports get a cut, not just football and hoops.']
+     ['staff','Pinned. How the proposed model works: 40% of membership revenue would go to SMU Athletics\u2019 official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse. SMU+ would not pick or pay individual athletes or teams. (Sample post for this concept.)'],
+     ['cox','Clear rules like this are why I joined.'],
+     ['hank','Good that it runs through SMU\u2019s official programs.']
    ]},
   {id:10,f:'recruiting',sport:'football',title:'Offer tracker: 2028 class (updated weekly)',by:'staff',ago:'2d',replies:691,views:'22k',
    posts:[['staff','Updated tracker. All prospects referenced on this demo board are fictional.'],['ray','The DL haul is going to be special.']]},
