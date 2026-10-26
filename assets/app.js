@@ -609,8 +609,9 @@
     instagram:'<path d="M7 2.5h6A4.5 4.5 0 0 1 17.5 7v6a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 13V7A4.5 4.5 0 0 1 7 2.5zm0 1.8A2.7 2.7 0 0 0 4.3 7v6A2.7 2.7 0 0 0 7 15.7h6a2.7 2.7 0 0 0 2.7-2.7V7A2.7 2.7 0 0 0 13 4.3zm3 2.4a3.3 3.3 0 1 1 0 6.6 3.3 3.3 0 0 1 0-6.6zm0 1.8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM14.2 4.9a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/>',
     youtube:'<path d="M18 6.3c-.2-.9-.9-1.6-1.8-1.8C14.6 4 10 4 10 4s-4.6 0-6.2.5C2.9 4.7 2.2 5.4 2 6.3 1.6 7.9 1.6 10 1.6 10s0 2.1.4 3.7c.2.9.9 1.6 1.8 1.8C5.4 16 10 16 10 16s4.6 0 6.2-.5c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-3.7.4-3.7s0-2.1-.4-3.7zM8.3 12.6V7.4L12.6 10z"/>',
     tiktok:'<path d="M13.6 2.5c.3 1.9 1.4 3.1 3.4 3.3v2.4c-1.2.1-2.3-.3-3.4-1v4.9c0 3.4-2.6 5.4-5.5 5.4A5 5 0 0 1 3 12.5c0-3.1 2.6-5.3 5.9-4.9v2.5c-1.6-.3-3.3.6-3.3 2.4 0 1.4 1.1 2.5 2.6 2.5s2.6-1 2.6-2.8V2.5z"/>'};
+  function foCheck(v){return '<svg class="fo-v fo-v-'+(v==='business'?'g':'b')+'" viewBox="0 0 20 20" width="15" height="15" role="img" aria-label="Verified account"><path d="M10 1.5l2.3 1.7 2.8-.2.9 2.7 2.4 1.5-.9 2.7.9 2.7-2.4 1.5-.9 2.7-2.8-.2L10 18.5l-2.3-1.7-2.8.2-.9-2.7-2.4-1.5.9-2.7-.9-2.7 2.4-1.5.9-2.7 2.8.2z"/><path d="M6.5 10.2l2.3 2.3 4.8-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
   function foCard(a){var h=a[1],k=h.toLowerCase(),p=XPROF[k]||{},nm=p.n||a[0],ban=p.ban?ROOT+'assets/img/x/'+k+'-banner.webp':'';
-    var chk=p.v?'<svg class="fo-v fo-v-'+(p.v==='business'?'g':'b')+'" viewBox="0 0 20 20" width="15" height="15" role="img" aria-label="Verified account"><path d="M10 1.5l2.3 1.7 2.8-.2.9 2.7 2.4 1.5-.9 2.7.9 2.7-2.4 1.5-.9 2.7-2.8-.2L10 18.5l-2.3-1.7-2.8.2-.9-2.7-2.4-1.5.9-2.7-.9-2.7 2.4-1.5.9-2.7 2.8.2z"/><path d="M6.5 10.2l2.3 2.3 4.8-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>':'';
+    var chk=p.v?foCheck(p.v):'';
     return '<li class="fo-card"><div class="fo-ban">'+(ban?'<img src="'+ban+'" alt="" loading="lazy" decoding="async" width="600" height="200">':'')+'</div>'+
       '<img class="fo-av" src="'+ROOT+'assets/img/x/'+k+'.webp" alt="" loading="lazy" decoding="async" width="96" height="96">'+
       '<div class="fo-body"><p class="fo-nm"><b>'+esc(nm)+'</b>'+chk+'</p><p class="fo-h">@'+esc(h)+'</p>'+(p.b?'<p class="fo-bio">'+esc(p.b)+'</p>':'')+
@@ -620,12 +621,15 @@
   var XARR='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var SLN=0;
   /* Follow rows use the same side arrows as the X posts row: one per side, centered on the cards, hidden when nothing scrolls */
-  /* Player cards for the follow section: X and Instagram accounts from assets/socials.js (verified Oct. 26, 2026), as plain text links.
-     Avatar is the player's official SMU Athletics roster headshot when the repo has one, else the jersey number. */
-  function plCard(p){var a=p.ath,ph=a&&PH[a.photo];
-    return '<li class="fo-card fo-pc"><div class="fo-ban"></div>'+(ph?'<img class="fo-av" src="'+ROOT+'assets/photos/'+(ph.small||ph.file)+'" alt="" loading="lazy" decoding="async" width="96" height="96" style="object-position:50% 18%">':'<span class="fo-av fo-num" aria-hidden="true">'+esc(p.num)+'</span>')+
-      '<div class="fo-body"><p class="fo-nm"><b>'+esc(p.name)+'</b></p><p class="fo-h">#'+esc(p.num)+' · '+esc(p.pos||'')+' · Player</p>'+
-      '<ul class="fo-pl">'+p.acc.map(function(x){return '<li><a class="fo-a fo-t" href="'+esc(x[2])+'" target="_blank" rel="noopener nofollow" aria-label="'+esc(p.name)+' on '+FO_L[x[0]]+', @'+esc(x[1])+' (opens in a new tab)"><span class="fo-tk">'+FO_L[x[0]]+'</span><span class="fo-th">@'+esc(x[1])+'</span></a></li>'}).join('')+'</ul></div></li>'}
+  /* Player cards for the follow section: X and Instagram accounts from assets/socials.js (verified Oct. 26, 2026), laid out like the team cards.
+     Banner, avatar, verified check and bio come from the player's own X profile (MP.XPROF, self-hosted copies in assets/img/x/) when they have one;
+     otherwise the avatar is their official SMU Athletics roster headshot, else the jersey number, on a plain blue banner. */
+  function plCard(p){var a=p.ath,ph=a&&PH[a.photo],xa=p.acc.filter(function(x){return x[0]==='x'})[0],k=xa?xa[1].toLowerCase():'',x=k&&XPROF[k]||null;
+    var av=x?'<img class="fo-av" src="'+ROOT+'assets/img/x/'+k+'.webp" alt="" loading="lazy" decoding="async" width="96" height="96">':
+      ph?'<img class="fo-av" src="'+ROOT+'assets/photos/'+(ph.small||ph.file)+'" alt="" loading="lazy" decoding="async" width="96" height="96" style="object-position:50% 18%">':'<span class="fo-av fo-num" aria-hidden="true">'+esc(p.num)+'</span>';
+    return '<li class="fo-card fo-pc"><div class="fo-ban">'+(x&&x.ban?'<img src="'+ROOT+'assets/img/x/'+k+'-banner.webp" alt="" loading="lazy" decoding="async" width="600" height="200">':'')+'</div>'+av+
+      '<div class="fo-body"><p class="fo-nm"><b>'+esc(p.name)+'</b>'+(x&&x.v?foCheck(x.v):'')+'</p><p class="fo-h">#'+esc(p.num)+(p.pos?' · '+esc(p.pos):'')+' · Player</p>'+(x&&x.b?'<p class="fo-bio">'+esc(x.b)+'</p>':'')+
+      '<p class="fo-links">'+p.acc.map(function(x){return '<a class="fo-a" href="'+esc(x[2])+'" target="_blank" rel="noopener nofollow" aria-label="'+esc(p.name)+' on '+FO_L[x[0]]+', @'+esc(x[1])+' (opens in a new tab)" title="'+FO_L[x[0]]+' @'+esc(x[1])+'"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="currentColor">'+FO_I[x[0]]+'</svg></a>'}).join('')+'</p></div></li>'}
   function playerFollow(slug){var S=(MP.SOCIALS||{})[slug],R=(MP.REAL||{})[slug];if(!S)return [];
     return Object.keys(S).map(function(k){var i=k.indexOf('|'),num=k.slice(0,i),nm=k.slice(i+1),acc=S[k].filter(function(x){return x[0]==='x'||x[0]==='instagram'});
       var r=R&&(R.roster||[]).filter(function(p){return p.num===num&&p.name===nm})[0],ath=(MP.ATHLETES||[]).filter(function(a){return a.sport===slug&&a.name===nm})[0];
@@ -1396,7 +1400,6 @@
       '<section class="page-hero sp-hero'+(HERO_PH?' has-photo':'')+'">'+(HERO_PH?photoBg(HERO_PH,{eager:1,hero:1}):'')+'<div class="wrap">'+
         /* Title only: no breadcrumb trail, icon tile or kicker (Oct 26). Breadcrumbs live in the head as BreadcrumbList JSON-LD (build_pages.py). */
         '<h1 class="display sp-title">'+s.name+'</h1>'+
-        '<div class="ctas"><a href="'+ROOT+'#membership" class="btn btn-red">Join SMU+</a><a href="#board" class="btn btn-ghost">Team board</a></div>'+
       '</div></section>'+
       '<nav class="jump" aria-label="On this page"><div class="wrap">'+(GD?'<a href="#gameday">Game day</a>':'')+'<a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Read</a>'+(thirdFor(s.slug).length?'<a href="#media">Media</a>':'')+(FEEDS.posts[s.slug]?'<a href="#feeds">Feeds</a>':'')+'<a href="#board">Board</a><a href="#more">Other sports</a></div></nav>'+
       (GD?'<section class="gameday" aria-label="Game day"><div class="wrap" id="gameday">'+GD+'</div></section>':'')+'<section class="sec" id="roster"><div class="wrap">'+
