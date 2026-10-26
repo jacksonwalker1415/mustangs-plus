@@ -656,13 +656,40 @@
         :'<li class="hill-empty">Quiet on the Hilltop. Start the first thread.</li>'}
     render();SMU.on('threads',render);
     (SMU.ready||Promise.resolve()).then(function(){if(SMU.live&&SMU.loadThreads)SMU.loadThreads().then(render,function(){})})}
+
+  /* ---------- Home: calendar ribbon. MP.UPCOMING from assets/upcoming.js (tools/build_upcoming.py, official SMU Athletics
+     schedule pages). Next three weeks for every sport, plus each sport's next event if it is further out. TBA = not listed yet. ---------- */
+  var RB_MON=['Jan.','Feb.','March','April','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'],RB_DOW=['Sun.','Mon.','Tue.','Wed.','Thu.','Fri.','Sat.'];
+  function rbDate(d){var x=new Date(d+'T12:00:00Z');return RB_DOW[x.getUTCDay()]+' '+RB_MON[x.getUTCMonth()]+' '+x.getUTCDate()}
+  function rbToday(){try{return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}}
+  function ribbonEvents(){var U=(MP.UPCOMING&&MP.UPCOMING.events)||[],t=rbToday(),lim=new Date(Date.parse(t+'T12:00:00Z')+21*864e5).toISOString().slice(0,10),first={},near=[],far=[];
+    U.forEach(function(e){if((e.d2||e.d)<t)return;var k=e.sport+'|'+(e.team||'');if(e.d<=lim)near.push(e);else if(!first[k])far.push(e);first[k]=1});
+    return near.slice(0,36).concat(far).sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:0})}
+  function ribbonCard(e,i,n){var sp=sportBy(e.sport),nm=(e.team&&e.team.indexOf('Cross')<0&&e.team.indexOf('Track')<0?e.team+' ':'')+(sp?sp.name:e.sport),
+      g=e.game&&GBY[e.game],href=g?gameUrl(g):sportUrl(e.sport)+'#schedule',
+      vs=e.vs==='vs'?'vs. ':e.vs==='at'?'at ':'',ha=e.ha==='home'?'Home':e.ha==='away'?'Away':'Neutral site',
+      when=rbDate(e.d)+(e.d2?' \u2013 '+rbDate(e.d2):''),tm=e.time||(e.d2?'':'TBA');
+    function row(k,v,a){return '<div><dt>'+k+'</dt><dd>'+(a?'<a href="'+esc(a)+'" target="_blank" rel="noopener" aria-label="'+k+': '+esc(v)+' (official link, opens in a new tab)">'+esc(v)+'</a>':esc(v))+'</dd></div>'}
+    return '<li class="rb-card" aria-label="'+(i+1)+' of '+n+'"><a class="rb-main" href="'+href+'"><span class="rb-sp">'+esc(nm)+'</span>'+
+      '<span class="rb-m">'+vs+esc(e.name)+(e.ex?' (exh.)':'')+'</span><span class="rb-ha rb-'+e.ha+'">'+ha+'</span>'+
+      '<span class="rb-w"><b>'+when+'</b>'+(tm?'<span>'+esc(tm)+'</span>':'')+'</span>'+(e.where?'<span class="rb-pl">'+esc(e.where)+'</span>':'')+
+      '<span class="rb-go">'+(g?'Game page':'Schedule')+'<span aria-hidden="true"> \u2192</span></span></a>'+
+      '<dl class="rb-tv">'+row('TV',e.tv||'TBA')+row('Stream',e.watch?'Watch':'TBA',e.watch)+row('Radio',e.radio||(e.listen?'Listen':'TBA'),e.listen)+'</dl></li>'}
+  function ribbon(){var L=ribbonEvents();if(!L.length||$('#ribbon'))return;var gd=$('.gameday'),id='rb-track';if(!gd)return;
+    gd.insertAdjacentHTML('beforebegin','<section class="sec tight ribbon" id="ribbon" aria-labelledby="rb-h"><div class="wrap">'+
+      '<div class="rb-hd"><h2 id="rb-h">Upcoming games</h2><p>Every SMU sport, from the official <a href="https://smumustangs.com/calendar" target="_blank" rel="noopener">SMU Athletics schedules</a>. Times are Central.</p></div>'+
+      '<div class="xwrap rb-wrap" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Earlier games" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
+      '<ul class="rb-l" id="'+id+'" data-slider aria-label="Upcoming SMU games, scrolls sideways" tabindex="0">'+L.map(function(e,i){return ribbonCard(e,i,L.length)}).join('')+'</ul>'+
+      '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Later games" aria-controls="'+id+'">'+XARR+'</button></div>'+
+      '</div></section>');
+    slSyncAll()}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist();
       var tiers=$('.tiers',mem);if(tiers&&stOn())tiers.insertAdjacentHTML('beforebegin',studentBand('home'))}
     var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
     $('#heroFeature').innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
-    $('#gameday').innerHTML=gameStrip();startCountdowns();
+    $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Official SMU Athletics video')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['film','Film Room',libUrl('film'),'Breakdowns',byCat('film')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
