@@ -1197,6 +1197,9 @@
       $$('tbody tr',t).forEach(function(r){var show=!p||r.dataset.pos.split('/').indexOf(p)>=0;r.hidden=!show;if(show)n++});$('#cmpCount').textContent=n+' of '+MP.ATHLETES.length+' players'}
     $('#cmpPos').addEventListener('click',function(e){var b=e.target.closest('.chip');if(b)apply(b.dataset.pos)});apply('')}
 
+  /* Verified public socials (assets/socials.js); the row is left out when a player has none. */
+  function socialRow(a){var L=MP.socialsFor?MP.socialsFor(a.sport,a.num,a.name):[],NM={instagram:'Instagram',x:'X',tiktok:'TikTok',youtube:'YouTube'};if(!L.length)return '';
+    return '<div class="pf-soc"><span class="pf-soc-k" aria-hidden="true">Follow</span><ul aria-label="'+esc(a.name)+' on social media">'+L.map(function(x){return '<li><a href="'+esc(x[2])+'" target="_blank" rel="noopener nofollow" aria-label="'+esc(a.name)+' on '+NM[x[0]]+' (opens in a new tab)">'+NM[x[0]]+'</a></li>'}).join('')+'</ul></div>'}
   function athlete(){
     var main=$('#athleteMain'),id=new URLSearchParams(location.search).get('id'),a=MP.athleteBy&&MP.athleteBy(id);
     if(!a){document.title='Football Player Profiles | SMU+';
@@ -1220,6 +1223,7 @@
           '<div class="pf-id"><p class="pf-num" aria-label="Jersey number '+a.num+', '+a.pos+'"><b>#'+a.num+'</b><span>'+a.pos+'</span></p><h1 class="display"><span>'+esc(a.first)+'</span> '+esc(a.last)+'</h1>'+
             '<p class="pf-sub">SMU Mustangs · '+s.name+'</p>'+
             '<dl class="pf-vit">'+vit.map(function(m){return '<div><dt>'+m[0]+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join('')+'</dl>'+
+            socialRow(a)+
             '<div class="ctas"><button type="button" class="btn btn-red btn-sm save-ath" data-save-athlete="'+a.id+'" aria-pressed="false">'+HEART+'<span>Save player</span></button><a class="btn btn-ghost btn-sm" href="#stats">Stats</a></div></div>'+
           (R?'<a class="pf-card" href="#path"><p class="pf-k">Path to SMU</p><ol class="pf-mini">'+R.path.map(function(p){return '<li><b>'+esc(p[1].split(/[;,(]/)[0].trim())+'</b><small>'+esc(p[2])+'</small></li>'}).join('')+'</ol><p class="pf-cs">'+esc(R.hs)+' · '+esc(R.town)+'</p></a>':'')+
         '</div></div></section>'+
