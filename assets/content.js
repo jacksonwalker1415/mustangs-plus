@@ -935,7 +935,7 @@ MP.PHOTOS={
   A('mb-gen-lacrosse',null,'SMU Athletics · New sport','SMU Athletics to Launch Texas\u2019 First NCAA Division I Men\u2019s Lacrosse Program','SMU Athletics','Oct. 15, 2026','SMU is adding men\u2019s lacrosse, the first Division I men\u2019s program in Texas.',SMUN+'10/15/general-smu-athletics-to-launch-texas-first-ncaa-division-i-mens-lacrosse-program')];
  /* Videos go right after SMU's other official videos; podcasts after the SMU+ shows; articles get their own "In the news" category. */
  /* ---------- Media batch 2 (Oct. 26, 2026): every sport page gets real coverage ----------
-    Left out: the Walking 'Strong podcast (sponsor read, held for Jackson) and the Oziyah Sellers signing story (transfer/portal coverage while recruiting is hidden).
+    Left out: the Walking 'Strong podcast (sponsor read, held back) and the Oziyah Sellers signing story (transfer/portal coverage while recruiting is hidden).
     Videos with no confirmed upload date show the match or press-conference date, labeled as such, or no date. On3 items are teaser-only link-outs.
     iso = date used to sort sport-page media (newest first); undated items sort last. */
  function V2(id,sport,yt,label,title,desc,iso,acc){var c=V(id,sport,yt,label,title,desc,'Video',['blue','black','red'][title.length%3]);c.iso=iso;
@@ -1048,4 +1048,17 @@ MP.PHOTOS={
   'swimming-diving':[A0.swimm,A0.swimw],'track-field':[A0.xc],equestrian:[A0.eq],rowing:[A0.row],golf:[A0.wgolf,A0.mgolf],tennis:[A0.mten,A0.wten],
   home:[A0.dept,A0.football,A0.mbb,A0.wbb,A0.vb,A0.msoc]},
   media:[A0.on3,A0.embody,A0.acc,A0.accn]};
+})();
+/* Mustang Studios row (Watch/Library page only). Real public videos from https://www.youtube.com/@MustangStudiosCo
+   (channel linked from https://linktr.ee/MustangStudios). IDs, titles and lengths taken from the channel's YouTube feed and
+   checked via YouTube oEmbed (200) on Oct. 26, 2026; all three report playableInEmbed. Embed only, never rehosted.
+   Free to watch: no lock, no gating. Kept out of MP.LIB so filters and counts are unchanged. */
+(function(){var MP=window.MP,YT='https://www.youtube.com/watch?v=',CH=['Mustang Studios on YouTube','https://www.youtube.com/@MustangStudiosCo'];
+ function S(id,yt,show,title,desc,dur){return {id:id,t:'video',cat:'watch',label:'Mustang Studios · '+show,title:title,desc:desc,dur:dur,lock:false,tone:'black',
+  yt:yt,src:YT+yt,credit:'Mustang Studios',channel:CH,studio:true,real:true}}
+ MP.STUDIOS=[
+  S('ms-214-damon-evans','v8jS0B_uXzg','The 214',"EXCLUSIVE: Damon Evans Reveals SMU's Next BIG Move After Virginia Win | The 214",'Posted Oct. 20, 2026 on the Mustang Studios YouTube channel.','57:52'),
+  S('ms-five-basketball','B5x3wNKhwpk','The Five','LeBron, Jordan, and Unfiltered SMU Basketball Team Talk | The Five','Posted Oct. 22, 2026 on the Mustang Studios YouTube channel.','16:21'),
+  S('ms-nostalgia-ep4','t_pP1ev5xJs','Nostalgia',"Talent Isn't Enough to Make This Team | Nostalgia Episode 4",'Posted Oct. 20, 2026 on the Mustang Studios YouTube channel.','18:10')];
+ MP.STUDIOS_CH=CH;
 })();

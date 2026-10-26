@@ -48,7 +48,7 @@ var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=se
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610262100">
+<link rel="stylesheet" href="assets/site.css?v=202610262200">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="assets/brand/smu-plus-logo-lg.webp"><img src="assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-ring" aria-hidden="true"></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
@@ -93,20 +93,21 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <section class="sec alt" id="membership" aria-labelledby="tiers-h">
   <div class="wrap">
     <div class="sec-hd"><div><h2 class="sec-t" id="tiers-h">Pick your seat.</h2></div></div>
-    <p class="lede">Upgrade, downgrade or cancel anytime.</p>
+    <p class="lede">Paid plans are coming soon. SMU students can join free today.</p>
     <div class="tiers">
-      <article class="tier">
+      <article class="tier soon">
+        <span class="tag tag-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>Coming soon</span>
         <h3>Mustang</h3><p class="for">For every fan, everywhere</p>
         <div class="price"><b>$9.99</b><span>/mo</span></div>
         <ul>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Members-only articles &amp; features</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Original articles &amp; features</li>
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>SMU+ original podcasts</li>
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Original video series &amp; film breakdowns</li>
         </ul>
-        <button type="button" class="btn btn-navy" data-join="mustang">Choose Mustang</button>
+        <button type="button" class="btn btn-wl" data-join="mustang">Join the waitlist<span class="sr"> for Mustang</span></button>
       </article>
-      <article class="tier pop">
-        <span class="tag">Most Popular</span>
+      <article class="tier soon">
+        <span class="tag tag-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>Coming soon</span>
         <h3>All-Access</h3><p class="for">For the die-hards</p>
         <div class="price"><b>$24.99</b><span>/mo</span></div>
         <ul>
@@ -114,18 +115,19 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Live monthly Q&amp;As with athletes &amp; coaches</li>
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Early access to merch drops</li>
         </ul>
-        <button type="button" class="btn btn-red" data-join="pony">Choose All-Access</button>
+        <button type="button" class="btn btn-wl" data-join="pony">Join the waitlist<span class="sr"> for All-Access</span></button>
       </article>
-      <article class="tier dark">
+      <article class="tier soon">
+        <span class="tag tag-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>Coming soon</span>
         <h3>Red &amp; Blue</h3><p class="for">The inner circle</p>
         <div class="price"><b>$99</b><span>/mo</span></div>
         <ul>
-          <li class="inc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in All-Access</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Select open-practice access</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Members-only tailgate invites</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Signed gear each season</li>
+          <li class="inc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in All-Access</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Select open-practice access</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Tailgate invites</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Signed gear each season</li>
         </ul>
-        <button type="button" class="btn btn-red" data-join="club">Choose Red &amp; Blue</button>
+        <button type="button" class="btn btn-wl" data-join="club">Join the waitlist<span class="sr"> for Red &amp; Blue</span></button>
       </article>
     </div>
     
@@ -167,13 +169,13 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610262100"></script>
-<script src="assets/data.js?v=202610262100"></script>
-<script src="assets/content.js?v=202610262100"></script>
-<script src="assets/real.js?v=202610262100"></script>
-<script src="assets/athletes.js?v=202610262100"></script>
-<script src="assets/sport-icons.js?v=202610262100"></script>
-<script src="assets/sb.js?v=202610262100"></script>
-<script src="assets/app.js?v=202610262100"></script>
+<script src="assets/config.js?v=202610262200"></script>
+<script src="assets/data.js?v=202610262200"></script>
+<script src="assets/content.js?v=202610262200"></script>
+<script src="assets/real.js?v=202610262200"></script>
+<script src="assets/athletes.js?v=202610262200"></script>
+<script src="assets/sport-icons.js?v=202610262200"></script>
+<script src="assets/sb.js?v=202610262200"></script>
+<script src="assets/app.js?v=202610262200"></script>
 </body>
 </html>

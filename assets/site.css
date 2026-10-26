@@ -1493,7 +1493,7 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .fo-card .fo-a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 @media(max-width:639px){.follow-l li.fo-card{flex-basis:78vw;width:78vw;max-width:300px}}
 
-/* ---------- Phones: calmer hero, cleaner menu, Join + menu at the far right (Jackson's iPhone notes, Oct. 26) ---------- */
+/* ---------- Phones: calmer hero, cleaner menu, Join + menu at the far right (iPhone review notes, Oct. 26) ---------- */
 @media(max-width:959px){.hdr-act{margin-left:auto}}
 @media(max-width:639px){
   .hdr-act .hsearch{display:none}
@@ -1599,7 +1599,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   --lh-tight:1.2;--lh-body:1.55;--lh-prose:1.7;
   --trk-label:.1em;--trk-display:.005em;
   --serif:Georgia,Charter,'Bitstream Charter','Iowan Old Style','Palatino Linotype','Noto Serif','Source Serif Pro','Times New Roman',serif; /* article body text only (.prose) */
-  /* brand secondaries (Jackson's SMU brand kit). Sparing accents only: sport/data tags, data viz */
+  /* brand secondaries (SMU brand kit). Sparing accents only: sport/data tags, data viz */
   --charcoal:#262626;
   /* radii */
   --r-tag:3px;--r-ctl:6px;--r-media:8px;--r-card:10px;--r-sheet:16px;--r-round:999px;
@@ -1818,7 +1818,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
   .jump a{scroll-snap-align:start}
   .jump .wrap::after{content:"More \203A" / "";position:sticky;right:calc(var(--gut) * -1);flex:none;align-self:stretch;display:flex;align-items:center;
     margin-left:auto;padding:0 var(--gut) 0 var(--s4);background:#fff;border-left:1px solid var(--line);
-    font:700 13px/1 var(--sans);color:var(--blue);pointer-events:none}  /* blue sentence-case, not the red kicker style Jackson removed */
+    font:700 13px/1 var(--sans);color:var(--blue);pointer-events:none}  /* blue sentence-case, not the removed red kicker style */
   @supports (animation-timeline:scroll()){
     .jump .wrap::after{animation:jump-end linear both;animation-timeline:scroll(nearest inline)}
   }
@@ -1854,3 +1854,23 @@ main[tabindex="-1"]:focus{outline:none}
 /* Schedules on phones: Date, Opponent and Result fit; site/time/TV columns drop (Result sits right after Opponent at every width) */
 .sched td:nth-child(3),.sched th:nth-child(3){font-weight:700}
 @media(max-width:639px){.sched th:nth-child(n+4),.sched td:nth-child(n+4){display:none}.sched{white-space:normal}.sched th,.sched td{padding-left:8px;padding-right:8px}.sched td:nth-child(2){overflow-wrap:anywhere}.sched td:nth-child(3){max-width:34vw}}
+/* ---------- Mustang Studios row (library) ---------- */
+@media(min-width:960px){.studios .rail{grid-auto-columns:calc((100% - var(--s4)*2)/3)}}
+.studio-note{margin-top:var(--s3);font-size:13px;color:var(--ink-3)}
+/* ---------- Paid plans: coming soon (grayed + locked, waitlist only) ---------- */
+.tier.soon{background:#F4F5F8;border:1px solid #DDE0EA;box-shadow:none;color:#5B6178}
+.tier.soon h3,.tier.soon .price b{color:#5B6178}
+.tier.soon .for,.tier.soon .price span{color:#666C85}
+.tier.soon li{color:#5B6178}
+.tier.soon li svg{filter:grayscale(1);opacity:.55}
+.tier.soon>.tag-soon,.jm-soon{position:absolute;top:-12px;left:var(--s6);display:inline-flex;align-items:center;gap:6px;background:#E4E7F0;color:#3F4660;border:1px solid #D2D6E3;font:800 11px/1.2 var(--sans);letter-spacing:.07em;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+.tag-soon svg,.jm-soon svg{width:12px;height:12px;fill:currentColor}
+.tier.soon .btn-wl,.jm-card.soon .btn-wl{background:#fff;color:var(--blue);border:1.5px solid rgba(53,76,161,.45);box-shadow:none}
+.tier.soon .btn-wl:hover,.jm-card.soon .btn-wl:hover{background:#EEF1FA;color:var(--blue);border-color:var(--blue);box-shadow:none}
+.jm-card.soon{background:#F4F5F8;border:1px solid #DDE0EA;color:#5B6178}
+.jm-card.soon h4,.jm-card.soon .jm-price b{color:#5B6178}
+.jm-card.soon .jm-for,.jm-card.soon .jm-price span,.jm-card.soon .jm-fine{color:#666C85}
+.jm-card.soon li svg{filter:grayscale(1);opacity:.55}
+.jm-soon{left:22px;top:-13px}
+.acct-soon{display:flex;align-items:center;gap:6px}.acct-soon svg{width:14px;height:14px;fill:currentColor}
+@media(max-width:639px){.studios .sec-hd{flex-direction:column;align-items:flex-start;gap:var(--s2)}}

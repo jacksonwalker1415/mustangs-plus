@@ -43,8 +43,8 @@ PRIVACY_BODY='''<main id="top"><section class="page-hero has-photo"><div class="
 <nav class="policy-toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol><li><a href="#about">About this project</a></li><li><a href="#collect">What we collect</a></li><li><a href="#why">Why we collect it</a></li><li><a href="#where">Where it’s stored</a></li><li><a href="#share">Selling and sharing</a></li><li><a href="#delete">Deleting your data</a></li><li><a href="#browser">Your browser</a></li><li><a href="#contact">Contact</a></li></ol></nav>
 <div class="policy-body">
 <section id="about"><h2>About this project</h2>
-<p>SMU+ is an <strong>unofficial student concept project</strong> made by Jackson Walker, an MBA student at the SMU Cox School of Business, for a class. It is <strong>not affiliated with or endorsed by SMU, SMU Athletics, Learfield or any athlete</strong>.</p>
-<p><strong>No payments are taken.</strong> Membership plans and checkout on this site are a demo. The site never asks for a card, and choosing a plan only changes a setting on a demo account.</p></section>
+<p>SMU+ is an <strong>unofficial student concept project</strong> created for a class at the SMU Cox School of Business. It is <strong>not affiliated with or endorsed by SMU, SMU Athletics, Learfield or any athlete</strong>.</p>
+<p><strong>No payments are taken.</strong> Paid plans are coming soon and are shown for demo purposes; the site never asks for a card.</p></section>
 <section id="collect"><h2>What we collect</h2>
 <ul><li><strong>Waitlist:</strong> your email address, your name, SMU affiliation and the plan you’d be interested in if you choose to give them, the date you joined, that you agreed to this notice, and how you found the site (the campaign tag in the link you used, such as a QR code, and the name of the website that linked you, if any).</li>
 <li><strong>Page visits:</strong> a simple visit count. For each page load we save the page address, the campaign tags and linking website (if any), whether you’re on a phone or a computer, and a random code that lasts only until you close the tab, so visits in one session can be counted once. No cookies, no IP address, no browser details, nothing that identifies you. Visit records are deleted automatically after 90 days.</li>
@@ -165,7 +165,7 @@ for p in pages:
 today=time.strftime('%Y-%m-%d')
 open(REPO+'/sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+
   ''.join(f'  <url><loc>{html.escape(u)}</loc><lastmod>{today}</lastmod></url>\n' for u in urls)+'</urlset>\n')
-# Jackson approved 2026-10-26: keep the concept out of search engines (same URL keeps serving).
+# Approved 2026-10-26: keep the concept out of search engines (same URL keeps serving).
 open(REPO+'/robots.txt','w').write('User-agent: *\nDisallow: /\n')
 json.dump({'name':'SMU+ (concept)','short_name':'SMU+','description':'Concept SMU fan membership site for an SMU Cox class project.',
   'start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#23347a',
