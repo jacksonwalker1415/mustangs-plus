@@ -2281,3 +2281,23 @@ header.site.hs-open .hs-btn{background:rgba(255,255,255,.18)}
 .srch-more{margin-top:var(--s2);min-height:40px;padding:0;border:0;background:none;color:var(--blue);font-weight:700;font-size:15px;cursor:pointer;text-decoration:underline}
 .srch-empty{margin-top:var(--s6);color:var(--ink-2);font-size:16px}
 .srch-note{margin-top:var(--s2);font-size:14px;color:var(--ink-2)}
+/* ---------- Game thread score box (pinned at the top of a game's thread) ---------- */
+.gt-box{margin:var(--s4) 0 0;padding:var(--s4) var(--s5);background:#fff;border:1px solid var(--fx-line-2,var(--line-2));border-radius:8px}
+@media(min-width:960px){.gt-box{position:sticky;top:calc(var(--hdr-h,64px) + 8px);z-index:5;box-shadow:0 2px 10px rgba(22,33,79,.08)}}
+.gt-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding-bottom:var(--s3);border-bottom:1px solid var(--line)}
+.gt-sp{font-size:14px;font-weight:700;color:var(--blue)}
+.gt-t{font-size:20px;font-weight:800;color:var(--ink);line-height:1.25}
+.gt-st{margin-left:auto;font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid var(--blue);color:var(--blue)}
+.gt-final .gt-st{background:var(--blue);color:#fff}
+.gt-live .gt-st{border-color:var(--red);color:var(--red)}
+.gt-box .score{border-bottom:0;padding:var(--s3) 0 var(--s2)}
+.gt-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s2) var(--s4);margin:var(--s3) 0 0}
+.gt-facts dt{font-size:13px;font-weight:700;color:var(--ink-2)}
+.gt-facts dd{margin:0;font-size:15px;color:var(--ink);overflow-wrap:anywhere}
+.gt-live{margin-top:var(--s3);font-size:15px;color:var(--ink)}
+.gt-live a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.gt-links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s3)}
+.gt-links .gm-out{min-height:44px;display:inline-flex;align-items:center}
+.fx-wait{padding:var(--s6) 0;color:var(--ink-2)}
+.gm-links .gm-thread{margin-right:var(--s2)}
+@media(max-width:639px){.gt-box{padding:var(--s3) var(--s4)}.gt-t{font-size:18px}.gt-st{margin-left:0}}
