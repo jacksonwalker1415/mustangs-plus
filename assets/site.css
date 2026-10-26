@@ -2297,3 +2297,14 @@ header.site.hs-open .hs-btn{background:rgba(255,255,255,.18)}
 .srch-more{margin-top:var(--s2);min-height:40px;padding:0;border:0;background:none;color:var(--blue);font-weight:700;font-size:15px;cursor:pointer;text-decoration:underline}
 .srch-empty{margin-top:var(--s6);color:var(--ink-2);font-size:16px}
 .srch-note{margin-top:var(--s2);font-size:14px;color:var(--ink-2)}
+
+/* Watch page: filter bar on top, show chips, written pieces at the bottom */
+.lib-bar{border-bottom:1px solid var(--line)}
+.lib-bar .filters{margin-bottom:0}
+.lib-bar.sec.tight{padding-bottom:var(--s5)}
+.lib-shows{margin-bottom:var(--s4)}
+.lib-shows::-webkit-scrollbar{display:none}
+.lib-shows .chip[aria-pressed="true"],.lib-chips .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:639px){.lib-shows{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:calc(var(--gut)*-1);padding-right:var(--gut);padding-bottom:2px}.lib-shows .chip{flex:none;height:44px}}
+.is-off{display:none!important}
+#libRead{border-top:1px solid var(--line)}
