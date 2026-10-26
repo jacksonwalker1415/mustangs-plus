@@ -42,13 +42,13 @@ html.booted #boot{opacity:0;visibility:hidden;pointer-events:none;transition:opa
 <script>(function(d,w){var h=d.documentElement;if(w.__SMU_NOBOOT)return;
 var rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches,MIN=0,CAP=1200,t0=0,done=1,cap,fade;
 function start(){done=0;t0=Date.now();clearTimeout(fade);h.classList.remove('booted');h.classList.add('booting');h.setAttribute('aria-busy','true');
-var b=d.getElementById('boot');if(b)b.removeAttribute('aria-hidden');clearTimeout(cap);cap=setTimeout(end,CAP)}
+var b=d.getElementById('boot');if(b)b.removeAttribute('aria-hidden');clearTimeout(cap);var arm=function(){if(!done)cap=setTimeout(end,CAP)};w.requestAnimationFrame?w.requestAnimationFrame(arm):arm()}
 function end(){if(done)return;done=1;clearTimeout(cap);h.classList.remove('booting');h.classList.add('booted');h.removeAttribute('aria-busy');
 var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=setTimeout(function(){if(done)h.classList.remove('booted')},rm?30:320)}
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../../assets/site.css?v=202610261300">
+<link rel="stylesheet" href="../../assets/site.css?v=202610261340">
 </head>
 <body data-page="sport" data-sport="womens-basketball" data-root="../../">
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="../../assets/brand/smu-plus-logo-lg.webp"><img src="../../assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-ring" aria-hidden="true"></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
@@ -56,13 +56,13 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <div id="site-header"></div>
 <main id="sportMain"><div class="skel-block" aria-hidden="true" style="min-height:640px"><i class="sk"></i></div><span class="sr">Loading</span></main>
 <div id="site-footer"></div>
-<script src="../../assets/config.js?v=202610261300"></script>
-<script src="../../assets/data.js?v=202610261300"></script>
-<script src="../../assets/content.js?v=202610261300"></script>
-<script src="../../assets/real.js?v=202610261300"></script>
-<script src="../../assets/athletes.js?v=202610261300"></script>
-<script src="../../assets/sport-icons.js?v=202610261300"></script>
-<script src="../../assets/sb.js?v=202610261300"></script>
-<script src="../../assets/app.js?v=202610261300"></script>
+<script src="../../assets/config.js?v=202610261340"></script>
+<script src="../../assets/data.js?v=202610261340"></script>
+<script src="../../assets/content.js?v=202610261340"></script>
+<script src="../../assets/real.js?v=202610261340"></script>
+<script src="../../assets/athletes.js?v=202610261340"></script>
+<script src="../../assets/sport-icons.js?v=202610261340"></script>
+<script src="../../assets/sb.js?v=202610261340"></script>
+<script src="../../assets/app.js?v=202610261340"></script>
 </body>
 </html>
