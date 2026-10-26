@@ -1463,14 +1463,10 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
    Round 7: human touch. Editorial fallbacks, no decorative glows or filler type.
    Inserted above the 6.12 tap-target guard so that guard stays last.
    ===================================================================== */
-/* ---- 7.1 No-photo items: posters and players use main's flat-by-type cards (199a5a6). Only the reader header follows: flat navy + texture ---- */
-.reader-hd.tone-white,.reader-hd:not(.has-img){background:var(--hair),var(--b-900);color:#fff}
 
 /* ---- 7.2 Decorative gradients and glows out: flat brand surfaces + texture, scrims only over photos ---- */
-.page-hero:not(.has-photo){background:var(--hair),var(--b-900)}
 .brief-panel,.band{background:var(--hair),var(--b-900)}
 .gameday{background:var(--hair),var(--b-800)}
-.ap-hero{background:var(--hair),var(--b-900)}
 .live-dot{box-shadow:none}
 .hero-card:hover{box-shadow:0 0 0 1px rgba(255,255,255,.3),var(--sh-2)}
 .btn-red:not(header .btn):not(.mmenu .btn):hover,.btn-white:not(header .btn):hover,.btn-navy:not(header .btn):hover,.tier .btn:hover,.tier.pop .btn:hover{box-shadow:none}
@@ -1498,7 +1494,7 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 #more .chip+.chip::before{content:"";display:inline-block;width:1px;height:14px;background:var(--line-2);margin:0 var(--s4)}
 
 /* ---- 7.5 Density and hierarchy closer to On3 / smumustangs.com: tighter display sizes, tighter rails ---- */
-:root{--d-sec:clamp(28px,3.2vw,44px);--d-page:clamp(44px,6vw,80px)}
+:root{--d-sec:clamp(28px,3.2vw,44px)}
 .mcard-b h3{font-size:17px}
 .sec-hd{margin-bottom:var(--s5)}
 .cgrid,.lgrid{gap:var(--s6) var(--s4)}
