@@ -2179,8 +2179,6 @@ a.fx-quote-h:hover{text-decoration:underline}
 .gm-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s4) var(--s5)}
 .gm-facts dt{font-size:13px;font-weight:600;color:var(--ink-3)}
 .gm-facts dd{font-size:16px;font-weight:700;color:var(--ink);margin-top:2px}
-.gm-cd div{background:var(--blue);border-color:var(--blue);color:#fff}
-.gm-cd small{color:rgba(255,255,255,.85)}
 .gm-score{border-bottom:1px solid var(--line)}
 .gm-links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5)}
 .gm-links:empty{display:none}
