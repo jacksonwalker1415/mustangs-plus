@@ -2716,6 +2716,15 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
 
+/* Legal cleanup (Oct 26): Sample tag on seeded board posts, plain-text Follow cards, sticky ad steps aside next to athletes */
+.tag-sample{display:inline-block;vertical-align:2px;margin-right:6px;padding:1px 6px;border:1px solid #354CA1;border-radius:4px;color:#354CA1;background:#fff;font-size:11px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none}
+.fo-plain .fo-body{padding:var(--s3)}
+.fo-plain .fo-h a{color:var(--blue);font-weight:700}
+html.ad-quiet .ad-sticky{visibility:hidden;pointer-events:none}
+.auth .f-age{margin:var(--s2) 0}
+.legal-doc h2{margin-top:var(--s4)}
+.legal-doc{max-width:760px}
+/* =====================================================================
    Round 9: design-system pass (Oct 26). Token-level only; page layouts and header/menu/footer untouched.
    Type weights: DM Sans 400 / 500 / 700 (800 and 600 normalised to 700 in place, header/menu, ads and disclaimer excepted).
    ===================================================================== */
@@ -2736,13 +2745,3 @@ nav.jump{--card-line:rgba(22,33,79,.10)}
   .fsearch{height:46px}
   .cnotice a{display:inline-flex;align-items:center;min-height:44px}  /* Round 9: 'About this project' link was 18px tall */
 }
-=======
-/* Legal cleanup (Oct 26): Sample tag on seeded board posts, plain-text Follow cards, sticky ad steps aside next to athletes */
-.tag-sample{display:inline-block;vertical-align:2px;margin-right:6px;padding:1px 6px;border:1px solid #354CA1;border-radius:4px;color:#354CA1;background:#fff;font-size:11px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none}
-.fo-plain .fo-body{padding:var(--s3)}
-.fo-plain .fo-h a{color:var(--blue);font-weight:700}
-html.ad-quiet .ad-sticky{visibility:hidden;pointer-events:none}
-.auth .f-age{margin:var(--s2) 0}
-.legal-doc h2{margin-top:var(--s4)}
-.legal-doc{max-width:760px}
-/* ==============================================================
