@@ -628,8 +628,6 @@ header.site .mtoggle{color:rgba(255,255,255,.85);padding:0 var(--s2)}
 .pw-pop{position:absolute;top:-9px;left:var(--s3);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:var(--red);color:#fff;padding:1px 6px;border-radius:3px}
 .pw-t b{font-size:14px}.pw-p{font-family:var(--display);font-size:26px;line-height:1.1}.pw-p small{font-family:var(--sans);font-size:12px;color:var(--ink-3)}
 .pw-n{font-size:12px;font-weight:700;color:var(--red)}
-.pw-nil{font-size:14px;color:var(--ink-2);background:var(--surface);border-left:3px solid var(--red);padding:var(--s3) var(--s4);border-radius:0 var(--r1) var(--r1) 0;margin-bottom:var(--s5)}
-.pw-nil b{color:var(--ink)}
 .pw-act{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4)}
 .pw .reader-x{z-index:4}
 @media(max-width:639px){.pw{padding:0;place-items:end center}.pw-sheet{border-radius:var(--r3) var(--r3) 0 0;max-height:100vh;overflow:auto}.pw-b{padding:var(--s5)}.pw-tiers{grid-template-columns:1fr;gap:var(--s3)}.pw-t{flex-direction:row;align-items:baseline;gap:var(--s3)}.pw-t b{flex:1}.pw-p{font-size:22px}}
@@ -982,7 +980,7 @@ html.menu-open header.site{border-bottom-color:transparent}
   /* body copy 15px+, fine print 13-14px */
   .mcard-b p,.panel p,.empty-state p,.pw-inline p,.ft-brand p,.post-body blockquote,.honors li,.news li,.sec p,.lede,.pw-lede{font-size:15px}
   #recruitBand p,#threadView p{font-size:15px}
-  .note,.muted,.meta,.t-meta,.sources,.pw-nil,.pw-b .note{font-size:14px}
+  .note,.muted,.meta,.t-meta,.sources,.pw-b .note{font-size:14px}
   .legal{font-size:13px}
 }
 /* Overlays respect the notch and home indicator */
