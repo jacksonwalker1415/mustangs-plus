@@ -222,8 +222,17 @@
   var CATNAME={};MP.CATS.forEach(function(c){CATNAME[c[0]]=c[1]});
   var TICON={video:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',article:'<svg viewBox="0 0 24 24"><path d="M5 4h14v2H5zm0 4h14v2H5zm0 4h14v2H5zm0 4h9v2H5z"/></svg>',podcast:'<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg>'};
   var VERB={video:'Watch',article:'Read',podcast:'Listen'};
+  /* No-photo poster: solid colour by content type, big white sport icon (or a neutral type mark), small uppercase kicker. No gradients, no watermark word. */
+  var CARD_SPORT={'micd-setter':'volleyball','walk-on':'football','coachs-corner-acc':'football','thursday-notes':'football'};
+  var NP_MARK={video:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="46" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M50 40v40l32-20z" fill="#fff"/></svg>',
+    article:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="26" y="18" width="68" height="84" rx="4" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M38 38h44M38 52h44M38 66h44M38 80h28" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>',
+    podcast:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="46" y="16" width="28" height="52" rx="14" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M34 56a26 26 0 0 0 52 0M60 82v20M46 102h28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>'};
+  function cardSport(c){var k=c.sport||CARD_SPORT[c.id];if(!k)return null;var m=(MP.SPORTS||[]).filter(function(x){return x.slug===k||x.slug.indexOf(k)===0})[0];return {slug:m?m.slug:k,name:m?m.name:k}}
+  function noPhoto(c){var sp=cardSport(c),a=sp?sp.name:(CATNAME[c.cat]||c.t),b=c.label||'',same=b.toLowerCase().slice(0,5)===a.toLowerCase().slice(0,5),kick=a+(b&&!same?' \u00b7 '+b:'');
+    var art=sp&&MP.sportIcon?MP.sportIcon(sp.slug,null,'dark'):NP_MARK[c.t]||NP_MARK.article;
+    return '<span class="np-kick">'+esc(kick)+'</span><span class="np-art" aria-hidden="true">'+art.replace(' role="img"','')+'</span>'}
   function poster(c,opt){opt=opt||{};var g=gated(c),pr=progressOf(c.id);
-    return '<div class="poster tone-'+(c.tone||'blue')+(c.img?' has-img':'')+'">'+(c.img?photo(c.img,{small:!opt.big,eager:opt.eager})+CREDIT:'<span class="poster-type" aria-hidden="true">'+esc(c.big||'')+'</span>')+
+    return '<div class="poster '+(c.img?'tone-'+(c.tone||'blue')+' has-img':'no-ph np-'+c.t)+'">'+(c.img?photo(c.img,{small:!opt.big,eager:opt.eager})+CREDIT:noPhoto(c))+
       (g?'<span class="lock-ov" aria-hidden="true">'+LOCK+'<b>Members only</b></span>':'')+
       '<span class="poster-verb">'+TICON[c.t]+(g?'<span class="pv-g">Preview</span><span class="pv-m">'+VERB[c.t]+'</span>':VERB[c.t])+'</span>'+(c.isNew?'<span class="tag tag-new">New</span>':'')+
       (c.lock?'<span class="tag tag-lock">'+LOCK+'Members</span>':'<span class="tag tag-free">Free</span>')+'<span class="dur">'+esc(c.dur)+'</span>'+
@@ -259,7 +268,7 @@
   function clock(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
   function openMedia(id,push){var c=LIBBY[id];if(!c)return false;lastFocus=lastFocus||document.activeElement;
     var lock=blocked(c),p=progressOf(id),total=secs(c.dur),eps=seriesOf(c),audio=c.t==='podcast';
-    readerBody.innerHTML='<div class="player tone-'+(c.tone||'blue')+(c.img?' has-img':'')+(lock?' locked':'')+'">'+(c.img?photo(c.img,{eager:1})+CREDIT:'<span class="poster-type" aria-hidden="true">'+esc(c.big||'')+'</span>')+
+    readerBody.innerHTML='<div class="player '+(c.img?'tone-'+(c.tone||'blue')+' has-img':'no-ph np-'+c.t)+(lock?' locked':'')+'">'+(c.img?photo(c.img,{eager:1})+CREDIT:noPhoto(c))+
         (lock?'':'<button type="button" class="play" id="playBtn" aria-label="'+(p>0.02?'Resume':'Play')+' (demo)">'+SVG.play+'</button>')+
         '<div class="pbar" aria-hidden="true"><i id="pFill" style="width:'+Math.round(p*100)+'%"></i></div></div>'+
       '<div class="reader-in">'+(lock?inlineGate(c):'')+'<p class="eyebrow red">'+esc(c.label)+(c.lock?' · Members':' · Free')+'</p><h2 id="reader-h" class="m-title">'+esc(c.title)+'</h2><p class="dek">'+esc(c.desc)+'</p>'+
