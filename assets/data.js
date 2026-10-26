@@ -16,6 +16,9 @@ if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = true;
    (student_verifications table, 'student' tier, claim_student_membership RPC); while false the live site shows no student option and never calls them.
    Demo mode always has the full student flow (saved in this browser). */
 if (MP.FEATURES.students == null) MP.FEATURES.students = true;
+/* Members gating (locks, blurs, 'Members only' gates, member preview switch). false = everyone sees the full member experience.
+   Code stays in app.js; set to true to bring the gates and the preview switch back. */
+if (MP.FEATURES.gating == null) MP.FEATURES.gating = false;
 
 MP.SPORTS = [
   {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Rhett Lashlee',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],

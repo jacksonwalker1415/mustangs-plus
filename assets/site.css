@@ -31,7 +31,9 @@ dl,dd{margin:0}
 .wrap{width:100%;max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
 .sec{padding:var(--s8) 0}
 .sec.tight{padding-top:var(--s6)} /* breathing room above the heading now that section kickers are gone */
-.sec.alt{background:var(--surface)}
+/* .alt sections are white now (no gray bands); adjacent sections are split by one light SMU-blue hairline */
+.sec.alt{background:#fff}
+.sec+.sec{border-top:1px solid rgba(53,76,161,.12)}
 .sec.dark{background:var(--black);color:#fff}
 @media(max-width:639px){.sec{padding:var(--s7) 0}.sec.tight{padding-top:var(--s5)}}
 .gap{height:var(--s7)}
@@ -160,8 +162,8 @@ nav.main a.on,.subnav a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--red);borde
 .tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;line-height:1.3}
 .tag svg{width:11px;height:11px;fill:currentColor}
 .poster .tag{position:absolute;left:var(--s3);top:var(--s3)}
-.poster .tag-new+.tag{left:calc(var(--s3) + 50px)}
-.tag-new{background:var(--yellow);color:var(--black)}
+.poster .tag-new+.tag{left:calc(var(--s3) + 44px)}
+.tag-new{background:var(--blue);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.08em;padding:2px 6px;border-radius:3px;line-height:1.35;box-shadow:0 1px 3px rgba(22,33,79,.45)}
 .tag-lock{background:#fff;color:var(--black)}
 .mcard{display:flex;flex-direction:column;gap:var(--s3);height:100%}
 .mcard .poster{transition:transform .2s}
@@ -825,7 +827,7 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .rk-s,.stat-chip{justify-self:start;font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--surface);color:var(--ink-2);white-space:nowrap}
 .rk-s.good,.stat-chip.good{background:color-mix(in srgb,var(--teal) 28%,#fff);color:#1d6060}
 .rk-s.bad{background:color-mix(in srgb,var(--salmon) 12%,#fff);color:#b0083a}
-.stat-chip.mid{background:color-mix(in srgb,var(--yellow) 30%,#fff);color:#6b5400}
+.stat-chip.mid{background:color-mix(in srgb,var(--blue) 12%,#fff);color:var(--black)}
 .ncards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
 @media(max-width:959px){.ncards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:639px){.ncards{grid-template-columns:1fr}}
@@ -930,7 +932,7 @@ header.site{background:var(--b-800);border-bottom-color:rgba(255,255,255,.12)}
 .mm-nav a{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:var(--s3);min-height:60px;padding:var(--s2) 0;border-bottom:1px solid rgba(255,255,255,.1)}
 .mm-nav b{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.01em;text-transform:uppercase;line-height:1.1}
 .mm-chev{grid-column:2;grid-row:1/3;font-size:26px;color:rgba(255,255,255,.55);line-height:1}
-.mm-nav a.on b{color:#fff;box-shadow:inset 0 -3px 0 var(--red)}
+.mm-nav a.on b,.mm-nav .mm-acc.on b{color:#fff;box-shadow:none;text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:3px;text-underline-offset:7px;text-decoration-skip-ink:none}
 .mm-h{margin:var(--s5) 0 var(--s2);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 .mm-sports{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
 .mm-sports a{display:flex;align-items:center;min-height:44px;padding:0 var(--s3);border-radius:var(--r1);background:rgba(255,255,255,.06);font-size:15px;font-weight:600;color:rgba(255,255,255,.92)}
@@ -1551,3 +1553,19 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   .lib-dd select:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:2px}
   .filters{gap:var(--s2) var(--s3)}
 }
+
+/* From the feeds: cards grow to the full X embed (no inner scroll); row scrolls by side arrows, swipe or trackpad, no visible scroll bar */
+.feeds .xwrap{position:relative}
+.feeds .xposts{align-items:flex-start;scrollbar-width:none;padding-bottom:2px}
+.feeds .xposts::-webkit-scrollbar{display:none}
+.feeds .xpost,.feeds .xpost:has(.twitter-tweet-rendered){height:auto;overflow:visible}
+.feeds .xpost{min-height:420px}
+.feeds .xpost:has(.twitter-tweet-rendered){min-height:0}
+.feeds .xpost blockquote.twitter-tweet{min-height:418px;height:auto}
+.follow-l{scrollbar-width:none}.follow-l::-webkit-scrollbar{display:none}
+.xside{position:absolute;top:50%;z-index:3;width:44px;height:44px;margin-top:-22px;border:0;background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(22,33,79,.3);transition:opacity .2s}
+.xside.xprev{left:-14px}.xside.xnext{right:-14px}
+.xside:hover:not(:disabled){background:var(--b-700)}
+.xside:disabled,.xwrap.no-ovf .xside{opacity:0;pointer-events:none}
+.xside svg{width:18px;height:18px}
+@media(max-width:639px){.xside{width:44px;height:44px}.xside.xprev{left:-6px}.xside.xnext{right:-6px}}
