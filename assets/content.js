@@ -124,7 +124,7 @@ MP.ARTICLES={
  var at=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id==='walk-on'){at=i;break}
  Array.prototype.splice.apply(MP.LIB,[at,0].concat(cards));
 
- MP.ARTICLES['preview-syracuse']={by:'sam',date:'Oct. 26, 2026',sourced:true,
+ MP.ARTICLES['preview-syracuse']={by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true,
   sources:[['SMU Athletics 2026 football schedule',FB],['SMU Athletics Cal recap and game notes, Oct. 24',CAL],['ESPN: Kevin Jennings',ESPN+'stats/_/id/5084084/kevin-jennings'],['ESPN: Kendrick Raphael',ESPN+'_/id/4899368/kendrick-raphael'],['ESPN: Yamir Knight',ESPN+'stats/_/id/5121750/yamir-knight']],
   dek:'SMU takes a four-game win streak and a record-setting quarterback into the JMA Wireless Dome. Then it comes home to stay. Sat., Oct. 31 · 11 a.m. CT (noon ET) · ESPN2 · Radio: KTCK 96.7 FM/1310 AM & SiriusXM.',
   related:['preview-msoc-louisville','vb-road-sweep','film-pressure'],body:[
@@ -138,7 +138,7 @@ MP.ARTICLES={
   "Second: fourth down. Two of Raphael's three touchdowns against Cal came on fourth down. Expect this staff to go for it again. Third: the red zone. SMU has scored on 32 of 37 red-zone trips this season.",
   "The road trip is short. SMU comes home for a Friday-night game against Virginia Tech on Nov. 6 (6 p.m. CT, ESPN; Wear Blue), then plays Wake Forest on Nov. 14 for Homecoming and Senior Day. Win in Syracuse and the Mustangs come back to Ford with a five-game streak and two home games left."]};
 
- MP.ARTICLES['preview-msoc-louisville']={by:'sam',date:'Oct. 26, 2026',sourced:true,
+ MP.ARTICLES['preview-msoc-louisville']={by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true,
   sources:[['SMU Athletics 2026 men\'s soccer schedule','https://smumustangs.com/sports/mens-soccer/schedule/2026'],['SMU Athletics men\'s soccer roster','https://smumustangs.com/sports/mens-soccer/roster/2026'],['Recap: SMU 2, Cal 0','https://smumustangs.com/news/2026/10/24/mens-soccer-no-1-smu-wins-2-0-at-cal-grabs-10th-clean-sheet-of-the-season'],['Recap: SMU 5, Central Arkansas 2','https://smumustangs.com/news/2026/10/20/mens-soccer-soghomonian-hat-trick-no-1-smu-downs-uca-5-2'],['Recap: SMU 1, NC State 0','https://smumustangs.com/news/2026/9/18/mens-soccer-panozzo-winner-no-5-smu-takes-down-nc-state-in-acc-home-opener'],['Recap: SMU 2, LMU 0','https://smumustangs.com/news/2026/8/28/mens-soccer-villagomez-winner-no-5-smu-wins-2-0-against-lmu']],
   dek:'SMU has gone 14 matches without a loss. Louisville comes to Washburne on Friday for the last home match of the regular season. Fri., Oct. 30 · 6:30 p.m. CT · ACC Network.',
   related:['preview-syracuse','vb-road-sweep','film-rotation'],body:[
@@ -148,7 +148,7 @@ MP.ARTICLES={
   "The goals have come from all over the roster. Stephan Soghomonian, a junior forward from Santa Clarita, Calif., had a hat trick in the 5-2 win over Central Arkansas on Oct. 20. Enzo Panozzo, a graduate defender from Sarasota, Fla., scored the only goal against NC State in the ACC home opener. Joseluis Villagomez, a freshman defender from El Paso, scored the winner against LMU in August.",
   "Louisville is the last match on SMU's regular-season schedule. If the Mustangs avoid a loss, they finish the regular season unbeaten, at home, under the lights."]};
 
- MP.ARTICLES['vb-road-sweep']={by:'lena',date:'Oct. 26, 2026',sourced:true,
+ MP.ARTICLES['vb-road-sweep']={by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true,
   sources:[['SMU Athletics 2026 volleyball schedule','https://smumustangs.com/sports/womens-volleyball/schedule/2026'],['SMU Athletics volleyball roster','https://smumustangs.com/sports/womens-volleyball/roster/2026'],['Recap: SMU sweeps Florida State','https://smumustangs.com/news/2026/10/18/volleyball-livings-11-kills-leads-no-5-smu-in-sweep-of-florida-state'],['Recap: SMU stuns No. 2 Pitt','https://smumustangs.com/news/2026/10/7/volleyball-no-6-smu-stuns-no-2-pitt-ends-nations-longest-home-winning-streak'],['Recap: SMU at Colorado State','https://smumustangs.com/news/2026/8/29/davis-22-kill-performance-leads-no-11-msutangs-past-colorado-state']],
   dek:'Two home losses in three matches put a dent in SMU\'s season. Then came two road sweeps without dropping a set. At 16-4 and 8-2 in the ACC, the Mustangs head into two more road matches before four straight at Moody.',
   related:['film-rotation','micd-setter','preview-msoc-louisville'],body:[
