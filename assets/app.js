@@ -647,7 +647,7 @@
       games.push({d:d,o:teamSport?opp[n]:opp[n]+' Invitational',home:home,res:res,cls:cls,past:past});
     }
     var RD=s.slug!=='football'&&MP.REAL?MP.REAL[s.slug]:null,RS=RD?realSummary(RD):null;
-    var realLog=s.slug==='football'&&SCH?SCH.games:null,record=realLog?SCH.record:RS?RS.dd:s.record,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim'}[s.slug];
+    var realLog=s.slug==='football'&&SCH?SCH.games:null,record=realLog?SCH.record:RS?RS.dd:s.record,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf',tennis:'tennis','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
     var feature={id:'feature-'+s.slug,t:'article',cat:'insider',label:'Player Feature',title:'A Tuesday with '+star.name,desc:'Class, film, practice and a late dinner. One ordinary, very long day.',dur:(5+Math.floor(r()*4))+' min read',lock:true,tone:'white',big:s.season.split('/')[0].toUpperCase()};
     LIBBY[feature.id]=feature;var first=star.name.split(' ')[0];
     MP.ARTICLES[feature.id]={by:'lena',date:'Oct. 20, 2026',dek:'One ordinary Tuesday in the life of a fictional '+s.name.toLowerCase()+' athlete, from a 6:15 alarm to lights out.',related:['walk-on','visit-weekend','film-pressure'],body:[
