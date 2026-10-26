@@ -2524,3 +2524,8 @@ mark{background:var(--blue-10)}
 .rb-l{align-items:stretch!important;height:auto!important;overflow-y:hidden;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
 .rb-card{display:flex;flex-direction:column}
 .rb-card .rb-tv{margin-top:auto}
+/* Weekly hero headline (MP.HERO): one row per line, app.js shrinks the size to fit the column */
+.hero-copy{min-width:0}
+.hero .display.hero-wk{max-width:100%}
+.hero .display.hero-wk b,.hero .display.hero-wk span{display:block;width:max-content;white-space:nowrap;font-weight:inherit}
+@media(max-width:400px){.hero .display.hero-wk b,.hero .display.hero-wk span{white-space:normal;width:auto}}

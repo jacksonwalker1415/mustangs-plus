@@ -806,6 +806,14 @@
       /* Home waitlist section removed (Oct 26, Jackson); Join CTAs open the join pop-up. */
       var tiers=$('.tiers',mem);if(tiers)tiers.insertAdjacentHTML('beforebegin',freeBands('home'))}
     var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
+    /* Weekly hero headline (MP.HERO in content.js). Only swap the h1 when its item is the card being shown, so headline and media always match. */
+    (function(){var H=MP.HERO,h=$('#hero-h');if(!h||!H||!H.line1||!H.line2||!LIBBY[H.item]||LIBBY[H.item]!==feat)return;
+      h.innerHTML='<b>'+esc(H.line1)+'</b><span>'+esc(H.line2)+'</span>';h.classList.add('hero-wk');
+      /* Each line stays on one row: shrink from the CSS size until the longer line fits the column (floor 36px, then it may wrap). */
+      function fit(){h.style.fontSize='';if(!h.offsetWidth)return;var base=parseFloat(getComputedStyle(h).fontSize),w=h.clientWidth,need=0;
+        [].forEach.call(h.children,function(c){need=Math.max(need,c.scrollWidth)});
+        if(need>w)h.style.fontSize=Math.max(36,Math.floor(base*w/need*0.98))+'px'}
+      fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var ft;addEventListener('resize',function(){clearTimeout(ft);ft=setTimeout(fit,100)})})();
     /* Hero featured card: desktop/tablet only. On phones the hero is display:none, so skip it there (no eager poster download) and fill it if the window widens. */
     (function(){var hf=$('#heroFeature'),mq=window.matchMedia&&matchMedia('(max-width:719px)');if(!hf)return;
       function fill(){if(hf.dataset.filled||(mq&&mq.matches))return;hf.dataset.filled='1';hf.innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';}
