@@ -83,7 +83,8 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <main id="top" class="fx">
 <section class="fx-hero"><div class="wrap fx-hero-in">
   <div class="fx-hero-t"><h1 id="fxBrand">The Mustang Board</h1><p>Game threads, practice reports and fan takes from the SMU+ community.</p></div>
-  <form class="fx-hsearch" action="./" method="get" role="search"><label class="sr" for="fxQ">Search the boards</label><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><input id="fxQ" name="q" type="search" placeholder="Search the boards" autocomplete="off"><button class="btn btn-white btn-sm" type="submit">Search</button></form>
+  <button type="button" class="fx-sbtn" id="fxSBtn" aria-controls="fxHSearch" aria-expanded="false" aria-label="Search the boards"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg></button>
+  <form class="fx-hsearch" id="fxHSearch" action="./" method="get" role="search"><label class="sr" for="fxQ">Search the boards</label><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><input id="fxQ" name="q" type="search" placeholder="Search the boards" autocomplete="off"><button class="btn btn-white btn-sm" type="submit">Search</button></form>
 </div>
 <nav class="fx-tabs" aria-label="Boards"><div class="wrap"><a href="./">Forums</a><a href="?f=all">New posts</a><a href="../rules/">Rules</a><button type="button" class="fx-tab-btn" data-mark-all>Mark all read</button></div></nav>
 </section>
