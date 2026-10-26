@@ -530,7 +530,6 @@ details[open] .pm::after{transform:rotate(0)}
 .site-ft{background:var(--black);color:rgba(255,255,255,.75);padding:var(--s8) 0 var(--s6);font-size:14px}
 .ft{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--s7)}
 .ft-brand p{margin:var(--s4) 0;max-width:36ch}
-.powered{font-size:12px;color:rgba(255,255,255,.8)}
 .ft-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5)}
 .ft-cols h4{color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--s3)}
 .ft-cols li{margin-bottom:var(--s2)}
@@ -805,6 +804,7 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .brief.done .brief-f{display:none}.brief.done .brief-ok{display:block}
 @media(max-width:639px){.brief-row{flex-direction:column}.brief-row .btn{width:100%}}
 .ft-brief{margin:var(--s5) 0}
+.ft-brand>.ft-brief:last-child{margin-bottom:0}
 .ft-brief h4{color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--s1)}
 .ft-brief p{margin:0 0 var(--s3);font-size:13px}
 .brief.compact .brief-row input{height:40px;font-size:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff}
@@ -1457,8 +1457,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .feeds .xpost{flex:0 0 320px;width:320px;height:440px;overflow-y:auto;overflow-x:hidden;scroll-snap-align:start;border:1px solid var(--line-2);border-radius:var(--r2);background:#fff;scrollbar-width:thin}
 .feeds .xpost .twitter-tweet,.feeds .xpost .twitter-tweet-rendered{margin:0!important;width:100%!important;max-width:100%!important}
 .feeds .xpost blockquote.twitter-tweet{border:0;border-radius:0;height:100%;margin:0}
-.xnav{display:flex;gap:var(--s2);flex:0 0 auto}
-.xnav[hidden]{display:none}
 .xarr{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:#fff;color:var(--blue);cursor:pointer}
 .xarr.xprev svg{transform:scaleX(-1)}
 .xarr:hover:not(:disabled){border-color:var(--blue);background:var(--blue);color:#fff}
@@ -1468,12 +1466,9 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .feeds .follow+.follow{margin-top:var(--s4)}
 @media(max-width:639px){
   .feeds .xpost{flex-basis:85vw;width:85vw;max-width:340px;height:420px}
-  .xnav{display:none!important}
 }
 
 /* Follow SMU: mini X-style profile cards in one sideways row per group */
-.follow-hd{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s2)}
-.follow-hd .follow-h{margin:0}
 .follow-l{display:flex;grid-template-columns:none;gap:var(--s3);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding:2px 2px var(--s3);scrollbar-width:thin;scrollbar-color:var(--blue) transparent;list-style:none;margin:0}
 .follow-l:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:var(--r1)}
 .follow-l li.fo-card{position:relative;flex:0 0 264px;width:264px;scroll-snap-align:start;border:1px solid var(--line-2);border-radius:var(--r2);background:#fff;overflow:hidden;display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;gap:0;padding:0}
