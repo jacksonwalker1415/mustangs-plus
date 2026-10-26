@@ -2224,3 +2224,19 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 .rb-tv dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
 .rb-tv a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .rb-wrap .xside{top:calc(50% - 20px)}
+
+/* Watch page podcast rows */
+.prow{position:relative}
+.pods{border-top:1px solid var(--line)}
+.pcard{display:flex;flex-direction:column;gap:var(--s3);height:100%;padding:var(--s4);background:#fff;border:1px solid var(--line);border-radius:var(--r2)}
+.pc-top{display:flex;gap:var(--s3);align-items:flex-start;min-width:0}
+.pc-art{flex:none;width:72px;height:72px;border-radius:var(--r1);object-fit:cover;background:var(--blue-10)}
+.pc-txt{min-width:0}
+.pc-show{margin:0;font-size:13px;font-weight:700;color:var(--blue)}
+.pc-t{margin:2px 0 0;font-size:16px;line-height:1.3;font-weight:700;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.pc-m{margin:4px 0 0;font-size:13px;color:var(--ink-2)}
+.pc-au{display:block;width:100%;height:40px;margin-top:auto}
+.pc-links{display:flex;gap:var(--s4);margin:0;font-size:13px}
+.pc-links a{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.pc-links a:hover{color:var(--red)}
+.pc-au:focus-visible,.pc-links a:focus-visible{outline:2px solid var(--red);outline-offset:2px}

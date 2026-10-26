@@ -740,6 +740,35 @@
       [].forEach.call(el.querySelectorAll('.see-all'),function(a){a.target='_blank';a.rel='noopener';a.setAttribute('aria-label',a.closest('.sec-hd').querySelector('.sec-t').textContent+' on YouTube (opens in a new tab)')});
       el.closest('section').hidden=false;orowArrows();slSyncAll();setTimeout(function(){orowArrows();slSyncAll()},600);
       continueRow();if(/^#watch=yt-/.test(location.hash))articleFromHash()}).catch(function(){})}
+  /* Watch page podcast rows. data/podcasts-feed.json is rebuilt by tools/fetch_podcasts.py from each show's public RSS feed.
+     Audio plays in the browser's own player straight from the feed's enclosure URL; cover art is the feed's own. */
+  var PIC='<svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" fill="currentColor">';
+  function podCard(sh,e){var d=new Date(e.published),ds=isNaN(d)?'':d.toLocaleDateString('en-US',FEED_DATE),ap=e.apple||sh.apple;
+    return '<article class="pcard" aria-label="'+esc(sh.name)+': '+esc(e.title)+'"><div class="pc-top">'+
+      (sh.art?'<img class="pc-art" src="'+ROOT+esc(sh.art)+'" alt="" width="72" height="72" loading="lazy" decoding="async">':'')+
+      '<div class="pc-txt"><p class="pc-show">'+esc(sh.name)+'</p><h3 class="pc-t" title="'+esc(e.title)+'">'+esc(e.title)+'</h3>'+
+      '<p class="pc-m">'+[ds,e.dur].filter(Boolean).map(esc).join(' \u00b7 ')+'</p></div></div>'+
+      '<audio class="pc-au" controls preload="none" src="'+esc(e.audio)+'" aria-label="Play '+esc(sh.name)+' episode: '+esc(e.title)+'"></audio>'+
+      '<p class="pc-links">'+(ap?'<a href="'+esc(ap)+'" target="_blank" rel="noopener" aria-label="'+(e.apple?'This episode':esc(sh.name))+' on Apple Podcasts (opens in a new tab)">Apple Podcasts</a>':'')+
+      (sh.spotify?'<a href="'+esc(sh.spotify)+'" target="_blank" rel="noopener" aria-label="'+esc(sh.name)+' on Spotify (opens in a new tab)">Spotify</a>':'')+'</p></article>'}
+  function podRail(items,label){var id='prow-'+(++ORN);
+    return '<div class="xwrap prow" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Previous episodes" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
+      '<div class="rail" id="'+id+'" data-slider role="list" aria-label="'+esc(label)+', scrolls sideways" tabindex="0">'+items.map(function(x){return '<div class="rail-i" role="listitem">'+podCard(x[0],x[1])+'</div>'}).join('')+'</div>'+
+      '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next episodes" aria-controls="'+id+'">'+XARR+'</button></div>'}
+  function podsRow(){var el=$('#railPods');if(!el||!window.fetch)return;
+    fetch(ROOT+'data/podcasts-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){
+      var SH={},html='';(F.shows||[]).forEach(function(c){SH[c.key]=c});
+      var fresh=(F.new||[]).map(function(n){var sh=SH[n.key],e=sh&&sh.episodes.filter(function(x){return x.id===n.id})[0];return e?[sh,e]:null}).filter(Boolean);
+      if(fresh.length)html+='<div class="orow-sec">'+secHead('New episodes')+podRail(fresh,'New podcast episodes')+'</div>';
+      (F.shows||[]).forEach(function(sh){if(!sh.episodes.length)return;
+        html+='<div class="orow-sec">'+secHead(esc(sh.name),sh.apple||sh.spotify,sh.apple?'Apple Podcasts':'Spotify')+podRail(sh.episodes.map(function(e){return [sh,e]}),sh.name+' episodes')+'</div>'});
+      if(!html)return;
+      el.innerHTML=html+'<p class="studio-note">Public podcasts, shown for demo purposes. Not affiliated.</p>';
+      [].forEach.call(el.querySelectorAll('.see-all'),function(a){a.target='_blank';a.rel='noopener';a.setAttribute('aria-label',a.closest('.sec-hd').querySelector('.sec-t').textContent+' on '+a.textContent.replace(/\s*\u2192\s*$/,'')+' (opens in a new tab)')});
+      el.closest('section').hidden=false;slSyncAll();setTimeout(slSyncAll,600)}).catch(function(){})}
+  /* one episode at a time: starting one pauses any other */
+  document.addEventListener('play',function(e){var t=e.target;if(!t||!t.classList||!t.classList.contains('pc-au'))return;
+    [].forEach.call(document.querySelectorAll('audio.pc-au'),function(a){if(a!==t&&!a.paused)a.pause()})},true);
   /* ---------- Game-day hub: games/ (index) and games/?id=<game> (one page per game) ---------- */
   var GM_SPORT={football:{verb:'Kickoff',ph:'gd-football'},'mens-basketball':{verb:'Tip-off',ph:'gd-mbb'},'womens-basketball':{verb:'Tip-off',ph:'gd-wbb'}};
   /* opponent names as they appear in video titles; lookarounds keep 'Virginia' off 'Virginia Tech' and 'Texas A&M' off 'West Texas A&M' */
@@ -810,7 +839,7 @@
         '<p class="gm-empty">No videos about this game yet. Previews and highlights from SMU outlets show up here as they are posted.</p>');
       el.closest('section').hidden=false;orowArrows();slSyncAll();setTimeout(function(){orowArrows();slSyncAll()},600);
       if(/^#watch=yt-/.test(location.hash))articleFromHash()}).catch(function(){})}
-  function library(){continueRow();outletsRow();document.addEventListener('mp:history',continueRow);
+  function library(){continueRow();outletsRow();podsRow();document.addEventListener('mp:history',continueRow);
     var P=new URLSearchParams(location.search),st={cat:P.get('cat')||'all',type:P.get('type')||'all',access:'all',q:P.get('q')||''};
     if(!CATNAME[st.cat])st.cat='all';if(!/^(all|video|article|podcast)$/.test(st.type))st.type='all';if(!/^(all|free|members)$/.test(st.access))st.access='all';
     var chips=$('#libChips'),grid=$('#libGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty');
