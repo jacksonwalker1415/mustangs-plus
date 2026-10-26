@@ -190,7 +190,10 @@
       '<a class="btn btn-red mm-join" href="'+ROOT+'#waitlist">Join SMU+</a>'+
       '<p class="mm-note">Concept built for an SMU Cox MBA class project. No payments are taken.</p></div></div>'}
   $('#site-header').outerHTML='<header class="site"><div class="wrap hdr">'+wordmark()+'<nav class="main" aria-label="Primary">'+navLinks()+'</nav>'+
-    '<div class="hdr-act"><button type="button" class="hsearch" id="searchBtn" aria-haspopup="dialog" aria-label="Search SMU+">'+SVG.search+'<span>Search</span><kbd>/</kbd></button>'+memberSwitch('Member preview')+
+    '<div class="hdr-act"><button type="button" class="hsearch hs-btn" id="searchBtn" aria-expanded="false" aria-controls="hsForm" aria-label="Search SMU+">'+SVG.search+'</button>'+
+      '<form class="hsf" id="hsForm" role="search" action="'+ROOT+'search/" method="get"><label class="sr" for="hsQ">Search SMU+</label>'+SVG.search+
+      '<input id="hsQ" name="q" type="search" placeholder="Search SMU+" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"'+(PAGE==='search'?' value="'+esc(new URLSearchParams(location.search).get('q')||'')+'"':'')+'>'+
+      '<button type="submit" class="hsf-go">Search</button></form>'+memberSwitch('Member preview')+
     '<a class="acct-btn" id="acctBtn" href="'+ROOT+'account/"'+(PAGE==='account'?' aria-current="page"':'')+'><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span class="acct-l">Sign in</span></a>'+
     '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#waitlist">Join</a>'+
     '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+sportsPanel()+
@@ -386,7 +389,14 @@
   function openSearch(){search.hidden=false;document.documentElement.classList.add('noscroll');sInput.value='';runSearch();sInput.focus()}
   function closeSearch(){if(search.hidden)return;search.hidden=true;if(reader.hidden&&pw.hidden)document.documentElement.classList.remove('noscroll');$('#searchBtn').focus()}
   function activate(el){var id=el.dataset.sitem;closeSearch();if(id){openItem(id)}else location.href=el.getAttribute('href')}
-  $('#searchBtn').addEventListener('click',openSearch);$('#searchClose').addEventListener('click',closeSearch);
+  /* Header search: one field. Wide screens show it inline; narrower screens get an icon that drops the field open under the header. */
+  var hsF=$('#hsForm'),hsQ=$('#hsQ'),hsB=$('#searchBtn'),hdrS=$('header.site');
+  function hsOpen(on){hdrS.classList.toggle('hs-open',on);hsB.setAttribute('aria-expanded',on?'true':'false');if(on)setTimeout(function(){hsQ.focus()},0)}
+  function hsFocus(){if(getComputedStyle(hsB).display==='none')hsQ.focus();else hsOpen(true)}
+  hsB.addEventListener('click',function(){hsOpen(!hdrS.classList.contains('hs-open'))});
+  hsF.addEventListener('submit',function(e){if(!hsQ.value.trim()){e.preventDefault();hsQ.focus()}});
+  hsQ.addEventListener('keydown',function(e){if(e.key==='Escape'&&hdrS.classList.contains('hs-open')){e.stopPropagation();hsOpen(false);hsB.focus()}});
+  document.addEventListener('click',function(e){if(hdrS.classList.contains('hs-open')&&!e.target.closest('#hsForm,#searchBtn'))hsOpen(false)});$('#searchClose').addEventListener('click',closeSearch);
   search.addEventListener('click',function(e){if(e.target===search){closeSearch();return}var ch=e.target.closest('[data-q]');if(ch){sInput.value=ch.dataset.q;runSearch();sInput.focus();return}
     var it=e.target.closest('.s-item');if(it){e.preventDefault();e.stopPropagation();activate(it)}});
   sRes.addEventListener('mousemove',function(e){var it=e.target.closest('.s-item');if(it){var i=sItems.indexOf(it);if(i!==sActive)setActive(i)}});
@@ -395,7 +405,7 @@
     else if(e.key==='Enter'){e.preventDefault();if(sItems[sActive])activate(sItems[sActive])}});
   document.addEventListener('keydown',function(e){var typing=/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||''));
     if(e.key==='Escape'){if(!search.hidden){closeSearch();return}if(!pw.hidden){closePaywall();return}closeModal();closeArticle();return}
-    if(((e.key==='/'&&!typing)||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'))&&search.hidden){e.preventDefault();openSearch()}});
+    if((e.key==='/'&&!typing)||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k')){e.preventDefault();hsFocus()}});
 
   /* ---------- Header fit: collapse lowest-priority nav links into the menu before anything overlaps ---------- */
   /* Skip link (a11y): first tab stop on every page, jumps past the header to <main>. Header markup untouched. */
@@ -426,7 +436,7 @@
     mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label','Open menu');if(restore)mb.focus()}
   mb.addEventListener('click',function(){if(mm.hidden)openMenu();else closeMenu(true)});
   mm.addEventListener('click',function(e){
-    if(e.target.closest('[data-mm-search]')){closeMenu();$('#searchBtn').click();return}
+    if(e.target.closest('[data-mm-search]')){closeMenu();hsFocus();return}
     if(e.target.closest('a'))closeMenu();
     if(e.target.closest('[data-demo]'))closeMenu()});
   document.addEventListener('keydown',function(e){if(mm.hidden)return;
@@ -683,6 +693,69 @@
       '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Later games" aria-controls="'+id+'">'+XARR+'</button></div>'+
       '</div></section>');
     slSyncAll()}
+
+  /* ---------- Search results page (search/?q=...). Static content comes from data/search-index.json (tools/build_search.js);
+     forum threads and posts come live from Supabase (public read). Results update as you type; the URL keeps the query. ---------- */
+  function searchPage(){var main=$('#searchMain');if(!main)return;
+    var P=new URLSearchParams(location.search),q0=(P.get('q')||'').slice(0,80),only=P.get('type')||'all',IDX=null,live=[],liveQ=null,seq=0;
+    var GROUPS=[['video','Videos'],['article','Articles'],['podcast','Podcasts'],['player','Players'],['post','Forum posts'],['game','Games'],['sport','Sports']];
+    main.innerHTML='<section class="srch-hero"><div class="wrap"><h1 id="srch-h">Search SMU+</h1>'+
+      '<form class="srch-f" role="search" id="srchF" action="./" method="get"><label class="sr" for="srchQ">Search videos, articles, podcasts, players and forum posts</label>'+
+      '<input id="srchQ" name="q" type="search" value="'+esc(q0)+'" placeholder="Try Jennings, Syracuse or highlights" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80" aria-describedby="srchSum">'+
+      '<button type="submit">Search</button></form><p class="srch-sum" id="srchSum" role="status" aria-live="polite"></p>'+
+      '<div class="srch-tabs" role="group" aria-label="Filter results">'+[['all','All']].concat(GROUPS).map(function(g){return '<button type="button" data-st="'+g[0]+'" aria-pressed="'+(only===g[0])+'">'+g[1]+'</button>'}).join('')+'</div></div></section>'+
+      '<section class="sec tight"><div class="wrap" id="srchRes"></div></section>';
+    var inp=$('#srchQ'),res=$('#srchRes'),sum=$('#srchSum'),hq=$('#hsQ');
+    function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\u2018\u2019']/g,'').replace(/\s+/g,' ').trim()}
+    function toks(q){return norm(q).split(' ').filter(Boolean).slice(0,6)}
+    function hlx(text,T){var out=esc(text);T.forEach(function(t){if(t.length<2)return;out=out.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>')});return out}
+    function href(u){return u.charAt(0)==='#'?u:ROOT+u}
+    function score(d,T,q){var tl=norm(d.ti);if(!T.every(function(t){return d.h.indexOf(t)>=0}))return -1;
+      return (tl===q?20:0)+(tl.indexOf(q)===0?8:0)+(tl.indexOf(q)>=0?5:0)+T.filter(function(t){return tl.indexOf(t)>=0}).length*2+(d.d?Math.max(0,3-(Date.now()-Date.parse(d.d))/(30*864e5)):0)}
+    function snippet(body,T){var b=String(body||'').replace(/\s+/g,' '),lb=norm(b),i=-1;T.some(function(t){i=lb.indexOf(t);return i>=0});
+      var st=Math.max(0,i-60),sn=b.slice(st,st+180);return (st?'\u2026':'')+sn+(st+180<b.length?'\u2026':'')}
+    function fetchLive(q){var T=toks(q);if(!T.length){live=[];liveQ=q;return Promise.resolve()}var my=++seq;
+      return (SMU.ready||Promise.resolve()).then(function(){var sb=SMU.live&&SMU.client;
+        if(!sb){/* demo mode or Supabase unreachable: search the threads this browser already has */
+          live=(MP.THREADS||[]).filter(function(t){return (REC_ON||t.f!=='recruiting')}).map(function(t){var body=(t.posts||[]).map(function(p){return p[1]}).join(' '),h=norm(t.title+' '+body);
+            return T.every(function(x){return h.indexOf(x)>=0})?{t:'post',ti:t.title,s:'Thread',u:'boards/#t'+t.id,x:snippet(body,T),h:h}:null}).filter(Boolean).slice(0,20);liveQ=q;return}
+        var pat='%'+T.reduce(function(a,b){return b.length>a.length?b:a},'').replace(/[%_\\]/g,'\\$&')+'%';
+        return Promise.all([
+          sb.from('threads').select('id,title,forum_id,sport,last_post_at').ilike('title',pat).order('last_post_at',{ascending:false}).limit(20),
+          sb.from('posts').select('id,body,created_at,thread_id,threads(id,title,forum_id)').ilike('body',pat).order('created_at',{ascending:false}).limit(30)
+        ]).then(function(r){if(my!==seq)return;var out=[],seenT={};
+          ((r[0]&&r[0].data)||[]).forEach(function(t){if(!REC_ON&&t.forum_id==='recruiting')return;var f=forumBy(t.forum_id)||{name:'Boards'};seenT[t.id]=1;
+            out.push({t:'post',ti:t.title,s:'Thread \u00b7 '+f.name,u:'boards/#t'+t.id,h:norm(t.title),d:t.last_post_at})});
+          ((r[1]&&r[1].data)||[]).forEach(function(p){var t=p.threads;if(!t||(!REC_ON&&t.forum_id==='recruiting'))return;var f=forumBy(t.forum_id)||{name:'Boards'};
+            out.push({t:'post',ti:t.title,s:'Post \u00b7 '+f.name,u:'boards/#t'+t.id,x:snippet(p.body,T),h:norm(t.title+' '+p.body),d:p.created_at})});
+          live=out.filter(function(d){return T.every(function(x){return d.h.indexOf(x)>=0})});liveQ=q},function(){if(my===seq){live=[];liveQ=q}})})}
+    var shown={};
+    function render(){var q=inp.value.trim(),T=toks(q),nq=norm(q);
+      $$('[data-st]',main).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.st===only?'true':'false')});
+      if(!T.length){res.innerHTML='<p class="srch-empty">Search every video, article, podcast, player and forum post on SMU+.</p>';sum.textContent='';return}
+      if(!IDX){sum.textContent='Searching\u2026';return}
+      var hits=IDX.concat(live).map(function(d){if(d.x&&d.t!=='post'&&Date.parse(d.x)<=Date.now())return null;var sc=score(d,T,nq);return sc<0?null:{d:d,s:sc}}).filter(Boolean).sort(function(a,b){return b.s-a.s});
+      var by={};hits.forEach(function(h){(by[h.d.t]=by[h.d.t]||[]).push(h.d)});
+      var total=hits.length,html='';
+      var ord=[];hits.forEach(function(h){if(ord.indexOf(h.d.t)<0)ord.push(h.d.t)});
+      GROUPS.slice().sort(function(a,b){var i=ord.indexOf(a[0]),j=ord.indexOf(b[0]);return (i<0?99:i)-(j<0?99:j)}).forEach(function(g){var L=by[g[0]];if(!L||!L.length||(only!=='all'&&only!==g[0]))return;var lim=only===g[0]||shown[g[0]]?50:5;
+        html+='<div class="srch-g"><h2>'+g[1]+' <span class="sr">('+L.length+')</span></h2><ul class="srch-l">'+L.slice(0,lim).map(function(d){
+          return '<li><a href="'+esc(href(d.u))+'"'+(d.u.indexOf('#watch=')>=0&&d.u.charAt(0)==='#'?' data-item="'+esc(d.u.split('=')[1])+'"':d.u.indexOf('#article=')===0?' data-item="'+esc(d.u.split('=')[1])+'"':'')+'><b>'+hlx(d.ti,T)+'</b><small>'+esc(d.s)+'</small>'+(d.x&&d.t==='post'?'<span class="srch-x">'+hlx(d.x,T)+'</span>':'')+'</a></li>'}).join('')+'</ul>'+
+          (L.length>lim?'<button type="button" class="srch-more" data-more="'+g[0]+'">Show all '+L.length+' '+g[1].toLowerCase()+'</button>':'')+'</div>'});
+      var n=only==='all'?total:(by[only]||[]).length;
+      sum.textContent=(n?n+(n===1?' result':' results'):'No results')+' for \u201c'+q+'\u201d'+(liveQ!==q?' (checking the forum\u2026)':'');
+      res.innerHTML=html||'<p class="srch-empty">Nothing matches \u201c'+esc(q)+'\u201d'+(only!=='all'?' in this filter':'')+'. Try fewer words or a player\u2019s last name.</p>'}
+    var tm;function update(push){var q=inp.value.trim().slice(0,80);shown={};var u=new URL(location.href);if(q)u.searchParams.set('q',q);else u.searchParams.delete('q');
+      if(only!=='all')u.searchParams.set('type',only);else u.searchParams.delete('type');history[push?'pushState':'replaceState'](null,'',u.pathname+u.search);
+      document.title=(q?'\u201c'+q+'\u201d \u00b7 ':'')+'Search | SMU+';if(hq)hq.value=q;render();clearTimeout(tm);tm=setTimeout(function(){fetchLive(q).then(render)},250)}
+    inp.addEventListener('input',function(){update(false)});
+    $('#srchF').addEventListener('submit',function(e){e.preventDefault();update(true)});
+    main.addEventListener('click',function(e){var b=e.target.closest('[data-st]');if(b){only=b.dataset.st;update(false);return}
+      var m=e.target.closest('[data-more]');if(m){shown[m.dataset.more]=1;render()}});
+    if(hq&&hsF)hsF.addEventListener('submit',function(e){if(hq.value.trim()){e.preventDefault();inp.value=hq.value.trim();hsOpen(false);update(true);inp.focus()}});
+    addEventListener('popstate',function(){var p=new URLSearchParams(location.search);inp.value=p.get('q')||'';only=p.get('type')||'all';render();fetchLive(inp.value.trim()).then(render)});
+    fetch(ROOT+'data/search-index.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(J){IDX=J.docs||[];render()},function(){IDX=[];render()});
+    render();if(q0)fetchLive(q0).then(render);if(!q0)inp.focus()}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist();
@@ -1598,6 +1671,6 @@
       max=document.documentElement.scrollHeight-innerHeight;
       if(n>2&&Math.abs(off)>2&&!(off>0&&scrollY>=max-1))scrollBy({top:off,behavior:'auto'});
       if(++n<14)setTimeout(fix,200);else quit()})()});
-  aboutSources();if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();watchX();
+  aboutSources();if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();else if(PAGE==='search')searchPage();watchX();
   articleFromHash();
 })();

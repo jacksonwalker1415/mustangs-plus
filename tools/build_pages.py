@@ -74,6 +74,10 @@ SHELLS={
  'account/index.html': head('Your account | SMU+','Sign in to SMU+ to save players, post on The Mustang Board and keep your place in videos (concept site).','account','../')+
    '<main id="acctMain"><section class="page-hero acct-hero"><div class="wrap"><p class="eyebrow">SMU+ account</p><h1 class="display">Your account</h1><p class="lede on-dark">Loading your account\u2026</p></div></section>'
    '<noscript><section class="sec"><div class="wrap"><p>Your account needs JavaScript turned on.</p></div></section></noscript></main>\n<div id="site-footer"></div>\n</body>\n</html>\n',
+ 'search/index.html': head('Search | SMU+','Search SMU+ videos, articles, podcasts, players and forum posts (class-project concept).','search','../')+
+   '<main id="searchMain"><section class="srch-hero"><div class="wrap"><h1>Search SMU+</h1>'
+   '<form class="srch-f" role="search" action="./" method="get"><label class="sr" for="srchQ0">Search</label><input id="srchQ0" name="q" type="search"><button type="submit">Search</button></form>'
+   '<noscript><p class="srch-note">Search needs JavaScript turned on.</p></noscript></div></section></main>\n<div id="site-footer"></div>\n</body>\n</html>\n',
  # GitHub Pages serves 404.html for any missing path at any depth, so resolve assets from the site root with <base>.
  '404.html': head('Page not found | SMU+','That page is not on SMU+.','notfound','',
    '<script>document.write(\'<base href="\'+(location.pathname.indexOf("/mustangs-plus/")===0?"/mustangs-plus/":"/")+\'">\')</script>\n'
