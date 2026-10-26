@@ -769,9 +769,9 @@
     function prep(d){if(d._w==null){d._w=' '+words(d.h)+' ';d._t=' '+words(norm(d.ti))+' ';d._k=d.k?' '+words(norm(d.k))+' ':''}return d}
     function inW(w,t){return w.indexOf(' '+t)>=0}
     function score(d,T){prep(d);if(!T.every(function(t){return inW(d._w,t)}))return -1;
-      var tl=d._t,qs=' '+T.join(' '),all=T.every(function(t){return inW(tl,t)}),s=(tl===qs+' '?20:0)+(tl.indexOf(qs)===0?8:0)+(tl.indexOf(qs)>=0?5:0)+T.filter(function(t){return inW(tl,t)}).length*2;
+      var tl=d._t,qs=' '+T.join(' '),s=(tl===qs+' '?20:0)+(tl.indexOf(qs)===0?8:0)+(tl.indexOf(qs)>=0?5:0)+T.filter(function(t){return inW(tl,t)}).length*2+T.filter(function(t){return tl.indexOf(' '+t+' ')>=0}).length*2;
       /* people search for players by full or last name, and for sports and pages by name or shorthand (fb, mbb, faq) */
-      if(d.t==='player'){var nm=tl.trim().replace(/ (jr|sr|ii|iii|iv|v)$/,'').split(' ');s+=tl===qs+' '?30:(T.length===1&&T[0]===nm[nm.length-1])?25:all?10:0}
+      if(d.t==='player'){var nm=tl.trim().replace(/ (jr|sr|ii|iii|iv|v)$/,'').split(' ');s+=tl===qs+' '?30:(T.length===1&&T[0]===nm[nm.length-1])?25:T.every(function(t){return tl.indexOf(' '+t+' ')>=0})?10:0}
       if(d.t==='sport'||d.t==='page'){s+=(tl===qs+' '||d._k.indexOf(qs+' ')>=0)?30:T.every(function(t){return inW(tl,t)||d._k.indexOf(' '+t+' ')>=0})?12:0}
       return s+(d.d?Math.max(0,3-(Date.now()-Date.parse(d.d))/(30*864e5)):0)}
     /* typo fallback, only when nothing matches: swap each unmatched word for the closest title word (1 edit for short words, 2 for long) */
