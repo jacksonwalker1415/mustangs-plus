@@ -1874,3 +1874,7 @@ main[tabindex="-1"]:focus{outline:none}
 .jm-soon{left:22px;top:-13px}
 .acct-soon{display:flex;align-items:center;gap:6px}.acct-soon svg{width:14px;height:14px;fill:currentColor}
 @media(max-width:639px){.studios .sec-hd{flex-direction:column;align-items:flex-start;gap:var(--s2)}}
+
+/* disclaimer: full wording >=640px, short line on phones */
+.disc-short{display:none}
+@media(max-width:639px){.disclaimer .disc-full{display:none}.disclaimer .disc-short{display:inline}}

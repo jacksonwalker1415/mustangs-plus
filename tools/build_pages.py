@@ -12,8 +12,9 @@ VER=sys.argv[1] if len(sys.argv)>1 else time.strftime('%Y%m%d%H%M')
 SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','sport-icons.js','sb.js','app.js']
 def DISC(root):
     # One wording site-wide (Business Ops lock-exposure notice). build_pages.py rewrites it on every page.
-    return ('<div class="disclaimer" role="note"><b>Concept built for an SMU Cox MBA class project.</b> Not affiliated with or endorsed by SMU Athletics or Learfield. '
-            f'No payments are taken. <a href="{root}privacy/#about">About this project</a></div>')
+    # Full wording on tablets/desktop; phones get the short line (CSS swaps them) so the bar stays two lines max.
+    return ('<div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU or Learfield. No payments taken.</span> '
+            f'<a href="{root}privacy/#about">About this project</a></div>')
 
 def head(title,desc,page,root,extra=''):
     return f'''<!doctype html>
@@ -43,8 +44,8 @@ PRIVACY_BODY='''<main id="top"><section class="page-hero has-photo"><div class="
 <nav class="policy-toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol><li><a href="#about">About this project</a></li><li><a href="#collect">What we collect</a></li><li><a href="#why">Why we collect it</a></li><li><a href="#where">Where it’s stored</a></li><li><a href="#share">Selling and sharing</a></li><li><a href="#delete">Deleting your data</a></li><li><a href="#browser">Your browser</a></li><li><a href="#contact">Contact</a></li></ol></nav>
 <div class="policy-body">
 <section id="about"><h2>About this project</h2>
-<p>SMU+ is an <strong>unofficial student concept project</strong> created for a class at the SMU Cox School of Business. It is <strong>not affiliated with or endorsed by SMU, SMU Athletics, Learfield or any athlete</strong>.</p>
-<p><strong>No payments are taken.</strong> Paid plans are coming soon and are shown for demo purposes; the site never asks for a card.</p></section>
+<p>SMU+ was built for an SMU Cox MBA class project. It is <strong>not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown</strong>.</p>
+<p><strong>Memberships are for demonstration only.</strong> No payments are taken and no real product or service is offered. For educational purposes only.</p></section>
 <section id="collect"><h2>What we collect</h2>
 <ul><li><strong>Waitlist:</strong> your email address, your name, SMU affiliation and the plan you’d be interested in if you choose to give them, the date you joined, that you agreed to this notice, and how you found the site (the campaign tag in the link you used, such as a QR code, and the name of the website that linked you, if any).</li>
 <li><strong>Page visits:</strong> a simple visit count. For each page load we save the page address, the campaign tags and linking website (if any), whether you’re on a phone or a computer, and a random code that lasts only until you close the tab, so visits in one session can be counted once. No cookies, no IP address, no browser details, nothing that identifies you. Visit records are deleted automatically after 90 days.</li>
