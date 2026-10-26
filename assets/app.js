@@ -318,7 +318,7 @@
   function buildIndex(){INDEX=[];var kind={video:'Episode',article:'Story',podcast:'Podcast'};
     Object.keys(LIBBY).forEach(function(k){var c=LIBBY[k];INDEX.push({g:'Watch & read',k:kind[c.t],ic:c.t,title:c.title,sub:c.label+' · '+c.dur+(gated(c)?' · Members':''),item:c.id,hay:[c.title,c.desc,c.label,CATNAME[c.cat]||'',kind[c.t]].join(' ')})});
     (MP.ATHLETES||[]).forEach(function(a){INDEX.push({g:'Players',k:'Player',ic:'user',title:a.name,sub:'#'+a.num+' · '+a.pos+' · '+a.cls+' · Football',href:athleteUrl(a.id),hay:[a.name,a.pos,a.cls,a.hometown,'football player profile #'+a.num].join(' ')})});
-    MP.THREADS.forEach(function(t){var f=forumBy(t.f);INDEX.push({g:'Boards',k:'Thread',ic:'chat',title:t.title,sub:f.name+' · '+t.replies.toLocaleString()+' replies',href:threadUrl(t.id),hay:[t.title,f.name,t.sport||'',t.posts.map(function(p){return p[1]}).join(' ')].join(' ')})});
+    MP.THREADS.forEach(function(t){var f=forumBy(t.f);INDEX.push({g:'Boards',k:'Thread',ic:'chat',title:t.title,sub:f.name+(t.replies==null?'':' · '+t.replies.toLocaleString()+(t.replies===1?' reply':' replies')),href:threadUrl(t.id),hay:[t.title,f.name,t.sport||'',t.posts.map(function(p){return p[1]}).join(' ')].join(' ')})});
     MP.SPORTS.forEach(function(s){INDEX.push({g:'Sports',k:'Sport',ic:'grid',title:s.name,sub:s.season+' · '+sportRec(s),href:sportUrl(s.slug),hay:s.name+' '+s.season+' '+s.slug})})}
   function hl(text,toks){var out=esc(text);toks.forEach(function(t){if(t.length<2)return;out=out.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>')});return out}
   var SUGGEST=['Boulevard Nights','Jennings','Syracuse','Film Room',REC_ON?'portal':'Podcasts','basketball'];
@@ -402,10 +402,12 @@
     if(f.prem)p+='<span class="pill pill-prem">'+LOCK+'Members</span>';p+='<span class="pill">'+esc(f.name)+'</span>';if(s)p+='<span class="pill">'+esc(s.name)+'</span>';return p}
   function lastBy(t){var p=t.posts[t.posts.length-1];return p[0]}
   function lastAgo(t){var m={m:1,h:60,d:1440,w:10080},x=t.ago.match(/(\d+)(\w)/),v=x?(+x[1])*(m[x[2]]||1):60;v=Math.max(1,Math.round(v/(t.posts.length+1)));return v<60?v+'m':v<1440?Math.round(v/60)+'h':Math.round(v/1440)+'d'}
+  function nReplies(t){return t.replies==null?'':t.replies.toLocaleString()}
+  function postsBy(id){var n=0;MP.THREADS.forEach(function(t){t.posts.forEach(function(p){if(p[0]===id)n++})});return n}
   function threadRow(t,compact){var u=MP.USERS[t.by],lu=MP.USERS[lastBy(t)];
     return '<a class="trow'+(compact?' compact':'')+'" href="'+threadUrl(t.id)+'">'+avatar(t.by)+'<div class="trow-main"><div class="pills">'+pills(t)+'</div><p class="t-title">'+esc(t.title)+'</p>'+
-      '<p class="t-meta">Started by <b>'+esc(u.n)+'</b> · '+t.ago+' ago<span class="t-mob"> · '+t.replies.toLocaleString()+' replies</span></p></div>'+
-      (compact?'':'<span class="num">'+t.replies.toLocaleString()+'</span><span class="num">'+t.views+'</span><span class="t-last"><b>'+esc(lu.n)+'</b><small>'+lastAgo(t)+' ago</small></span>')+'</a>'}
+      '<p class="t-meta">Started by <b>'+esc(u.n)+'</b> · '+t.ago+' ago'+(t.replies==null?'':'<span class="t-mob"> · '+nReplies(t)+(t.replies===1?' reply':' replies')+'</span>')+'</p></div>'+
+      (compact?'':'<span class="num">'+nReplies(t)+'</span><span class="t-last"><b>'+esc(lu.n)+'</b><small>'+lastAgo(t)+' ago</small></span>')+'</a>'}
   function profileCard(a){
     return '<a class="pcard" href="'+athleteUrl(a.id)+'">'+(a.cardPhoto?'<span class="pc-pic has-photo">'+photo(a.cardPhoto,{small:1})+'</span>':'<span class="pc-pic" style="background:'+KIT_BG[a.kit]+'">'+kit(a.num,a.kit)+'</span>')+
       '<span class="pc-b"><span class="tag tag-real">Real stats</span><small>#'+a.num+' · '+a.pos+' · '+a.cls+'</small><b>'+esc(a.name)+'</b><span>'+esc(a.hometown)+'</span>'+(a.cardPhoto?'<small class="pc-credit">Photo: SMU Athletics</small>':'')+'</span></a>'}
@@ -580,7 +582,7 @@
       $$('.sort button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.sort===state.sort)});
       var list=MP.THREADS.filter(function(t){return (state.f==='all'||t.f===state.f)&&(!state.sport||t.sport===state.sport)&&(!state.q||(t.title+' '+t.posts.map(function(p){return p[1]}).join(' ')).toLowerCase().indexOf(state.q)>=0)});
       $('#boardClear').hidden=!(state.f!=='all'||state.sport||state.q);
-      if(state.sort==='hot')list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||b.replies-a.replies});else list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||(b.id-a.id)});
+      if(state.sort==='hot')list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||(b.replies||0)-(a.replies||0)});else list.sort(function(a,b){return (b.pin?1:0)-(a.pin?1:0)||(b.id-a.id)});
       var f=forumBy(state.f),s=sportBy(state.sport);$('#listTitle').textContent=(f?f.name:'All threads')+(s?' · '+s.name:'');
       $('#threadRows').innerHTML=list.length?list.map(function(t){return threadRow(t)}).join(''):(state.q?emptyState('search','No threads match \u201c'+esc(tq.value.trim())+'\u201d','Try fewer words, or clear the filters and browse every board.','<button type="button" class="btn btn-navy btn-sm" data-board-clear>Clear filters</button>'):emptyState('chat','Quiet in here so far','No threads on this board yet. Start the first one, or clear the filters to see everything.','<button type="button" class="btn btn-red btn-sm" data-compose>Start a thread</button><button type="button" class="btn btn-outline btn-sm" data-board-clear>Clear filters</button>'));
     }
@@ -588,15 +590,17 @@
       var t=null;MP.THREADS.forEach(function(x){if(x.id===id)t=x});if(!t){location.hash='';return}
       var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),locked=f.prem&&!member,n=t.posts.length;
       var times=t.posts.map(function(p,i){if(p[3])return SMU.ago(p[3])+' ago';if(!i)return t.ago+' ago';var m={m:1,h:60,d:1440,w:10080},x=t.ago.match(/(\d+)(\w)/),tot=x?(+x[1])*(m[x[2]]||1):60,v=Math.max(1,Math.round(tot*(1-i/(n+1))));return (v<60?v+'m':v<1440?Math.round(v/60)+'h':Math.round(v/1440)+'d')+' ago'});
-      var postHTML=t.posts.map(function(p,i){var u=MP.USERS[p[0]],q=p[2]!=null?t.posts[p[2]]:null,likes=3+((t.id*13+i*29)%90);
-        return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+' · '+u.posts+' posts</small></div></aside>'+
+      /* Post counts only when every post is loaded; signed-out live visitors can't see members-only posts, so a count would be short. */
+      var allPosts=!SMU.live||SMU.tier()!=='free';
+      var postHTML=t.posts.map(function(p,i){var u=MP.USERS[p[0]],q=p[2]!=null?t.posts[p[2]]:null,pc=allPosts?postsBy(p[0]):null;
+        return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+(pc==null?'':' · '+pc.toLocaleString()+(pc===1?' post':' posts')+' here')+'</small></div></aside>'+
           '<div class="post-body"><div class="post-h"><span>'+times[i]+'</span><a href="#t'+t.id+'" class="post-n">#'+(i+1)+'</a></div>'+
           (q?'<blockquote><b>'+esc(MP.USERS[q[0]].n)+' said:</b> '+esc(q[1].length>140?q[1].slice(0,140)+'…':q[1])+'</blockquote>':'')+
-          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ <span>'+likes+'</span></button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" data-demo="Report post" class="rep">Report</button></div></div></article>'});
-      var shown=locked?postHTML[0]+'<div class="gate">'+postHTML.slice(1,3).join('')+'<div class="gate-cta"><div>'+LOCK+'<h4>Members-only board</h4><p>'+t.replies.toLocaleString()+' replies in '+esc(f.name)+'. Join any plan to read and post.</p><a class="btn btn-red" href="'+ROOT+'#membership">See plans</a> <button class="btn btn-outline" id="asMember">Preview as member</button></div></div></div>':postHTML.join('');
+          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" data-demo="Report post" class="rep">Report</button></div></div></article>'});
+      var shown=locked?postHTML[0]+'<div class="gate">'+postHTML.slice(1,3).join('')+'<div class="gate-cta"><div>'+LOCK+'<h4>Members-only board</h4><p>'+(t.replies?nReplies(t)+(t.replies===1?' reply':' replies')+' in ':'This thread is in ')+esc(f.name)+'. Join any plan to read and post.</p><a class="btn btn-red" href="'+ROOT+'#membership">See plans</a> <button class="btn btn-outline" id="asMember">Preview as member</button></div></div></div>':postHTML.join('');
       threadView.innerHTML='<nav class="crumbs"><a href="#">Boards</a> › <a href="?f='+f.id+'" data-f-link="'+f.id+'">'+esc(f.name)+'</a>'+(s?' › <span>'+esc(s.name)+'</span>':'')+'</nav>'+
-        '<div class="tv-head"><div class="pills">'+pills(t)+'</div><h1 class="tv-title">'+esc(t.title)+'</h1><p class="t-meta">Started by <b>'+esc(MP.USERS[t.by].n)+'</b> · '+t.ago+' ago · '+t.replies.toLocaleString()+' replies · '+t.views+' views · <span class="online">'+(12+t.id*7%60)+' reading now</span></p></div>'+
-        '<div class="pager"><span>Page 1 of '+Math.max(1,Math.ceil(t.replies/20))+'</span><div><button class="btn btn-outline btn-sm" data-demo="Watch thread">Watch</button><button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
+        '<div class="tv-head"><div class="pills">'+pills(t)+'</div><h1 class="tv-title">'+esc(t.title)+'</h1><p class="t-meta">Started by <b>'+esc(MP.USERS[t.by].n)+'</b> · '+t.ago+' ago'+(t.replies==null?'':' · '+nReplies(t)+(t.replies===1?' reply':' replies'))+(t.views?' · '+t.views+' views':'')+'</p></div>'+
+        '<div class="pager"><span>Page 1 of '+Math.max(1,Math.ceil((t.replies||0)/20))+'</span><div><button class="btn btn-outline btn-sm" data-demo="Watch thread">Watch</button><button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
         '<div class="posts">'+shown+'</div>'+
         (locked?'':replyBox(t))+
         (member&&f.prem?'<p class="note">Viewing as a member (demo). <button class="linkish" id="asGuest">Switch back to guest view</button></p>':'')+
@@ -810,6 +814,35 @@
   /* Everything here goes through window.SMU (assets/sb.js): Supabase when configured, this browser otherwise. */
   if(!window.SMU){window.SMU={live:false,user:null,on:function(){return function(){}},ready:Promise.resolve('demo'),tier:function(){return isMember()?'pony':'free'},saved:function(){return []},me:function(){return null},ago:function(){return ''},watch:function(){return function(){}}}}
   var TIER_NAME=MP.TIER_LABELS,TIER_PRICE={mustang:'9.99',pony:'24.99',club:'99'},TIER_NIL={mustang:'4.00',pony:'10.00',club:'39.60'};
+  /* Plan perks, copied from the plan cards in index.html #membership (the only other place they live). Keep the two in step. */
+  var TIER_FOR={mustang:'For every fan, everywhere',pony:'For the die-hards',club:'The inner circle'},
+    TIER_PERKS={mustang:['Members-only articles & features','Every SMU+ podcast','Full video library & series'],
+      pony:['Live monthly Q&As with athletes & coaches','Early access to merch drops'],
+      club:['Select open-practice access','Members-only tailgate invites','Signed gear each season']},
+    TIER_ORDER=['mustang','pony','club'];
+  function perksFor(t){var i=TIER_ORDER.indexOf(t);return i<0?[]:TIER_ORDER.slice(0,i+1).reduce(function(a,k){return a.concat(TIER_PERKS[k])},[])}
+  /* The proposed 40%, worked out from the sample price only. Nothing here is per athlete. */
+  function nilShare(t){var p=parseFloat(TIER_PRICE[t]);return {price:p,mo:(Math.round(p*40)/100).toFixed(2),yr:(Math.round(p*12*40)/100).toFixed(2)}}
+  function memberCard(tier){var paid=tier!=='free',chk='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 12.5 3 3 7-7"/></svg>',s=paid?nilShare(tier):null;
+    return '<div class="acct-card acct-mem"><div class="mem-top"><div><h2 class="acct-h">Membership</h2>'+
+        '<p class="acct-tier"><b>'+TIER_NAME[tier]+'</b>'+(paid?' \u00b7 $'+TIER_PRICE[tier]+'/mo <span class="mem-demo">demo price</span>':'')+'</p>'+
+        '<p class="mem-for">'+(paid?TIER_FOR[tier]+'. Here\u2019s what your plan includes.':'You\u2019re on the free plan: the free boards, free stories and the schedule. Pick a plan below to see what it adds.')+'</p></div></div>'+
+      '<div class="mem-cols">'+
+        (paid?'<div class="mem-perks"><h3 class="mem-h">Your perks</h3><ul>'+perksFor(tier).map(function(p){return '<li>'+chk+esc(p)+'</li>'}).join('')+'</ul></div>':'')+
+        '<div class="mem-nil" aria-labelledby="memNilH"><p class="mem-flag">Proposed \u00b7 not in effect</p>'+
+          '<h3 class="mem-h" id="memNilH">'+(paid?'What the 40% would mean for '+TIER_NAME[tier]:'What the 40% would mean')+'</h3>'+
+          (paid?'<p class="mem-big"><b>$'+s.mo+'</b> a month</p><p class="mem-math">40% of your $'+TIER_PRICE[tier]+' plan, rounded to the cent. Over 12 months that\u2019s about $'+s.yr+'.</p>'
+               :'<p class="mem-math">The free plan has no fee, so nothing would be shared from it. On a paid plan, 40% of the monthly price would go to SMU\u2019s official NIL programs.</p>')+
+          '<p>In the proposed model, 40% of membership revenue would go to SMU Athletics\u2019 official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</p>'+
+          '<p>SMU+ would not pick or pay individual athletes or teams. SMU runs the programs, so there\u2019s no per-athlete amount to show.</p>'+
+          '<p class="mem-note">This is a concept. No money is collected today and none goes anywhere.</p></div>'+
+      '</div>'+
+      '<h3 class="mem-h mem-cmp-h">'+(paid?'Compare plans':'Plans')+'</h3><ul class="mem-plans">'+TIER_ORDER.map(function(t){var n=nilShare(t),cur=t===tier;
+        return '<li class="mem-plan'+(cur?' cur':'')+'"><div class="mem-plan-t"><b>'+TIER_NAME[t]+'</b><span>$'+TIER_PRICE[t]+'/mo</span></div>'+
+          '<p class="mem-plan-n">$'+n.mo+'/mo to NIL programs <i>(proposed)</i></p>'+
+          '<button type="button" class="btn '+(cur?'btn-navy':'btn-outline')+' mem-btn" data-plan="'+t+'"'+(cur?' aria-current="true" disabled':'')+'>'+(cur?'Your plan':(paid&&TIER_ORDER.indexOf(t)<TIER_ORDER.indexOf(tier)?'Switch to ':'Try ')+TIER_NAME[t])+'</button></li>'}).join('')+'</ul>'+
+      (paid?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+
+      '<p class="acct-meta">Demo checkout: choosing a plan only changes this demo account. No payments are taken and no card is ever asked for. Sample pricing for concept purposes only.</p></div>'}
   body.insertAdjacentHTML('beforeend','<div class="toasts" id="toasts" role="status" aria-live="polite" aria-atomic="false"></div>');
   function toast(msg,kind){var box=$('#toasts');if(!box)return;var el=document.createElement('div');el.className='toast'+(kind?' '+kind:'');el.textContent=msg;box.appendChild(el);
     requestAnimationFrame(function(){el.classList.add('in')});setTimeout(function(){el.classList.remove('in');setTimeout(function(){el.remove()},300)},kind==='err'?6000:3500)}
@@ -924,11 +957,9 @@
       var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6),br=store('mp_brief');
       main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">'+(SMU.live?'Your SMU+ account':'Demo account \u00b7 this browser only')+'</p><h1 class="display">'+esc(u.name||'Your account')+'</h1><p class="lede on-dark">'+esc(u.email)+' \u00b7 '+TIER_NAME[tier]+' member</p></div></section>'+
         '<section class="sec"><div class="wrap">'+conceptNotice('acct-cn')+'</div><div class="wrap acct-grid">'+
+          memberCard(tier)+
           '<div class="acct-card"><h2 class="acct-h">Profile</h2><form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
             '<p class="acct-meta">'+(SMU.live?'Signed in with '+esc(u.email)+'. Your data is stored in the SMU+ database.':'Demo mode: this account, your tier and your posts are saved only in this browser.')+'</p><button type="button" class="btn btn-outline btn-sm" id="signOut">Sign out</button></div>'+
-          '<div class="acct-card"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+TIER_NAME[tier]+'</b>'+(tier!=='free'?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+
-            '<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>'+
-            (tier!=='free'?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+'<p class="acct-meta">Demo membership: no payments are taken and no card is ever asked for.</p></div>'+
           '<div class="acct-card"><h2 class="acct-h">Saved players</h2>'+(saved.length?'<ul class="acct-list">'+saved.map(function(a){return '<li><a href="'+athleteUrl(a.id)+'"><b>'+esc(a.name)+'</b><small>#'+a.num+' \u00b7 '+a.pos+'</small></a><button type="button" class="linkish" data-save-athlete="'+a.id+'" aria-pressed="true"><span>Saved</span></button></li>'}).join('')+'</ul>':'<p class="acct-empty">No saved players yet. Tap <b>Save player</b> on any <a href="'+ROOT+'athletes/">player profile</a>.</p>')+'</div>'+
           '<div class="acct-card"><h2 class="acct-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="acct-empty">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+
             '<p class="acct-meta">'+(SMU.live?'Synced to your account across devices.':'Saved in this browser.')+'</p></div>'+
