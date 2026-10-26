@@ -1613,6 +1613,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   --sh-1:0 1px 2px rgba(16,24,60,.06),0 1px 1px rgba(16,24,60,.04);
   --sh-2:0 10px 28px -10px rgba(16,24,60,.28),0 2px 4px rgba(16,24,60,.06);
   --sh-3:0 28px 60px -20px rgba(16,24,60,.42);
+  --ctl-line:rgba(53,76,161,.28); /* system pass: one light SMU-blue border for outline buttons, chips, segmented controls and form fields (was three neutral navy alphas) */
   --card-line:var(--line); /* system pass: one light SMU-blue hairline for cards (was a neutral navy .10) */
   /* rhythm + motion */
   --sec-y:clamp(32px,4vw,56px); /* was 48-80px; tightened Oct 26 */
@@ -1661,7 +1662,7 @@ main .mcard:focus-visible{outline-offset:4px}
 .btn-white:not(header .btn):hover{background:var(--red-dk)}
 .btn-red:not(header .btn):not(.mmenu .btn):hover,.btn-white:not(header .btn):hover{box-shadow:0 6px 18px -6px rgba(204,0,53,.55)}
 .btn-navy:not(header .btn):hover{box-shadow:0 6px 18px -6px rgba(35,52,122,.55)}
-.btn-outline{border-width:1.5px;border-color:rgba(22,33,79,.22);background:#fff;color:var(--ink)}
+.btn-outline{border-width:1.5px;border-color:var(--ctl-line);background:#fff;color:var(--ink)}
 .btn-outline:hover{border-color:var(--blue);color:var(--blue);background:#fff}
 .btn-ghost:not(header .btn),.btn-quiet:not(header .btn){border:1.5px solid rgba(255,255,255,.55);color:#fff;background:transparent}
 .btn-ghost:not(header .btn):hover,.btn-quiet:not(header .btn):hover{border-color:#fff;background:rgba(255,255,255,.1)}
@@ -1707,8 +1708,8 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 
 /* ---- 6.6 Forms ---- */
 .fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea,.reply input,.reply textarea,.brief-row input{border-radius:var(--r-ctl)}
-.fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea{border-color:rgba(22,33,79,.2)}
-.seg,.sort{border-radius:var(--r-ctl);border-color:rgba(22,33,79,.2)}
+.fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea{border-color:var(--ctl-line)}
+.seg,.sort{border-radius:var(--r-ctl);border-color:var(--ctl-line)}
 .auth-tabs,.auth-tabs button{border-radius:var(--r-ctl)}
 
 /* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
@@ -1724,7 +1725,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 .forum-mini .pill,.fgroup-h .pill{border-radius:var(--r-tag)}
 .rk-s,.stat-chip,.vb,.res,.rk-c,.r-team,.badge-tier,.dir{border-radius:var(--r-tag)}
 /* filter chips are the one legit pill: keep the shape, firm up the states */
-.chip{border-color:rgba(22,33,79,.18);transition:border-color var(--t-fast),color var(--t-fast),background-color var(--t-fast)}
+.chip{border-color:var(--ctl-line);transition:border-color var(--t-fast),color var(--t-fast),background-color var(--t-fast)}
 .chip[aria-pressed="true"]{background:var(--b-800);border-color:var(--b-800)}
 .chip[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
 
@@ -2361,7 +2362,7 @@ nav.main a.nav-search svg{width:16px;height:16px;fill:currentColor;flex:none}
 .lib-show-l{font-size:14px;font-weight:700;color:var(--ink)}
 .lib-show-dd{position:relative;display:block;min-width:0}
 .lib-show-dd::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;margin-top:-6px;border:solid var(--blue);border-width:0 2px 2px 0;transform:rotate(45deg);pointer-events:none}
-.filters .lib-show select{-webkit-appearance:none;appearance:none;width:230px;max-width:100%;height:40px;padding:0 32px 0 12px;border:1px solid rgba(22,33,79,.2);border-radius:var(--r-ctl,var(--r1));background:#fff;color:var(--ink);font:inherit;font-size:14px;font-weight:700;text-overflow:ellipsis;cursor:pointer}
+.filters .lib-show select{-webkit-appearance:none;appearance:none;width:230px;max-width:100%;height:40px;padding:0 32px 0 12px;border:1px solid var(--ctl-line);border-radius:var(--r-ctl,var(--r1));background:#fff;color:var(--ink);font:inherit;font-size:14px;font-weight:700;text-overflow:ellipsis;cursor:pointer}
 .filters .lib-show select:hover{border-color:var(--blue)}
 .filters .lib-show select:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:2px;border-color:var(--blue)}
 .filters .lib-show select.on{border-color:var(--blue);color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
