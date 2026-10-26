@@ -23,7 +23,13 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;paddin
 p{margin:0}h1,h2,h3,h4{margin:0;font-weight:700;line-height:1.15}
 ul{margin:0;padding:0;list-style:none}
 dl,dd{margin:0}
-:focus-visible{outline:3px solid var(--yellow);outline-offset:2px;border-radius:4px}
+/* keyboard focus ring: SMU blue (white on blue surfaces); no ring or tap flash after a tap or click */
+html{-webkit-tap-highlight-color:transparent}
+:focus:not(:focus-visible){outline:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+html.pointer :focus-visible{outline:none}
+header.site :focus-visible,.mmenu :focus-visible,footer :focus-visible,.hero :focus-visible,.page-hero :focus-visible,.gameday :focus-visible,.sec.dark :focus-visible,.brief-panel :focus-visible,.band :focus-visible,.disclaimer :focus-visible{outline-color:#fff}
+.disclaimer :focus-visible{outline-color:var(--black)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 [hidden]{display:none!important}
 
@@ -789,7 +795,7 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .brief-l{display:block;font-size:13px;font-weight:700;margin-bottom:var(--s2)}
 .brief-row{display:flex;gap:var(--s2)}
 .brief-row input{flex:1;min-width:0;height:48px;padding:0 var(--s4);border:2px solid transparent;border-radius:var(--r1);font:inherit;font-size:16px;background:#fff;color:var(--ink)}
-.brief-row input:focus{outline:0;border-color:var(--yellow)}
+.brief-row input:focus{outline:0;border-color:#fff}
 .brief-row .btn{height:48px}
 .brief-m{min-height:20px;margin-top:var(--s2);font-size:13px;font-weight:600}
 .brief-f.err input{border-color:var(--salmon)}
@@ -1140,7 +1146,7 @@ nav.main{min-width:0}
 .wl-box::after{content:"";width:10px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:translateY(-1px) rotate(-45deg);opacity:0}
 .wl-consent input:checked+.wl-box{background:var(--blue);border-color:var(--blue)}
 .wl-consent input:checked+.wl-box::after{opacity:1}
-.wl-consent input:focus-visible+.wl-box{outline:3px solid var(--yellow);outline-offset:2px}
+.wl-consent input:focus-visible+.wl-box{outline:3px solid var(--blue);outline-offset:2px}
 .wl-f.err .wl-consent input[aria-invalid=true]+.wl-box{border-color:var(--red)}
 .wl-consent a{color:var(--blue);font-weight:700;text-decoration:underline}
 .wl-f.err [aria-invalid=true]{border-color:var(--red);outline-color:var(--red)}
@@ -1520,7 +1526,6 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 .st-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;vertical-align:2px;line-height:1.4}
 .st-status{font-weight:700;color:var(--ink);margin:8px 0 0}
 .st-lede{font-size:15px;color:var(--ink-2);margin:0 0 16px;max-width:52ch}
-.fld-n{font-size:13px;line-height:1.45;color:var(--ink-3);margin:6px 0 0;max-width:52ch}
 .st-f .st-submit{width:100%;min-height:48px;margin-top:4px}
 .st-sent{padding:16px 18px;border:1px solid var(--line-2);border-left:4px solid var(--blue);border-radius:var(--r1);background:#fff}
 .st-sent h4{font-size:17px;color:var(--ink);margin:0 0 4px}
@@ -1567,6 +1572,23 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 .xside svg{width:18px;height:18px}
 @media(max-width:639px){.xside{width:44px;height:44px}.xside.xprev{left:-6px}.xside.xnext{right:-6px}}
 
+/* Header Join + menu button: slim 36px pills (drawn by ::before) inside full 44px tap boxes on phones; same look on desktop */
+.hdr-join{position:relative;z-index:0;height:36px;min-height:36px;padding:0 14px;border:0;border-radius:6px;background:transparent;font-size:13px;font-weight:600;letter-spacing:.02em;box-shadow:none}
+.hdr-join::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:6px;background:var(--red);transition:background .15s}
+.hdr-join:hover{background:transparent}.hdr-join:hover::before{background:var(--red-dk)}
+.hdr-join.is-upgrade{border:0}.hdr-join.is-upgrade::before{background:transparent;border:1px solid rgba(255,255,255,.35)}
+.hdr-join.is-upgrade:hover::before{border-color:#fff;background:rgba(255,255,255,.08)}
+@media(max-width:959px){
+  .hdr-act .hdr-join{height:44px;min-height:44px}
+  .hdr-join::before{inset:4px 0}
+  .menu-btn{position:relative;z-index:0;background:transparent}
+  .menu-btn::before{content:"";position:absolute;inset:4px;z-index:-1;border-radius:6px;background:rgba(255,255,255,.1);transition:background .15s}
+  .menu-btn:hover{background:transparent}.menu-btn:hover::before{background:rgba(255,255,255,.16)}
+}
+/* Sport pages on phones: no hero; the sub-nav is the first thing under the header and sticks flush to it */
+.sp-srh{display:none}
+@media(max-width:639px){body[data-page=sport] .sp-hero{display:none}body[data-page=sport] .sp-srh{display:block}}
+
 /* =====================================================================
    Round 6: design tokens + polish. One layer, appended last.
    Header and mobile menu rules (header.site, .hdr*, nav.main, .wordmark, .hsearch, .acct-btn, .hdr-join,
@@ -1596,11 +1618,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   --hair:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 1px,transparent 1px 14px);
 }
 
-/* ---- 6.2 Focus: SMU blue (#354CA1) only. On dark surfaces the blue ring gets a white halo so it stays visible ---- */
-main :focus-visible,.site-ft :focus-visible,.dlg :focus-visible,.pw :focus-visible,.search :focus-visible,.reader :focus-visible,.modal :focus-visible,.disclaimer :focus-visible,.toasts :focus-visible{outline:3px solid #354CA1;outline-offset:2px}
-.disclaimer:focus-visible{outline:3px solid #354CA1;outline-offset:-3px}
-main :is(.hero,.page-hero,.ap-hero,.gameday,.sec.dark,.brief-panel,.band,.tier.dark,.metricbar,.fgroup-h,.gd-next) :focus-visible,
-.site-ft :focus-visible,main .poster:focus-visible{outline-color:#354CA1;box-shadow:0 0 0 2px #fff}
+/* ---- 6.2 Focus: main (94ef9e5) owns the focus ring (SMU blue for keyboard, white on dark, none after a tap or click); nothing here ---- */
 main .mcard:focus-visible{outline-offset:4px}
 
 /* ---- 6.3 Type hierarchy ---- */
@@ -1687,7 +1705,6 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 /* ---- 6.6 Forms ---- */
 .fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea,.reply input,.reply textarea,.brief-row input{border-radius:var(--r-ctl)}
 .fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea{border-color:rgba(22,33,79,.2)}
-.fsearch:focus-within,.fld input:focus,.fld select:focus,.fld textarea:focus,.reply textarea:focus{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:0;border-color:var(--blue);box-shadow:none}
 .seg,.sort{border-radius:var(--r-ctl);border-color:rgba(22,33,79,.2)}
 .auth-tabs,.auth-tabs button{border-radius:var(--r-ctl)}
 
@@ -1795,7 +1812,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
-  .btn,.btn-sm{min-height:44px}
+  .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */
   .chip,.seg button,.sort button,.tier-toggle button{min-height:44px}
   .see-all,.htab{min-height:44px}
   #more .chip{min-height:44px;display:inline-flex;align-items:center}

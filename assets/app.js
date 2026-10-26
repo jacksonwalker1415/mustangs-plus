@@ -173,7 +173,7 @@
   function mobileMenu(){
     return '<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Site menu" hidden><div class="mm-in">'+
       '<button type="button" class="mm-search" data-mm-search>'+SVG_SEARCH+'<span>Search stories, players, threads</span></button>'+
-      '<nav class="mm-nav" aria-label="Primary">'+NAV.map(function(n){var on=PAGE===n[2];
+      '<nav class="mm-nav" aria-label="Primary">'+NAV.filter(function(n){return n[2]!=='membership'}).map(function(n){var on=PAGE===n[2];
         if(n[2]==='sport')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmSportsBtn" aria-expanded="false" aria-controls="mmSports"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
           '<div class="mm-sports" id="mmSports" hidden>'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a>'}).join('')+'</div>';
         return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
@@ -402,6 +402,9 @@
   /* ---------- Measured header height for sticky offsets (sport/athlete sub-nav) ---------- */
   (function(){var h=$('header.site');if(!h)return;function set(){document.documentElement.style.setProperty('--hdr-h',Math.round(h.getBoundingClientRect().height)+'px')}
     set();if(window.ResizeObserver)new ResizeObserver(set).observe(h);addEventListener('resize',set)})();
+  /* Focus ring only for keyboard use: a tap or click marks html.pointer (hides rings, including focus moved by script); any key clears it */
+  addEventListener('pointerdown',function(){document.documentElement.classList.add('pointer')},true);
+  addEventListener('keydown',function(e){if(e.key==='Tab'||e.key.indexOf('Arrow')===0)document.documentElement.classList.remove('pointer')},true);
   /* ---------- Mobile menu ---------- */
   var mm=$('#mmenu'),mb=$('#menuBtn'),hdrEl=$('header.site');
   function mmFocusables(){return [mb].concat($$('a,button,input',mm).filter(function(x){return x.offsetParent!==null}))}
@@ -870,7 +873,9 @@
     var profs=(MP.ATHLETES||[]).filter(function(a){return a.sport===s.slug});
     var RDR=RD||(s.slug==='football'&&MP.REAL&&MP.REAL.football)||null; /* roster block: football's real roster lives in MP.REAL.football */
     main.innerHTML=
-      '<section class="page-hero'+(HERO_PH?' has-photo':'')+'">'+(HERO_PH?photoBg(HERO_PH,{eager:1,hero:1}):'')+'<div class="wrap">'+
+      /* Phones: the hero is hidden so the sub-nav sits right under the header; this h1 stands in for screen readers (CSS shows only one) */
+      '<h1 class="sr sp-srh">'+s.name+'</h1>'+
+      '<section class="page-hero sp-hero'+(HERO_PH?' has-photo':'')+'">'+(HERO_PH?photoBg(HERO_PH,{eager:1,hero:1}):'')+'<div class="wrap">'+
         '<nav class="crumbs"><a href="'+ROOT+'#sports">Sports</a> › <span>'+s.name+'</span></nav>'+
         '<div class="ph-row"><span class="sp-ic">'+sportIcon(s.slug)+'</span><div><p class="eyebrow">'+(RD?esc(RD.season)+' season'+(realConf(RD)?' · '+realConf(RD):''):s.season+' sport · '+s.conf)+'</p><h1 class="display">'+s.name+'</h1></div></div>'+
         '<p class="lede on-dark">'+s.blurb+'</p>'+
@@ -1108,17 +1113,14 @@
   function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin()}
   window.addEventListener('hashchange',joinFromHash);setTimeout(joinFromHash,0);
 
-  /* ---------- Free Student plan (SMU email + student ID) ----------
+  /* ---------- Free Student plan (SMU email only) ----------
      Live: email-link sign-up on an @smu.edu address; the plan starts only after the email is confirmed and
      claim_student_membership() (supabase/RUN_ME_16_students.sql) accepts it. Hidden on the live site while MP.FEATURES.students is false. */
-  var ST_NOTE='Used only to keep student memberships to one per student. It isn\u2019t shown on your profile or shared. SMU+ can\u2019t check it against SMU\u2019s records yet.';
   function studentBand(where){if(!stOn())return '';
     return '<div class="st-band st-'+where+'"><div class="st-b"><p class="st-k">SMU students</p><h4>SMU student? Join free.</h4>'+
-      '<p>Sign up with your @smu.edu email and student ID for a free Student plan. No card, nothing to buy.</p></div>'+
+      '<p>Sign up with your @smu.edu email for a free Student plan. No card, nothing to buy.</p></div>'+
       '<button type="button" class="btn btn-red st-go" data-student>Join free as a student</button></div>'}
   function yearOpts(sel){return '<option value="">Choose</option>'+SMU.studentYears().map(function(y){return '<option value="'+y+'"'+(+sel===y?' selected':'')+'>Class of '+y+'</option>'}).join('')}
-  function sidField(id){return '<div class="fld"><label for="'+id+'">Student ID</label><input id="'+id+'" name="sid" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="10" required aria-describedby="'+id+'-n" placeholder="6 to 10 digits">'+
-    '<p class="fld-n" id="'+id+'-n">'+ST_NOTE+'</p></div>'}
   function openStudent(){if(!stOn())return;if(/^#student$/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
     var open=$('#studentDlg');if(open){var fi=$('input',open);if(fi)fi.focus();return}
     if(SMU.user){if(PAGE==='account'){var c=$('#acctStudent')||$('#acctPlan');if(c)c.scrollIntoView({block:'start'})}else location.href=ROOT+'account/#student';return}
@@ -1127,24 +1129,21 @@
       '<p class="st-lede">'+(SMU.live?'Use your SMU email. We\u2019ll email you a link to confirm it, and your Student plan starts when you open that link.':'Use your SMU email. On the real site we email you a link to confirm it first; in this demo the account is confirmed right away.')+'</p>'+
       '<form class="auth-f st-f" novalidate>'+
         '<div class="fld"><label for="stEmail">SMU email</label><input id="stEmail" name="email" type="email" autocomplete="email" required placeholder="you@smu.edu"></div>'+
-        sidField('stId')+
         '<div class="fld-row"><div class="fld"><label for="stName">Name</label><input id="stName" name="name" autocomplete="name" maxlength="40" required placeholder="How you appear on the boards"></div>'+
         '<div class="fld"><label for="stYear">Class year</label><select id="stYear" name="year" required>'+yearOpts()+'</select></div></div>'+
         '<label class="wl-consent st-consent" for="stOk"><input id="stOk" type="checkbox" name="consent" required><span class="wl-box" aria-hidden="true"></span><span>I agree that SMU+ can store these details for this student project, as described in the <a href="'+ROOT+'privacy/">privacy notice</a>.</span></label>'+
         '<p class="auth-m" aria-live="polite"></p><button class="btn btn-red st-submit" type="submit">'+(SMU.live?'Email me a link':'Join free')+'</button>'+
       '</form>'+conceptNotice('st-cn')+modeNote());
     var f=$('form',d),m=$('.auth-m',d);
-    $('#stId',d).addEventListener('input',function(){var v=this.value.replace(/\D+/g,'').slice(0,10);if(v!==this.value)this.value=v});
-    f.addEventListener('submit',function(e){e.preventDefault();var o={email:$('#stEmail',d).value.trim(),sid:$('#stId',d).value.trim(),name:$('#stName',d).value.trim(),year:$('#stYear',d).value};
+    f.addEventListener('submit',function(e){e.preventDefault();var o={email:$('#stEmail',d).value.trim(),name:$('#stName',d).value.trim(),year:$('#stYear',d).value};
       function bad(t,el){m.textContent=t;el.setAttribute('aria-invalid','true');el.focus()}
       $$('[aria-invalid]',d).forEach(function(x){x.removeAttribute('aria-invalid')});
       if(!SMU.isSmuEmail(o.email))return bad('Use your SMU email, ending in @smu.edu.',$('#stEmail',d));
-      if(!/^[0-9]{6,10}$/.test(o.sid))return bad('Student ID is 6 to 10 digits, numbers only.',$('#stId',d));
       if(!o.name)return bad('Add your name.',$('#stName',d));
       if(!o.year)return bad('Pick your class year.',$('#stYear',d));
       if(!$('#stOk',d).checked)return bad('Please tick the box to agree to the privacy notice.',$('#stOk',d));
       var b=$('.st-submit',d);b.disabled=true;m.textContent=SMU.live?'Sending\u2026':'One moment\u2026';
-      /* Also join the waitlist as a student (email, name, affiliation and tier_interest only; the student ID never goes there) */
+      /* Also join the waitlist as a student (email, name, affiliation and tier_interest only) */
       var wl={email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true};
       if(!SMU.live){SMU.waitlist(wl).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(){b.disabled=false;
         d.close();toast('You\u2019re in. Free Student plan, Class of '+o.year+'.');if(PAGE!=='account')location.href=ROOT+'account/#student'},
@@ -1166,21 +1165,19 @@
   if(PAGE!=='account')(SMU.ready||Promise.resolve()).then(function(){if(location.hash==='#student'&&stOn())openStudent()});
   function studentStatus(tier){var st=stOn()&&SMU.student&&SMU.student();if(!st)return '';
     return '<p class="st-status">'+(tier==='student'?'':'Verified SMU student. ')+'Class of '+esc(st.year||'\u2014')+(st.at?' \u00b7 verified '+esc(new Date(st.at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})):'')+'</p>'+
-      '<p class="acct-meta">Checked with your @smu.edu email. SMU+ can\u2019t check student IDs against SMU\u2019s records yet.</p>'}
+      '<p class="acct-meta">Checked with your @smu.edu email.</p>'}
   function studentCard(u,tier){if(!stOn()||tier==='student'||(SMU.student&&SMU.student()))return '';var msg=SMU.studentMsg?SMU.studentMsg():'';
     if(!SMU.isSmuEmail(u.email))return '<div class="acct-card st-card" id="acctStudent"><h2 class="acct-h">SMU student?</h2><p>The free Student plan needs an @smu.edu email. You\u2019re signed in as '+esc(u.email)+'.</p>'+
       '<button type="button" class="btn btn-outline btn-sm" id="stSwitch">Sign out and join with my SMU email</button></div>';
-    return '<div class="acct-card st-card" id="acctStudent"><h2 class="acct-h">SMU student? Join free</h2><p>Add your student ID to start the free Student plan on this account.</p>'+
-      '<form class="auth-f" id="stClaim" novalidate>'+sidField('stIdA')+'<div class="fld"><label for="stYearA">Class year</label><select id="stYearA" required>'+yearOpts()+'</select></div>'+
+    return '<div class="acct-card st-card" id="acctStudent"><h2 class="acct-h">SMU student? Join free</h2><p>Your @smu.edu email qualifies this account for the free Student plan. Pick your class year to start it.</p>'+
+      '<form class="auth-f" id="stClaim" novalidate><div class="fld"><label for="stYearA">Class year</label><select id="stYearA" required>'+yearOpts()+'</select></div>'+
       '<p class="auth-m" aria-live="polite">'+esc(msg)+'</p><button class="btn btn-red btn-sm" type="submit">Start my Student plan</button></form></div>'}
   function wireStudentCard(root,render){var sw=$('#stSwitch',root);if(sw)sw.addEventListener('click',function(){SMU.signOut().then(function(){render();openStudent()})});
     var f=$('#stClaim',root);if(!f)return;var m=$('.auth-m',f);
-    $('#stIdA',f).addEventListener('input',function(){var v=this.value.replace(/\D+/g,'').slice(0,10);if(v!==this.value)this.value=v});
-    f.addEventListener('submit',function(e){e.preventDefault();var sid=$('#stIdA',f).value.trim(),yr=$('#stYearA',f).value;
-      if(!/^[0-9]{6,10}$/.test(sid)){m.textContent='Student ID is 6 to 10 digits, numbers only.';$('#stIdA',f).focus();return}
+    f.addEventListener('submit',function(e){e.preventDefault();var yr=$('#stYearA',f).value;
       if(!yr){m.textContent='Pick your class year.';$('#stYearA',f).focus();return}
       var b=$('button[type=submit]',f);b.disabled=true;m.textContent='One moment\u2026';
-      SMU.claimStudent(sid,+yr).then(function(){toast('You\u2019re on the free Student plan.')},function(err){b.disabled=false;m.textContent=err.message})})}
+      SMU.claimStudent(+yr).then(function(){toast('You\u2019re on the free Student plan.')},function(err){b.disabled=false;m.textContent=err.message})})}
 
   /* ---------- New thread ---------- */
   function compose(sport){var member=window.SMU&&SMU.live?isMember():seesMember();
@@ -1282,6 +1279,19 @@
     var s=SMU.user&&SMU.tier();if(SMU.user){store('mp_member',paidT(s)?'1':'0');syncMember()}});
   syncAcct();
 
+  /* Sub-nav anchors: X posts and images keep loading (and growing) above the target while the page scrolls,
+     so keep the section lined up under the sticky sub-nav for a moment, until the reader scrolls themselves. */
+  document.addEventListener('click',function(e){var a=e.target.closest('.jump a[href^="#"]');if(!a||e.defaultPrevented)return;
+    var id=a.getAttribute('href'),t=document.getElementById(id.slice(1));if(!t)return;e.preventDefault();
+    try{history.replaceState(null,'',id)}catch(x){}
+    var calm=matchMedia('(prefers-reduced-motion: reduce)').matches,stop=false,n=0;
+    function quit(){stop=true;['wheel','touchstart','keydown'].forEach(function(k){removeEventListener(k,quit,true)})}
+    ['wheel','touchstart','keydown'].forEach(function(k){addEventListener(k,quit,{capture:true,passive:true})});
+    t.scrollIntoView({behavior:calm?'auto':'smooth',block:'start'});
+    (function fix(){if(stop)return;var pad=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0,off=t.getBoundingClientRect().top-pad,
+      max=document.documentElement.scrollHeight-innerHeight;
+      if(n>2&&Math.abs(off)>2&&!(off>0&&scrollY>=max-1))scrollBy({top:off,behavior:'auto'});
+      if(++n<14)setTimeout(fix,200);else quit()})()});
   aboutSources();if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='account')account();watchX();
   articleFromHash();
 })();
