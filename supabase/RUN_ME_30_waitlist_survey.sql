@@ -2,7 +2,8 @@
 -- Question: "If SMU+ launched, would you pay $14.99 a month, $129 a year, or stick with the free feed?" (prices: SURVEY_PRICE in assets/app.js)
 --   would_pay      true = monthly or annual, false = free feed only, null = skipped
 --   billing_choice 'monthly' | 'annual' when would_pay is true, otherwise null
---   survey_prices  the prices the visitor saw, e.g. '14.99/129', so answers stay gradable if the prices change
+--   adfree_interest 'yes' | 'no' | 'maybe' for the follow-up "Would you add ad-free for $4.99 a month?" (shown only after monthly or annual), else null
+--   survey_prices  the prices the visitor saw (monthly/annual/ad-free), e.g. '14.99/129/4.99', so answers stay gradable if prices change
 -- CFO grading: paid share = avg(would_pay::int) over answered rows; annual share = count(*) filter (where billing_choice='annual') / count(*) filter (where would_pay).
 -- Safe to run more than once.
 alter table public.waitlist add column if not exists would_pay      boolean;
@@ -14,5 +15,11 @@ do $$ begin
       check ((billing_choice is null and (would_pay is not true)) or (billing_choice is not null and would_pay is true));
   end if;
 end $$;
+alter table public.waitlist add column if not exists adfree_interest text check (adfree_interest is null or adfree_interest in ('yes','no','maybe'));
+do $$ begin
+  if not exists (select 1 from pg_constraint where conrelid = 'public.waitlist'::regclass and conname = 'waitlist_adfree_needs_pay') then
+    alter table public.waitlist add constraint waitlist_adfree_needs_pay check (adfree_interest is null or would_pay is true);
+  end if;
+end $$;
 -- Visitors stay insert-only; the existing insert policy (with check (consent)) covers the new columns.
-grant insert (would_pay, billing_choice, survey_prices) on public.waitlist to anon, authenticated;
+grant insert (would_pay, billing_choice, survey_prices, adfree_interest) on public.waitlist to anon, authenticated;
