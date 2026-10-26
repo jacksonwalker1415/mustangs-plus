@@ -730,8 +730,9 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .sc-t.sc-r{justify-content:flex-start}
 .sc-t b{font-size:15px;font-weight:800;letter-spacing:0}
 .sc-t em{font-style:normal;font-family:var(--display);font-size:48px;line-height:1;font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
-.sc-t:not(.win){opacity:.5}
-.sc-t.win em{color:var(--blue)}
+/* losing side: solid SMU blue instead of 50% opacity (was #919abd on white, 2.77:1); the winning score carries the red accent */
+.sc-t:not(.win){color:var(--blue)}.sc-t:not(.win) b{font-weight:600}
+.sc-t.win em{color:var(--red)}
 .sc-f{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:600;color:var(--ink-3);text-align:center;white-space:nowrap}
 .sc-f b{font-size:12px;font-weight:800;letter-spacing:0;color:var(--black)}
 .gd-hb h3{font-size:18px;font-weight:800}
@@ -2756,3 +2757,20 @@ html.ad-quiet .ad-sticky{visibility:hidden;pointer-events:none}
 .auth .f-age{margin:var(--s2) 0}
 .legal-doc h2{margin-top:var(--s4)}
 .legal-doc{max-width:760px}
+
+/* Sport page record + next game strip (app.js recStrip). Flat SMU blue, red accent bar on the next-game link, 12px+ text, 44px tap target.
+   Rendered in the same pass as the rest of the page, so it never pushes content down after paint. */
+.sp-rec{background:#354CA1;color:#fff}
+.sp-rec-in{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s6);min-height:60px;padding-top:var(--s2);padding-bottom:var(--s2)}
+.sp-rec-i{display:flex;flex-wrap:wrap;align-items:baseline;align-content:center;gap:2px var(--s2);margin:0;min-height:44px;font-size:15px;line-height:1.35;color:#fff}
+.sp-rec-i>span:first-child{font-weight:600;color:rgba(255,255,255,.88)}
+.sp-rec-i b{font-weight:800;color:#fff}
+.sp-rec-c{font-size:14px;color:rgba(255,255,255,.88)}
+a.sp-rec-nx{border-left:3px solid #CC0035;padding-left:var(--s3);text-decoration:none}
+a.sp-rec-nx b{text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:3px}
+a.sp-rec-nx:hover b,a.sp-rec-nx:focus-visible b{text-decoration-color:#fff}
+a.sp-rec-nx:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media(max-width:639px){.sp-rec-in{flex-direction:column;align-items:stretch;gap:var(--s1)}.sp-rec-i{font-size:15px}}
+
+/* Sport pages: no backdrop-filter on card tags (WebKit memory/compositing cost with ~27 blurred tags on football); solid navy instead */
+body[data-page=sport] .poster-verb,body[data-page=sport] .dur{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,33,79,.85)}
