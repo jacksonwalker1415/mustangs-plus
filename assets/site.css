@@ -730,8 +730,9 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .sc-t.sc-r{justify-content:flex-start}
 .sc-t b{font-size:15px;font-weight:800;letter-spacing:0}
 .sc-t em{font-style:normal;font-family:var(--display);font-size:48px;line-height:1;font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
-.sc-t:not(.win){opacity:.5}
-.sc-t.win em{color:var(--blue)}
+/* losing side: solid SMU blue instead of 50% opacity (was #919abd on white, 2.77:1); the winning score carries the red accent */
+.sc-t:not(.win){color:var(--blue)}.sc-t:not(.win) b{font-weight:600}
+.sc-t.win em{color:var(--red)}
 .sc-f{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:600;color:var(--ink-3);text-align:center;white-space:nowrap}
 .sc-f b{font-size:12px;font-weight:800;letter-spacing:0;color:var(--black)}
 .gd-hb h3{font-size:18px;font-weight:800}
@@ -1713,7 +1714,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 
 /* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
 .tag:not(.tag-new){border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:0;padding:3px 7px;line-height:1.25}
-.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(10,16,40,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
+.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(0,0,0,.6);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
 .poster-verb{padding:4px 9px 4px 7px}
 .tone-white .poster-verb,.tone-white .dur{background:rgba(10,16,40,.62);color:#fff}
 /* board pills: status labels stay as compact labels, board and sport names become plain text */
@@ -2297,6 +2298,19 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 /* ---------- Home calendar ribbon (upcoming games, every sport) ---------- */
 .ribbon .rb-hd{margin-bottom:var(--s4)}
 .sec.ribbon{padding-bottom:var(--s6)}
+/* Home CLS (Oct. 26): placeholders in index.html match the rendered ribbon list and game day cards, measured in Chromium at 320-1920px.
+   Ribbon list: 238.6px phone (+56px arrow row), then the tallest card row per breakpoint. Game day: the real .gd-next/.gd-hurry boxes,
+   .gd-hph keeps its 21:9 photo ratio and .gd-hb-sk stands in for the 185px score block. Re-measure if card content changes. */
+.rb-skel{display:flex;height:238.6px;margin-bottom:56px}.rb-skel .sk{flex:1;border-radius:12px}
+@media(min-width:720px){.rb-skel{height:350.1px;margin-bottom:0}}
+@media(min-width:768px){.rb-skel{height:326.4px}}
+@media(min-width:900px){.rb-skel{height:303.5px}}
+@media(min-width:960px){.rb-skel{height:327.2px}}
+@media(min-width:1024px){.rb-skel{height:303.5px}}
+.gd-skel .gd-next{display:flex}.gd-skel .gd-next .sk{flex:1;border-radius:0}
+.gd-skel .gd-hph{display:flex}.gd-skel .gd-hph .sk{flex:1;border-radius:0}
+.gd-skel .gd-hb-sk{height:185px}
+@media(max-width:639px){.gd-skel .gd-next{min-height:372.5px}}
 .ribbon .rb-hd h2{font-family:inherit;text-transform:none;letter-spacing:0;font-weight:800;font-size:clamp(22px,2.4vw,28px);line-height:1.2;color:var(--ink)}
 .ribbon .rb-hd p{margin-top:var(--s1);font-size:15px;color:var(--ink-2)}
 .ribbon .rb-hd a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
@@ -2615,6 +2629,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
 /* skin takeover: one game page, wide desktops only; the page sits on the sponsor's background */
 .ad-skin-bg{display:none}
 @media(min-width:1300px){
+  html.ad-skin:not(.adfree) [data-noskin]{display:none!important}
   html.ad-skin:not(.adfree) .ad-skin-bg{display:flex;position:fixed;inset:0;z-index:0;justify-content:space-between;background:var(--adbg);color:var(--adfg)}
   html.ad-skin:not(.adfree) main,html.ad-skin:not(.adfree) #site-footer{position:relative;z-index:1;max-width:1200px;margin-left:auto;margin-right:auto;background:#fff}
   html.ad-skin:not(.adfree) #gamesMain .wrap{max-width:1200px}
@@ -2637,7 +2652,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-main{gap:3px;padding:var(--s3) var(--s3) var(--s2)}
   .rb-tv{padding:8px var(--s3);gap:4px 14px;align-items:baseline;font-size:14px;line-height:1.4}
   .rb-tv div{align-items:baseline;gap:5px}
-  .rb-tv a{display:inline-block;min-height:0;padding:12px 4px;margin:-12px -4px}
+  .rb-tv a{display:inline-block;min-height:0;padding:13px 4px;margin:-13px -4px}
   .rb-wrap{padding-bottom:56px}
   .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:44px;height:44px}
   .rb-wrap .xside.xprev{left:auto;right:54px}
@@ -2742,12 +2757,60 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+/* Waitlist price survey (radio group) */
+.wl-q{border:0;padding:0;min-width:0}.wl-q legend{font-weight:700;font-size:14px;line-height:1.45;color:var(--ink);padding:0;margin-bottom:6px}.wl-q legend small{font-weight:500;color:var(--ink-3)}
+.wl-opt{display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 12px;border:1px solid var(--line-2);border-radius:var(--r1);background:#fff;font-size:15px;color:var(--ink);cursor:pointer}
+.wl-opt input{width:18px;height:18px;margin:0;accent-color:#354CA1;flex:none}.wl-opt:has(input:checked){border-color:#354CA1;box-shadow:inset 0 0 0 1px #354CA1}
+.wl-opt input:focus-visible{outline:2px solid #354CA1;outline-offset:2px}
 
+/* ---------- Account page: sign-in and Settings polish (Oct. 26, bot/account-signin-polish). Account-only selectors. ---------- */
+body[data-page="account"] .auth-tabs button{min-height:44px}
+.btn.set-out{height:44px;min-height:44px}
+.auth-inl .fld-hint{margin:0;font-size:14px;color:var(--ink-3)}
+.auth-inl .fld-err{margin:0;font-size:14px;font-weight:600;color:var(--red-dk)}
+.auth-inl .fld input[aria-invalid="true"],.set-f input[aria-invalid="true"]{border-color:var(--red)}
+.auth-inl .auth-forgot-note{margin:16px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2)}
+.auth-inl .auth-forgot-note .linkish,.auth-inl .auth-up-note .linkish{display:inline-block;padding:11px 0;margin:-11px 0}
+.acct-skel-out{min-height:560px}
+.acct-skel-in{min-height:640px;margin-top:20px}
+.set-af{margin-top:16px}
+.set-af button.adfree.af-set{height:44px;padding:0 6px 0 16px;border-color:var(--line-2);color:var(--ink)}
+.set-af button.adfree.af-set:hover{border-color:var(--blue)}
+.set-af button.adfree.af-set:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.set-af button.adfree.af-set .af-sw{background:var(--line-2)}
+.set-af button.adfree.af-set[aria-checked="true"] .af-sw{background:var(--blue)}
+.set-af button.adfree.af-set[aria-checked="true"] .af-sw::after{background:#fff}
+.set-top{min-height:44px}
 /* Legal cleanup (Oct 26): Sample tag on seeded board posts, plain-text Follow cards, sticky ad steps aside next to athletes */
-.tag-sample{display:inline-block;vertical-align:2px;margin-right:6px;padding:1px 6px;border:1px solid #354CA1;border-radius:4px;color:#354CA1;background:#fff;font-size:11px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none}
+.tag-sample{display:inline-block;vertical-align:2px;margin-right:6px;padding:1px 6px;border:1px solid #354CA1;border-radius:4px;color:#354CA1;background:#fff;font-size:12px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none}
 .fo-plain .fo-body{padding:var(--s3)}
 .fo-plain .fo-h a{color:var(--blue);font-weight:700}
 html.ad-quiet .ad-sticky{visibility:hidden;pointer-events:none}
 .auth .f-age{margin:var(--s2) 0}
 .legal-doc h2{margin-top:var(--s4)}
 .legal-doc{max-width:760px}
+
+/* Sport page record + next game strip (app.js recStrip). Flat SMU blue, red accent bar on the next-game link, 12px+ text, 44px tap target.
+   Rendered in the same pass as the rest of the page, so it never pushes content down after paint. */
+.sp-rec{background:#354CA1;color:#fff}
+.sp-rec-in{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s6);min-height:60px;padding-top:var(--s2);padding-bottom:var(--s2)}
+.sp-rec-i{display:flex;flex-wrap:wrap;align-items:baseline;align-content:center;gap:2px var(--s2);margin:0;min-height:44px;font-size:15px;line-height:1.35;color:#fff}
+.sp-rec-i>span:first-child{font-weight:600;color:rgba(255,255,255,.88)}
+.sp-rec-i b{font-weight:800;color:#fff}
+.sp-rec-c{font-size:14px;color:rgba(255,255,255,.88)}
+a.sp-rec-nx{border-left:3px solid #CC0035;padding-left:var(--s3);text-decoration:none}
+a.sp-rec-nx b{text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:3px}
+a.sp-rec-nx:hover b,a.sp-rec-nx:focus-visible b{text-decoration-color:#fff}
+a.sp-rec-nx:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media(max-width:639px){.sp-rec-in{flex-direction:column;align-items:stretch;gap:var(--s1)}.sp-rec-i{font-size:15px}}
+
+/* Sport pages: no backdrop-filter on card tags (WebKit memory/compositing cost with ~27 blurred tags on football); solid navy instead */
+body[data-page=sport] .poster-verb,body[data-page=sport] .dur{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,33,79,.85)}
+/* Tap targets and contrast (Oct. 26 audit, 390px). Inline links get vertical padding: it widens the tap area to 44px+ without moving any text.
+   Shared: .site-ft .legal a (footer) and .cnotice a (concept notice component). Home: ribbon header link. */
+.ribbon .rb-hd p a{padding:1px 0}
+.cnotice a{padding:13px 0}
+.site-ft .legal a{padding:14px 0}
+.fo-plain .fo-h a{padding:13px 0}
+/* Game day final: the losing side was opacity .5 (#919abd on white, 2.77:1). Solid ink-3 is 5.9:1; the winner keeps SMU blue. */
+.gameday .sc-t:not(.win){opacity:1;color:var(--ink-3)}

@@ -78,9 +78,6 @@
   /* Library links by category open the matching type view (videos, podcasts or articles) */
   var CAT_TYPE={watch:'video',podcasts:'podcast',insider:'article',news:'article',recruiting:'article',portal:'article'};
   function libUrl(cat){var t=cat&&CAT_TYPE[cat];return ROOT+'library/'+(t?'?type='+t:'')}
-  function rng(seed){var h=1779033703^seed.length;for(var i=0;i<seed.length;i++){h=Math.imul(h^seed.charCodeAt(i),3432918353);h=h<<13|h>>>19}
-    return function(){h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);var t=(h^=h>>>16)>>>0;return t/4294967296}}
-  function pick(r,a){return a[Math.floor(r()*a.length)]}
   function secHead(title,href,link){return '<div class="sec-hd"><div><h2 class="sec-t">'+title+'</h2></div>'+(href?'<a class="see-all" href="'+href+'">'+(link||'See all')+'<span aria-hidden="true"> →</span></a>':'')+'</div>'}
 
   /* ---------- Local state: member preview, watch history, photos ---------- */
@@ -134,12 +131,18 @@
   $$('[data-contact]').forEach(function(el){el.innerHTML=contactHTML(el.getAttribute('data-contact'))});
   /* ---------- Waitlist: free, no payment. Live: public.waitlist (supabase/waitlist.sql), falling back to newsletter_signups until that migration runs. ---------- */
   var AFFIL=[['student','SMU student'],['alum','SMU alum'],['fan','Fan'],['parent','Parent or family'],['other','Other']];
-  var TL=MP.TIER_LABELS||{},INTEREST=[['free','Free newsletter only'],['mustang',(TL.mustang||'Mustang')+' ($9.99/mo)'],['all_access',(TL.pony||'All-Access')+' ($24.99/mo)'],['red_blue',(TL.club||'Red & Blue')+' ($99/mo)'],['not_sure','Not sure yet']].filter(function(o){return SHOW_PAID_PLANS||!/^(mustang|all_access|red_blue)$/.test(o[0])});
+  /* Waitlist price survey (Jackson, Oct 26): one paid plan, monthly or annual billing. The CFO's model figures live ONLY here.
+     Counsel: it must read as a survey, not an offer (no card, no deposit, no reserving, no locked price). Saved as would_pay + billing_choice. */
+  var SURVEY_PRICE={monthly:'14.99',annual:'129',adfree:'4.99'};  /* CFO model $14.99/mo; Jackson set annual $129 (Oct 26); ad-free add-on $4.99/mo. Change prices here only. */
+  var SURVEY=[['monthly','$'+SURVEY_PRICE.monthly+' a month'],['annual','$'+SURVEY_PRICE.annual+' a year'],['free','I\u2019d stick with the free feed']];
   function waitlistHTML(id){return '<div class="wl" data-waitlist>'+
     '<form class="wl-f" id="'+id+'" novalidate><div class="fld"><label for="'+id+'-e">Email address</label><input id="'+id+'-e" type="email" name="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="'+id+'-m"></div>'+
     '<div class="fld-row"><div class="fld"><label for="'+id+'-n">Name <small>(optional)</small></label><input id="'+id+'-n" type="text" name="name" autocomplete="name" maxlength="80"></div>'+
     '<div class="fld"><label for="'+id+'-a">SMU affiliation <small>(optional)</small></label><select id="'+id+'-a" name="affiliation"><option value="">Choose one</option>'+AFFIL.map(function(a){return '<option value="'+a[0]+'">'+a[1]+'</option>'}).join('')+'</select></div></div>'+
-    '<div class="fld"><label for="'+id+'-t">Which plan would interest you? <small>(optional, nothing to buy)</small></label><select id="'+id+'-t" name="tier"><option value="">Choose one</option>'+INTEREST.map(function(a){return '<option value="'+a[0]+'">'+esc(a[1])+'</option>'}).join('')+'</select></div>'+
+    '<fieldset class="fld wl-q"><legend>If SMU+ launched, would you pay $'+SURVEY_PRICE.monthly+' a month, $'+SURVEY_PRICE.annual+' a year, or stick with the free feed? <small>(optional)</small></legend>'+
+      SURVEY.map(function(a){return '<label class="wl-opt"><input type="radio" name="pay" value="'+a[0]+'"><span>'+esc(a[1])+'</span></label>'}).join('')+'</fieldset>'+
+    '<fieldset class="fld wl-q wl-q2" hidden><legend>Would you add ad-free for $'+SURVEY_PRICE.adfree+' a month? <small>(optional)</small></legend>'+
+      [['yes','Yes'],['no','No'],['maybe','Maybe']].map(function(a){return '<label class="wl-opt"><input type="radio" name="adfree" value="'+a[0]+'"><span>'+a[1]+'</span></label>'}).join('')+'</fieldset>'+
     '<label class="wl-consent" for="'+id+'-c"><input id="'+id+'-c" type="checkbox" name="consent" required><span class="wl-box" aria-hidden="true"></span><span>I agree that SMU+ can store these details to contact me about this student project, as described in the <a href="'+ROOT+'privacy/">privacy notice</a>.</span></label>'+
     '<p class="wl-m" id="'+id+'-m" aria-live="polite"></p><button class="btn btn-red wl-go" type="submit">Join the waitlist</button>'+
     '<p class="wl-fine">Free. There is nothing to buy. Ask to be removed anytime: '+contactHTML('removal')+'.</p></form>'+
@@ -161,10 +164,14 @@
     if(!EMAIL_RE.test(v))return bad('That doesn\u2019t look like a full email address. Check for a typo.',em);
     if(!cs.checked)return bad('Please tick the box to agree to the privacy notice.',cs);
     var btn=$('button[type=submit]',f);btn.disabled=true;f.setAttribute('aria-busy','true');msg.textContent='Adding you to the waitlist\u2026';
-    var row={email:v,name:nm.value.trim(),affiliation:af.value,tier_interest:f.elements.tier?f.elements.tier.value:'',consent:true};
+    var pay=f.elements.pay?f.elements.pay.value:'';var row={email:v,name:nm.value.trim(),affiliation:af.value,tier_interest:f.elements.tier?f.elements.tier.value:'',consent:true,would_pay:pay==='monthly'||pay==='annual'?true:pay==='free'?false:null,billing_choice:pay==='monthly'||pay==='annual'?pay:null,survey_prices:pay?SURVEY_PRICE.monthly+'/'+SURVEY_PRICE.annual+'/'+SURVEY_PRICE.adfree:null,adfree_interest:(pay==='monthly'||pay==='annual')&&f.elements.adfree?f.elements.adfree.value||null:null};
     var go=window.SMU&&SMU.waitlist?SMU.waitlist(row):Promise.resolve(store('mp_waitlist',v.toLowerCase()));
     go.then(function(){msg.textContent='';f.reset();syncWaitlist();var ok=$('.wl-ok',f.parentNode);if(ok)ok.focus()},function(e){f.classList.add('err');msg.textContent=(e&&e.message)||'Something went wrong. Try again.'})
       .then(function(){btn.disabled=false;f.removeAttribute('aria-busy')})});
+  /* Ad-free follow-up shows only after a paid answer (monthly or annual); switching to free clears it. */
+  function wlFollow(f){var q=$('.wl-q2',f);if(!q)return;var v=f.elements.pay?f.elements.pay.value:'',on=v==='monthly'||v==='annual';q.hidden=!on;if(!on)$$('input[name=adfree]',q).forEach(function(i){i.checked=false})}
+  document.addEventListener('change',function(e){if(e.target&&e.target.name==='pay'&&e.target.form&&e.target.form.classList.contains('wl-f'))wlFollow(e.target.form)});
+  document.addEventListener('reset',function(e){var f=e.target;if(f.classList&&f.classList.contains('wl-f'))setTimeout(function(){wlFollow(f)},0)});
   document.addEventListener('click',function(e){if(!e.target.closest('[data-wl-undo]'))return;try{localStorage.removeItem('mp_waitlist')}catch(x){}syncWaitlist();var i=$('input[type=email]',e.target.closest('[data-waitlist]'));if(i)i.focus()});
 
   /* ---------- Shell ---------- */
@@ -527,7 +534,7 @@
       '<span class="pc-b"><small>#'+a.num+' · '+a.pos+' · '+a.cls+'</small><b>'+esc(a.name)+'</b><span>'+esc(a.hometown)+'</span>'+(a.cardPhoto?'<small class="pc-credit">Photo: SMU Athletics</small>':'')+'</span></a>'}
   function table(t,opt){opt=opt||{};var numCol=t.cols.map(function(c,i){return t.rows.every(function(r){return /^[-+]?[\d,.]+\*?$|^-$|^\d+-\d+$/.test(String(r[i]))})&&!/^(Year|Date)$/.test(c)});
     var cell=function(v,i,tag){return '<'+tag+(numCol[i]?' class="n"':'')+'>'+(v&&v.html?v.html:esc(v))+'</'+tag+'>'};
-    return '<div class="tbl-wrap"><table class="tbl'+(opt.cls?' '+opt.cls:'')+'">'+(opt.caption?'<caption class="sr">'+opt.caption+'</caption>':'')+'<thead><tr>'+t.cols.map(function(c,i){return cell(c,i,'th')}).join('')+'</tr></thead><tbody>'+
+    return '<div class="tbl-wrap"'+(opt.region?' role="region" aria-label="'+esc(opt.region)+'" tabindex="0"':'')+'><table class="tbl'+(opt.cls?' '+opt.cls:'')+'">'+(opt.caption?'<caption class="sr">'+opt.caption+'</caption>':'')+'<thead><tr>'+t.cols.map(function(c,i){return cell(c,i,'th')}).join('')+'</tr></thead><tbody>'+
       t.rows.map(function(r){return '<tr>'+r.map(function(v,i){return cell(v,i,'td')}).join('')+'</tr>'}).join('')+
       (t.total?'<tr class="tot">'+t.total.map(function(v,i){return cell(v,i,'td')}).join('')+'</tr>':'')+'</tbody></table></div>'}
   function stars(n){return '<span class="stars" aria-label="'+n+' stars">'+'★★★★★'.slice(0,n)+'<i>'+'★★★★★'.slice(n)+'</i></span>'}
@@ -733,13 +740,13 @@
       '<span class="rb-go">'+(g?'Game page':'Schedule')+'<span aria-hidden="true"> \u2192</span></span></a>'+
       '<dl class="rb-tv">'+((e.tv?row('TV',e.tv):'')+(e.watch?row('Stream','Watch',e.watch):'')+(e.radio||e.listen?row('Radio',e.radio||'Listen',e.listen):'')||row('TV','TBA'))+'</dl>'+
       (sbUrl(e.sb)?'<a class="rb-stats" href="'+sbUrl(e.sb)+'" target="_blank" rel="noopener" aria-label="Live stats for SMU '+esc(vs+e.name)+' (official StatBroadcast box score, opens in a new tab)">Live stats</a>':'')+'</li>'}
-  function ribbon(){var L=ribbonEvents();if(!L.length||$('#ribbon'))return;var gd=$('.gameday'),id='rb-track';if(!gd)return;
-    gd.insertAdjacentHTML('beforebegin','<section class="sec tight ribbon" id="ribbon" aria-labelledby="rb-h"><div class="wrap">'+
-      '<div class="rb-hd"><h2 id="rb-h">Upcoming games</h2><p>Every SMU sport, from the official <a href="https://smumustangs.com/calendar" target="_blank" rel="noopener">SMU Athletics schedules</a>. Times are Central.</p></div>'+
-      '<div class="xwrap rb-wrap" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Earlier games" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
+  /* Fills the slot index.html reserves (#ribbon: static header + presented-by ad hold + a list placeholder sized to the rendered list),
+     so the page below never jumps. No events: the section is hidden. */
+  function ribbon(){var sec=$('#ribbon'),sk=sec&&$('.rb-skel',sec),id='rb-track';if(!sk)return;var L=ribbonEvents(),ld=$('.rb-loading',sec);if(ld)ld.remove();
+    if(!L.length){sec.hidden=true;sk.remove();return}
+    sk.outerHTML='<div class="xwrap rb-wrap" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Earlier games" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
       '<ul class="rb-l" id="'+id+'" data-slider aria-label="Upcoming SMU games, scrolls sideways" tabindex="0">'+L.map(function(e,i){return ribbonCard(e,i,L.length)}).join('')+'</ul>'+
-      '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Later games" aria-controls="'+id+'">'+XARR+'</button></div>'+
-      '</div></section>');
+      '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Later games" aria-controls="'+id+'">'+XARR+'</button></div>';
     slSyncAll()}
   /* ---------- Search results page (search/?q=...). Static content comes from data/search-index.json (tools/build_search.js);
      forum threads and posts come live from Supabase (public read). Results update as you type; the URL keeps the query. ---------- */
@@ -1022,10 +1029,11 @@
           (has?'<span class="gs-bar" aria-hidden="true"><i style="width:'+ps+'%"></i><b style="width:'+(100-ps)+'%"></b></span>':'')+'</div>'}).join('')+'</div>'}
     /* scoreboard */
     var rec=pre&&pre.season&&(pre.season.rows||[]).filter(function(r){return /^record$/i.test(r.l)})[0];
-    function team(smu){var sc=smu?us:them,win=m&&(smu?us>them:them>us),nm=smu?'SMU':g.opp,rc=rec?(smu?rec.s:rec.o):'';
-      return '<div class="gc-team '+(smu?'gc-l':'gc-r')+(m?(win?' win':' lose'):'')+'">'+
-        '<span class="gc-tn"><b>'+esc(nm)+'</b>'+(rc?'<small>'+esc(rc)+'</small>':'')+'</span>'+
-        (m?'<span class="gc-sc">'+sc+'</span>'+(win?'<span class="gc-win" aria-hidden="true"></span>':''):'')+'</div>'}
+    /* one side of the scoreboard. S (optional) is a live score from cfbd-live.js: {us,them,done,ball} */
+    function team(smu,S){var has=S?true:!!m,a=S?S.us:us,b=S?S.them:them,done=S?S.done:!!m,sc=smu?a:b,win=done&&(smu?a>b:b>a),nm=smu?'SMU':g.opp,rc=rec?(smu?rec.s:rec.o):'',ball=S&&!S.done&&S.ball===(smu?'SMU':g.opp);
+      return '<div class="gc-team '+(smu?'gc-l':'gc-r')+(done?(win?' win':' lose'):'')+'">'+
+        '<span class="gc-tn"><b>'+esc(nm)+(ball?'<i class="gc-ball" role="img" aria-label="has the ball"></i>':'')+'</b>'+(rc?'<small>'+esc(rc)+'</small>':'')+'</span>'+
+        (has?'<span class="gc-sc">'+sc+'</span>'+(win?'<span class="gc-win" aria-hidden="true"></span>':''):'')+'</div>'}
     var LS=fin&&fin.line,lsRows=LS?LS.rows.slice().sort(function(a,b){return (b.smu?1:0)-(a.smu?1:0)}):[];
     var lsTable=LS?'<table class="gc-ls"><caption class="sr">Score by '+per+'</caption><thead><tr><th scope="col"><span class="sr">Team</span></th>'+LS.h.map(function(h){return '<th scope="col">'+esc(h)+'</th>'}).join('')+'<th scope="col">T</th></tr></thead><tbody>'+
       lsRows.map(function(r){return '<tr'+(r.smu?' class="smu"':'')+'><th scope="row">'+esc(r.smu?'SMU':g.opp)+'</th>'+r.s.map(function(v){return '<td>'+v+'</td>'}).join('')+'<td class="t">'+r.tot+'</td></tr>'}).join('')+'</tbody></table>':'';
@@ -1073,7 +1081,9 @@
     var vids='<article class="gc-card gc-vids" id="videos" hidden><h2 class="gc-h">Videos</h2><div id="gmVideos"></div></article>';
     /* right column: CFBD live card (cfbd-live.js fills this .gm-match card), game info, how to watch, links */
     var att=fin&&fin.att;
-    right='<article class="gc-card gm-live gm-match" id="gmLive"><h2 class="gm-h gc-h">Live</h2></article>'+
+    /* during a football game's window (kickoff to five hours after, no result yet) the Live card holds its space for cfbd-live.js, so nothing jumps */
+    var koT=g.ko?Date.parse(g.ko):NaN,liveWin=g.sport==='football'&&!g.res&&!isNaN(koT)&&Date.now()>=koT&&Date.now()<koT+5*36e5;
+    right='<article class="gc-card gm-live gm-match'+(liveWin?' gm-wait':'')+'" id="gmLive"'+(liveWin?' aria-busy="true"':'')+'><h2 class="gm-h gc-h">Live</h2></article>'+
       '<article class="gc-card"><h2 class="gc-h">Game info</h2><dl class="gc-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact(g.venue?'Venue':'Where',where)+(att?gmFact('Attendance',att):'')+'</dl></article>'+
       '<article class="gc-card gc-how" id="how"><h2 class="gc-h">How to watch and listen</h2>'+
         '<div class="gm-how-i"><h3>Watch</h3><p>'+(g.tv?esc(g.tv):'TBA')+'</p>'+gmOut(L.watch,'Watch link from SMU Athletics')+'</div>'+
@@ -1092,6 +1102,17 @@
         '<p class="gm-src">Game details from the <a href="'+esc((MP.GAMES.src||{})[g.sport]||'https://smumustangs.com')+'" target="_blank" rel="noopener">SMU Athletics schedule</a>'+(MP.GAMES.checked?', checked '+esc(MP.GAMES.checked):'')+'.</p></div></section>';
     var grid=$('.gc-grid',main);if(!left)grid.classList.add('no-c1');
     function layout(){grid.classList.toggle('no-c2',!$$('.gc-c2>.gc-card',main).some(function(c){return !c.hidden}))}layout();
+    /* live score from cfbd-live.js (football): the sticky scoreboard shows the score and the quarter and clock, or Final.
+       o = {us, them, status ('Live · 3rd 8:12', 'Final'), live (in progress), ball ('SMU' or the opponent), sit (down and distance)} */
+    MP.gcLive=function(o){var box=$('.gc-sb',main);if(!box||!o||typeof o.us!=='number'||typeof o.them!=='number')return;
+      var st=String(o.status||'').replace(/^Live \u00b7 /,''),S={us:o.us,them:o.them,done:!o.live,ball:o.ball},
+        lbl=(o.live?'Live'+(st&&st!=='Live'?', '+st:''):st||'Final')+': SMU '+o.us+', '+g.opp+' '+o.them,
+        md='<div class="gc-mid"><p class="gc-st">'+(o.live?'<span class="gc-on">Live</span>'+(st&&st!=='Live'?' '+esc(st):''):esc(st||'Final'))+'</p>'+
+          (o.live&&o.sit?'<p class="gc-ko">'+esc(o.sit)+'</p>':'')+'</div>',
+        h='<div class="wrap gc-sb-in" role="group" aria-label="'+esc(lbl)+'">'+team(1,S)+md+team(0,S)+'</div>';
+      if(box.getAttribute('data-live')===h)return;box.setAttribute('data-live',h);
+      box.className='gc-sb '+(o.live?'is-live':'is-final');box.innerHTML=h};
+    if(liveWin)setTimeout(function(){var c=$('#gmLive',main);if(c){c.classList.remove('gm-wait');c.removeAttribute('aria-busy')}},12000);
     var lsd=$('.gc-lsd',main);if(lsd&&window.matchMedia&&matchMedia('(max-width:759px)').matches)lsd.open=false;
     if(isNext&&g.sport==='football'&&MP.adSkin)MP.adSkin();
     function tab(id,on){var t=$('.gc-tabs [data-tab="'+id+'"]',main);if(t)t.hidden=!on}
@@ -1481,42 +1502,35 @@
     var box=b.previousElementSibling,open=b.getAttribute('aria-expanded')==='true';if(!b.dataset.lbl)b.dataset.lbl=b.textContent;
     [].forEach.call(box.querySelectorAll('.r-more'),function(x){x.hidden=open});b.setAttribute('aria-expanded',String(!open));b.textContent=open?b.dataset.lbl:'Show less'});
 
+  /* Record + next game strip under the sport hero (also on phones, where the hero is hidden). Real data only: football's MP.SCHEDULE,
+     every other sport's MP.REAL (smumustangs.com). A record shows only once a game counts (not 0-0); the conference record only when the
+     data has a non-zero one. With no record yet the strip says so; with no upcoming event the next-game half is left out. */
+  function recStrip(s,R,RS,team){var rec='',conf='',nx=null,t=todayISO(),wd=function(d){return DOW[new Date(d+'T12:00:00Z').getUTCDay()]+'., '+rDate(d)};
+    var live=function(v){return v&&!/^0-0(-0)?$/.test(v)};
+    if(s.slug==='football'&&SCH){rec=live(SCH.record)?esc(SCH.record):'';conf=live(String(SCH.conf||'').replace(/\s*ACC$/,''))?esc(String(SCH.conf).replace(/\s*ACC$/,'')):'';
+      var g=nextGame(SCH.games);if(g)nx={opp:g.opp,ha:g.home?'home':'away',date:wd(g.d),gp:gameFor('football',g.d)}}
+    else if(R){var ks=Object.keys(R.rec||{}),multi=ks.length>1;
+      var ov=ks.filter(function(k){return live(R.rec[k]&&R.rec[k][0])}).map(function(k){return (multi&&TEAM_LBL[k]?TEAM_LBL[k]+' ':'')+esc(R.rec[k][0])});
+      var cf=ks.filter(function(k){return live(R.rec[k]&&R.rec[k][1])}).map(function(k){return (multi&&TEAM_LBL[k]?TEAM_LBL[k]+' ':'')+esc(R.rec[k][1])});
+      rec=ov.join(' · ');conf=cf.join(' · ');
+      var e=(R.events||[]).filter(function(x){return !x.res&&(x.d2||x.d)>=t})[0];
+      if(e)nx={opp:e.name+(e.ex?' (exhibition)':''),ha:e.ha==='away'?'away':e.ha==='neutral'?'neutral':'home',date:e.d2&&e.d2!==e.d?rRange(e):wd(e.d),team:multi&&TEAM_LBL[e.team]?TEAM_LBL[e.team]:'',gp:gameFor(s.slug,e.d)}}
+    else return '';
+    var fin=!rec&&RS&&RS.dt==='Latest finish'?RS:null,zero=!rec&&!fin&&(s.slug==='football'?SCH&&SCH.record:R&&Object.keys(R.rec||{}).some(function(k){return R.rec[k]&&R.rec[k][0]}));
+    var left=rec?'<p class="sp-rec-i"><span>Record</span> <b>'+rec+'</b>'+(conf?'<span class="sp-rec-c">Conference '+conf+'</span>':'')+'</p>':
+      fin?'<p class="sp-rec-i"><span>Latest finish</span> <b>'+esc(fin.dd)+'</b>'+(fin.sub?'<span class="sp-rec-c">'+esc(fin.sub)+'</span>':'')+'</p>':
+      zero?'<p class="sp-rec-i"><span>Record</span> <b>0-0</b><span class="sp-rec-c">No games counted yet</span></p>':'';
+    var where=nx?(nx.ha==='neutral'?'Neutral site':nx.ha==='away'?'Away':'Home'):'',vs=nx&&team?(nx.ha==='away'?'at ':nx.ha==='home'?'vs. ':''):'',
+      right=nx?'<a class="sp-rec-i sp-rec-nx" href="'+(nx.gp?gameUrl(nx.gp):'#schedule')+'"><span>Next</span> <b>'+(nx.team?esc(nx.team)+' \u00b7 ':'')+vs+esc(nx.opp)+'</b><span class="sp-rec-c">'+nx.date+' · '+where+'</span></a>':'';
+    if(!left&&!right)return '';
+    return '<section class="sp-rec" aria-label="Season record and next game"><div class="wrap sp-rec-in">'+left+right+'</div></section>'}
   /* ---------- Sport program page ---------- */
   function sport(){
     var s=sportBy(body.dataset.sport);if(!s)return;
-    var r=rng(s.slug),main=$('#sportMain');document.title=s.name+' | SMU+';
-    var size=Math.max(8,Math.min(12,s.pos.length+3)),used={},nums={},roster=[];
-    for(var i=0;i<size;i++){
-      var g=s.g==='X'?(i%2?'W':'M'):s.g,name,tries=0;
-      do{name=pick(r,MP.NAMES[g])+' '+pick(r,MP.NAMES.L);tries++}while(used[name]&&tries<50);used[name]=1;
-      var num='';if(s.num){do{num=s.num[0]+Math.floor(r()*(s.num[1]-s.num[0]+1))}while(nums[num]);nums[num]=1}
-      var h=s.ht?s.ht[0]+Math.floor(r()*(s.ht[1]-s.ht[0]+1)):0;
-      roster.push({v:['home','away','alt'][i%3],kn:num!==''?num:(i+1),name:name,g:g,num:num,pos:s.pos[i%s.pos.length],cls:pick(r,MP.CLASSES),town:pick(r,MP.TOWNS),ht:h?Math.floor(h/12)+"'"+(h%12)+'"':'',fans:120+Math.floor(r()*2200)});
-    }
-    roster.sort(function(a,b){return b.fans-a.fans});
-    var star=roster[0];
-
-    // Schedule: fictional opponents
-    var teamSport=/football|basketball|soccer|volleyball/.test(s.slug),opp=MP.OPP.slice(),games=[];
-    for(var k=opp.length-1;k>0;k--){var j=Math.floor(r()*(k+1)),tmp=opp[k];opp[k]=opp[j];opp[j]=tmp}
-    var base=new Date(2026,9,24),mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    for(var n=0;n<8;n++){
-      var past=n<5,d=new Date(base.getTime()+(n-4)*7*864e5+(past?0:7*864e5)),home=r()>.45,res='',cls='up';
-      if(past){
-        if(teamSport){
-          var win=r()<.72,a,b2;
-          if(/football/.test(s.slug)){a=17+Math.floor(r()*28);b2=Math.max(0,a-3-Math.floor(r()*20))}
-          else if(/basketball/.test(s.slug)){a=64+Math.floor(r()*24);b2=a-2-Math.floor(r()*16)}
-          else if(/soccer/.test(s.slug)){a=1+Math.floor(r()*3);b2=Math.floor(r()*a)}
-          else{a=3;b2=Math.floor(r()*3)}
-          var tie=/soccer/.test(s.slug)&&r()<.15;
-          if(tie){res='T '+b2+'-'+b2;cls='t'}else{res=(win?'W '+a+'-'+b2:'L '+b2+'-'+a);cls=win?'w':'l'}
-        }else{var place=1+Math.floor(r()*5);res=place+(place===1?'st':place===2?'nd':place===3?'rd':'th');cls=place<=2?'w':'t'}
-      }else{res=(home?'7:00 PM':'TBA');}
-      games.push({d:d,o:teamSport?opp[n]:opp[n]+' Invitational',home:home,res:res,cls:cls,past:past});
-    }
-    var RD=s.slug!=='football'&&MP.REAL?MP.REAL[s.slug]:null,RS=RD?realSummary(RD):null;
-    var GD=gameStrip(s.slug),realLog=s.slug==='football'&&SCH?SCH.games:null,record=realLog?SCH.record:RS?RS.dd:s.record,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf',tennis:'tennis','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
+    var main=$('#sportMain');document.title=s.name+' | SMU+';
+    var teamSport=/football|basketball|soccer|volleyball/.test(s.slug);
+    var RD=s.slug!=='football'&&MP.REAL?MP.REAL[s.slug]:null,RS=RD?realSummary(RD):null,REC=recStrip(s,RD,RS,teamSport);
+    var GD=gameStrip(s.slug),realLog=s.slug==='football'&&SCH?SCH.games:null,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf',tennis:'tennis','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
     var content=((MP.ACCESS&&MP.ACCESS[s.slug])||[]).map(function(x){return typeof x==='string'?LIBBY[x]:x}).filter(Boolean).filter(recOK);
     content.forEach(function(c){LIBBY[c.id]=LIBBY[c.id]||c});
     var threads=MP.THREADS.filter(function(t){return t.sport===s.slug}),others=MP.SPORTS.filter(function(x){return x.slug!==s.slug});
@@ -1527,15 +1541,14 @@
       '<section class="page-hero sp-hero'+(HERO_PH?' has-photo':'')+'">'+(HERO_PH?photoBg(HERO_PH,{eager:1,hero:1}):'')+'<div class="wrap">'+
         /* Title only: no breadcrumb trail, icon tile or kicker (Oct 26). Breadcrumbs live in the head as BreadcrumbList JSON-LD (build_pages.py). */
         '<h1 class="display sp-title">'+s.name+'</h1>'+
-      '</div></section>'+
+      '</div></section>'+REC+
       '<nav class="jump" aria-label="On this page"><div class="wrap">'+(GD?'<a href="#gameday">Game day</a>':'')+'<a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Read</a>'+(thirdFor(s.slug).length?'<a href="#media">Media</a>':'')+(FEEDS.posts[s.slug]?'<a href="#feeds">Feeds</a>':'')+'<a href="#board">Board</a><a href="#more">Other sports</a></div></nav>'+
       (GD?'<section class="gameday" aria-label="Game day"><div class="wrap" id="gameday">'+GD+'</div></section>':'')+'<section class="sec" id="roster"><div class="wrap">'+
-        (RDR?secHead('Roster',null,null,'Real '+esc(RDR.season)+' roster')+'<p class="lede">The full '+esc(s.name.toLowerCase())+' roster from SMU Athletics. Tap a player for their bio.</p>'+realRoster(RDR,s):'')+
+        (RDR?secHead('Roster',null,null,'Real '+esc(RDR.season)+' roster')+'<p class="lede">The full '+esc(s.name.toLowerCase())+' roster from SMU Athletics. Tap a player for their bio.</p>'+realRoster(RDR,s):secHead('Roster')+emptyState('grid','No roster listed yet','SMU Athletics has not posted a roster for this season yet. Check <a href="https://smumustangs.com/" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+
       '</div></section>'+
-      '<section class="sec alt" id="schedule"><div class="wrap">'+secHead((teamSport?'Schedule':s.slug==='golf'||s.slug==='tennis'?'Events':'Meets')+' &amp; results',null,null,realLog?'2026 season · real results':RD?esc(RD.season)+' · real schedule':'2026–27 · sample data')+
+      '<section class="sec alt" id="schedule"><div class="wrap">'+secHead((teamSport?'Schedule':s.slug==='golf'||s.slug==='tennis'?'Events':'Meets')+' &amp; results',null,null,realLog?'2026 season · real results':RD?esc(RD.season)+' · real schedule':'')+
         (RD?realSched(RD,teamSport,s.slug):realLog?table({cols:['Date','Opponent','Result','Site','Kickoff','TV'],rows:realLog.map(function(g){var gp=gameFor('football',g.d),nm=(g.home?'vs. ':'at ')+g.opp;return [gDate(g),gp?{html:'<a class="r-game" href="'+gameUrl(gp)+'">'+esc(nm)+'</a>'}:nm,g.res||'\u2014',g.site,gTime(g),g.tv||'TBA']})},{cls:'sched sched-full'}):
-        table({cols:['Date',teamSport?'Opponent':'Event','Result','Site'],rows:games.map(function(g){return [mo[g.d.getMonth()]+' '+g.d.getDate(),(teamSport?(g.home?'vs. ':'at '):'')+g.o,g.res,g.home?'Home · Dallas':'Away']})},{cls:'sched'})+
-        '<p class="note">Sample schedule with fictional opponents.</p>')+'</div></section>'+
+        emptyState('grid','No schedule listed yet','SMU Athletics has not posted a schedule for this season yet. Check <a href="https://smumustangs.com/" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+'</div></section>'+
       '<section class="sec" id="content"><div class="wrap">'+secHead(s.name+' all access',libUrl(),'Library','Only on SMU+')+'<div class="cgrid">'+content.map(cardHTML).join('')+'</div></div></section>'+
       mediaSection(s.slug,s.name)+feedsHTML(s.slug)+
       '<section class="sec alt" id="board"><div class="wrap">'+secHead('Team board',ROOT+'boards/?sport='+s.slug,'Open board','Talk '+s.name)+
@@ -1602,8 +1615,8 @@
         (B?'<section class="panel" id="overview"><div class="panel-h"><h3>Roster facts</h3><span class="meta">Per SMU Athletics</span></div><dl class="pf-pre">'+
           [['Number','#'+a.num],['Position',a.pos],['Class',a.cls],['Height',a.ht],['Weight',a.wt?a.wt+' lbs':''],['Hometown',a.hometown],['High school / previous school',a.prev]].filter(function(m){return m[1]}).map(function(m){return '<div><dt>'+m[0]+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join('')+'</dl></section>':
         '<section class="panel" id="overview"><div class="panel-h"><h3>'+a.season.label+'</h3></div><div class="statline" style="--n:'+a.season.stats.length+'">'+a.season.stats.map(function(x){return '<div><b>'+esc(x[1])+'</b><small>'+x[0]+'</small></div>'}).join('')+'</div></section>'+
-        '<section class="panel" id="stats"><div class="panel-h"><h3>Career stats by season</h3><span class="meta">* 2026 in progress</span></div>'+table(a.career,{caption:'Career stats'})+'</section>'+
-        '<section class="panel" id="gamelog"><div class="panel-h"><h3>'+a.log.label+'</h3></div>'+table(a.log,{cls:'log',caption:'Game log'})+'</section>')+
+        '<section class="panel" id="stats"><div class="panel-h"><h3>Career stats by season</h3><span class="meta">* 2026 in progress</span></div>'+table(a.career,{caption:'Career stats',region:a.name+' career stats'})+'</section>'+
+        '<section class="panel" id="gamelog"><div class="panel-h"><h3>'+a.log.label+'</h3></div>'+table(a.log,{cls:'log',caption:'Game log',region:a.name+' game log'})+'</section>')+
         recruitPanel+
         (a.gallery&&a.gallery.length?'<section class="panel" id="photos"><div class="panel-h"><h3>Photos</h3><span class="meta">Photo: SMU Athletics</span></div><div class="gallery g'+a.gallery.length+'">'+a.gallery.map(function(k){return '<figure>'+photo(k,{small:1})+CREDIT+'</figure>'}).join('')+'</div></section>':'')+
       '</div><aside class="ap-side">'+
@@ -1646,42 +1659,71 @@
   function oauthBtns(cls,student){var c=caps();if(!c.oauth.length)return '';
     return '<div class="auth-oauth '+(cls||'')+'">'+c.oauth.map(function(p){return '<button type="button" class="btn btn-outline auth-oa" data-oauth="'+p+'">Continue with '+OAUTH_NAME[p]+(student&&p==='azure'?' (SMU email)':'')+'</button>'}).join('')+'</div>'}
   /* mode 'in' = sign in, 'up' = create a free account. No email-link or password-reset options: Supabase can't deliver auth email yet. */
-  function authForm(mode,ctx){var c=caps();mode=mode==='up'&&c.signup?'up':'in';var demo=!SMU.live;
-    return '<div class="auth" data-mode="'+mode+'">'+(ctx?'<p class="auth-ctx">'+esc(ctx)+'</p>':'')+
-      '<div class="auth-tabs" role="tablist"><button type="button" role="tab" data-auth-tab="in" aria-selected="'+(mode==='in')+'">Sign in</button>'+(c.signup?'<button type="button" role="tab" data-auth-tab="up" aria-selected="'+(mode==='up')+'">Create a free account</button>':'')+'</div>'+
+  /* inl: the Account page's own form (not a pop-up). It adds real tabs (arrow keys), show/hide password, a hint and an error under
+     each field, and a forgot-password note. Pop-ups on other pages (inl false) render exactly as before. */
+  function authForm(mode,ctx,inl){var c=caps();mode=mode==='up'&&c.signup?'up':'in';var demo=!SMU.live;
+    function tab(k,l){return '<button type="button" role="tab" data-auth-tab="'+k+'" aria-selected="'+(mode===k)+'"'+(inl?' id="auTab-'+k+'" aria-controls="auPanel"'+(mode===k?'':' tabindex="-1"'):'')+'>'+l+'</button>'}
+    function err(id){return inl?'<p class="fld-err" id="'+id+'-err" hidden></p>':''}
+    return '<div class="auth'+(inl?' auth-inl':'')+'" data-mode="'+mode+'">'+(ctx?'<p class="auth-ctx">'+esc(ctx)+'</p>':'')+
+      '<div class="auth-tabs" role="tablist"'+(inl?' aria-label="Sign in or create an account"':'')+'>'+tab('in','Sign in')+(c.signup?tab('up','Create a free account'):'')+'</div>'+
+      (inl?'<div id="auPanel" role="tabpanel" aria-labelledby="auTab-'+mode+'">':'')+
       '<p class="auth-up-note">A free account lets you read everything and post on the boards. SMU students can use the <button type="button" class="linkish" data-student>free Student plan</button> instead.</p>'+
-      '<label class="wl-consent f-age" for="auAge"><input id="auAge" type="checkbox" name="age" required><span class="wl-box" aria-hidden="true"></span><span>I am 13 or older. Required to create an account (see the <a href="'+ROOT+'terms/">terms of use</a>).</span></label><p class="auth-m auth-age-m" aria-live="polite"></p>'+
+      '<label class="wl-consent f-age" for="auAge"><input id="auAge" type="checkbox" name="age" required><span class="wl-box" aria-hidden="true"></span><span>I am 13 or older. Required to create an account (see the <a href="'+ROOT+'terms/">terms of use</a>).</span></label>'+(inl?'<p class="fld-err" id="auAge-err" hidden></p>':'')+'<p class="auth-m auth-age-m" aria-live="polite"></p>'+
       oauthBtns()+
       '<form class="auth-f" novalidate>'+
         '<div class="fld f-name"><label for="auName">Display name</label><input id="auName" name="name" autocomplete="nickname" maxlength="40" placeholder="How you appear on the boards"></div>'+
-        '<div class="fld"><label for="auEmail">Email</label><input id="auEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>'+
-        '<div class="fld f-pw"><label for="auPw">Password'+(demo?' <small>(not stored in demo mode)</small>':'')+'</label><input id="auPw" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters"'+(demo?'':' required')+'></div>'+
+        '<div class="fld"><label for="auEmail">Email</label><input id="auEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com"'+(inl?' autocapitalize="none" spellcheck="false" inputmode="email"':'')+'>'+err('auEmail')+'</div>'+
+        (inl?'<div class="fld f-pw"><label for="auPw">Password'+(demo?' <small>(not stored in demo mode)</small>':'')+'</label><div class="set-pw"><input id="auPw" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="72"'+(demo?'':' required')+'>'+
+            '<button type="button" class="set-eye" data-eye="auPw" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div><p class="fld-hint" id="auPw-h">At least 8 characters.</p>'+err('auPw')+'</div>':
+          '<div class="fld f-pw"><label for="auPw">Password'+(demo?' <small>(not stored in demo mode)</small>':'')+'</label><input id="auPw" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters"'+(demo?'':' required')+'></div>')+
         '<p class="auth-m" aria-live="polite"></p>'+
         '<button class="btn btn-red auth-go" type="submit">Sign in</button>'+
-      '</form>'+(c.signup?'':'<p class="auth-paused">New accounts are paused for a moment while we finish setting up sign-up. If you already have an account, sign in above.</p>')+modeNote()+'</div>'}
+      '</form>'+
+      (inl?'<p class="auth-forgot-note">Forgot your password? Password reset is coming soon. For now, check that you\u2019re using the email you signed up with and try again.'+(c.signup?' New to SMU+? <button type="button" class="linkish" data-auth-go="up">Create a free account</button>.':'')+'</p></div>':'')+
+      (c.signup?'':'<p class="auth-paused">New accounts are paused for a moment while we finish setting up sign-up. If you already have an account, sign in above.</p>')+modeNote()+'</div>'}
   function syncAuthForm(root){var a=$('.auth',root),m=a.dataset.mode,c=caps(),up=m==='up';$$('[data-auth-tab]',a).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.authTab===m))});
     $('.f-name',a).hidden=!up;$('.f-age',a).hidden=!up;$('.auth-age-m',a).textContent='';$('.auth-up-note',a).hidden=!up||!stOn();var pw=$('#auPw',a);pw.setAttribute('autocomplete',up?'new-password':'current-password');
     /* Create account: the email form shows only when email sign-up needs no delivered email; otherwise just the OAuth buttons */
     $('.auth-f',a).hidden=up&&!c.email;
-    $('.auth-go',a).textContent=up?'Create free account':'Sign in';$('.auth-m',a).textContent=''}
-  function wireAuth(root,done){syncAuthForm(root);
+    $('.auth-go',a).textContent=up?'Create free account':'Sign in';$('.auth-m',a).textContent='';
+    if(a.classList.contains('auth-inl')){$$('[data-auth-tab]',a).forEach(function(b){b.tabIndex=b.dataset.authTab===m?0:-1});var pn=$('#auPanel',a);if(pn)pn.setAttribute('aria-labelledby','auTab-'+m);
+      var h=$('#auPw-h',a),fn=$('.auth-forgot-note',a);if(h){h.hidden=!up;if(up)pw.setAttribute('aria-describedby','auPw-h');else pw.removeAttribute('aria-describedby')}if(fn)fn.hidden=up;$$('.fld-err',a).forEach(function(e){fieldErr(a,e.id.replace(/-err$/,''),'')})}}
+  /* Account page form: one message under each field, tied to it with aria-invalid and aria-describedby */
+  function fieldErr(root,id,msg){var i=$('#'+id,root),e=$('#'+id+'-err',root);if(!i||!e)return;e.textContent=msg||'';e.hidden=!msg;
+    if(msg)i.setAttribute('aria-invalid','true');else i.removeAttribute('aria-invalid');
+    var d=(i.getAttribute('aria-describedby')||'').split(' ').filter(function(x){return x&&x!==id+'-err'&&!(x==='auPw-h'&&$('#auPw-h',root)&&$('#auPw-h',root).hidden)});if(msg)d.push(id+'-err');
+    if(d.length)i.setAttribute('aria-describedby',d.join(' '));else i.removeAttribute('aria-describedby')}
+  function wireAuth(root,done){syncAuthForm(root);var inl=$('.auth',root).classList.contains('auth-inl');
+    if(inl){var tl=$$('[data-auth-tab]',root);tl.forEach(function(b,i){b.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!d)return;e.preventDefault();
+        var n=tl[(i+d+tl.length)%tl.length];$('.auth',root).dataset.mode=n.dataset.authTab;syncAuthForm(root);n.focus()})});
+      $$('[data-eye]',root).forEach(function(b){b.addEventListener('click',function(){var i=$('#'+b.dataset.eye,root),show=i.type==='password';i.type=show?'text':'password';
+        b.setAttribute('aria-pressed',String(show));b.setAttribute('aria-label',show?'Hide password':'Show password');b.innerHTML=show?EYE_OPEN:EYE})});
+      $('.auth-f',root).addEventListener('input',function(e){if(e.target.id)fieldErr(root,e.target.id,'')});
+      var ag=$('#auAge',root);if(ag)ag.addEventListener('change',function(){fieldErr(root,'auAge','');$('.auth-age-m',root).textContent=''});
+      root.addEventListener('click',function(e){var g=e.target.closest('[data-auth-go]');if(!g)return;$('.auth',root).dataset.mode=g.dataset.authGo;syncAuthForm(root);var ae=$('#auEmail',root);if(ae)ae.focus()})}
     root.addEventListener('click',function(e){var t=e.target.closest('[data-auth-tab]');if(t){$('.auth',root).dataset.mode=t.dataset.authTab;syncAuthForm(root);var ae=$('#auEmail',root);if(ae&&!$('.auth-f',root).hidden)ae.focus()}
       var o=e.target.closest('[data-oauth]');if(o&&!o.closest('#studentDlg')&&$('.auth',root).dataset.mode==='up'&&!$('#auAge',root).checked){$('.auth-age-m',root).textContent='Tick the box to confirm you are 13 or older.';$('#auAge',root).focus();return}
       if(o&&!o.closest('#studentDlg')){o.disabled=true;SMU.oauth(o.dataset.oauth).catch(function(err){o.disabled=false;$('.auth-m',root).textContent=friendlyAuth(err)})}});
     $('.auth-f',root).addEventListener('submit',function(e){e.preventDefault();var a=$('.auth',root),mode=a.dataset.mode,m=$('.auth-m',root),btn=$('.auth-go',root);
       var em=$('#auEmail',root).value.trim(),pw=$('#auPw',root).value,nm=$('#auName',root).value.trim();
-      if(mode==='up'&&!$('#auAge',root).checked){m.textContent='Tick the box to confirm you are 13 or older.';$('#auAge',root).focus();return}
+      if(inl){var bad=0;m=$('.auth-f .auth-m',root);m.textContent='';
+        if(mode==='up'&&!$('#auAge',root).checked){fieldErr(root,'auAge','Tick the box to confirm you are 13 or older.');bad='auAge'}
+        if(!em){fieldErr(root,'auEmail','Enter your email address.');bad=bad||'auEmail'}else if(!EMAIL_RE.test(em)){fieldErr(root,'auEmail','Enter a full email address, like name@example.com.');bad=bad||'auEmail'}
+        if(SMU.live&&!pw){fieldErr(root,'auPw','Enter your password.');bad=bad||'auPw'}else if(SMU.live&&pw.length<8){fieldErr(root,'auPw','Use at least 8 characters.');bad=bad||'auPw'}
+        if(bad){$('#'+bad,root).focus();return}}
+      else{if(mode==='up'&&!$('#auAge',root).checked){m.textContent='Tick the box to confirm you are 13 or older.';$('#auAge',root).focus();return}
       if(!EMAIL_RE.test(em)){m.textContent='Enter a full email address.';$('#auEmail',root).focus();return}
-      if(SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}
-      btn.disabled=true;m.textContent='One moment\u2026';
+      if(SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}}
+      var lbl=btn.textContent;btn.disabled=true;if(inl){btn.textContent=mode==='up'?'Creating your account\u2026':'Signing in\u2026';btn.setAttribute('aria-busy','true')}else m.textContent='One moment\u2026';
+      function idle(){btn.disabled=false;if(inl){btn.textContent=lbl;btn.removeAttribute('aria-busy')}}
       var p=mode==='up'?SMU.signUp({email:em,password:pw,name:nm}):SMU.signIn({email:em,password:pw});
-      p.then(function(r){btn.disabled=false;
-        if(mode==='up'&&r&&r.confirm){m.innerHTML='<b>Almost there.</b> Your account needs a confirmation email, which we can\u2019t send yet. Try again soon.';return}
+      p.then(function(r){idle();
+        if(mode==='up'&&r&&r.confirm){m.innerHTML='<b>Almost there.</b> Your account was created but still needs a confirmation step we can\u2019t finish yet. Try signing in with the same email and password in a few minutes'+(caps().oauth.length?', or use one of the sign-in buttons above':'')+'.';return}
         toast(mode==='up'?'Welcome to SMU+, '+(SMU.user&&SMU.user.name||'Mustang')+'.':'Signed in.');done&&done()},
-       function(err){btn.disabled=false;m.textContent=friendlyAuth(err)})})}
+       function(err){idle();m.textContent=friendlyAuth(err)})})}
   function friendlyAuth(e){var t=(e&&e.message)||'';if(/Invalid login/i.test(t))return 'That email and password don\u2019t match. Try again.';
     if(/already registered|already exists/i.test(t))return 'That email already has an account. Sign in instead.';if(/rate limit|security purposes/i.test(t))return 'Too many tries. Wait a minute and try again.';
-    if(/not confirmed/i.test(t))return 'This account was never confirmed. Create a new free account instead.';return t||'Something went wrong. Try again.'}
+    if(/not confirmed/i.test(t))return 'This account hasn\u2019t been confirmed yet, and we can\u2019t send confirmation emails yet. Try signing in again in a few minutes'+(caps().oauth.length?', or use one of the sign-in buttons above':'')+'.';return t||'Something went wrong. Try again.'}
   function openAuth(mode,ctx,after){var d=dialog('authDlg','<h3 id="authDlg-h" class="dlg-h">'+(mode==='up'?'Create your free SMU+ account':'Sign in to SMU+')+'</h3>'+authForm(mode,ctx));wireAuth(d,function(){d.close();after&&after()})}
   document.addEventListener('click',function(e){var a=e.target.closest('[data-auth]');if(!a)return;e.preventDefault();var jd=$('#joinDlg'),jx=jd&&$('.dlg-x',jd);if(jx)jx.click();
     if(SMU.user){location.href=ROOT+'account/';return}if(PAGE==='account'&&$('#acctMain .auth')){var t=$('#acctMain [data-auth-tab="'+(a.dataset.auth||'in')+'"]');if(t){t.click();t.scrollIntoView({block:'center'});return}}openAuth(a.dataset.auth||'in',a.dataset.authCtx)});
@@ -1717,7 +1759,9 @@
   function setAdfree(on){var k=afKey();if(!k)return;store(k,on?'1':'0');SMU.user.adfree=on;syncAdfree();toast(on?'Ad-free is on.':'Ad-free is off.');
     if(SMU.live&&SMU.client)SMU.client.auth.updateUser({data:{adfree:on}}).then(function(){},function(){})}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-adfree]');if(!b)return;e.preventDefault();
-    if(!SMU.user){openAuth('in','Sign in to turn on Ad-free.',function(){if(adfreeAllowed())setAdfree(true);else adfreeUpsell()});return}
+    if(!SMU.user){var after=function(){if(adfreeAllowed())setAdfree(true);else adfreeUpsell()};
+      if(PAGE==='account'&&$('#acctMain .auth')){acctAfter=after;acctAsk('Sign in to turn on Ad-free.');return}
+      openAuth('in','Sign in to turn on Ad-free.',after);return}
     if(!adfreeAllowed()){adfreeUpsell();return}
     setAdfree(!adfreeOn())});
   SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',paidT(t)?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
@@ -1764,6 +1808,8 @@
     '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Nothing is charged.</p>'+
     '<button type="button" class="btn btn-wl jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
     (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+'">'+JCHK+'<span>'+esc(x.t)+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
+  /* While paid plans are hidden, the Join pop-up still offers the free waitlist (with the price survey): no plan cards, no prices. */
+  var WL_BAND='<div class="st-band wl-band st-jm"><div class="st-b"><h4>Hear first if SMU+ launches</h4></div><button type="button" class="btn btn-red st-go" data-join-pick="survey">Join the waitlist</button></div>';
   var joinDlg=null;
   function openJoin(tier,note){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
     if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier,note)})}
@@ -1771,8 +1817,8 @@
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
     var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div>'+(SHOW_PAID_PLANS?'<p class="jm-eb">Membership</p>':'')+'<h3 id="joinDlg-h">Pick your seat.</h3>'+(note?'<p class="jm-lede jm-note">'+esc(note)+'</p>':'')+
       '<p class="jm-lede">Join free today with a free account, or a Student plan if you have an @smu.edu email.'+(SHOW_PAID_PLANS?' Paid plans are coming soon, and you can join the free waitlist for the one you want.':'')+' There is nothing to buy.</p></div>'+
-      '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':'')+'</div>'+
-      '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
+      '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':WL_BAND)+'</div>'+
+      '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> '+(SHOW_PAID_PLANS?'All plans':'Back')+'</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
       conceptNotice('jm-cn')+'</div>');
     d.classList.add('dlg-join');syncWaitlist();
@@ -1780,10 +1826,12 @@
     var obs=new MutationObserver(function(){if(!document.contains(d)){obs.disconnect();joinDlg=null;if(/^#(join|waitlist)$/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}});obs.observe(body,{childList:true});
     if(tier)setTimeout(function(){joinStep(tier)},40)}
   function joinStep(tier){var d=joinDlg;if(!d)return;var plans=$('.jm-plans',d),wl=$('.jm-wl',d),sheet=$('.jm-body',d);
-    if(!tier){wl.hidden=true;plans.hidden=false;sheet.scrollTop=0;var b=$('[data-join-pick="'+(d.dataset.tier||'pony')+'"]',d);if(b)b.focus();return}
-    var t=(joinTiers||[]).filter(function(x){return x.k===tier})[0]||{p:'Coming soon',per:''};if(!JOIN_WL[tier]||!SHOW_PAID_PLANS)return;d.dataset.tier=tier;
+    if(!tier){wl.hidden=true;plans.hidden=false;sheet.scrollTop=0;var b=$('[data-join-pick="'+(d.dataset.tier||(SHOW_PAID_PLANS?'pony':'survey'))+'"]',d);if(b)b.focus();return}
+    var pk=$('.jm-pick',wl);
+    if(tier==='survey'){d.dataset.tier='survey';if(pk)pk.hidden=true}else{  /* free waitlist + price survey, no plan picked */
+    var t=(joinTiers||[]).filter(function(x){return x.k===tier})[0]||{p:'Coming soon',per:''};if(!JOIN_WL[tier]||!SHOW_PAID_PLANS)return;d.dataset.tier=tier;if(pk)pk.hidden=false;
     $('.jm-pick-n',d).textContent=TIER_NAME[tier];$('.jm-pick-p',d).textContent=t.p+t.per;
-    var sel=$('select[name=tier]',wl);if(sel)sel.value=JOIN_WL[tier];
+    var sel=$('select[name=tier]',wl);if(sel)sel.value=JOIN_WL[tier]}
     plans.hidden=true;wl.hidden=false;sheet.scrollTop=0;
     var f=$('.wl',wl),target=f&&f.classList.contains('done')?$('.wl-ok',wl):$('input[type=email]',wl);if(target)target.focus()}
   var JOIN_SEL='.hdr-join,.mm-join,[data-join],a[href$="#waitlist"],a[href$="#join"],a.btn[href$="#membership"]';
@@ -1794,7 +1842,7 @@
     if(!pw.hidden)closePaywall();openJoin(a.dataset.join||null)});
   /* Re-sync after a modal signup so the home #waitlist card shows the same done state. */
   document.addEventListener('submit',function(e){if(e.target&&e.target.id==='wlJoin')setTimeout(syncWaitlist,0)});
-  function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin()}
+  function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin(location.hash==='#waitlist'?'survey':null)}
   window.addEventListener('hashchange',joinFromHash);setTimeout(joinFromHash,0);
 
   /* ---------- Free Student plan (SMU email only) ----------
@@ -1842,7 +1890,7 @@
       var b=$('.st-submit',d);b.disabled=true;m.textContent='One moment\u2026';
       /* Also join the waitlist as a student (email, name, affiliation and tier_interest only); the account is what counts */
       SMU.waitlist({email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true}).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(r){b.disabled=false;
-        if(r&&r.confirm){m.textContent='Your account needs a confirmation email, which we can\u2019t send yet. Try again soon.';return}
+        if(r&&r.confirm){m.textContent='Your account was created but still needs a confirmation step we can\u2019t finish yet. Try signing in with the same email and password in a few minutes.';return}
         d.close();toast('You\u2019re in. Free Student plan, Class of '+o.year+'.');if(PAGE!=='account')location.href=ROOT+'account/#student'},
         function(err){b.disabled=false;m.textContent=friendlyAuth(err)||'Couldn\u2019t sign you up. Try again.'})});
     var first=$('input,select',f);if(first)first.focus()}
@@ -1927,33 +1975,42 @@
   var SET_TABS=['profile','subscriptions','transactions'],acctTab=(location.hash||'').slice(1)==='student'?'subscriptions':(location.hash||'').slice(1);
   var EYE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4 9.5 6-.4.9-1.3 2.2-2.6 3.4M6.6 7.6C4.6 8.9 3.1 10.8 2.5 12c1 2 4.5 6 9.5 6 1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
   var EYE_OPEN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12C3.5 10 7 6 12 6s8.5 4 9.5 6c-1 2-4.5 6-9.5 6s-8.5-4-9.5-6z"/><circle cx="12" cy="12" r="3"/></svg>';
-  function account(){var main=$('#acctMain');document.title='Settings | SMU+';
-    function render(){var u=SMU.user;
-      if(!u){main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'+
-        '<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+freeBands('acct')+'</div></div></section>';wireAuth(main,render);popSpot();
+  /* Account page: run after an on-page sign-in (set by the header Ad-free switch), and a note above the page's own form */
+  var acctAfter=null;
+  function acctAsk(msg){var mm=$('#mmenu');if(mm&&!mm.hidden&&$('#menuBtn'))$('#menuBtn').click();var a=$('#acctMain .auth');if(!a)return;
+    var p=$('.auth-ctx',a);if(!p){p=document.createElement('p');p.className='auth-ctx';a.insertBefore(p,a.firstChild)}p.textContent=msg;p.setAttribute('role','status');
+    a.scrollIntoView({block:'center'});var ae=$('#auEmail',a);if(ae&&!$('.auth-f',a).hidden)ae.focus({preventScroll:true})}
+  function acctHero(){return '<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'}
+  function account(){var main=$('#acctMain');
+    function render(){var u=SMU.user;document.title=(u?'Settings':'Sign in')+' | SMU+';
+      if(!u){main.innerHTML=acctHero()+
+        '<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in',null,true)+'</div>'+freeBands('acct')+'</div></div></section>';
+        wireAuth(main,function(){var f=acctAfter;acctAfter=null;render();if(f)f()});popSpot();
         if(location.hash==='#student'&&stOn())setTimeout(function(){openStudent()},60);return}
-      if(location.hash==='#reset'&&SMU.live){main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
+      if(location.hash==='#reset'&&SMU.live){document.title='Choose a new password | SMU+';main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
         $('#npForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#npPw').value,m=$('.auth-m',main);if(v.length<8){m.textContent='At least 8 characters.';return}SMU.newPassword(v).then(function(){history.replaceState(null,'',location.pathname);toast('Password updated.');render()},function(err){m.textContent=err.message})});return}
       var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6);
       var tab=SET_TABS.indexOf(acctTab)<0?'profile':acctTab,me=SMU.me(),ph=SMU.avatarsOn()?avPhoto(MP.USERS[me]):'',pwOK=SMU.live&&u.pw!==false;
       var st=stOn()&&SMU.student&&SMU.student(),started=(tier==='student'&&st&&st.at)||u.created||u.since;
       function fmtD(d){var t=d?new Date(d):null;return t&&!isNaN(t)?t.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}):''}
-      function pwFld(id,label,ph,ac){return '<div class="set-f"><label for="'+id+'">'+label+'</label><div class="set-pw"><input id="'+id+'" type="password" autocomplete="'+ac+'" placeholder="'+ph+'" maxlength="72">'+
-        '<button type="button" class="set-eye" data-eye="'+id+'" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div></div>'}
+      function pwFld(id,label,ph,ac,hint){return '<div class="set-f"><label for="'+id+'">'+label+'</label><div class="set-pw"><input id="'+id+'" type="password" autocomplete="'+ac+'" placeholder="'+ph+'" maxlength="72"'+(hint?' aria-describedby="'+id+'-h"':'')+'>'+
+        '<button type="button" class="set-eye" data-eye="'+id+'" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div>'+(hint?'<p class="set-hint" id="'+id+'-h">'+hint+'</p>':'')+'</div>'}
       var planName=tier==='student'?'Student plan':tier==='free'?'Free account':TIER_NAME[tier]+' (demo)';
       var profile='<form id="setForm" class="set-form" novalidate>'+
           '<div class="set-sec"><h2 class="set-h">Profile information</h2><p class="set-sub">Update your profile information.</p>'+
           '<div class="set-av"><div class="set-av-img">'+(ph?avImg(ph,1):SVG.user)+'</div><div class="set-av-ctl">'+
-            (SMU.avatarsOn()?'<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden><div class="set-av-btns"><button type="button" class="btn set-out" id="avPick">Change avatar</button>'+(ph?'<button type="button" class="linkish" id="avRemove">Remove</button>':'')+'</div>':
-              '<button type="button" class="btn set-out" disabled>Change avatar (coming soon)</button>')+
-            '<p class="set-hint">For best results use an image at least 400x400 pixels.</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'+
-          '<div class="set-f"><label for="dispName">Username</label><input id="dispName" maxlength="40" autocomplete="nickname" value="'+esc(u.name||'')+'"></div>'+
-          '<div class="set-f"><label for="setEmail">Email</label><input id="setEmail" type="email" value="'+esc(u.email||'')+'" readonly aria-describedby="setEmailH"><p class="set-hint" id="setEmailH">If you need to change your email, contact <a href="mailto:smuplusmedia@gmail.com">smuplusmedia@gmail.com</a>.</p></div></div>'+
+            (SMU.avatarsOn()?'<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden><div class="set-av-btns"><button type="button" class="btn set-out" id="avPick">Change photo</button>'+(ph?'<button type="button" class="linkish" id="avRemove">Remove</button>':'')+'</div>':
+              '<button type="button" class="btn set-out" disabled>Change photo (coming soon)</button>')+
+            '<p class="set-hint">Use a JPEG, PNG or WebP photo under 2 MB. We crop it to a square.</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'+
+          '<div class="set-f"><label for="dispName">Display name</label><input id="dispName" maxlength="40" autocomplete="nickname" value="'+esc(u.name||'')+'"></div>'+
+          '<div class="set-f"><label for="setEmail">Email</label><input id="setEmail" type="email" value="'+esc(u.email||'')+'" readonly aria-describedby="setEmailH"><p class="set-hint" id="setEmailH">Email changes aren\u2019t available in Settings yet. See <a href="'+ROOT+'privacy/#contact">how to reach us</a>.</p></div></div>'+
           (pwOK?'<div class="set-sec"><h2 class="set-h">Change password</h2><p class="set-sub">Update the password for your account.</p>'+
-            pwFld('pwCur','Current password','Enter your current password','current-password')+pwFld('pwNew','New password','Enter a new password','new-password')+pwFld('pwNew2','Confirm new password','Confirm your new password','new-password')+'</div>':'')+
-          '<p class="auth-m set-m" aria-live="polite"></p><div class="set-act"><button type="submit" class="btn set-save" disabled>Save</button></div></form>'+
+            pwFld('pwCur','Current password','Enter your current password','current-password')+pwFld('pwNew','New password','Enter a new password','new-password','At least 8 characters.')+pwFld('pwNew2','Confirm new password','Confirm your new password','new-password')+'</div>':'')+
+          '<p class="auth-m set-m" id="setM" aria-live="polite"></p><div class="set-act"><button type="submit" class="btn set-save" disabled>Save</button></div></form>'+
+        '<div class="set-sec" id="acctAdfree"><h2 class="set-h">Ad-free</h2><p class="set-sub">Hide the sample ads across SMU+ while you\u2019re signed in to this account.</p><div class="set-af">'+adfreeSwitch('af-set')+'</div></div>'+
         '<div class="set-sec"><h2 class="set-h">Saved players</h2>'+(saved.length?'<ul class="acct-list">'+saved.map(function(a){return '<li><a href="'+athleteUrl(a.id)+'"><b>'+esc(a.name)+'</b><small>#'+a.num+' \u00b7 '+a.pos+'</small></a><button type="button" class="linkish" data-save-athlete="'+a.id+'" aria-pressed="true"><span>Saved</span></button></li>'}).join('')+'</ul>':'<p class="set-sub">No saved players yet. Tap <b>Save player</b> on any <a href="'+ROOT+'athletes/">player profile</a>.</p>')+'</div>'+
-        '<div class="set-sec"><h2 class="set-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="set-sub">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+'</div>';
+        '<div class="set-sec"><h2 class="set-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="set-sub">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+'</div>'+
+        '<div class="set-sec" id="acctDelete"><h2 class="set-h">Delete your account</h2><p class="set-sub">See <a href="'+ROOT+'privacy/#delete">Deleting your data</a> for how to remove your account and what\u2019s tied to it.</p></div>';
       var subs='<div class="set-sec" id="acctPlan"><h2 class="set-h">Your plan</h2><p class="set-sub">'+(tier==='student'||tier==='free'?'Free with your SMU+ account.':'Demo membership. No payments are taken.')+'</p>'+
           '<div class="set-plan"><div><b>'+esc(planName)+'</b>'+(tier==='student'?'<span class="st-badge">Student</span>':'')+
             (tier==='student'&&st?'<p>Class of '+esc(st.year||'\u2014')+'. Checked with your @smu.edu email.</p>':'')+
@@ -1971,7 +2028,7 @@
         '<div class="set-tabs" role="tablist" aria-label="Settings">'+SET_TABS.map(function(k){return '<button type="button" role="tab" id="tab-'+k+'" aria-controls="pane-'+k+'" aria-selected="'+(k===tab)+'"'+(k===tab?'':' tabindex="-1"')+' data-set-tab="'+k+'">'+L[k]+'</button>'}).join('')+'</div>'+
         SET_TABS.map(function(k){return '<div class="set-pane" role="tabpanel" id="pane-'+k+'" aria-labelledby="tab-'+k+'"'+(k===tab?'':' hidden')+'>'+P[k]+'</div>'}).join('')+
         '</div></section>';
-      syncBriefs();
+      syncBriefs();syncAdfree();
       var tabs=$$('[data-set-tab]',main);
       function pick(k,focus){acctTab=k;tabs.forEach(function(b){var on=b.dataset.setTab===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;if(on&&focus)b.focus()});
         SET_TABS.forEach(function(x){$('#pane-'+x,main).hidden=x!==k});try{history.replaceState(null,'',k==='profile'?location.pathname:'#'+k)}catch(e){}}
@@ -1984,19 +2041,23 @@
         b.setAttribute('aria-pressed',show);b.setAttribute('aria-label',show?'Hide password':'Show password');b.innerHTML=show?EYE_OPEN:EYE})});
       var f=$('#setForm',main),save=$('.set-save',f),m=$('.set-m',f),nm=$('#dispName',f),pw=['pwCur','pwNew','pwNew2'].map(function(id){return $('#'+id,f)});
       function dirty(){return nm.value.trim()!==(u.name||'')||pw.some(function(i){return i&&i.value})}
-      f.addEventListener('input',function(){save.disabled=!dirty();m.textContent=''});
+      function bad(el,msg){m.textContent=msg;if(el){el.setAttribute('aria-invalid','true');el.setAttribute('aria-describedby',((el.getAttribute('aria-describedby')||'').replace(/\s*setM/,'')+' setM').trim());el.focus()}}
+      f.addEventListener('input',function(e){save.disabled=!dirty();m.textContent='';var t=e.target;if(t&&t.getAttribute('aria-invalid')){t.removeAttribute('aria-invalid');var d=(t.getAttribute('aria-describedby')||'').replace(/\s*setM/,'').trim();if(d)t.setAttribute('aria-describedby',d);else t.removeAttribute('aria-describedby')}});
       f.addEventListener('submit',function(e){e.preventDefault();if(!dirty())return;var v=nm.value.trim(),cur=pw[0]&&pw[0].value,nw=pw[1]&&pw[1].value,nw2=pw[2]&&pw[2].value,wantPw=!!(cur||nw||nw2);
-        if(!v){m.textContent='Enter a username.';nm.focus();return}
-        if(wantPw){if(!cur){m.textContent='Enter your current password.';pw[0].focus();return}if((nw||'').length<8){m.textContent='Use at least 8 characters for the new password.';pw[1].focus();return}
-          if(nw!==nw2){m.textContent='The new passwords don\u2019t match.';pw[2].focus();return}}
-        save.disabled=true;m.textContent='Saving\u2026';
+        if(!v){bad(nm,'Enter a display name.');return}
+        if(wantPw){if(!cur){bad(pw[0],'Enter your current password.');return}if((nw||'').length<8){bad(pw[1],'Use at least 8 characters for the new password.');return}
+          if(nw!==nw2){bad(pw[2],'The new passwords don\u2019t match.');return}}
+        save.disabled=true;m.textContent='';save.textContent='Saving\u2026';save.setAttribute('aria-busy','true');
         var steps=Promise.resolve(),did=[];
         if(v!==(u.name||''))steps=steps.then(function(){return SMU.updateName(v)}).then(function(){did.push('name')});
         if(wantPw)steps=steps.then(function(){return SMU.changePassword(cur,nw)}).then(function(){did.push('pw')});
-        steps.then(function(){toast(did.length>1?'Username and password saved.':did[0]==='pw'?'Password updated.':'Username saved.');render()},
-          function(err){m.textContent=err.message||'Couldn\u2019t save. Try again.';save.disabled=false;if(err.field==='cur'&&pw[0])pw[0].focus()})});
+        steps.then(function(){toast(did.length>1?'Display name and password saved.':did[0]==='pw'?'Password updated.':'Display name saved.');render()},
+          function(err){save.textContent='Save';save.removeAttribute('aria-busy');save.disabled=false;if(err.field==='cur'&&pw[0])bad(pw[0],err.message);else m.textContent=err.message||'Couldn\u2019t save. Try again.'})});
       if(location.hash==='#student'){pick('subscriptions');var sc=$('#acctStudent')||$('#acctPlan');if(sc)setTimeout(function(){sc.scrollIntoView({block:'start'})},60)}}
-    main.innerHTML='<div class="skel-block" aria-hidden="true" style="min-height:420px"><i class="sk"></i></div>';
+    /* Before the account is known: draw the same frame the page will end up with (sign-in hero, or the Settings title) so nothing jumps */
+    var likelyIn=(function(){try{if(localStorage.getItem('mp_user'))return true;for(var i=0;i<localStorage.length;i++)if(/^sb-.+-auth-token$/.test(localStorage.key(i)||''))return true}catch(e){}return false})();
+    main.innerHTML=likelyIn?'<section class="set"><div class="wrap set-wrap"><div class="set-top"><h1 class="set-title">Settings</h1></div><div class="skel-block acct-skel-in" aria-hidden="true"><i class="sk"></i></div></div></section>':
+      acctHero()+'<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap"><div class="skel-block acct-skel-out" aria-hidden="true"><i class="sk"></i></div></div></div></section>';
     SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('avatar',function(){if(SMU.user)render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()});SMU.on('student',function(){if(SMU.user)render()})}
 
   SMU.ready.then(function(){syncAcct();syncBriefs();syncWaitlist();if(SMU.user&&SMU.live)pullHistory();
