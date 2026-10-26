@@ -2750,5 +2750,6 @@ html.ad-quiet .ad-sticky{visibility:hidden;pointer-events:none}
 .ribbon .rb-hd p a{padding:1px 0}
 .cnotice a{padding:13px 0}
 .site-ft .legal a{padding:14px 0}
+.fo-plain .fo-h a{padding:13px 0}
 /* Game day final: the losing side was opacity .5 (#919abd on white, 2.77:1). Solid ink-3 is 5.9:1; the winner keeps SMU blue. */
 .gameday .sc-t:not(.win){opacity:1;color:var(--ink-3)}
