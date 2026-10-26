@@ -68,15 +68,17 @@
   var AV_TYPES=['image/jpeg','image/png','image/webp'],AV_MAX=2*1024*1024;
   /* ---------- free Student plan (supabase/RUN_ME_16_students.sql) ----------
      Demo: always on, saved in this browser. Live: off until MP.FEATURES.students is true (after RUN_ME_16 has run).
-     'student' is a free plan, never a paid membership, so it doesn't unlock members-only content. The student ID is sent once
-     to claim_student_membership() and never read back; only the class year and verified date come back. */
+     'student' is a free plan, never a paid membership, so it doesn't unlock members-only content. No student ID is asked for
+     (RUN_ME_17): claim_student_membership() verifies the confirmed @smu.edu email; only the class year and verified date come back. */
   function paid(t){return !!t&&t!=='free'&&t!=='student'&&!!TIERS[t]}
-  var SMU_EMAIL=/^[^@\s]+@smu\.edu$/i,SID_RE=/^[0-9]{6,10}$/,stCache=null,stMsg='';
+  var SMU_EMAIL=/^[^@\s]+@smu\.edu$/i,stCache=null,stMsg='';
+  /* Student IDs are no longer collected: clear any this browser saved for the old on-device claim */
+  (function(){try{ls('mp_student_ids',null);var u=lj('mp_user',null);if(u&&u.student&&'sid' in u.student){delete u.student.sid;sj('mp_user',u)}
+    var p=lj('mp_student_pending',null);if(p&&'sid' in p){delete p.sid;ls('mp_student_pending',JSON.stringify(p))}}catch(e){}})();
   function stOn(){/* decided from config, not SMU.live (set only after supabase-js loads), so pages that render early stay flag-gated */return !configured||SMU.reason==='unreachable'||!!(MP.FEATURES&&MP.FEATURES.students===true)}
   function stYears(){var y=new Date().getFullYear(),out=[];for(var i=Math.max(2026,y);i<=Math.min(2034,y+6);i++)out.push(i);return out}
-  function stCheck(o){var em=String(o.email||'').trim().toLowerCase(),sid=String(o.sid||'').trim(),yr=+o.year;
+  function stCheck(o){var em=String(o.email||'').trim().toLowerCase(),yr=+o.year;
     if(o.email!==undefined&&!SMU_EMAIL.test(em))return 'Use your SMU email, ending in @smu.edu.';
-    if(!SID_RE.test(sid))return 'Student ID is 6 to 10 digits, numbers only.';
     if(stYears().indexOf(yr)<0)return 'Pick your class year.';return ''}
   function avOn(){return !SMU.live||!!(MP.FEATURES&&MP.FEATURES.avatars===true)}
   function avOK(u){if(typeof u!=='string'||u.length>200000)return false;
@@ -111,20 +113,16 @@
     removeAvatar:function(){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Not signed in'));delete u.avatar;sj('mp_user',u);SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,null);emit('avatar',null);return Promise.resolve()},
     updateName:function(n){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Not signed in'));u.name=n;sj('mp_user',u);ls('mp_lastname',n);SMU.user=u;MP.USERS.me&&(MP.USERS.me.n=n);emit('auth',u);return Promise.resolve(u)},
     tier:function(){var t=ls('mp_tier');return TIERS[t]?t:(ls('mp_member')==='1'?'pony':'free')},
-    /* Demo student sign-up: no email is sent, so the account is created and confirmed at once. One ID per email in this browser. */
+    /* Demo student sign-up: no email is sent, so the account is created and confirmed at once. */
     studentJoin:function(o){var bad=stCheck(o);if(bad)return Promise.reject(new Error(bad));
-      var em=String(o.email).trim().toLowerCase(),sid=String(o.sid).trim(),ids=lj('mp_student_ids',{});
-      if(ids[sid]&&ids[sid]!==em)return Promise.reject(new Error('That student ID is already linked to another SMU+ account.'));
+      var em=String(o.email).trim().toLowerCase();
       var u=lj('mp_user',null);if(u&&u.email!==em)return Promise.reject(new Error('Sign out first, then join with your SMU email.'));
       var p=u?Promise.resolve({user:u}):demo.signUp({email:em,name:o.name});
-      return p.then(function(){return demo.claimStudent(sid,+o.year)}).then(function(r){r.demo=true;return r})},
-    claimStudent:function(sid,year){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Sign in first.'));
+      return p.then(function(){return demo.claimStudent(+o.year)}).then(function(r){r.demo=true;return r})},
+    claimStudent:function(year){var u=lj('mp_user',null);if(!u)return Promise.reject(new Error('Sign in first.'));
       if(!SMU_EMAIL.test(u.email))return Promise.reject(new Error('Student membership needs an @smu.edu email.'));
-      var st=u.student,ids=lj('mp_student_ids',{});
-      if(st&&sid&&st.sid!==sid)return Promise.reject(new Error('This account is already linked to a different student ID.'));
-      if(!st){var bad=stCheck({sid:sid,year:year});if(bad)return Promise.reject(new Error(bad));
-        if(ids[sid]&&ids[sid]!==u.email)return Promise.reject(new Error('That student ID is already linked to another SMU+ account.'));
-        ids[sid]=u.email;sj('mp_student_ids',ids);st={sid:sid,year:year,at:new Date().toISOString()}}
+      var st=u.student;
+      if(!st){var bad=stCheck({year:year});if(bad)return Promise.reject(new Error(bad));st={year:year,at:new Date().toISOString()}}
       else if(year)st.year=year;
       u.student=st;sj('mp_user',u);SMU.user=u;var t=demo.tier();if(!paid(t))demo.setTier('student');emit('student',demo.student());return Promise.resolve({ok:true,tier:demo.tier(),class_year:st.year})},
     student:function(){var u=lj('mp_user',null);return u&&u.student?{year:u.student.year,at:u.student.at}:null},
@@ -191,16 +189,16 @@
     studentAfter:function(){if(!stOn()||!SMU.user)return;
       return live.fetchStudent().then(function(st){var pend=null;try{pend=JSON.parse(ls('mp_student_pending')||'null')}catch(e){}
         if(!pend||st||String(pend.email||'')!==String(SMU.user.email||'').toLowerCase())return;
-        return live.claimStudent(pend.sid,pend.year).then(function(){ls('mp_student_pending',null)},function(e){stMsg=e.message;if(e.final)ls('mp_student_pending',null);emit('student',null)})}).catch(function(){})},
+        return live.claimStudent(pend.year).then(function(){ls('mp_student_pending',null)},function(e){stMsg=e.message;if(e.final)ls('mp_student_pending',null);emit('student',null)})}).catch(function(){})},
     fetchStudent:function(){return q('student',sb.from('student_verifications').select('class_year,verified_at').eq('user_id',SMU.user.id).maybeSingle())
       .then(function(r){stCache=r?{year:r.class_year,at:r.verified_at}:null;emit('student',stCache);return stCache})},
     studentJoin:function(o){var bad=stCheck(o);if(bad)return Promise.reject(new Error(bad));if(!stOn())return Promise.reject(new Error('Student sign-up isn\u2019t open yet.'));
       var em=String(o.email).trim().toLowerCase();
-      ls('mp_student_pending',JSON.stringify({email:em,sid:String(o.sid).trim(),year:+o.year,t:Date.now()}));
+      ls('mp_student_pending',JSON.stringify({email:em,year:+o.year,t:Date.now()}));
       return q('student',sb.auth.signInWithOtp({email:em,options:{shouldCreateUser:true,data:{display_name:String(o.name||'').trim().slice(0,40)||nameFromEmail(em)},emailRedirectTo:CFG.SITE_URL+'account/#student'}}))
         .then(function(){return {sent:true,email:em}})},
-    claimStudent:function(sid,year){if(!SMU.user)return Promise.reject(new Error('Sign in first.'));
-      return q('student',sb.rpc('claim_student_membership',{p_student_id:sid||null,p_class_year:year||null})).then(function(r){
+    claimStudent:function(year){if(!SMU.user)return Promise.reject(new Error('Sign in first.'));
+      return q('student',sb.rpc('claim_student_membership',{p_student_id:null,p_class_year:year||null})).then(function(r){
         if(!r||!r.ok){var e=new Error((r&&r.message)||'Couldn\u2019t start your Student membership.');e.reason=r&&r.reason;e.final=/^(id_taken|id_mismatch|not_smu|bad_id)$/.test(e.reason||'');throw e}
         stMsg='';tierCache=r.tier||'student';ls('mp_tier',tierCache);ls('mp_member',paid(tierCache)?'1':'0');emit('tier',tierCache);
         return live.fetchStudent().then(function(){return r})})},
