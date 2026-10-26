@@ -1490,6 +1490,7 @@ nav.main .nav-dd-btn.nav-x{display:none}
 /* player follow cards (assets/socials.js): plain text X / Instagram links, no brand icons */
 .fo-pc .fo-av{object-fit:cover}
 .fo-num{display:grid;place-items:center;font-family:var(--display,inherit);font-weight:800;font-size:20px;color:var(--blue)}
+.follow-l .fo-pl li{display:block;padding:0;border:0;border-radius:0;background:none}
 .fo-pl{list-style:none;margin:auto 0 0;padding:var(--s1) 0 0;display:flex;flex-direction:column;gap:var(--s1)}
 .fo-card .fo-a.fo-t{width:100%;height:auto;min-height:44px;justify-content:flex-start;gap:var(--s2);padding:0 var(--s3);border-radius:var(--r1);color:var(--blue);min-width:0}
 .fo-tk{flex:0 0 auto;font-weight:800}
