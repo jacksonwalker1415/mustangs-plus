@@ -290,3 +290,7 @@ body[data-page="games"] main .credit{font-size:13px}
   .gc-grid #gmLive{order:-1}
   .gm-live .cf-score .sc-t em{font-size:32px}
 }
+
+/* ---------- losing score (.sc-t): solid color instead of site.css opacity .5 ---------- */
+/* was --black (#1f1f1f on game pages) at .5 = #8f8f8f on #fff, 3.23:1. #536197 (78% SMU navy #23347a on white) = 5.96:1 on #fff */
+body[data-page="games"] .sc-t:not(.win){opacity:1;color:#536197}
