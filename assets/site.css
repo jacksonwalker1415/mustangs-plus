@@ -1261,3 +1261,9 @@ html:not(.is-member) .gated .poster .np-art{filter:blur(2.5px)}
 
 /* Reserve the header height until app.js renders it, so the page does not jump down (ported from the ads-mock review fix; no ad code) */
 #site-header:empty{min-height:calc(var(--hdr) + 1px);background:var(--black)}
+/* Real YouTube thumbnails on official video cards: photo full-bleed, a light scrim only along the bottom so the Watch pill stays legible. */
+.poster.has-yt{background:#16214f}
+.poster.has-yt .ph{width:100%;height:100%;object-fit:cover;display:block}
+.poster.has-yt::after{background:linear-gradient(180deg,rgba(16,24,60,0) 58%,rgba(16,24,60,.5) 100%)}
+.poster.has-yt .credit{top:var(--s3);bottom:auto;right:var(--s3)}
+.poster.has-yt .dur{top:auto;bottom:var(--s3)}
