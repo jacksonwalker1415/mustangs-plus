@@ -2861,3 +2861,36 @@ main.lib-typed .pods{border-top:0}
 .ft-brief p{font-size:14px}
 .sdd-h{font-size:14px}
 .legal,.site-ft .legal{font-size:14px;line-height:1.55}
+
+/* ---- Desktop 44px hit areas, shared chrome (bot/desktop-taps). Desktop only: phones (<960px) are untouched.
+   Nothing moves: bordered/filled controls get a transparent ::after that extends the hit box past the visible
+   shape; unstyled links use padding with an equal negative margin. nav.main is overflow:hidden, so it stretches
+   to the header's full height (children stay centred where they were) so the nav ::after boxes aren't clipped.
+   Footer column links sit on a 26px pitch, so they fill the gaps (26px, no dead zones) rather than overlap. ---- */
+@media(min-width:960px){
+  /* header: wordmark 38 -> 44 */
+  header.site .wordmark{padding-block:3px;margin-block:-3px}
+  /* header: Media, Sports, Boards, Search 39 -> 44+ */
+  nav.main{align-self:stretch;align-items:center}
+  nav.main>a,nav.main>.nav-dd-btn{position:relative}
+  nav.main>a::after,nav.main>.nav-dd-btn::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+  /* header: Join, Ad-free switch, account button 36 -> 44 */
+  .hdr-act .hdr-join,.hdr-act button.adfree,header.site .acct-btn{position:relative}
+  .hdr-act .hdr-join::after,.hdr-act button.adfree::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+  header.site .acct-btn::after{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px}
+  /* disclaimer "About this project" 17 -> 44; bar height unchanged. Lifted over the sticky header (z 50) so the
+     few px that reach past the bar's bottom edge (empty header padding) still land on the link */
+  .disclaimer a{position:relative;z-index:51}
+  .disclaimer a::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+  /* footer column links 18 -> 29.7 (the full row pitch, no dead zones; 44 would need ~14px more row spacing, a visual
+     change). flow-root on the li stops the negative margins collapsing through it */
+  .site-ft .ft-cols li{display:flow-root}
+  .site-ft .ft-cols a{display:block;padding-block:4px;margin-block:-4px}
+  /* footer newsletter 40 -> 44: the visually hidden label (clicking it focuses the input) becomes a transparent
+     box 2px taller than the row on each side, behind the input; the button gets its own ::after above it */
+  .site-ft .brief.compact .brief-f{position:relative}
+  .site-ft .brief.compact .brief-f>label.sr{top:-2px;left:0;right:0;width:auto;height:44px;clip:auto;overflow:hidden;color:transparent;font-size:0;z-index:0}
+  .site-ft .brief.compact .brief-row{position:relative;z-index:1}
+  .site-ft .brief.compact .brief-row .btn{position:relative}
+  .site-ft .brief.compact .brief-row .btn::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+}
