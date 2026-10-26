@@ -1121,10 +1121,21 @@
       if(!$('#stOk',d).checked)return bad('Please tick the box to agree to the privacy notice.',$('#stOk',d));
       var b=$('.st-submit',d);b.disabled=true;m.textContent=SMU.live?'Sending\u2026':'One moment\u2026';
       /* Also join the waitlist as a student (email, name, affiliation and tier_interest only; the student ID never goes there) */
-      SMU.waitlist({email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true}).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(r){b.disabled=false;
-        if(r&&r.sent){f.outerHTML='<div class="st-sent" role="status"><h4>Check your SMU inbox.</h4><p>We sent a link to <b>'+esc(r.email)+'</b>. Open it on this device and your free Student plan starts. Nothing happens until you do.</p></div>';return}
+      var wl={email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true};
+      if(!SMU.live){SMU.waitlist(wl).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(){b.disabled=false;
         d.close();toast('You\u2019re in. Free Student plan, Class of '+o.year+'.');if(PAGE!=='account')location.href=ROOT+'account/#student'},
-        function(err){b.disabled=false;m.textContent=err.message||'Couldn\u2019t sign you up. Try again.'})});
+        function(err){b.disabled=false;m.textContent=err.message||'Couldn\u2019t sign you up. Try again.'});return}
+      /* Live: the waitlist row comes first and is what counts (a repeat email is a success too). The sign-in email is a bonus:
+         Supabase's built-in sender is rate-limited, so if it fails the student still sees success and can confirm later from the Account page. */
+      function addWl(n){return SMU.waitlist(wl).catch(function(e){if(n>0)return new Promise(function(r){setTimeout(r,1200)}).then(function(){return addWl(n-1)});throw e})}
+      function mail(){return Promise.race([Promise.resolve().then(function(){return SMU.studentJoin(o)}),new Promise(function(_,rej){setTimeout(function(){rej(new Error('timeout'))},15000)})])
+        .then(function(r){return !!(r&&r.sent)},function(){return false})}
+      addWl(1).then(function(){syncWaitlist();m.textContent='Saving your spot\u2026';return mail().then(function(sent){
+        var em=esc(o.email.toLowerCase());
+        f.outerHTML='<div class="st-sent" role="status"><h4>You\u2019re on the student waitlist.</h4>'+(sent?
+          '<p>We also sent a link to <b>'+em+'</b>. Open it on this device to start your free Student plan.</p>':
+          '<p class="st-later">We couldn\u2019t send your confirmation email right now. You\u2019re still on the list, and you can confirm later from the <a href="'+ROOT+'account/">Account page</a>.</p>')+'</div>'})},
+        function(){b.disabled=false;m.textContent='We couldn\u2019t save your spot just now. Check your connection and try again.'})});
     $('#stEmail',d).focus()}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-student]');if(!b)return;e.preventDefault();openStudent()});
   /* home#student (e.g. a class QR code) opens the student form */
