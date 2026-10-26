@@ -1,6 +1,6 @@
 /* SMU+ native app (Capacitor) chrome. Every rule is scoped to html.cap-native, which only
    native.js sets when window.Capacitor reports a native platform. The website never loads this file. */
-html.cap-native{--tabh:56px}
+html.cap-native{--tabh:56px;scroll-padding-bottom:calc(var(--tabh) + 8px + env(safe-area-inset-bottom,0px))}
 html.cap-native body{padding-bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px))}
 html.cap-native .toasts{bottom:calc(var(--tabh) + 12px + env(safe-area-inset-bottom,0px))}
 html.cap-native .mmenu{bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px))}
