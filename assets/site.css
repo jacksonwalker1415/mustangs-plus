@@ -2335,6 +2335,9 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 .mm-sf-go{height:44px;padding:0 var(--s4);border:0;border-radius:var(--r1);background:var(--red);color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;flex:none}
 .mm-sf-go:hover{background:var(--red-dk)}
 nav.main a.nav-search{display:inline-flex;align-items:center;gap:6px}
+.media-dd{width:220px}
+.media-dd .sdd-list{grid-template-columns:1fr}
+.mm-nav .mm-media a{padding-left:var(--s4)}
 nav.main a.nav-search svg{width:16px;height:16px;fill:currentColor;flex:none}
 /* ---------- Search results page ---------- */
 .srch-hero{padding:var(--s6) 0 var(--s4)}
