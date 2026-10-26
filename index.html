@@ -52,7 +52,7 @@ var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=se
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610260700">
+<link rel="stylesheet" href="assets/site.css?v=202610260715">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="assets/brand/smu-plus-logo-lg.webp"><img src="assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-bar" aria-hidden="true"><i></i></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
@@ -133,7 +133,7 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <section class="sec alt" id="board" aria-labelledby="board-h">
   <div class="wrap">
     <div class="sec-hd"><div><p class="eyebrow">The Mustang Board</p><h2 class="sec-t" id="board-h">Where Mustang fans talk.</h2></div><a class="see-all" href="boards/">Open boards<span aria-hidden="true"> →</span></a></div>
-    <p class="board-stats"><span class="online"><b>1,482</b> fans online</span><span><b>7,253</b> threads</span><span><b>222k</b> posts</span></p>
+    <p class="board-stats"><span><b id="homeThreads">&nbsp;</b> threads</span><span><b id="homePosts">&nbsp;</b> posts</span></p>
     <div class="board-preview">
       <div class="box"><div class="box-h"><h3>Hot right now</h3></div><div id="boardHot"></div></div>
       <div class="box"><div class="box-h"><h3>Boards</h3></div><div id="boardForums"></div></div>
@@ -221,13 +221,13 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 </section>
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610260700"></script>
-<script src="assets/data.js?v=202610260700"></script>
-<script src="assets/content.js?v=202610260700"></script>
-<script src="assets/real.js?v=202610260700"></script>
-<script src="assets/athletes.js?v=202610260700"></script>
-<script src="assets/sport-icons.js?v=202610260700"></script>
-<script src="assets/sb.js?v=202610260700"></script>
-<script src="assets/app.js?v=202610260700"></script>
+<script src="assets/config.js?v=202610260715"></script>
+<script src="assets/data.js?v=202610260715"></script>
+<script src="assets/content.js?v=202610260715"></script>
+<script src="assets/real.js?v=202610260715"></script>
+<script src="assets/athletes.js?v=202610260715"></script>
+<script src="assets/sport-icons.js?v=202610260715"></script>
+<script src="assets/sb.js?v=202610260715"></script>
+<script src="assets/app.js?v=202610260715"></script>
 </body>
 </html>
