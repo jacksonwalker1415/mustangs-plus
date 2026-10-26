@@ -3,8 +3,9 @@
 
 No API key. For each channel it reads https://www.youtube.com/feeds/videos.xml?channel_id=ID, drops Shorts,
 keeps only videos whose title names SMU for broader channels (see "filter" in channels.json), checks each video is embeddable (YouTube
-oEmbed returns 200) and records the length when the watch page gives it. The file is rewritten only when the
-video lists change, so the daily workflow commits nothing on quiet days.
+oEmbed returns 200) and records the length when the watch page gives it. It also records each video's public view count from
+the same RSS entry (<media:statistics views="...">, YouTube's own number, as of the refresh); the site's "Most watched this week"
+module ranks by it. View counts change every day, so the file is rewritten on most runs.
 
 Usage: python3 tools/fetch_youtube.py [--check]   (--check: print the result, write nothing)
 """
@@ -58,12 +59,15 @@ def feed(channel_id):
         vid = e.findtext("yt:videoId", "", NS)
         link = (e.find("a:link", NS).get("href") if e.find("a:link", NS) is not None else "")
         g = e.find("media:group", NS)
+        st = g.find("media:community/media:statistics", NS) if g is not None else None
+        views = st.get("views") if st is not None else None
         out.append({
             "id": vid,
             "title": (e.findtext("a:title", "", NS) or "").strip(),
             "published": e.findtext("a:published", "", NS),
             "desc": (g.findtext("media:description", "", NS) if g is not None else "") or "",
             "short": "/shorts/" in link,
+            "views": int(views) if views and views.isdigit() else None,
         })
     return out
 
@@ -157,6 +161,8 @@ def main():
                     continue
                 dur = clock(secs) if secs else None
             item = {"id": v["id"], "title": v["title"], "published": v["published"]}
+            if v["views"] is not None:
+                item["views"] = v["views"]  # public view count from YouTube's feed; never estimated
             if dur:
                 item["dur"] = dur
             if (known[v["id"]].get("nomax") if v["id"] in known else not has_maxres(v["id"])):
@@ -172,7 +178,7 @@ def main():
             except ValueError:
                 continue
             if ts >= cutoff and embeddable(v["id"]):
-                vids.append(v)
+                vids.append({k: x for k, x in v.items() if k != "views"})  # out of the feed: no fresh count, so none shown
         vids = sorted(vids, key=lambda v: v["published"], reverse=True)[:PER_CHANNEL]
         print(f"{ch['name']}: {len(vids)} kept, skipped {skipped}")
         channels.append({**meta, "videos": vids})

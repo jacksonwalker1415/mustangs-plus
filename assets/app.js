@@ -904,6 +904,41 @@
   /* one episode at a time: starting one pauses any other */
   document.addEventListener('play',function(e){var t=e.target;if(!t||!t.classList||!t.classList.contains('pc-au'))return;
     [].forEach.call(document.querySelectorAll('audio.pc-au'),function(a){if(a!==t&&!a.paused)a.pause()})},true);
+  /* ---------- Popular media: one compact "Most watched this week" module, reused wherever a column or a short page would sit empty ----------
+     Videos rank by YouTube's own public view count ("views" in data/videos-feed.json, read from each channel's RSS feed by
+     tools/fetch_youtube.py on the daily refresh). Only videos posted in the last 7 days with a real count are ranked; with fewer than
+     3 it widens to 30 days and says "this month". Nothing is estimated, and a video without a count is never ranked.
+     Podcasts have no public per-episode popularity number, so the module lists the newest episodes and calls them "Latest episodes".
+     At most one per page, never on athlete, roster, recruiting, game or Media pages. Place it with popSpot() below. */
+  var POP_N=4,POP_EP=3,POP_NO={athlete:1,sport:1,recruiting:1,library:1,games:1,home:1};
+  function popFeeds(){function get(u){return fetch(ROOT+u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).catch(function(){return null})}
+    return Promise.all([get('data/videos-feed.json'),get('data/podcasts-feed.json')])}
+  function popVideos(F){if(!F)return {L:[],days:7};var all=[],seen={};
+    (F.channels||[]).forEach(function(ch){(ch.videos||[]).forEach(function(v){if(typeof v.views!=='number')return;var t=Date.parse(v.published),k=v.title.toLowerCase().replace(/\W+/g,' ').trim();
+      if(isNaN(t)||seen[v.id]||seen[k])return;seen[v.id]=seen[k]=1;all.push({ch:ch,v:v,t:t})})});
+    function win(d){var c=Date.now()-d*864e5;return all.filter(function(x){return x.t>=c}).sort(function(a,b){return b.v.views-a.v.views}).slice(0,POP_N)}
+    var L=win(7),days=7;if(L.length<3){L=win(30);days=30}return {L:L,days:days}}
+  function popEpisodes(F){if(!F)return [];var L=[];(F.shows||[]).forEach(function(sh){(sh.episodes||[]).forEach(function(e){var t=Date.parse(e.published);if(!isNaN(t))L.push({sh:sh,e:e,t:t})})});
+    L.sort(function(a,b){return b.t-a.t});var out=[],per={};L.forEach(function(x){if(out.length<POP_EP&&!per[x.sh.key]){per[x.sh.key]=1;out.push(x)}});return out}
+  function popHTML(V,E){var n=++ORN,vh='',eh='';
+    if(V.L.length)vh='<ol class="pm-l" aria-label="Videos ranked by YouTube views">'+V.L.map(function(x){var c=feedItem(x.ch,x.v);
+      return '<li><a class="pm-i" href="'+ROOT+'library/#watch='+c.id+'" data-item="'+c.id+'"><span class="pm-th"><img src="https://i.ytimg.com/vi/'+x.v.id+'/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async" referrerpolicy="no-referrer">'+
+        (x.v.dur?'<span class="pm-dur">'+esc(x.v.dur)+'</span>':'')+'</span><span class="pm-b"><b>'+esc(x.v.title)+'</b><small>'+esc(x.ch.name)+' \u00b7 '+x.v.views.toLocaleString('en-US')+(x.v.views===1?' view':' views')+'</small></span></a></li>'}).join('')+'</ol>';
+    if(E.length)eh='<ul class="pm-l pm-eps" aria-label="Newest podcast episodes">'+E.map(function(x){var d=new Date(x.e.published),ds=d.toLocaleDateString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric'}),ap=x.e.apple||x.sh.apple||x.sh.spotify;
+      return '<li><a class="pm-i" href="'+esc(ap||libUrl())+'"'+(ap?' target="_blank" rel="noopener" aria-label="'+esc(x.sh.name)+': '+esc(x.e.title)+' (opens in a new tab)"':'')+'><span class="pm-th pm-art">'+(x.sh.art?'<img src="'+ROOT+esc(x.sh.art)+'" alt="" width="72" height="72" loading="lazy" decoding="async">':'')+'</span>'+
+        '<span class="pm-b"><b>'+esc(x.e.title)+'</b><small>'+esc(x.sh.name)+' \u00b7 '+[ds,x.e.dur].filter(Boolean).map(esc).join(' \u00b7 ')+'</small></span></a></li>'}).join('')+'</ul>';
+    if(!vh&&!eh)return '';
+    var t=vh?(V.days===7?'Most watched this week':'Most watched this month'):'Latest episodes';
+    return '<section class="popm" aria-labelledby="pm-h-'+n+'"><div class="pm-hd"><h2 class="pm-t" id="pm-h-'+n+'">'+t+'</h2><a class="see-all" href="'+libUrl()+'">Media<span aria-hidden="true"> \u2192</span></a></div>'+
+      (vh?'<div class="pm-grp">'+vh+'</div>':'')+(vh&&eh?'<div class="pm-grp"><h3 class="pm-st">Latest episodes</h3>'+eh+'</div>':eh?'<div class="pm-grp">'+eh+'</div>':'')+'</section>'}
+  /* fill one empty spot: el is the container to fill; it stays hidden until there is something real to show */
+  function popMount(el){if(!el||POP_NO[PAGE]||!window.fetch||document.querySelector('.popm,[data-pop-on]'))return;el.setAttribute('data-pop-on','1');el.hidden=true;
+    popFeeds().then(function(r){if(!el.isConnected)return;var h=popHTML(popVideos(r[0]),popEpisodes(r[1]));if(!h){el.remove();return}el.innerHTML=h;el.hidden=false})}
+  /* where it goes: the empty right column on FAQ and sign-in (desktop), the end of short pages (search, 404) */
+  function popSpot(){var w,a;
+    if(PAGE==='faq'&&(w=$('#faq > .wrap'))){w.classList.add('pm-cols');a=document.createElement('aside');a.className='pm-side';w.appendChild(a);popMount(a)}
+    else if(PAGE==='account'&&(w=$('#acctMain .acct-cols'))){a=document.createElement('aside');a.className='pm-side pm-desk';w.appendChild(a);popMount(a)}
+    else if((PAGE==='search'||PAGE==='notfound')&&(w=$('main'))){a=document.createElement('section');a.className='sec pm-band';a.innerHTML='<div class="wrap"></div>';w.appendChild(a);popMount(a)}}
   /* ---------- Game-day hub: games/ (index) and games/?id=<game> (one page per game) ---------- */
   var GM_SPORT={football:{verb:'Kickoff',ph:'gd-football'},'mens-basketball':{verb:'Tip-off',ph:'gd-mbb'},'womens-basketball':{verb:'Tip-off',ph:'gd-wbb'}};
   /* opponent names as they appear in video titles; lookarounds keep 'Virginia' off 'Virginia Tech' and 'Texas A&M' off 'West Texas A&M' */
@@ -1873,7 +1908,7 @@
   function account(){var main=$('#acctMain');document.title='Settings | SMU+';
     function render(){var u=SMU.user;
       if(!u){main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'+
-        '<section class="sec"><div class="wrap acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+freeBands('acct')+'</div></section>';wireAuth(main,render);
+        '<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+freeBands('acct')+'</div></div></section>';wireAuth(main,render);popSpot();
         if(location.hash==='#student'&&stOn())setTimeout(function(){openStudent()},60);return}
       if(location.hash==='#reset'&&SMU.live){main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
         $('#npForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#npPw').value,m=$('.auth-m',main);if(v.length<8){m.textContent='At least 8 characters.';return}SMU.newPassword(v).then(function(){history.replaceState(null,'',location.pathname);toast('Password updated.');render()},function(err){m.textContent=err.message})});return}
@@ -1959,6 +1994,6 @@
       max=document.documentElement.scrollHeight-innerHeight;
       if(n>2&&Math.abs(off)>2&&!(off>0&&scrollY>=max-1))scrollBy({top:off,behavior:'auto'});
       if(++n<14)setTimeout(fix,200);else quit()})()});
-  aboutSources();if(PAGE==='home')home();else if(PAGE==='library'){library();/* Media > Articles: ?type=article#libRead lands on Read the Recap once the grid has rendered */if(location.hash==='#libRead')setTimeout(function(){var r=$('#libRead');if(r)r.scrollIntoView({block:'start'})},350)}else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();else if(PAGE==='search')searchPage();watchX();
+  aboutSources();if(PAGE==='home')home();else if(PAGE==='library'){library();/* Media > Articles: ?type=article#libRead lands on Read the Recap once the grid has rendered */if(location.hash==='#libRead')setTimeout(function(){var r=$('#libRead');if(r)r.scrollIntoView({block:'start'})},350)}else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();else if(PAGE==='search')searchPage();if(PAGE!=='account')popSpot();watchX();
   articleFromHash();
 })();

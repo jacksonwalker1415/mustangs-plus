@@ -1625,7 +1625,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   --sh-3:0 28px 60px -20px rgba(16,24,60,.42);
   --card-line:rgba(22,33,79,.10);
   /* rhythm + motion */
-  --sec-y:clamp(48px,5.5vw,80px);
+  --sec-y:clamp(32px,4vw,56px); /* was 48-80px; tightened Oct 26 */
   --ease:cubic-bezier(.2,.7,.2,1);--t-fast:.15s;--t-med:.28s;
   /* broadcast hairline texture for dark surfaces */
   --hair:none; /* audit Oct. 26: the diagonal hatch texture was a gradient; flat SMU blue only */
@@ -2643,3 +2643,49 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-stats{position:absolute;top:10px;right:var(--s3);min-height:0;padding:4px 0;border:0;font-size:13px}
   .rb-tv dd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
 }
+
+/* ---------- Tighter spacing (Oct 26, Jackson: "minimize whitespace") ----------
+   One rhythm for every page: section padding 32-56px (was 48-80px), page heroes one step shorter, short pages fill with the
+   popular-media module below instead of empty space. The home ribbon keeps its own fixed height and padding. */
+.page-hero{padding:var(--s6) 0 var(--s7)}
+.page-hero.compact{padding:var(--s6) 0}
+@media(max-width:639px){.page-hero,.page-hero.compact{padding:var(--s5) 0 var(--s6)}}
+.nf-hero{min-height:36vh}
+
+/* ---------- Popular media module (app.js popMount): "Most watched this week" + "Latest episodes" ----------
+   Compact list in a sidebar; a row of cards when it spans a short page (search, 404). Real view counts only. */
+.popm{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s5)}
+.pm-hd{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
+.pm-t{font-family:var(--display);font-weight:400;font-size:24px;line-height:1.05;letter-spacing:.01em;color:var(--ink)}
+.pm-hd .see-all{white-space:nowrap}
+.pm-grp+.pm-grp{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line)}
+.pm-st{font-size:16px;font-weight:700;margin:0 0 var(--s3);color:var(--ink)}
+.pm-l{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3)}
+.pm-i{display:grid;grid-template-columns:112px minmax(0,1fr);gap:var(--s3);align-items:center;min-height:44px;color:inherit;text-decoration:none;border-radius:var(--r-media)}
+.pm-eps .pm-i{grid-template-columns:56px minmax(0,1fr)}
+.pm-th{position:relative;display:block;aspect-ratio:16/9;border-radius:var(--r-media);overflow:hidden;background:var(--b-900)}
+.pm-th.pm-art{aspect-ratio:1/1}
+.pm-th img{display:block;width:100%;height:100%;object-fit:cover}
+.pm-dur{position:absolute;right:4px;bottom:4px;padding:1px 5px;border-radius:var(--r-tag);background:rgba(22,33,79,.88);color:#fff;font-size:12px;font-weight:700;line-height:1.4}
+.pm-b{min-width:0}
+.pm-b b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;line-height:1.3;color:var(--ink)}
+.pm-b small{display:block;margin-top:3px;font-size:13px;line-height:1.3;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pm-i:hover b,.pm-i:focus-visible b{color:var(--blue);text-decoration:underline}
+.pm-i:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+/* side column next to FAQ answers / the sign-in card; the rules page already has one */
+.pm-cols,.acct-cols{display:grid;gap:var(--s7);align-items:start}
+.pm-cols{grid-template-columns:minmax(0,1fr) 360px}
+.acct-cols{grid-template-columns:minmax(0,520px) minmax(0,400px);justify-content:start}
+.pm-side{min-width:0}
+.pm-side .pm-l li:nth-child(n+4),.pm-side .pm-eps li:nth-child(n+3){display:none} /* side column: 3 videos, 2 episodes */
+@media(min-width:960px){.pm-cols>.pm-side,.acct-cols>.pm-side{position:sticky;top:96px}}
+@media(max-width:959px){.pm-cols,.acct-cols{grid-template-columns:minmax(0,1fr);gap:var(--s6)}.pm-desk{display:none}}
+/* full-width row at the end of a short page */
+.sec.pm-band{padding-top:0}
+@media(min-width:640px){
+  .pm-band .pm-l:not(.pm-eps){grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s4)}
+  .pm-band .pm-l:not(.pm-eps) .pm-i{grid-template-columns:minmax(0,1fr);align-items:start;gap:var(--s2)}
+  .pm-band .pm-eps{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
+}
+@media(min-width:640px) and (max-width:959px){.pm-band .pm-l:not(.pm-eps){grid-template-columns:repeat(2,minmax(0,1fr))}.pm-band .pm-eps{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:639px){.popm{padding:var(--s4)}.pm-i{grid-template-columns:120px minmax(0,1fr)}}
