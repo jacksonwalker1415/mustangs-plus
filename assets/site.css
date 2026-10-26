@@ -2159,6 +2159,8 @@ a.fx-quote-h:hover{text-decoration:underline}
 @media(max-width:767px){.fx-latest a{min-height:44px;padding-top:3px}}
 @media(max-width:767px){.fx-rules a{display:inline-flex;align-items:center;min-height:44px}}
 @media(max-width:767px){.fx-row-f{pointer-events:none;color:inherit;z-index:auto}.fx-reply-tip a,.fx-reply.out a{display:inline-flex;align-items:center;min-height:44px}}
+/* phones: inline links in posts, quotes and the game-thread score box get a 44px-tall hit area (inline padding, no layout change) */
+@media(max-width:767px){.fx-body a:not(.fx-quote-h),.gt-live a{padding:12px 0}}
 /* compact phone hero: title and a search icon on one row; the search form opens under it (app.js boards(), #fxSBtn) */
 @media(max-width:767px){
   .fx-hero-in,.fx-sub .fx-hero-in{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 12px;padding-top:10px;padding-bottom:10px}
