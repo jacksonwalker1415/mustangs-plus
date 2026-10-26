@@ -1357,3 +1357,55 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .mcard.ext .poster.tpl-card{background:var(--blue);color:#fff}
 .mcard.ext .poster.tpl-card .poster-verb{background:rgba(16,24,60,.35)}
 .mcard.ext .poster.tpl-card .dur{background:rgba(16,24,60,.4);color:#fff}
+
+/* ---------- Join pop-up (On3-style plans sheet). Blue sheet, white plan cards, red CTAs. No gradients. ---------- */
+.dlg.dlg-join{background:rgba(16,24,60,.78);padding:24px 16px}
+.dlg-join .dlg-sheet{width:min(1060px,100%);max-height:calc(100dvh - 48px);padding:0;display:flex;flex-direction:column;overflow:hidden;background:var(--blue);color:#fff;border-radius:18px}
+.dlg-join .dlg-x{top:14px;right:14px;width:44px;height:44px;background:rgba(255,255,255,.14);color:#fff;font-size:26px}
+.dlg-join .dlg-x:hover{background:rgba(255,255,255,.26)}
+.jm-hd{flex:none;padding:26px 72px 22px 36px;border-bottom:1px solid rgba(255,255,255,.16);display:grid;grid-template-columns:auto 1fr;column-gap:22px;align-items:center}
+.jm-logo{grid-row:span 3;padding-right:22px;border-right:1px solid rgba(255,255,255,.22)}
+.jm-logo img{height:44px;width:auto}
+.jm-wm{font-family:var(--display);font-size:34px}
+.jm-eb{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.78}
+.jm-hd h3{font-family:var(--display);font-weight:400;font-size:34px;line-height:1.05;text-transform:uppercase;letter-spacing:.01em;margin:2px 0 4px}
+.jm-lede{font-size:15px;color:rgba(255,255,255,.86);max-width:62ch}
+.jm-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:30px 36px 26px}
+.jm-tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.jm-card{position:relative;display:flex;flex-direction:column;background:#fff;color:var(--ink);border-radius:14px;padding:28px 24px 24px;border:2px solid transparent}
+.jm-card.pop{border-color:var(--red)}
+.jm-pill{position:absolute;top:-13px;left:22px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:5px 10px;border-radius:99px;line-height:1.2}
+.jm-card h4{font-family:var(--display);font-weight:400;font-size:26px;text-transform:uppercase;letter-spacing:.01em;color:var(--blue)}
+.jm-for{font-size:14px;color:var(--ink-3);margin-top:2px}
+.jm-price{display:flex;align-items:baseline;gap:4px;margin-top:18px}
+.jm-price b{font-family:var(--display);font-weight:400;font-size:52px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.jm-price span{color:var(--ink-3);font-weight:500}
+.jm-fine{font-size:12.5px;color:var(--ink-3);margin:6px 0 16px}
+.jm-go{width:100%;min-height:48px;font-size:15px}
+.jm-card .nilchip{margin:16px 0 0;font-size:12.5px}
+.jm-card ul{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:11px}
+.jm-card li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.4}
+.jm-card li svg{flex:none;width:19px;height:19px;margin-top:1px}
+.jm-card li.inc{font-weight:700}
+.jm-wl{background:#fff;color:var(--ink);border-radius:14px;padding:22px 26px 24px;max-width:620px;margin:0 auto}
+.jm-back{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:700;color:var(--blue);margin:-8px 0 2px -4px;padding:0 4px}
+.jm-back:hover{text-decoration:underline}
+.jm-pick{font-size:15px;color:var(--ink-2);margin-bottom:14px}
+.jm-pick b{font-family:var(--display);font-weight:400;font-size:24px;text-transform:uppercase;color:var(--blue);letter-spacing:.01em;margin:0 4px}
+.jm-pick span{font-size:13px;color:var(--ink-3)}
+.dlg-join .jm-cn{margin:22px auto 0;max-width:none;background:rgba(255,255,255,.1);color:#fff;border-left-color:var(--red)}
+.dlg-join .jm-cn a{color:#fff}
+@media(max-width:959px){.jm-tiers{grid-template-columns:1fr;max-width:520px;margin:0 auto;gap:24px}}
+@media(max-width:639px){
+  .dlg.dlg-join{padding:12px 0 0;place-items:end center}
+  .dlg-join .dlg-sheet{max-height:calc(100dvh - 12px);border-radius:18px 18px 0 0;padding:0}
+  .dlg-join .dlg-x{top:10px;right:10px}
+  .jm-hd{padding:16px 64px 14px 18px;grid-template-columns:1fr;row-gap:2px}
+  .jm-logo{grid-row:auto;border:0;padding:0 0 6px}.jm-logo img{height:30px}
+  .jm-hd h3{font-size:28px}.jm-lede{font-size:14px}
+  .jm-body{padding:24px 16px max(20px,env(safe-area-inset-bottom))}
+  .jm-card{padding:24px 18px 20px}.jm-price b{font-size:44px}
+  .jm-wl{padding:16px 16px 20px}
+  .jm-wl select,.jm-wl input:not([type=checkbox]){min-height:44px}
+}
+.jm-soon{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:rgba(204,0,53,.1);color:var(--red);vertical-align:1px}

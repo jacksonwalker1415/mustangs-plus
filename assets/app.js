@@ -557,7 +557,7 @@
       '</div><p class="note on-dark">Every recruit, portal name and school in this section is fictional.</p>'}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
-      if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist();if(location.hash==='#waitlist')setTimeout(function(){var t=$('#waitlist');if(t)t.scrollIntoView()},0)}
+      if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist()}
     var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
     $('#heroFeature').innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
     $('#gameday').innerHTML=gameStrip();startCountdowns();
@@ -983,6 +983,61 @@
     $('#payNo',d).addEventListener('click',d.close);
     $('#payGo',d).addEventListener('click',function(){var b=this;b.disabled=true;SMU.setTier(tier).then(function(){d.close();toast('You\u2019re a '+TIER_NAME[tier]+' member (demo). The members-only boards are unlocked.')},function(err){b.disabled=false;toast(err.message,'err')})})}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-plan]');if(!b)return;e.preventDefault();var t=b.dataset.plan;requireUser('Create an account or sign in to choose the '+TIER_NAME[t]+' plan.',function(){checkout(t)})});
+  /* ---------- Join pop-up (On3-style): every Join / See plans / Join SMU+ CTA opens this instead of scrolling to #waitlist.
+     Same three tiers, prices and perks as the home #membership cards. Each card's button opens the existing free waitlist form
+     inline (same SMU.waitlist insert, utm attribution and tier_interest column). No payment. ---------- */
+  /* Tier copy has ONE source: the home page #membership cards (index.html). The modal reads names, prices, perks and any
+     'Coming soon' labels from that markup (this page's DOM on home, a fetched copy elsewhere), so perk edits there show up here too. */
+  var JOIN_ORDER=['mustang','pony','club'],JOIN_WL={mustang:'mustang',pony:'all_access',club:'red_blue'},joinTiers=null;
+  function readTiers(doc){var out=[];$$('#membership .tier',doc).forEach(function(c){var b=$('[data-join],[data-plan]',c),k=b&&(b.getAttribute('data-join')||b.getAttribute('data-plan'));if(!JOIN_WL[k])return;
+      var pr=$('.price b',c),h=$('h3',c),f=$('.for',c);
+      out.push({k:k,name:h?h.textContent.trim():TIER_NAME[k],for:f?f.textContent.trim():'',p:pr?pr.textContent.trim():'$'+TIER_PRICE[k],per:(($('.price span',c)||{}).textContent||'/mo').trim(),
+        pop:c.classList.contains('pop')?(($('.tag',c)||{}).textContent||'Most Popular').trim():'',
+        perks:$$('li',c).map(function(li){var sp=$('.soon',li),soon=!!sp||/coming soon/i.test(li.textContent),t=li.textContent;if(sp)t=t.replace(sp.textContent,'');else t=t.replace(/\s*\(?coming soon\)?\s*$/i,'');
+          return {t:t.replace(/\s+/g,' ').trim(),inc:li.classList.contains('inc'),soon:soon,sl:sp?sp.textContent.trim():'Coming soon'}}).filter(function(x){return x.t})})});
+    out.sort(function(x,y){return JOIN_ORDER.indexOf(x.k)-JOIN_ORDER.indexOf(y.k)});return out.length===3?out:null}
+  function loadTiers(){if(joinTiers)return Promise.resolve(joinTiers);var here=$('#membership .tier')?readTiers(document):null;if(here)return Promise.resolve(joinTiers=here);
+    return fetch((ROOT||'./')+'index.html',{credentials:'same-origin'}).then(function(r){return r.ok?r.text():''}).then(function(t){joinTiers=t?readTiers(new DOMParser().parseFromString(t,'text/html')):null;return joinTiers})
+      .catch(function(){return null}).then(function(t){return t||JOIN_ORDER.map(function(k){return {k:k,name:TIER_NAME[k],for:'',p:'$'+TIER_PRICE[k],per:'/mo',pop:k==='pony'?'Most Popular':'',perks:[]}})})}
+  var JCHK='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(53,76,161,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#354CA1" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function joinCard(t){return '<article class="jm-card'+(t.pop?' pop':'')+'" aria-labelledby="jm-'+t.k+'">'+(t.pop?'<span class="jm-pill">'+esc(t.pop)+'</span>':'')+
+    '<h4 id="jm-'+t.k+'">'+esc(t.name)+'</h4>'+(t.for?'<p class="jm-for">'+esc(t.for)+'</p>':'')+
+    '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Sample price. Nothing is charged.</p>'+
+    '<button type="button" class="btn btn-red jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
+    '<span class="nilchip">\u2665 40% to SMU\u2019s official NIL programs (proposed)</span>'+
+    (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+(x.soon?' soon':'')+'">'+JCHK+'<span>'+esc(x.t)+(x.soon?' <span class="jm-soon">'+esc(x.sl)+'</span>':'')+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
+  var joinDlg=null;
+  function openJoin(tier){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
+    if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier)})}
+  function buildJoin(T,tier){
+    var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
+    var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div><p class="jm-eb">Membership</p><h3 id="joinDlg-h">Pick your seat.</h3>'+
+      '<p class="jm-lede">Every plan: 40% to SMU\u2019s official NIL programs (proposed). Join the free waitlist for the plan you want. There is nothing to buy.</p></div>'+
+      '<div class="jm-body"><div class="jm-plans"><div class="jm-tiers">'+T.map(joinCard).join('')+'</div></div>'+
+      '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
+        '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
+      conceptNotice('jm-cn')+'</div>');
+    d.classList.add('dlg-join');syncWaitlist();
+    var x=$('.dlg-x',d);if(x){x.setAttribute('aria-label','Close');d.querySelector('.dlg-sheet').insertBefore(x,d.querySelector('.dlg-sheet').firstChild)}
+    var obs=new MutationObserver(function(){if(!document.contains(d)){obs.disconnect();joinDlg=null;if(/^#(join|waitlist)$/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}});obs.observe(body,{childList:true});
+    if(tier)setTimeout(function(){joinStep(tier)},40)}
+  function joinStep(tier){var d=joinDlg;if(!d)return;var plans=$('.jm-plans',d),wl=$('.jm-wl',d),sheet=$('.jm-body',d);
+    if(!tier){wl.hidden=true;plans.hidden=false;sheet.scrollTop=0;var b=$('[data-join-pick="'+(d.dataset.tier||'pony')+'"]',d);if(b)b.focus();return}
+    var t=(joinTiers||[]).filter(function(x){return x.k===tier})[0]||{p:'$'+TIER_PRICE[tier],per:'/mo'};if(!JOIN_WL[tier])return;d.dataset.tier=tier;
+    $('.jm-pick-n',d).textContent=TIER_NAME[tier];$('.jm-pick-p',d).textContent=t.p+t.per+', sample price';
+    var sel=$('select[name=tier]',wl);if(sel)sel.value=JOIN_WL[tier];
+    plans.hidden=true;wl.hidden=false;sheet.scrollTop=0;
+    var f=$('.wl',wl),target=f&&f.classList.contains('done')?$('.wl-ok',wl):$('input[type=email]',wl);if(target)target.focus()}
+  var JOIN_SEL='.hdr-join,.mm-join,[data-join],a[href$="#waitlist"],a[href$="#join"],a.btn[href$="#membership"]';
+  document.addEventListener('click',function(e){if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;
+    var p=e.target.closest('[data-join-pick]');if(p){e.preventDefault();joinStep(p.dataset.joinPick);return}
+    if(e.target.closest('[data-join-back]')){e.preventDefault();joinStep(null);return}
+    var a=e.target.closest(JOIN_SEL);if(!a||a.closest('#joinDlg'))return;e.preventDefault();
+    if(!pw.hidden)closePaywall();openJoin(a.dataset.join||null)});
+  /* Re-sync after a modal signup so the home #waitlist card shows the same done state. */
+  document.addEventListener('submit',function(e){if(e.target&&e.target.id==='wlJoin')setTimeout(syncWaitlist,0)});
+  function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin()}
+  window.addEventListener('hashchange',joinFromHash);setTimeout(joinFromHash,0);
 
   /* ---------- New thread ---------- */
   function compose(sport){var member=isMember();
