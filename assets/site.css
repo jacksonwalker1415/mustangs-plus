@@ -2024,6 +2024,15 @@ a.fx-pg:hover{border-color:var(--blue);color:var(--blue)}
 .fx-bar .fx-pages{margin:0}
 .fx-bar-r{display:flex;flex-wrap:wrap;gap:var(--s2);margin-left:auto}
 .fx-bar .btn{height:40px}
+/* desktop/tablet: 44px hit areas on board names, latest-thread links, the breadcrumb and the thread bar buttons.
+   Padding with a matching negative margin, so rows keep their height (phones have their own rules below) */
+@media(min-width:768px){
+  .fx-node-t a,.fx-node-lt,.fx-latest a{position:relative;z-index:1;padding-block:calc((44px - 1lh)/2 + .5px);margin-block:calc((1lh - 44px)/2 - .5px)}
+  .fx-latest a{display:block;white-space:nowrap}
+  .fx-rules a,.fx-reply-tip a,.fx-reply.out p a{padding-block:13px}
+  .fx-crumbs a{min-height:44px;margin-block:-6px}
+  .fx-bar{margin-block:calc(var(--s4) - 2px)}.fx-bar .btn{height:44px}
+}
 .fx-msg{position:relative;display:grid;grid-template-columns:196px minmax(0,1fr);border:1px solid var(--fx-line-2);border-radius:8px;background:#fff;margin-bottom:var(--s3);scroll-margin-top:calc(var(--hdr) + 16px)}
 .fx-msg.fx-just{border-color:var(--blue);box-shadow:0 0 0 2px color-mix(in srgb,#354CA1 25%,transparent)}
 .fx-user{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;border-right:1px solid var(--fx-line);text-align:center}
