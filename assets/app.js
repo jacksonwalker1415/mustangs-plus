@@ -176,7 +176,7 @@
   function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
     if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
     if(n[2]==='library')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="mediaBtn" aria-expanded="false" aria-controls="mediaMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
-    return '<a href=""'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')+
+    return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')+
     '<a href="'+ROOT+'search/" class="nav-search'+(PAGE==='search'?' on" aria-current="page':'')+'">'+SVG_SEARCH+'<span>Search</span></a>'}
   function sportsPanel(){return '<div class="sports-dd" id="sportsMenu" hidden><p class="sdd-h">All 12 sports</p><ul class="sdd-list">'+MP.SPORTS.map(function(sp){var cur=PAGE==='sport'&&document.body.dataset.sport===sp.slug;
     return '<li><a href="'+sportUrl(sp.slug)+'"'+(cur?' aria-current="page"':'')+'>'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a></li>'}).join('')+'</ul></div>'}
@@ -806,7 +806,10 @@
       /* Home waitlist section removed (Oct 26, Jackson); Join CTAs open the join pop-up. */
       var tiers=$('.tiers',mem);if(tiers)tiers.insertAdjacentHTML('beforebegin',freeBands('home'))}
     var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
-    if($('#heroFeature'))$('#heroFeature').innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
+    /* Hero featured card: desktop/tablet only. On phones the hero is display:none, so skip it there (no eager poster download) and fill it if the window widens. */
+    (function(){var hf=$('#heroFeature'),mq=window.matchMedia&&matchMedia('(max-width:719px)');if(!hf)return;
+      function fill(){if(hf.dataset.filled||(mq&&mq.matches))return;hf.dataset.filled='1';hf.innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';}
+      fill();if(mq&&mq.addEventListener)mq.addEventListener('change',fill)})();
     $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Official SMU Athletics video')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
