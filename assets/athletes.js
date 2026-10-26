@@ -1,5 +1,6 @@
 /* SMU+ athlete profiles. These four are REAL SMU football players.
    Bio and stat lines come from public sources linked in each profile's "src" list (checked Oct 25, 2026).
+   recruit: high school, hometown and school path as stated on each player's SMU Athletics bio (recruit.src, checked Oct. 26, 2026). No recruiting ratings or rankings are shown.
    Anything not from a source is marked illustrative on the page. */
 window.MP = window.MP || {};
 (function(){var MP=window.MP;
@@ -7,7 +8,8 @@ var ESPN='https://www.espn.com/college-football/player/', SMU='https://smumustan
 MP.ATHLETES = [
  {id:'derrick-mcfall',photo:'mcfall-hs',cardPhoto:'mcfall-hs',name:'Derrick McFall',first:'Derrick',last:'McFall',num:'0',pos:'WR/RB',sport:'football',kit:'home',
   ht:'5-11',wt:'182',cls:'Junior',hometown:'Tyler, Texas',prev:'Tyler HS',
-  ratings:[['247Sports','4-star'],['ESPN','4-star'],['Rivals','3-star'],['On3','3-star']],
+  ratings:null,
+  recruit:{hs:'Tyler High',town:'Tyler, Texas',path:[['High school','Tyler, Tyler, Texas','2021–23'],['College','SMU (redshirted in 2024)','2024–present']],src:[['SMU Athletics bio: Derrick McFall','https://smumustangs.com/sports/football/roster/derrick-mcfall/15560']]},
   blurb:'A do-everything weapon from Tyler who splits time between the slot and the backfield. As a redshirt freshman in 2025 he scored six total touchdowns and earned an Earl Campbell Tyler Rose Award honorable mention.',
   honors:['2025 Preseason: Doak Walker Award Watch List','2025 In-Season: Earl Campbell Tyler Rose Award Honorable Mention (Nov. 11)'],
   season:{label:'2026 season (through Oct. 24)',stats:[['REC',8],['REC YDS',124],['YDS/REC',15.5],['REC TD',3],['RUSH',14],['RUSH YDS',85],['YDS/CAR',6.1]]},
@@ -21,6 +23,7 @@ MP.ATHLETES = [
  {id:'kevin-jennings',photo:'jennings-dropback',cardPhoto:'jennings-dropback',gallery:['jennings-celebrate','jennings-scramble','ol-59'],name:'Kevin Jennings',first:'Kevin',last:'Jennings',num:'7',pos:'QB',sport:'football',kit:'alt',
   ht:'6-0',wt:'195',cls:'5th Year',hometown:'Oak Cliff, Texas',prev:'South Oak Cliff HS',
   ratings:null,
+  recruit:{hs:'South Oak Cliff',town:'Oak Cliff, Texas',path:[['High school','South Oak Cliff, Dallas; 2021 Class 5A Division II state champions','Through 2021'],['College','SMU (redshirted in 2022)','2022–present']],src:[['SMU Athletics bio: Kevin Jennings','https://smumustangs.com/sports/football/roster/kevin-jennings/15545']]},
   blurb:'The Oak Cliff native has started under center for three seasons. He threw for 3,641 yards and 26 touchdowns in 2025 and is completing 72.6% of his passes through seven games in 2026.',
   honors:[],
   season:{label:'2026 season (through Oct. 24)',stats:[['CMP-ATT','156-215'],['CMP%',72.6],['PASS YDS','2,062'],['PASS TD',19],['INT',5],['RTG',177.8],['RUSH TD',2]]},
@@ -34,6 +37,7 @@ MP.ATHLETES = [
  {id:'yamir-knight',photo:'knight-hs',cardPhoto:'knight-hs',name:'Yamir Knight',first:'Yamir',last:'Knight',num:'8',pos:'WR',sport:'football',kit:'away',
   ht:'5-8',wt:'185',cls:'Senior',hometown:'Smyrna, Delaware',prev:'James Madison / Smyrna HS',
   ratings:null,
+  recruit:{hs:'Smyrna',town:'Smyrna, Del.',path:[['High school','Smyrna, Smyrna, Del.; 2022 DIAA Class 3A state champions','Through 2022'],['College','James Madison','2023–24'],['Transfer','SMU','2025–present']],src:[['SMU Athletics bio: Yamir Knight','https://smumustangs.com/sports/football/roster/yamir-knight/15549']]},
   blurb:'A James Madison transfer who plays slot receiver and returns punts. He was named Offensive MVP of the Trust & Will Holiday Bowl after a seven-catch, 104-yard day against Arizona.',
   honors:['2025 Postseason: All-ACC Honorable Mention','Trust & Will Holiday Bowl Offensive MVP (Jan. 2, 2026)','2025 In-Season: Earl Campbell Tyler Rose Award Honorable Mention'],
   season:{label:'2026 season (through Oct. 24)',stats:[['REC',38],['REC YDS',443],['YDS/REC',11.7],['REC TD',2],['LONG',33],['PR',14],['PR YDS',153]]},
@@ -46,7 +50,8 @@ MP.ATHLETES = [
   src:[['SMU Athletics bio',SMU+'yamir-knight/15549'],['ESPN stats',ESPN+'stats/_/id/5121750/yamir-knight'],['ESPN 2026 game log',ESPN+'gamelog/_/id/5121750/yamir-knight/type/college-football/year/2026'],['Sports-Reference 2025 game log',"https://www.sports-reference.com/cfb/players/yamir-knight-1/gamelog/2025"]]},
  {id:'ahmaad-moses',photo:'moses-hs',cardPhoto:'moses-hs',name:'Ahmaad Moses',first:'Ahmaad',last:'Moses',num:'7',pos:'S',sport:'football',kit:'home',
   ht:'5-10',wt:'205',cls:'5th Year',hometown:'Arlington, Texas',prev:'Mansfield Summit HS',
-  ratings:[['247Sports','3-star'],['Rivals','3-star'],['ESPN','3-star']],
+  ratings:null,
+  recruit:{hs:'Mansfield Summit',town:'Arlington, Texas',path:[['High school','Mansfield Summit; reached the state semifinals','Through 2021'],['College','SMU','2022–present']],src:[['SMU Athletics bio: Ahmaad Moses','https://smumustangs.com/sports/football/roster/ahmaad-moses/16145']]},
   blurb:'A team captain who was AP All-ACC First Team in 2025. He led SMU with 104 tackles and five interceptions and was Defensive MVP of the Trust & Will Holiday Bowl.',
   honors:['2025: AP All-ACC First Team','2025: Phil Steele All-America Fourth Team','Trust & Will Holiday Bowl Defensive MVP','Walter Camp National Defensive Player of the Week (Nov. 4, 2025)'],
   season:{label:'2025 season (no 2026 stats listed by ESPN as of Oct. 25)',stats:[['TKL',104],['SOLO',54],['TFL',5.5],['SACK',1],['INT',5],['INT YDS',110],['PD',3]]},
@@ -60,6 +65,7 @@ MP.ATHLETES = [
  ,{id:'kendrick-raphael',photo:'raphael-carry',cardPhoto:'raphael-bc',gallery:['raphael-endzone'],name:'Kendrick Raphael',first:'Kendrick',last:'Raphael',num:'6',pos:'RB',sport:'football',kit:'alt',
   ht:'5-11',wt:'201',cls:'Senior',hometown:'Naples, Florida',prev:'Cal / NC State / Naples HS',
   ratings:null,
+  recruit:{hs:'Naples High',town:'Naples, Fla.',path:[['High school','Naples High, Naples, Fla.','Through 2022'],['College','NC State (enrolled January 2023)','2023–24'],['Transfer','Cal','2025'],['Transfer','SMU','2026']],src:[['SMU Athletics bio: Kendrick Raphael','https://smumustangs.com/sports/football/roster/kendrick-raphael/15625']]},
   blurb:'A veteran back who came to SMU after stops at NC State and Cal. Through seven games in 2026 he leads the Mustangs with 641 rushing yards and eight rushing touchdowns, including 197 yards and three scores at Louisville.',
   honors:[],
   season:{label:'2026 season (through Oct. 24)',stats:[['RUSH',121],['RUSH YDS',641],['YDS/CAR',5.3],['RUSH TD',8],['REC',10],['REC YDS',94],['REC TD',1]]},
@@ -74,6 +80,7 @@ MP.ATHLETES = [
  ,{id:'alexander-kilgore',photo:'kilgore',cardPhoto:'kilgore',gallery:[],name:'Alexander Kilgore',first:'Alexander',last:'Kilgore',num:'23',pos:'LB',sport:'football',kit:'away',
   ht:'6-2',wt:'231',cls:'Senior',hometown:'Katy, Texas',prev:'Katy Paetow HS',
   ratings:null,
+  recruit:{hs:'Katy Paetow',town:'Katy, Texas',path:[['High school','Katy Paetow; state champions in his junior season','Through 2022'],['College','SMU','2023–present']],src:[['SMU Athletics bio: Alexander Kilgore','https://smumustangs.com/sports/football/roster/alexander-kilgore/15548']]},
   blurb:'A four-year Mustang from Katy who leads the 2026 defense in tackles. He had two interceptions in 2025, one returned for a touchdown.',
   honors:[],
   season:{label:'2026 season (through Oct. 24)',stats:[['TKL',39],['SOLO',19],['AST',20],['TFL',3.5],['SACK',0],['INT',0]]},
