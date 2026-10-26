@@ -1003,7 +1003,7 @@
   /* ---------- Recruiting hub ---------- */
   function composite(v){var h=0,s=v[0];for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))%997;return (0.80+v[4]*0.03+h/997*0.029).toFixed(4)}
   function recruiting(){
-    if(!REC_ON){var mn=$('main');document.title='Recruiting is paused | SMU+';if(mn)mn.innerHTML='<section class="page-hero"><div class="wrap"><p class="eyebrow">SMU+</p><h1 class="display">This section is paused</h1><p class="lede on-dark">Recruiting coverage is off for now.</p><p class="nf-act"><a class="btn btn-red" href="'+(ROOT||'./')+'">Go to the home page</a> <a class="btn btn-ghost" href="'+ROOT+'boards/">The Mustang Board</a></p></div></section>';return}
+    if(!REC_ON){var mn=$('main');document.title='Recruiting is paused | SMU+';if(mn)mn.innerHTML='<section class="page-hero"><div class="wrap"><h1 class="display">This section is paused</h1><p class="lede on-dark">Recruiting coverage is off for now.</p><p class="nf-act"><a class="btn btn-red" href="'+(ROOT||'./')+'">Go to the home page</a> <a class="btn btn-ghost" href="'+ROOT+'boards/">The Mustang Board</a></p></div></section>';return}
     var all=[];MP.VISITS.forEach(function(w){w.list.forEach(function(v){all.push({v:v,w:w})})});
     all.sort(function(a,b){return composite(b.v)-composite(a.v)});
     $('#recBoard').innerHTML=all.slice(0,6).map(function(x,i){var v=x.v;return '<article class="rk"><span class="rk-n">'+(i+1)+'</span><div class="rk-b"><b>'+esc(v[0])+'</b><small>'+v[1]+' · '+v[2]+' · '+esc(v[3])+'</small>'+
@@ -1398,7 +1398,7 @@
   function athlete(){
     var main=$('#athleteMain'),id=new URLSearchParams(location.search).get('id'),a=MP.athleteBy&&MP.athleteBy(id);
     if(!a){document.title='Football Player Profiles | SMU+';
-      main.innerHTML='<section class="page-hero compact"><div class="wrap"><p class="eyebrow">Football · real players · public stats</p><h1 class="display">Football player profiles</h1><p class="lede on-dark">Current SMU football players. Every stat and bio fact on these pages comes from a public source linked on the profile. Profiles for other sports are not built yet.</p></div></section>'+
+      main.innerHTML='<section class="page-hero compact"><div class="wrap"><h1 class="display">Football player profiles</h1><p class="lede on-dark">Current SMU football players. Every stat and bio fact on these pages comes from a public source linked on the profile. Profiles for other sports are not built yet.</p></div></section>'+
         '<section class="sec"><div class="wrap"><div class="pgrid three">'+MP.ATHLETES.filter(function(a){return !a.basic}).map(profileCard).join('')+'</div></div></section>'+
         ['football','mens-basketball','womens-basketball'].map(function(sl){var L=MP.ATHLETES.filter(function(a){return a.basic&&a.sport===sl}).sort(function(x,y){return x.num-y.num});
           return L.length?'<section class="sec"><div class="wrap"><div class="sec-hd"><div><h2 class="sec-t">'+(sl==='football'?'More football profiles':esc(sportBy(sl).name)+' profiles')+'</h2></div><span class="meta">Roster facts from SMU Athletics</span></div><div class="pgrid three">'+L.map(profileCard).join('')+'</div></div></section>':''}).join('')+
