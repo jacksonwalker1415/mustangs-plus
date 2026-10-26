@@ -1466,6 +1466,22 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 /* ---- 7.1 No-photo items: posters and players use main's flat-by-type cards (199a5a6). Only the reader header follows: flat navy + texture ---- */
 .reader-hd.tone-white,.reader-hd:not(.has-img){background:var(--hair),var(--b-900);color:#fff}
 
+/* ---- 7.2 Decorative gradients and glows out: flat brand surfaces + texture, scrims only over photos ---- */
+.page-hero:not(.has-photo){background:var(--hair),var(--b-900)}
+.brief-panel,.band{background:var(--hair),var(--b-900)}
+.gameday{background:var(--hair),var(--b-800)}
+.ap-hero{background:var(--hair),var(--b-900)}
+.live-dot{box-shadow:none}
+.hero-card:hover{box-shadow:0 0 0 1px rgba(255,255,255,.3),var(--sh-2)}
+.btn-red:not(header .btn):not(.mmenu .btn):hover,.btn-white:not(header .btn):hover,.btn-navy:not(header .btn):hover,.tier .btn:hover,.tier.pop .btn:hover{box-shadow:none}
+
+/* ---- 7.3 Decorative symbols: CSS check glyph becomes a drawn tick, like the waitlist list ---- */
+.brief-pts li{position:relative;padding-left:22px}
+.brief-pts li::before{content:"";position:absolute;left:2px;top:.45em;width:10px;height:5px;margin:0;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
+/* the heart in the plan NIL line is decorative: hide the glyph, keep the words */
+.nilchip{display:inline-block}
+.nilchip::first-letter{font-size:0}
+
 
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
