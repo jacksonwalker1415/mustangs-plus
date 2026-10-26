@@ -1453,8 +1453,7 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
   .sport-grid{grid-template-columns:minmax(0,1fr);gap:0;border-radius:var(--r-card);overflow:hidden;box-shadow:var(--sh-1),inset 0 0 0 1px var(--card-line);background:#fff}
   .sport-tile{border-radius:0;box-shadow:none;border-top:1px solid var(--line);min-height:56px;padding:var(--s2) var(--s4) var(--s2) var(--s2)}
   .sport-tile:first-child{border-top:0}
-  .sport-tile span{flex-direction:row;align-items:baseline;justify-content:space-between;gap:var(--s3);flex:1}
-  .sport-tile small{text-align:right}
+  .sport-tile span{flex:1}
 }
 .rnum,.pc-pic,.ap-photo{border-radius:var(--r-media)}
 .pcard .pc-pic{border-radius:0}
