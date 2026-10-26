@@ -240,15 +240,27 @@
   var CATNAME={};MP.CATS.forEach(function(c){CATNAME[c[0]]=c[1]});
   var TICON={video:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',article:'<svg viewBox="0 0 24 24"><path d="M5 4h14v2H5zm0 4h14v2H5zm0 4h14v2H5zm0 4h9v2H5z"/></svg>',podcast:'<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg>'};
   var VERB={video:'Watch',article:'Read',podcast:'Listen'};
-  /* No-photo poster: solid colour by content type, big white sport icon (or a neutral type mark), small uppercase kicker. No gradients, no watermark word. */
   var CARD_SPORT={'smu-fb-cal-highlights':'football','smu-fb-uva-highlights':'football','smu-msoc-cal-highlights':'mens-soccer','smu-vb-gt-highlights':'volleyball','smu-micd-up-s2e6':'football','preview-syracuse':'football','preview-msoc-louisville':'mens-soccer','vb-road-sweep':'volleyball','micd-setter':'volleyball','walk-on':'football','coachs-corner-acc':'football','thursday-notes':'football'};
-  var NP_MARK={video:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="46" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M50 40v40l32-20z" fill="#fff"/></svg>',
-    article:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="26" y="18" width="68" height="84" rx="4" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M38 38h44M38 52h44M38 66h44M38 80h28" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>',
-    podcast:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="46" y="16" width="28" height="52" rx="14" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M34 56a26 26 0 0 0 52 0M60 82v20M46 102h28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>'};
   function cardSport(c){var k=c.sport||CARD_SPORT[c.id];if(!k)return null;var m=(MP.SPORTS||[]).filter(function(x){return x.slug===k||x.slug.indexOf(k)===0})[0];return {slug:m?m.slug:k,name:m?m.name:k}}
-  function noPhoto(c){var sp=cardSport(c),a=sp?sp.name:(CATNAME[c.cat]||c.t),b=c.label||'',same=b.toLowerCase().slice(0,5)===a.toLowerCase().slice(0,5),kick=a+(b&&!same?' \u00b7 '+b:'');
-    var art=sp&&MP.sportIcon?MP.sportIcon(sp.slug,null,'dark'):NP_MARK[c.t]||NP_MARK.article;
-    return '<span class="np-kick">'+esc(kick)+'</span><span class="np-art" aria-hidden="true">'+art.replace(' role="img"','')+'</span>'}
+  /* SMU-style card template for items with no real video thumbnail (articles, sourced stories, Sample items), modeled on SMU Athletics'
+     own graphics: a real SMU Athletics photo on the left (the item's own photo, else a venue/crowd/team shot for its sport) and a flat
+     SMU-blue panel with the SMU+ mark, a small kicker, one or two big words and the date when there is one. HTML and CSS only. */
+  var TPL_PH={football:['ford','helmet','runout','hype'],'mens-basketball':['moody-bowl','students'],'womens-basketball':['wbb-drive','students'],volleyball:['vb-spike'],
+    'mens-soccer':['msoc'],'womens-soccer':['wsoc'],'swimming-diving':['swim'],golf:['golf'],tennis:['tennis'],'track-field':['track'],rowing:['rowing'],equestrian:['equestrian'],'':['ford','students','hype','storm']};
+  var TPL_W=[[/mic'?d up/i,"MIC'D UP"],[/hall of fame|feature|profile/i,'FEATURE'],[/recap|final from|results/i,'RECAP'],[/preview/i,'PREVIEW'],[/film/i,'FILM ROOM'],
+    [/season notes/i,'SEASON NOTES'],[/roundup/i,'ROUNDUP'],[/poll|top 25|ranked|rankings/i,'RANKINGS'],[/record/i,'RECORD'],[/champion|title/i,'CHAMPIONS'],
+    [/award|watch list|finalist|of the week/i,'HONORS'],[/schedule|slate|televised/i,'SCHEDULE'],[/patch|partnership|business|lacrosse|launch/i,'BUSINESS'],
+    [/docuseries|boulevard/i,'DOCUSERIES'],[/interview/i,'INTERVIEW'],[/highlights/i,'HIGHLIGHTS'],[/press conference|availability|tipoff|postgame|postmatch/i,'MEDIA DAY'],[/coach/i,'STAFF']];
+  var TPL_MARK='<span class="tpl-mark" aria-hidden="true"><b>SMU</b><i><svg viewBox="0 0 14 14"><path d="M6 2h2v4h4v2H8v4H6V8H2V6h4z" fill="#fff"/></svg></i></span>';
+  function tplWord(c){var h=(c.label||'')+' '+c.title;if(c.t==='podcast'&&!/mic'?d up/i.test(h))return 'PODCAST';
+    for(var i=0;i<TPL_W.length;i++)if(TPL_W[i][0].test(h))return TPL_W[i][1];return c.ext?'NEWS':c.t==='video'?'VIDEO':'STORY'}
+  function tplPhoto(c){if(c.img&&PH[c.img])return c.img;var sp=cardSport(c),pool=TPL_PH[sp&&TPL_PH[sp.slug]?sp.slug:''],h=0;
+    for(var i=0;i<c.id.length;i++)h=(h*31+c.id.charCodeAt(i))>>>0;return pool[h%pool.length]}
+  function tplDate(c){var a=MP.ARTICLES&&MP.ARTICLES[c.id];return c.date||(c.real&&a&&a.date)||''}
+  function smuTpl(c,opt){opt=opt||{};var sp=cardSport(c),sample=/^sample/i.test(c.label||''),k=c.ext?c.outlet+(sp?' \u00b7 '+sp.name:''):(sp?sp.name:(CATNAME[c.cat]||c.t)),d=tplDate(c),key=tplPhoto(c);
+    if(sample)k='Sample \u00b7 '+k;
+    return '<span class="tpl-ph">'+photo(key,{small:!opt.big,eager:opt.eager})+'<span class="credit">Photo: SMU Athletics</span></span>'+
+      '<span class="tpl-p" aria-hidden="true">'+TPL_MARK+'<span class="tpl-k">'+esc(k)+'</span><span class="tpl-w">'+esc(tplWord(c))+'</span>'+(d?'<span class="tpl-d">'+esc(d)+'</span>':'')+'</span>'}
   /* Official YouTube items show the video's real thumbnail (maxresdefault, falling back to hqdefault). Images load from i.ytimg.com. */
   function ytId(c){return c&&c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null}
   function ytImg(id,cls,eager){return '<img class="'+cls+'" src="https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg" data-yt-fb="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="" '+(eager?'loading="eager"':'loading="lazy"')+' decoding="async" referrerpolicy="no-referrer">'}
@@ -256,10 +268,10 @@
     if(e.type==='error'||(i.naturalWidth&&i.naturalWidth<=120)){var fb=i.dataset.ytFb;delete i.dataset.ytFb;i.src=fb}}
   document.addEventListener('error',ytFix,true);document.addEventListener('load',ytFix,true);
   function poster(c,opt){opt=opt||{};var g=gated(c),pr=progressOf(c.id),yt=ytId(c);
-    return '<div class="poster '+(yt?'tone-black has-img has-yt':c.img?'tone-'+(c.tone||'blue')+' has-img':'no-ph np-'+c.t)+'">'+(yt?ytImg(yt,'ph yt-ph',opt.eager)+'<span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>':c.img?photo(c.img,{small:!opt.big,eager:opt.eager})+CREDIT:noPhoto(c))+
+    return '<div class="poster '+(yt?'tone-black has-img has-yt':'tpl-card')+'">'+(yt?ytImg(yt,'ph yt-ph',opt.eager)+'<span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>':smuTpl(c,opt))+
       (g?'<span class="lock-ov" aria-hidden="true">'+LOCK+'<b>Members only</b></span>':'')+
       '<span class="poster-verb">'+TICON[c.t]+(c.ext?'Read at '+esc(c.outlet)+EXT:g?'<span class="pv-g">Preview</span><span class="pv-m">'+VERB[c.t]+'</span>':VERB[c.t])+'</span>'+(c.isNew?'<span class="tag tag-new">New</span>':'')+
-      (c.lock?'<span class="tag tag-lock">'+LOCK+'Members</span>':'<span class="tag tag-free">Free</span>')+'<span class="dur">'+esc(c.dur)+'</span>'+
+      (c.lock?'<span class="tag tag-lock">'+LOCK+'Members</span>':'<span class="tag tag-free">Free</span>')+(c.ext||!c.dur||c.dur==='Video'?'':'<span class="dur">'+esc(c.dur)+'</span>')+
       (pr>0.02?'<span class="prog" role="progressbar" aria-label="Progress" aria-valuenow="'+Math.round(pr*100)+'" aria-valuemin="0" aria-valuemax="100"><i style="width:'+Math.round(pr*100)+'%"></i></span>':'')+'</div>'}
   function itemHref(c){return (c.t==='article'?'#article=':'#watch=')+c.id}
   /* Media batch 1: link-out articles (c.ext) open the outlet's own page in a new tab. Credited, free, our own summary only. */
@@ -297,9 +309,9 @@
   function openMedia(id,push){var c=LIBBY[id];if(!c)return false;lastFocus=lastFocus||document.activeElement;
     var lock=blocked(c),p=progressOf(id),total=secs(c.dur),eps=seriesOf(c),audio=c.t==='podcast';
     var yt=c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null,ap=!yt&&c.apple&&/^https:\/\/embed\.podcasts\.apple\.com\//.test(c.apple)?c.apple:null;
-    readerBody.innerHTML=(ap?'<div class="player no-ph np-podcast ap" id="apBox">'+noPhoto(c)+'<span class="credit">'+esc(c.credit)+'</span><button type="button" class="play" id="apPlay" aria-label="Play this episode (loads Apple Podcasts)">'+SVG.play+'</button></div>':yt?'<div class="player yt'+(lock?' locked':'')+'" id="ytBox">'+ytImg(yt,'yt-thumb',1)+'<span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>'+
+    readerBody.innerHTML=(ap?'<div class="player tpl-card ap" id="apBox">'+smuTpl(c,{big:1,eager:1})+'<button type="button" class="play" id="apPlay" aria-label="Play this episode (loads Apple Podcasts)">'+SVG.play+'</button></div>':yt?'<div class="player yt'+(lock?' locked':'')+'" id="ytBox">'+ytImg(yt,'yt-thumb',1)+'<span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>'+
           (lock?'':'<button type="button" class="play" id="ytPlay" aria-label="Play the official SMU Athletics video (loads YouTube)">'+SVG.play+'</button>')+'</div>':
-        '<div class="player '+(c.img?'tone-'+(c.tone||'blue')+' has-img':'no-ph np-'+c.t)+(lock?' locked':'')+'">'+(c.img?photo(c.img,{eager:1})+CREDIT:noPhoto(c))+
+        '<div class="player tpl-card'+(lock?' locked':'')+'">'+smuTpl(c,{big:1,eager:1})+
         (lock?'':'<button type="button" class="play" id="playBtn" aria-label="'+(p>0.02?'Resume':'Play')+' (demo)">'+SVG.play+'</button>')+
         '<div class="pbar" aria-hidden="true"><i id="pFill" style="width:'+Math.round(p*100)+'%"></i></div></div>')+
       '<div class="reader-in">'+(lock?inlineGate(c):'')+'<p class="eyebrow red">'+esc(c.label)+(c.lock?' · Members':' · Free')+'</p><h2 id="reader-h" class="m-title">'+esc(c.title)+'</h2><p class="dek">'+esc(c.desc)+'</p>'+
