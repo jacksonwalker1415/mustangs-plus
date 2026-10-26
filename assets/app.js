@@ -151,7 +151,13 @@
 
   /* ---------- Shell ---------- */
   var NAV=[['Watch',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards'],['Athletes',ROOT+'athletes/','athlete'],['Membership',ROOT+'#membership','membership']]);
-  function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')}
+  /* Sports is a dropdown (desktop) / accordion (phone menu) listing all 12 programs; #sports links anywhere open it */
+  var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
+  function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
+    if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
+    return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')}
+  function sportsPanel(){return '<div class="sports-dd" id="sportsMenu" hidden><p class="sdd-h">All 12 sports</p><ul class="sdd-list">'+MP.SPORTS.map(function(sp){var cur=PAGE==='sport'&&document.body.dataset.sport===sp.slug;
+    return '<li><a href="'+sportUrl(sp.slug)+'"'+(cur?' aria-current="page"':'')+'>'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a></li>'}).join('')+'</ul></div>'}
   /* Header/footer logo. ONE swappable path (relative to the site root). Set to '' to fall back to the type-only SMU+ lockup. */
   var BRAND_LOGO='assets/brand/smu-plus-logo.png';
   function wordmark(cls){return '<a href="'+(ROOT||'./')+'" class="wordmark'+(cls||'')+(BRAND_LOGO?' has-logo':'')+'" aria-label="SMU+ home">'+
@@ -162,8 +168,10 @@
   function mobileMenu(){
     return '<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Site menu" hidden><div class="mm-in">'+
       '<button type="button" class="mm-search" data-mm-search>'+SVG_SEARCH+'<span>Search stories, players, threads</span></button>'+
-      '<nav class="mm-nav" aria-label="Primary">'+NAV.map(function(n){var on=PAGE===n[2];return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><small>'+NAV_DESC[n[2]]+'</small><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
-      '<p class="mm-h">Sports</p><div class="mm-sports">'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+esc(sp.name)+'</a>'}).join('')+'</div>'+
+      '<nav class="mm-nav" aria-label="Primary">'+NAV.map(function(n){var on=PAGE===n[2];
+        if(n[2]==='sport')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmSportsBtn" aria-expanded="false" aria-controls="mmSports"><b>'+n[0]+'</b><small>'+NAV_DESC[n[2]]+'</small><span class="mm-chev" aria-hidden="true">›</span></button>'+
+          '<div class="mm-sports" id="mmSports" hidden>'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a>'}).join('')+'</div>';
+        return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><small>'+NAV_DESC[n[2]]+'</small><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
       '<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting: no payment is involved.</p></div>'+
       '<a class="mm-acct" href="'+ROOT+'account/"><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span><b class="mm-acct-l">Sign in or create an account</b><small class="mm-acct-s">Save athletes, post on the boards, sync what you watch</small></span><span class="mm-chev" aria-hidden="true">›</span></a>'+
       '<a class="btn btn-red mm-join" href="'+ROOT+'#waitlist">Join SMU+</a>'+
@@ -172,7 +180,7 @@
     '<div class="hdr-act"><button type="button" class="hsearch" id="searchBtn" aria-haspopup="dialog" aria-label="Search SMU+">'+SVG.search+'<span>Search</span><kbd>/</kbd></button>'+memberSwitch('Member preview')+
     '<a class="acct-btn" id="acctBtn" href="'+ROOT+'account/"'+(PAGE==='account'?' aria-current="page"':'')+'><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span class="acct-l">Sign in</span></a>'+
     '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#waitlist">Join</a>'+
-    '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+
+    '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+sportsPanel()+
     mobileMenu()+'</header>';
   var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
   $('#site-footer').outerHTML='<footer class="site-ft"><div class="wrap"><div class="ft">'+
@@ -360,7 +368,7 @@
     if(((e.key==='/'&&!typing)||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'))&&search.hidden){e.preventDefault();openSearch()}});
 
   /* ---------- Header fit: collapse lowest-priority nav links into the menu before anything overlaps ---------- */
-  (function(){var nav=$('nav.main'),hd=$('header.site');if(!nav||!hd)return;var links=$$('a',nav);
+  (function(){var nav=$('nav.main'),hd=$('header.site');if(!nav||!hd)return;var links=Array.prototype.slice.call(nav.children);
     function fit(){links.forEach(function(a){a.classList.remove('nav-x')});hd.classList.remove('nav-collapsed');
       if(innerWidth<960)return;var i=links.length-1;
       var over=function(){var nr=nav.getBoundingClientRect().right;return links.some(function(a){return !a.classList.contains('nav-x')&&a.getBoundingClientRect().right>nr-2})};
@@ -389,6 +397,27 @@
       if(e.shiftKey&&(i<=0)){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus()}}},true);
   var wideMQ=window.matchMedia('(min-width:960px)');(wideMQ.addEventListener?wideMQ.addEventListener('change',function(q){if(q.matches)closeMenu()}):wideMQ.addListener(function(q){if(q.matches)closeMenu()}));
   window.addEventListener('pageshow',function(){closeMenu()});
+
+  /* ---------- Sports dropdown (desktop) and accordion (phone menu) ---------- */
+  (function(){var btn=$('#sportsBtn'),dd=$('#sportsMenu'),acc=$('#mmSportsBtn'),list=$('#mmSports'),hov=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches,ht;
+    function place(){var r=btn.getBoundingClientRect(),w=dd.offsetWidth,l=Math.min(Math.max(8,r.left),innerWidth-w-8);dd.style.left=l+'px';dd.style.top=Math.round(hdrEl.getBoundingClientRect().bottom)+'px'}
+    function open(focus){if(!btn||!dd)return;dd.hidden=false;place();btn.setAttribute('aria-expanded','true');if(focus){var a=$('a',dd);if(a)a.focus()}}
+    function close(back){if(!dd||dd.hidden)return;pinned=false;dd.hidden=true;btn.setAttribute('aria-expanded','false');if(back)btn.focus()}
+    function setAcc(on){if(!acc)return;list.hidden=!on;acc.setAttribute('aria-expanded',on?'true':'false')}
+    window.openSports=function(){if(btn&&innerWidth>=960&&btn.offsetParent!==null&&!btn.classList.contains('nav-x'))open(true);else{openMenu();setAcc(true);var a=$('a',list);if(a)a.focus({preventScroll:true})}};
+    var pinned=false;
+    if(btn&&dd){btn.addEventListener('click',function(){if(dd.hidden||!pinned){pinned=true;open(false)}else close(false)});
+      btn.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){e.preventDefault();pinned=true;open(true)}});
+      dd.addEventListener('keydown',function(e){var a=$$('a',dd),i=a.indexOf(document.activeElement);
+        if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();a[(i+(e.key==='ArrowDown'?1:a.length-1))%a.length].focus()}
+        else if(e.key==='Tab'&&((e.shiftKey&&i===0)||(!e.shiftKey&&i===a.length-1)))close(false)});
+      if(hov){[btn,dd].forEach(function(el){el.addEventListener('mouseenter',function(){clearTimeout(ht);open(false)});el.addEventListener('mouseleave',function(){clearTimeout(ht);if(!pinned)ht=setTimeout(function(){close(false)},180)})})}
+      document.addEventListener('click',function(e){if(!dd.hidden&&!e.target.closest('#sportsMenu,#sportsBtn'))close(false)});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dd.hidden){e.stopPropagation();close(true)}},true);
+      addEventListener('resize',function(){if(!dd.hidden){if(innerWidth<960)close(false);else place()}});addEventListener('scroll',function(){if(!dd.hidden)place()},{passive:true})}
+    if(acc)acc.addEventListener('click',function(){setAcc(list.hidden)});
+    document.addEventListener('click',function(e){var a=e.target.closest('a[href$="#sports"]');if(!a)return;e.preventDefault();e.stopPropagation();window.openSports()},true);
+    if(location.hash==='#sports'){history.replaceState(null,'',location.pathname+location.search);setTimeout(window.openSports,60)}})();
 
   /* ---------- Sortable tables ---------- */
   var MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
@@ -490,7 +519,6 @@
     $('#railFilm').innerHTML=secHead('Film Room',libUrl('film'),'See all','Breakdowns')+rail(byCat('film'));
     $('#railPods').innerHTML=secHead('Podcasts',libUrl('podcasts'),'See all','Listen')+rail(MP.LIB.filter(function(c){return c.t==='podcast'}));
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
-    $('#sportGrid').innerHTML=MP.SPORTS.map(function(s){return '<a class="sport-tile" href="'+sportUrl(s.slug)+'">'+sportIcon(s.slug)+'<span><b>'+s.name+'</b><small>'+s.season+' · '+esc(sportRec(s))+'</small></span></a>'}).join('');
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
     $('#boardHot').innerHTML=hot.map(function(t){return threadRow(t,true)}).join('');
     function homeBoards(){var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});var a=$('#homeThreads'),b=$('#homePosts');if(a)a.textContent=tt.toLocaleString();if(b)b.textContent=tp.toLocaleString();
