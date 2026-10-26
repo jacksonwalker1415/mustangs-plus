@@ -74,7 +74,7 @@ w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610264960">
+<link rel="stylesheet" href="assets/site.css?v=202610264970">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->
@@ -101,7 +101,7 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
   <div class="wrap">
     <div class="sec-hd"><div><h2 class="sec-t" id="hill-h">Latest from the Hilltop</h2></div></div>
     <ol class="hill-list" id="hillList"></ol>
-    <div class="hill-ctas"><a class="btn btn-navy" href="boards/?f=hilltop">Browse the Hilltop</a><button type="button" class="btn btn-outline" data-compose>Join the conversation</button></div>
+    <div class="hill-ctas"><a class="btn btn-navy" href="boards/?f=hilltop">View message board</a></div>
   </div>
 </section>
 
@@ -187,20 +187,20 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610264960"></script>
-<script src="assets/data.js?v=202610264960"></script>
-<script src="assets/content.js?v=202610264960"></script>
-<script src="assets/real.js?v=202610264960"></script>
-<script src="assets/athletes.js?v=202610264960"></script>
-<script src="assets/socials.js?v=202610264960"></script>
-<script src="assets/sport-icons.js?v=202610264960"></script>
-<script src="assets/games.js?v=202610264960"></script>
-<script src="assets/upcoming.js?v=202610264960"></script>
-<script src="assets/boxscores.js?v=202610264960"></script>
-<script src="assets/gamestats.js?v=202610264960"></script>
-<script src="assets/sb.js?v=202610264960"></script>
-<script src="assets/ads.js?v=202610264960"></script>
-<script src="assets/app.js?v=202610264960"></script>
-<script src="assets/cfbd-live.js?v=202610264960"></script>
+<script src="assets/config.js?v=202610264970"></script>
+<script src="assets/data.js?v=202610264970"></script>
+<script src="assets/content.js?v=202610264970"></script>
+<script src="assets/real.js?v=202610264970"></script>
+<script src="assets/athletes.js?v=202610264970"></script>
+<script src="assets/socials.js?v=202610264970"></script>
+<script src="assets/sport-icons.js?v=202610264970"></script>
+<script src="assets/games.js?v=202610264970"></script>
+<script src="assets/upcoming.js?v=202610264970"></script>
+<script src="assets/boxscores.js?v=202610264970"></script>
+<script src="assets/gamestats.js?v=202610264970"></script>
+<script src="assets/sb.js?v=202610264970"></script>
+<script src="assets/ads.js?v=202610264970"></script>
+<script src="assets/app.js?v=202610264970"></script>
+<script src="assets/cfbd-live.js?v=202610264970"></script>
 </body>
 </html>
