@@ -2419,4 +2419,5 @@ mark{background:var(--blue-10)}
   .disclaimer a{display:inline-block;padding:13px 0;margin:-13px 0}
   a.r-game{display:inline-block;padding:13px 0;margin:-13px 0}
   .rb-stats{min-height:44px}
+  .pc-links a,.orow-sec .see-all{display:inline-flex;align-items:center;min-height:44px}
 }

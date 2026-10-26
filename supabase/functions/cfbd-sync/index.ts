@@ -155,7 +155,7 @@ Deno.serve(async (req) => {
   let mode = "schedule", err: string | null = null, out: any = null;
   try {
     const tok = await secret("cfbd_cron_token");
-    if (req.headers.get("x-cron-token") !== tok) return new Response("forbidden", { status: 403 });
+    if (!tok || req.headers.get("x-cron-token") !== tok) return new Response("forbidden", { status: 403 }); // no stored token = reject everything
     try { mode = (await req.json()).mode || "schedule"; } catch { /* default */ }
     KEY = await secret("cfbd_api_key");
     out = mode === "live" ? await runLive() : await runSchedule();
