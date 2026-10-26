@@ -27,25 +27,15 @@
 .pf-hero .ctas .btn{min-height:44px}
 .pf-k{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .pf-card{display:block;background:var(--white);color:var(--ink);border-radius:var(--r2);padding:var(--s5);box-shadow:var(--shadow);border-top:4px solid var(--red)}
-.pf-card:hover .pf-cr b{color:var(--blue)}
-.pf-cr{display:flex;align-items:baseline;gap:var(--s3);margin-top:var(--s2)}
-.pf-cr b{font:400 48px/1 var(--display)}
-.pf-cr small{font-size:12px;font-weight:700;color:var(--ink-3)}
-.pf-rk{display:grid;grid-template-columns:repeat(3,1fr);margin:var(--s4) 0 var(--s3);border:1px solid var(--line);border-radius:var(--r1)}
-.pf-rk>div{padding:var(--s2);text-align:center}.pf-rk>div+div{border-left:1px solid var(--line)}
-.pf-rk dt{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--ink-3)}
-.pf-rk dd{font:400 24px/1.15 var(--display);color:var(--blue)}
+.pf-mini{list-style:none;margin:var(--s3) 0;padding:0}
+.pf-mini li{display:flex;justify-content:space-between;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--line)}
+.pf-mini b{font-size:15px}
+.pf-mini small{font-size:12px;font-weight:700;color:var(--ink-3);white-space:nowrap}
+.pf-card:hover .pf-mini b{color:var(--blue)}
 .pf-cs{font-size:13px;font-weight:600;color:var(--ink-2)}
-.pf-na{color:var(--ink-3);font-weight:600}
 
 /* ---------- recruiting panels ---------- */
-.pf-ind{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s5);align-items:center;margin-bottom:var(--s4)}
-.pf-ind b{display:block;font:400 44px/1 var(--display);margin-top:var(--s1)}
-.pf-ind .pf-rk{margin:0}
-.pf-svc td:first-child{font-weight:800}
-.pf-c247{margin-top:var(--s3);font-size:14px;color:var(--ink-2)}
-.pf-c247 b{color:var(--ink)}
-.pf-pre{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3);margin-bottom:var(--s5)}
+.pf-pre{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3);margin-bottom:var(--s5)}
 .pf-pre>div{background:var(--surface);border-radius:var(--r1);padding:var(--s3)}
 .pf-pre dt{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
 .pf-pre dd{font-weight:800;font-size:15px}
@@ -56,11 +46,6 @@
 .pf-path li:last-child::before{background:var(--red);border-color:var(--red)}
 .pf-path b{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding-top:2px}
 .pf-path small{font-size:13px;color:var(--ink-3);white-space:nowrap}
-.pf-h4{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:var(--s5) 0 var(--s3)}
-.pf-h4 span{font-weight:700;color:var(--ink-3);letter-spacing:0;text-transform:none;margin-left:var(--s2)}
-.pf-offers{display:flex;flex-wrap:wrap;gap:var(--s2);list-style:none;margin:0;padding:0}
-.pf-offers li{padding:6px 12px;border:1px solid var(--line-2);border-radius:99px;font-size:14px;font-weight:700}
-.pf-offers li.smu{background:var(--blue);border-color:var(--blue);color:var(--white)}
 
 /* ---------- sources: 44px links ---------- */
 .pf-links{display:flex;flex-wrap:wrap;gap:var(--s2);list-style:none;margin:var(--s3) 0;padding:0}
@@ -79,7 +64,6 @@
   .pf-photo{width:min(100%,300px)}
   .pf-vit{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3) var(--s4)}
   .pf-id .display{font-size:48px}
-  .pf-ind{grid-template-columns:1fr;gap:var(--s3)}
   .pf-pre{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pf-path li{grid-template-columns:1fr;gap:2px}
   .pf-links a{width:100%}

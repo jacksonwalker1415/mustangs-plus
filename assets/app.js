@@ -670,7 +670,7 @@
         '<nav class="crumbs"><a href="'+ROOT+'#sports">Sports</a> › <span>'+s.name+'</span></nav>'+
         '<div class="ph-row"><span class="sp-ic">'+sportIcon(s.slug)+'</span><div><p class="eyebrow">'+(RD?esc(RD.season)+' season'+(realConf(RD)?' · '+realConf(RD):''):s.season+' sport · '+s.conf)+'</p><h1 class="display">'+s.name+'</h1></div></div>'+
         '<p class="lede on-dark">'+s.blurb+' <strong>40% to SMU\u2019s official NIL programs (proposed).</strong></p>'+
-        '<dl class="statbar"><div><dt>'+(RS?RS.dt:'Record')+(realLog||RD?'':' <span>sample</span>')+'</dt><dd>'+esc(record)+'</dd>'+(RS&&RS.sub?'<small class="sb-sub">'+esc(RS.sub)+'</small>':'')+'</div><div><dt>Members following</dt><dd>'+s.members.toLocaleString()+'</dd></div><div><dt>'+(RD?'On the roster':'Athletes featured')+'</dt><dd>'+(RD?RD.roster.length:roster.length)+'</dd></div></dl>'+
+        '<dl class="statbar"><div><dt>'+(RS?RS.dt:'Record')+(realLog||RD?'':' <span>sample</span>')+'</dt><dd>'+esc(record)+'</dd>'+(RS&&RS.sub?'<small class="sb-sub">'+esc(RS.sub)+'</small>':'')+'</div><div><dt>Members following</dt><dd>'+s.members.toLocaleString()+'</dd></div><div><dt>'+(RDR?'On the roster':'Athletes featured')+'</dt><dd>'+(RDR?'<a href="'+((RDR.src.filter(function(x){return /roster/.test(x[1])})[0]||[])[1]||'#roster')+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;color:inherit" aria-label="'+RDR.roster.length+' players on the official SMU Athletics roster (opens in a new tab)">'+RDR.roster.length+'</a>':roster.length)+'</dd></div></dl>'+
         '<div class="ctas"><a href="'+ROOT+'#membership" class="btn btn-red">Join SMU+</a><a href="#board" class="btn btn-ghost">Team board</a></div>'+
       '</div></section>'+
       '<nav class="jump" aria-label="On this page"><div class="wrap">'+(realLog?'<a href="#gameday">Game day</a>':'')+'<a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Read</a><a href="#board">Board</a><a href="#more">Other sports</a></div></nav>'+
@@ -714,30 +714,19 @@
   function athlete(){
     var main=$('#athleteMain'),id=new URLSearchParams(location.search).get('id'),a=MP.athleteBy&&MP.athleteBy(id);
     if(!a){document.title='Football Player Profiles | SMU+';
-      main.innerHTML='<section class="page-hero compact"><div class="wrap"><p class="eyebrow">Football · real players · public stats</p><h1 class="display">Football player profiles</h1><p class="lede on-dark">Current SMU football players. Every stat and recruiting rating on these pages comes from a public source linked on the profile. Profiles for other sports are not built yet.</p></div></section>'+
+      main.innerHTML='<section class="page-hero compact"><div class="wrap"><p class="eyebrow">Football · real players · public stats</p><h1 class="display">Football player profiles</h1><p class="lede on-dark">Current SMU football players. Every stat and bio fact on these pages comes from a public source linked on the profile. Profiles for other sports are not built yet.</p></div></section>'+
         '<section class="sec"><div class="wrap"><div class="pgrid three">'+MP.ATHLETES.map(profileCard).join('')+'</div><p class="note">Film on profiles is illustrative mock content. Photos where shown: SMU Athletics.</p></div></section>'+
         '<section class="sec alt"><div class="wrap">'+compareHTML()+'</div></section>';initCompare();return}
     var s=sportBy(a.sport),R=a.recruit,ext=' target="_blank" rel="noopener"',ARROW='<span aria-hidden="true"> ↗</span>';document.title=a.name+' · '+a.pos+' · SMU Football | SMU+';
     var others=MP.ATHLETES.filter(function(x){return x.id!==a.id});
-    function rk(v){return v?'#'+v:'<span class="pf-na">—</span>'}
-    var ranks=R&&R.industry?'<dl class="pf-rk"><div><dt>NATL</dt><dd>'+rk(R.industry.nat)+'</dd></div><div><dt>POS</dt><dd>'+rk(R.industry.pos)+'</dd></div><div><dt>ST</dt><dd>'+rk(R.industry.st)+'</dd></div></dl>':'';
     var hero=a.photo?'<figure class="pf-photo has-photo">'+photo(a.photo,{eager:1})+CREDIT+'</figure>':
       '<div class="pf-photo" style="background:'+KIT_BG[a.kit]+'" role="img" aria-label="Photo placeholder, jersey number '+a.num+'">'+kit(a.num,a.kit)+'<span>Photo placeholder</span></div>';
     var vit=[['HT / WT',a.ht+' / '+a.wt],['Class',a.cls],['Hometown',a.hometown],['High school / prev.',a.prev]];
-    var recruitPanel=R?'<section class="panel" id="recruiting"><div class="panel-h"><h3>Recruiting rankings</h3><span class="meta">Class of '+R.year+'</span></div>'+
-        '<div class="pf-ind"><div><p class="pf-k">Rivals Industry rating (On3)</p><b>'+esc(R.industry.r)+'</b></div>'+ranks+'</div>'+
-        '<div class="tbl-wrap"><table class="tbl pf-svc"><caption class="sr">Recruiting ratings by service</caption><thead><tr><th>Service</th><th class="n">Rating</th><th class="n">Pos. rank</th><th class="n">State rank</th></tr></thead><tbody>'+
-          R.services.map(function(x){return '<tr><td>'+esc(x[0])+'</td>'+(x[1]?'<td class="n">'+esc(x[1])+'</td><td class="n">'+(x[2]?'#'+esc(x[2]):'—')+'</td><td class="n">'+(x[3]?'#'+esc(x[3]):'—')+'</td>':'<td class="n" colspan="3"><span class="pf-na">Not rated</span></td>')+'</tr>'}).join('')+
-        '</tbody></table></div>'+
-        (R.comp247?'<p class="pf-c247"><b>247Sports Composite '+esc(R.comp247.r)+'</b> · No. '+R.comp247.nat+' nationally · No. '+R.comp247.pos+' at position · No. '+R.comp247.st+' in state</p>':'')+
-        (a.ratings?'<p class="pf-c247">Star ratings on the SMU Athletics bio: '+a.ratings.map(function(x){return esc(x[0])+' '+esc(x[1])}).join(' · ')+'</p>':'')+
-        '<p class="note">Rankings are from high school, as listed on the linked On3 and 247Sports pages (checked Oct. 26, 2026). A dash means the service lists no rank.</p></section>'+
-      '<section class="panel" id="history"><div class="panel-h"><h3>Recruiting history</h3></div>'+
-        '<dl class="pf-pre"><div><dt>High school</dt><dd>'+esc(R.hs)+'</dd></div><div><dt>Hometown</dt><dd>'+esc(R.town)+'</dd></div><div><dt>Class</dt><dd>'+R.year+'</dd></div><div><dt>Recruited as</dt><dd>'+esc(R.pos)+' · '+esc(R.hw)+'</dd></div></dl>'+
+    var recruitPanel=R?'<section class="panel" id="path"><div class="panel-h"><h3>Path to SMU</h3><span class="meta">Per SMU Athletics</span></div>'+
+        '<dl class="pf-pre"><div><dt>High school</dt><dd>'+esc(R.hs)+'</dd></div><div><dt>Hometown</dt><dd>'+esc(R.town)+'</dd></div></dl>'+
         '<ol class="pf-path">'+R.path.map(function(p){return '<li><b>'+esc(p[0])+'</b><span>'+esc(p[1])+'</span>'+(p[2]?'<small>'+esc(p[2])+'</small>':'')+'</li>'}).join('')+'</ol>'+
-        (R.offers&&R.offers.length?'<h4 class="pf-h4">Offers'+(R.offerCount?' <span>'+R.offerCount+' total</span>':'')+'</h4><ul class="pf-offers">'+R.offers.map(function(o){return '<li'+(o==='SMU'?' class="smu"':'')+'>'+esc(o)+'</li>'}).join('')+'</ul><p class="note">'+esc(R.offersNote)+'</p>':'')+
-        (R.prep.length?'<h4 class="pf-h4">In high school</h4><ul class="news">'+R.prep.map(function(n){return '<li>'+esc(n)+'</li>'}).join('')+'</ul>':'')+'</section>':'';
-    var srcs=a.src.concat(R?R.src:[]);
+        '<p class="note">As stated on his SMU Athletics bio (linked under Sources), checked Oct. 26, 2026.</p></section>':'';
+    var seen={},srcs=a.src.concat(R?R.src:[]).filter(function(x){var k=x[1].replace(/\/$/,'');if(seen[k])return false;seen[k]=1;return true});
     main.innerHTML=
       '<section class="pf-hero"><div class="wrap">'+
         '<nav class="crumbs pf-crumbs"><a href="'+ROOT+'athletes/">Football profiles</a> › <a href="'+sportUrl(a.sport)+'">'+s.name+'</a> › <span>'+esc(a.name)+'</span></nav>'+
@@ -746,9 +735,9 @@
             '<p class="pf-sub">SMU Mustangs · '+s.name+'</p>'+
             '<dl class="pf-vit">'+vit.map(function(m){return '<div><dt>'+m[0]+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join('')+'</dl>'+
             '<div class="ctas"><button type="button" class="btn btn-red btn-sm save-ath" data-save-athlete="'+a.id+'" aria-pressed="false">'+HEART+'<span>Save player</span></button><a class="btn btn-ghost btn-sm" href="#stats">Stats</a></div></div>'+
-          (R?'<a class="pf-card" href="#recruiting"><p class="pf-k">Recruiting · Class of '+R.year+'</p><div class="pf-cr"><b>'+esc(R.industry.r)+'</b><small>Rivals Industry (On3)</small></div>'+ranks+'<p class="pf-cs">'+esc(R.hs)+' · '+esc(R.town)+'</p></a>':'')+
+          (R?'<a class="pf-card" href="#path"><p class="pf-k">Path to SMU</p><ol class="pf-mini">'+R.path.map(function(p){return '<li><b>'+esc(p[1].split(/[;,(]/)[0].trim())+'</b><small>'+esc(p[2])+'</small></li>'}).join('')+'</ol><p class="pf-cs">'+esc(R.hs)+' · '+esc(R.town)+'</p></a>':'')+
         '</div></div></section>'+
-      '<nav class="jump" aria-label="Profile sections"><div class="wrap"><a href="#overview">Overview</a><a href="#stats">Stats</a><a href="#gamelog">Game log</a>'+(R?'<a href="#recruiting">Recruiting</a><a href="#history">History</a>':'')+(a.gallery&&a.gallery.length?'<a href="#photos">Photos</a>':'')+'<a href="#film">Film</a><a href="#sources">Sources</a></div></nav>'+
+      '<nav class="jump" aria-label="Profile sections"><div class="wrap"><a href="#overview">Overview</a><a href="#stats">Stats</a><a href="#gamelog">Game log</a>'+(R?'<a href="#path">Path to SMU</a>':'')+(a.gallery&&a.gallery.length?'<a href="#photos">Photos</a>':'')+'<a href="#film">Film</a><a href="#sources">Sources</a></div></nav>'+
       '<div class="wrap ap-body"><div class="ap-grid"><div class="ap-main">'+
         '<section class="panel" id="overview"><div class="panel-h"><h3>'+a.season.label+'</h3></div><div class="statline" style="--n:'+a.season.stats.length+'">'+a.season.stats.map(function(x){return '<div><b>'+esc(x[1])+'</b><small>'+x[0]+'</small></div>'}).join('')+'</div></section>'+
         '<section class="panel" id="stats"><div class="panel-h"><h3>Career stats by season</h3><span class="meta">* 2026 in progress</span></div>'+table(a.career,{caption:'Career stats'})+(a.notes?'<p class="note">'+esc(a.notes)+'</p>':'')+'</section>'+
@@ -761,7 +750,7 @@
         '<section class="panel" id="news"><div class="panel-h"><h3>Career milestones</h3></div><ul class="news">'+a.news.map(function(n){return '<li>'+esc(n)+'</li>'}).join('')+'</ul></section>'+
         '<section class="panel"><div class="panel-h"><h3>More profiles</h3></div><div class="mini">'+others.map(function(o){return '<a href="'+athleteUrl(o.id)+'"><b>#'+o.num+'</b><span>'+esc(o.name)+'</span><small>'+o.pos+'</small></a>'}).join('')+'</div></section>'+
       '</aside></div>'+
-      '<section class="sources pf-src" id="sources"><h3>Sources &amp; credits</h3><p>Bio, measurements and stats checked Oct. 25, 2026; recruiting data checked Oct. 26, 2026. ESPN lists defensive stats as unofficial.</p>'+
+      '<section class="sources pf-src" id="sources"><h3>Sources &amp; credits</h3><p>Bio, measurements and stats checked Oct. 25, 2026; school path from SMU Athletics bios, checked Oct. 26, 2026. SMU+ shows no recruiting ratings or rankings. ESPN lists defensive stats as unofficial.</p>'+
         '<ul class="pf-links">'+srcs.map(function(x){return '<li><a href="'+x[1]+'"'+ext+'>'+esc(x[0])+ARROW+'<span class="sr"> (opens in a new tab)</span></a></li>'}).join('')+'</ul>'+
         '<p>Film items are <b>illustrative mock content</b> for this class concept. SMU+ shows no NIL figures for real athletes. '+(a.photo?'Photos credited SMU Athletics are used for this class concept.':'No photos of this athlete are used; the jersey graphic is a placeholder.')+'</p></section></div>';
   }
