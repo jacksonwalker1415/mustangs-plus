@@ -74,11 +74,11 @@ w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../assets/site.css?v=202610265040">
+<link rel="stylesheet" href="../assets/site.css?v=202610265070">
 </head>
 <body data-page="privacy" data-root="../">
 <!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->
-<div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU or Learfield. No payments taken.</span> <a href="../privacy/#about">About this project</a></div>
+<div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU, Mustang Partners or Learfield. No payments taken.</span> <a href="../privacy/#about">About this project</a></div>
 <div id="site-header"></div>
 <main id="top"><section class="page-hero has-photo"><div class="bgph"><picture><img class="ph" src="../assets/photos/lib/rowing-boat-wide-ncaa-2021-1200.webp" srcset="../assets/photos/lib/rowing-boat-wide-ncaa-2021-1200.webp 1200w, ../assets/photos/lib/rowing-boat-wide-ncaa-2021-2400.webp 2400w" sizes="100vw" alt="An SMU rowing crew races on open water" style="object-position:60% 55%" fetchpriority="high" decoding="async"></picture></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><h1 class="display">Your data on SMU+</h1>
 <p class="lede on-dark">A plain-language guide to what this student project collects, why, where it’s kept and how to have it deleted. Last updated October 26, 2026.</p></div></section>
@@ -86,18 +86,18 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <nav class="policy-toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol><li><a href="#about">About this project</a></li><li><a href="#sources">Sources</a></li><li><a href="#collect">What we collect</a></li><li><a href="#why">Why we collect it</a></li><li><a href="#where">Where it’s stored</a></li><li><a href="#share">Selling and sharing</a></li><li><a href="#delete">Deleting your data</a></li><li><a href="#browser">Your browser</a></li><li><a href="#contact">Contact</a></li></ol></nav>
 <div class="policy-body">
 <section id="about"><h2>About this project</h2>
-<p>SMU+ was built for an SMU Cox MBA class project. It is <strong>not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown</strong>.</p>
+<p>SMU+ was built for an SMU Cox MBA class project. It is <strong>not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown</strong>.</p>
 <p><strong>Memberships are for demonstration only.</strong> No payments are taken and no real product or service is offered. For educational purposes only.</p>
 <p><strong>Contact:</strong> <span data-contact><a href="mailto:smuplusmedia@gmail.com">smuplusmedia@gmail.com</a></span></p></section>
-<section id="sources"><h2>Sources</h2><p>Real schedules, results, rosters and coaches come from SMU Athletics. Player profiles list their own sources on each page, and sourced stories list theirs at the end. Official X posts and profile images come from each account’s own page.</p><ul class="src-list" id="srcList"></ul></section>
+<section id="sources"><h2>Sources</h2><p>Real schedules, results, rosters and coaches come from SMU Athletics. Player profiles list their own sources on each page, and sourced stories list theirs at the end. X posts come from each account’s own page.</p><ul class="src-list" id="srcList"></ul></section>
 <section id="collect"><h2>What we collect</h2>
 <ul><li><strong>Waitlist:</strong> your email address, your name, SMU affiliation and the plan you’d be interested in if you choose to give them, the date you joined, that you agreed to this notice, and how you found the site (the campaign tag in the link you used, such as a QR code, and the name of the website that linked you, if any).</li>
-<li><strong>Page visits:</strong> a simple visit count. For each page load we save the page address, the campaign tag and linking website (if any), whether you’re on a phone or a computer, and a random code that lasts only until you close the tab, so visits in one session can be counted once. No cookies, no IP address, no browser details, nothing that identifies you.</li>
+<li><strong>Page visits:</strong> a simple visit count. For each page load we save the page address, the campaign tag and linking website (if any), whether you’re on a phone or a computer, and a random code that lasts only until you close the tab, so visits in one session can be counted once. No cookies and no browser details are saved with the visit. Our hosting and database providers (GitHub Pages and Supabase) may log IP addresses in their standard request logs.</li>
 <li><strong>Post reports:</strong> if you report a post on the boards, we save which post, the reason you picked, your optional note and your account, so moderators can review it. Only moderators see reports; the person you reported is not told who reported them.</li>
 <li><strong>SMU+ Weekly sign-up:</strong> your email address.</li>
-<li><strong>Accounts</strong> (if you create one): your email address, the display name you choose, your board posts, the players you save, how far you got in videos, and your demo membership tier. If you upload a profile photo, we store that photo (cropped to a small square) and show it to other members next to your name and posts. You can delete it anytime from your Account page, which removes it from our storage. Your password is handled by Supabase’s sign-in service and is never visible to us.</li>
+<li><strong>Accounts</strong> (if you create one): your email address, the display name you choose, your board posts, the players you save, how far you got in videos, and your demo membership tier. If you upload a profile photo, we store that photo (cropped to a small square) and show it to other members next to your name and posts. You can delete it anytime from your Account page, which removes it from our storage. Your password is handled by Supabase’s sign-in service and is never visible to us. You can also sign in with Microsoft (for SMU email accounts) when that option is shown: Microsoft confirms who you are and shares your email address and name with SMU+, and Microsoft’s own privacy policy applies to that sign-in.</li>
 <li><strong>Student sign-up</strong> (if you use it): your @smu.edu email, your name and your class year. We don’t ask for a student ID. The Student plan is granted only after you confirm your @smu.edu email from the link we send.</li></ul>
-<p>We don’t collect payment details, and we don’t use advertising trackers, third-party analytics or cookies. The visit count above is our own and stays in the SMU+ database. Posts from X in the “From the feeds” rows load automatically from X when you scroll near them, using X’s own embed, and X may set its own cookies. Videos and podcasts from other services (YouTube and Apple Podcasts) load from those services only when you choose to play them; until then, no request goes to them. The one exception: video cards and video pages show the video’s preview picture, which loads from YouTube’s image server (i.ytimg.com). Once something loads, that service’s own privacy policy applies, and it may set its own cookies. News stories from other outlets open on their own websites. The account pictures and banners in the Follow rows are copies stored on this site, so showing them sends nothing to X.</p></section>
+<p>We don’t collect payment details, and we don’t use advertising trackers, third-party analytics or cookies. The visit count above is our own and stays in the SMU+ database. Posts from X in the “From the feeds” rows load automatically from X when you scroll near them, using X’s own embed, and X may set its own cookies. Videos and podcasts from other services (YouTube and Apple Podcasts) load from those services only when you choose to play them; until then, no request goes to them. The one exception: video cards and video pages show the video’s preview picture, which loads from YouTube’s image server (i.ytimg.com). Once something loads, that service’s own privacy policy applies, and it may set its own cookies. News stories from other outlets open on their own websites. The Follow rows are plain text links to each account on X, so nothing loads from X until you tap one.</p></section>
 <section id="why"><h2>Why we collect it</h2>
 <p>Waitlist and newsletter addresses are used only to contact you about this student project. Account details are used only to run the account features you use, such as posting on the boards and keeping your saved players.</p></section>
 <section id="where"><h2>Where it’s stored</h2>
@@ -105,27 +105,27 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <section id="share"><h2>Selling and sharing</h2>
 <p><strong>We never sell your information</strong> and we don’t share it with anyone for advertising. It stays with this project.</p></section>
 <section id="delete"><h2>Deleting your data</h2>
-<p>To ask for your data to be deleted, email SMU+ from the address you signed up with at <span data-contact="removal"><a href="mailto:smuplusmedia@gmail.com?subject=SMU%2B%20data%20removal%20request">smuplusmedia@gmail.com</a></span>. Your waitlist entry, newsletter sign-up, account, profile photo, student ID and posts will be removed. You can remove your profile photo yourself at any time with <b>Remove photo</b> on your Account page. You can also ask what we hold about you.</p></section>
+<p>To ask for your data to be deleted, email SMU+ from the address you signed up with at <span data-contact="removal"><a href="mailto:smuplusmedia@gmail.com?subject=SMU%2B%20data%20removal%20request">smuplusmedia@gmail.com</a></span>. Your waitlist entry, newsletter sign-up, account, profile photo and posts will be removed. You can remove your profile photo yourself at any time with <b>Remove photo</b> on your Account page. You can also ask what we hold about you.</p></section>
 <section id="browser"><h2>Your browser</h2>
 <p>The site saves a few settings in your browser’s local storage, such as whether you’ve seen the loading screen and what you’ve watched. In demo mode, everything you enter stays in your browser and is never sent anywhere. Clearing your browser data removes it.</p></section>
 <section id="contact"><h2>Contact</h2>
-<p>Questions about this notice or this project: <span data-contact><a href="mailto:smuplusmedia@gmail.com">smuplusmedia@gmail.com</a></span>. SMU+ is not intended for children under 13.</p></section>
+<p>Questions about this notice or this project: <span data-contact><a href="mailto:smuplusmedia@gmail.com">smuplusmedia@gmail.com</a></span>. SMU+ is not intended for children under 13, and you must be 13 or older to create an account. See also the <a href="../terms/">terms of use</a>.</p></section>
 </div></div></section></main>
 <div id="site-footer"></div>
-<script src="../assets/config.js?v=202610265040"></script>
-<script src="../assets/data.js?v=202610265040"></script>
-<script src="../assets/content.js?v=202610265040"></script>
-<script src="../assets/real.js?v=202610265040"></script>
-<script src="../assets/athletes.js?v=202610265040"></script>
-<script src="../assets/socials.js?v=202610265040"></script>
-<script src="../assets/sport-icons.js?v=202610265040"></script>
-<script src="../assets/games.js?v=202610265040"></script>
-<script src="../assets/upcoming.js?v=202610265040"></script>
-<script src="../assets/boxscores.js?v=202610265040"></script>
-<script src="../assets/gamestats.js?v=202610265040"></script>
-<script src="../assets/sb.js?v=202610265040"></script>
-<script src="../assets/ads.js?v=202610265040"></script>
-<script src="../assets/app.js?v=202610265040"></script>
-<script src="../assets/cfbd-live.js?v=202610265040"></script>
+<script src="../assets/config.js?v=202610265070"></script>
+<script src="../assets/data.js?v=202610265070"></script>
+<script src="../assets/content.js?v=202610265070"></script>
+<script src="../assets/real.js?v=202610265070"></script>
+<script src="../assets/athletes.js?v=202610265070"></script>
+<script src="../assets/socials.js?v=202610265070"></script>
+<script src="../assets/sport-icons.js?v=202610265070"></script>
+<script src="../assets/games.js?v=202610265070"></script>
+<script src="../assets/upcoming.js?v=202610265070"></script>
+<script src="../assets/boxscores.js?v=202610265070"></script>
+<script src="../assets/gamestats.js?v=202610265070"></script>
+<script src="../assets/sb.js?v=202610265070"></script>
+<script src="../assets/ads.js?v=202610265070"></script>
+<script src="../assets/app.js?v=202610265070"></script>
+<script src="../assets/cfbd-live.js?v=202610265070"></script>
 </body>
 </html>

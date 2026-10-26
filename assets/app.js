@@ -131,12 +131,18 @@
   $$('[data-contact]').forEach(function(el){el.innerHTML=contactHTML(el.getAttribute('data-contact'))});
   /* ---------- Waitlist: free, no payment. Live: public.waitlist (supabase/waitlist.sql), falling back to newsletter_signups until that migration runs. ---------- */
   var AFFIL=[['student','SMU student'],['alum','SMU alum'],['fan','Fan'],['parent','Parent or family'],['other','Other']];
-  var TL=MP.TIER_LABELS||{},INTEREST=[['free','Free newsletter only'],['mustang',(TL.mustang||'Mustang')+' ($9.99/mo)'],['all_access',(TL.pony||'All-Access')+' ($24.99/mo)'],['red_blue',(TL.club||'Red & Blue')+' ($99/mo)'],['not_sure','Not sure yet']].filter(function(o){return SHOW_PAID_PLANS||!/^(mustang|all_access|red_blue)$/.test(o[0])});
+  /* Waitlist price survey (Jackson, Oct 26): one paid plan, monthly or annual billing. The CFO's model figures live ONLY here.
+     Counsel: it must read as a survey, not an offer (no card, no deposit, no reserving, no locked price). Saved as would_pay + billing_choice. */
+  var SURVEY_PRICE={monthly:'14.99',annual:'129',adfree:'4.99'};  /* CFO model $14.99/mo; Jackson set annual $129 (Oct 26); ad-free add-on $4.99/mo. Change prices here only. */
+  var SURVEY=[['monthly','$'+SURVEY_PRICE.monthly+' a month'],['annual','$'+SURVEY_PRICE.annual+' a year'],['free','I\u2019d stick with the free feed']];
   function waitlistHTML(id){return '<div class="wl" data-waitlist>'+
     '<form class="wl-f" id="'+id+'" novalidate><div class="fld"><label for="'+id+'-e">Email address</label><input id="'+id+'-e" type="email" name="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="'+id+'-m"></div>'+
     '<div class="fld-row"><div class="fld"><label for="'+id+'-n">Name <small>(optional)</small></label><input id="'+id+'-n" type="text" name="name" autocomplete="name" maxlength="80"></div>'+
     '<div class="fld"><label for="'+id+'-a">SMU affiliation <small>(optional)</small></label><select id="'+id+'-a" name="affiliation"><option value="">Choose one</option>'+AFFIL.map(function(a){return '<option value="'+a[0]+'">'+a[1]+'</option>'}).join('')+'</select></div></div>'+
-    '<div class="fld"><label for="'+id+'-t">Which plan would interest you? <small>(optional, nothing to buy)</small></label><select id="'+id+'-t" name="tier"><option value="">Choose one</option>'+INTEREST.map(function(a){return '<option value="'+a[0]+'">'+esc(a[1])+'</option>'}).join('')+'</select></div>'+
+    '<fieldset class="fld wl-q"><legend>If SMU+ launched, would you pay $'+SURVEY_PRICE.monthly+' a month, $'+SURVEY_PRICE.annual+' a year, or stick with the free feed? <small>(optional)</small></legend>'+
+      SURVEY.map(function(a){return '<label class="wl-opt"><input type="radio" name="pay" value="'+a[0]+'"><span>'+esc(a[1])+'</span></label>'}).join('')+'</fieldset>'+
+    '<fieldset class="fld wl-q wl-q2" hidden><legend>Would you add ad-free for $'+SURVEY_PRICE.adfree+' a month? <small>(optional)</small></legend>'+
+      [['yes','Yes'],['no','No'],['maybe','Maybe']].map(function(a){return '<label class="wl-opt"><input type="radio" name="adfree" value="'+a[0]+'"><span>'+a[1]+'</span></label>'}).join('')+'</fieldset>'+
     '<label class="wl-consent" for="'+id+'-c"><input id="'+id+'-c" type="checkbox" name="consent" required><span class="wl-box" aria-hidden="true"></span><span>I agree that SMU+ can store these details to contact me about this student project, as described in the <a href="'+ROOT+'privacy/">privacy notice</a>.</span></label>'+
     '<p class="wl-m" id="'+id+'-m" aria-live="polite"></p><button class="btn btn-red wl-go" type="submit">Join the waitlist</button>'+
     '<p class="wl-fine">Free. There is nothing to buy. Ask to be removed anytime: '+contactHTML('removal')+'.</p></form>'+
@@ -158,10 +164,14 @@
     if(!EMAIL_RE.test(v))return bad('That doesn\u2019t look like a full email address. Check for a typo.',em);
     if(!cs.checked)return bad('Please tick the box to agree to the privacy notice.',cs);
     var btn=$('button[type=submit]',f);btn.disabled=true;f.setAttribute('aria-busy','true');msg.textContent='Adding you to the waitlist\u2026';
-    var row={email:v,name:nm.value.trim(),affiliation:af.value,tier_interest:f.elements.tier?f.elements.tier.value:'',consent:true};
+    var pay=f.elements.pay?f.elements.pay.value:'';var row={email:v,name:nm.value.trim(),affiliation:af.value,tier_interest:f.elements.tier?f.elements.tier.value:'',consent:true,would_pay:pay==='monthly'||pay==='annual'?true:pay==='free'?false:null,billing_choice:pay==='monthly'||pay==='annual'?pay:null,survey_prices:pay?SURVEY_PRICE.monthly+'/'+SURVEY_PRICE.annual+'/'+SURVEY_PRICE.adfree:null,adfree_interest:(pay==='monthly'||pay==='annual')&&f.elements.adfree?f.elements.adfree.value||null:null};
     var go=window.SMU&&SMU.waitlist?SMU.waitlist(row):Promise.resolve(store('mp_waitlist',v.toLowerCase()));
     go.then(function(){msg.textContent='';f.reset();syncWaitlist();var ok=$('.wl-ok',f.parentNode);if(ok)ok.focus()},function(e){f.classList.add('err');msg.textContent=(e&&e.message)||'Something went wrong. Try again.'})
       .then(function(){btn.disabled=false;f.removeAttribute('aria-busy')})});
+  /* Ad-free follow-up shows only after a paid answer (monthly or annual); switching to free clears it. */
+  function wlFollow(f){var q=$('.wl-q2',f);if(!q)return;var v=f.elements.pay?f.elements.pay.value:'',on=v==='monthly'||v==='annual';q.hidden=!on;if(!on)$$('input[name=adfree]',q).forEach(function(i){i.checked=false})}
+  document.addEventListener('change',function(e){if(e.target&&e.target.name==='pay'&&e.target.form&&e.target.form.classList.contains('wl-f'))wlFollow(e.target.form)});
+  document.addEventListener('reset',function(e){var f=e.target;if(f.classList&&f.classList.contains('wl-f'))setTimeout(function(){wlFollow(f)},0)});
   document.addEventListener('click',function(e){if(!e.target.closest('[data-wl-undo]'))return;try{localStorage.removeItem('mp_waitlist')}catch(x){}syncWaitlist();var i=$('input[type=email]',e.target.closest('[data-waitlist]'));if(i)i.focus()});
 
   /* ---------- Shell ---------- */
@@ -216,9 +226,9 @@
       '<div class="ft-brief"><h4>SMU+ Weekly</h4><p>One email on Friday mornings in season.</p>'+briefHTML('briefFt',true)+'</div></div>'+
     '<div class="ft-cols"><div><h4>Fall &amp; Winter</h4><ul>'+sportLinks.slice(0,6).join('')+'</ul></div><div><h4>More Sports</h4><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
     '<div><h4>Media</h4><ul>'+MEDIA.map(function(m){return '<li><a href="'+m[1]+'">'+m[0]+'</a></li>'}).join('')+'<li><a href="'+libUrl()+'">Library</a></li>'+(REC_ON?'<li><a href="'+ROOT+'recruiting/">Recruiting</a></li>':'')+'</ul></div>'+
-    '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">Message Boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li>'+(SHOW_PAID_PLANS?'<li><a href="'+ROOT+'#membership">Plans</a></li>':'')+'<li><a href="'+ROOT+'faq/">FAQ</a></li><li><a href="'+ROOT+'#waitlist">Join SMU+</a></li><li><a href="'+ROOT+'privacy/">Privacy notice</a></li><li><a href="mailto:'+esc(CONTACT)+'">Contact us</a></li></ul></div></div></div>'+
-    '<div class="legal"><p><strong>Concept built for an SMU Cox MBA class project. Not affiliated with or endorsed by SMU Athletics or Learfield. No payments are taken.</strong> Membership and checkout are a demo. <a href="'+ROOT+'privacy/">Privacy notice</a> \u00b7 Contact: '+contactHTML()+'</p>'+
-    '<p>All stories, athletes, coaches, '+(REC_ON?'recruits, portal names, ':'')+'board users, prices and figures are fictional sample data, with these exceptions: the Player Profiles show real SMU football players using public stats with sources on each page; the football schedule, kickoff times, TV and scores, and the schedules, results, rosters and head coaches on the other 11 sport pages, come from smumustangs.com with links on each page; photos credited "Photo: SMU Athletics" are SMU Athletics photography used for this class concept; videos and podcast episodes credited to SMU Athletics are official embeds from SMU\u2019s YouTube channel, not rehosted; and stories marked "Sourced story" use only facts from the SMU Athletics pages they link to. The SMU+ logo is concept artwork made for this class project; SMU marks belong to SMU, and no Learfield marks are used. No payments are processed. Accounts, board posts, newsletter and waitlist signups are saved only in this browser unless the site is connected to its own database; see the privacy notice for what is stored and how to have it deleted.</p></div></div></footer>';
+    '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">The Expressway message boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li>'+(SHOW_PAID_PLANS?'<li><a href="'+ROOT+'#membership">Plans</a></li>':'')+'<li><a href="'+ROOT+'faq/">FAQ</a></li><li><a href="'+ROOT+'#waitlist">Join SMU+</a></li><li><a href="'+ROOT+'privacy/">Privacy notice</a></li><li><a href="'+ROOT+'terms/">Terms of use</a></li><li><a href="'+ROOT+'dmca/">Copyright and DMCA</a></li><li><a href="mailto:'+esc(CONTACT)+'">Contact us</a></li></ul></div></div></div>'+
+    '<div class="legal"><p><strong>Concept built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners or Learfield. No payments are taken.</strong> Membership and checkout are a demo. <a href="'+ROOT+'privacy/">Privacy notice</a> \u00b7 <a href="'+ROOT+'terms/">Terms of use</a> \u00b7 <a href="'+ROOT+'dmca/">Copyright and DMCA</a> \u00b7 Contact: '+contactHTML()+'</p>'+
+    '<p>All stories, athletes, coaches, '+(REC_ON?'recruits, portal names, ':'')+'sample board posts (labeled Sample), prices and figures are fictional sample data, with these exceptions: the Player Profiles show real SMU football players using public stats with sources on each page; the football schedule, kickoff times, TV and scores, and the schedules, results, rosters and head coaches on the other 11 sport pages, come from smumustangs.com with links on each page; photos credited "Photo: SMU Athletics" are SMU Athletics photography used for this class concept; videos and podcast episodes credited to SMU Athletics are embeds from SMU Athletics on YouTube, not rehosted; and stories marked "Sourced story" use only facts from the SMU Athletics pages they link to. The SMU+ logo is concept artwork made for this class project; SMU marks belong to SMU, and no Learfield marks are used. No payments are processed. Accounts, board posts, newsletter and waitlist signups are saved only in this browser unless the site is connected to its own database; see the privacy notice for what is stored and how to have it deleted.</p></div></div></footer>';
 
   /* ---------- Newsletter: SMU+ Weekly (demo, localStorage only) ---------- */
   function briefHTML(id,compact){return '<div class="brief'+(compact?' compact':'')+'" data-brief>'+
@@ -248,7 +258,7 @@
     '<div class="pw" id="paywall" role="dialog" aria-modal="true" aria-labelledby="pw-h" hidden><div class="pw-sheet"><button class="reader-x" id="pwClose" aria-label="Close">×</button>'+
       '<div class="pw-art" id="pwArt"></div><div class="pw-b"><p class="eyebrow pw-eb">'+LOCK+'Members only</p><h3 id="pw-h">Unlock <span id="pwTitle"></span></h3>'+
       '<p class="pw-lede">The members-only boards today. Original SMU+ series, film breakdowns and podcasts are coming soon. Cancel anytime.</p>'+
-      '<div class="pw-tiers">'+[[MP.TIER_LABELS.mustang,'9.99','4.00'],[MP.TIER_LABELS.pony,'24.99','10.00'],[MP.TIER_LABELS.club,'99','39.60']].map(function(t,i){return '<div class="pw-t'+(i===1?' pop':'')+'">'+(i===1?'<span class="pw-pop">Most popular</span>':'')+'<b>'+t[0]+'</b><span class="pw-p">$'+t[1]+'<small>/mo</small></span></div>'}).join('')+'</div>'+
+      '<div class="pw-tiers">'+[MP.TIER_LABELS.mustang,MP.TIER_LABELS.pony,MP.TIER_LABELS.club].map(function(t){return '<div class="pw-t"><b>'+t+'</b><span class="pw-p">Coming soon</span></div>'}).join('')+'</div>'+
       '<div class="pw-act"><a class="btn btn-red" href="'+ROOT+'#membership" id="pwPlans">See plans</a>'+memberSwitch()+'</div>'+
       conceptNotice('pw-cn')+'</div></div></div>'+
     '<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Search SMU+" hidden><div class="search-sheet">'+
@@ -320,8 +330,11 @@
     var a=MP.ARTICLES[c.id];(a&&a.related||[]).forEach(function(r){add(LIBBY[r])});seriesOf(c).forEach(add);
     MP.LIB.forEach(function(x){if(x.cat===c.cat)add(x)});MP.LIB.forEach(function(x){if(x.t===c.t)add(x)});MP.LIB.forEach(add);return out}
   function relatedHTML(c){var r=relatedFor(c);return '<div class="sec-hd sm"><h3 class="sec-t">Up next</h3></div><div class="relgrid">'+r.map(function(x){return cardHTML(x)}).join('')+'</div>'}
+  /* Athlete stories (player features, or a story whose title names one of the profiled players) never get mid-article ads (assets/ads.js noAthlete) */
+  function athleteStory(c){if(!c)return false;if(/player|profile/i.test(c.label||''))return true;var ti=String(c.title||'');
+    return (MP.ATHLETES||[]).some(function(a){return a&&a.name&&ti.indexOf(a.name)>=0})}
   function inlineGate(c){return '<div class="pw-inline"><p class="eyebrow">'+LOCK+'Members only</p><h3>Keep '+(c.t==='article'?'reading':c.t==='podcast'?'listening':'watching')+' with any plan</h3>'+
-    '<p>Plans start at $9.99 a month.</p><div class="pw-act"><a class="btn btn-red btn-sm" href="'+ROOT+'#membership">See plans</a>'+memberSwitch()+'</div></div>'}
+    '<p>Paid plans aren\u2019t available yet.</p><div class="pw-act"><a class="btn btn-red btn-sm" href="'+ROOT+'#membership">See plans</a>'+memberSwitch()+'</div></div>'}
   function showReader(c,push){reader.hidden=false;document.documentElement.classList.add('noscroll');readerBody.scrollTop=0;readerBody.focus();syncMember();
     var h=itemHref(c);if(push!==false&&location.hash!==h)history.pushState(null,'',h);document.title=c.title+' | SMU+';current=c.id}
   function openArticle(id,push){
@@ -331,19 +344,19 @@
       '<div class="reader-in"><p class="dek">'+esc(a.dek)+'</p><div class="byline"><span class="av staff" aria-hidden="true">'+st.n.charAt(0)+'</span><div><b>'+esc(st.n)+'</b><small>'+esc(st.role)+' · '+a.date+' · '+esc(c.dur)+'</small></div><button class="btn btn-outline btn-sm" data-demo="Share this story">Share</button></div>'+
       '<div class="prose'+(lock?' teaser':'')+'">'+(lock?a.body.slice(0,2):a.body).map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>'+(lock?inlineGate(c):'')+
       (a.sourced?'<p class="note">Sourced story. Facts and stats from '+(a.sources||[]).map(function(x){return '<a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0])+'</a>'}).join(', ')+'. No quotes are used. SMU+ is an SMU Cox class-project concept, not affiliated with SMU Athletics.</p>':'<p class="note">Fictional story written for an SMU Cox class-project concept. Characters and quotes are invented; real places are used as setting only.</p>')+relatedHTML(c)+'</div>';
-    showReader(c,push);if(!lock)track(id,0.04);if(MP.adsMount)MP.adsMount('article');/* sample ad slots: assets/ads.js */return true}
+    showReader(c,push);var rbA=$('#readerBody');if(rbA){if(athleteStory(c))rbA.setAttribute('data-athlete','1');else rbA.removeAttribute('data-athlete')}if(!lock)track(id,0.04);if(MP.adsMount)MP.adsMount('article');/* sample ad slots: assets/ads.js */return true}
   function secs(d){var m=String(d).match(/(\d+):(\d+)/);if(m)return (+m[1])*60+(+m[2]);m=String(d).match(/(\d+)\s*min/);return m?(+m[1])*60:600}
   function clock(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
   function openMedia(id,push){var c=LIBBY[id];if(!c)return false;lastFocus=lastFocus||document.activeElement;
     var lock=blocked(c),p=progressOf(id),total=secs(c.dur),eps=seriesOf(c),audio=c.t==='podcast';
     var yt=c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null,ap=!yt&&c.apple&&/^https:\/\/embed\.podcasts\.apple\.com\//.test(c.apple)?c.apple:null;
     readerBody.innerHTML=(ap?'<div class="player tpl-card ap" id="apBox">'+smuTpl(c,{big:1,eager:1})+'<button type="button" class="play" id="apPlay" aria-label="Play this episode (loads Apple Podcasts)">'+SVG.play+'</button></div>':yt?'<div class="player yt'+(lock?' locked':'')+'" id="ytBox">'+ytImg(yt,'yt-thumb',1)+'<span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>'+
-          (lock?'':'<button type="button" class="play" id="ytPlay" aria-label="'+(c.feed?'Play the '+esc(c.pub)+' video (loads YouTube)':'Play the official SMU Athletics video (loads YouTube)')+'">'+SVG.play+'</button>')+'</div>':
+          (lock?'':'<button type="button" class="play" id="ytPlay" aria-label="'+(c.feed?'Play the '+esc(c.pub)+' video (loads YouTube)':'Play this video from SMU Athletics on YouTube (loads YouTube)')+'">'+SVG.play+'</button>')+'</div>':
         '<div class="player tpl-card'+(lock?' locked':'')+'">'+smuTpl(c,{big:1,eager:1})+
         (lock?'':'<button type="button" class="play" id="playBtn" aria-label="'+(p>0.02?'Resume':'Play')+' (demo)">'+SVG.play+'</button>')+
         '<div class="pbar" aria-hidden="true"><i id="pFill" style="width:'+Math.round(p*100)+'%"></i></div></div>')+
       '<div class="reader-in">'+(lock?inlineGate(c):'')+'<p class="eyebrow red">'+esc(c.label)+(GATING&&c.lock?' · Members':'')+'</p><h2 id="reader-h" class="m-title">'+esc(c.title)+'</h2><p class="dek">'+esc(c.desc)+'</p>'+
-        '<p class="m-meta"><span>'+(yt||ap?'':'<b id="pTime">'+clock(p*total)+'</b> / ')+esc(c.dur)+'</span><span>'+(audio?'Podcast':'Video')+'</span>'+(ap?'<span>'+esc(c.credit.replace(/^Podcast: /,''))+'. It loads from Apple Podcasts when you press play \u00b7 <a href="'+esc(c.src)+'" target="_blank" rel="noopener">Open in Apple Podcasts</a></span>':yt?'<span>'+(c.feed?'Public '+esc(c.pub)+' video.':'Official SMU Athletics video.')+' It loads from YouTube when you press play'+(c.channel?' \u00b7 <a href="'+esc(c.channel[1])+'" target="_blank" rel="noopener">'+esc(c.channel[0])+'</a>':'')+'</span>':'<span>Demo player: nothing streams in this concept</span>')+'</p>'+
+        '<p class="m-meta"><span>'+(yt||ap?'':'<b id="pTime">'+clock(p*total)+'</b> / ')+esc(c.dur)+'</span><span>'+(audio?'Podcast':'Video')+'</span>'+(ap?'<span>'+esc(c.credit.replace(/^Podcast: /,''))+'. It loads from Apple Podcasts when you press play \u00b7 <a href="'+esc(c.src)+'" target="_blank" rel="noopener">Open in Apple Podcasts</a></span>':yt?'<span>'+(c.feed?'Public '+esc(c.pub)+' video.':'From SMU Athletics on YouTube.')+' It loads from YouTube when you press play'+(c.channel?' \u00b7 <a href="'+esc(c.channel[1])+'" target="_blank" rel="noopener">'+esc(c.channel[0])+'</a>':'')+'</span>':'<span>Demo player: nothing streams in this concept</span>')+'</p>'+
         (eps.length>1?'<div class="eps"><h3 class="eps-h">'+esc(c.title.split(':')[0])+' · '+eps.length+' episodes</h3>'+eps.map(function(e,i){var ep=progressOf(e.id);
           return '<a class="ep'+(e.id===c.id?' on':'')+'" href="'+itemHref(e)+'" data-item="'+e.id+'"'+(e.id===c.id?' aria-current="true"':'')+'><span class="ep-n">'+(i+1)+'</span><span class="ep-b"><b>'+esc(e.title.split(':').slice(1).join(':').trim()||e.title)+'</b><small>'+esc(e.dur)+(ep>0.02?' · '+Math.round(ep*100)+'% watched':'')+'</small></span>'+(e.id===c.id?'<span class="ep-now">Now playing</span>':'')+'</a>'}).join('')+'</div>':'')+
         relatedHTML(c)+'</div>';
@@ -384,7 +397,7 @@
   function buildIndex(){INDEX=[];var kind={video:'Episode',article:'Story',podcast:'Podcast'};
     Object.keys(LIBBY).forEach(function(k){var c=LIBBY[k];if(expired(c))return;INDEX.push({g:'Watch & read',k:kind[c.t],ic:c.t,title:c.title,sub:c.label+' · '+c.dur+(gated(c)?' · Members':''),item:c.id,hay:[c.title,c.desc,c.label,CATNAME[c.cat]||'',kind[c.t]].join(' ')})});
     (MP.ATHLETES||[]).forEach(function(a){INDEX.push({g:'Players',k:'Player',ic:'user',title:a.name,sub:'#'+a.num+' · '+a.pos+' · '+a.cls+' · '+((sportBy(a.sport)||{}).name||'Football'),href:athleteUrl(a.id),hay:[a.name,a.pos,a.cls,a.hometown,a.sport.replace('-',' ')+' player profile #'+a.num].join(' ')})});
-    MP.THREADS.forEach(function(t){var f=forumBy(t.f);INDEX.push({g:'Boards',k:'Thread',ic:'chat',title:t.title,sub:f.name+(t.replies==null?'':' · '+t.replies.toLocaleString()+(t.replies===1?' reply':' replies')),href:threadUrl(t.id),hay:[t.title,f.name,t.sport||'',t.posts.map(function(p){return p[1]}).join(' ')].join(' ')})});
+    MP.THREADS.forEach(function(t){var f=forumBy(t.f);INDEX.push({g:'Boards',k:'Thread',ic:'chat',title:t.title,sub:(t.sample?'Sample \u00b7 ':'')+'The Expressway \u00b7 '+f.name+(t.replies==null?'':' · '+t.replies.toLocaleString()+(t.replies===1?' reply':' replies')),href:threadUrl(t.id),hay:[t.title,f.name,t.sport||'',t.posts.map(function(p){return p[1]}).join(' ')].join(' ')})});
     MP.SPORTS.forEach(function(s){INDEX.push({g:'Sports',k:'Sport',ic:'grid',title:s.name,sub:s.season+' · '+sportRec(s),href:sportUrl(s.slug),hay:s.name+' '+s.season+' '+s.slug})})}
   function hl(text,toks){var out=esc(text);toks.forEach(function(t){if(t.length<2)return;out=out.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>')});return out}
   var SUGGEST=['Highlights','Jennings','Syracuse',"Mic'd Up",REC_ON?'portal':'Podcasts','basketball'];
@@ -505,7 +518,7 @@
   function avFix(e){var i=e.target;if(i&&i.tagName==='IMG'&&i.classList&&i.classList.contains('av-img')){var p=i.parentNode;i.remove();if(p&&p.classList)p.classList.remove('has-ph')}}
   document.addEventListener('error',avFix,true);
   function forumBy(id){for(var i=0;i<MP.FORUMS.length;i++)if(MP.FORUMS[i].id===id)return MP.FORUMS[i]}
-  function pills(t){var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),p='';
+  function pills(t){var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),p=MP.sampleTag?MP.sampleTag(t):'';
     if(t.pin)p+='<span class="pill pill-pin">'+PIN+'Pinned</span>';if(t.hot)p+='<span class="pill pill-hot">'+FLAME+'Hot</span>';
     if(GATING&&f.prem)p+='<span class="pill pill-prem">'+LOCK+'Members</span>';p+='<span class="pill">'+esc(f.name)+'</span>';if(s)p+='<span class="pill">'+esc(s.name)+'</span>';return p}
   function lastBy(t){var p=t.posts[t.posts.length-1];return p[0]}
@@ -604,18 +617,17 @@
      data-no-ads: keep ad slots out of this section and away from embedded posts and videos (ad-mock copy follows this). */
   var FEEDS=MP.FEEDS||{posts:{},follow:{}},FO_L={x:'X',instagram:'Instagram',youtube:'YouTube',tiktok:'TikTok'};
   /* Follow rows: each account as a mini X-style profile card (banner, round avatar, name, handle, the account's own bio, icon links),
-     in one sideways swipe row per group. Avatars and banners are self-hosted copies (assets/img/x/), so nothing loads from X before a tap. */
+     in one sideways swipe row per group. Plain text links only (no copied X pictures), so nothing loads from X before a tap. */
   var XPROF=MP.XPROF||{},FO_I={
     x:'<path d="M3 3h4.2l3.6 5 4.2-5H17l-5.3 6.3L18 17h-4.2l-3.9-5.4L5.3 17H3.4l5.7-6.7z"/>',
     instagram:'<path d="M7 2.5h6A4.5 4.5 0 0 1 17.5 7v6a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 13V7A4.5 4.5 0 0 1 7 2.5zm0 1.8A2.7 2.7 0 0 0 4.3 7v6A2.7 2.7 0 0 0 7 15.7h6a2.7 2.7 0 0 0 2.7-2.7V7A2.7 2.7 0 0 0 13 4.3zm3 2.4a3.3 3.3 0 1 1 0 6.6 3.3 3.3 0 0 1 0-6.6zm0 1.8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM14.2 4.9a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/>',
     youtube:'<path d="M18 6.3c-.2-.9-.9-1.6-1.8-1.8C14.6 4 10 4 10 4s-4.6 0-6.2.5C2.9 4.7 2.2 5.4 2 6.3 1.6 7.9 1.6 10 1.6 10s0 2.1.4 3.7c.2.9.9 1.6 1.8 1.8C5.4 16 10 16 10 16s4.6 0 6.2-.5c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-3.7.4-3.7s0-2.1-.4-3.7zM8.3 12.6V7.4L12.6 10z"/>',
     tiktok:'<path d="M13.6 2.5c.3 1.9 1.4 3.1 3.4 3.3v2.4c-1.2.1-2.3-.3-3.4-1v4.9c0 3.4-2.6 5.4-5.5 5.4A5 5 0 0 1 3 12.5c0-3.1 2.6-5.3 5.9-4.9v2.5c-1.6-.3-3.3.6-3.3 2.4 0 1.4 1.1 2.5 2.6 2.5s2.6-1 2.6-2.8V2.5z"/>'};
   function foCheck(v){return '<svg class="fo-v fo-v-'+(v==='business'?'g':'b')+'" viewBox="0 0 20 20" width="15" height="15" role="img" aria-label="Verified account"><path d="M10 1.5l2.3 1.7 2.8-.2.9 2.7 2.4 1.5-.9 2.7.9 2.7-2.4 1.5-.9 2.7-2.8-.2L10 18.5l-2.3-1.7-2.8.2-.9-2.7-2.4-1.5.9-2.7-.9-2.7 2.4-1.5.9-2.7 2.8.2z"/><path d="M6.5 10.2l2.3 2.3 4.8-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
-  function foCard(a){var h=a[1],k=h.toLowerCase(),p=XPROF[k]||{},nm=p.n||a[0],ban=p.ban?ROOT+'assets/img/x/'+k+'-banner.webp':'';
-    var chk=p.v?foCheck(p.v):'';
-    return '<li class="fo-card"><div class="fo-ban">'+(ban?'<img src="'+ban+'" alt="" loading="lazy" decoding="async" width="600" height="200">':'')+'</div>'+
-      '<img class="fo-av" src="'+ROOT+'assets/img/x/'+k+'.webp" alt="" loading="lazy" decoding="async" width="96" height="96">'+
-      '<div class="fo-body"><p class="fo-nm"><b>'+esc(nm)+'</b>'+chk+'</p><p class="fo-h">@'+esc(h)+'</p>'+(p.b?'<p class="fo-bio">'+esc(p.b)+'</p>':'')+
+  /* Plain text links (legal cleanup, Oct 26): no copied X profile pictures, banners, badges or bios */
+  function foCard(a){var h=a[1],nm=a[0],xu=(a[2]&&a[2].x)||'https://x.com/'+encodeURIComponent(h);
+    return '<li class="fo-card fo-plain">'+
+      '<div class="fo-body"><p class="fo-nm"><b>'+esc(nm)+'</b></p><p class="fo-h"><a href="'+esc(xu)+'" target="_blank" rel="noopener">@'+esc(h)+' on X</a></p>'+
       (a[3]?'<p class="fo-d">'+esc(a[3])+'</p>':'')+
       '<p class="fo-links">'+Object.keys(FO_L).filter(function(t){return a[2][t]}).map(function(t){
         return '<a class="fo-a" href="'+esc(a[2][t])+'" target="_blank" rel="noopener" aria-label="'+esc(a[0])+' on '+FO_L[t]+' (opens in a new tab)" title="'+FO_L[t]+'"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="currentColor">'+FO_I[t]+'</svg></a>'}).join('')+'</p></div></li>'}
@@ -623,12 +635,10 @@
   var SLN=0;
   /* Follow rows use the same side arrows as the X posts row: one per side, centered on the cards, hidden when nothing scrolls */
   /* Player cards for the follow section: X and Instagram accounts from assets/socials.js (verified Oct. 26, 2026), laid out like the team cards.
-     Banner, avatar, verified check and bio come from the player's own X profile (MP.XPROF, self-hosted copies in assets/img/x/) when they have one;
-     otherwise the avatar is their official SMU Athletics roster headshot, else the jersey number, on a plain blue banner. */
-  function plCard(p){var a=p.ath,ph=a&&PH[a.photo],xa=p.acc.filter(function(x){return x[0]==='x'})[0],k=xa?xa[1].toLowerCase():'',x=k&&XPROF[k]||null;
-    var av=x?'<img class="fo-av" src="'+ROOT+'assets/img/x/'+k+'.webp" alt="" loading="lazy" decoding="async" width="96" height="96">':
-      ph?'<img class="fo-av" src="'+ROOT+'assets/photos/'+(ph.small||ph.file)+'" alt="" loading="lazy" decoding="async" width="96" height="96" style="object-position:50% 18%">':'<span class="fo-av fo-num" aria-hidden="true">'+esc(p.num)+'</span>';
-    return '<li class="fo-card fo-pc"><div class="fo-ban">'+(x&&x.ban?'<img src="'+ROOT+'assets/img/x/'+k+'-banner.webp" alt="" loading="lazy" decoding="async" width="600" height="200">':'')+'</div>'+av+
+     No copied X pictures, banners, badges or bios (legal cleanup, Oct 26): the avatar is their official SMU Athletics roster headshot, else the jersey number, on a plain blue banner. */
+  function plCard(p){var a=p.ath,ph=a&&PH[a.photo],x=null;
+    var av=ph?'<img class="fo-av" src="'+ROOT+'assets/photos/'+(ph.small||ph.file)+'" alt="" loading="lazy" decoding="async" width="96" height="96" style="object-position:50% 18%">':'<span class="fo-av fo-num" aria-hidden="true">'+esc(p.num)+'</span>';
+    return '<li class="fo-card fo-pc"><div class="fo-ban"></div>'+av+
       '<div class="fo-body"><p class="fo-nm"><b>'+esc(p.name)+'</b>'+(x&&x.v?foCheck(x.v):'')+'</p><p class="fo-h">#'+esc(p.num)+(p.pos?' · '+esc(p.pos):'')+' · Player</p>'+(x&&x.b?'<p class="fo-bio">'+esc(x.b)+'</p>':'')+
       '<p class="fo-links">'+p.acc.map(function(x){return '<a class="fo-a" href="'+esc(x[2])+'" target="_blank" rel="noopener nofollow" aria-label="'+esc(p.name)+' on '+FO_L[x[0]]+', @'+esc(x[1])+' (opens in a new tab)" title="'+FO_L[x[0]]+' @'+esc(x[1])+'"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="currentColor">'+FO_I[x[0]]+'</svg></a>'}).join('')+'</p></div></li>'}
   function playerFollow(slug){var S=(MP.SOCIALS||{})[slug],R=(MP.REAL||{})[slug];if(!S)return [];
@@ -672,7 +682,7 @@
       box.scrollBy({left:st*(+a.dataset.xdir),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}});
   function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&(c.sport===slug||(c.also||[]).indexOf(slug)>=0)}).sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')})}
   function mediaSection(slug,name){var L=thirdFor(slug);if(!L.length)return '';
-    return '<section class="sec alt" id="media"><div class="wrap">'+secHead('Video, podcasts &amp; coverage',libUrl('all'),'Library','Official channels and the press')+
+    return '<section class="sec alt" id="media"><div class="wrap">'+secHead('Video, podcasts &amp; coverage',libUrl('all'),'Library','SMU Athletics on YouTube and the press')+
       '<p class="lede">Real '+esc(name.toLowerCase())+' media from SMU Athletics and outside outlets, credited to each source. Videos and podcasts play through YouTube and Apple Podcasts; articles open on the outlet\u2019s own site.</p>'+rail(L)+'</div></section>'}
 
   /* ---------- Home ---------- */
@@ -698,16 +708,16 @@
       $('#htAll').href=T[i][2];if(focus)tabs[i].focus()}
     tabs.forEach(function(b,i){b.addEventListener('click',function(){pick(i)});
       b.addEventListener('keydown',function(e){var n=tabs.length,k=e.key,j=k==='ArrowRight'?(i+1)%n:k==='ArrowLeft'?(i+n-1)%n:k==='Home'?0:k==='End'?n-1:-1;if(j>-1){e.preventDefault();pick(j,true)}})})}
-  /* ---------- Home: Latest from the Hilltop (components from bot/forum-first). Newest activity first; replies are counted from real posts only ---------- */
+  /* ---------- Home: Latest from The Expressway message boards (components from bot/forum-first). Newest activity first; replies are counted from real posts only ---------- */
   function hilltop(){var box=$('#hillList');if(!box)return;
     function replies(t){if(t.locked)return null;return t.replies!=null?t.replies:Math.max(0,t.posts.length-1)}
     function lastMin(t){var p=t.posts[t.posts.length-1];if(p&&p[3]&&!isNaN(Date.parse(p[3])))return (Date.now()-Date.parse(p[3]))/60000;var m={m:1,h:60,d:1440,w:10080},x=String(lastAgo(t)).match(/(\d+)(\w)/);return x?(+x[1])*(m[x[2]]||1):1e9}
     function plural(n,a,b){return n.toLocaleString()+' '+(n===1?a:b)}
     function render(){var hill=MP.THREADS.filter(function(t){return t.f==='hilltop'&&t.posts&&t.posts.length}).sort(function(a,b){return lastMin(a)-lastMin(b)}).slice(0,6);
       box.innerHTML=hill.length?hill.map(function(t){var s=t.sport&&sportBy(t.sport),r=replies(t),lu=MP.USERS[lastBy(t)];
-        return '<li><a class="hill-row" href="'+threadUrl(t.id)+'"><span class="hill-ic" aria-hidden="true">'+(s?sportIcon(t.sport):CHAT)+'</span><span class="hill-main"><b>'+esc(t.title)+'</b>'+
+        return '<li><a class="hill-row" href="'+threadUrl(t.id)+'"><span class="hill-ic" aria-hidden="true">'+(s?sportIcon(t.sport):CHAT)+'</span><span class="hill-main"><b>'+(MP.sampleTag?MP.sampleTag(t):'')+esc(t.title)+'</b>'+
           '<small><span class="hill-sp">'+(s?esc(s.name):'Around SMU')+'</span>'+(r==null?'':' \u00b7 '+plural(r,'reply','replies'))+' \u00b7 last post '+lastAgo(t)+' ago'+(lu?' by '+esc(lu.n):'')+'</small></span></a></li>'}).join('')
-        :'<li class="hill-empty">Quiet on the Hilltop. Start the first thread.</li>'}
+        :'<li class="hill-empty">Quiet on The Expressway. Start the first thread.</li>'}
     render();SMU.on('threads',render);
     (SMU.ready||Promise.resolve()).then(function(){if(SMU.live&&SMU.loadThreads)SMU.loadThreads().then(render,function(){})})}
 
@@ -818,10 +828,10 @@
       function fill(){if(hf.dataset.filled||(mq&&mq.matches))return;hf.dataset.filled='1';hf.innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';}
       fill();if(mq&&mq.addEventListener)mq.addEventListener('change',fill)})();
     $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();
-    $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Official SMU Athletics video')+rail(byCat('watch'));
+    $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','From SMU Athletics on YouTube')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
-    var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before the Mustang Board) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));watchX();
+    var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before The Expressway boards) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));watchX();
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
     hilltop();
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
@@ -1165,7 +1175,7 @@
   /* ---------- Recruiting hub ---------- */
   function composite(v){var h=0,s=v[0];for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))%997;return (0.80+v[4]*0.03+h/997*0.029).toFixed(4)}
   function recruiting(){
-    if(!REC_ON){var mn=$('main');document.title='Recruiting is paused | SMU+';if(mn)mn.innerHTML='<section class="page-hero"><div class="wrap"><h1 class="display">This section is paused</h1><p class="lede on-dark">Recruiting coverage is off for now.</p><p class="nf-act"><a class="btn btn-red" href="'+(ROOT||'./')+'">Go to the home page</a> <a class="btn btn-ghost" href="'+ROOT+'boards/">The Mustang Board</a></p></div></section>';return}
+    if(!REC_ON){var mn=$('main');document.title='Recruiting is paused | SMU+';if(mn)mn.innerHTML='<section class="page-hero"><div class="wrap"><h1 class="display">This section is paused</h1><p class="lede on-dark">Recruiting coverage is off for now.</p><p class="nf-act"><a class="btn btn-red" href="'+(ROOT||'./')+'">Go to the home page</a> <a class="btn btn-ghost" href="'+ROOT+'boards/">The Expressway message boards</a></p></div></section>';return}
     var all=[];MP.VISITS.forEach(function(w){w.list.forEach(function(v){all.push({v:v,w:w})})});
     all.sort(function(a,b){return composite(b.v)-composite(a.v)});
     $('#recBoard').innerHTML=all.slice(0,6).map(function(x,i){var v=x.v;return '<article class="rk"><span class="rk-n">'+(i+1)+'</span><div class="rk-b"><b>'+esc(v[0])+'</b><small>'+v[1]+' · '+v[2]+' · '+esc(v[3])+'</small>'+
@@ -1208,8 +1218,8 @@
     var MAIN=['football','mens-basketball','womens-basketball'];
     function teamSports(tm){return tm.sports||MP.SPORTS.map(function(s){return s.slug}).filter(function(s){return MAIN.indexOf(s)<0})}
     function teamBy(id){for(var i=0;i<TEAMS.length;i++)if(TEAMS[i].id===id)return TEAMS[i];return null}
-    var CATS=[{name:'SMU sports talk',ids:['hilltop','paddock','recruiting']},{name:'Team boards',teams:true},{name:'Around the Hilltop',ids:['boulevard','help']}];
-    var DESC={hilltop:'The main board for every Mustang fan. Game talk, takes and hype.',paddock:'Insider notes, practice reports and staff intel.'};
+    var CATS=[{name:'SMU sports talk',ids:['hilltop','paddock','recruiting']},{name:'Team boards',teams:true},{name:'Around SMU',ids:['boulevard','help']}];
+    var DESC={hilltop:'The main board of The Expressway, free for every Mustang fan. Game talk, takes and hype.',paddock:'Members board for longer takes and analysis.'};
     function fdesc(f){return DESC[f.id]||String(f.desc||'').replace(/\s*Members[- ]only[^.]*\.?/ig,'').trim()}
     /* ---- time: real timestamps when the post has one; sample posts are spread between the thread's start and now ---- */
     var NOW=Date.now(),DAY=864e5;
@@ -1240,7 +1250,7 @@
     var RANKS=[[500,'All-American'],[150,'All-Conference'],[50,'Senior'],[15,'Junior'],[5,'Sophomore'],[0,'Freshman']];
     function rank(n){for(var i=0;i<RANKS.length;i++)if(n>=RANKS[i][0])return RANKS[i][1];return 'Freshman'}
     function U(id){return MP.USERS[id]||{n:'Member',since:''}}
-    function prefix(t){var s=t.sport&&sportBy(t.sport);return s?'<span class="fx-pre">'+esc(s.name)+'</span>':''}
+    function prefix(t){var s=t.sport&&sportBy(t.sport);return (MP.sampleTag?MP.sampleTag(t):'')+(s?'<span class="fx-pre">'+esc(s.name)+'</span>':'')}
     function num(n){return (+n||0).toLocaleString()}
     function nRep(t){return t.locked?null:(t.replies!=null?t.replies:Math.max(0,t.posts.length-1))}
     function inTeam(t,tm){return !!t.sport&&teamSports(tm).indexOf(t.sport)>=0}
@@ -1320,7 +1330,7 @@
       $('#fxRows').innerHTML=rows||(state.q?emptyState('search','No threads match \u201c'+esc(state.q)+'\u201d','Try fewer words, or search every board.','<a class="btn btn-outline btn-sm" href="'+qs({q:'',page:1})+'">Clear search</a>'):emptyState('chat','No threads here yet','Start the first one.','<button type="button" class="btn btn-red btn-sm" data-compose'+(sc.f?' data-forum="'+sc.f.id+'"':'')+(sc.sp?' data-sport="'+sc.sp.slug+'"':'')+'>Post thread</button>'));
       $('#fxListPages').innerHTML=pager(state.page,pages,function(p){return qs({page:p})});
       $('#fxListCount').textContent=list.length?num(list.length)+(list.length===1?' thread':' threads'):'';
-      document.title=sc.title+' | The Mustang Board | SMU+'}
+      document.title=sc.title+' | The Expressway message boards | SMU+'}
     $('#fxSort').addEventListener('click',function(e){var b=e.target.closest('[data-sort]');if(!b)return;state.sort=b.dataset.sort;state.page=1;history.replaceState(null,'',qs());renderList()});
     var qT;$('#fxListQ').addEventListener('input',function(){var v=this.value.trim();clearTimeout(qT);qT=setTimeout(function(){state.q=v;state.page=1;history.replaceState(null,'',qs());renderList()},150)});
     $('#fxListSearch').addEventListener('submit',function(e){e.preventDefault()});
@@ -1383,7 +1393,7 @@
         '<button type="button" class="fx-fab" data-reply aria-label="Reply to this thread">Reply</button>';
       var t2=$('#replyText');if(t2&&draft)t2.value=draft;quotePreview(t);
       if(likes[t.id])paintLikes(t);loadLikes(t);
-      document.title=t.title+' | '+f.name+' | SMU+';
+      document.title=t.title+' | The Expressway message boards | SMU+';
       markRead(t);if(MP.adsMount)MP.adsMount('thread');/* sample ad slot after the 3rd post: assets/ads.js */
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});watching={id:t.id,off:function(){u1();u2()}}}
       fab();
@@ -1521,7 +1531,7 @@
         '<div class="box">'+(threads.length?threads.map(function(t){return threadRow(t,true)}).join(''):emptyState('chat','No '+esc(s.name)+' threads yet','Be the first to start the conversation on this board.','<button type="button" class="btn btn-red btn-sm" data-compose data-sport="'+s.slug+'">Start a thread</button><a class="btn btn-outline btn-sm" href="'+ROOT+'boards/">Browse all boards</a>'))+'</div></div></section>'+
       '<section class="sec" id="more"><div class="wrap">'+secHead('More Mustang sports',ROOT+'#sports','All sports')+
         '<div class="chips">'+others.map(function(o){return '<a class="chip" href="'+sportUrl(o.slug)+'">'+o.name+'</a>'}).join('')+'</div>'+
-        (SHOW_PAID_PLANS?'<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Plans from $9.99/mo.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div>':'')+'</div></section>';
+        (SHOW_PAID_PLANS?'<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Paid plans are coming later.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div>':'')+'</div></section>';
     $$('.sched td:last-child').forEach(function(td){var v=td.textContent;td.innerHTML='<span class="res '+(/^W|^1st|^2nd/.test(v)?'w':/^L/.test(v)?'l':/^T|^\d/.test(v)&&!/PM|TBA/.test(v)?'t':'up')+'">'+esc(v)+'</span>'});
     if(GD)startCountdowns();
   }
@@ -1599,7 +1609,7 @@
   /* ---------- Accounts, checkout (demo), saved athletes, compose, toasts ---------- */
   /* Everything here goes through window.SMU (assets/sb.js): Supabase when configured, this browser otherwise. */
   if(!window.SMU){window.SMU={live:false,user:null,on:function(){return function(){}},ready:Promise.resolve('demo'),tier:function(){return isMember()?'pony':'free'},saved:function(){return []},me:function(){return null},ago:function(){return ''},watch:function(){return function(){}}}}
-  var TIER_NAME=MP.TIER_LABELS,TIER_PRICE={mustang:'9.99',pony:'24.99',club:'99'},TIER_NIL={mustang:'4.00',pony:'10.00',club:'39.60'};
+  var TIER_NAME=MP.TIER_LABELS,TIER_PRICE={};  /* no prices in the page source (legal cleanup, Oct 26) */
   body.insertAdjacentHTML('beforeend','<div class="toasts" id="toasts" role="status" aria-live="polite" aria-atomic="false"></div>');
   function toast(msg,kind){var box=$('#toasts');if(!box)return;var el=document.createElement('div');el.className='toast'+(kind?' '+kind:'');el.textContent=msg;box.appendChild(el);
     requestAnimationFrame(function(){el.classList.add('in')});setTimeout(function(){el.classList.remove('in');setTimeout(function(){el.remove()},300)},kind==='err'?6000:3500)}
@@ -1624,11 +1634,12 @@
   function caps(){return SMU.authCaps?SMU.authCaps():{signup:true,email:true,oauth:[]}}
   function oauthBtns(cls,student){var c=caps();if(!c.oauth.length)return '';
     return '<div class="auth-oauth '+(cls||'')+'">'+c.oauth.map(function(p){return '<button type="button" class="btn btn-outline auth-oa" data-oauth="'+p+'">Continue with '+OAUTH_NAME[p]+(student&&p==='azure'?' (SMU email)':'')+'</button>'}).join('')+'</div>'}
-  /* mode 'in' = sign in, 'up' = create a free Fan account. No email-link or password-reset options: Supabase can't deliver auth email yet. */
+  /* mode 'in' = sign in, 'up' = create a free account. No email-link or password-reset options: Supabase can't deliver auth email yet. */
   function authForm(mode,ctx){var c=caps();mode=mode==='up'&&c.signup?'up':'in';var demo=!SMU.live;
     return '<div class="auth" data-mode="'+mode+'">'+(ctx?'<p class="auth-ctx">'+esc(ctx)+'</p>':'')+
       '<div class="auth-tabs" role="tablist"><button type="button" role="tab" data-auth-tab="in" aria-selected="'+(mode==='in')+'">Sign in</button>'+(c.signup?'<button type="button" role="tab" data-auth-tab="up" aria-selected="'+(mode==='up')+'">Create a free account</button>':'')+'</div>'+
-      '<p class="auth-up-note">A free Fan account lets you read everything and post on the boards. SMU students can use the <button type="button" class="linkish" data-student>free Student plan</button> instead.</p>'+
+      '<p class="auth-up-note">A free account lets you read everything and post on the boards. SMU students can use the <button type="button" class="linkish" data-student>free Student plan</button> instead.</p>'+
+      '<label class="wl-consent f-age" for="auAge"><input id="auAge" type="checkbox" name="age" required><span class="wl-box" aria-hidden="true"></span><span>I am 13 or older. Required to create an account (see the <a href="'+ROOT+'terms/">terms of use</a>).</span></label><p class="auth-m auth-age-m" aria-live="polite"></p>'+
       oauthBtns()+
       '<form class="auth-f" novalidate>'+
         '<div class="fld f-name"><label for="auName">Display name</label><input id="auName" name="name" autocomplete="nickname" maxlength="40" placeholder="How you appear on the boards"></div>'+
@@ -1638,15 +1649,17 @@
         '<button class="btn btn-red auth-go" type="submit">Sign in</button>'+
       '</form>'+(c.signup?'':'<p class="auth-paused">New accounts are paused for a moment while we finish setting up sign-up. If you already have an account, sign in above.</p>')+modeNote()+'</div>'}
   function syncAuthForm(root){var a=$('.auth',root),m=a.dataset.mode,c=caps(),up=m==='up';$$('[data-auth-tab]',a).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.authTab===m))});
-    $('.f-name',a).hidden=!up;$('.auth-up-note',a).hidden=!up||!stOn();var pw=$('#auPw',a);pw.setAttribute('autocomplete',up?'new-password':'current-password');
+    $('.f-name',a).hidden=!up;$('.f-age',a).hidden=!up;$('.auth-age-m',a).textContent='';$('.auth-up-note',a).hidden=!up||!stOn();var pw=$('#auPw',a);pw.setAttribute('autocomplete',up?'new-password':'current-password');
     /* Create account: the email form shows only when email sign-up needs no delivered email; otherwise just the OAuth buttons */
     $('.auth-f',a).hidden=up&&!c.email;
     $('.auth-go',a).textContent=up?'Create free account':'Sign in';$('.auth-m',a).textContent=''}
   function wireAuth(root,done){syncAuthForm(root);
     root.addEventListener('click',function(e){var t=e.target.closest('[data-auth-tab]');if(t){$('.auth',root).dataset.mode=t.dataset.authTab;syncAuthForm(root);var ae=$('#auEmail',root);if(ae&&!$('.auth-f',root).hidden)ae.focus()}
-      var o=e.target.closest('[data-oauth]');if(o&&!o.closest('#studentDlg')){o.disabled=true;SMU.oauth(o.dataset.oauth).catch(function(err){o.disabled=false;$('.auth-m',root).textContent=friendlyAuth(err)})}});
+      var o=e.target.closest('[data-oauth]');if(o&&!o.closest('#studentDlg')&&$('.auth',root).dataset.mode==='up'&&!$('#auAge',root).checked){$('.auth-age-m',root).textContent='Tick the box to confirm you are 13 or older.';$('#auAge',root).focus();return}
+      if(o&&!o.closest('#studentDlg')){o.disabled=true;SMU.oauth(o.dataset.oauth).catch(function(err){o.disabled=false;$('.auth-m',root).textContent=friendlyAuth(err)})}});
     $('.auth-f',root).addEventListener('submit',function(e){e.preventDefault();var a=$('.auth',root),mode=a.dataset.mode,m=$('.auth-m',root),btn=$('.auth-go',root);
       var em=$('#auEmail',root).value.trim(),pw=$('#auPw',root).value,nm=$('#auName',root).value.trim();
+      if(mode==='up'&&!$('#auAge',root).checked){m.textContent='Tick the box to confirm you are 13 or older.';$('#auAge',root).focus();return}
       if(!EMAIL_RE.test(em)){m.textContent='Enter a full email address.';$('#auEmail',root).focus();return}
       if(SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}
       btn.disabled=true;m.textContent='One moment\u2026';
@@ -1711,7 +1724,7 @@
   /* Paid plans are coming soon (no paywall): nothing may switch anyone to a paid tier. Every 'choose a plan' path opens the
      Join pop-up's waitlist step with that plan pre-selected as tier_interest instead. Flip to true only when paid plans launch. */
   function checkout(tier){if(!PAID_OPEN){openJoin(JOIN_WL[tier]?tier:null);return}var cur=SMU.tier();
-    var d=dialog('payDlg','<p class="eyebrow">'+LOCK+'Demo checkout</p><h3 id="payDlg-h" class="dlg-h">'+TIER_NAME[tier]+' \u00b7 $'+TIER_PRICE[tier]+'/mo</h3>'+
+    var d=dialog('payDlg','<p class="eyebrow">'+LOCK+'Demo checkout</p><h3 id="payDlg-h" class="dlg-h">'+TIER_NAME[tier]+'</h3>'+
       conceptNotice()+'<p class="pay-what">Confirming only switches this demo account to '+TIER_NAME[tier]+'. Nothing is charged.</p>'+
       (cur===tier?'<p class="auth-m">You\u2019re already on this plan.</p>':'')+
       '<div class="dlg-act"><button type="button" class="btn btn-red" id="payGo"'+(cur===tier?' disabled':'')+'>Confirm demo membership</button><button type="button" class="btn btn-outline" id="payNo">Not now</button></div>'+modeNote());
@@ -1726,29 +1739,31 @@
   var JOIN_ORDER=['mustang','pony','club'],JOIN_WL={mustang:'mustang',pony:'all_access',club:'red_blue'},joinTiers=null;
   function readTiers(doc){var out=[];$$('#membership .tier',doc).forEach(function(c){var b=$('[data-join],[data-plan]',c),k=b&&(b.getAttribute('data-join')||b.getAttribute('data-plan'));if(!JOIN_WL[k])return;
       var pr=$('.price b',c),h=$('h3',c),f=$('.for',c);
-      out.push({k:k,name:h?h.textContent.trim():TIER_NAME[k],for:f?f.textContent.trim():'',p:pr?pr.textContent.trim():'$'+TIER_PRICE[k],per:(($('.price span',c)||{}).textContent||'/mo').trim(),
+      out.push({k:k,name:h?h.textContent.trim():TIER_NAME[k],for:f?f.textContent.trim():'',p:pr?pr.textContent.trim():'Coming soon',per:(($('.price span',c)||{}).textContent||'').trim(),
         pop:c.classList.contains('pop')?(($('.tag',c)||{}).textContent||'Most Popular').trim():'',
         perks:$$('li',c).map(function(li){var sp=$('.soon',li),soon=!!sp||/coming soon/i.test(li.textContent),t=li.textContent;if(sp)t=t.replace(sp.textContent,'');else t=t.replace(/\s*\(?coming soon\)?\s*$/i,'');
           return {t:t.replace(/\s+/g,' ').trim(),inc:li.classList.contains('inc'),soon:soon,sl:sp?sp.textContent.trim():'Coming soon'}}).filter(function(x){return x.t})})});
     out.sort(function(x,y){return JOIN_ORDER.indexOf(x.k)-JOIN_ORDER.indexOf(y.k)});return out.length===3?out:null}
   function loadTiers(){if(joinTiers)return Promise.resolve(joinTiers);var here=$('#membership .tier')?readTiers(document):null;if(here)return Promise.resolve(joinTiers=here);
     return fetch((ROOT||'./')+'index.html',{credentials:'same-origin'}).then(function(r){return r.ok?r.text():''}).then(function(t){joinTiers=t?readTiers(new DOMParser().parseFromString(t,'text/html')):null;return joinTiers})
-      .catch(function(){return null}).then(function(t){return t||JOIN_ORDER.map(function(k){return {k:k,name:TIER_NAME[k],for:'',p:'$'+TIER_PRICE[k],per:'/mo',pop:k==='pony'?'Most Popular':'',perks:[]}})})}
+      .catch(function(){return null}).then(function(t){return t||JOIN_ORDER.map(function(k){return {k:k,name:TIER_NAME[k],for:'',p:'Coming soon',per:'',pop:k==='pony'?'Most Popular':'',perks:[]}})})}
   var JCHK='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(53,76,161,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#354CA1" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   function joinCard(t){return '<article class="jm-card soon" aria-labelledby="jm-'+t.k+'"><span class="jm-pill jm-soon">'+LOCK+'Coming soon</span>'+
     '<h4 id="jm-'+t.k+'">'+esc(t.name)+'</h4>'+(t.for?'<p class="jm-for">'+esc(t.for)+'</p>':'')+
-    '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Sample price. Nothing is charged.</p>'+
+    '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Nothing is charged.</p>'+
     '<button type="button" class="btn btn-wl jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
     (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+'">'+JCHK+'<span>'+esc(x.t)+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
+  /* While paid plans are hidden, the Join pop-up still offers the free waitlist (with the price survey): no plan cards, no prices. */
+  var WL_BAND='<div class="st-band wl-band st-jm"><div class="st-b"><h4>Hear first if SMU+ launches</h4></div><button type="button" class="btn btn-red st-go" data-join-pick="survey">Join the waitlist</button></div>';
   var joinDlg=null;
   function openJoin(tier,note){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
     if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier,note)})}
   function buildJoin(T,tier,note){
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
     var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div>'+(SHOW_PAID_PLANS?'<p class="jm-eb">Membership</p>':'')+'<h3 id="joinDlg-h">Pick your seat.</h3>'+(note?'<p class="jm-lede jm-note">'+esc(note)+'</p>':'')+
-      '<p class="jm-lede">Join free today with a Fan account, or a Student plan if you have an @smu.edu email.'+(SHOW_PAID_PLANS?' Paid plans are coming soon, and you can join the free waitlist for the one you want.':'')+' There is nothing to buy.</p></div>'+
-      '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':'')+'</div>'+
-      '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
+      '<p class="jm-lede">Join free today with a free account, or a Student plan if you have an @smu.edu email.'+(SHOW_PAID_PLANS?' Paid plans are coming soon, and you can join the free waitlist for the one you want.':'')+' There is nothing to buy.</p></div>'+
+      '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':WL_BAND)+'</div>'+
+      '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> '+(SHOW_PAID_PLANS?'All plans':'Back')+'</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
       conceptNotice('jm-cn')+'</div>');
     d.classList.add('dlg-join');syncWaitlist();
@@ -1756,10 +1771,12 @@
     var obs=new MutationObserver(function(){if(!document.contains(d)){obs.disconnect();joinDlg=null;if(/^#(join|waitlist)$/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}});obs.observe(body,{childList:true});
     if(tier)setTimeout(function(){joinStep(tier)},40)}
   function joinStep(tier){var d=joinDlg;if(!d)return;var plans=$('.jm-plans',d),wl=$('.jm-wl',d),sheet=$('.jm-body',d);
-    if(!tier){wl.hidden=true;plans.hidden=false;sheet.scrollTop=0;var b=$('[data-join-pick="'+(d.dataset.tier||'pony')+'"]',d);if(b)b.focus();return}
-    var t=(joinTiers||[]).filter(function(x){return x.k===tier})[0]||{p:'$'+TIER_PRICE[tier],per:'/mo'};if(!JOIN_WL[tier]||!SHOW_PAID_PLANS)return;d.dataset.tier=tier;
-    $('.jm-pick-n',d).textContent=TIER_NAME[tier];$('.jm-pick-p',d).textContent=t.p+t.per+', sample price';
-    var sel=$('select[name=tier]',wl);if(sel)sel.value=JOIN_WL[tier];
+    if(!tier){wl.hidden=true;plans.hidden=false;sheet.scrollTop=0;var b=$('[data-join-pick="'+(d.dataset.tier||(SHOW_PAID_PLANS?'pony':'survey'))+'"]',d);if(b)b.focus();return}
+    var pk=$('.jm-pick',wl);
+    if(tier==='survey'){d.dataset.tier='survey';if(pk)pk.hidden=true}else{  /* free waitlist + price survey, no plan picked */
+    var t=(joinTiers||[]).filter(function(x){return x.k===tier})[0]||{p:'Coming soon',per:''};if(!JOIN_WL[tier]||!SHOW_PAID_PLANS)return;d.dataset.tier=tier;if(pk)pk.hidden=false;
+    $('.jm-pick-n',d).textContent=TIER_NAME[tier];$('.jm-pick-p',d).textContent=t.p+t.per;
+    var sel=$('select[name=tier]',wl);if(sel)sel.value=JOIN_WL[tier]}
     plans.hidden=true;wl.hidden=false;sheet.scrollTop=0;
     var f=$('.wl',wl),target=f&&f.classList.contains('done')?$('.wl-ok',wl):$('input[type=email]',wl);if(target)target.focus()}
   var JOIN_SEL='.hdr-join,.mm-join,[data-join],a[href$="#waitlist"],a[href$="#join"],a.btn[href$="#membership"]';
@@ -1770,13 +1787,13 @@
     if(!pw.hidden)closePaywall();openJoin(a.dataset.join||null)});
   /* Re-sync after a modal signup so the home #waitlist card shows the same done state. */
   document.addEventListener('submit',function(e){if(e.target&&e.target.id==='wlJoin')setTimeout(syncWaitlist,0)});
-  function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin()}
+  function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin(location.hash==='#waitlist'?'survey':null)}
   window.addEventListener('hashchange',joinFromHash);setTimeout(joinFromHash,0);
 
   /* ---------- Free Student plan (SMU email only) ----------
      Live: email-link sign-up on an @smu.edu address; the plan starts only after the email is confirmed and
      claim_student_membership() (supabase/RUN_ME_16_students.sql) accepts it. Hidden on the live site while MP.FEATURES.students is false. */
-  /* Free plans: a Fan account for anyone, and the Student plan for @smu.edu emails. Both read everything and post on the boards. */
+  /* Free plans: a free account for anyone, and the Student plan for @smu.edu emails. Both read everything and post on the boards. */
   function fanBand(where){return '<div class="st-band fan-band st-'+where+'"><div class="st-b"><h4>Create your free account</h4></div>'+
       '<button type="button" class="btn btn-navy st-go" data-auth="up">Join free as a fan</button></div>'}
   function studentBand(where){if(!stOn())return '';
@@ -1797,6 +1814,7 @@
         '<div class="fld-row"><div class="fld"><label for="stName">Name</label><input id="stName" name="name" autocomplete="name" maxlength="40" required placeholder="How you appear on the boards"></div>':'<div class="fld-row">')+
         '<div class="fld"><label for="stYear">Class year</label><select id="stYear" name="year" required>'+yearOpts()+'</select></div></div>'+
         (useEmail?'<div class="fld"><label for="stPw">Password'+(SMU.live?'':' <small>(not stored in demo mode)</small>')+'</label><input id="stPw" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></div>':'')+
+        '<label class="wl-consent st-consent" for="stAge"><input id="stAge" type="checkbox" name="age" required><span class="wl-box" aria-hidden="true"></span><span>I am 13 or older.</span></label>'+
         '<label class="wl-consent st-consent" for="stOk"><input id="stOk" type="checkbox" name="consent" required><span class="wl-box" aria-hidden="true"></span><span>I agree that SMU+ can store these details for this student project, as described in the <a href="'+ROOT+'privacy/">privacy notice</a>.</span></label>'+
         '<p class="auth-m" aria-live="polite"></p>'+(useEmail?'<button class="btn btn-red st-submit" type="submit">Join free</button>':'')+
         (oa?'<button class="btn '+(useEmail?'btn-outline':'btn-red')+' st-submit st-oa" type="button" data-oauth="azure">Continue with Microsoft (SMU email)</button>':'')+
@@ -1808,6 +1826,7 @@
         if(!$('#stName',d).value.trim())return bad('Add your name.',$('#stName',d)),false}
       if(!$('#stYear',d).value)return bad('Pick your class year.',$('#stYear',d)),false;
       if(full&&SMU.live&&$('#stPw',d).value.length<8)return bad('Passwords are at least 8 characters.',$('#stPw',d)),false;
+      if(!$('#stAge',d).checked)return bad('Tick the box to confirm you are 13 or older.',$('#stAge',d)),false;
       if(!$('#stOk',d).checked)return bad('Please tick the box to agree to the privacy notice.',$('#stOk',d)),false;return true}
     var ob=$('.st-oa',d);if(ob)ob.addEventListener('click',function(){if(!check(false))return;ob.disabled=true;m.textContent='Opening Microsoft sign-in\u2026';
       SMU.studentJoin({provider:'azure',year:$('#stYear',d).value}).catch(function(err){ob.disabled=false;m.textContent=friendlyAuth(err)})});
@@ -1914,7 +1933,7 @@
       function fmtD(d){var t=d?new Date(d):null;return t&&!isNaN(t)?t.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}):''}
       function pwFld(id,label,ph,ac){return '<div class="set-f"><label for="'+id+'">'+label+'</label><div class="set-pw"><input id="'+id+'" type="password" autocomplete="'+ac+'" placeholder="'+ph+'" maxlength="72">'+
         '<button type="button" class="set-eye" data-eye="'+id+'" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div></div>'}
-      var planName=tier==='student'?'Student plan':tier==='free'?'Fan account':TIER_NAME[tier]+' (demo)';
+      var planName=tier==='student'?'Student plan':tier==='free'?'Free account':TIER_NAME[tier]+' (demo)';
       var profile='<form id="setForm" class="set-form" novalidate>'+
           '<div class="set-sec"><h2 class="set-h">Profile information</h2><p class="set-sub">Update your profile information.</p>'+
           '<div class="set-av"><div class="set-av-img">'+(ph?avImg(ph,1):SVG.user)+'</div><div class="set-av-ctl">'+
