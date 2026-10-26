@@ -2429,8 +2429,7 @@ header.site .acct-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .mm-af{margin:18px 0 0}
 .mm-af .adfree{height:44px;font-size:16px}
 @media(max-width:639px){
-  header.site .acct-btn{display:inline-flex;width:44px;height:44px}
-  header.site .acct-btn .acct-av,header.site .acct-btn.in .acct-av{width:36px;height:36px}
+  header.site .acct-btn{display:none} /* phones: account lives in the menu (Jackson, Oct 26) */
   .hdr-act .af-hdr{display:none}
 }
 html.adfree [data-ad-slot],html.adfree .ad-slot{display:none!important}
@@ -2530,3 +2529,8 @@ mark{background:var(--blue-10)}
 .rb-l{align-items:stretch!important;height:auto!important;overflow-y:hidden;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
 .rb-card{display:flex;flex-direction:column}
 .rb-card .rb-tv{margin-top:auto}
+/* Weekly hero headline (MP.HERO): one row per line, app.js shrinks the size to fit the column */
+.hero-copy{min-width:0}
+.hero .display.hero-wk{max-width:100%}
+.hero .display.hero-wk b,.hero .display.hero-wk span{display:block;width:max-content;white-space:nowrap;font-weight:inherit}
+@media(max-width:400px){.hero .display.hero-wk b,.hero .display.hero-wk span{white-space:normal;width:auto}}

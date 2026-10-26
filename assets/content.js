@@ -881,8 +881,15 @@ MP.PHOTOS={
   'track-field':keep('track-field').concat(['smu-micd-ep14']),
   'rowing':keep('rowing').concat(['smu-rowing-charles','smu-micd-ep7']),
   'equestrian':keep('equestrian').concat(['smu-micd-ep7'])};
- /* home hero pick (read by app.js once real-content.patch lands; until then the hero stays on boulevard-nights-1) */
- MP.FEATURED='smu-fb-cal-highlights';
+ /* Home hero of the week: the desktop/tablet h1 and the featured card beside it both come from this one object, so the
+    headline always matches the media. A weekly run rewrites only the block between the HERO-WEEK markers
+    (see tools/hero_week.py). If it's missing or the item isn't in the library, the hero falls back to
+    "Every Moment. Every Mustang." from index.html. */
+ /* HERO-WEEK:BEGIN */
+ MP.HERO={week:'2026-10-26',line1:'Down at the half.',line2:'Then 42 unanswered.',item:'smu-fb-cal-highlights',
+   source:'https://smumustangs.com/news/2026/10/24/football-dominating-second-half-leads-smu-to-59-20-win-over-cal'};
+ /* HERO-WEEK:END */
+ MP.FEATURED=(MP.HERO&&MP.HERO.item)||'smu-fb-cal-highlights';
 
  /* drop the fictional samples and scrub every reference to them (and to anything else no longer in the library) */
  MP.LIB=MP.LIB.filter(function(c){return DROP.indexOf(c.id)<0});
