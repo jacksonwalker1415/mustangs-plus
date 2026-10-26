@@ -1598,7 +1598,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 
 /* ---- 6.2 Focus: SMU blue (#354CA1) only. On dark surfaces the blue ring gets a white halo so it stays visible ---- */
 main :focus-visible,.site-ft :focus-visible,.dlg :focus-visible,.pw :focus-visible,.search :focus-visible,.reader :focus-visible,.modal :focus-visible,.disclaimer :focus-visible,.toasts :focus-visible{outline:3px solid #354CA1;outline-offset:2px}
-.disclaimer:focus-visible{outline:3px solid var(--b-900);outline-offset:-3px}
+.disclaimer:focus-visible{outline:3px solid #354CA1;outline-offset:-3px}
 main :is(.hero,.page-hero,.ap-hero,.gameday,.sec.dark,.brief-panel,.band,.tier.dark,.metricbar,.fgroup-h,.gd-next) :focus-visible,
 .site-ft :focus-visible,main .poster:focus-visible{outline-color:#354CA1;box-shadow:0 0 0 2px #fff}
 main .mcard:focus-visible{outline-offset:4px}
