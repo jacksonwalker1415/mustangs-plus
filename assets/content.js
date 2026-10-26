@@ -367,7 +367,6 @@ MP.PHOTOS={
  'wbb-drive':{file:'wbb-2-drive-vs-notre-dame-wide.webp',small:'wbb-2-drive-vs-notre-dame-900.webp',pos:'45% 30%',alt:'An SMU women\'s basketball player, number 2 in white, sizes up the defense against Notre Dame at Moody Coliseum'},
  'wsoc':{file:'wsoc-13-dribble-vs-virginia-wide.webp',small:'wsoc-13-dribble-vs-virginia-900.webp',pos:'55% 45%',alt:'SMU\'s number 13 in blue dribbles toward a Virginia defender'},
  'golf':{file:'wgolf-haskins-fairway-wide.webp',small:'wgolf-haskins-fairway-900.webp',pos:'50% 20%',alt:'SMU women\'s golfers walk the fairway beside their SMU golf bags at the Haskins Intercollegiate'},
- 'tennis':{file:'wten-mustang-ready-wide.webp',small:'wten-mustang-ready-900.webp',pos:'35% 30%',alt:'An SMU women\'s tennis player in a black Mustang top readies her racket'},
  'track':{file:'tf-ncaa-west-stride-wide.webp',small:'tf-ncaa-west-stride-900.webp',pos:'70% 35%',alt:'An SMU runner in red races down the straightaway at the NCAA West First Round'},
  'rowing':{file:'rowing-eight-blue-blades-wide.webp',small:'rowing-eight-blue-blades-900.webp',pos:'65% 40%',alt:'An SMU rowing crew with blue Mustang blades pulls through calm water'},
  'equestrian':{file:'eq-practice-arena-wide.webp',small:'eq-practice-arena-900.webp',pos:'40% 45%',alt:'SMU equestrian riders work their horses in a covered arena at practice'},
@@ -1049,19 +1048,6 @@ MP.PHOTOS={
   home:[A0.dept,A0.football,A0.mbb,A0.wbb,A0.vb,A0.msoc]},
   media:[A0.on3,A0.embody,A0.acc,A0.accn]};
 })();
-/* Mustang Studios row (Watch/Library page only). Real public videos from https://www.youtube.com/@MustangStudiosCo
-   (channel linked from https://linktr.ee/MustangStudios). IDs, titles and lengths taken from the channel's YouTube feed and
-   checked via YouTube oEmbed (200) on Oct. 26, 2026; all three report playableInEmbed. Embed only, never rehosted.
-   Free to watch: no lock, no gating. Kept out of MP.LIB so filters and counts are unchanged. */
-(function(){var MP=window.MP,YT='https://www.youtube.com/watch?v=',CH=['Mustang Studios on YouTube','https://www.youtube.com/@MustangStudiosCo'];
- function S(id,yt,show,title,desc,dur){return {id:id,t:'video',cat:'watch',label:'Mustang Studios · '+show,title:title,desc:desc,dur:dur,lock:false,tone:'black',
-  yt:yt,src:YT+yt,credit:'Mustang Studios',channel:CH,studio:true,real:true}}
- MP.STUDIOS=[
-  S('ms-214-damon-evans','v8jS0B_uXzg','The 214',"EXCLUSIVE: Damon Evans Reveals SMU's Next BIG Move After Virginia Win | The 214",'Posted Oct. 20, 2026 on the Mustang Studios YouTube channel.','57:52'),
-  S('ms-five-basketball','B5x3wNKhwpk','The Five','LeBron, Jordan, and Unfiltered SMU Basketball Team Talk | The Five','Posted Oct. 22, 2026 on the Mustang Studios YouTube channel.','16:21'),
-  S('ms-nostalgia-ep4','t_pP1ev5xJs','Nostalgia',"Talent Isn't Enough to Make This Team | Nostalgia Episode 4",'Posted Oct. 20, 2026 on the Mustang Studios YouTube channel.','18:10')];
- MP.STUDIOS_CH=CH;
-})();
 /* Sharper photos (Oct. 26, 2026) from the SMU+ photo library (official smumustangs.com galleries, all credited "Photo: SMU Athletics"
    in the library manifest). Files live in assets/photos/lib/. src = base name; big = width of the large variant (2400, or the
    2000 px original where SMU has nothing larger). Heroes and game-day backgrounds get srcset 1200/big; cards use the 1200 file.
@@ -1090,6 +1076,7 @@ MP.PHOTOS={
  S('helmet','football-helmet-on-turf-2020',1200,'50% 50%','A white SMU football helmet with a red stripe resting on the turf');
  S('moody-bowl','mens-basketball-team-huddle-north-carolina',1200,'50% 40%','SMU men\u2019s basketball players in red huddle on the bench against North Carolina');
  S('storm','mens-basketball-court-drive-boston-college',1200,'50% 35%','An SMU men\u2019s basketball player drives to the basket against Boston College');
+ S('wsoc','womens-soccer-attack-wide',2000,'50% 40%','SMU women\u2019s soccer players in blue run onto the field together');
  CARD('wsoc','womens-soccer-goal-celebration','SMU women\u2019s soccer players in red and blue celebrate a goal');
  CARD('equestrian','equestrian-jump-smu-banner-2025','An SMU equestrian rider clears a jump in front of an SMU banner');
  /* home player cards: the full 969 px headshot instead of the 720 px -900 copy */

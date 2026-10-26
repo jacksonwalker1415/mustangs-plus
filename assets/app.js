@@ -248,7 +248,7 @@
   syncMember();
 
   /* ---------- Media cards ---------- */
-  var LIBBY={};LIB_ALL.concat(MP.STUDIOS||[]).forEach(function(c){LIBBY[c.id]=c});
+  var LIBBY={};LIB_ALL.forEach(function(c){LIBBY[c.id]=c});
   var CATNAME={};MP.CATS.forEach(function(c){CATNAME[c[0]]=c[1]});
   var TICON={video:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',article:'<svg viewBox="0 0 24 24"><path d="M5 4h14v2H5zm0 4h14v2H5zm0 4h14v2H5zm0 4h9v2H5z"/></svg>',podcast:'<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg>'};
   var VERB={video:'Watch',article:'Read',podcast:'Listen'};
@@ -258,7 +258,7 @@
      own graphics: a real SMU Athletics photo on the left (the item's own photo, else a venue/crowd/team shot for its sport) and a flat
      SMU-blue panel with the SMU+ mark, a small kicker, one or two big words and the date when there is one. HTML and CSS only. */
   var TPL_PH={football:['ford','helmet','runout','hype'],'mens-basketball':['moody-bowl','students'],'womens-basketball':['wbb-drive','students'],volleyball:['vb-spike'],
-    'mens-soccer':['msoc'],'womens-soccer':['wsoc'],'swimming-diving':['swim'],golf:['golf'],tennis:['tennis'],'track-field':['track'],rowing:['rowing'],equestrian:['equestrian'],'':['ford','students','hype','storm']};
+    'mens-soccer':['msoc'],'womens-soccer':['wsoc'],'swimming-diving':['swim'],golf:['golf'],'track-field':['track'],rowing:['rowing'],equestrian:['equestrian'],'':['ford','students','hype','storm']};
   var TPL_W=[[/mic'?d up/i,"MIC'D UP"],[/hall of fame|feature|profile/i,'FEATURE'],[/recap|final from|results/i,'RECAP'],[/preview/i,'PREVIEW'],[/film/i,'FILM ROOM'],
     [/season notes/i,'SEASON NOTES'],[/roundup/i,'ROUNDUP'],[/poll|top 25|ranked|rankings/i,'RANKINGS'],[/record/i,'RECORD'],[/champion|title/i,'CHAMPIONS'],
     [/award|watch list|finalist|of the week/i,'HONORS'],[/schedule|slate|televised/i,'SCHEDULE'],[/patch|partnership|business|lacrosse|launch/i,'BUSINESS'],
@@ -298,8 +298,8 @@
 
   /* ---------- Reader: articles, episodes, paywall ---------- */
   var lastFocus=null,reader=$('#reader'),readerBody=$('#readerBody'),baseTitle=document.title,current=null;
-  function seriesOf(c){if(c.t!=='video'||c.title.indexOf(':')<0)return [];var k=c.title.split(':')[0];
-    return Object.keys(LIBBY).map(function(i){return LIBBY[i]}).filter(function(x){return x.t==='video'&&x.title.split(':')[0]===k})}
+  function seriesOf(c){if(c.t!=='video'||c.feed||c.title.indexOf(':')<0)return [];var k=c.title.split(':')[0];
+    return Object.keys(LIBBY).map(function(i){return LIBBY[i]}).filter(function(x){return x.t==='video'&&!x.feed&&x.title.split(':')[0]===k})}
   function relatedFor(c){var out=[],seen={};seen[c.id]=1;function add(x){if(x&&!seen[x.id]&&!expired(x)&&out.length<3){seen[x.id]=1;out.push(x)}}
     var a=MP.ARTICLES[c.id];(a&&a.related||[]).forEach(function(r){add(LIBBY[r])});seriesOf(c).forEach(add);
     MP.LIB.forEach(function(x){if(x.cat===c.cat)add(x)});MP.LIB.forEach(function(x){if(x.t===c.t)add(x)});MP.LIB.forEach(add);return out}
@@ -322,12 +322,12 @@
     var lock=blocked(c),p=progressOf(id),total=secs(c.dur),eps=seriesOf(c),audio=c.t==='podcast';
     var yt=c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null,ap=!yt&&c.apple&&/^https:\/\/embed\.podcasts\.apple\.com\//.test(c.apple)?c.apple:null;
     readerBody.innerHTML=(ap?'<div class="player tpl-card ap" id="apBox">'+smuTpl(c,{big:1,eager:1})+'<button type="button" class="play" id="apPlay" aria-label="Play this episode (loads Apple Podcasts)">'+SVG.play+'</button></div>':yt?'<div class="player yt'+(lock?' locked':'')+'" id="ytBox">'+ytImg(yt,'yt-thumb',1)+'<span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>'+
-          (lock?'':'<button type="button" class="play" id="ytPlay" aria-label="'+(c.studio?'Play the Mustang Studios video (loads YouTube)':'Play the official SMU Athletics video (loads YouTube)')+'">'+SVG.play+'</button>')+'</div>':
+          (lock?'':'<button type="button" class="play" id="ytPlay" aria-label="'+(c.feed?'Play the '+esc(c.pub)+' video (loads YouTube)':'Play the official SMU Athletics video (loads YouTube)')+'">'+SVG.play+'</button>')+'</div>':
         '<div class="player tpl-card'+(lock?' locked':'')+'">'+smuTpl(c,{big:1,eager:1})+
         (lock?'':'<button type="button" class="play" id="playBtn" aria-label="'+(p>0.02?'Resume':'Play')+' (demo)">'+SVG.play+'</button>')+
         '<div class="pbar" aria-hidden="true"><i id="pFill" style="width:'+Math.round(p*100)+'%"></i></div></div>')+
       '<div class="reader-in">'+(lock?inlineGate(c):'')+'<p class="eyebrow red">'+esc(c.label)+(GATING&&c.lock?' · Members':'')+'</p><h2 id="reader-h" class="m-title">'+esc(c.title)+'</h2><p class="dek">'+esc(c.desc)+'</p>'+
-        '<p class="m-meta"><span>'+(yt||ap?'':'<b id="pTime">'+clock(p*total)+'</b> / ')+esc(c.dur)+'</span><span>'+(audio?'Podcast':'Video')+'</span>'+(ap?'<span>'+esc(c.credit.replace(/^Podcast: /,''))+'. It loads from Apple Podcasts when you press play \u00b7 <a href="'+esc(c.src)+'" target="_blank" rel="noopener">Open in Apple Podcasts</a></span>':yt?'<span>'+(c.studio?'Public Mustang Studios video, shown for demo purposes. Not affiliated.':'Official SMU Athletics video.')+' It loads from YouTube when you press play'+(c.channel?' \u00b7 <a href="'+esc(c.channel[1])+'" target="_blank" rel="noopener">'+esc(c.channel[0])+'</a>':'')+'</span>':'<span>Demo player: nothing streams in this concept</span>')+'</p>'+
+        '<p class="m-meta"><span>'+(yt||ap?'':'<b id="pTime">'+clock(p*total)+'</b> / ')+esc(c.dur)+'</span><span>'+(audio?'Podcast':'Video')+'</span>'+(ap?'<span>'+esc(c.credit.replace(/^Podcast: /,''))+'. It loads from Apple Podcasts when you press play \u00b7 <a href="'+esc(c.src)+'" target="_blank" rel="noopener">Open in Apple Podcasts</a></span>':yt?'<span>'+(c.feed?'Public '+esc(c.pub)+' video.':'Official SMU Athletics video.')+' It loads from YouTube when you press play'+(c.channel?' \u00b7 <a href="'+esc(c.channel[1])+'" target="_blank" rel="noopener">'+esc(c.channel[0])+'</a>':'')+'</span>':'<span>Demo player: nothing streams in this concept</span>')+'</p>'+
         (eps.length>1?'<div class="eps"><h3 class="eps-h">'+esc(c.title.split(':')[0])+' · '+eps.length+' episodes</h3>'+eps.map(function(e,i){var ep=progressOf(e.id);
           return '<a class="ep'+(e.id===c.id?' on':'')+'" href="'+itemHref(e)+'" data-item="'+e.id+'"'+(e.id===c.id?' aria-current="true"':'')+'><span class="ep-n">'+(i+1)+'</span><span class="ep-b"><b>'+esc(e.title.split(':').slice(1).join(':').trim()||e.title)+'</b><small>'+esc(e.dur)+(ep>0.02?' · '+Math.round(ep*100)+'% watched':'')+'</small></span>'+(e.id===c.id?'<span class="ep-now">Now playing</span>':'')+'</a>'}).join('')+'</div>':'')+
         relatedHTML(c)+'</div>';
@@ -676,10 +676,36 @@
     if(SCH&&SCH.source)add(SCH.source[0]+' (record, kickoff times, TV, scores; radio: '+(SCH.radio||'')+')',SCH.source[1]);
     MP.SPORTS.forEach(function(sp){var r=(MP.REAL||{})[sp.slug];if(r&&r.src)r.src.forEach(function(x){add(x[0]+(r.checked?' (checked '+r.checked+')':''),x[1])})});
     el.innerHTML=L.join('')}
-  function studiosRow(){var el=$('#railStudios'),S=MP.STUDIOS||[];if(!el||!S.length)return;var ch=MP.STUDIOS_CH;
-    el.innerHTML=secHead('From Mustang Studios',ch[1],'Mustang Studios on YouTube')+rail(S)+'<p class="studio-note">Public videos, shown for demo purposes. Not affiliated.</p>';
-    var a=$('.see-all',el);if(a){a.target='_blank';a.rel='noopener'}el.closest('section').hidden=false}
-  function library(){continueRow();studiosRow();document.addEventListener('mp:history',continueRow);
+  /* Watch page outlet rows. data/videos-feed.json is rebuilt daily by tools/fetch_youtube.py (GitHub Actions) from each
+     channel's public YouTube RSS feed: full videos only, embeddable, SMU-related. Embed only, never rehosted. */
+  var FEED_DATE={timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric'};
+  function feedItem(ch,v){var id='yt-'+v.id,d=new Date(v.published),ds=isNaN(d)?'':d.toLocaleDateString('en-US',FEED_DATE);
+    if(!LIBBY[id])LIBBY[id]={id:id,t:'video',cat:'watch',label:ch.name+(ds?' \u00b7 '+ds:''),title:v.title,desc:'Posted '+(ds||'recently')+' on the '+ch.name+' YouTube channel.',
+      dur:v.dur||'Video',lock:false,tone:'black',yt:v.id,src:'https://www.youtube.com/watch?v='+v.id,credit:ch.name,pub:ch.name,channel:[ch.name+' on YouTube',ch.url],feed:true,real:true,iso:v.published};
+    return LIBBY[id]}
+  var ORN=0;
+  function outletRail(items,label){var id='orow-'+(++ORN);
+    return '<div class="xwrap orow" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Previous videos" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
+      '<div class="rail" id="'+id+'" data-slider role="list" aria-label="'+esc(label)+', scrolls sideways" tabindex="0">'+items.map(function(c){return '<div class="rail-i" role="listitem">'+cardHTML(c)+'</div>'}).join('')+'</div>'+
+      '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next videos" aria-controls="'+id+'">'+XARR+'</button></div>'}
+  /* centre the side arrows on the thumbnails rather than on the whole card */
+  function orowArrows(){[].forEach.call(document.querySelectorAll('.orow'),function(w){var p=w.querySelector('.poster');if(!p)return;var t=p.offsetTop+p.offsetHeight/2;
+    [].forEach.call(w.querySelectorAll('.xside'),function(b){b.style.top=t+'px'})})}
+  window.addEventListener('resize',orowArrows);
+  function outletsRow(){var el=$('#railOutlets');if(!el||!window.fetch)return;
+    fetch(ROOT+'data/videos-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){
+      var CH={};(F.channels||[]).forEach(function(c){CH[c.key]=c});
+      var html='',fresh=(F.new||[]).map(function(n){var ch=CH[n.key],v=ch&&ch.videos.filter(function(x){return x.id===n.id})[0];return v?feedItem(ch,v):null}).filter(Boolean);
+      if(fresh.length)html+='<div class="orow-sec">'+secHead('New videos')+outletRail(fresh,'New videos')+'</div>';
+      (F.rows||[]).forEach(function(r){var L=[];r.channels.forEach(function(k){var ch=CH[k];if(ch)ch.videos.forEach(function(v){L.push(feedItem(ch,v))})});
+        if(!L.length)return;L.sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')});L=L.slice(0,12);
+        html+='<div class="orow-sec">'+secHead(esc(r.name),r.url,'YouTube channel')+outletRail(L,r.name+' videos')+'</div>'});
+      if(!html)return;
+      el.innerHTML=html+'<p class="studio-note">Public videos, shown for demo purposes. Not affiliated.</p>';
+      [].forEach.call(el.querySelectorAll('.see-all'),function(a){a.target='_blank';a.rel='noopener';a.setAttribute('aria-label',a.closest('.sec-hd').querySelector('.sec-t').textContent+' on YouTube (opens in a new tab)')});
+      el.closest('section').hidden=false;orowArrows();slSyncAll();setTimeout(function(){orowArrows();slSyncAll()},600);
+      continueRow();if(/^#watch=yt-/.test(location.hash))articleFromHash()}).catch(function(){})}
+  function library(){continueRow();outletsRow();document.addEventListener('mp:history',continueRow);
     var P=new URLSearchParams(location.search),st={cat:P.get('cat')||'all',type:P.get('type')||'all',access:'all',q:P.get('q')||''};
     if(!CATNAME[st.cat])st.cat='all';if(!/^(all|video|article|podcast)$/.test(st.type))st.type='all';if(!/^(all|free|members)$/.test(st.access))st.access='all';
     var chips=$('#libChips'),grid=$('#libGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty');
@@ -1042,7 +1068,7 @@
       games.push({d:d,o:teamSport?opp[n]:opp[n]+' Invitational',home:home,res:res,cls:cls,past:past});
     }
     var RD=s.slug!=='football'&&MP.REAL?MP.REAL[s.slug]:null,RS=RD?realSummary(RD):null;
-    var GD=gameStrip(s.slug),realLog=s.slug==='football'&&SCH?SCH.games:null,record=realLog?SCH.record:RS?RS.dd:s.record,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf',tennis:'tennis','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
+    var GD=gameStrip(s.slug),realLog=s.slug==='football'&&SCH?SCH.games:null,record=realLog?SCH.record:RS?RS.dd:s.record,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
     var content=((MP.ACCESS&&MP.ACCESS[s.slug])||[]).map(function(x){return typeof x==='string'?LIBBY[x]:x}).filter(Boolean).filter(recOK);
     content.forEach(function(c){LIBBY[c.id]=LIBBY[c.id]||c});
     var threads=MP.THREADS.filter(function(t){return t.sport===s.slug}),others=MP.SPORTS.filter(function(x){return x.slug!==s.slug});
