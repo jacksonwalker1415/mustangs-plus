@@ -2723,3 +2723,17 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+
+/* Sport page record + next game strip (app.js recStrip). Flat SMU blue, red accent bar on the next-game link, 12px+ text, 44px tap target.
+   Rendered in the same pass as the rest of the page, so it never pushes content down after paint. */
+.sp-rec{background:#354CA1;color:#fff}
+.sp-rec-in{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s6);min-height:60px;padding-top:var(--s2);padding-bottom:var(--s2)}
+.sp-rec-i{display:flex;flex-wrap:wrap;align-items:baseline;align-content:center;gap:2px var(--s2);margin:0;min-height:44px;font-size:15px;line-height:1.35;color:#fff}
+.sp-rec-i>span:first-child{font-weight:600;color:rgba(255,255,255,.88)}
+.sp-rec-i b{font-weight:800;color:#fff}
+.sp-rec-c{font-size:14px;color:rgba(255,255,255,.88)}
+a.sp-rec-nx{border-left:3px solid #CC0035;padding-left:var(--s3);text-decoration:none}
+a.sp-rec-nx b{text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:3px}
+a.sp-rec-nx:hover b,a.sp-rec-nx:focus-visible b{text-decoration-color:#fff}
+a.sp-rec-nx:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media(max-width:639px){.sp-rec-in{flex-direction:column;align-items:stretch;gap:var(--s1)}.sp-rec-i{font-size:15px}}

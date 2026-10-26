@@ -78,9 +78,6 @@
   /* Library links by category open the matching type view (videos, podcasts or articles) */
   var CAT_TYPE={watch:'video',podcasts:'podcast',insider:'article',news:'article',recruiting:'article',portal:'article'};
   function libUrl(cat){var t=cat&&CAT_TYPE[cat];return ROOT+'library/'+(t?'?type='+t:'')}
-  function rng(seed){var h=1779033703^seed.length;for(var i=0;i<seed.length;i++){h=Math.imul(h^seed.charCodeAt(i),3432918353);h=h<<13|h>>>19}
-    return function(){h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);var t=(h^=h>>>16)>>>0;return t/4294967296}}
-  function pick(r,a){return a[Math.floor(r()*a.length)]}
   function secHead(title,href,link){return '<div class="sec-hd"><div><h2 class="sec-t">'+title+'</h2></div>'+(href?'<a class="see-all" href="'+href+'">'+(link||'See all')+'<span aria-hidden="true"> →</span></a>':'')+'</div>'}
 
   /* ---------- Local state: member preview, watch history, photos ---------- */
@@ -1471,42 +1468,35 @@
     var box=b.previousElementSibling,open=b.getAttribute('aria-expanded')==='true';if(!b.dataset.lbl)b.dataset.lbl=b.textContent;
     [].forEach.call(box.querySelectorAll('.r-more'),function(x){x.hidden=open});b.setAttribute('aria-expanded',String(!open));b.textContent=open?b.dataset.lbl:'Show less'});
 
+  /* Record + next game strip under the sport hero (also on phones, where the hero is hidden). Real data only: football's MP.SCHEDULE,
+     every other sport's MP.REAL (smumustangs.com). A record shows only once a game counts (not 0-0); the conference record only when the
+     data has a non-zero one. With no record yet the strip says so; with no upcoming event the next-game half is left out. */
+  function recStrip(s,R,RS,team){var rec='',conf='',nx=null,t=todayISO(),wd=function(d){return DOW[new Date(d+'T12:00:00Z').getUTCDay()]+'., '+rDate(d)};
+    var live=function(v){return v&&!/^0-0(-0)?$/.test(v)};
+    if(s.slug==='football'&&SCH){rec=live(SCH.record)?esc(SCH.record):'';conf=live(String(SCH.conf||'').replace(/\s*ACC$/,''))?esc(String(SCH.conf).replace(/\s*ACC$/,'')):'';
+      var g=nextGame(SCH.games);if(g)nx={opp:g.opp,ha:g.home?'home':'away',date:wd(g.d),gp:gameFor('football',g.d)}}
+    else if(R){var ks=Object.keys(R.rec||{}),multi=ks.length>1;
+      var ov=ks.filter(function(k){return live(R.rec[k]&&R.rec[k][0])}).map(function(k){return (multi&&TEAM_LBL[k]?TEAM_LBL[k]+' ':'')+esc(R.rec[k][0])});
+      var cf=ks.filter(function(k){return live(R.rec[k]&&R.rec[k][1])}).map(function(k){return (multi&&TEAM_LBL[k]?TEAM_LBL[k]+' ':'')+esc(R.rec[k][1])});
+      rec=ov.join(' · ');conf=cf.join(' · ');
+      var e=(R.events||[]).filter(function(x){return !x.res&&(x.d2||x.d)>=t})[0];
+      if(e)nx={opp:e.name+(e.ex?' (exhibition)':''),ha:e.ha==='away'?'away':e.ha==='neutral'?'neutral':'home',date:e.d2&&e.d2!==e.d?rRange(e):wd(e.d),team:multi&&TEAM_LBL[e.team]?TEAM_LBL[e.team]:'',gp:gameFor(s.slug,e.d)}}
+    else return '';
+    var fin=!rec&&RS&&RS.dt==='Latest finish'?RS:null,zero=!rec&&!fin&&(s.slug==='football'?SCH&&SCH.record:R&&Object.keys(R.rec||{}).some(function(k){return R.rec[k]&&R.rec[k][0]}));
+    var left=rec?'<p class="sp-rec-i"><span>Record</span> <b>'+rec+'</b>'+(conf?'<span class="sp-rec-c">Conference '+conf+'</span>':'')+'</p>':
+      fin?'<p class="sp-rec-i"><span>Latest finish</span> <b>'+esc(fin.dd)+'</b>'+(fin.sub?'<span class="sp-rec-c">'+esc(fin.sub)+'</span>':'')+'</p>':
+      zero?'<p class="sp-rec-i"><span>Record</span> <b>0-0</b><span class="sp-rec-c">No games counted yet</span></p>':'';
+    var where=nx?(nx.ha==='neutral'?'Neutral site':nx.ha==='away'?'Away':'Home'):'',vs=nx&&team?(nx.ha==='away'?'at ':nx.ha==='home'?'vs. ':''):'',
+      right=nx?'<a class="sp-rec-i sp-rec-nx" href="'+(nx.gp?gameUrl(nx.gp):'#schedule')+'"><span>Next</span> <b>'+(nx.team?esc(nx.team)+' \u00b7 ':'')+vs+esc(nx.opp)+'</b><span class="sp-rec-c">'+nx.date+' · '+where+'</span></a>':'';
+    if(!left&&!right)return '';
+    return '<section class="sp-rec" aria-label="Season record and next game"><div class="wrap sp-rec-in">'+left+right+'</div></section>'}
   /* ---------- Sport program page ---------- */
   function sport(){
     var s=sportBy(body.dataset.sport);if(!s)return;
-    var r=rng(s.slug),main=$('#sportMain');document.title=s.name+' | SMU+';
-    var size=Math.max(8,Math.min(12,s.pos.length+3)),used={},nums={},roster=[];
-    for(var i=0;i<size;i++){
-      var g=s.g==='X'?(i%2?'W':'M'):s.g,name,tries=0;
-      do{name=pick(r,MP.NAMES[g])+' '+pick(r,MP.NAMES.L);tries++}while(used[name]&&tries<50);used[name]=1;
-      var num='';if(s.num){do{num=s.num[0]+Math.floor(r()*(s.num[1]-s.num[0]+1))}while(nums[num]);nums[num]=1}
-      var h=s.ht?s.ht[0]+Math.floor(r()*(s.ht[1]-s.ht[0]+1)):0;
-      roster.push({v:['home','away','alt'][i%3],kn:num!==''?num:(i+1),name:name,g:g,num:num,pos:s.pos[i%s.pos.length],cls:pick(r,MP.CLASSES),town:pick(r,MP.TOWNS),ht:h?Math.floor(h/12)+"'"+(h%12)+'"':'',fans:120+Math.floor(r()*2200)});
-    }
-    roster.sort(function(a,b){return b.fans-a.fans});
-    var star=roster[0];
-
-    // Schedule: fictional opponents
-    var teamSport=/football|basketball|soccer|volleyball/.test(s.slug),opp=MP.OPP.slice(),games=[];
-    for(var k=opp.length-1;k>0;k--){var j=Math.floor(r()*(k+1)),tmp=opp[k];opp[k]=opp[j];opp[j]=tmp}
-    var base=new Date(2026,9,24),mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    for(var n=0;n<8;n++){
-      var past=n<5,d=new Date(base.getTime()+(n-4)*7*864e5+(past?0:7*864e5)),home=r()>.45,res='',cls='up';
-      if(past){
-        if(teamSport){
-          var win=r()<.72,a,b2;
-          if(/football/.test(s.slug)){a=17+Math.floor(r()*28);b2=Math.max(0,a-3-Math.floor(r()*20))}
-          else if(/basketball/.test(s.slug)){a=64+Math.floor(r()*24);b2=a-2-Math.floor(r()*16)}
-          else if(/soccer/.test(s.slug)){a=1+Math.floor(r()*3);b2=Math.floor(r()*a)}
-          else{a=3;b2=Math.floor(r()*3)}
-          var tie=/soccer/.test(s.slug)&&r()<.15;
-          if(tie){res='T '+b2+'-'+b2;cls='t'}else{res=(win?'W '+a+'-'+b2:'L '+b2+'-'+a);cls=win?'w':'l'}
-        }else{var place=1+Math.floor(r()*5);res=place+(place===1?'st':place===2?'nd':place===3?'rd':'th');cls=place<=2?'w':'t'}
-      }else{res=(home?'7:00 PM':'TBA');}
-      games.push({d:d,o:teamSport?opp[n]:opp[n]+' Invitational',home:home,res:res,cls:cls,past:past});
-    }
-    var RD=s.slug!=='football'&&MP.REAL?MP.REAL[s.slug]:null,RS=RD?realSummary(RD):null;
-    var GD=gameStrip(s.slug),realLog=s.slug==='football'&&SCH?SCH.games:null,record=realLog?SCH.record:RS?RS.dd:s.record,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf',tennis:'tennis','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
+    var main=$('#sportMain');document.title=s.name+' | SMU+';
+    var teamSport=/football|basketball|soccer|volleyball/.test(s.slug);
+    var RD=s.slug!=='football'&&MP.REAL?MP.REAL[s.slug]:null,RS=RD?realSummary(RD):null,REC=recStrip(s,RD,RS,teamSport);
+    var GD=gameStrip(s.slug),realLog=s.slug==='football'&&SCH?SCH.games:null,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf',tennis:'tennis','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
     var content=((MP.ACCESS&&MP.ACCESS[s.slug])||[]).map(function(x){return typeof x==='string'?LIBBY[x]:x}).filter(Boolean).filter(recOK);
     content.forEach(function(c){LIBBY[c.id]=LIBBY[c.id]||c});
     var threads=MP.THREADS.filter(function(t){return t.sport===s.slug}),others=MP.SPORTS.filter(function(x){return x.slug!==s.slug});
@@ -1517,15 +1507,14 @@
       '<section class="page-hero sp-hero'+(HERO_PH?' has-photo':'')+'">'+(HERO_PH?photoBg(HERO_PH,{eager:1,hero:1}):'')+'<div class="wrap">'+
         /* Title only: no breadcrumb trail, icon tile or kicker (Oct 26). Breadcrumbs live in the head as BreadcrumbList JSON-LD (build_pages.py). */
         '<h1 class="display sp-title">'+s.name+'</h1>'+
-      '</div></section>'+
+      '</div></section>'+REC+
       '<nav class="jump" aria-label="On this page"><div class="wrap">'+(GD?'<a href="#gameday">Game day</a>':'')+'<a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Read</a>'+(thirdFor(s.slug).length?'<a href="#media">Media</a>':'')+(FEEDS.posts[s.slug]?'<a href="#feeds">Feeds</a>':'')+'<a href="#board">Board</a><a href="#more">Other sports</a></div></nav>'+
       (GD?'<section class="gameday" aria-label="Game day"><div class="wrap" id="gameday">'+GD+'</div></section>':'')+'<section class="sec" id="roster"><div class="wrap">'+
-        (RDR?secHead('Roster',null,null,'Real '+esc(RDR.season)+' roster')+'<p class="lede">The full '+esc(s.name.toLowerCase())+' roster from SMU Athletics. Tap a player for their bio.</p>'+realRoster(RDR,s):'')+
+        (RDR?secHead('Roster',null,null,'Real '+esc(RDR.season)+' roster')+'<p class="lede">The full '+esc(s.name.toLowerCase())+' roster from SMU Athletics. Tap a player for their bio.</p>'+realRoster(RDR,s):secHead('Roster')+emptyState('grid','No roster listed yet','SMU Athletics has not posted a roster for this season yet. Check <a href="https://smumustangs.com/sports/'+s.slug+'/roster" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+
       '</div></section>'+
-      '<section class="sec alt" id="schedule"><div class="wrap">'+secHead((teamSport?'Schedule':s.slug==='golf'||s.slug==='tennis'?'Events':'Meets')+' &amp; results',null,null,realLog?'2026 season · real results':RD?esc(RD.season)+' · real schedule':'2026–27 · sample data')+
+      '<section class="sec alt" id="schedule"><div class="wrap">'+secHead((teamSport?'Schedule':s.slug==='golf'||s.slug==='tennis'?'Events':'Meets')+' &amp; results',null,null,realLog?'2026 season · real results':RD?esc(RD.season)+' · real schedule':'')+
         (RD?realSched(RD,teamSport,s.slug):realLog?table({cols:['Date','Opponent','Result','Site','Kickoff','TV'],rows:realLog.map(function(g){var gp=gameFor('football',g.d),nm=(g.home?'vs. ':'at ')+g.opp;return [gDate(g),gp?{html:'<a class="r-game" href="'+gameUrl(gp)+'">'+esc(nm)+'</a>'}:nm,g.res||'\u2014',g.site,gTime(g),g.tv||'TBA']})},{cls:'sched sched-full'}):
-        table({cols:['Date',teamSport?'Opponent':'Event','Result','Site'],rows:games.map(function(g){return [mo[g.d.getMonth()]+' '+g.d.getDate(),(teamSport?(g.home?'vs. ':'at '):'')+g.o,g.res,g.home?'Home · Dallas':'Away']})},{cls:'sched'})+
-        '<p class="note">Sample schedule with fictional opponents.</p>')+'</div></section>'+
+        emptyState('grid','No schedule listed yet','SMU Athletics has not posted a schedule for this season yet. Check <a href="https://smumustangs.com/sports/'+s.slug+'/schedule" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+'</div></section>'+
       '<section class="sec" id="content"><div class="wrap">'+secHead(s.name+' all access',libUrl(),'Library','Only on SMU+')+'<div class="cgrid">'+content.map(cardHTML).join('')+'</div></div></section>'+
       mediaSection(s.slug,s.name)+feedsHTML(s.slug)+
       '<section class="sec alt" id="board"><div class="wrap">'+secHead('Team board',ROOT+'boards/?sport='+s.slug,'Open board','Talk '+s.name)+
