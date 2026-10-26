@@ -2072,7 +2072,7 @@ a.fx-quote-h:hover{text-decoration:underline}
   .fx-node-stats{display:none}
   .fx-node-mob{display:block;margin-top:4px;font-size:13px;color:var(--fx-mute)}
   .fx-node-last{grid-column:1}
-  .fx-subs a{display:inline-flex;align-items:center;min-height:32px}
+  .fx-subs{gap:0 16px;margin-top:2px}.fx-subs a{display:inline-flex;align-items:center;min-height:44px}
   .fx-head{flex-direction:column;align-items:stretch}
   .fx-head h1,.fx-th-t{font-size:23px}
   .fx-head .btn{width:100%}
@@ -2123,3 +2123,13 @@ a.fx-quote-h:hover{text-decoration:underline}
 }
 .fx-loading{padding:var(--s5) 0;color:var(--fx-mute);font-size:15px}
 @media(max-width:767px){.fx-user{padding-right:12px}.fx-user-d{min-width:0;flex:1}.fx-name{padding-right:124px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(max-width:767px){
+  .fx-node-t a{display:inline-flex;align-items:center;min-height:44px}
+  .fx-node-lt{display:block;padding:11px 0}
+  .fx-node-last span{margin-top:-8px}
+  .fx-crumbs a{min-height:44px}
+  .fx-quote-h{display:flex;align-items:center;min-height:44px;padding-top:0;padding-bottom:0}
+}
+@media(max-width:767px){.fx-latest a{min-height:44px;padding-top:3px}}
+@media(max-width:767px){.fx-rules a{display:inline-flex;align-items:center;min-height:44px}}
+@media(max-width:767px){.fx-row-f{pointer-events:none;color:inherit;z-index:auto}.fx-reply-tip a,.fx-reply.out a{display:inline-flex;align-items:center;min-height:44px}}
