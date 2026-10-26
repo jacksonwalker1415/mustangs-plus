@@ -743,9 +743,16 @@
     slSyncAll()}
   /* ---------- Search results page (search/?q=...). Static content comes from data/search-index.json (tools/build_search.js);
      forum threads and posts come live from Supabase (public read). Results update as you type; the URL keeps the query. ---------- */
+  /* Display-only title case for ALL-CAPS words in outside video and podcast titles ("MIDSEASON TIERS" -> "Midseason Tiers").
+     Short acronyms stay upper case. The stored title and the search text are unchanged. */
+  var TC_KEEP=' SMU ACC NIL NFL NBA WNBA NCAA TCU QB RB WR TE OL DL DE LB CB DB HC OC DC CFB CFP SEC AP MVP TD TDS TV OT ESPN ACCN CW UVA UNC NC GT VT BC LSU FSU USC UCLA UCF UTSA UNLV BYU VMI SFA LIU UNT ND DMN DFW WFAA USA UK FC II III IV ',
+      TC_SMALL=' A AN AND AT BY FOR IN OF ON OR THE TO VS ';
+  function tcase(t){return String(t||'').replace(/\b[A-Z][A-Z'\u2019]*[A-Z]\b/g,function(w,at,all){var poss=/['\u2019]S$/.test(w),b=poss?w.slice(0,-2):w;if(/['\u2019]/.test(b))return b.charAt(0)+b.slice(1).toLowerCase()+(poss?w.slice(-2).toLowerCase():'');
+    var out=TC_KEEP.indexOf(' '+b+' ')>=0?b:(at>0&&TC_SMALL.indexOf(' '+b+' ')>=0&&!/[:|\u2014(-]\s*$/.test(all.slice(0,at)))?b.toLowerCase():b.charAt(0)+b.slice(1).toLowerCase();
+    return out+(poss?w.charAt(w.length-2)+'s':'')})}
   function searchPage(){var main=$('#searchMain');if(!main)return;
     var P=new URLSearchParams(location.search),q0=(P.get('q')||'').slice(0,80),only=P.get('type')||'all',IDX=null,live=[],liveQ=null,seq=0;
-    var GROUPS=[['video','Videos'],['article','Articles'],['podcast','Podcasts'],['player','Players'],['post','Forum posts'],['game','Games'],['sport','Sports']];
+    var GROUPS=[['video','Videos'],['article','Articles'],['podcast','Podcasts'],['player','Players'],['post','Forum posts'],['game','Games'],['sport','Sports'],['page','Pages']];
     main.innerHTML='<section class="srch-hero"><div class="wrap"><h1 id="srch-h">Search SMU+</h1>'+
       '<form class="srch-f" role="search" id="srchF" action="./" method="get"><label class="sr" for="srchQ">Search videos, articles, podcasts, players and forum posts</label>'+
       '<input id="srchQ" name="q" type="search" value="'+esc(q0)+'" placeholder="Try Jennings, Syracuse or highlights" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80" aria-describedby="srchSum">'+
@@ -754,11 +761,26 @@
       '<section class="sec tight"><div class="wrap" id="srchRes"></div></section>';
     var inp=$('#srchQ'),res=$('#srchRes'),sum=$('#srchSum'),hq=$('#mmQ');
     function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\u2018\u2019']/g,'').replace(/\s+/g,' ').trim()}
-    function toks(q){return norm(q).split(' ').filter(Boolean).slice(0,6)}
-    function hlx(text,T){var out=esc(text);T.forEach(function(t){if(t.length<2)return;out=out.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>')});return out}
-    function href(u){return u.charAt(0)==='#'?u:ROOT+u}
-    function score(d,T,q){var tl=norm(d.ti);if(!T.every(function(t){return d.h.indexOf(t)>=0}))return -1;
-      return (tl===q?20:0)+(tl.indexOf(q)===0?8:0)+(tl.indexOf(q)>=0?5:0)+T.filter(function(t){return tl.indexOf(t)>=0}).length*2+(d.d?Math.max(0,3-(Date.now()-Date.parse(d.d))/(30*864e5)):0)}
+    function toks(q){return words(norm(q)).split(' ').filter(Boolean).slice(0,6)}
+    function hlx(text,T){var out=esc(text);T.forEach(function(t){if(t.length<2)return;out=out.replace(new RegExp('(^|[^A-Za-z0-9])('+esc(t).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'$1<mark>$2</mark>')});return out}
+    function href(u){return u.charAt(0)==='#'?u:u.slice(0,2)==='./'?(ROOT+u.slice(2))||'./':ROOT+u}
+    /* word-start matching: tokens and text are cut into words, a token matches a word that starts with it (nil never matches Bonilla) */
+    function words(x){return String(x||'').replace(/[^a-z0-9&#+]+/g,' ').trim()}
+    function prep(d){if(d._w==null){d._w=' '+words(d.h)+' ';d._t=' '+words(norm(d.ti))+' ';d._k=d.k?' '+words(norm(d.k))+' ':''}return d}
+    function inW(w,t){return w.indexOf(' '+t)>=0}
+    function score(d,T){prep(d);if(!T.every(function(t){return inW(d._w,t)}))return -1;
+      var tl=d._t,qs=' '+T.join(' '),all=T.every(function(t){return inW(tl,t)}),s=(tl===qs+' '?20:0)+(tl.indexOf(qs)===0?8:0)+(tl.indexOf(qs)>=0?5:0)+T.filter(function(t){return inW(tl,t)}).length*2;
+      /* people search for players by full or last name, and for sports and pages by name or shorthand (fb, mbb, faq) */
+      if(d.t==='player'){var nm=tl.trim().replace(/ (jr|sr|ii|iii|iv|v)$/,'').split(' ');s+=tl===qs+' '?30:(T.length===1&&T[0]===nm[nm.length-1])?25:all?10:0}
+      if(d.t==='sport'||d.t==='page'){s+=(tl===qs+' '||d._k.indexOf(qs+' ')>=0)?30:T.every(function(t){return inW(tl,t)||d._k.indexOf(' '+t+' ')>=0})?12:0}
+      return s+(d.d?Math.max(0,3-(Date.now()-Date.parse(d.d))/(30*864e5)):0)}
+    /* typo fallback, only when nothing matches: swap each unmatched word for the closest title word (1 edit for short words, 2 for long) */
+    var VOC=null;
+    function lev(a,b,max){if(Math.abs(a.length-b.length)>max)return max+1;var p=[],i,j;for(j=0;j<=b.length;j++)p[j]=j;
+      for(i=1;i<=a.length;i++){var c=[i],lo=i;for(j=1;j<=b.length;j++){c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));if(c[j]<lo)lo=c[j]}if(lo>max)return max+1;p=c}return p[b.length]}
+    function fix(T){if(!VOC){VOC={};IDX.forEach(function(d){prep(d);(d._t+d._k).split(' ').forEach(function(w){if(w.length>2)VOC[w]=(VOC[w]||0)+(d.t==='player'||d.t==='sport'||d.t==='page'?3:1)})})}
+      var ch=false,out=T.map(function(t){if(t.length<4||VOC[t])return t;var max=t.length<7?1:2,best=null,bd=max+1;
+        Object.keys(VOC).forEach(function(w){var dd=lev(t,w,max);if(dd<bd||(dd===bd&&best&&VOC[w]>VOC[best])){bd=dd;best=w}});if(best&&bd<=max){ch=true;return best}return t});return ch?out:null}
     function snippet(body,T){var b=String(body||'').replace(/\s+/g,' '),lb=norm(b),i=-1;T.some(function(t){i=lb.indexOf(t);return i>=0});
       var st=Math.max(0,i-60),sn=b.slice(st,st+180);return (st?'\u2026':'')+sn+(st+180<b.length?'\u2026':'')}
     function fetchLive(q){var T=toks(q);if(!T.length){live=[];liveQ=q;return Promise.resolve()}var my=++seq;
@@ -781,21 +803,30 @@
       $$('[data-st]',main).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.st===only?'true':'false')});
       if(!T.length){res.innerHTML='<p class="srch-empty">Search every video, article, podcast, player and forum post on SMU+.</p>';sum.textContent='';return}
       if(!IDX){sum.textContent='Searching\u2026';return}
-      var hits=IDX.concat(live).map(function(d){if(d.x&&d.t!=='post'&&Date.parse(d.x)<=Date.now())return null;var sc=score(d,T,nq);return sc<0?null:{d:d,s:sc}}).filter(Boolean).sort(function(a,b){return b.s-a.s});
+      function find(T){return IDX.concat(live).map(function(d){if(d.x&&d.t!=='post'&&Date.parse(d.x)<=Date.now())return null;var sc=score(d,T);return sc<0?null:{d:d,s:sc}}).filter(Boolean).sort(function(a,b){return b.s-a.s})}
+      var hits=find(T),fixed=null;if(!hits.length&&(fixed=fix(T))){hits=find(fixed);if(hits.length)T=fixed;else fixed=null}
       var by={};hits.forEach(function(h){(by[h.d.t]=by[h.d.t]||[]).push(h.d)});
       var total=hits.length,html='';
       var ord=[];hits.forEach(function(h){if(ord.indexOf(h.d.t)<0)ord.push(h.d.t)});
       GROUPS.slice().sort(function(a,b){var i=ord.indexOf(a[0]),j=ord.indexOf(b[0]);return (i<0?99:i)-(j<0?99:j)}).forEach(function(g){var L=by[g[0]];if(!L||!L.length||(only!=='all'&&only!==g[0]))return;var lim=only===g[0]||shown[g[0]]?50:5;
         html+='<div class="srch-g"><h2>'+g[1]+' <span class="sr">('+L.length+')</span></h2><ul class="srch-l">'+L.slice(0,lim).map(function(d){
-          return '<li><a href="'+esc(href(d.u))+'"'+(d.u.indexOf('#watch=')>=0&&d.u.charAt(0)==='#'?' data-item="'+esc(d.u.split('=')[1])+'"':d.u.indexOf('#article=')===0?' data-item="'+esc(d.u.split('=')[1])+'"':'')+'><b>'+hlx(d.ti,T)+'</b><small>'+esc(d.s)+'</small>'+(d.x&&d.t==='post'?'<span class="srch-x">'+hlx(d.x,T)+'</span>':'')+'</a></li>'}).join('')+'</ul>'+
+          return '<li><a href="'+esc(href(d.u))+'"'+(d.u.indexOf('#watch=')>=0&&d.u.charAt(0)==='#'?' data-item="'+esc(d.u.split('=')[1])+'"':d.u.indexOf('#article=')===0?' data-item="'+esc(d.u.split('=')[1])+'"':'')+'><b>'+hlx(d.t==='video'||d.t==='podcast'?tcase(d.ti):d.ti,T)+'</b><small>'+esc(d.s)+'</small>'+(d.x&&d.t==='post'?'<span class="srch-x">'+hlx(d.x,T)+'</span>':'')+'</a></li>'}).join('')+'</ul>'+
           (L.length>lim?'<button type="button" class="srch-more" data-more="'+g[0]+'">Show all '+L.length+' '+g[1].toLowerCase()+'</button>':'')+'</div>'});
       var n=only==='all'?total:(by[only]||[]).length;
-      sum.textContent=(n?n+(n===1?' result':' results'):'No results')+' for \u201c'+q+'\u201d'+(liveQ!==q?' (checking the forum\u2026)':'');
+      sum.textContent=(n?n+(n===1?' result':' results'):'No results')+' for \u201c'+(fixed?fixed.join(' '):q)+'\u201d'+(fixed?' (no exact match for \u201c'+q+'\u201d)':'')+(liveQ!==q?' (checking the forum\u2026)':'');
       res.innerHTML=html||'<p class="srch-empty">Nothing matches \u201c'+esc(q)+'\u201d'+(only!=='all'?' in this filter':'')+'. Try fewer words or a player\u2019s last name.</p>'}
     var tm;function update(push){var q=inp.value.trim().slice(0,80);shown={};var u=new URL(location.href);if(q)u.searchParams.set('q',q);else u.searchParams.delete('q');
       if(only!=='all')u.searchParams.set('type',only);else u.searchParams.delete('type');history[push?'pushState':'replaceState'](null,'',u.pathname+u.search);
       document.title=(q?'\u201c'+q+'\u201d \u00b7 ':'')+'Search | SMU+';if(hq)hq.value=q;render();clearTimeout(tm);tm=setTimeout(function(){fetchLive(q).then(render)},250)}
     inp.addEventListener('input',function(){update(false)});
+    /* keyboard: ArrowDown from the field goes into the results, arrows move between them, ArrowUp from the first goes back; Esc clears the field */
+    function resLinks(){return $$('#srchRes a',main)}
+    inp.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){var L=resLinks();if(L.length){e.preventDefault();L[0].focus()}}
+      else if(e.key==='Escape'&&inp.value){e.preventDefault();e.stopPropagation();inp.value='';update(false)}});
+    res.addEventListener('keydown',function(e){var L=resLinks(),i=L.indexOf(document.activeElement);if(i<0)return;
+      if(e.key==='ArrowDown'){e.preventDefault();if(i<L.length-1)L[i+1].focus()}
+      else if(e.key==='ArrowUp'){e.preventDefault();if(i>0)L[i-1].focus();else inp.focus()}
+      else if(e.key==='Escape'){e.preventDefault();inp.focus()}});
     $('#srchF').addEventListener('submit',function(e){e.preventDefault();update(true)});
     main.addEventListener('click',function(e){var b=e.target.closest('[data-st]');if(b){only=b.dataset.st;update(false);return}
       var m=e.target.closest('[data-more]');if(m){shown[m.dataset.more]=1;render()}});
@@ -925,22 +956,23 @@
   function popHTML(V,E){var n=++ORN,vh='',eh='';
     if(V.L.length)vh='<ol class="pm-l" aria-label="Videos ranked by YouTube views">'+V.L.map(function(x){var c=feedItem(x.ch,x.v);
       return '<li><a class="pm-i" href="'+ROOT+'library/#watch='+c.id+'" data-item="'+c.id+'"><span class="pm-th"><img src="https://i.ytimg.com/vi/'+x.v.id+'/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async" referrerpolicy="no-referrer">'+
-        (x.v.dur?'<span class="pm-dur">'+esc(x.v.dur)+'</span>':'')+'</span><span class="pm-b"><b>'+esc(x.v.title)+'</b><small>'+esc(x.ch.name)+' \u00b7 '+x.v.views.toLocaleString('en-US')+(x.v.views===1?' view':' views')+'</small></span></a></li>'}).join('')+'</ol>';
+        (x.v.dur?'<span class="pm-dur">'+esc(x.v.dur)+'</span>':'')+'</span><span class="pm-b"><b>'+esc(tcase(x.v.title))+'</b><small>'+esc(x.ch.name)+' \u00b7 '+x.v.views.toLocaleString('en-US')+(x.v.views===1?' view':' views')+'</small></span></a></li>'}).join('')+'</ol>';
     if(E.length)eh='<ul class="pm-l pm-eps" aria-label="Newest podcast episodes">'+E.map(function(x){var d=new Date(x.e.published),ds=d.toLocaleDateString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric'}),ap=x.e.apple||x.sh.apple||x.sh.spotify;
       return '<li><a class="pm-i" href="'+esc(ap||libUrl())+'"'+(ap?' target="_blank" rel="noopener" aria-label="'+esc(x.sh.name)+': '+esc(x.e.title)+' (opens in a new tab)"':'')+'><span class="pm-th pm-art">'+(x.sh.art?'<img src="'+ROOT+esc(x.sh.art)+'" alt="" width="72" height="72" loading="lazy" decoding="async">':'')+'</span>'+
-        '<span class="pm-b"><b>'+esc(x.e.title)+'</b><small>'+esc(x.sh.name)+' \u00b7 '+[ds,x.e.dur].filter(Boolean).map(esc).join(' \u00b7 ')+'</small></span></a></li>'}).join('')+'</ul>';
+        '<span class="pm-b"><b>'+esc(tcase(x.e.title))+'</b><small>'+esc(x.sh.name)+' \u00b7 '+[ds,x.e.dur].filter(Boolean).map(esc).join(' \u00b7 ')+'</small></span></a></li>'}).join('')+'</ul>';
     if(!vh&&!eh)return '';
     var t=vh?(V.days===7?'Most watched this week':'Most watched this month'):'Latest episodes';
     return '<section class="popm" aria-labelledby="pm-h-'+n+'"><div class="pm-hd"><h2 class="pm-t" id="pm-h-'+n+'">'+t+'</h2><a class="see-all" href="'+libUrl()+'">Media<span aria-hidden="true"> \u2192</span></a></div>'+
       (vh?'<div class="pm-grp">'+vh+'</div>':'')+(vh&&eh?'<div class="pm-grp"><h3 class="pm-st">Latest episodes</h3>'+eh+'</div>':eh?'<div class="pm-grp">'+eh+'</div>':'')+'</section>'}
   /* fill one empty spot: el is the container to fill; it stays hidden until there is something real to show */
-  function popMount(el){if(!el||POP_NO[PAGE]||!window.fetch||document.querySelector('.popm,[data-pop-on]'))return;el.setAttribute('data-pop-on','1');el.hidden=true;
-    popFeeds().then(function(r){if(!el.isConnected)return;var h=popHTML(popVideos(r[0]),popEpisodes(r[1]));if(!h){el.remove();return}el.innerHTML=h;el.hidden=false})}
+  /* el stays hidden until there is something to show; box (default el) is what gets filled, e.g. the .wrap inside a full-width band */
+  function popMount(el,box){if(!el||POP_NO[PAGE]||!window.fetch||document.querySelector('.popm,[data-pop-on]'))return;el.setAttribute('data-pop-on','1');el.hidden=true;
+    popFeeds().then(function(r){if(!el.isConnected)return;var h=popHTML(popVideos(r[0]),popEpisodes(r[1]));if(!h){el.remove();return}(box||el).innerHTML=h;el.hidden=false})}
   /* where it goes: the empty right column on FAQ and sign-in (desktop), the end of short pages (search, 404) */
   function popSpot(){var w,a;
     if(PAGE==='faq'&&(w=$('#faq > .wrap'))){w.classList.add('pm-cols');a=document.createElement('aside');a.className='pm-side';w.appendChild(a);popMount(a)}
     else if(PAGE==='account'&&(w=$('#acctMain .acct-cols'))){a=document.createElement('aside');a.className='pm-side pm-desk';w.appendChild(a);popMount(a)}
-    else if((PAGE==='search'||PAGE==='notfound')&&(w=$('main'))){a=document.createElement('section');a.className='sec pm-band';a.innerHTML='<div class="wrap"></div>';w.appendChild(a);popMount(a)}}
+    else if((PAGE==='search'||PAGE==='notfound')&&(w=$('main'))){a=document.createElement('section');a.className='sec pm-band';a.innerHTML='<div class="wrap"></div>';w.appendChild(a);popMount(a,a.firstChild)}}
   /* ---------- Game-day hub: games/ (index) and games/?id=<game> (one page per game) ---------- */
   var GM_SPORT={football:{verb:'Kickoff',ph:'gd-football'},'mens-basketball':{verb:'Tip-off',ph:'gd-mbb'},'womens-basketball':{verb:'Tip-off',ph:'gd-wbb'}};
   /* opponent names as they appear in video titles; lookarounds keep 'Virginia' off 'Virginia Tech' and 'Texas A&M' off 'West Texas A&M' */
