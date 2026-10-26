@@ -907,13 +907,28 @@
     return '<div class="score gm-score" role="group" aria-label="Final'+(g.ex?', exhibition':'')+': SMU '+us+', '+esc(g.opp)+' '+them+'"><span class="sc-t'+(us>them?' win':'')+'"><b>SMU</b><em>'+us+'</em></span>'+
       '<span class="sc-f"><b>Final'+(g.ex?' · Exh.':'')+'</b>'+gmDate(g)+'</span><span class="sc-t sc-r'+(them>us?' win':'')+'"><em>'+them+'</em><b>'+esc(g.opp)+'</b></span></div>'}
   function gmOut(href,label){return href?'<a class="gm-out" href="'+esc(href)+'" target="_blank" rel="noopener">'+label+EXT+'</a>':''}
-  function gmRow(g){var sp=sportBy(g.sport);return '<li><a class="gm-li" href="'+gameUrl(g)+'"><span class="gm-li-d">'+gmDate(g)+'</span><span class="gm-li-m"><b>SMU '+gmVs(g)+' '+esc(g.opp)+(g.ex?' (exh.)':'')+'</b>'+
-    '<small>'+(g.res?'Final: '+esc(g.res):esc([g.time||'Time TBA',g.tv].filter(Boolean).join(' · ')))+'</small></span><span class="gm-li-go" aria-hidden="true">\u2192</span></a></li>'}
+  /* games board: one row per game. Date block, matchup, then the result or the kickoff time and TV, all from MP.GAMES */
+  function gmWhere(g){return g.ha==='away'?'Away':g.ha==='neutral'?'Neutral site':'Home'}
+  function gmRow(g,nx){var m=g.res&&g.res.match(/^([WLT]) (\d+)-(\d+)/),d=new Date(g.d+'T12:00:00Z');
+    return '<li class="gmb-r'+(m?' is-final':'')+(nx?' is-next':'')+'"><a class="gm-li" href="'+gameUrl(g)+'">'+
+      '<span class="gmb-d"><b>'+d.getUTCDate()+'</b><small>'+MON[d.getUTCMonth()]+' \u00b7 '+esc(g.dow)+'</small></span>'+
+      '<span class="gmb-m"><b>SMU <i>'+gmVs(g)+'</i> '+esc(g.opp)+(g.ex?' (exh.)':'')+'</b><small>'+esc([gmWhere(g),g.city].filter(Boolean).join(' \u00b7 '))+'</small></span>'+
+      (m?'<span class="gmb-s"><span class="gmb-wl wl-'+m[1]+'"><span aria-hidden="true">'+m[1]+'</span><span class="sr">'+(m[1]==='W'?'Win':m[1]==='L'?'Loss':'Tie')+'</span></span><b>'+m[2]+'\u2013'+m[3]+'</b><small>Final</small></span>':
+        '<span class="gmb-s"><b>'+esc(g.time||'Time TBA')+'</b><small>'+esc(g.tv||'')+'</small></span>')+
+      (nx?'<span class="gmb-nx">Next game</span>':'')+'<span class="gm-li-go" aria-hidden="true">\u2192</span></a></li>'}
+  /* the next game for each sport as a tile in the index hero (same nextGame() the game pages use for the countdown) */
+  function gmUpTile(slug){var sp=sportBy(slug),n=nextGame(GAMES.filter(function(g){return g.sport===slug}));if(!n)return '';
+    return '<a class="gmu" href="'+gameUrl(n)+'"><span class="gmu-m">SMU <i>'+gmVs(n)+'</i> '+esc(n.opp)+'</span>'+
+      '<span class="gmu-d">'+esc(sp?sp.name:'')+' \u00b7 '+gmDate(n,1)+'</span><span class="gmu-t">'+esc([n.time||'Time TBA',n.tv].filter(Boolean).join(' \u00b7 '))+'</span></a>'}
   function gamesIndex(main){document.title='Game day | SMU+';
-    main.innerHTML='<section class="page-hero compact gm-hero"><div class="wrap"><h1 class="display">Game day</h1><p class="lede on-dark">A page for every upcoming football and basketball game and the latest result, with how to watch and listen, the week\u2019s videos and related stories.</p></div></section>'+
-      Object.keys(GM_SPORT).map(function(slug){var sp=sportBy(slug),G=GAMES.filter(function(g){return g.sport===slug}),last=G.filter(function(g){return g.res}).slice(-1),up=G.filter(function(g){return !g.res}).slice(0,6);
+    var tiles=Object.keys(GM_SPORT).map(gmUpTile).join('');
+    main.innerHTML='<section class="page-hero compact gm-hero gmi-hero"><div class="wrap"><h1 class="display">Game day</h1><p class="lede on-dark">A page for every upcoming football and basketball game and the latest result, with how to watch and listen, the week\u2019s videos and related stories.</p>'+
+        (tiles?'<div class="gmu-row" aria-label="Next games">'+tiles+'</div>':'')+'</div></section>'+
+      Object.keys(GM_SPORT).map(function(slug){var sp=sportBy(slug),G=GAMES.filter(function(g){return g.sport===slug}),last=G.filter(function(g){return g.res}).slice(-1),up=G.filter(function(g){return !g.res}).slice(0,6),nx=nextGame(G);
         if(!G.length)return '';
-        return '<section class="sec gm-idx"><div class="wrap">'+secHead(esc(sp?sp.name:slug),sportUrl(slug)+'#schedule','Full schedule')+'<ul class="gm-list">'+last.concat(up).map(gmRow).join('')+'</ul></div></section>'}).join('')+
+        return '<section class="sec gm-idx"><div class="wrap"><div class="gmb-hd">'+photoBg(GM_SPORT[slug].ph,{gd:1,sizes:'(min-width:960px) 40vw, 100vw'})+
+          '<h2 class="gmb-t">'+esc(sp?sp.name:slug)+'</h2><a class="gmb-all" href="'+sportUrl(slug)+'#schedule">Full schedule<span aria-hidden="true"> \u2192</span></a></div>'+
+          '<ul class="gm-list gmb">'+last.concat(up).map(function(g){return gmRow(g,g===nx)}).join('')+'</ul></div></section>'}).join('')+
       '<section class="sec gm-src-sec"><div class="wrap"><p class="gm-src">Dates, times, venues, TV, radio and results come from the SMU Athletics schedule pages'+(MP.GAMES&&MP.GAMES.checked?', checked '+esc(MP.GAMES.checked):'')+'.</p></div></section>'}
   function gamePage(){var main=$('#gamesMain');if(!main)return;var id=new URLSearchParams(location.search).get('id'),g=id&&GBY[id];
     if(!id){gamesIndex(main);return}
@@ -921,18 +936,31 @@
     var sp=sportBy(g.sport),C=GM_SPORT[g.sport],G=GAMES.filter(function(x){return x.sport===g.sport}),i=G.indexOf(g),prev=G[i-1],next=G[i+1],L=g.links||{},title='SMU '+gmVs(g)+' '+g.opp;
     document.title=title+' \u00b7 '+(sp?sp.name:'')+' \u00b7 '+gmDate(g)+' | SMU+';
     var where=[g.venue,g.city].filter(Boolean).join(', ');
-    main.innerHTML='<section class="page-hero compact gm-hero"><div class="wrap"><h1 class="display gm-h1">SMU <span>'+gmVs(g)+'</span> '+esc(g.opp)+'</h1>'+
-        '<p class="lede on-dark">'+esc(sp?sp.name:'')+(g.ex?' \u00b7 Exhibition':'')+' \u00b7 '+gmDate(g,1)+(g.note?' \u00b7 '+esc(g.note):'')+'</p></div></section>'+
-      '<section class="sec gm-top"><div class="wrap"><div class="gm-grid">'+
-        '<article class="gm-card gm-match"><h2 class="gm-h">'+(g.res?'Result':'Matchup')+'</h2>'+(g.res?gmScore(g):'')+
-          '<dl class="gm-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact(g.venue?'Venue':'Where',where)+gmFact('TV / stream',g.tv)+gmFact('Radio',g.radio)+'</dl>'+
-          (!g.res&&g.ko&&nextGame(G)===g?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+
-          '<p class="gm-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.gamecenter,'Game Center')+'</p></article>'+
-        '<article class="gm-card gm-how" id="how"><h2 class="gm-h">How to watch and listen</h2>'+
+    /* matchup header: solid SMU blue with the sport's game-day photo; big scoreline for a final, countdown only for the
+       sport's very next game, kickoff date and time for every other upcoming game */
+    var m=g.res&&g.res.match(/^([WLT]) (\d+)-(\d+)/),us=m?+m[2]:0,them=m?+m[3]:0,isNext=!g.res&&g.ko&&nextGame(G)===g,
+      HU=g.sport==='football'&&MP.HURRYUP&&MP.HURRYUP.photo&&MP.HURRYUP.photo[g.d],phk=HU&&PH[HU]?HU:C.ph;
+    main.innerHTML='<section class="gmx'+(m?' gmx-final':' gmx-pre')+(PH[phk]?' has-ph':'')+'">'+(PH[phk]?'<div class="gmx-ph">'+photoBg(phk,{gd:1,eager:1,sizes:'(min-width:960px) 42vw, 100vw'})+'</div>':'')+
+        '<div class="wrap gmx-in"><div class="gmx-body">'+
+        '<p class="gmx-meta">'+esc(sp?sp.name:'')+(g.ex?' \u00b7 Exhibition':'')+' \u00b7 '+gmDate(g,1)+(g.note?' \u00b7 '+esc(g.note):'')+'</p>'+
+        '<h1 class="gmx-h1"><span class="gmx-smu">SMU</span> <span class="gmx-vs">'+gmVs(g)+'</span> <span class="gmx-opp">'+esc(g.opp)+'</span></h1>'+
+        (m?'<div class="gmx-score" role="group" aria-label="Final'+(g.ex?', exhibition':'')+': SMU '+us+', '+esc(g.opp)+' '+them+'">'+
+            '<span class="gmx-n'+(us>them?' win':'')+'"><small>SMU</small><b>'+us+'</b></span><span class="gmx-dash" aria-hidden="true">\u2013</span>'+
+            '<span class="gmx-n'+(them>us?' win':'')+'"><small>'+esc(g.opp)+'</small><b>'+them+'</b></span><span class="gmx-st">Final'+(g.ex?' \u00b7 Exh.':'')+'</span></div>':
+          '<div class="gmx-when"><p class="gmx-ko"><span>'+C.verb+'</span><b>'+esc(g.time||'Time TBA')+'</b></p>'+
+            (isNext?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+'</div>')+
+        '<p class="gm-links gmx-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.gamecenter,'Game Center')+'</p>'+
+        '</div></div></section>'+
+      '<section class="gmx-facts-sec" aria-label="Game details"><div class="wrap"><dl class="gm-facts gmx-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact(g.venue?'Venue':'Where',where)+gmFact('TV / stream',g.tv)+gmFact('Radio',g.radio)+'</dl></div></section>'+
+      /* live score / status and play-by-play: assets/cfbd-live.js finds this .gm-match card and adds its .cf-wrap block
+         (with the CollegeFootballData.com credit); the section stays hidden until that block is there */
+      '<section class="sec gm-live-sec" id="live"><div class="wrap"><div class="gm-live gm-match" id="gmLive"><h2 class="gm-h">Play-by-play</h2></div></div></section>'+
+      '<section class="sec gm-top"><div class="wrap">'+
+        '<div class="gm-how" id="how"><h2 class="sec-t gm-how-t">How to watch and listen</h2><div class="gm-how-g">'+
           '<div class="gm-how-i"><h3>Watch</h3><p>'+(g.tv?esc(g.tv):'TBA')+'</p>'+gmOut(L.watch,'Watch link from SMU Athletics')+'</div>'+
           '<div class="gm-how-i"><h3>Listen</h3><p>'+(g.radio?esc(g.radio):'TBA')+'</p>'+gmOut(L.listen,'Listen live')+'</div>'+
-          (sbUrl(g.sb)?'<div class="gm-how-i"><h3>Follow</h3><p>Live stats during the game from SMU\u2019s official StatBroadcast box score.</p>'+gmOut(sbUrl(g.sb),'Live stats')+'</div>':'')+'</article>'+
-      '</div></div></section>'+(MP.gameStats?MP.gameStats(g):'')+
+          (sbUrl(g.sb)?'<div class="gm-how-i"><h3>Follow</h3><p>Live stats during the game from SMU\u2019s official StatBroadcast box score.</p>'+gmOut(sbUrl(g.sb),'Live stats')+'</div>':'')+'</div></div>'+
+      '</div></section>'+(MP.gameStats?MP.gameStats(g):'')+
       '<section class="sec tight outlets gm-vids" id="videos" hidden><div class="wrap" id="gmVideos"></div></section>'+
       (function(){var A=gmArticles(g);return A.length?'<section class="sec" id="stories"><div class="wrap">'+secHead('Related articles')+'<div class="cgrid">'+A.map(cardHTML).join('')+'</div></div></section>':''})()+
       (MP.FEATURES&&MP.FEATURES.checkin===true?'<section class="sec" id="checkin"><div class="wrap">'+secHead('Student check-in')+'<div class="gm-card gm-checkin"><p>Check in at the game.</p></div></div></section>':'')+

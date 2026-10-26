@@ -1,0 +1,206 @@
+/* Game-day hub (games/ and games/?id=...): matchup header, schedule board, box score hierarchy.
+   Loaded only by games/index.html, after site.css. Blue dominant, red as the accent, white sections, 1px light-blue hairlines. */
+body[data-page="games"]{--gm-hair:rgba(53,76,161,.16);--gm-hair-2:rgba(53,76,161,.28)}
+
+/* Palette on game pages: SMU blue and red for every highlight, bar, leader and accent; neutrals for text; blue hairlines */
+body[data-page="games"] main{--ink:#1f1f1f;--ink-2:#4d4d4d;--ink-3:#5c5c5c;--black:#1f1f1f;--line:rgba(53,76,161,.16);--line-2:rgba(53,76,161,.28);color:var(--ink)}
+body[data-page="games"] main .credit{background:rgba(0,0,0,.55)}
+body[data-page="games"] main .poster{background:#1f1f1f;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+body[data-page="games"] main .poster-verb,body[data-page="games"] main .tpl-card>.poster-verb,body[data-page="games"] main .mcard.ext .poster.tpl-card .poster-verb{background:rgba(0,0,0,.45)}
+body[data-page="games"] main .tpl-card .tpl-ph{background:var(--blue)}
+body[data-page="games"] main .dur{background:rgba(0,0,0,.62)}
+body[data-page="games"] main .xarr{box-shadow:0 2px 8px rgba(0,0,0,.2)}
+body[data-page="games"] main .gm-pn a{border-color:var(--gm-hair-2)}
+
+/* ---------- Matchup header ---------- */
+.gmx{position:relative;background:var(--blue);color:#fff;overflow:hidden;border-bottom:4px solid var(--red)}
+.gmx-ph{position:absolute;top:0;right:0;bottom:0;width:42%}
+.gmx-ph .bgph img,.gmx-ph .bgph .ph{width:100%;height:100%;object-fit:cover}
+.gmx-in{position:relative;z-index:2}
+.gmx-body{max-width:56%;padding:var(--s7) 0 var(--s6);display:flex;flex-direction:column;gap:var(--s4)}
+.gmx:not(.has-ph) .gmx-body{max-width:none}
+.gmx-meta{font-size:16px;font-weight:600;color:rgba(255,255,255,.86);margin:0}
+.gmx-h1{font-family:var(--display);font-weight:400;letter-spacing:.01em;line-height:.92;font-size:clamp(52px,6.4vw,96px);margin:0;overflow-wrap:anywhere}
+.gmx-vs{font-size:.5em;color:rgba(255,255,255,.7);vertical-align:.32em;margin:0 .06em}
+.gmx-score{display:flex;align-items:flex-end;flex-wrap:wrap;gap:var(--s2) var(--s5);margin-top:var(--s2)}
+.gmx-n{display:flex;flex-direction:column;gap:2px;opacity:.62}
+.gmx-n.win{opacity:1}
+.gmx-n small{font-size:14px;font-weight:700;color:#fff;line-height:1.2}
+.gmx-n b{font-family:var(--display);font-weight:400;font-size:clamp(64px,8vw,120px);line-height:.9;font-variant-numeric:tabular-nums}
+.gmx-dash{font-family:var(--display);font-size:clamp(40px,5vw,72px);line-height:1;color:rgba(255,255,255,.5);padding-bottom:.18em}
+.gmx-st{align-self:center;display:inline-flex;align-items:center;height:32px;padding:0 var(--s3);border-radius:99px;background:var(--red);color:#fff;font-size:14px;font-weight:800}
+.gmx-when{display:flex;flex-direction:column;gap:var(--s4)}
+.gmx-ko{display:flex;flex-direction:column;gap:var(--s1);margin:0}
+.gmx-ko b{font-family:var(--display);font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1}
+.gmx-ko span{font-size:17px;font-weight:600;color:rgba(255,255,255,.86)}
+.gmx .gm-cd{gap:var(--s2)}
+.gmx .gm-cd div{min-width:76px;background:#fff;border-color:#fff;color:var(--blue);border-radius:var(--r1)}
+.gmx .gm-cd b{font-size:36px;color:var(--blue)}
+.gmx .gm-cd small{color:var(--ink-2);font-size:12px}
+.gmx-links{align-items:center;gap:var(--s1) var(--s5);margin:var(--s2) 0 0}
+.gmx-links .gm-out{color:#fff;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.gmx-links .gm-out:hover{color:#fff;text-decoration-thickness:2px}
+.gmx .credit{z-index:3}
+
+/* key facts strip under the header */
+.gmx-facts-sec{background:#fff;border-bottom:1px solid var(--gm-hair)}
+.gmx-facts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.gmx-facts>div{padding:var(--s4) var(--s4) var(--s4) 0;min-width:0}
+.gmx-facts>div+div{padding-left:var(--s4);border-left:1px solid var(--gm-hair)}
+.gmx-facts dt{font-size:13px;font-weight:600;color:var(--ink-3)}
+.gmx-facts dd{font-size:15px;font-weight:700;color:var(--ink);margin-top:2px;overflow-wrap:anywhere;line-height:1.35}
+
+/* live score / play-by-play slot: assets/cfbd-live.js adds a .cf-wrap (score, plays, CollegeFootballData credit)
+   inside #gmLive. Hidden until it does; the header countdown steps aside while a game is live */
+.gm-live-sec:not(:has(.cf-wrap)){display:none}
+.gm-live-sec{padding:var(--s6) 0 0}
+.gm-live{border:1px solid var(--gm-hair-2);border-top:4px solid var(--blue);border-radius:8px;padding:var(--s5);background:#fff;display:flex;flex-direction:column;gap:var(--s3)}
+body:has(#gmLive .cf-on) .gmx .gm-cd{display:none}
+.gm-live .cf-score{border-bottom:1px solid var(--gm-hair);padding:var(--s2) 0 var(--s4)}
+.gm-live .cf-score .sc-t em{font-size:56px}
+.gm-live .cf-score .sc-f b{font-size:14px}
+.gm-live .cf-pbp{border-top:0;padding-top:0}
+.gm-live .cf-pbp summary{font-size:16px}
+.gm-live .cf-pbp li{border-top:1px solid var(--gm-hair);padding-left:var(--s3);grid-template-columns:96px minmax(0,1fr)}
+.gm-live .cf-pbp li.sc{border-left:0;padding-left:var(--s3);box-shadow:inset 3px 0 0 var(--blue)}
+.gm-live .cf-credit{font-size:14px;margin-top:var(--s1)}
+@media(max-width:639px){.gm-live{padding:var(--s4)}.gm-live .cf-pbp li{grid-template-columns:72px minmax(0,1fr);gap:var(--s2)}.gm-live .cf-score .sc-t em{font-size:44px}}
+
+/* how to watch and listen: one row of three */
+.gm-top{padding-top:var(--s6);padding-bottom:var(--s6)}
+.gm-how-t{margin-bottom:var(--s4)}
+.gm-how-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:1px solid var(--gm-hair)}
+.gm-how-g .gm-how-i,.gm-how-g .gm-how-i:first-of-type{padding:var(--s4) var(--s5) 0 0;border-top:0}
+.gm-how-g .gm-how-i+.gm-how-i{padding-left:var(--s5);border-left:1px solid var(--gm-hair)}
+.gm-how-i h3{font-size:16px}
+
+/* ---------- Box score hierarchy ---------- */
+body[data-page="games"] .gm-card{border:1px solid var(--gm-hair-2);border-radius:8px;padding:var(--s5)}
+body[data-page="games"] .gm-h{font-size:18px;color:var(--blue)}
+.gs-ls-wrap{border:0;border-radius:6px;overflow:hidden}
+.gs-ls thead th{background:var(--blue);color:#fff;border-bottom:0;font-size:13px}
+.gs-ls th,.gs-ls td{padding:12px 10px;font-size:16px}
+.gs-ls tbody tr{border-bottom:1px solid var(--gm-hair)}
+.gs-ls tbody tr+tr th,.gs-ls tbody tr+tr td{border-top:0}
+.gs-ls tbody tr.smu th{box-shadow:inset 4px 0 0 var(--blue);padding-left:14px}
+.gs-ls tbody th{padding-left:14px}
+.gs-ls .tot{font-family:var(--display);font-weight:400;font-size:28px;line-height:1}
+.gs-ls .tot.win{color:var(--blue)}
+.gs-ls tbody td:not(.tot){color:var(--ink-2)}
+.gs-cmp-hd{font-size:16px;border-bottom:1px solid var(--gm-hair-2)}
+.gs-cmp-hd span:first-child{color:var(--blue)}
+.gs-row{padding:var(--s3) 0 var(--s4);border-bottom:1px solid var(--gm-hair)}
+.gs-v{font-family:var(--display);font-weight:400;font-size:24px;line-height:1;color:var(--ink-2)}
+.gs-v.best{font-weight:400;color:var(--blue)}
+.gs-vo.best{color:var(--ink)}
+.gs-l{font-size:14px;color:var(--ink);font-weight:700;align-self:center}
+.gs-bar{height:10px;gap:4px;margin-top:var(--s2)}
+.gs-bar i,.gs-bar b{border-radius:2px}
+.gs-bar b{background:#fff;box-shadow:inset 0 0 0 1px var(--blue)}
+.gs-lc+.gs-lc{border-top:1px solid var(--gm-hair)}
+.gs-lc h4{font-size:14px;color:var(--ink-3);font-weight:700}
+.gs-lc-p .gs-pl{padding-left:var(--s3);border-left:1px solid var(--gm-hair-2)}
+.gs-lc-p .gs-pl:first-child{border-left:3px solid var(--blue)}
+.gs-pl-v b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.05;color:var(--ink);display:inline-block;margin-right:2px}
+.gs-lc-p .gs-pl:first-child .gs-pl-v b{color:var(--blue)}
+.gs-pl-v{display:block;margin-top:2px}
+.gs-q{font-size:15px;padding-bottom:var(--s1);border-bottom:2px solid var(--blue);display:inline-block;margin-top:var(--s4)}
+.gs-plays li{border-bottom:1px solid var(--gm-hair)}
+.gs-plays li.smu{box-shadow:inset 3px 0 0 var(--blue);padding-left:var(--s3)}
+.gs-plays li:not(.smu){padding-left:var(--s3);box-shadow:inset 1px 0 0 var(--gm-hair-2)}
+.gs-ps{font-family:var(--display);font-weight:400;font-size:20px;line-height:1.1}
+.gs-plays li.smu .gs-ps{color:var(--blue)}
+.gs-last-r b{font-family:var(--display);font-weight:400;font-size:48px;line-height:1}
+
+/* ---------- Index: next-up tiles and the schedule board ---------- */
+.gmi-hero{padding-bottom:var(--s6)}
+.gmu-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);margin-top:var(--s6)}
+.gmu{display:flex;flex-direction:column;gap:var(--s1);padding:var(--s4) var(--s5);background:#fff;color:var(--ink);border-radius:8px;border-top:4px solid var(--red);min-height:44px}
+.gmu:hover{box-shadow:0 0 0 2px #fff}
+.gmu-m{font-family:var(--display);font-size:30px;line-height:1.02;color:var(--blue)}
+.gmu-m i,.gmb-m i{font-style:normal;font-family:var(--sans);font-size:.55em;font-weight:700;color:var(--ink-3);vertical-align:.18em}
+.gmu-d{font-size:15px;font-weight:700;color:var(--ink)}
+.gmu-t{font-size:14px;color:var(--ink-2)}
+.gm-idx{padding-top:var(--s7);padding-bottom:0}
+.gm-idx:last-of-type{padding-bottom:var(--s7)}
+.gm-idx+.gm-idx{padding-top:var(--s6)}
+.gmb-hd{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s4);min-height:120px;padding:var(--s5);background:var(--blue);color:#fff;border-radius:8px 8px 0 0;overflow:hidden}
+.gmb-hd .bgph{left:auto;width:40%}
+.gmb-hd .bgph .ph{width:100%;height:100%;object-fit:cover}
+.gmb-t{position:relative;z-index:2;font-family:var(--display);font-weight:400;font-size:clamp(36px,4vw,52px);line-height:.95;margin:0}
+.gmb-all{position:relative;z-index:2;margin-right:40%;display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s2);font-weight:700;color:#fff;text-decoration:underline;text-underline-offset:4px}
+.gmb-hd .credit{z-index:3}
+.gmb{border:1px solid var(--gm-hair-2);border-top:0;border-radius:0 0 8px 8px}
+.gmb li+li{border-top:1px solid var(--gm-hair)}
+.gmb .gm-li{grid-template-columns:84px minmax(0,1fr) 170px 104px 16px;gap:var(--s5);padding:var(--s3) var(--s5);min-height:72px}
+.gmb .gm-li:hover{background:#fff;box-shadow:inset 4px 0 0 var(--blue)}
+.gmb-d{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+.gmb-d b{font-family:var(--display);font-weight:400;font-size:36px;color:var(--blue);font-variant-numeric:tabular-nums}
+.gmb-d small{font-size:13px;font-weight:700;color:var(--ink-3);margin-top:4px;white-space:nowrap}
+.gmb-m{min-width:0}
+.gmb-m b{display:block;font-size:18px;font-weight:800;color:var(--ink);line-height:1.25}
+.gmb-m small{display:block;font-size:14px;color:var(--ink-2);margin-top:2px}
+.gmb-s{display:flex;flex-direction:column;align-items:flex-end;text-align:right;line-height:1.2}
+.gmb-s b{font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap}
+.gmb-s small{font-size:14px;color:var(--ink-2)}
+.is-final .gmb-s{display:grid;grid-template-columns:auto auto;justify-content:end;align-items:center;column-gap:var(--s2)}
+.is-final .gmb-s b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;color:var(--blue)}
+.is-final .gmb-s small{grid-column:1/-1;font-weight:600}
+.gmb-wl{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:4px;background:var(--blue);color:#fff;font-weight:800;font-size:14px}
+.gmb-wl.wl-L{background:var(--red)}
+.gmb-nx{display:inline-flex;align-items:center;height:28px;padding:0 var(--s3);border-radius:99px;background:var(--red);color:#fff;font-size:13px;font-weight:800;white-space:nowrap}
+.gmb-nx{grid-column:4;justify-self:end}
+.gmb .gm-li-go{grid-column:5}
+.gm-stats{padding-top:var(--s6)}
+.is-next .gm-li{box-shadow:inset 4px 0 0 var(--red)}
+.gm-src-sec{padding:var(--s5) 0 var(--s7)}
+
+/* ---------- Tablet and phone ---------- */
+@media(max-width:959px){
+  .gmx-ph{position:relative;width:auto;height:240px}
+  .gmx-body{max-width:none;padding:var(--s5) 0 var(--s6)}
+  .gmx-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gmx-facts>div:nth-child(4){padding-left:0;border-left:0}
+  .gmx-facts>div:nth-child(n+4){border-top:1px solid var(--gm-hair)}
+  .gmu-row{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:639px){
+  /* player names in the leaders block: 44px tap targets */
+  a.gs-pl-n{display:inline-flex;align-items:center;min-height:44px;align-self:flex-start}
+  .gmx-ph{height:200px}
+  .gmx-h1{font-size:clamp(44px,13vw,60px)}
+  .gmx-meta{font-size:15px}
+  .gmx-n b{font-size:76px}
+  .gmx-dash{font-size:44px}
+  .gmx .gm-cd div{min-width:0;flex:1;padding:var(--s2) var(--s1)}
+  .gmx .gm-cd b{font-size:28px}
+  .gmx-links{gap:0 var(--s4)}
+  .gmx-links .gm-thread{width:100%;margin:0 0 var(--s1)}
+  .gmx-facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .gmx-facts>div,.gmx-facts>div+div{padding:var(--s3) var(--s3) var(--s3) 0;border-left:0}
+  .gmx-facts>div:nth-child(even){padding-left:var(--s3);border-left:1px solid var(--gm-hair)}
+  .gmx-facts>div:nth-child(n+3){border-top:1px solid var(--gm-hair)}
+  .gmx-facts>div:nth-child(4){padding-left:var(--s3);border-left:1px solid var(--gm-hair)}
+  .gmx-facts>div:nth-child(5){grid-column:1/-1}
+  .gmu-row{gap:var(--s2);margin-top:var(--s5)}
+  .gmu{padding:var(--s3) var(--s4)}
+  .gmu-m{font-size:24px}
+  .gm-how-g{grid-template-columns:minmax(0,1fr)}
+  .gm-how-g .gm-how-i+.gm-how-i{padding-left:0;border-left:0;border-top:1px solid var(--gm-hair);margin-top:var(--s3)}
+  .gs-v{font-size:20px}
+  .gs-ls th,.gs-ls td{padding:10px 6px;font-size:15px}
+  .gs-ls .tot{font-size:24px}
+  .gmb-hd{min-height:104px;padding:var(--s4);flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0}
+  .gmb-hd .bgph{width:46%}
+  .gmb-t,.gmb-all{max-width:54%}
+  .gmb-all{margin:0;padding:0}
+  .gmb .gm-li{grid-template-columns:52px minmax(0,1fr) auto;grid-template-areas:"d m s" "d x s";gap:2px var(--s3);padding:var(--s3) var(--s4);min-height:72px}
+  .gmb-d{grid-area:d}.gmb-m{grid-area:m}.gmb-s{grid-area:s}.gmb-nx{grid-area:x;justify-self:start;height:24px;font-size:12px}
+  .gmb .gm-li-go{display:none}
+  .gmb-d b{font-size:30px}
+  .gmb-d small{font-size:12px}
+  .gmb-m b{font-size:16px}
+  .gmb-m small,.gmb-s small{font-size:13px}
+  .gmb-s b{font-size:14px}
+  .is-final .gmb-s b{font-size:26px}
+}

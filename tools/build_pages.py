@@ -181,6 +181,8 @@ for p in pages:
     s=re.sub(r'(assets/site\.css)\?v=\d+',r'\1?v='+VER,s)
     # athletes page only: profiles.css right after site.css (managed, versioned)
     s=re.sub(r'\n<link rel="stylesheet" href="(?:\.\./)*assets/profiles\.css(?:\?v=\d+)?">','',s)
+    s=re.sub(r'\n<link rel="stylesheet" href="(?:\.\./)*assets/games\.css(?:\?v=\d+)?">','',s)
+    if rel=='games/index.html': s=re.sub(r'(<link rel="stylesheet" href="((?:\.\./)*)assets/site\.css\?v=\d+">)',lambda m_:m_.group(1)+'\n<link rel="stylesheet" href="'+m_.group(2)+'assets/games.css?v='+VER+'">',s,count=1)
     if rel=='athletes/index.html': s=re.sub(r'(<link rel="stylesheet" href="((?:\.\./)*)assets/site\.css\?v=\d+">)',lambda m_:m_.group(1)+'\n<link rel="stylesheet" href="'+m_.group(2)+'assets/profiles.css?v='+VER+'">',s,count=1)
     s=re.sub(r'\n?<script src="(?:\.\./)*assets/[a-z-]+\.js(?:\?v=\d+)?"(?: defer)?></script>','',s)
     s=s.replace('</body>','\n'.join('<script src="%sassets/%s?v=%s"></script>'%(pre,f,VER) for f in SCRIPTS)+'\n</body>',1)
