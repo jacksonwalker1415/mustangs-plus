@@ -1,7 +1,7 @@
 """Rebuild the shared bits of every HTML page (idempotent):
   - canonical script list + ?v= cache-bust
   - SEO / Open Graph / manifest tags
-  - first-load loading screen (inline, never blocks if JS fails)
+  - page-load bar + View Transitions (inline, never blocks if JS fails)
   - account/index.html and 404.html shells, sitemap.xml, robots.txt, manifest.webmanifest
 Usage: python3 build_pages.py [VERSION]   (default: current time, YYYYMMDDHHMM)"""
 import re,sys,glob,os,time,json,html
@@ -91,34 +91,36 @@ for rel,src in SHELLS.items():
     p=os.path.join(REPO,rel);os.makedirs(os.path.dirname(p),exist_ok=True)
     if not os.path.exists(p): open(p,'w').write(src);print('created',rel)
 
-# Timing: logo wipes in over ~1s, holds ~1s, fades .45s (~2.5s total; reduced motion: still logo ~1s). First visit per session only.
-BOOT_HEAD='''<!--boot--><style>#boot{display:none}html.booting #boot,html.booted #boot{display:grid}
-#boot{position:fixed;inset:0;z-index:10000;place-items:center;background:#354CA1}
-html.booting #boot{animation:bootSafe .25s ease 1.2s forwards}
-html.booted #boot{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s}
-@keyframes bootSafe{to{opacity:0;visibility:hidden;pointer-events:none}}
-.boot-in{display:grid;justify-items:center;gap:32px}
-#boot img{display:block;width:clamp(180px,52vw,240px);height:auto}
-.boot-ring{display:block;width:36px;height:36px;border-radius:50%;box-sizing:border-box;border:3px solid rgba(255,255,255,.22);border-top-color:#fff;border-right-color:#CC0035;animation:bootSpin .75s linear infinite}
-@keyframes bootSpin{to{transform:rotate(360deg)}}
-.boot-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (prefers-reduced-motion:reduce){.boot-ring{animation:none;border-color:rgba(255,255,255,.22);border-top-color:#fff}html.booted #boot{transition:none}}
+# Page loads: no full-screen loader. A slim white bar appears only if a load is still going after 300ms (never on fast or cached loads),
+# cross-document View Transitions fade pages in 180ms (off for reduced motion), and nothing sticks after Back/Forward (bfcache).
+BOOT_HEAD='''<!--boot--><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>@view-transition{navigation:auto}
+::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.18s;animation-timing-function:ease}
+#pgbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10000;height:3px;background:#fff;box-shadow:0 1px 0 rgba(22,33,79,.2);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
+html.pg-wait #pgbar{opacity:1;animation:pgGrow 12s cubic-bezier(.08,.7,.2,1) forwards}
+html.pg-done #pgbar{transform:scaleX(1);opacity:0;transition:transform .15s ease,opacity .2s ease .12s}
+@keyframes pgGrow{from{transform:scaleX(.06)}to{transform:scaleX(.9)}}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}html.pg-wait #pgbar{animation:none;transform:scaleX(1)}html.pg-done #pgbar{transition:none}}
 </style>
-<script>(function(d,w){var h=d.documentElement;if(w.__SMU_NOBOOT)return;
-var rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches,MIN=0,CAP=1200,t0=0,done=1,cap,fade;
-function start(){done=0;t0=Date.now();clearTimeout(fade);h.classList.remove('booted');h.classList.add('booting');h.setAttribute('aria-busy','true');
-var b=d.getElementById('boot');if(b)b.removeAttribute('aria-hidden');clearTimeout(cap);var arm=function(){if(!done)cap=setTimeout(end,CAP)};w.requestAnimationFrame?w.requestAnimationFrame(arm):arm()}
-function end(){if(done)return;done=1;clearTimeout(cap);h.classList.remove('booting');h.classList.add('booted');h.removeAttribute('aria-busy');
-var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=setTimeout(function(){if(done)h.classList.remove('booted')},rm?30:320)}
-function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
-start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
-w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
+<script>/* Page-load bar: nothing on fast loads. A slim bar shows only when a load is still going after 300ms: on this page until the app has rendered (DOMContentLoaded), and on the page being left after a same-site link tap or form submit. Never covers content; cleared on pagehide and on a back/forward-cache restore.
+   The fade is skipped when the next page took over a second to arrive (it adds nothing then, and the browser would drop it on its render timeout with a console error). */
+(function(d,w){var cl=d.documentElement.classList,t,cap,off,leaving=0,tap=0;if(w.__SMU_NOBOOT)return;
+function show(){clearTimeout(off);cl.remove('pg-done');cl.add('pg-wait');if(leaving)cap=setTimeout(function(){leaving=0;hide()},15000)}
+function hide(){clearTimeout(t);clearTimeout(cap);if(!cl.contains('pg-wait'))return;cl.remove('pg-wait');cl.add('pg-done');off=setTimeout(function(){cl.remove('pg-done')},450)}
+function reset(){leaving=0;clearTimeout(t);clearTimeout(cap);clearTimeout(off);cl.remove('pg-wait','pg-done')}
+function soon(){clearTimeout(t);clearTimeout(cap);t=setTimeout(show,300)}
+soon();d.addEventListener('DOMContentLoaded',function(){if(!leaving)hide()});
+w.addEventListener('click',function(e){if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target.closest&&e.target.closest('a[href]');if(!a||(a.target&&a.target!=='_self')||a.hasAttribute('download'))return;
+var u=new URL(a.href,location.href);if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search)||/\\.(pdf|png|jpe?g|webp|gif|svg|zip|txt|xml|json|mp3|mp4|ics)$/i.test(u.pathname))return;leaving=1;tap=performance.now();soon()});
+w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!(f.getAttribute('target')&&f.getAttribute('target')!=='_self')){leaving=1;tap=performance.now();soon()}});
+w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
+function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
+w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
 '''
 def boot_body(pre):
-    return ('<!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture>'
-            f'<source type="image/webp" srcset="{pre}assets/brand/smu-plus-logo-lg.webp">'
-            f'<img src="{pre}assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture>'
-            '<span class="boot-ring" aria-hidden="true"></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->\n')
+    return '<!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->\n'
 
 def crumbs_ld(rel,s):
     """BreadcrumbList JSON-LD for sport pages (no visible trail on the page): SMU+ home > sport."""
@@ -206,7 +208,7 @@ open(REPO+'/sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<ur
 # Approved 2026-10-26: keep the concept out of search engines (same URL keeps serving).
 open(REPO+'/robots.txt','w').write('User-agent: *\nDisallow: /\n')
 json.dump({'id':'./','name':'SMU+','short_name':'SMU+','description':'Concept SMU fan membership site for an SMU Cox class project. Not affiliated with or endorsed by SMU Athletics or Learfield.',
-  'lang':'en-US','dir':'ltr','start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#354CA1','categories':['sports','entertainment'],
+  'lang':'en-US','dir':'ltr','start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#23347a','categories':['sports','entertainment'],
   'icons':[{'src':'assets/brand/icon-192.png','sizes':'192x192','type':'image/png','purpose':'any'},
            {'src':'assets/brand/icon-512.png','sizes':'512x512','type':'image/png','purpose':'any'},
            {'src':'assets/brand/icon-maskable-512.png','sizes':'512x512','type':'image/png','purpose':'maskable'}]},
