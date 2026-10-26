@@ -67,23 +67,24 @@ MP.ARTICLES['recap-syracuse']={by:'SMU+ Staff',date:'[DATE PUBLISHED]',sourced:t
 **Facts already true (sourced in `preview-msoc-louisville`):**
 - SMU went in 12-0-2 overall and 6-0-1 in the ACC, unbeaten through 14 matches, and listed at No. 1 by SMU Athletics since early October.
 - SMU had allowed five goals, kept 10 clean sheets (the latest a 2-0 win at Cal on Oct. 24) and scored 41 goals.
-- It was the last match of SMU's regular season, at home.
+- It was the last match of SMU's regular season, at home, on senior day, against No. 10 Louisville.
+- On Oct. 25 SMU clinched at least a share of the 2026 ACC regular-season title: the first ACC regular-season title in school history, and the first SMU team to win both the regular-season title and the ACC Tournament (2025). SMU went into the final week three points clear at the top of the ACC table, with a chance to win the title outright at home. Source: https://smumustangs.com/news/2026/10/25/mens-soccer-no-1-smu-clinches-a-share-of-acc-regular-season-title
 
 **LIB card:**
 
 ```js
-{id:'recap-msoc-louisville',t:'article',cat:'insider',label:"Men's Soccer · Recap",title:'[HEADLINE]',desc:'[ONE-SENTENCE SUMMARY: final score and the regular-season record]',dur:'2 min read',lock:false,tone:'black',big:'[FINAL RECORD, e.g. 13-0-2]',isNew:true}
+{id:'recap-msoc-louisville',t:'article',cat:'insider',label:"Men's Soccer · Recap",title:'[HEADLINE]',desc:'[ONE-SENTENCE SUMMARY: final score, regular-season record, and whether the ACC title is outright or shared, as stated by SMU Athletics]',dur:'2 min read',lock:false,tone:'black',big:'[FINAL RECORD, e.g. 13-0-2]',isNew:true}
 ```
 
 **Article:**
 
 ```js
 MP.ARTICLES['recap-msoc-louisville']={by:'SMU+ Staff',date:'[DATE PUBLISHED]',sourced:true,
- sources:[['SMU Athletics recap: SMU vs. Louisville, Oct. 30','[RECAP URL]'],['Official box score','[BOX SCORE URL]'],['SMU Athletics 2026 men\'s soccer schedule','https://smumustangs.com/sports/mens-soccer/schedule/2026']],
- dek:'[DEK: final score, final regular-season record, what comes next]',
+ sources:[['SMU Athletics recap: SMU vs. Louisville, Oct. 30','[RECAP URL]'],['SMU Athletics: Mustangs are ACC champions, clinch a share of regular-season title (Oct. 25)','https://smumustangs.com/news/2026/10/25/mens-soccer-no-1-smu-clinches-a-share-of-acc-regular-season-title'],['Official box score','[BOX SCORE URL]'],['SMU Athletics 2026 men\'s soccer schedule','https://smumustangs.com/sports/mens-soccer/schedule/2026']],
+ dek:'[DEK: final score, final regular-season record, ACC title (outright or shared, as stated by SMU Athletics), what comes next]',
  related:['recap-syracuse','smu-msoc-cal-highlights','vb-road-sweep'],body:[
  "[LEDE: FINAL SCORE: SMU [X], Louisville [Y]. Who scored and when, from the box score.]",
- "SMU came into the regular-season finale unbeaten in 14 matches, 12-0-2, with 10 clean sheets and five goals allowed all season.",
+ "SMU came into the senior-day finale against No. 10 Louisville unbeaten in 14 matches, 12-0-2, with 10 clean sheets and five goals allowed all season. It had already clinched at least a share of the ACC regular-season title on Oct. 25, the first in school history, and was three points clear at the top of the table.",
  /* WIN version: */
  "The win finishes the regular season unbeaten: [RECORD: 13-0-2] overall and [ACC RECORD: 7-0-1] in the ACC.",
  /* DRAW version: */
@@ -92,7 +93,7 @@ MP.ARTICLES['recap-msoc-louisville']={by:'SMU+ Staff',date:'[DATE PUBLISHED]',so
  "The loss was SMU's first of the season. The Mustangs finish the regular season [RECORD: 12-1-2] overall and [ACC RECORD: 6-1-1] in the ACC.",
  "[ONLY IF TRUE: clean sheet number 11, goalkeeper's name and saves from the box score.]",
  "[KEY STAT: shots/shots on goal or another number the recap highlights. Source: box score.]",
- "[STANDINGS: ACC regular-season finish and seeding, ONLY as stated by SMU Athletics or theacc.com. Do not work it out ourselves.]",
+ "[TITLE: outright or shared ACC regular-season champion, and ACC Tournament seeding, ONLY as stated by SMU Athletics or theacc.com. Do not work it out from the table ourselves. Note it is the program's first ACC regular-season title (source above).]",
  "[NEXT: postseason opponent, date, time and TV, from the official schedule once it's posted.]"]};
 ```
 
