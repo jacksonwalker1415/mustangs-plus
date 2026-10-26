@@ -12,7 +12,7 @@ if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
 /* avatars: member profile photos on the live site. On since supabase/RUN_ME_15_avatars.sql was applied (profiles.avatar_url and the
    'avatars' storage bucket exist). Set false to hide uploads and photos again (initials only); nothing is deleted. Demo mode always has photos (saved in the browser). */
 if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = true;
-/* students: the free Student sign-up (SMU email + student ID) on the live site. On since supabase/RUN_ME_16_students.sql was applied (Oct 26, 2026)
+/* students: the free Student sign-up (SMU email only; no student ID since RUN_ME_17) on the live site. On since supabase/RUN_ME_16_students.sql was applied (Oct 26, 2026)
    (student_verifications table, 'student' tier, claim_student_membership RPC); while false the live site shows no student option and never calls them.
    Demo mode always has the full student flow (saved in this browser). */
 if (MP.FEATURES.students == null) MP.FEATURES.students = true;
@@ -126,7 +126,7 @@ MP.THREADS = [
    ]},
   {id:9,f:'hilltop',sport:null,title:'Where would the NIL money go? How the proposed model works',by:'staff',ago:'2d',replies:512,views:'18.7k',pin:true,
    posts:[
-     ['staff','Pinned. How the proposed model works: 40% of membership revenue would go to SMU Athletics\u2019 official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse. SMU+ would not pick or pay individual athletes or teams. (Sample post for this concept.)'],
+     ['staff','Pinned. How the proposed model works: a share of membership revenue would support SMU Athletics\u2019 official NIL and revenue-sharing programs, with exact terms still to be decided and athlete deals disclosed through the NIL Go clearinghouse. SMU+ would not pick or pay individual athletes or teams. (Sample post for this concept.)'],
      ['cox','Clear rules like this are why I joined.'],
      ['hank','Good that it runs through SMU\u2019s official programs.']
    ]},
