@@ -113,6 +113,53 @@ MP.ARTICLES={
   'Watch the libero on the next serve-receive. If she moves a step toward the line before the serve, that\'s the adjustment.'),related:['film-screen','film-pressure','building-contender']}
 };
 
+/* Timely game coverage (Oct. 26, 2026). SOURCED pieces: every fact traces to the SMU Athletics pages in each
+   article's sources list. No quotes. These need the per-article sourced footer in app.js openArticle. */
+(function(){
+ var FB='https://smumustangs.com/sports/football/schedule/2026',CAL='https://smumustangs.com/news/2026/10/24/football-dominating-second-half-leads-smu-to-59-20-win-over-cal',ESPN='https://www.espn.com/college-football/player/';
+ var cards=[
+  {id:'preview-syracuse',t:'article',cat:'insider',label:'Game Preview',title:'SMU at Syracuse: one trip north, then back to the lights',desc:'Four straight wins, a 42-0 second half in the rearview and the only road date in a seven-week stretch. Sat., 11 a.m. CT, ESPN2.',dur:'4 min read',lock:false,tone:'blue',big:'@CUSE',isNew:true},
+  {id:'preview-msoc-louisville',t:'article',cat:'insider',label:"Men's Soccer · Preview",title:"Fourteen games, no losses: men's soccer hosts Louisville",desc:'Ten clean sheets, 41 goals and a Friday night on ACC Network. The unbeaten Mustangs come home to Washburne.',dur:'3 min read',lock:false,tone:'black',big:'12-0-2',isNew:true},
+  {id:'vb-road-sweep',t:'article',cat:'insider',label:'Volleyball',title:'Six sets, zero dropped: volleyball sweeps its way out of a rough week',desc:'Two home losses, then straight-set wins at Clemson and Georgia Tech. Two more road matches, then four straight at Moody.',dur:'3 min read',lock:false,tone:'red',big:'3-0',isNew:true}];
+ var at=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id==='walk-on'){at=i;break}
+ Array.prototype.splice.apply(MP.LIB,[at,0].concat(cards));
+
+ MP.ARTICLES['preview-syracuse']={by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true,
+  sources:[['SMU Athletics 2026 football schedule',FB],['SMU Athletics Cal recap and game notes, Oct. 24',CAL],['ESPN: Kevin Jennings',ESPN+'stats/_/id/5084084/kevin-jennings'],['ESPN: Kendrick Raphael',ESPN+'_/id/4899368/kendrick-raphael'],['ESPN: Yamir Knight',ESPN+'stats/_/id/5121750/yamir-knight']],
+  dek:'SMU takes a four-game win streak and a record-setting quarterback into the JMA Wireless Dome. Then it comes home to stay. Sat., Oct. 31 · 11 a.m. CT (noon ET) · ESPN2 · Radio: KTCK 96.7 FM/1310 AM & SiriusXM.',
+  related:['preview-msoc-louisville','vb-road-sweep','film-pressure'],body:[
+  "Look at the calendar and Saturday stands out. From the last week of September to the middle of November, SMU plays six of seven games at Gerald J. Ford Stadium. Syracuse is the one exception. It's an 11 a.m. Central kick in upstate New York, a long way from a Dallas Saturday.",
+  "The Mustangs head north at 6-1 and 4-1 in the ACC. They've won four straight since the 41-31 loss at Louisville on Sept. 19. They came into the Cal game ranked No. 23, and they left with a 59-20 win.",
+  "How it got to 59 matters more than the number. SMU trailed 20-17 at halftime. After the break the Mustangs scored touchdowns on their first six drives and held Cal scoreless, a 42-0 half. Cal's first three possessions of the third quarter were three-and-outs. SMU had 306 of its 492 yards after halftime.",
+  "Kevin Jennings set SMU's career record for touchdown passes in that game and now has 74. His 2026 line is 156 of 215 for 2,062 yards, 19 touchdowns and five interceptions. He's completing 72.6 percent of his passes, up from 66.1 percent in 2025. Kendrick Raphael has run for 100 yards in back-to-back games (119 against Virginia, 104 against Cal) and leads the team with 641 rushing yards and eight rushing touchdowns. Yamir Knight has 38 catches for 443 yards out of the slot and also returns punts.",
+  "The early kick shouldn't be a problem. SMU has played three 11 a.m. games this season, against Boston College, Virginia and Cal, and won all three. Those were all at home, though. On the road this year the Mustangs are 1-1: a 27-24 win at Florida State in the opener and the loss at Louisville.",
+  "The last time these teams met was Oct. 4, 2025, in Dallas. SMU won 31-18.",
+  "What to watch, first: the first half. SMU trailed Cal at halftime and needed a 42-0 second half to fix it. On the road, a cleaner first two quarters would mean not needing another rescue.",
+  "Second: fourth down. Two of Raphael's three touchdowns against Cal came on fourth down. Expect this staff to go for it again. Third: the red zone. SMU has scored on 32 of 37 red-zone trips this season.",
+  "The road trip is short. SMU comes home for a Friday-night game against Virginia Tech on Nov. 6 (6 p.m. CT, ESPN; Wear Blue), then plays Wake Forest on Nov. 14 for Homecoming and Senior Day. Win in Syracuse and the Mustangs come back to Ford with a five-game streak and two home games left."]};
+
+ MP.ARTICLES['preview-msoc-louisville']={by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true,
+  sources:[['SMU Athletics 2026 men\'s soccer schedule','https://smumustangs.com/sports/mens-soccer/schedule/2026'],['SMU Athletics men\'s soccer roster','https://smumustangs.com/sports/mens-soccer/roster/2026'],['Recap: SMU 2, Cal 0','https://smumustangs.com/news/2026/10/24/mens-soccer-no-1-smu-wins-2-0-at-cal-grabs-10th-clean-sheet-of-the-season'],['Recap: SMU 5, Central Arkansas 2','https://smumustangs.com/news/2026/10/20/mens-soccer-soghomonian-hat-trick-no-1-smu-downs-uca-5-2'],['Recap: SMU 1, NC State 0','https://smumustangs.com/news/2026/9/18/mens-soccer-panozzo-winner-no-5-smu-takes-down-nc-state-in-acc-home-opener'],['Recap: SMU 2, LMU 0','https://smumustangs.com/news/2026/8/28/mens-soccer-villagomez-winner-no-5-smu-wins-2-0-against-lmu']],
+  dek:'SMU has gone 14 matches without a loss. Louisville comes to Washburne on Friday for the last home match of the regular season. Fri., Oct. 30 · 6:30 p.m. CT · ACC Network.',
+  related:['preview-syracuse','vb-road-sweep','film-rotation'],body:[
+  "Fourteen matches in, the 2026 SMU men's soccer team hasn't lost. It's 12-0-2 overall and 6-0-1 in the ACC. SMU Athletics has listed the Mustangs at No. 1 since early October.",
+  "The defense is the main reason. SMU has allowed five goals all season and shut out 10 opponents, including the 2-0 win at Cal last Saturday. The attack has 41 goals. Six of them came against Duke on Oct. 10 and six more against Houston Christian in August.",
+  "There have been big early results. On Aug. 24 SMU won 4-0 at No. 4 Saint Louis. In ACC play it has won at Pitt, Virginia Tech, Wake Forest and Cal. The only blemishes are a 1-1 draw with Kansas City and a 0-0 draw with No. 25 Stanford on Oct. 16.",
+  "The goals have come from all over the roster. Stephan Soghomonian, a junior forward from Santa Clarita, Calif., had a hat trick in the 5-2 win over Central Arkansas on Oct. 20. Enzo Panozzo, a graduate defender from Sarasota, Fla., scored the only goal against NC State in the ACC home opener. Joseluis Villagomez, a freshman defender from El Paso, scored the winner against LMU in August.",
+  "Louisville is the last match on SMU's regular-season schedule. If the Mustangs avoid a loss, they finish the regular season unbeaten, at home, under the lights."]};
+
+ MP.ARTICLES['vb-road-sweep']={by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true,
+  sources:[['SMU Athletics 2026 volleyball schedule','https://smumustangs.com/sports/womens-volleyball/schedule/2026'],['SMU Athletics volleyball roster','https://smumustangs.com/sports/womens-volleyball/roster/2026'],['Recap: SMU sweeps Florida State','https://smumustangs.com/news/2026/10/18/volleyball-livings-11-kills-leads-no-5-smu-in-sweep-of-florida-state'],['Recap: SMU stuns No. 2 Pitt','https://smumustangs.com/news/2026/10/7/volleyball-no-6-smu-stuns-no-2-pitt-ends-nations-longest-home-winning-streak'],['Recap: SMU at Colorado State','https://smumustangs.com/news/2026/8/29/davis-22-kill-performance-leads-no-11-msutangs-past-colorado-state']],
+  dek:'Two home losses in three matches put a dent in SMU\'s season. Then came two road sweeps without dropping a set. At 16-4 and 8-2 in the ACC, the Mustangs head into two more road matches before four straight at Moody.',
+  related:['film-rotation','micd-setter','preview-msoc-louisville'],body:[
+  "The middle of October was rough for SMU. On Oct. 11, No. 2 Pitt swept the Mustangs at Moody Coliseum, four days after SMU had won 3-1 in Pittsburgh and ended the nation's longest home winning streak. Then Miami beat SMU in five sets on Oct. 16.",
+  "SMU hasn't dropped a set since. It swept Florida State at home on Oct. 18, with Jadyn Livings, a junior outside/opposite hitter from The Colony, Texas, leading the way with 11 kills. Then it won 3-0 at Clemson on Oct. 23 and 3-0 at Georgia Tech on Oct. 25.",
+  "That puts SMU at 16-4 overall and 8-2 in the ACC. It also has a nonconference résumé few teams can match: wins over No. 8 Texas A&M, No. 9 Texas and No. 3 Kentucky before the end of September, and a 3-0 win over No. 12 Stanford to open ACC play.",
+  "Suli Davis, a sophomore outside hitter from Euless, Texas, set the tone back in August with a 22-kill match at Colorado State.",
+  "Up next: at NC State on Fri., Oct. 30 (6 p.m. CT, ACCNX) and at Wake Forest on Sun., Nov. 1 (noon CT, ACCNX). Then SMU plays four straight at Moody: North Carolina on Fri., Nov. 6 at noon, Duke on Sun., Nov. 8 at noon, Louisville on Nov. 12 (7 p.m. CT, ESPNU) and Notre Dame on Nov. 15.",
+  "If you're at Ford on Friday, Nov. 6, for Virginia Tech, the UNC match at Moody starts at noon that day."]};
+})();
+
 /* Fictional portal tracker */
 MP.PORTAL={in:[
  ['Cole Ashford','OT','Gr.','North Plains State','Committed','Oct. 21'],['Darius Navarro','CB','Jr.','Gulf Coast','Committed','Oct. 18'],
