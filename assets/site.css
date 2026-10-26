@@ -2643,3 +2643,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-stats{position:absolute;top:10px;right:var(--s3);min-height:0;padding:4px 0;border:0;font-size:13px}
   .rb-tv dd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
 }
+
+/* Last-game card: centered red View Game Details button (Jackson, Oct 26) */
+.gd-hurry .gd-glink.btn{align-self:center;color:#fff;margin-top:var(--s2)}
+.gd-hurry .gd-glink.btn:hover{color:#fff}
