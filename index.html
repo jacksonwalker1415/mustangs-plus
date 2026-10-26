@@ -52,7 +52,7 @@ var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=se
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610261215">
+<link rel="stylesheet" href="assets/site.css?v=202610261245">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="assets/brand/smu-plus-logo-lg.webp"><img src="assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-bar" aria-hidden="true"><i></i></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
@@ -66,7 +66,7 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
       <p class="eyebrow"><span class="live-dot"></span>Proposed fan membership</p>
       <h1 id="hero-h" class="display">Every Moment.<br><span>Every Mustang.</span></h1>
       <p class="lede on-dark">Official SMU Athletics video, sourced stories and podcasts from every Mustang sport. <strong>In the proposed model, 40% of membership revenue would go to SMU Athletics’ official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</strong></p>
-      <div class="ctas"><a href="#membership" class="btn btn-red btn-lg">Become a Member</a><a href="#nil" class="btn btn-ghost btn-lg">Where it goes</a></div>
+      <div class="ctas"><a href="#membership" class="btn btn-red btn-lg">Become a Member</a></div>
       <dl class="statbar plain" aria-label="Sample stats">
         <div><dt>To SMU’s official NIL programs (proposed)</dt><dd>40%</dd></div>
         <div><dt>Plans start per month</dt><dd>$9.99</dd></div>
@@ -92,43 +92,6 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <section class="sec tight"><div class="wrap" id="railFilm"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
 <section class="sec dark" id="recruiting" data-feature="recruiting"><div class="wrap" id="recruitBand"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
 <section class="sec" id="listen"><div class="wrap" id="railPods"><div class="skel-hd"><i class="sk sk-eb"></i><i class="sk sk-t"></i></div><div class="skel-rail" aria-hidden="true"><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div><div class="skel-card"><i class="sk sk-poster"></i><i class="sk sk-l1"></i><i class="sk sk-l2"></i></div></div><span class="sr">Loading</span></div></section>
-
-<section class="sec alt" id="nil" aria-labelledby="nil-h">
-  <div class="wrap">
-    <div class="sec-hd"><div><p class="eyebrow">Where your membership goes</p><h2 class="sec-t" id="nil-h">Your fandom, their future.</h2></div></div>
-    <p class="lede">In the proposed model, 40% of membership revenue would go to SMU Athletics’ official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</p>
-    <div class="split">
-      <div class="donut-wrap">
-        <div class="donut" id="donut" role="img" aria-label="Proposed split: 40 percent to SMU Athletics official NIL and revenue-sharing programs, 35 percent content production, 25 percent platform and operations">
-          <div class="ctr"><b id="nilAmt">$4.00</b><span>to SMU’s NIL programs (proposed)</span></div>
-        </div>
-      </div>
-      <div>
-        <div class="tier-toggle" role="group" aria-label="Choose a plan to see the split">
-          <button aria-pressed="true" data-price="9.99">Mustang</button>
-          <button aria-pressed="false" data-price="24.99">All-Access</button>
-          <button aria-pressed="false" data-price="99">Red &amp; Blue</button>
-        </div>
-        <ul class="legend">
-          <li class="nil"><span class="sw" style="background:var(--red)"></span><div><b>SMU’s official NIL programs · 40% (proposed)</b><small>SMU Athletics’ NIL and revenue-sharing programs; athlete deals disclosed through NIL Go</small></div><span class="amt" data-share="0.40">$4.00</span></li>
-          <li><span class="sw" style="background:var(--navy)"></span><div><b>Content &amp; Production · 35%</b><small>Student video crews, writers, podcast studio</small></div><span class="amt" data-share="0.35">$3.50</span></li>
-          <li><span class="sw" style="background:#59C3C3"></span><div><b>Platform &amp; Operations · 25%</b><small>Streaming, apps, payments, compliance</small></div><span class="amt" data-share="0.25">$2.50</span></li>
-        </ul>
-        <div class="fund" aria-label="Sample season progress toward SMU NIL programs">
-          <div class="row"><span>2026–27 sample: toward SMU’s NIL programs</span><b id="fundNum">$0</b></div>
-          <div class="bar"><i id="fundBar"></i></div>
-          <div class="row"><small>Goal: $2,500,000 · 11,840 members</small><small>Sample data</small></div>
-        </div>
-        <div class="how">
-          <div><p><b>You join.</b> Pick any plan, monthly. Cancel anytime.</p></div>
-          <div><p><b>40% goes to SMU (proposed).</b> It would go to SMU Athletics’ official NIL and revenue-sharing programs.</p></div>
-          <div><p><b>Deals are disclosed.</b> SMU runs the programs, and athlete deals are disclosed through the NIL Go clearinghouse.</p></div>
-        </div>
-      </div>
-    </div>
-  
-  </div>
-</section>
 
 <section class="sec alt" id="board" aria-labelledby="board-h">
   <div class="wrap">
@@ -218,13 +181,13 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 </section>
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610261215"></script>
-<script src="assets/data.js?v=202610261215"></script>
-<script src="assets/content.js?v=202610261215"></script>
-<script src="assets/real.js?v=202610261215"></script>
-<script src="assets/athletes.js?v=202610261215"></script>
-<script src="assets/sport-icons.js?v=202610261215"></script>
-<script src="assets/sb.js?v=202610261215"></script>
-<script src="assets/app.js?v=202610261215"></script>
+<script src="assets/config.js?v=202610261245"></script>
+<script src="assets/data.js?v=202610261245"></script>
+<script src="assets/content.js?v=202610261245"></script>
+<script src="assets/real.js?v=202610261245"></script>
+<script src="assets/athletes.js?v=202610261245"></script>
+<script src="assets/sport-icons.js?v=202610261245"></script>
+<script src="assets/sb.js?v=202610261245"></script>
+<script src="assets/app.js?v=202610261245"></script>
 </body>
 </html>
