@@ -1251,3 +1251,6 @@ html:not(.is-member) .gated .poster .np-art{filter:blur(2.5px)}
 .player.no-ph{color:#fff}.player.np-video{background:var(--blue)}.player.np-article{background:var(--b-900,#16214f)}.player.np-podcast{background:var(--red)}
 .player .np-kick{top:var(--s4);left:var(--s4);font-size:13px}
 .player.locked .np-art{filter:blur(6px)}
+/* audit fixes (2026-10-26) */
+@media(max-width:639px){.statbar>div:last-child:nth-child(odd){grid-column:1/-1}.auth-tabs button{min-height:44px}}
+.prose p{font-family:Georgia,Charter,'Bitstream Charter','Iowan Old Style','Palatino Linotype','Noto Serif','Source Serif Pro','Times New Roman',serif}

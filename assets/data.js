@@ -68,7 +68,7 @@ MP.THREADS = [
   {id:1,f:'paddock',sport:'football',hot:true,pin:false,title:'Practice report: Tuesday notes, WR rotation is changing',by:'staff',ago:'38m',replies:214,views:'9.8k',
    posts:[
      ['staff','Closed practice, but here is what I can share. The WR rotation looked different in team periods: the junior slot took most of the first-team reps and the true freshman got real run on the outside. Defensive line was healthy and loud. More in the Thursday report.'],
-     ['pete','This is exactly why I pay for the Club tier. Freshman getting first-team reps in late October tells you everything.'],
+     ['pete','This is exactly why I pay for the Red & Blue tier. Freshman getting first-team reps in late October tells you everything.'],
      ['hank','Any word on the kicking battle? Last week was rough.'],
      ['staff','Kicker looked sharp. Hit from 48 twice in the period I watched. I would not read too much into one game.'],
      ['grace','Love the detail. Can we get a film breakdown of the 3rd-and-long package on the podcast?']
@@ -89,7 +89,7 @@ MP.THREADS = [
   {id:4,f:'hilltop',sport:'womens-soccer',hot:true,title:"Women's soccer wins 3-1 at Cal. Who's going to the Pitt match?",by:'grace',ago:'3d',replies:146,views:'3.9k',
    posts:[
      ['grace','Three goals in Berkeley on Thursday. Two left: at North Carolina on Oct. 29, then Pitt at Washburne on Nov. 5. Thinking of organizing an SMU+ meetup for Pitt.'],
-     ['belle','Count me in. The Club tier invite included a watch party for the UNC match too.'],
+     ['belle','Count me in. The Red & Blue tier invite included a watch party for the UNC match too.'],
      ['cox','Tough ACC stretch, but that win at Cal was fun to watch.']
    ]},
   {id:5,f:'paddock',sport:'volleyball',title:'Mic\'d up: the setter\'s timeout huddle from Saturday is a must-watch',by:'belle',ago:'9h',replies:92,views:'2.7k',
@@ -155,7 +155,7 @@ function T(id){for(var i=0;i<MP.THREADS.length;i++)if(MP.THREADS[i].id===id)retu
 /* posts: [user, text, quotedPostIndex?] */
 T(1).posts=[
  ['staff','Closed practice, but here\'s what I can share. The WR rotation looked different in team periods: the junior slot took most of the first-team reps and the true freshman got real run on the outside. Defensive line was healthy and loud. More in Thursday\'s report.'],
- ['pete','Freshman getting first-team reps in late October tells you everything. This is why I pay for the Club tier.',0],
+ ['pete','Freshman getting first-team reps in late October tells you everything. This is why I pay for the Red & Blue tier.',0],
  ['hank','Any word on the kicking battle? Last week was rough to watch from the south end zone.'],
  ['staff','Kicker looked sharp. Hit from 48 twice in the period I watched. I wouldn\'t read too much into one game.',2],
  ['ford','Good to hear. I was sitting right behind the uprights for the miss and the groan from our section was audible in Snider Plaza.',3],
