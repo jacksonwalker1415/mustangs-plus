@@ -449,6 +449,7 @@
 
   /* ---------- Continue watching ---------- */
   function continueRow(){var el=$('#railContinue');if(!el)return;var h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97});
+    var sec=el.closest('section');if(sec)sec.hidden=!h.length;
     var head='<div class="sec-hd"><div><p class="eyebrow">Saved in this browser</p><h2 class="sec-t">Continue watching</h2></div>'+(h.length?'<button type="button" class="see-all linkish-plain" id="clearHist">Clear history</button>':'')+'</div>';
     el.innerHTML=head+(h.length?rail(h.slice(0,8).map(function(x){return LIBBY[x.id]}),{progress:true}):
       emptyState('play','Nothing in progress yet','Start an episode, a story or a podcast and it shows up here with your progress, so you can pick up where you left off.','<a class="btn btn-navy btn-sm" href="'+libUrl()+'">Browse the library</a><a class="btn btn-outline btn-sm" href="#watch" data-item="boulevard-nights-1">Start Boulevard Nights</a>'));
@@ -464,6 +465,17 @@
       '<div class="panel dark"><div class="panel-h"><h3>Visit list · '+MP.VISITS[0].date+'</h3><a class="see-all" href="'+ROOT+'recruiting/#visits">All visits →</a></div>'+
         '<ul class="plist">'+MP.VISITS[0].list.map(function(v){return '<li><span class="dir '+(v[5]==='Official'?'in':'neutral')+'">'+(v[5]==='Official'?'OV':'UV')+'</span><b>'+v[0]+'</b><small>'+v[1]+' · '+v[2]+' · '+v[3]+'</small>'+stars(v[4])+'</li>'}).join('')+'</ul></div>'+
       '</div><p class="note on-dark">Every recruit, portal name and school in this section is fictional.</p>'}
+  /* Insider, Film Room and Podcasts share one tabbed row (WAI-ARIA tabs: arrows, Home, End) */
+  function homeTabs(T){var el=$('#railTabs');if(!el)return;
+    el.innerHTML='<div class="sec-hd htabs-hd"><div><p class="eyebrow" id="htKick">'+T[0][3]+'</p><h2 class="sr">'+T.map(function(t){return t[1]}).join(', ')+'</h2>'+
+      '<div class="htabs" role="tablist" aria-label="More from SMU+">'+T.map(function(t,i){return '<button type="button" role="tab" class="htab" id="ht-'+t[0]+'" aria-controls="hp-'+t[0]+'" aria-selected="'+(i===0)+'" tabindex="'+(i?-1:0)+'">'+t[1]+'</button>'}).join('')+'</div></div>'+
+      '<a class="see-all" id="htAll" href="'+T[0][2]+'">See all<span aria-hidden="true"> →</span></a></div>'+
+      T.map(function(t,i){return '<div class="htab-p" role="tabpanel" id="hp-'+t[0]+'" aria-labelledby="ht-'+t[0]+'"'+(i?' hidden':'')+'>'+rail(t[4])+'</div>'}).join('');
+    var tabs=$$('.htab',el);
+    function pick(i,focus){tabs.forEach(function(b,j){var on=i===j;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;$('#hp-'+T[j][0]).hidden=!on});
+      $('#htKick').textContent=T[i][3];$('#htAll').href=T[i][2];if(focus)tabs[i].focus()}
+    tabs.forEach(function(b,i){b.addEventListener('click',function(){pick(i)});
+      b.addEventListener('keydown',function(e){var n=tabs.length,k=e.key,j=k==='ArrowRight'?(i+1)%n:k==='ArrowLeft'?(i+n-1)%n:k==='Home'?0:k==='End'?n-1:-1;if(j>-1){e.preventDefault();pick(j,true)}})})}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist();if(location.hash==='#waitlist')setTimeout(function(){var t=$('#waitlist');if(t)t.scrollIntoView()},0)}
@@ -472,9 +484,7 @@
     $('#gameday').innerHTML=gameStrip();startCountdowns();
     continueRow();document.addEventListener('mp:history',continueRow);
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Docuseries & originals')+rail(byCat('watch'));
-    $('#railInsider').innerHTML=secHead('Insider',libUrl('insider'),'See all','Features & practice reports')+rail(byCat('insider'));
-    $('#railFilm').innerHTML=secHead('Film Room',libUrl('film'),'See all','Breakdowns')+rail(byCat('film'));
-    $('#railPods').innerHTML=secHead('Podcasts',libUrl('podcasts'),'See all','Listen')+rail(MP.LIB.filter(function(c){return c.t==='podcast'}));
+    homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['film','Film Room',libUrl('film'),'Breakdowns',byCat('film')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
     $('#sportGrid').innerHTML=MP.SPORTS.map(function(s){return '<a class="sport-tile" href="'+sportUrl(s.slug)+'">'+sportIcon(s.slug)+'<span><b>'+s.name+'</b><small>'+s.season+' · '+esc(sportRec(s))+'</small></span></a>'}).join('');
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);

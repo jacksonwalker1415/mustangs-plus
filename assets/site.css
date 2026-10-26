@@ -1463,3 +1463,23 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 .rail-ath .pcard{box-shadow:var(--sh-1)}
 .fi,.s-ic{border-radius:var(--r-ctl)}
 .av{box-shadow:0 0 0 2px #fff}
+
+/* ---- 6.11 Home: tabbed Insider / Film Room / Podcasts row; spacing when Continue Watching is hidden ---- */
+#continue[hidden]+.sec.tight{padding-top:var(--sec-y)}
+.htabs{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s5);margin-top:2px}
+.htab{position:relative;min-height:44px;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:var(--d-sec);line-height:.94;letter-spacing:var(--trk-display);color:rgba(26,35,80,.3);padding:0 0 10px;transition:color var(--t-fast)}
+.htab:hover{color:rgba(26,35,80,.6)}
+.htab[aria-selected="true"]{color:var(--ink)}
+.htab[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red)}
+.htab:focus-visible{outline-offset:4px}
+.htabs-hd .eyebrow{margin-bottom:var(--s2)}
+@media(max-width:639px){.htabs{gap:0 var(--s4)}.htab{font-size:28px}.htabs-hd{flex-wrap:wrap}}
+
+/* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
+@media(max-width:639px){
+  .btn,.btn-sm{min-height:44px}
+  .chip,.seg button,.sort button,.tier-toggle button{min-height:44px}
+  .see-all,.htab{min-height:44px}
+  .sport-tile{min-height:56px}
+  .fsearch{height:46px}
+}
