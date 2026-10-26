@@ -1209,6 +1209,11 @@
      Unread tracking, bookmarks and the "mark all read" cutoff live in this browser (localStorage). ---------- */
   function boards(){
     var Q=new URLSearchParams(location.search),PER=20,PPER=20;
+    /* Posting rate limit (supabase/PROPOSAL_boards_rate_limit.sql, not applied yet): the database answers PT429 / "slow_down".
+       Until that runs, nothing sends it and this never matches. */
+    function slowDown(err){var c=err&&err.cause,code=(c&&c.code)||(err&&err.code)||'',msg=String((err&&err.message)||'')+' '+String((c&&c.message)||'');
+      return code==='PT429'||/\bslow_down\b/.test(msg)?'Slow down. You\u2019re posting faster than the boards allow. Wait a minute, then try again.':''}
+    window.MP_slowDown=slowDown;
     var indexView=$('#indexView'),listView=$('#listView'),threadView=$('#threadView');
     var state={f:Q.get('f')||'',sport:Q.get('sport')||'',team:Q.get('team')||'',sort:Q.get('sort')||'latest',q:(Q.get('q')||'').trim(),page:Math.max(1,parseInt(Q.get('page'),10)||1)};
     if(['latest','new','top'].indexOf(state.sort)<0)state.sort='latest';
@@ -1420,15 +1425,20 @@
       if(v.length<2){m.textContent='Write a little more before posting.';ta.focus();return}
       var b=$('button[type=submit]',f);b.disabled=true;m.textContent='Posting\u2026';
       SMU.reply(tid,v,quoteIdx).then(function(){quoteIdx=null;ta.value='';var t=findT(tid);location.hash='#t'+tid+'-p'+(t?t.posts.length:1);route();var el=$('#t'+tid+'-p'+(t?t.posts.length:1));if(el)el.classList.add('fx-just');toast('Reply posted.')},
-        function(err){m.textContent=err.message||'Could not post. Try again.';b.disabled=false})});
+        function(err){m.textContent=slowDown(err)||err.message||'Could not post. Try again.';b.disabled=false})});
     function rerender(){var h=hashT();if(h)renderThread(h);else if(!listView.hidden)renderList();else renderIndex()}
     SMU.on('auth',rerender);SMU.on('avatar',rerender);
     SMU.on('threads',function(){if(!indexView.hidden)renderIndex();if(!listView.hidden)renderList()});
     document.addEventListener('smu:post',function(ev){var h=hashT();if(!h||h.id!==ev.detail)return;renderThread({id:h.id,x:''})});
-    function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';var m=$('main.fx');if(m)m.classList.toggle('fx-sub',v!=='index');
+    function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';var m=$('main.fx');if(m){m.classList.toggle('fx-sub',v!=='index');m.classList.toggle('fx-thr',v==='thread')}
       /* one h1 per view: the board name on the index, the board or thread title elsewhere */
       var br=$('#fxBrand'),want=v==='index'?'H1':'P';if(br&&br.tagName!==want){var nb=document.createElement(want);nb.id='fxBrand';nb.className='fx-brand';nb.textContent=br.textContent;br.replaceWith(nb)}
       $$('.fx-tabs a').forEach(function(a){var h=a.getAttribute('href'),on=v==='index'?h==='./':v==='list'&&state.f==='all'&&!state.q?h==='?f=all':false;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
+    /* Phones: the hero search sits behind an icon (compact hero). Opens on tap, and stays open when the page is a search. */
+    (function(){var sb=$('#fxSBtn'),hero=$('.fx-hero'),inp=$('#fxQ');if(!sb||!hero)return;
+      function open(on,focus){hero.classList.toggle('fx-so',on);sb.setAttribute('aria-expanded',String(on));if(on&&focus&&inp)inp.focus()}
+      if(state.q){open(true,false);if(inp)inp.value=state.q}
+      sb.addEventListener('click',function(){open(!hero.classList.contains('fx-so'),true)})})();
     function gameRoute(){var m=location.hash.match(/^#game=([a-z]+-\d{3,8})$/);if(!m)return false;var gid=m[1],g=GBY[gid];show('thread');
       threadView.innerHTML=crumbs([['Boards','./'],['Game thread']])+'<p class="fx-wait" role="status">Opening the game thread…</p>';
       function fail(msg){threadView.innerHTML=crumbs([['Boards','./'],['Game thread']])+emptyState('chat','Game thread unavailable',msg,(g?'<a class="btn btn-navy btn-sm" href="'+gameUrl(g)+'">Back to the game page</a>':'<a class="btn btn-navy btn-sm" href="./">Back to the boards</a>'))}
@@ -1901,7 +1911,7 @@
     $('form',d).addEventListener('submit',function(e){e.preventDefault();var ti=$('#cpTitle',d).value.trim(),bo=$('#cpBody',d).value.trim(),m=$('.auth-m',d);
       if(ti.length<3){m.textContent='Give your thread a title (3+ characters).';$('#cpTitle',d).focus();return}if(bo.length<2){m.textContent='Write a first post.';$('#cpBody',d).focus();return}
       var b=$('button[type=submit]',d);b.disabled=true;m.textContent='Posting\u2026';
-      SMU.createThread({f:$('#cpForum',d).value,sport:$('#cpSport',d).value,title:ti,body:bo}).then(function(t){d.close();toast('Thread posted.');location.href=threadUrl(t.id)},function(err){b.disabled=false;m.textContent=err.message})})}
+      SMU.createThread({f:$('#cpForum',d).value,sport:$('#cpSport',d).value,title:ti,body:bo}).then(function(t){d.close();toast('Thread posted.');location.href=threadUrl(t.id)},function(err){b.disabled=false;m.textContent=(window.MP_slowDown&&MP_slowDown(err))||err.message})})}
   /* ---------- Report a post: reason picker, then a confirmation. Demo (and live until REPORTS is on in sb.js) keeps it in this browser. ---------- */
   var REPORT_WHY={harassment:['Harassment','Goes after an athlete, a coach, their family or another fan'],recruit_minor:['Recruit or minor info','Rumors or personal details about a recruit or anyone under 18'],
     doxxing:['Doxxing','Shares an address, phone number, schedule or other private info'],spam:['Spam','Ads, scams, links or the same post over and over'],other:['Something else','Tell the mods below']};
