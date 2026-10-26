@@ -40,12 +40,21 @@ body[data-page="games"]{--gm-hair:rgba(53,76,161,.16);--gm-hair-2:rgba(53,76,161
 .gmx-facts dt{font-size:13px;font-weight:600;color:var(--ink-3)}
 .gmx-facts dd{font-size:15px;font-weight:700;color:var(--ink);margin-top:2px;overflow-wrap:anywhere;line-height:1.35}
 
-/* live score / play-by-play slot (filled by the CollegeFootballData job); hidden while empty */
-.gm-live-sec:has(.gm-live:empty){display:none}
-.gm-live:empty{display:none}
-.gm-live{border:1px solid var(--gm-hair-2);border-top:4px solid var(--blue);border-radius:8px;padding:var(--s5);background:#fff}
-.gm-live-src,.gm-live .cfbd-src{margin-top:var(--s3);font-size:14px;color:var(--ink-2)}
-.gm-live-src a,.gm-live .cfbd-src a{color:var(--blue);font-weight:600}
+/* live score / play-by-play slot: assets/cfbd-live.js adds a .cf-wrap (score, plays, CollegeFootballData credit)
+   inside #gmLive. Hidden until it does; the header countdown steps aside while a game is live */
+.gm-live-sec:not(:has(.cf-wrap)){display:none}
+.gm-live-sec{padding:var(--s6) 0 0}
+.gm-live{border:1px solid var(--gm-hair-2);border-top:4px solid var(--blue);border-radius:8px;padding:var(--s5);background:#fff;display:flex;flex-direction:column;gap:var(--s3)}
+body:has(#gmLive .cf-on) .gmx .gm-cd{display:none}
+.gm-live .cf-score{border-bottom:1px solid var(--gm-hair);padding:var(--s2) 0 var(--s4)}
+.gm-live .cf-score .sc-t em{font-size:56px}
+.gm-live .cf-score .sc-f b{font-size:14px}
+.gm-live .cf-pbp{border-top:0;padding-top:0}
+.gm-live .cf-pbp summary{font-size:16px}
+.gm-live .cf-pbp li{border-top:1px solid var(--gm-hair);padding-left:var(--s3);grid-template-columns:96px minmax(0,1fr)}
+.gm-live .cf-pbp li.sc{border-left:0;padding-left:var(--s3);box-shadow:inset 3px 0 0 var(--blue)}
+.gm-live .cf-credit{font-size:14px;margin-top:var(--s1)}
+@media(max-width:639px){.gm-live{padding:var(--s4)}.gm-live .cf-pbp li{grid-template-columns:72px minmax(0,1fr);gap:var(--s2)}.gm-live .cf-score .sc-t em{font-size:44px}}
 
 /* how to watch and listen: one row of three */
 .gm-top{padding-top:var(--s6);padding-bottom:var(--s6)}
