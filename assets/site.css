@@ -1535,6 +1535,18 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 #studentDlg .cnotice{margin-top:16px}
 .st-card p{color:var(--ink-2);margin:0 0 12px}
 .st-card .btn{min-height:44px;height:auto}
+.free-bands{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:0 0 24px}
+.free-bands .st-band{margin:0;flex-direction:column;align-items:flex-start;justify-content:space-between}
+.free-bands .st-b{flex:none}
+.fan-band{border-left-color:var(--blue)}
+.dlg-join .free-bands{margin:0 0 22px}.dlg-join .free-bands .st-band{margin:0}
+.free-acct{margin-top:20px}
+.auth-up-note{margin:0 0 14px;color:var(--ink-2);font-size:15px}
+.auth-up-note .linkish{font-size:inherit}
+.auth-oauth{display:grid;gap:10px;margin:0 0 16px}
+.auth-oauth .btn{width:100%;min-height:48px}
+.auth-paused{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--blue);background:#fff;color:var(--ink-2);font-size:15px}
+.st-oa{margin-top:10px}
 @media(max-width:639px){
   .st-band{padding:16px;gap:12px}
   .st-band h4{font-size:23px}

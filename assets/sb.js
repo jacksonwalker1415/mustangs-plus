@@ -106,7 +106,7 @@
     signIn:function(o){var u=lj('mp_user',null),em=String(o.email).trim().toLowerCase();
       if(!u||u.email!==em){u={id:uid(),email:em,name:nameFromEmail(em),since:Date.now()};sj('mp_user',u)}
       SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,u.avatar||null);emit('auth',u);return Promise.resolve({user:u})},
-    magic:function(email){return demo.signIn({email:email}).then(function(r){r.instant=true;return r})},
+    oauth:function(){return Promise.reject(new Error('This sign-in option needs the live database.'))},
     signOut:function(){ls('mp_user',null);if(ls('mp_tier')==='student')demo.setTier('free');SMU.user=null;if(MP.USERS&&MP.USERS.me)MP.USERS.me.av=null;emit('auth',null);return Promise.resolve()},
     setAvatar:function(b){var u=lj('mp_user',null),bad=avCheck(b);if(!u)return Promise.reject(new Error('Sign in to add a photo.'));if(bad)return Promise.reject(new Error(bad));
       return blobURL(b).then(function(d){u.avatar=d;sj('mp_user',u);SMU.user=u;ensureUser('me',u.name,demo.tier(),undefined,d);emit('avatar',d);return d})},
@@ -159,6 +159,14 @@
     s.onload=function(){window.supabase&&window.supabase.createClient?res():rej(new Error('supabase-js did not load'))};s.onerror=function(){rej(new Error('Could not load supabase-js from the CDN'))};
     document.head.appendChild(s)})}
   var tierCache='free',savedCache=[];
+  /* Which sign-up paths really work, read from Supabase's public auth settings (no key beyond the anon key).
+     email: email + password sign-up that needs no delivered email ("Confirm email" off, so mailer_autoconfirm is true).
+     oauth: enabled providers we offer (Microsoft for SMU email, Google, Apple). signup: at least one way to make a new account.
+     Demo mode: email sign-up always works (nothing is sent). Sign-in with an existing email + password always works. */
+  var caps={signup:false,email:false,oauth:[]},OAUTH=['azure','google','apple'];
+  function loadCaps(){return withTimeout(fetch(CFG.SUPABASE_URL+'/auth/v1/settings',{headers:{apikey:CFG.SUPABASE_ANON_KEY}}).then(function(r){if(!r.ok)throw new Error('settings '+r.status);return r.json()}),8000)
+    .then(function(s){var ex=s.external||{},open=!s.disable_signup;caps={email:open&&!!ex.email&&!!s.mailer_autoconfirm,oauth:open?OAUTH.filter(function(p){return !!ex[p]}):[]};
+      caps.signup=caps.email||caps.oauth.length>0},function(){caps={signup:false,email:false,oauth:[]}})}
   function toThread(r){
     var by=r.author_handle||ensureUser('u:'+r.author_id,r.author&&r.author.display_name,undefined,undefined,avOf(r.author));
     var posts=(r.posts||[]).slice().sort(function(a,b){return a.created_at<b.created_at?-1:1});
@@ -179,24 +187,26 @@
         SMU.client=sb;SMU.live=true;SMU.mode='live';SMU.reason='ok';pageView(sb);
         sb.auth.onAuthStateChange(function(ev,session){var was=SMU.user&&SMU.user.id;setSession(session);
           if((SMU.user&&SMU.user.id)!==was){emit('auth',SMU.user);if(SMU.user)live.afterSignIn()}});
-        return q('session',sb.auth.getSession()).then(function(d){setSession(d&&d.session);if(SMU.user)return live.afterSignIn()})
+        return Promise.all([loadCaps(),q('session',sb.auth.getSession()).then(function(d){setSession(d&&d.session);if(SMU.user)return live.afterSignIn()})])
       }).then(function(){return live.loadForums(true)}).catch(function(e){
         /* Never break the site: fall back to demo mode if Supabase can't be reached */
         SMU.live=false;SMU.mode='demo';SMU.reason='unreachable';sb=null;console.warn('[SMU+] Live backend unavailable, using demo mode.',e);
         emit('error',fail('connect',e));return demo.init()})},
     afterSignIn:function(){return Promise.all([live.fetchTier(),live.fetchSaved(),live.ensureProfileName(),live.fetchAvatar()]).catch(function(){}).then(live.studentAfter)},
-    /* After the email link: read this account's student row; if a student sign-up from this browser is waiting, claim it now. */
+    /* After an OAuth return: read this account's student row; if a student sign-up from this browser is waiting, claim it now. */
     studentAfter:function(){if(!stOn()||!SMU.user)return;
       return live.fetchStudent().then(function(st){var pend=null;try{pend=JSON.parse(ls('mp_student_pending')||'null')}catch(e){}
-        if(!pend||st||String(pend.email||'')!==String(SMU.user.email||'').toLowerCase())return;
+        if(!pend||st||(pend.email!=='*'&&String(pend.email||'')!==String(SMU.user.email||'').toLowerCase()))return;
+        if(!SMU_EMAIL.test(SMU.user.email||'')){ls('mp_student_pending',null);stMsg='That account isn\u2019t an @smu.edu email, so it\u2019s a free Fan account. Sign out and use your SMU email for the Student plan.';emit('student',null);return}
         return live.claimStudent(pend.year).then(function(){ls('mp_student_pending',null)},function(e){stMsg=e.message;if(e.final)ls('mp_student_pending',null);emit('student',null)})}).catch(function(){})},
     fetchStudent:function(){return q('student',sb.from('student_verifications').select('class_year,verified_at').eq('user_id',SMU.user.id).maybeSingle())
       .then(function(r){stCache=r?{year:r.class_year,at:r.verified_at}:null;emit('student',stCache);return stCache})},
-    studentJoin:function(o){var bad=stCheck(o);if(bad)return Promise.reject(new Error(bad));if(!stOn())return Promise.reject(new Error('Student sign-up isn\u2019t open yet.'));
-      var em=String(o.email).trim().toLowerCase();
-      ls('mp_student_pending',JSON.stringify({email:em,year:+o.year,t:Date.now()}));
-      return q('student',sb.auth.signInWithOtp({email:em,options:{shouldCreateUser:true,data:{display_name:String(o.name||'').trim().slice(0,40)||nameFromEmail(em)},emailRedirectTo:CFG.SITE_URL+'account/#student'}}))
-        .then(function(){return {sent:true,email:em}})},
+    /* Student sign-up with email + password (works only while caps.email: no email has to be delivered), then the server-side claim.
+       o.provider instead: OAuth (e.g. Microsoft, which SMU email runs on); the class year waits in this browser and studentAfter claims it on return. */
+    studentJoin:function(o){var bad=stCheck(o.provider?{year:o.year}:o);if(bad)return Promise.reject(new Error(bad));if(!stOn())return Promise.reject(new Error('Student sign-up isn\u2019t open yet.'));
+      if(o.provider){ls('mp_student_pending',JSON.stringify({email:'*',year:+o.year,t:Date.now()}));return live.oauth(o.provider)}
+      if(!caps.email)return Promise.reject(new Error('Sign-up with email isn\u2019t open right now.'));
+      return live.signUp({email:String(o.email).trim().toLowerCase(),password:o.password,name:o.name}).then(function(r){if(r.confirm)return r;return live.claimStudent(+o.year)})},
     claimStudent:function(year){if(!SMU.user)return Promise.reject(new Error('Sign in first.'));
       return q('student',sb.rpc('claim_student_membership',{p_student_id:null,p_class_year:year||null})).then(function(r){
         if(!r||!r.ok){var e=new Error((r&&r.message)||'Couldn\u2019t start your Student membership.');e.reason=r&&r.reason;e.final=/^(id_taken|id_mismatch|not_smu|bad_id)$/.test(e.reason||'');throw e}
@@ -229,10 +239,11 @@
       var c={forums:{},sports:{}};function add(m,k,x){if(x.rec&&recOff())return;var o=m[k]=m[k]||{threads:0,posts:0};o.threads+=x.threads||0;o.posts+=x.posts||0}
       (r[0]||[]).forEach(function(x){add(c.forums,x.forum_id,x)});(r[1]||[]).forEach(function(x){add(c.sports,x.sport,x)});return applyBoards(c)},
       function(){return applyBoards(countBoards())})},
-    signUp:function(o){return q('signup',sb.auth.signUp({email:o.email,password:o.password,options:{data:{display_name:o.name||nameFromEmail(o.email)},emailRedirectTo:CFG.SITE_URL+'account/'}}))
+    signUp:function(o){if(!caps.email)return Promise.reject(new Error('Sign-up with email isn\u2019t open right now.'));return q('signup',sb.auth.signUp({email:o.email,password:o.password,options:{data:{display_name:o.name||nameFromEmail(o.email)},emailRedirectTo:CFG.SITE_URL+'account/'}}))
       .then(function(d){return {user:d.user,confirm:!d.session}})},
     signIn:function(o){return q('signin',sb.auth.signInWithPassword({email:o.email,password:o.password})).then(function(d){return {user:d.user}})},
-    magic:function(email){return q('magic',sb.auth.signInWithOtp({email:email,options:{emailRedirectTo:CFG.SITE_URL+'account/'}})).then(function(){return {sent:true}})},
+    oauth:function(p){if(caps.oauth.indexOf(p)<0)return Promise.reject(new Error('That sign-in option isn\u2019t switched on.'));
+      return q('oauth',sb.auth.signInWithOAuth({provider:p,options:{redirectTo:CFG.SITE_URL+'account/',scopes:p==='azure'?'email openid profile':undefined}})).then(function(){return {redirect:true}})},
     reset:function(email){return q('reset',sb.auth.resetPasswordForEmail(email,{redirectTo:CFG.SITE_URL+'account/#reset'})).then(function(){return {sent:true}})},
     newPassword:function(pw){return q('password',sb.auth.updateUser({password:pw}))},
     signOut:function(){return q('signout',sb.auth.signOut()).then(function(){setSession(null);emit('auth',null)})},
@@ -338,7 +349,7 @@
 
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
-  ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch','setAvatar','removeAvatar','studentJoin','claimStudent'].forEach(function(k){
+  ['signUp','signIn','oauth','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch','setAvatar','removeAvatar','studentJoin','claimStudent'].forEach(function(k){
     SMU[k]=function(){var b=B();return b[k].apply(b,arguments)}});
   /* Game threads (RUN_ME_24): the thread for a game page, created with a staff opening post on first visit. Live database only. */
   SMU.gameThread=function(g){return SMU.live?q('gamethread',SMU.client.rpc('game_thread',{p_game:String(g).slice(0,40)})).then(function(id){return id==null?null:+id}):Promise.resolve(null)};
@@ -346,7 +357,7 @@
   SMU.newPassword=function(p){return SMU.live?live.newPassword(p):Promise.reject(new Error('Not available in demo mode.'))};
   SMU.tier=function(){return B().tier()};
   SMU.saved=function(){return B().saved()};
-  SMU.me=meKey;SMU.studentsOn=stOn;SMU.student=function(){return B().student()};SMU.studentMsg=function(){return stMsg};SMU.isSmuEmail=function(e){return SMU_EMAIL.test(String(e||'').trim())};SMU.studentYears=stYears;SMU.paidTier=paid;SMU.avatarsOn=avOn;SMU.avatarOK=avOK;SMU.avatarCheck=avCheck;
+  SMU.me=meKey;SMU.authCaps=function(){return SMU.live?caps:{signup:true,email:true,oauth:[]}};SMU.studentsOn=stOn;SMU.student=function(){return B().student()};SMU.studentMsg=function(){return stMsg};SMU.isSmuEmail=function(e){return SMU_EMAIL.test(String(e||'').trim())};SMU.studentYears=stYears;SMU.paidTier=paid;SMU.avatarsOn=avOn;SMU.avatarOK=avOK;SMU.avatarCheck=avCheck;
   realCounts();applyBoards(countBoards());  /* replace the sample totals and per-thread counts before anything renders */
   SMU.ready=(configured?live.init():demo.init()).then(function(){emit('ready',SMU.mode);return SMU.mode});
   if(typeof window!=='undefined'){window.addEventListener('offline',function(){emit('net',false)});window.addEventListener('online',function(){emit('net',true)})}

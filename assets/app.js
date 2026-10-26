@@ -788,7 +788,7 @@
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist();
-      var tiers=$('.tiers',mem);if(tiers&&stOn())tiers.insertAdjacentHTML('beforebegin',studentBand('home'))}
+      var tiers=$('.tiers',mem);if(tiers)tiers.insertAdjacentHTML('beforebegin',freeBands('home'))}
     var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
     $('#heroFeature').innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
     $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();
@@ -1462,40 +1462,47 @@
   function modeNote(){return SMU.live?'':'<p class="dlg-mode"><b>Demo mode.</b> Accounts are saved only in this browser, no password is stored and no email is sent. Connect the database (see SETUP.md) to make accounts real.</p>'}
 
   /* ---------- Auth ---------- */
-  function authForm(mode,ctx){mode=mode||'in';var demo=!SMU.live;
+  var OAUTH_NAME={azure:'Microsoft',google:'Google',apple:'Apple'};
+  function caps(){return SMU.authCaps?SMU.authCaps():{signup:true,email:true,oauth:[]}}
+  function oauthBtns(cls,student){var c=caps();if(!c.oauth.length)return '';
+    return '<div class="auth-oauth '+(cls||'')+'">'+c.oauth.map(function(p){return '<button type="button" class="btn btn-outline auth-oa" data-oauth="'+p+'">Continue with '+OAUTH_NAME[p]+(student&&p==='azure'?' (SMU email)':'')+'</button>'}).join('')+'</div>'}
+  /* mode 'in' = sign in, 'up' = create a free Fan account. No email-link or password-reset options: Supabase can't deliver auth email yet. */
+  function authForm(mode,ctx){var c=caps();mode=mode==='up'&&c.signup?'up':'in';var demo=!SMU.live;
     return '<div class="auth" data-mode="'+mode+'">'+(ctx?'<p class="auth-ctx">'+esc(ctx)+'</p>':'')+
-      '<div class="auth-tabs" role="tablist"><button type="button" role="tab" data-auth-tab="in" aria-selected="'+(mode==='in')+'">Sign in</button><button type="button" role="tab" data-auth-tab="up" aria-selected="'+(mode==='up')+'">Create account</button><button type="button" role="tab" data-auth-tab="link" aria-selected="'+(mode==='link')+'">Email me a link</button></div>'+
+      '<div class="auth-tabs" role="tablist"><button type="button" role="tab" data-auth-tab="in" aria-selected="'+(mode==='in')+'">Sign in</button>'+(c.signup?'<button type="button" role="tab" data-auth-tab="up" aria-selected="'+(mode==='up')+'">Create a free account</button>':'')+'</div>'+
+      '<p class="auth-up-note">A free Fan account lets you read everything and post on the boards. SMU students can use the <button type="button" class="linkish" data-student>free Student plan</button> instead.</p>'+
+      oauthBtns()+
       '<form class="auth-f" novalidate>'+
         '<div class="fld f-name"><label for="auName">Display name</label><input id="auName" name="name" autocomplete="nickname" maxlength="40" placeholder="How you appear on the boards"></div>'+
         '<div class="fld"><label for="auEmail">Email</label><input id="auEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>'+
         '<div class="fld f-pw"><label for="auPw">Password'+(demo?' <small>(not stored in demo mode)</small>':'')+'</label><input id="auPw" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters"'+(demo?'':' required')+'></div>'+
         '<p class="auth-m" aria-live="polite"></p>'+
         '<button class="btn btn-red auth-go" type="submit">Sign in</button>'+
-        (SMU.live?'<button type="button" class="linkish auth-forgot">Forgot password?</button>':'')+
-      '</form>'+modeNote()+'</div>'}
-  function syncAuthForm(root){var a=$('.auth',root),m=a.dataset.mode;$$('[data-auth-tab]',a).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.authTab===m))});
-    $('.f-name',a).hidden=m!=='up';$('.f-pw',a).hidden=m==='link';var pw=$('#auPw',a);pw.setAttribute('autocomplete',m==='up'?'new-password':'current-password');
-    $('.auth-go',a).textContent=m==='up'?'Create account':m==='link'?(SMU.live?'Email me a sign-in link':'Sign in with email'):'Sign in';$('.auth-m',a).textContent='';var fg=$('.auth-forgot',a);if(fg)fg.hidden=m!=='in'}
+      '</form>'+(c.signup?'':'<p class="auth-paused">New accounts are paused for a moment while we finish setting up sign-up. If you already have an account, sign in above.</p>')+modeNote()+'</div>'}
+  function syncAuthForm(root){var a=$('.auth',root),m=a.dataset.mode,c=caps(),up=m==='up';$$('[data-auth-tab]',a).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.authTab===m))});
+    $('.f-name',a).hidden=!up;$('.auth-up-note',a).hidden=!up||!stOn();var pw=$('#auPw',a);pw.setAttribute('autocomplete',up?'new-password':'current-password');
+    /* Create account: the email form shows only when email sign-up needs no delivered email; otherwise just the OAuth buttons */
+    $('.auth-f',a).hidden=up&&!c.email;
+    $('.auth-go',a).textContent=up?'Create free account':'Sign in';$('.auth-m',a).textContent=''}
   function wireAuth(root,done){syncAuthForm(root);
-    root.addEventListener('click',function(e){var t=e.target.closest('[data-auth-tab]');if(t){$('.auth',root).dataset.mode=t.dataset.authTab;syncAuthForm(root);$('#auEmail',root).focus()}
-      if(e.target.closest('.auth-forgot')){var em=$('#auEmail',root).value.trim(),m=$('.auth-m',root);if(!EMAIL_RE.test(em)){m.textContent='Enter your email above first, then tap Forgot password.';return}
-        SMU.reset(em).then(function(){m.textContent='Check '+em+' for a reset link.'},function(err){m.textContent=err.message})}});
+    root.addEventListener('click',function(e){var t=e.target.closest('[data-auth-tab]');if(t){$('.auth',root).dataset.mode=t.dataset.authTab;syncAuthForm(root);var ae=$('#auEmail',root);if(ae&&!$('.auth-f',root).hidden)ae.focus()}
+      var o=e.target.closest('[data-oauth]');if(o&&!o.closest('#studentDlg')){o.disabled=true;SMU.oauth(o.dataset.oauth).catch(function(err){o.disabled=false;$('.auth-m',root).textContent=friendlyAuth(err)})}});
     $('.auth-f',root).addEventListener('submit',function(e){e.preventDefault();var a=$('.auth',root),mode=a.dataset.mode,m=$('.auth-m',root),btn=$('.auth-go',root);
       var em=$('#auEmail',root).value.trim(),pw=$('#auPw',root).value,nm=$('#auName',root).value.trim();
       if(!EMAIL_RE.test(em)){m.textContent='Enter a full email address.';$('#auEmail',root).focus();return}
-      if(mode!=='link'&&SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}
-      btn.disabled=true;m.textContent=mode==='link'?'Sending\u2026':'One moment\u2026';
-      var p=mode==='up'?SMU.signUp({email:em,password:pw,name:nm}):mode==='link'?SMU.magic(em):SMU.signIn({email:em,password:pw});
+      if(SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}
+      btn.disabled=true;m.textContent='One moment\u2026';
+      var p=mode==='up'?SMU.signUp({email:em,password:pw,name:nm}):SMU.signIn({email:em,password:pw});
       p.then(function(r){btn.disabled=false;
-        if(mode==='up'&&r&&r.confirm){m.innerHTML='<b>Almost there.</b> We sent a confirmation link to '+esc(em)+'. Open it on this device to finish.';return}
-        if(mode==='link'&&r&&r.sent){m.innerHTML='<b>Check your inbox.</b> We sent a sign-in link to '+esc(em)+'.';return}
+        if(mode==='up'&&r&&r.confirm){m.innerHTML='<b>Almost there.</b> Your account needs a confirmation email, which we can\u2019t send yet. Try again soon.';return}
         toast(mode==='up'?'Welcome to SMU+, '+(SMU.user&&SMU.user.name||'Mustang')+'.':'Signed in.');done&&done()},
        function(err){btn.disabled=false;m.textContent=friendlyAuth(err)})})}
-  function friendlyAuth(e){var t=(e&&e.message)||'';if(/Invalid login/i.test(t))return 'That email and password don\u2019t match. Try again or use \u201cEmail me a link\u201d.';
+  function friendlyAuth(e){var t=(e&&e.message)||'';if(/Invalid login/i.test(t))return 'That email and password don\u2019t match. Try again.';
     if(/already registered|already exists/i.test(t))return 'That email already has an account. Sign in instead.';if(/rate limit|security purposes/i.test(t))return 'Too many tries. Wait a minute and try again.';
-    if(/not confirmed/i.test(t))return 'Confirm your email first. Check your inbox for the link.';return t||'Something went wrong. Try again.'}
-  function openAuth(mode,ctx,after){var d=dialog('authDlg','<h3 id="authDlg-h" class="dlg-h">'+(mode==='up'?'Create your SMU+ account':'Sign in to SMU+')+'</h3>'+authForm(mode,ctx));wireAuth(d,function(){d.close();after&&after()})}
-  document.addEventListener('click',function(e){var a=e.target.closest('[data-auth]');if(!a)return;e.preventDefault();openAuth(a.dataset.auth||'in',a.dataset.authCtx)});
+    if(/not confirmed/i.test(t))return 'This account was never confirmed. Create a new free account instead.';return t||'Something went wrong. Try again.'}
+  function openAuth(mode,ctx,after){var d=dialog('authDlg','<h3 id="authDlg-h" class="dlg-h">'+(mode==='up'?'Create your free SMU+ account':'Sign in to SMU+')+'</h3>'+authForm(mode,ctx));wireAuth(d,function(){d.close();after&&after()})}
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-auth]');if(!a)return;e.preventDefault();var jd=$('#joinDlg'),jx=jd&&$('.dlg-x',jd);if(jx)jx.click();
+    if(SMU.user){location.href=ROOT+'account/';return}if(PAGE==='account'&&$('#acctMain .auth')){var t=$('#acctMain [data-auth-tab="'+(a.dataset.auth||'in')+'"]');if(t){t.click();t.scrollIntoView({block:'center'});return}}openAuth(a.dataset.auth||'in',a.dataset.authCtx)});
   function requireUser(ctx,then){if(SMU.user){then();return}openAuth('in',ctx,then)}
 
   /* header + menu account state */
@@ -1562,8 +1569,8 @@
   function buildJoin(T,tier){
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
     var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div><p class="jm-eb">Membership</p><h3 id="joinDlg-h">Pick your seat.</h3>'+
-      '<p class="jm-lede">SMU students join free today. Paid plans are coming soon: join the free waitlist for the one you want. There is nothing to buy.</p></div>'+
-      '<div class="jm-body"><div class="jm-plans">'+(stOn()?studentBand('jm'):'')+'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div></div>'+
+      '<p class="jm-lede">Join free today with a Fan account, or a Student plan if you have an @smu.edu email. Paid plans are coming soon, and you can join the free waitlist for the one you want. There is nothing to buy.</p></div>'+
+      '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div></div>'+
       '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
       conceptNotice('jm-cn')+'</div>');
@@ -1592,50 +1599,51 @@
   /* ---------- Free Student plan (SMU email only) ----------
      Live: email-link sign-up on an @smu.edu address; the plan starts only after the email is confirmed and
      claim_student_membership() (supabase/RUN_ME_16_students.sql) accepts it. Hidden on the live site while MP.FEATURES.students is false. */
+  /* Free plans: a Fan account for anyone, and the Student plan for @smu.edu emails. Both read everything and post on the boards. */
+  function fanBand(where){return '<div class="st-band fan-band st-'+where+'"><div class="st-b"><h4>Not a student? Join free.</h4>'+
+      '<p>Create a free Fan account with any email. Read everything and post on the boards.</p></div>'+
+      '<button type="button" class="btn btn-navy st-go" data-auth="up">Join free as a fan</button></div>'}
   function studentBand(where){if(!stOn())return '';
-    return '<div class="st-band st-'+where+'"><div class="st-b"><p class="st-k">SMU students</p><h4>SMU student? Join free.</h4>'+
-      '<p>Sign up with your @smu.edu email for a free Student plan. No card, nothing to buy.</p></div>'+
+    return '<div class="st-band st-'+where+'"><div class="st-b"><h4>SMU student? Join free.</h4>'+
+      '<p>Use your @smu.edu email for a free Student plan. No card, nothing to buy.</p></div>'+
       '<button type="button" class="btn btn-red st-go" data-student>Join free as a student</button></div>'}
+  function freeBands(where){return '<div class="free-bands free-'+where+'">'+studentBand(where)+fanBand(where)+'</div>'}
   function yearOpts(sel){return '<option value="">Choose</option>'+SMU.studentYears().map(function(y){return '<option value="'+y+'"'+(+sel===y?' selected':'')+'>Class of '+y+'</option>'}).join('')}
   function openStudent(){if(!stOn())return;if(/^#student$/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
     var open=$('#studentDlg');if(open){var fi=$('input',open);if(fi)fi.focus();return}
     if(SMU.user){if(PAGE==='account'){var c=$('#acctStudent')||$('#acctPlan');if(c)c.scrollIntoView({block:'start'})}else location.href=ROOT+'account/#student';return}
-    var jd=$('#joinDlg');if(jd){var x=$('.dlg-x',jd);if(x)x.click()}
-    var d=dialog('studentDlg','<p class="eyebrow">Free Student plan</p><h3 id="studentDlg-h" class="dlg-h">Join free as an SMU student</h3>'+
-      '<p class="st-lede">'+(SMU.live?'Use your SMU email. We\u2019ll email you a link to confirm it, and your Student plan starts when you open that link.':'Use your SMU email. On the real site we email you a link to confirm it first; in this demo the account is confirmed right away.')+'</p>'+
-      '<form class="auth-f st-f" novalidate>'+
-        '<div class="fld"><label for="stEmail">SMU email</label><input id="stEmail" name="email" type="email" autocomplete="email" required placeholder="you@smu.edu"></div>'+
-        '<div class="fld-row"><div class="fld"><label for="stName">Name</label><input id="stName" name="name" autocomplete="name" maxlength="40" required placeholder="How you appear on the boards"></div>'+
+    ['#joinDlg','#authDlg'].forEach(function(id){var jd=$(id),x=jd&&$('.dlg-x',jd);if(x)x.click()});
+    var c=caps(),useEmail=!SMU.live||c.email,oa=SMU.live&&c.oauth.indexOf('azure')>=0;
+    var d=dialog('studentDlg','<h3 id="studentDlg-h" class="dlg-h">Join free as an SMU student</h3>'+
+      '<p class="st-lede">'+(useEmail||oa?'Use your SMU email, ending in @smu.edu. Your free Student plan starts right away.':'Student sign-up is paused for a moment while we finish setting up accounts.')+'</p>'+
+      (useEmail||oa?'<form class="auth-f st-f" novalidate>'+
+        (useEmail?'<div class="fld"><label for="stEmail">SMU email</label><input id="stEmail" name="email" type="email" autocomplete="email" required placeholder="you@smu.edu"></div>'+
+        '<div class="fld-row"><div class="fld"><label for="stName">Name</label><input id="stName" name="name" autocomplete="name" maxlength="40" required placeholder="How you appear on the boards"></div>':'<div class="fld-row">')+
         '<div class="fld"><label for="stYear">Class year</label><select id="stYear" name="year" required>'+yearOpts()+'</select></div></div>'+
+        (useEmail?'<div class="fld"><label for="stPw">Password'+(SMU.live?'':' <small>(not stored in demo mode)</small>')+'</label><input id="stPw" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></div>':'')+
         '<label class="wl-consent st-consent" for="stOk"><input id="stOk" type="checkbox" name="consent" required><span class="wl-box" aria-hidden="true"></span><span>I agree that SMU+ can store these details for this student project, as described in the <a href="'+ROOT+'privacy/">privacy notice</a>.</span></label>'+
-        '<p class="auth-m" aria-live="polite"></p><button class="btn btn-red st-submit" type="submit">'+(SMU.live?'Email me a link':'Join free')+'</button>'+
-      '</form>'+conceptNotice('st-cn')+modeNote());
-    var f=$('form',d),m=$('.auth-m',d);
-    f.addEventListener('submit',function(e){e.preventDefault();var o={email:$('#stEmail',d).value.trim(),name:$('#stName',d).value.trim(),year:$('#stYear',d).value};
-      function bad(t,el){m.textContent=t;el.setAttribute('aria-invalid','true');el.focus()}
-      $$('[aria-invalid]',d).forEach(function(x){x.removeAttribute('aria-invalid')});
-      if(!SMU.isSmuEmail(o.email))return bad('Use your SMU email, ending in @smu.edu.',$('#stEmail',d));
-      if(!o.name)return bad('Add your name.',$('#stName',d));
-      if(!o.year)return bad('Pick your class year.',$('#stYear',d));
-      if(!$('#stOk',d).checked)return bad('Please tick the box to agree to the privacy notice.',$('#stOk',d));
-      var b=$('.st-submit',d);b.disabled=true;m.textContent=SMU.live?'Sending\u2026':'One moment\u2026';
-      /* Also join the waitlist as a student (email, name, affiliation and tier_interest only) */
-      var wl={email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true};
-      if(!SMU.live){SMU.waitlist(wl).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(){b.disabled=false;
+        '<p class="auth-m" aria-live="polite"></p>'+(useEmail?'<button class="btn btn-red st-submit" type="submit">Join free</button>':'')+
+        (oa?'<button class="btn '+(useEmail?'btn-outline':'btn-red')+' st-submit st-oa" type="button" data-oauth="azure">Continue with Microsoft (SMU email)</button>':'')+
+      '</form>':'')+conceptNotice('st-cn')+modeNote());
+    var f=$('form',d),m=f&&$('.auth-m',d);if(!f)return;
+    function bad(t,el){m.textContent=t;el.setAttribute('aria-invalid','true');el.focus()}
+    function check(full){$$('[aria-invalid]',d).forEach(function(x){x.removeAttribute('aria-invalid')});
+      if(full){var em=$('#stEmail',d).value.trim();if(!SMU.isSmuEmail(em))return bad('Use your SMU email, ending in @smu.edu.',$('#stEmail',d)),false;
+        if(!$('#stName',d).value.trim())return bad('Add your name.',$('#stName',d)),false}
+      if(!$('#stYear',d).value)return bad('Pick your class year.',$('#stYear',d)),false;
+      if(full&&SMU.live&&$('#stPw',d).value.length<8)return bad('Passwords are at least 8 characters.',$('#stPw',d)),false;
+      if(!$('#stOk',d).checked)return bad('Please tick the box to agree to the privacy notice.',$('#stOk',d)),false;return true}
+    var ob=$('.st-oa',d);if(ob)ob.addEventListener('click',function(){if(!check(false))return;ob.disabled=true;m.textContent='Opening Microsoft sign-in\u2026';
+      SMU.studentJoin({provider:'azure',year:$('#stYear',d).value}).catch(function(err){ob.disabled=false;m.textContent=friendlyAuth(err)})});
+    f.addEventListener('submit',function(e){e.preventDefault();if(!useEmail||!check(true))return;
+      var o={email:$('#stEmail',d).value.trim(),name:$('#stName',d).value.trim(),year:$('#stYear',d).value,password:$('#stPw',d).value};
+      var b=$('.st-submit',d);b.disabled=true;m.textContent='One moment\u2026';
+      /* Also join the waitlist as a student (email, name, affiliation and tier_interest only); the account is what counts */
+      SMU.waitlist({email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true}).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(r){b.disabled=false;
+        if(r&&r.confirm){m.textContent='Your account needs a confirmation email, which we can\u2019t send yet. Try again soon.';return}
         d.close();toast('You\u2019re in. Free Student plan, Class of '+o.year+'.');if(PAGE!=='account')location.href=ROOT+'account/#student'},
-        function(err){b.disabled=false;m.textContent=err.message||'Couldn\u2019t sign you up. Try again.'});return}
-      /* Live: the waitlist row comes first and is what counts (a repeat email is a success too). The sign-in email is a bonus:
-         Supabase's built-in sender is rate-limited, so if it fails the student still sees success and can confirm later from the Account page. */
-      function addWl(n){return SMU.waitlist(wl).catch(function(e){if(n>0)return new Promise(function(r){setTimeout(r,1200)}).then(function(){return addWl(n-1)});throw e})}
-      function mail(){return Promise.race([Promise.resolve().then(function(){return SMU.studentJoin(o)}),new Promise(function(_,rej){setTimeout(function(){rej(new Error('timeout'))},15000)})])
-        .then(function(r){return !!(r&&r.sent)},function(){return false})}
-      addWl(1).then(function(){syncWaitlist();m.textContent='Saving your spot\u2026';return mail().then(function(sent){
-        var em=esc(o.email.toLowerCase());
-        f.outerHTML='<div class="st-sent" role="status"><h4>You\u2019re on the student waitlist.</h4>'+(sent?
-          '<p>We also sent a link to <b>'+em+'</b>. Open it on this device to start your free Student plan.</p>':
-          '<p class="st-later">We couldn\u2019t send your confirmation email right now. You\u2019re still on the list, and you can confirm later from the <a href="'+ROOT+'account/">Account page</a>.</p>')+'</div>'})},
-        function(){b.disabled=false;m.textContent='We couldn\u2019t save your spot just now. Check your connection and try again.'})});
-    $('#stEmail',d).focus()}
+        function(err){b.disabled=false;m.textContent=friendlyAuth(err)||'Couldn\u2019t sign you up. Try again.'})});
+    var first=$('input,select',f);if(first)first.focus()}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-student]');if(!b)return;e.preventDefault();openStudent()});
   /* home#student (e.g. a class QR code) opens the student form */
   if(PAGE!=='account')(SMU.ready||Promise.resolve()).then(function(){if(location.hash==='#student'&&stOn())openStudent()});
@@ -1725,7 +1733,7 @@
   function account(){var main=$('#acctMain');document.title='Your account | SMU+';
     function render(){var u=SMU.user;
       if(!u){main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">SMU+ account</p><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'+
-        '<section class="sec"><div class="wrap acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+studentBand('acct')+'</div></section>';wireAuth(main,render);
+        '<section class="sec"><div class="wrap acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+freeBands('acct')+'</div></section>';wireAuth(main,render);
         if(location.hash==='#student'&&stOn())setTimeout(function(){openStudent()},60);return}
       if(location.hash==='#reset'&&SMU.live){main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
         $('#npForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#npPw').value,m=$('.auth-m',main);if(v.length<8){m.textContent='At least 8 characters.';return}SMU.newPassword(v).then(function(){history.replaceState(null,'',location.pathname);toast('Password updated.');render()},function(err){m.textContent=err.message})});return}
@@ -1734,7 +1742,7 @@
         '<section class="sec"><div class="wrap">'+conceptNotice('acct-cn')+'</div><div class="wrap acct-grid">'+
           '<div class="acct-card"><h2 class="acct-h">Profile</h2>'+photoBlock(u)+'<form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
             '<p class="acct-meta">'+(SMU.live?'Signed in with '+esc(u.email)+'. Your data is stored in the SMU+ database.':'Demo mode: this account, your tier and your posts are saved only in this browser.')+'</p><button type="button" class="btn btn-outline btn-sm" id="signOut">Sign out</button></div>'+
-          '<div class="acct-card" id="acctPlan"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+(tier==='student'?'Free Student plan':TIER_NAME[tier])+'</b>'+(tier==='student'?' <span class="st-badge">Student</span>':'')+(paidT(tier)?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+studentStatus(tier)+
+          '<div class="acct-card" id="acctPlan"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+(tier==='student'?'Free Student plan':tier==='free'?'Free Fan account':TIER_NAME[tier])+'</b>'+(tier==='student'?' <span class="st-badge">Student</span>':'')+(paidT(tier)?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+studentStatus(tier)+
             (PAID_OPEN?'<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>':
               '<p class="acct-meta acct-soon">'+LOCK+'Paid plans are coming soon.</p><button type="button" class="btn btn-sm btn-outline" data-join>Join the waitlist</button>')+
             (paidT(tier)?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+'<p class="acct-meta">Demo membership: no payments are taken and no card is ever asked for.</p></div>'+studentCard(u,tier)+
