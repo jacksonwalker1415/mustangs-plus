@@ -1240,8 +1240,8 @@
     return '<div class="pf-soc"><span class="pf-soc-k" aria-hidden="true">Follow</span><ul aria-label="'+esc(a.name)+' on social media">'+L.map(function(x){return '<li><a href="'+esc(x[2])+'" target="_blank" rel="noopener nofollow" aria-label="'+esc(a.name)+' on '+NM[x[0]]+' (opens in a new tab)">'+NM[x[0]]+'</a></li>'}).join('')+'</ul></div>'}
   function athlete(){
     var main=$('#athleteMain'),id=new URLSearchParams(location.search).get('id'),a=MP.athleteBy&&MP.athleteBy(id);
-    if(!a){document.title='Player Profiles | SMU+';
-      main.innerHTML='<section class="page-hero compact"><div class="wrap"><p class="eyebrow">Football · basketball · real players</p><h1 class="display">Player profiles</h1><p class="lede on-dark">Current SMU football and basketball players. Every stat and bio fact on these pages comes from a public source linked on the profile.</p></div></section>'+
+    if(!a){document.title='Football Player Profiles | SMU+';
+      main.innerHTML='<section class="page-hero compact"><div class="wrap"><p class="eyebrow">Football · real players · public stats</p><h1 class="display">Football player profiles</h1><p class="lede on-dark">Current SMU football players. Every stat and bio fact on these pages comes from a public source linked on the profile. Profiles for other sports are not built yet.</p></div></section>'+
         '<section class="sec"><div class="wrap"><div class="pgrid three">'+MP.ATHLETES.filter(function(a){return !a.basic}).map(profileCard).join('')+'</div></div></section>'+
         ['football','mens-basketball','womens-basketball'].map(function(sl){var L=MP.ATHLETES.filter(function(a){return a.basic&&a.sport===sl}).sort(function(x,y){return x.num-y.num});
           return L.length?'<section class="sec"><div class="wrap"><div class="sec-hd"><div><h2 class="sec-t">'+(sl==='football'?'More football profiles':esc(sportBy(sl).name)+' profiles')+'</h2></div><span class="meta">Roster facts from SMU Athletics</span></div><div class="pgrid three">'+L.map(profileCard).join('')+'</div></div></section>':''}).join('')+
@@ -1263,7 +1263,6 @@
           '<div class="pf-id"><p class="pf-num" aria-label="Jersey number '+a.num+', '+a.pos+'"><b>#'+a.num+'</b><span>'+a.pos+'</span></p><h1 class="display"><span>'+esc(a.first)+'</span> '+esc(a.last)+'</h1>'+
             '<p class="pf-sub">SMU Mustangs · '+s.name+'</p>'+
             '<dl class="pf-vit">'+vit.map(function(m){return '<div><dt>'+m[0]+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join('')+'</dl>'+
-            socialRow(a)+
             '<div class="ctas"><button type="button" class="btn btn-red btn-sm save-ath" data-save-athlete="'+a.id+'" aria-pressed="false">'+HEART+'<span>Save player</span></button>'+(B?'':'<a class="btn btn-ghost btn-sm" href="#stats">Stats</a>')+'</div></div>'+
           (R?'<a class="pf-card" href="#path"><p class="pf-k">Path to SMU</p><ol class="pf-mini">'+R.path.map(function(p){return '<li><b>'+esc(p[1].split(/[;,(]/)[0].trim())+'</b><small>'+esc(p[2])+'</small></li>'}).join('')+'</ol><p class="pf-cs">'+esc(R.hs)+' · '+esc(R.town)+'</p></a>':'')+
         '</div></div></section>'+
