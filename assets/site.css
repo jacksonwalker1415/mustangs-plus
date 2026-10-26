@@ -2596,6 +2596,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
 /* skin takeover: one game page, wide desktops only; the page sits on the sponsor's background */
 .ad-skin-bg{display:none}
 @media(min-width:1300px){
+  html.ad-skin:not(.adfree) [data-noskin]{display:none!important}
   html.ad-skin:not(.adfree) .ad-skin-bg{display:flex;position:fixed;inset:0;z-index:0;justify-content:space-between;background:var(--adbg);color:var(--adfg)}
   html.ad-skin:not(.adfree) main,html.ad-skin:not(.adfree) #site-footer{position:relative;z-index:1;max-width:1200px;margin-left:auto;margin-right:auto;background:#fff}
   html.ad-skin:not(.adfree) #gamesMain .wrap{max-width:1200px}
