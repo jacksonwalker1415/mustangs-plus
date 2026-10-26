@@ -94,7 +94,10 @@
     verify:function(o){var em=String(o.email||'').trim().toLowerCase(),cy=+o.class_year||null;
       if(!/^[^@\s]+@smu\.edu$/.test(em))return res({ok:false,reason:'not_smu',message:'Use your @smu.edu email to verify as a student.'});
       if(!cy||cy<2026||cy>2034)return res({ok:false,reason:'class_year',message:'Pick your class year.'});
-      var p=(SMU&&!SMU.user)?SMU.signUp({email:em,name:o.name||'',password:'demo-only'}).catch(function(){}):Promise.resolve();
+      /* Never create an account with a password from here. With the live site connected (engagement tables not set up yet), a signed-out
+         student is asked to sign in first; in browser demo mode a local demo account is made, which stores no password at all. */
+      if(SMU&&!SMU.user&&SMU.live)return res({ok:false,reason:'signin',message:'Sign in or create a free SMU+ account first, then verify your @smu.edu email.'});
+      var p=(SMU&&!SMU.user)?SMU.signUp({email:em,name:o.name||''}).catch(function(){}):Promise.resolve();
       return p.then(function(){var s=st();s.student={verified:true,email:em,class_year:cy,verified_at:new Date().toISOString(),show:true};
         var bonus=award(s,'welcome',RULES.welcome,'student',null,'Verified SMU student');save(s);var r=demoSummary();r.ok=true;r.bonus=bonus;return r})},
     setVisible:function(v){var s=st();if(s.student){s.student.show=!!v;save(s)}return res()},

@@ -1,11 +1,11 @@
 #!/bin/bash
 # Tests for supabase/engagement.sql on a throwaway local Postgres (never the live project).
-# Usage: PGPORT=54339 supabase/tests/engagement_test.sh     (expects a superuser "postgres" on /tmp socket)
+# Usage: PGHOST=/tmp/engage-sock PGPORT=54352 supabase/tests/engagement_test.sh   (your own scratch Postgres with a superuser "postgres")
 set -u
 cd "$(dirname "$0")/.."
-PORT=${PGPORT:-54339}; DB=smu_engage_test
+HOST=${PGHOST:-/tmp/engage-sock}; PORT=${PGPORT:-54352}; DB=smu_engage_test
 export PGOPTIONS="-c client_min_messages=warning"
-PSQL="psql -h /tmp -p $PORT -U postgres -v ON_ERROR_STOP=1 -q -X"
+PSQL="psql -h $HOST -p $PORT -U postgres -v ON_ERROR_STOP=1 -q -X"
 pass=0; fail=0
 ok(){ pass=$((pass+1)); echo "  ok   $1"; }
 bad(){ fail=$((fail+1)); echo "  FAIL $1"; echo "       got: $2"; }
@@ -22,6 +22,12 @@ $PSQL -d postgres -c "drop database if exists $DB with (force)" -c "create datab
 $PSQL -d $DB -f tests/supabase_stubs.sql >/dev/null 2>&1
 for f in schema.sql seed.sql engagement.sql engagement.sql; do $PSQL -d $DB -f $f >/dev/null || { echo "FAIL loading $f"; exit 1; }; done
 ok "migration loads and re-runs cleanly"
+# No demo or seeded account can ever sign in: the SQL creates no auth users and sets no password hash anywhere.
+expect_eq  "no seeded login accounts (auth.users empty after schema+seed+engagement)" "0" "$(su "select count(*) from auth.users")"
+expect_eq  "no seeded account has a usable password hash" "0" "$(su "select count(*) from auth.users where coalesce(encrypted_password,'') <> ''")"
+cd ..
+expect_eq  "no fixed password or credential in the site code or SQL" "" "$(git grep -nIE "demo-only'|password *: *'[^']+'|password *: *\"[^\"]+\"|encrypted_password *=|crypt\\(|password '[^']+'" -- assets supabase ':!assets/vendor' ':!supabase/tests/engagement_test.sh' 2>&1)"
+cd supabase
 
 A=aaaaaaaa-0000-0000-0000-000000000001; B=bbbbbbbb-0000-0000-0000-000000000002
 C=cccccccc-0000-0000-0000-000000000003; D=dddddddd-0000-0000-0000-000000000004
@@ -128,5 +134,6 @@ expect_has "owner can't update ledger"   "append-only" "$(su "update point_event
 expect_has "owner can't delete ledger"   "append-only" "$(su "delete from point_events where user_id='$A'")"
 su "delete from auth.users where id='$A'" >/dev/null
 expect_eq  "account deletion still cascades" "0" "$(su "select count(*) from point_events where user_id='$A'")"
+expect_eq  "test accounts have no password either (sessions come from JWT claims only)" "0" "$(su "select count(*) from auth.users where coalesce(encrypted_password,'') <> ''")"
 
 echo; echo "$pass passed, $fail failed"; [ $fail -eq 0 ]
