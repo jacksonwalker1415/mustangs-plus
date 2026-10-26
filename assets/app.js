@@ -177,6 +177,9 @@
   function wordmark(cls){return '<a href="'+(ROOT||'./')+'" class="wordmark'+(cls||'')+(BRAND_LOGO?' has-logo':'')+'" aria-label="SMU+ home">'+
     (BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="wm-txt">SMU</span><span class="wm-plus" aria-hidden="true">+</span><span class="sr">+</span>')+'</a>'}
   function memberSwitch(label){if(!GATING)return '';return '<button type="button" class="mtoggle" data-member-toggle role="switch" aria-checked="false"><span class="sw-t" aria-hidden="true"></span><span class="mt-l">'+(label||'Preview as member')+'</span></button>'}
+  /* Ad-free switch (header, and the phone menu). SMU+ runs no real ads, so this only hides sponsor or partner slots
+     (anything marked data-ad-slot or .ad-slot) for signed-in accounts. Signed out, it opens sign-in first. */
+  function adfreeSwitch(cls){return '<button type="button" class="adfree '+cls+'" data-adfree role="switch" aria-checked="false"><span class="af-l">Ad-free</span><span class="af-sw" aria-hidden="true"></span></button>'}
   /* Phone/tablet menu (under 960px). Every primary link, plus search, member preview and Join. */
   function mobileMenu(){
     return '<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Site menu" hidden><div class="mm-in">'+
@@ -187,6 +190,7 @@
         return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
       (GATING?'<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting: no payment is involved.</p></div>':'')+
       '<a class="mm-acct" href="'+ROOT+'account/"><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span><b class="mm-acct-l">Sign in or create an account</b><small class="mm-acct-s">Save athletes, post on the boards, sync what you watch</small></span><span class="mm-chev" aria-hidden="true">›</span></a>'+
+      '<div class="mm-af">'+adfreeSwitch('af-mm')+'</div>'+
       '<a class="btn btn-red mm-join" href="'+ROOT+'#waitlist">Join SMU+</a>'+
       '<p class="mm-note">Concept built for an SMU Cox MBA class project. No payments are taken.</p></div></div>'}
   $('#site-header').outerHTML='<header class="site"><div class="wrap hdr">'+wordmark()+'<nav class="main" aria-label="Primary">'+navLinks()+'</nav>'+
@@ -194,8 +198,8 @@
       '<form class="hsf" id="hsForm" role="search" action="'+ROOT+'search/" method="get"><label class="sr" for="hsQ">Search SMU+</label>'+SVG.search+
       '<input id="hsQ" name="q" type="search" placeholder="Search SMU+" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"'+(PAGE==='search'?' value="'+esc(new URLSearchParams(location.search).get('q')||'')+'"':'')+'>'+
       '<button type="submit" class="hsf-go">Search</button></form>'+memberSwitch('Member preview')+
-    '<a class="acct-btn" id="acctBtn" href="'+ROOT+'account/"'+(PAGE==='account'?' aria-current="page"':'')+'><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span class="acct-l">Sign in</span></a>'+
-    '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#waitlist">Join</a>'+
+    '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#waitlist">Join</a>'+adfreeSwitch('af-hdr')+
+    '<a class="acct-btn" id="acctBtn" href="'+ROOT+'account/"'+(PAGE==='account'?' aria-current="page"':'')+'><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span class="acct-l sr">Sign in</span></a>'+
     '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+sportsPanel()+
     mobileMenu()+'</header>';
   var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
@@ -1508,9 +1512,9 @@
 
   /* header + menu account state */
   function initials(n){return String(n||'?').replace(/[^A-Za-z ]/g,'').split(/\s+/).filter(Boolean).map(function(w){return w[0]}).slice(0,2).join('').toUpperCase()||'?'}
-  function syncAcct(){var u=SMU.user,b=$('#acctBtn');if(b){b.classList.toggle('in',!!u);$('.acct-l',b).textContent=u?(u.name||'Account').split(' ')[0]:'Sign in';
+  function syncAcct(){var u=SMU.user,b=$('#acctBtn');if(b){b.classList.toggle('in',!!u);$('.acct-l',b).textContent=u?'Your account':'Sign in';
       var ph=u&&u.avatar&&SMU.avatarsOn()&&SMU.avatarOK(u.avatar)?u.avatar:'';
-      $('.acct-av',b).innerHTML=u?'<span>'+esc(initials(u.name))+'</span>'+(ph?avImg(ph,1):''):SVG.user;$('.acct-av',b).classList.toggle('has-ph',!!ph);
+      $('.acct-av',b).innerHTML=ph?avImg(ph,1):SVG.user;$('.acct-av',b).classList.toggle('has-ph',!!ph);
       var mav=$('.mm-acct .acct-av');if(mav){mav.innerHTML=ph?avImg(ph,1):SVG.user;mav.classList.toggle('has-ph',!!ph)}b.setAttribute('aria-label',u?'Your account ('+(u.name||u.email)+')':'Sign in or create an account')}
     var ml=$('.mm-acct-l'),ms=$('.mm-acct-s');if(ml){ml.textContent=u?(u.name||'Your account'):'Sign in or create an account';ms.textContent=u?TIER_NAME[SMU.tier()]+' member \u00b7 '+(SMU.live?'synced':'demo account'):'Save athletes, post on the boards, sync what you watch'}
     /* Join CTA: signed out = Join; signed in, free = smaller Upgrade link; signed in member = hidden (header + phone menu) */
@@ -1518,8 +1522,20 @@
     $$('.hdr-join,.mm-join').forEach(function(el){var mmj=el.classList.contains('mm-join');el.hidden=st==='member';el.classList.toggle('is-upgrade',st==='free');
       el.classList.toggle('btn-red',st!=='free');el.textContent=st==='free'?(mmj?'Upgrade your membership':'Upgrade'):(mmj?'Join SMU+':'Join');
       el.setAttribute('href',st==='free'?ROOT+'#membership':ROOT+'#waitlist')});
-    if(window.fitNav)window.fitNav();
+    syncAdfree();if(window.fitNav)window.fitNav();
     $$('[data-save-athlete]').forEach(syncSaveBtn)}
+  /* Ad-free: one preference per account, kept in this browser (mp_adfree, by account id) and, on the live database, in the
+     account's own auth metadata so it follows the account to other devices. Only signed-in accounts get it. */
+  function afKey(){return SMU.user?'mp_adfree:'+(SMU.user.id||SMU.user.email):null}
+  function adfreeOn(){var k=afKey();if(!k)return false;var v=store(k);if(v==null&&SMU.user.adfree!=null)return !!SMU.user.adfree;return v==='1'}
+  function syncAdfree(){var on=adfreeOn();document.documentElement.classList.toggle('adfree',on);
+    $$('[data-adfree]').forEach(function(b){b.setAttribute('aria-checked',on?'true':'false');
+      b.setAttribute('aria-label',SMU.user?'Ad-free':'Ad-free, sign in to turn it on')})}
+  function setAdfree(on){var k=afKey();if(!k)return;store(k,on?'1':'0');SMU.user.adfree=on;syncAdfree();toast(on?'Ad-free is on.':'Ad-free is off.');
+    if(SMU.live&&SMU.client)SMU.client.auth.updateUser({data:{adfree:on}}).then(function(){},function(){})}
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-adfree]');if(!b)return;e.preventDefault();
+    if(!SMU.user){openAuth('in','Sign in to turn on Ad-free.',function(){setAdfree(true)});return}
+    setAdfree(!adfreeOn())});
   SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',paidT(t)?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
   SMU.on('saved',function(){$$('[data-save-athlete]').forEach(syncSaveBtn)});
   function pullHistory(){SMU.pullProgress().then(function(rows){if(!rows||!rows.length)return;var local=hist(),by={};local.concat(rows).forEach(function(x){var o=by[x.id];if(!o||x.p>o.p||x.t>o.t)by[x.id]={id:x.id,p:Math.max(x.p,o?o.p:0),t:Math.max(x.t||0,o?o.t:0)}});
@@ -1707,14 +1723,6 @@
   /* ---------- Profile photo (Account page) ----------
      Checks type and size first (JPEG/PNG/WebP, 2 MB), then center-crops to a 256x256 square in the browser and uploads that
      (WebP, or JPEG where the browser can't make WebP). Storage enforces the same type and size limits on the server. */
-  var AV_RULES='No SMU logos, no photos of athletes or other people, nothing offensive. Photos can be reported.';
-  function photoBlock(u){if(!SMU.avatarsOn())return '';var me=SMU.me(),has=!!avPhoto(MP.USERS[me]);
-    return '<div class="pf"><div class="pf-av">'+avatar(me,true,true)+'</div><div class="pf-ctl"><p class="pf-l" id="pfL">Profile photo</p>'+
-      '<p class="pf-s">Shown next to your posts and on your account button. JPEG, PNG or WebP, up to 2 MB. We crop it to a square.</p>'+
-      '<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden>'+
-      '<div class="pf-btns"><button type="button" class="btn btn-navy btn-sm" id="avPick" aria-describedby="pfRules">'+(has?'Replace photo':'Upload photo')+'</button>'+
-      (has?'<button type="button" class="btn btn-outline btn-sm" id="avRemove">Remove photo</button>':'')+'</div>'+
-      '<p class="pf-rules" id="pfRules">'+AV_RULES+'</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'}
   function squarePhoto(file){return new Promise(function(res,rej){var url=URL.createObjectURL(file),img=new Image();
     img.onload=function(){var w=img.naturalWidth,h=img.naturalHeight,s=Math.min(w,h);URL.revokeObjectURL(url);if(!s)return rej(new Error('That image couldn\u2019t be read. Try another photo.'));
       var c=document.createElement('canvas');c.width=c.height=256;var x=c.getContext('2d');x.imageSmoothingQuality='high';x.fillStyle='#fff';x.fillRect(0,0,256,256);
@@ -1731,33 +1739,78 @@
       SMU.removeAvatar().then(function(){toast('Photo removed.')},function(err){busy(false,err.message||'Couldn\u2019t remove the photo. Try again.')})})}
 
   /* ---------- Account page ---------- */
-  function account(){var main=$('#acctMain');document.title='Your account | SMU+';
+  var SET_TABS=['profile','subscriptions','transactions'],acctTab=(location.hash||'').slice(1)==='student'?'subscriptions':(location.hash||'').slice(1);
+  var EYE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4 9.5 6-.4.9-1.3 2.2-2.6 3.4M6.6 7.6C4.6 8.9 3.1 10.8 2.5 12c1 2 4.5 6 9.5 6 1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
+  var EYE_OPEN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12C3.5 10 7 6 12 6s8.5 4 9.5 6c-1 2-4.5 6-9.5 6s-8.5-4-9.5-6z"/><circle cx="12" cy="12" r="3"/></svg>';
+  function account(){var main=$('#acctMain');document.title='Settings | SMU+';
     function render(){var u=SMU.user;
-      if(!u){main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">SMU+ account</p><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'+
+      if(!u){main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'+
         '<section class="sec"><div class="wrap acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+freeBands('acct')+'</div></section>';wireAuth(main,render);
         if(location.hash==='#student'&&stOn())setTimeout(function(){openStudent()},60);return}
       if(location.hash==='#reset'&&SMU.live){main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
         $('#npForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#npPw').value,m=$('.auth-m',main);if(v.length<8){m.textContent='At least 8 characters.';return}SMU.newPassword(v).then(function(){history.replaceState(null,'',location.pathname);toast('Password updated.');render()},function(err){m.textContent=err.message})});return}
-      var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6),br=store('mp_brief');
-      main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">'+(SMU.live?'Your SMU+ account':'Demo account \u00b7 this browser only')+'</p><h1 class="display">'+esc(u.name||'Your account')+'</h1><p class="lede on-dark">'+esc(u.email)+' \u00b7 '+TIER_NAME[tier]+' member'+(tier==='student'?' <span class="st-badge">Student</span>':'')+'</p></div></section>'+
-        '<section class="sec"><div class="wrap">'+conceptNotice('acct-cn')+'</div><div class="wrap acct-grid">'+
-          '<div class="acct-card"><h2 class="acct-h">Profile</h2>'+photoBlock(u)+'<form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
-            '<p class="acct-meta">'+(SMU.live?'Signed in with '+esc(u.email)+'. Your data is stored in the SMU+ database.':'Demo mode: this account, your tier and your posts are saved only in this browser.')+'</p><button type="button" class="btn btn-outline btn-sm" id="signOut">Sign out</button></div>'+
-          '<div class="acct-card" id="acctPlan"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+(tier==='student'?'Free Student plan':tier==='free'?'Free Fan account':TIER_NAME[tier])+'</b>'+(tier==='student'?' <span class="st-badge">Student</span>':'')+(paidT(tier)?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+studentStatus(tier)+
-            (PAID_OPEN?'<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>':
-              '<p class="acct-meta acct-soon">'+LOCK+'Paid plans are coming soon.</p><button type="button" class="btn btn-sm btn-outline" data-join>Join the waitlist</button>')+
-            (paidT(tier)?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+'<p class="acct-meta">Demo membership: no payments are taken and no card is ever asked for.</p></div>'+studentCard(u,tier)+
-          '<div class="acct-card"><h2 class="acct-h">Saved players</h2>'+(saved.length?'<ul class="acct-list">'+saved.map(function(a){return '<li><a href="'+athleteUrl(a.id)+'"><b>'+esc(a.name)+'</b><small>#'+a.num+' \u00b7 '+a.pos+'</small></a><button type="button" class="linkish" data-save-athlete="'+a.id+'" aria-pressed="true"><span>Saved</span></button></li>'}).join('')+'</ul>':'<p class="acct-empty">No saved players yet. Tap <b>Save player</b> on any <a href="'+ROOT+'athletes/">player profile</a>.</p>')+'</div>'+
-          '<div class="acct-card"><h2 class="acct-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="acct-empty">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+
-            '<p class="acct-meta">'+(SMU.live?'Synced to your account across devices.':'Saved in this browser.')+'</p></div>'+
-          '<div class="acct-card"><h2 class="acct-h">SMU+ Weekly</h2>'+briefHTML('briefAcct')+'</div>'+
+      var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6);
+      var tab=SET_TABS.indexOf(acctTab)<0?'profile':acctTab,me=SMU.me(),ph=SMU.avatarsOn()?avPhoto(MP.USERS[me]):'',pwOK=SMU.live&&u.pw!==false;
+      var st=stOn()&&SMU.student&&SMU.student(),started=(tier==='student'&&st&&st.at)||u.created||u.since;
+      function fmtD(d){var t=d?new Date(d):null;return t&&!isNaN(t)?t.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}):''}
+      function pwFld(id,label,ph,ac){return '<div class="set-f"><label for="'+id+'">'+label+'</label><div class="set-pw"><input id="'+id+'" type="password" autocomplete="'+ac+'" placeholder="'+ph+'" maxlength="72">'+
+        '<button type="button" class="set-eye" data-eye="'+id+'" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div></div>'}
+      var planName=tier==='student'?'Student plan':tier==='free'?'Fan account':TIER_NAME[tier]+' (demo)';
+      var profile='<form id="setForm" class="set-form" novalidate>'+
+          '<div class="set-sec"><h2 class="set-h">Profile information</h2><p class="set-sub">Update your profile information.</p>'+
+          '<div class="set-av"><div class="set-av-img">'+(ph?avImg(ph,1):SVG.user)+'</div><div class="set-av-ctl">'+
+            (SMU.avatarsOn()?'<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden><div class="set-av-btns"><button type="button" class="btn set-out" id="avPick">Change avatar</button>'+(ph?'<button type="button" class="linkish" id="avRemove">Remove</button>':'')+'</div>':
+              '<button type="button" class="btn set-out" disabled>Change avatar (coming soon)</button>')+
+            '<p class="set-hint">For best results use an image at least 400x400 pixels.</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'+
+          '<div class="set-f"><label for="dispName">Username</label><input id="dispName" maxlength="40" autocomplete="nickname" value="'+esc(u.name||'')+'"></div>'+
+          '<div class="set-f"><label for="setEmail">Email</label><input id="setEmail" type="email" value="'+esc(u.email||'')+'" readonly aria-describedby="setEmailH"><p class="set-hint" id="setEmailH">If you need to change your email, contact <a href="mailto:smuplusmedia@gmail.com">smuplusmedia@gmail.com</a>.</p></div></div>'+
+          (pwOK?'<div class="set-sec"><h2 class="set-h">Change password</h2><p class="set-sub">Update the password for your account.</p>'+
+            pwFld('pwCur','Current password','Enter your current password','current-password')+pwFld('pwNew','New password','Enter a new password','new-password')+pwFld('pwNew2','Confirm new password','Confirm your new password','new-password')+'</div>':'')+
+          '<p class="auth-m set-m" aria-live="polite"></p><div class="set-act"><button type="submit" class="btn set-save" disabled>Save</button></div></form>'+
+        '<div class="set-sec"><h2 class="set-h">Saved players</h2>'+(saved.length?'<ul class="acct-list">'+saved.map(function(a){return '<li><a href="'+athleteUrl(a.id)+'"><b>'+esc(a.name)+'</b><small>#'+a.num+' \u00b7 '+a.pos+'</small></a><button type="button" class="linkish" data-save-athlete="'+a.id+'" aria-pressed="true"><span>Saved</span></button></li>'}).join('')+'</ul>':'<p class="set-sub">No saved players yet. Tap <b>Save player</b> on any <a href="'+ROOT+'athletes/">player profile</a>.</p>')+'</div>'+
+        '<div class="set-sec"><h2 class="set-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="set-sub">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+'</div>';
+      var subs='<div class="set-sec" id="acctPlan"><h2 class="set-h">Your plan</h2><p class="set-sub">'+(tier==='student'||tier==='free'?'Free with your SMU+ account.':'Demo membership. No payments are taken.')+'</p>'+
+          '<div class="set-plan"><div><b>'+esc(planName)+'</b>'+(tier==='student'?'<span class="st-badge">Student</span>':'')+
+            (tier==='student'&&st?'<p>Class of '+esc(st.year||'\u2014')+'. Checked with your @smu.edu email.</p>':'')+
+            (fmtD(started)?'<p>Started '+fmtD(started)+'</p>':'')+'</div>'+
+            (paidT(tier)?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+'</div>'+
+          (PAID_OPEN?'<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>':
+            '<h3 class="set-h3">Other plans</h3><ul class="set-soon">'+['mustang','pony','club'].filter(function(t){return t!==tier}).map(function(t){return '<li><b>'+esc(TIER_NAME[t])+'</b><span>Coming soon</span></li>'}).join('')+'</ul>'+
+            '<button type="button" class="btn btn-sm btn-outline" data-join>Join the waitlist</button>')+'</div>'+
+        studentCard(u,tier)+
+        '<div class="set-sec"><h2 class="set-h">SMU+ Weekly</h2><p class="set-sub">One email on Friday mornings in season.</p>'+briefHTML('briefAcct')+'</div>';
+      var tx='<div class="set-sec set-empty"><h2 class="set-h">Transactions</h2><p class="set-sub">No transactions yet.</p></div>';
+      var P={profile:profile,subscriptions:subs,transactions:tx},L={profile:'Profile',subscriptions:'Subscriptions',transactions:'Transactions'};
+      main.innerHTML='<section class="set"><div class="wrap set-wrap"><div class="set-top"><h1 class="set-title">Settings</h1><button type="button" class="btn set-out set-signout" id="signOut">Sign out</button></div>'+
+        (SMU.live?'':'<p class="set-demo">Demo account. Everything here is saved only in this browser.</p>')+
+        '<div class="set-tabs" role="tablist" aria-label="Settings">'+SET_TABS.map(function(k){return '<button type="button" role="tab" id="tab-'+k+'" aria-controls="pane-'+k+'" aria-selected="'+(k===tab)+'"'+(k===tab?'':' tabindex="-1"')+' data-set-tab="'+k+'">'+L[k]+'</button>'}).join('')+'</div>'+
+        SET_TABS.map(function(k){return '<div class="set-pane" role="tabpanel" id="pane-'+k+'" aria-labelledby="tab-'+k+'"'+(k===tab?'':' hidden')+'>'+P[k]+'</div>'}).join('')+
         '</div></section>';
       syncBriefs();
+      var tabs=$$('[data-set-tab]',main);
+      function pick(k,focus){acctTab=k;tabs.forEach(function(b){var on=b.dataset.setTab===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;if(on&&focus)b.focus()});
+        SET_TABS.forEach(function(x){$('#pane-'+x,main).hidden=x!==k});try{history.replaceState(null,'',k==='profile'?location.pathname:'#'+k)}catch(e){}}
+      tabs.forEach(function(b,i){b.addEventListener('click',function(){pick(b.dataset.setTab)});
+        b.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!d)return;e.preventDefault();pick(SET_TABS[(i+d+SET_TABS.length)%SET_TABS.length],true)})});
       $('#signOut').addEventListener('click',function(){SMU.signOut().then(function(){toast('Signed out.');render()},function(err){toast(err.message,'err')})});
       var cp=$('#cancelPlan');if(cp)cp.addEventListener('click',function(){SMU.setTier('free').then(backToStudent).then(function(){toast(SMU.tier()==='student'?'Demo membership canceled. You\u2019re back on the free Student plan.':'Demo membership canceled.');render()},function(err){toast(err.message,'err')})});
       wirePhoto(main);wireStudentCard(main,render);
-      if(location.hash==='#student'){var sc=$('#acctStudent')||$('#acctPlan');if(sc)setTimeout(function(){sc.scrollIntoView({block:'start'})},60)}
-      $('#nameForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#dispName').value.trim(),m=$('.auth-m',this);if(!v){m.textContent='Enter a name.';return}SMU.updateName(v).then(function(){toast('Name saved.');render()},function(err){m.textContent=err.message})})}
+      $$('[data-eye]',main).forEach(function(b){b.addEventListener('click',function(){var i=$('#'+b.dataset.eye,main),show=i.type==='password';i.type=show?'text':'password';
+        b.setAttribute('aria-pressed',show);b.setAttribute('aria-label',show?'Hide password':'Show password');b.innerHTML=show?EYE_OPEN:EYE})});
+      var f=$('#setForm',main),save=$('.set-save',f),m=$('.set-m',f),nm=$('#dispName',f),pw=['pwCur','pwNew','pwNew2'].map(function(id){return $('#'+id,f)});
+      function dirty(){return nm.value.trim()!==(u.name||'')||pw.some(function(i){return i&&i.value})}
+      f.addEventListener('input',function(){save.disabled=!dirty();m.textContent=''});
+      f.addEventListener('submit',function(e){e.preventDefault();if(!dirty())return;var v=nm.value.trim(),cur=pw[0]&&pw[0].value,nw=pw[1]&&pw[1].value,nw2=pw[2]&&pw[2].value,wantPw=!!(cur||nw||nw2);
+        if(!v){m.textContent='Enter a username.';nm.focus();return}
+        if(wantPw){if(!cur){m.textContent='Enter your current password.';pw[0].focus();return}if((nw||'').length<8){m.textContent='Use at least 8 characters for the new password.';pw[1].focus();return}
+          if(nw!==nw2){m.textContent='The new passwords don\u2019t match.';pw[2].focus();return}}
+        save.disabled=true;m.textContent='Saving\u2026';
+        var steps=Promise.resolve(),did=[];
+        if(v!==(u.name||''))steps=steps.then(function(){return SMU.updateName(v)}).then(function(){did.push('name')});
+        if(wantPw)steps=steps.then(function(){return SMU.changePassword(cur,nw)}).then(function(){did.push('pw')});
+        steps.then(function(){toast(did.length>1?'Username and password saved.':did[0]==='pw'?'Password updated.':'Username saved.');render()},
+          function(err){m.textContent=err.message||'Couldn\u2019t save. Try again.';save.disabled=false;if(err.field==='cur'&&pw[0])pw[0].focus()})});
+      if(location.hash==='#student'){pick('subscriptions');var sc=$('#acctStudent')||$('#acctPlan');if(sc)setTimeout(function(){sc.scrollIntoView({block:'start'})},60)}}
     main.innerHTML='<div class="skel-block" aria-hidden="true" style="min-height:420px"><i class="sk"></i></div>';
     SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('avatar',function(){if(SMU.user)render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()});SMU.on('student',function(){if(SMU.user)render()})}
 

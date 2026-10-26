@@ -246,6 +246,11 @@
       return q('oauth',sb.auth.signInWithOAuth({provider:p,options:{redirectTo:CFG.SITE_URL+'account/',scopes:p==='azure'?'email openid profile':undefined}})).then(function(){return {redirect:true}})},
     reset:function(email){return q('reset',sb.auth.resetPasswordForEmail(email,{redirectTo:CFG.SITE_URL+'account/#reset'})).then(function(){return {sent:true}})},
     newPassword:function(pw){return q('password',sb.auth.updateUser({password:pw}))},
+    /* Settings > Change password: check the current password first (a fresh sign-in as the same account), then set the new one. */
+    changePassword:function(cur,pw){if(!SMU.user)return Promise.reject(new Error('Sign in first.'));var em=SMU.user.email;
+      return withTimeout(Promise.resolve(sb.auth.signInWithPassword({email:em,password:cur})),12000).then(function(r){
+        if(r&&r.error){var e=/invalid/i.test(r.error.message||'')?new Error('Your current password isn\u2019t right.'):fail('password',r.error);e.field='cur';throw e}
+        return q('password',sb.auth.updateUser({password:pw}))})},
     signOut:function(){return q('signout',sb.auth.signOut()).then(function(){setSession(null);emit('auth',null)})},
     updateName:function(n){return q('profile',sb.from('profiles').update({display_name:n}).eq('id',SMU.user.id)).then(function(){SMU.user.name=n;ensureUser('u:'+SMU.user.id,n);MP.USERS['u:'+SMU.user.id].n=n;emit('auth',SMU.user);return SMU.user})},
     tier:function(){return SMU.user?tierCache:demo.tier()},
@@ -298,7 +303,7 @@
         live.loadThread(tid).then(function(t){emit('post:'+tid,t)})}).subscribe();
       return function(){try{sb.removeChannel(ch)}catch(e){}}}
   };
-  function setSession(s){var u=s&&s.user;if(!u||!SMU.user||SMU.user.id!==u.id)stCache=null;SMU.user=u?{id:u.id,email:u.email,name:(u.user_metadata&&u.user_metadata.display_name)||nameFromEmail(u.email),confirmed:!!u.email_confirmed_at||!!u.confirmed_at}:null;
+  function setSession(s){var u=s&&s.user;if(!u||!SMU.user||SMU.user.id!==u.id)stCache=null;SMU.user=u?{id:u.id,email:u.email,name:(u.user_metadata&&u.user_metadata.display_name)||nameFromEmail(u.email),confirmed:!!u.email_confirmed_at||!!u.confirmed_at,created:u.created_at||null,adfree:u.user_metadata&&typeof u.user_metadata.adfree==='boolean'?u.user_metadata.adfree:null,pw:!u.app_metadata||!u.app_metadata.providers||u.app_metadata.providers.indexOf('email')>=0}:null;
     if(SMU.user&&myAv.id===SMU.user.id)SMU.user.avatar=myAv.url;  /* token refreshes rebuild the user object; keep the photo */
     if(SMU.user)ensureUser('u:'+SMU.user.id,SMU.user.name,tierCache)}
 
@@ -354,6 +359,7 @@
   /* Game threads (RUN_ME_24): the thread for a game page, created with a staff opening post on first visit. Live database only. */
   SMU.gameThread=function(g){return SMU.live?q('gamethread',SMU.client.rpc('game_thread',{p_game:String(g).slice(0,40)})).then(function(id){return id==null?null:+id}):Promise.resolve(null)};
   SMU.reset=function(e){return SMU.live?live.reset(e):Promise.reject(new Error('Password reset needs the live database. In demo mode, just sign in with your email.'))};
+  SMU.changePassword=function(c,p){return SMU.live?live.changePassword(c,p):Promise.reject(new Error('Passwords are only used with the live database. Demo accounts don\u2019t have one.'))};
   SMU.newPassword=function(p){return SMU.live?live.newPassword(p):Promise.reject(new Error('Not available in demo mode.'))};
   SMU.tier=function(){return B().tier()};
   SMU.saved=function(){return B().saved()};
