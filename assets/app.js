@@ -950,8 +950,8 @@
         '<p class="gmx-meta">'+esc(sp?sp.name:'')+(g.ex?' \u00b7 Exhibition':'')+' \u00b7 '+gmDate(g,1)+(g.note?' \u00b7 '+esc(g.note):'')+'</p>'+
         '<h1 class="gmx-h1"><span class="gmx-smu">SMU</span> <span class="gmx-vs">'+gmVs(g)+'</span> <span class="gmx-opp">'+esc(g.opp)+'</span></h1>'+
         (m?'<div class="gmx-score" role="group" aria-label="Final'+(g.ex?', exhibition':'')+': SMU '+us+', '+esc(g.opp)+' '+them+'">'+
-            '<span class="gmx-n'+(us>them?' win':'')+'"><small>SMU</small><b>'+us+'</b></span><span class="gmx-dash" aria-hidden="true">\u2013</span>'+
-            '<span class="gmx-n'+(them>us?' win':'')+'"><small>'+esc(g.opp)+'</small><b>'+them+'</b></span><span class="gmx-st">Final'+(g.ex?' \u00b7 Exh.':'')+'</span></div>':
+            '<span class="gmx-n'+(us>them?' win':'')+'"><small>SMU</small><b>'+us+'</b></span><span class="gmx-f" aria-hidden="true">F</span>'+
+            '<span class="gmx-n'+(them>us?' win':'')+'"><small>'+esc(g.opp)+'</small><b>'+them+'</b></span></div>':
           '<div class="gmx-when"><p class="gmx-ko"><span>'+C.verb+'</span><b>'+esc(g.time||'Time TBA')+'</b></p>'+
             (isNext?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+'</div>')+
         '<p class="gm-links gmx-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.gamecenter,'Game Center')+'</p>'+
