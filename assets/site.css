@@ -1270,7 +1270,7 @@ html:not(.is-member) .gated .poster .np-art{filter:blur(2.5px)}
   --d-hero:clamp(48px,7vw,96px);--d-page:clamp(44px,6.4vw,88px);--d-sec:clamp(32px,4vw,52px);--d-card:clamp(24px,2.2vw,30px);
   --lh-tight:1.2;--lh-body:1.55;--lh-prose:1.7;
   --trk-label:.1em;--trk-display:.005em;
-  --serif:Georgia,'Times New Roman',serif; /* article body text only (.prose) */
+  --serif:Georgia,Charter,'Bitstream Charter','Iowan Old Style','Palatino Linotype','Noto Serif','Source Serif Pro','Times New Roman',serif; /* article body text only (.prose) */
   /* brand secondaries (Jackson's SMU brand kit). Sparing accents only: sport/data tags, data viz */
   --charcoal:#262626;
   /* radii */
