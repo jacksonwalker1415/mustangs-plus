@@ -269,7 +269,13 @@
       var base={email:email,name:name,affiliation:aff,consent:true,consent_version:PRIVACY_VERSION,source:'site'};
       var full=Object.assign({},base,{utm_source:ATTR.utm_source,utm_medium:ATTR.utm_medium,utm_campaign:ATTR.utm_campaign,utm_content:ATTR.utm_content,referrer_host:ATTR.referrer_host,tier_interest:INTEREST.indexOf(o.tier_interest)>=0?o.tier_interest:null});
       function nocol(r){var e=r&&r.error;return !!e&&(e.code==='PGRST204'||e.code==='42703'||/column/i.test(e.message||'')&&/(find|exist)/i.test(e.message||''))}
-      return withTimeout(sb.from('waitlist').insert(full),12000).then(function(r){
+      /* Price survey (supabase/RUN_ME_30_waitlist_survey.sql): would_pay true/false, billing_choice 'monthly'|'annual' (null when free or unanswered), adfree_interest 'yes'|'no'|'maybe' (paid answers only). */
+      var wp=o.would_pay===true||o.would_pay===false?o.would_pay:null,bc=wp===true&&(o.billing_choice==='monthly'||o.billing_choice==='annual')?o.billing_choice:null;
+      if(wp===true&&!bc)wp=null;
+      var survey=Object.assign({},full,{would_pay:wp,billing_choice:bc,survey_prices:wp===null?null:clip(o.survey_prices,20),adfree_interest:wp===true&&/^(yes|no|maybe)$/.test(o.adfree_interest||'')?o.adfree_interest:null});
+      return withTimeout(sb.from('waitlist').insert(survey),12000).then(function(r){
+        if(nocol(r))return withTimeout(sb.from('waitlist').insert(full),12000);  /* survey columns not added yet: save without them */
+        return r}).then(function(r){
         if(nocol(r))return withTimeout(sb.from('waitlist').insert(base),12000);  /* RUN_ME_2.sql not applied yet: save without attribution */
         return r}).then(function(r){
         if(!missing(r))return done('waitlist',r);
