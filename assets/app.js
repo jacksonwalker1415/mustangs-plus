@@ -925,7 +925,7 @@
       '<section class="sec gm-top"><div class="wrap"><div class="gm-grid">'+
         '<article class="gm-card gm-match"><h2 class="gm-h">'+(g.res?'Result':'Matchup')+'</h2>'+(g.res?gmScore(g):'')+
           '<dl class="gm-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact(g.venue?'Venue':'Where',where)+gmFact('TV / stream',g.tv)+gmFact('Radio',g.radio)+'</dl>'+
-          (!g.res&&g.ko?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+
+          (!g.res&&g.ko&&nextGame(G)===g?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+
           '<p class="gm-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.gamecenter,'Game Center')+'</p></article>'+
         '<article class="gm-card gm-how" id="how"><h2 class="gm-h">How to watch and listen</h2>'+
           '<div class="gm-how-i"><h3>Watch</h3><p>'+(g.tv?esc(g.tv):'TBA')+'</p>'+gmOut(L.watch,'Watch link from SMU Athletics')+'</div>'+
