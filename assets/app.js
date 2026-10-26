@@ -452,9 +452,15 @@
         rows.forEach(function(r){tb.appendChild(r)});if(tot)tb.appendChild(tot)})})}
 
   /* ---------- Shared bits ---------- */
-  function avatar(uid,lg){var u=MP.USERS[uid],n=u.n.replace(/[^A-Za-z]/g,'');
+  /* Member photo if they uploaded one (sb.js only keeps URLs from our own avatars bucket, or a demo data: URL); initials otherwise.
+     The initial sits under the photo, so a photo that fails to load (see avFix) falls back to it. */
+  function avPhoto(u){return u&&!u.staff&&u.av&&window.SMU&&SMU.avatarsOn()&&SMU.avatarOK(u.av)?u.av:''}
+  function avImg(src,eager){return '<img class="av-img" src="'+esc(src)+'" alt="" width="256" height="256" decoding="async"'+(eager?'':' loading="lazy"')+'>'}
+  function avatar(uid,lg,xl){var u=MP.USERS[uid]||{n:'Member'},n=u.n.replace(/[^A-Za-z]/g,''),ph=avPhoto(u);
     var hues=['#354CA1','#1c2a63','#2a3d86','#4259b0','#CC0035'],h=0;for(var i=0;i<n.length;i++)h+=n.charCodeAt(i);
-    return '<span class="av'+(lg?' lg':'')+(u.staff?' staff':'')+'" style="'+(u.staff?'':'background:'+hues[h%hues.length])+'" aria-hidden="true">'+n.charAt(0).toUpperCase()+'</span>'}
+    return '<span class="av'+(lg?' lg':'')+(xl?' xl':'')+(u.staff?' staff':'')+(ph?' has-ph':'')+'" style="'+(u.staff?'':'background:'+hues[h%hues.length])+'" aria-hidden="true">'+(n.charAt(0).toUpperCase()||'M')+(ph?avImg(ph,xl):'')+'</span>'}
+  function avFix(e){var i=e.target;if(i&&i.tagName==='IMG'&&i.classList&&i.classList.contains('av-img')){var p=i.parentNode;i.remove();if(p&&p.classList)p.classList.remove('has-ph')}}
+  document.addEventListener('error',avFix,true);
   function forumBy(id){for(var i=0;i<MP.FORUMS.length;i++)if(MP.FORUMS[i].id===id)return MP.FORUMS[i]}
   function pills(t){var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),p='';
     if(t.pin)p+='<span class="pill pill-pin">'+PIN+'Pinned</span>';if(t.hot)p+='<span class="pill pill-hot">'+FLAME+'Hot</span>';
@@ -701,7 +707,7 @@
         return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+(pc==null?'':' · '+pc.toLocaleString()+(pc===1?' post':' posts')+' here')+'</small></div></aside>'+
           '<div class="post-body"><div class="post-h"><span>'+times[i]+'</span><a href="#t'+t.id+'" class="post-n">#'+(i+1)+'</a></div>'+
           (q?'<blockquote><b>'+esc(MP.USERS[q[0]].n)+' said:</b> '+esc(q[1].length>140?q[1].slice(0,140)+'…':q[1])+'</blockquote>':'')+
-          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" class="rep" data-report="'+i+'" aria-label="Report post #'+(i+1)+'"'+(SMU.reported&&SMU.reported(t.id,i)?' data-done="1"':'')+'>'+(SMU.reported&&SMU.reported(t.id,i)?'Reported':'Report')+'</button></div></div></article>'});
+          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" class="rep" data-report="'+i+'" aria-label="Report post #'+(i+1)+'"'+(SMU.reported&&SMU.reported(t.id,i)?' data-done="1"':'')+'>'+(SMU.reported&&SMU.reported(t.id,i)?'Reported':'Report')+'</button>'+(avPhoto(u)?'<button type="button" data-demo="Report profile photo" class="rep-ph" aria-label="Report '+esc(u.n)+'\u2019s profile photo">Report photo</button>':'')+'</div></div></article>'});
       var shown=locked?postHTML[0]+'<div class="gate">'+postHTML.slice(1,3).join('')+'<div class="gate-cta"><div>'+LOCK+'<h4>Members-only board</h4><p>'+(t.replies?nReplies(t)+(t.replies===1?' reply':' replies')+' in ':'This thread is in ')+esc(f.name)+'. Join any plan to read and post.</p><a class="btn btn-red" href="'+ROOT+'#membership">See plans</a> <button class="btn btn-outline" id="asMember">Preview as member</button></div></div></div>':postHTML.join('');
       threadView.innerHTML='<nav class="crumbs"><a href="#">Boards</a> › <a href="?f='+f.id+'" data-f-link="'+f.id+'">'+esc(f.name)+'</a>'+(s?' › <span>'+esc(s.name)+'</span>':'')+'</nav>'+
         '<div class="tv-head"><div class="pills">'+pills(t)+'</div><h1 class="tv-title">'+esc(t.title)+'</h1><p class="t-meta">Started by <b>'+esc(MP.USERS[t.by].n)+'</b> · '+t.ago+' ago'+(t.replies==null?'':' · '+nReplies(t)+(t.replies===1?' reply':' replies'))+(t.views?' · '+t.views+' views':'')+'</p></div>'+
@@ -731,6 +737,7 @@
       SMU.reply(tid,v,quoteIdx).then(function(){quoteIdx=null;renderThread(tid);var posts=$$('.post',threadView);var last=posts[posts.length-1];if(last){last.classList.add('post-new');last.scrollIntoView({block:'center'})}toast('Reply posted.')},
         function(err){m.textContent=err.message||'Could not post. Try again.';b.disabled=false})});
     SMU.on('auth',function(){var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1])});
+    SMU.on('avatar',function(){var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1]);else if(!listView.hidden)renderList()});
     SMU.on('threads',function(){renderIndex();if(!listView.hidden)renderList()});
     document.addEventListener('smu:post',function(ev){var m=location.hash.match(/^#t(\d+)$/);if(!m||+m[1]!==ev.detail)return;var ta=$('#replyText'),draft=ta?ta.value:'';renderThread(+m[1]);var t2=$('#replyText');if(t2&&draft){t2.value=draft}});
     function route(){var m=location.hash.match(/^#t(\d+)$/);
@@ -966,7 +973,9 @@
   /* header + menu account state */
   function initials(n){return String(n||'?').replace(/[^A-Za-z ]/g,'').split(/\s+/).filter(Boolean).map(function(w){return w[0]}).slice(0,2).join('').toUpperCase()||'?'}
   function syncAcct(){var u=SMU.user,b=$('#acctBtn');if(b){b.classList.toggle('in',!!u);$('.acct-l',b).textContent=u?(u.name||'Account').split(' ')[0]:'Sign in';
-      $('.acct-av',b).innerHTML=u?'<span>'+esc(initials(u.name))+'</span>':SVG.user;b.setAttribute('aria-label',u?'Your account ('+(u.name||u.email)+')':'Sign in or create an account')}
+      var ph=u&&u.avatar&&SMU.avatarsOn()&&SMU.avatarOK(u.avatar)?u.avatar:'';
+      $('.acct-av',b).innerHTML=u?'<span>'+esc(initials(u.name))+'</span>'+(ph?avImg(ph,1):''):SVG.user;$('.acct-av',b).classList.toggle('has-ph',!!ph);
+      var mav=$('.mm-acct .acct-av');if(mav){mav.innerHTML=ph?avImg(ph,1):SVG.user;mav.classList.toggle('has-ph',!!ph)}b.setAttribute('aria-label',u?'Your account ('+(u.name||u.email)+')':'Sign in or create an account')}
     var ml=$('.mm-acct-l'),ms=$('.mm-acct-s');if(ml){ml.textContent=u?(u.name||'Your account'):'Sign in or create an account';ms.textContent=u?TIER_NAME[SMU.tier()]+' member \u00b7 '+(SMU.live?'synced':'demo account'):'Save athletes, post on the boards, sync what you watch'}
     /* Join CTA: signed out = Join; signed in, free = smaller Upgrade link; signed in member = hidden (header + phone menu) */
     var st=!u?'out':(SMU.tier()!=='free'?'member':'free');
@@ -975,7 +984,7 @@
       el.setAttribute('href',st==='free'?ROOT+'#membership':ROOT+'#waitlist')});
     if(window.fitNav)window.fitNav();
     $$('[data-save-athlete]').forEach(syncSaveBtn)}
-  SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('tier',function(t){store('mp_member',t!=='free'?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
+  SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',t!=='free'?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
   SMU.on('saved',function(){$$('[data-save-athlete]').forEach(syncSaveBtn)});
   function pullHistory(){SMU.pullProgress().then(function(rows){if(!rows||!rows.length)return;var local=hist(),by={};local.concat(rows).forEach(function(x){var o=by[x.id];if(!o||x.p>o.p||x.t>o.t)by[x.id]={id:x.id,p:Math.max(x.p,o?o.p:0),t:Math.max(x.t||0,o?o.t:0)}});
     var all=Object.keys(by).map(function(k){return by[k]}).sort(function(a,b){return b.t-a.t}).slice(0,24);store('mp_history',JSON.stringify(all));document.dispatchEvent(new Event('mp:history'))}).catch(function(){})}
@@ -1092,6 +1101,32 @@
     var i=+b.dataset.report;requireUser('Sign in to report a post.',function(){reportPost(t,i,b)})});
   document.addEventListener('click',function(e){var b=e.target.closest('[data-compose]');if(!b)return;e.preventDefault();var sp=b.dataset.sport||'';requireUser('Sign in to start a thread.',function(){compose(sp)})});
 
+  /* ---------- Profile photo (Account page) ----------
+     Checks type and size first (JPEG/PNG/WebP, 2 MB), then center-crops to a 256x256 square in the browser and uploads that
+     (WebP, or JPEG where the browser can't make WebP). Storage enforces the same type and size limits on the server. */
+  var AV_RULES='No SMU logos, no photos of athletes or other people, nothing offensive. Photos can be reported.';
+  function photoBlock(u){if(!SMU.avatarsOn())return '';var me=SMU.me(),has=!!avPhoto(MP.USERS[me]);
+    return '<div class="pf"><div class="pf-av">'+avatar(me,true,true)+'</div><div class="pf-ctl"><p class="pf-l" id="pfL">Profile photo</p>'+
+      '<p class="pf-s">Shown next to your posts and on your account button. JPEG, PNG or WebP, up to 2 MB. We crop it to a square.</p>'+
+      '<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden>'+
+      '<div class="pf-btns"><button type="button" class="btn btn-navy btn-sm" id="avPick" aria-describedby="pfRules">'+(has?'Replace photo':'Upload photo')+'</button>'+
+      (has?'<button type="button" class="btn btn-outline btn-sm" id="avRemove">Remove photo</button>':'')+'</div>'+
+      '<p class="pf-rules" id="pfRules">'+AV_RULES+'</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'}
+  function squarePhoto(file){return new Promise(function(res,rej){var url=URL.createObjectURL(file),img=new Image();
+    img.onload=function(){var w=img.naturalWidth,h=img.naturalHeight,s=Math.min(w,h);URL.revokeObjectURL(url);if(!s)return rej(new Error('That image couldn\u2019t be read. Try another photo.'));
+      var c=document.createElement('canvas');c.width=c.height=256;var x=c.getContext('2d');x.imageSmoothingQuality='high';x.fillStyle='#fff';x.fillRect(0,0,256,256);
+      x.drawImage(img,(w-s)/2,(h-s)/2,s,s,0,0,256,256);
+      c.toBlob(function(b){if(b&&b.type==='image/webp')return res(b);c.toBlob(function(j){j?res(j):rej(new Error('That image couldn\u2019t be processed. Try another photo.'))},'image/jpeg',0.86)},'image/webp',0.86)};
+    img.onerror=function(){URL.revokeObjectURL(url);rej(new Error('That image couldn\u2019t be read. Try another photo.'))};img.src=url})}
+  function wirePhoto(root){var pick=$('#avPick',root),inp=$('#avFile',root),rm=$('#avRemove',root),m=$('#avMsg',root);if(!pick)return;
+    function busy(on,t){pick.disabled=on;if(rm)rm.disabled=on;m.textContent=t||''}
+    pick.addEventListener('click',function(){inp.value='';inp.click()});
+    inp.addEventListener('change',function(){var f=inp.files&&inp.files[0];if(!f)return;var bad=SMU.avatarCheck(f);if(bad){m.textContent=bad;return}
+      var had=!!avPhoto(MP.USERS[SMU.me()]);busy(true,'Uploading\u2026');
+      squarePhoto(f).then(function(b){return SMU.setAvatar(b)}).then(function(){toast(had?'Photo replaced.':'Photo added.')},function(err){busy(false,err.message||'Couldn\u2019t upload that photo. Try again.')})});
+    if(rm)rm.addEventListener('click',function(){busy(true,'Removing\u2026');
+      SMU.removeAvatar().then(function(){toast('Photo removed.')},function(err){busy(false,err.message||'Couldn\u2019t remove the photo. Try again.')})})}
+
   /* ---------- Account page ---------- */
   function account(){var main=$('#acctMain');document.title='Your account | SMU+';
     function render(){var u=SMU.user;
@@ -1102,7 +1137,7 @@
       var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6),br=store('mp_brief');
       main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">'+(SMU.live?'Your SMU+ account':'Demo account \u00b7 this browser only')+'</p><h1 class="display">'+esc(u.name||'Your account')+'</h1><p class="lede on-dark">'+esc(u.email)+' \u00b7 '+TIER_NAME[tier]+' member</p></div></section>'+
         '<section class="sec"><div class="wrap">'+conceptNotice('acct-cn')+'</div><div class="wrap acct-grid">'+
-          '<div class="acct-card"><h2 class="acct-h">Profile</h2><form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
+          '<div class="acct-card"><h2 class="acct-h">Profile</h2>'+photoBlock(u)+'<form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
             '<p class="acct-meta">'+(SMU.live?'Signed in with '+esc(u.email)+'. Your data is stored in the SMU+ database.':'Demo mode: this account, your tier and your posts are saved only in this browser.')+'</p><button type="button" class="btn btn-outline btn-sm" id="signOut">Sign out</button></div>'+
           '<div class="acct-card"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+TIER_NAME[tier]+'</b>'+(tier!=='free'?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+
             '<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>'+
@@ -1115,9 +1150,10 @@
       syncBriefs();
       $('#signOut').addEventListener('click',function(){SMU.signOut().then(function(){toast('Signed out.');render()},function(err){toast(err.message,'err')})});
       var cp=$('#cancelPlan');if(cp)cp.addEventListener('click',function(){SMU.setTier('free').then(function(){toast('Demo membership canceled.');render()},function(err){toast(err.message,'err')})});
+      wirePhoto(main);
       $('#nameForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#dispName').value.trim(),m=$('.auth-m',this);if(!v){m.textContent='Enter a name.';return}SMU.updateName(v).then(function(){toast('Name saved.');render()},function(err){m.textContent=err.message})})}
     main.innerHTML='<div class="skel-block" aria-hidden="true" style="min-height:420px"><i class="sk"></i></div>';
-    SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()})}
+    SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('avatar',function(){if(SMU.user)render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()})}
 
   SMU.ready.then(function(){syncAcct();syncBriefs();syncWaitlist();if(SMU.user&&SMU.live)pullHistory();
     var s=SMU.user&&SMU.tier();if(SMU.user){store('mp_member',s!=='free'?'1':'0');syncMember()}});
