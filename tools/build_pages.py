@@ -139,9 +139,39 @@ def meta(url,root,noindex=False,desc=None,ld=''):
       +(f'<meta name="twitter:description" content="{desc}">\n' if desc else '')+
       f'<link rel="manifest" href="{root}manifest.webmanifest">\n'+ld+'<!--/meta-->\n')
 
+
+# ---- Installable iPhone web app (PWA) head block: iOS meta, startup images, safe-area CSS, service worker.
+# Managed like meta/boot: stripped and re-inserted on every page right after <!--/meta-->.
+PWA_DEV=[(320,568,2),(375,667,2),(414,736,3),(375,812,3),(414,896,2),(414,896,3),(390,844,3),(428,926,3),(393,852,3),(430,932,3),(402,874,3),(440,956,3),(420,912,3)]
+PWA_CSS=(':root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}'
+ # status-bar strip: in the home-screen app the page runs under the status bar / Dynamic Island
+ 'body::before{content:"";position:fixed;z-index:9000;top:0;left:0;right:0;height:var(--sat);background:#23347a;pointer-events:none}'
+ 'html body{padding-top:var(--sat)}'
+ 'html header.site{top:var(--sat)}'
+ 'html .jump{top:calc(var(--hdr-h,var(--hdr)) + var(--sat))}'
+ ':root{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px + var(--sat))}'
+ '@media(min-width:960px){html .gt-box{top:calc(var(--hdr-h,64px) + 8px + var(--sat))}}'
+ 'html .rec-grid aside{top:calc(var(--hdr) + var(--s5) + var(--sat))}'
+ 'html .policy-toc{top:calc(var(--hdr) + 24px + var(--sat))}'
+ 'html .wrap,html .disclaimer{padding-left:max(var(--gut),var(--sal));padding-right:max(var(--gut),var(--sar))}'
+ )
+def pwa_block(pre):
+    reg=f"navigator.serviceWorker.register('{pre}sw.js',{{scope:'{pre or './'}'}})"
+    if not pre: reg="navigator.serviceWorker.register(document.baseURI.replace(/[^/]*$/,'')+'sw.js',{scope:document.baseURI.replace(/[^/]*$/,'')})"
+    return ('<!--pwa--><meta name="apple-mobile-web-app-capable" content="yes">\n'
+      '<meta name="mobile-web-app-capable" content="yes">\n'
+      '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\n'
+      '<meta name="apple-mobile-web-app-title" content="SMU+">\n'
+      '<meta name="application-name" content="SMU+">\n'
+      f'<link rel="icon" type="image/png" sizes="192x192" href="{pre}assets/brand/icon-192.png">\n'
+      +''.join(f'<link rel="apple-touch-startup-image" media="screen and (device-width: {w}px) and (device-height: {h}px) and (-webkit-device-pixel-ratio: {d}) and (orientation: portrait)" href="{pre}assets/brand/splash/splash-{w*d}x{h*d}.png">\n' for w,h,d in PWA_DEV)+
+      f'<style>{PWA_CSS}</style>\n'
+      "<script>if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1')){addEventListener('load',function(){"+reg+".catch(function(){})})}</script>\n"
+      '<!--/pwa-->\n')
+
 # Feature flag lives in assets/data.js (MP.FEATURES.recruiting). Off -> recruiting/ is left out of the sitemap.
 REC_ON=not re.search(r'MP\.FEATURES\.recruiting\s*=\s*false',open(REPO+'/assets/data.js').read())
-pages=sorted(p for p in glob.glob(REPO+'/**/*.html',recursive=True) if '/node_modules/' not in p)
+pages=sorted(p for p in glob.glob(REPO+'/**/*.html',recursive=True) if '/node_modules/' not in p and '/ios-app/' not in p)
 urls=[]
 for p in pages:
     s=open(p).read();rel=os.path.relpath(p,REPO)
@@ -155,12 +185,13 @@ for p in pages:
     s=re.sub(r'\n?<script src="(?:\.\./)*assets/[a-z-]+\.js(?:\?v=\d+)?"(?: defer)?></script>','',s)
     s=s.replace('</body>','\n'.join('<script src="%sassets/%s?v=%s"></script>'%(pre,f,VER) for f in SCRIPTS)+'\n</body>',1)
     # managed blocks: strip then re-insert
-    s=re.sub(r'<!--(meta|boot|bootui)-->.*?<!--/\1-->\n?','',s,flags=re.S)
+    s=re.sub(r'<!--(meta|boot|bootui|pwa)-->.*?<!--/\1-->\n?','',s,flags=re.S)
     s=re.sub(r'<div class="disclaimer" role="note">.*?</div>',lambda m_:DISC(pre),s,count=1,flags=re.S)
     s=re.sub(r'<meta name="twitter:card" content="summary">\n','',s)
     s=re.sub(r'<meta name="robots" content="noindex">\n','',s)
     url=SITE+re.sub(r'index\.html$','',rel)
     s=re.sub(r'(<link rel="apple-touch-icon"[^>]*>\n)',lambda m_:m_.group(1)+meta(url,pre,is404,(re.search(r'<meta property="og:description" content="([^"]*)">',s) or [None,None])[1],crumbs_ld(rel,s)),s,count=1)
+    s=s.replace('<!--/meta-->\n','<!--/meta-->\n'+pwa_block(pre),1)
     s=s.replace('<link rel="stylesheet" href="',BOOT_HEAD+'<link rel="stylesheet" href="',1)
     s=re.sub(r'(<body[^>]*>\n)',lambda m_:m_.group(1)+boot_body(pre),s,count=1)
     open(p,'w').write(s)
@@ -172,10 +203,11 @@ open(REPO+'/sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<ur
   ''.join(f'  <url><loc>{html.escape(u)}</loc><lastmod>{today}</lastmod></url>\n' for u in urls)+'</urlset>\n')
 # Approved 2026-10-26: keep the concept out of search engines (same URL keeps serving).
 open(REPO+'/robots.txt','w').write('User-agent: *\nDisallow: /\n')
-json.dump({'name':'SMU+ (concept)','short_name':'SMU+','description':'Concept SMU fan membership site for an SMU Cox class project.',
-  'start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#23347a',
-  'icons':[{'src':'assets/brand/icon-192.png','sizes':'192x192','type':'image/png'},
-           {'src':'assets/brand/icon-512.png','sizes':'512x512','type':'image/png'},
+json.dump({'id':'./','name':'SMU+','short_name':'SMU+','description':'Concept SMU fan membership site for an SMU Cox class project. Not affiliated with or endorsed by SMU Athletics or Learfield.',
+  'lang':'en-US','dir':'ltr','start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#354CA1','categories':['sports','entertainment'],
+  'icons':[{'src':'assets/brand/icon-192.png','sizes':'192x192','type':'image/png','purpose':'any'},
+           {'src':'assets/brand/icon-512.png','sizes':'512x512','type':'image/png','purpose':'any'},
            {'src':'assets/brand/icon-maskable-512.png','sizes':'512x512','type':'image/png','purpose':'maskable'}]},
   open(REPO+'/manifest.webmanifest','w'),indent=2)
+open(REPO+'/manifest.webmanifest','a').write('\n')
 print('VER',VER,'urls',len(urls))
