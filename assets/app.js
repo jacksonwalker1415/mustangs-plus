@@ -526,26 +526,52 @@
      (blockquote + platform.twitter.com/widgets.js) shows each post with its author and a link back.
      data-no-ads: keep ad slots out of this section and away from embedded posts and videos (ad-mock copy follows this). */
   var FEEDS=MP.FEEDS||{posts:{},follow:{}},FO_L={x:'X',instagram:'Instagram',youtube:'YouTube',tiktok:'TikTok'};
-  function followRow(list,h){return list&&list.length?'<div class="follow"><h3 class="follow-h">'+h+'</h3><ul class="follow-l">'+list.map(function(a){
-      return '<li><span class="fo-n"><b>'+esc(a[0])+'</b><small>@'+esc(a[1])+(a[3]?' · '+esc(a[3]):'')+'</small></span><span class="fo-links">'+Object.keys(FO_L).filter(function(k){return a[2][k]}).map(function(k){
-        return '<a class="fo-a" href="'+esc(a[2][k])+'" target="_blank" rel="noopener" aria-label="'+esc(a[0])+' on '+FO_L[k]+' (opens in a new tab)">'+FO_L[k]+'</a>'}).join('')+'</span></li>'}).join('')+'</ul></div>':''}
+  /* Follow rows: each account as a mini X-style profile card (banner, round avatar, name, handle, the account's own bio, icon links),
+     in one sideways swipe row per group. Avatars and banners are self-hosted copies (assets/img/x/), so nothing loads from X before a tap. */
+  var XPROF=MP.XPROF||{},FO_I={
+    x:'<path d="M3 3h4.2l3.6 5 4.2-5H17l-5.3 6.3L18 17h-4.2l-3.9-5.4L5.3 17H3.4l5.7-6.7z"/>',
+    instagram:'<path d="M7 2.5h6A4.5 4.5 0 0 1 17.5 7v6a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 13V7A4.5 4.5 0 0 1 7 2.5zm0 1.8A2.7 2.7 0 0 0 4.3 7v6A2.7 2.7 0 0 0 7 15.7h6a2.7 2.7 0 0 0 2.7-2.7V7A2.7 2.7 0 0 0 13 4.3zm3 2.4a3.3 3.3 0 1 1 0 6.6 3.3 3.3 0 0 1 0-6.6zm0 1.8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM14.2 4.9a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/>',
+    youtube:'<path d="M18 6.3c-.2-.9-.9-1.6-1.8-1.8C14.6 4 10 4 10 4s-4.6 0-6.2.5C2.9 4.7 2.2 5.4 2 6.3 1.6 7.9 1.6 10 1.6 10s0 2.1.4 3.7c.2.9.9 1.6 1.8 1.8C5.4 16 10 16 10 16s4.6 0 6.2-.5c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-3.7.4-3.7s0-2.1-.4-3.7zM8.3 12.6V7.4L12.6 10z"/>',
+    tiktok:'<path d="M13.6 2.5c.3 1.9 1.4 3.1 3.4 3.3v2.4c-1.2.1-2.3-.3-3.4-1v4.9c0 3.4-2.6 5.4-5.5 5.4A5 5 0 0 1 3 12.5c0-3.1 2.6-5.3 5.9-4.9v2.5c-1.6-.3-3.3.6-3.3 2.4 0 1.4 1.1 2.5 2.6 2.5s2.6-1 2.6-2.8V2.5z"/>'};
+  function foCard(a){var h=a[1],k=h.toLowerCase(),p=XPROF[k]||{},nm=p.n||a[0],ban=p.ban?ROOT+'assets/img/x/'+k+'-banner.webp':'';
+    var chk=p.v?'<svg class="fo-v fo-v-'+(p.v==='business'?'g':'b')+'" viewBox="0 0 20 20" width="15" height="15" role="img" aria-label="Verified account"><path d="M10 1.5l2.3 1.7 2.8-.2.9 2.7 2.4 1.5-.9 2.7.9 2.7-2.4 1.5-.9 2.7-2.8-.2L10 18.5l-2.3-1.7-2.8.2-.9-2.7-2.4-1.5.9-2.7-.9-2.7 2.4-1.5.9-2.7 2.8.2z"/><path d="M6.5 10.2l2.3 2.3 4.8-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>':'';
+    return '<li class="fo-card"><div class="fo-ban">'+(ban?'<img src="'+ban+'" alt="" loading="lazy" decoding="async" width="600" height="200">':'')+'</div>'+
+      '<img class="fo-av" src="'+ROOT+'assets/img/x/'+k+'.webp" alt="" loading="lazy" decoding="async" width="96" height="96">'+
+      '<div class="fo-body"><p class="fo-nm"><b>'+esc(nm)+'</b>'+chk+'</p><p class="fo-h">@'+esc(h)+'</p>'+(p.b?'<p class="fo-bio">'+esc(p.b)+'</p>':'')+
+      (a[3]?'<p class="fo-d">'+esc(a[3])+'</p>':'')+
+      '<p class="fo-links">'+Object.keys(FO_L).filter(function(t){return a[2][t]}).map(function(t){
+        return '<a class="fo-a" href="'+esc(a[2][t])+'" target="_blank" rel="noopener" aria-label="'+esc(a[0])+' on '+FO_L[t]+' (opens in a new tab)" title="'+FO_L[t]+'"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="currentColor">'+FO_I[t]+'</svg></a>'}).join('')+'</p></div></li>'}
+  var XARR='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var SLN=0;
+  function navHTML(id,what){return '<div class="xnav" data-xnav="'+id+'" hidden><button type="button" class="xarr xprev" data-xdir="-1" aria-label="Previous '+what+'" aria-controls="'+id+'" disabled>'+XARR+'</button><button type="button" class="xarr" data-xdir="1" aria-label="Next '+what+'" aria-controls="'+id+'">'+XARR+'</button></div>'}
+  function followRow(list,h){if(!list||!list.length)return '';var id='fo-track-'+(++SLN);
+    return '<div class="follow"><div class="follow-hd"><h3 class="follow-h">'+h+'</h3>'+navHTML(id,'accounts')+'</div><ul class="follow-l" id="'+id+'" data-slider role="list" aria-label="'+h+' accounts, scrolls sideways" tabindex="0">'+list.map(foCard).join('')+'</ul></div>'}
   function feedsHTML(key){var P=FEEDS.posts[key]||[],F=FEEDS.follow[key]||[],home=key==='home';if(!P.length&&!F.length)return '';
     var who={};P.forEach(function(x){who['@'+x[1]]=1});var hs=Object.keys(who);
     return '<section class="sec feeds" id="feeds" data-no-ads aria-labelledby="feeds-h"><div class="wrap">'+
-      '<div class="sec-hd"><div><p class="eyebrow">'+(P.length?'Official accounts · free':'Official accounts')+'</p><h2 class="sec-t" id="feeds-h">'+(P.length?'From the feeds':'Follow along')+'</h2></div></div>'+
-      (P.length?'<div class="xgate" data-xgate="'+key+'"><div class="xg-b"><b>'+P.length+' recent '+(P.length===1?'post':'posts')+' from '+esc(hs.slice(0,3).join(', '))+(hs.length>3?' and more':'')+'</b>'+
-        '<p>Posts load from X only when you tap the button, and X\u2019s own privacy policy applies from then on. <a href="'+ROOT+'privacy/">Privacy</a></p></div>'+
-        '<button type="button" class="btn btn-navy" data-load-x>Load posts from X</button></div><div class="xposts" data-xposts hidden></div>':'')+
+      '<div class="sec-hd"><div><p class="eyebrow">'+(P.length?'Official accounts · free':'Official accounts')+'</p><h2 class="sec-t" id="feeds-h">'+(P.length?'From the feeds':'Follow along')+'</h2></div>'+
+      (P.length?navHTML('xtrack-'+key,'posts'):'')+'</div>'+
+      (P.length?'<div class="xgate" data-xgate="'+key+'"><span class="xg-x" aria-hidden="true">X</span><p class="xg-b"><b>'+P.length+' '+(P.length===1?'post':'posts')+'</b><span class="xg-w"> from '+esc(hs.slice(0,2).join(', '))+(hs.length>2?' and more':'')+'</span>'+
+        '<span class="xg-n"> · load from X only when you tap · <a href="'+ROOT+'privacy/">Privacy</a></span></p>'+
+        '<button type="button" class="btn btn-navy xg-btn" data-load-x>Load posts from X</button></div>'+
+        '<div class="xposts" id="xtrack-'+key+'" data-xposts data-slider role="region" aria-label="Posts from X, scrolls sideways" tabindex="0" hidden></div>':'')+
       followRow(F,home?'Follow SMU':'Follow SMU '+esc((sportBy(key)||{}).name||''))+
       (home?followRow(FEEDS.media,'Conference and beat coverage'):'')+
-      '<p class="note">Links go to each account\u2019s own page. SMU+ is a class-project concept and isn\u2019t affiliated with these accounts.</p>'+
+      '<p class="note">Images: each account\u2019s X profile. Links go to each account\u2019s own page. SMU+ is a class-project concept and isn\u2019t affiliated with these accounts.</p>'+
       '</div></section>'}
-  function loadX(btn){var gate=btn.closest('[data-xgate]'),key=gate.dataset.xgate,box=gate.nextElementSibling,P=FEEDS.posts[key]||[];
-    box.innerHTML=P.map(function(x){return '<div class="xpost"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none"><p>Post from '+esc(x[2])+' (@'+esc(x[1])+'), '+esc(x[3])+'.</p><a href="'+esc(x[0])+'">View this post on X</a></blockquote></div>'}).join('');
-    box.hidden=false;gate.hidden=true;
+  function xNavSync(box){var nav=document.querySelector('[data-xnav="'+box.id+'"]');if(!nav)return;var b=nav.querySelectorAll('.xarr'),m=box.scrollWidth-box.clientWidth;
+    nav.hidden=box.hidden||m<=2;b[0].disabled=box.scrollLeft<=2;b[1].disabled=box.scrollLeft>=m-2}
+  function slSyncAll(){[].forEach.call(document.querySelectorAll('[data-slider]'),xNavSync)}
+  document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.hasAttribute&&t.hasAttribute('data-slider'))xNavSync(t)},{capture:true,passive:true});
+  window.addEventListener('resize',slSyncAll);window.addEventListener('load',slSyncAll);setTimeout(slSyncAll,0);setTimeout(slSyncAll,800);
+  function loadX(btn){var gate=btn.closest('[data-xgate]'),key=gate.dataset.xgate,box=document.getElementById('xtrack-'+key),P=FEEDS.posts[key]||[];
+    box.innerHTML=P.map(function(x,i){return '<div class="xpost" role="group" aria-label="Post '+(i+1)+' of '+P.length+'"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none" data-width="320"><p>Post from '+esc(x[2])+' (@'+esc(x[1])+'), '+esc(x[3])+'.</p><a href="'+esc(x[0])+'">View this post on X</a></blockquote></div>'}).join('');
+    box.hidden=false;gate.hidden=true;xNavSync(box);setTimeout(function(){xNavSync(box)},1500);setTimeout(function(){xNavSync(box)},4000);
     if(window.twttr&&twttr.widgets&&twttr.widgets.load){twttr.widgets.load(box);return}
     if(!document.getElementById('x-wjs')){var sc=document.createElement('script');sc.id='x-wjs';sc.async=true;sc.charset='utf-8';sc.src='https://platform.twitter.com/widgets.js';document.body.appendChild(sc)}}
-  document.addEventListener('click',function(e){var b=e.target.closest('[data-load-x]');if(b){e.preventDefault();loadX(b)}});
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-load-x]');if(b){e.preventDefault();loadX(b);return}
+    var a=e.target.closest('[data-xdir]');if(a){var box=document.getElementById(a.getAttribute('aria-controls'));if(!box)return;var c=box.firstElementChild,st=c?c.getBoundingClientRect().width+16:box.clientWidth*.8;
+      box.scrollBy({left:st*(+a.dataset.xdir),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}});
   function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&(c.sport===slug||(c.also||[]).indexOf(slug)>=0)}).sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')})}
   function mediaSection(slug,name){var L=thirdFor(slug);if(!L.length)return '';
     return '<section class="sec alt" id="media"><div class="wrap">'+secHead('Video, podcasts &amp; coverage',libUrl('all'),'Library','Free · official channels and the press')+
