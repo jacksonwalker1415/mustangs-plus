@@ -1049,19 +1049,6 @@ MP.PHOTOS={
   home:[A0.dept,A0.football,A0.mbb,A0.wbb,A0.vb,A0.msoc]},
   media:[A0.on3,A0.embody,A0.acc,A0.accn]};
 })();
-/* Mustang Studios row (Watch/Library page only). Real public videos from https://www.youtube.com/@MustangStudiosCo
-   (channel linked from https://linktr.ee/MustangStudios). IDs, titles and lengths taken from the channel's YouTube feed and
-   checked via YouTube oEmbed (200) on Oct. 26, 2026; all three report playableInEmbed. Embed only, never rehosted.
-   Free to watch: no lock, no gating. Kept out of MP.LIB so filters and counts are unchanged. */
-(function(){var MP=window.MP,YT='https://www.youtube.com/watch?v=',CH=['Mustang Studios on YouTube','https://www.youtube.com/@MustangStudiosCo'];
- function S(id,yt,show,title,desc,dur){return {id:id,t:'video',cat:'watch',label:'Mustang Studios · '+show,title:title,desc:desc,dur:dur,lock:false,tone:'black',
-  yt:yt,src:YT+yt,credit:'Mustang Studios',channel:CH,studio:true,real:true}}
- MP.STUDIOS=[
-  S('ms-214-damon-evans','v8jS0B_uXzg','The 214',"EXCLUSIVE: Damon Evans Reveals SMU's Next BIG Move After Virginia Win | The 214",'Posted Oct. 20, 2026 on the Mustang Studios YouTube channel.','57:52'),
-  S('ms-five-basketball','B5x3wNKhwpk','The Five','LeBron, Jordan, and Unfiltered SMU Basketball Team Talk | The Five','Posted Oct. 22, 2026 on the Mustang Studios YouTube channel.','16:21'),
-  S('ms-nostalgia-ep4','t_pP1ev5xJs','Nostalgia',"Talent Isn't Enough to Make This Team | Nostalgia Episode 4",'Posted Oct. 20, 2026 on the Mustang Studios YouTube channel.','18:10')];
- MP.STUDIOS_CH=CH;
-})();
 /* Sharper photos (Oct. 26, 2026) from the SMU+ photo library (official smumustangs.com galleries, all credited "Photo: SMU Athletics"
    in the library manifest). Files live in assets/photos/lib/. src = base name; big = width of the large variant (2400, or the
    2000 px original where SMU has nothing larger). Heroes and game-day backgrounds get srcset 1200/big; cards use the 1200 file.
