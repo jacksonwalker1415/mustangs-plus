@@ -1077,6 +1077,7 @@ MP.PHOTOS={
  S('moody-bowl','mens-basketball-team-huddle-north-carolina',1200,'50% 40%','SMU men\u2019s basketball players in red huddle on the bench against North Carolina');
  S('storm','mens-basketball-court-drive-boston-college',1200,'50% 35%','An SMU men\u2019s basketball player drives to the basket against Boston College');
  S('wsoc','womens-soccer-attack-wide',2000,'50% 40%','SMU women\u2019s soccer players in blue run onto the field together');
+ S('tennis','tennis-womens-doubles-smu-banner-2026',1200,'45% 28%','Two SMU women\u2019s tennis players in black high-five in front of an SMU banner');
  CARD('wsoc','womens-soccer-goal-celebration','SMU women\u2019s soccer players in red and blue celebrate a goal');
  CARD('equestrian','equestrian-jump-smu-banner-2025','An SMU equestrian rider clears a jump in front of an SMU banner');
  /* home player cards: the full 969 px headshot instead of the 720 px -900 copy */
