@@ -155,9 +155,8 @@ MP.THREADS = [
 /* Board upgrade: forum groups, more users, longer threads with quoted replies. All fictional. */
 (function(){var MP=window.MP;
 MP.FORUMS.forEach(function(f){f.group=f.prem?'Premium':'Community'});
-MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame breakdowns with the SMU+ film staff.',prem:true,threads:388,posts:9140,group:'Premium'});
 MP.FORUMS.push({id:'help',name:'Site Help & Feedback',desc:'Bugs, feature requests and membership questions.',prem:false,threads:214,posts:1630,group:'Community'});
-MP.USERS.dre={n:'Dre Coleman',tier:'SMU+ Film Room',staff:true,since:'2024',posts:'2,214'};
+MP.USERS.dre={n:'Dre Coleman',tier:'SMU+ Staff',staff:true,since:'2024',posts:'2,214'};
 MP.USERS.jt={n:'J.T. Barlow',tier:'SMU+ Recruiting',staff:true,since:'2024',posts:'3,377'};
 MP.USERS.peruna={n:'PerunaPapa',tier:'Red & Blue',since:'2025',posts:'5,920'};
 MP.USERS.ford={n:'FordStadiumFaithful',tier:'All-Access',since:'2025',posts:'1,408'};
@@ -172,7 +171,7 @@ T(1).posts=[
  ['staff','Kicker looked sharp from distance in the period I watched. I wouldn\'t read too much into one practice.',2],
  ['ford','Good to hear. I was sitting right behind the uprights for the miss and the groan from our section was audible in Snider Plaza.',3],
  ['grace','Love the detail. Can we get a film breakdown of the 3rd-and-long package on the Paddock Report?'],
- ['dre','Already cut it up. It\'s going in the Film Room Lounge tomorrow morning.',5],
+ ['dre','Already cut it up. It\'s going in The Paddock tomorrow morning.',5],
  ['peruna','Dre with the assist. Somebody get this man a corny dog.',6]];
 T(2).posts=[
  ['mike','Kickoff is 11 a.m. CT Saturday in Syracuse, on ESPN2. Drop your score predictions and keep it civil. Pony Up!'],
@@ -186,12 +185,6 @@ T(2).posts=[
  ['ray','Hank stealing my take. I\'m sticking with 31-24.',2]];
 MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how the boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
  posts:[['staff','Welcome. Be civil, no posting about players\' families, don\'t copy whole staff reports to other sites. Profile photos: no SMU logos, no photos of athletes or other people, nothing offensive. Use Report on a post to flag a photo. Anyone can read every board. Sign in to post. Every username and post on this demo board is fictional.'],['cox','Appreciate the rule on staff reports. Keeps the good info coming.']]});
-MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, snap by snap',by:'dre',ago:'4h',replies:167,views:'5.1k',
- posts:[['dre','Cut up the A-gap sim pressure snap by snap. Watch the boundary linebacker: he always shows blitz and only sometimes comes. QB sees six, gets four.'],
-  ['ray','The free safety not moving until the snap is so disciplined. You can see the QB staring at him.',0],
-  ['peruna','Is this sustainable? Feels like good offenses will motion the back out and stress it.'],
-  ['dre','Exactly the counter. Staff has an answer, but I\'ll save it for Thursday.',2],
-  ['grace','This is the best thing on the site. Worth the membership by itself.']]});
 MP.THREADS.push({id:21,f:'recruiting',sport:'football',hot:true,title:'Visit list for the Nov. 6 Virginia Tech game (fictional names, updated)',by:'jt',ago:'7h',replies:244,views:'8.8k',
  posts:[['jt','Current list: one official, three unofficial. The QB is back for a third trip. All names on this demo board are fictional.'],
   ['ford','Third visit is the one that matters. Friday night under the lights at Ford should help.',0],

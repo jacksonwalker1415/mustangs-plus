@@ -1041,8 +1041,8 @@
     var MAIN=['football','mens-basketball','womens-basketball'];
     function teamSports(tm){return tm.sports||MP.SPORTS.map(function(s){return s.slug}).filter(function(s){return MAIN.indexOf(s)<0})}
     function teamBy(id){for(var i=0;i<TEAMS.length;i++)if(TEAMS[i].id===id)return TEAMS[i];return null}
-    var CATS=[{name:'SMU sports talk',ids:['hilltop','paddock','filmroom','recruiting']},{name:'Team boards',teams:true},{name:'Around the Hilltop',ids:['boulevard','help']}];
-    var DESC={hilltop:'The main board for every Mustang fan. Game talk, takes and hype.',paddock:'Insider notes, practice reports and staff intel.',filmroom:'Frame-by-frame breakdowns with the SMU+ film staff.'};
+    var CATS=[{name:'SMU sports talk',ids:['hilltop','paddock','recruiting']},{name:'Team boards',teams:true},{name:'Around the Hilltop',ids:['boulevard','help']}];
+    var DESC={hilltop:'The main board for every Mustang fan. Game talk, takes and hype.',paddock:'Insider notes, practice reports and staff intel.'};
     function fdesc(f){return DESC[f.id]||String(f.desc||'').replace(/\s*Members[- ]only[^.]*\.?/ig,'').trim()}
     /* ---- time: real timestamps when the post has one; sample posts are spread between the thread's start and now ---- */
     var NOW=Date.now(),DAY=864e5;
