@@ -1530,6 +1530,19 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
   src:url("fonts/story-serif-400.woff2") format("woff2")}
 .prose p{font-family:"Story Serif",var(--serif)}
 
+/* ---- 8.3 Accessibility ---- */
+/* skip link: first tab stop, hidden until focused (inserted by app.js before the header) */
+.skip-link{position:fixed;left:var(--s3);top:var(--s3);z-index:10002;transform:translateY(-200%);padding:12px 16px;min-height:44px;display:inline-flex;align-items:center;
+  background:var(--b-900);color:#fff;font:700 15px/1 var(--sans);border-radius:var(--r-ctl);box-shadow:var(--sh-2);text-decoration:none}
+.skip-link:focus,.skip-link:focus-visible{transform:none;outline:3px solid var(--yellow);outline-offset:0;box-shadow:0 0 0 6px var(--b-950)}
+main[tabindex="-1"]:focus{outline:none}
+/* home tabs: inactive labels were 1.9:1 on white; now 4.9:1 (large-text AA needs 3:1) */
+.htab[aria-selected="false"]{color:#6b7190}
+.htab[aria-selected="false"]:hover{color:var(--ink)}
+/* form fields: the 35% blue ring was too faint; solid blue ring on light, yellow on dark */
+.fsearch:focus-within,.fld input:focus-visible,.fld select:focus-visible,.fld textarea:focus-visible,.reply textarea:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+.brief-row input:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
+
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn,.btn-sm{min-height:44px}

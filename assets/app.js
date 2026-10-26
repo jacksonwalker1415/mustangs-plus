@@ -348,6 +348,8 @@
     if(((e.key==='/'&&!typing)||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'))&&search.hidden){e.preventDefault();openSearch()}});
 
   /* ---------- Header fit: collapse lowest-priority nav links into the menu before anything overlaps ---------- */
+  /* Skip link (a11y): first tab stop on every page, jumps past the header to <main>. Header markup untouched. */
+  (function(){var m=$('main');if(!m||$('.skip-link'))return;if(!m.id)m.id='main';if(!m.hasAttribute('tabindex'))m.setAttribute('tabindex','-1');document.body.insertAdjacentHTML('afterbegin','<a class="skip-link" href="#'+m.id+'">Skip to content</a>')})();
   (function(){var nav=$('nav.main'),hd=$('header.site');if(!nav||!hd)return;var links=$$('a',nav);
     function fit(){links.forEach(function(a){a.classList.remove('nav-x')});hd.classList.remove('nav-collapsed');
       if(innerWidth<960)return;var i=links.length-1;
