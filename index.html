@@ -52,7 +52,7 @@ var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=se
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610260915">
+<link rel="stylesheet" href="assets/site.css?v=202610261030">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="assets/brand/smu-plus-logo-lg.webp"><img src="assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-bar" aria-hidden="true"><i></i></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
@@ -65,7 +65,7 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
     <div class="hero-copy">
       <p class="eyebrow"><span class="live-dot"></span>Proposed fan membership</p>
       <h1 id="hero-h" class="display">Every Moment.<br><span>Every Mustang.</span></h1>
-      <p class="lede on-dark">Exclusive video, stories and podcasts from inside SMU athletics. <strong>In the proposed model, 40% of membership revenue would go to SMU Athletics’ official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</strong></p>
+      <p class="lede on-dark">Official SMU Athletics video, sourced stories and podcasts from every Mustang sport. <strong>In the proposed model, 40% of membership revenue would go to SMU Athletics’ official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</strong></p>
       <div class="ctas"><a href="#membership" class="btn btn-red btn-lg">Become a Member</a><a href="#nil" class="btn btn-ghost btn-lg">Where it goes</a></div>
       <dl class="statbar plain" aria-label="Sample stats">
         <div><dt>To SMU’s official NIL programs (proposed)</dt><dd>40%</dd></div>
@@ -160,11 +160,11 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
         <div class="price"><b>$9.99</b><span>/mo</span></div>
         <span class="nilchip">♥ 40% to SMU’s official NIL programs (proposed)</span>
         <ul>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Members-only articles &amp; features</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Every SMU+ podcast</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Full video library &amp; series</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Members-only articles &amp; features <span class="soon">Coming soon</span></li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>SMU+ original podcasts <span class="soon">Coming soon</span></li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Original video series &amp; film breakdowns <span class="soon">Coming soon</span></li>
         </ul>
-        <button class="btn btn-navy" data-plan="mustang">Choose Mustang</button>
+        <button type="button" class="btn btn-navy" data-join="mustang">Choose Mustang</button>
       </article>
       <article class="tier pop">
         <span class="tag">Most Popular</span>
@@ -176,7 +176,7 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Live monthly Q&amp;As with athletes &amp; coaches</li>
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Early access to merch drops</li>
         </ul>
-        <button class="btn btn-red" data-plan="pony">Choose All-Access</button>
+        <button type="button" class="btn btn-red" data-join="pony">Choose All-Access</button>
       </article>
       <article class="tier dark">
         <h3>Red &amp; Blue</h3><p class="for">The inner circle</p>
@@ -188,7 +188,7 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Members-only tailgate invites</li>
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Signed gear each season</li>
         </ul>
-        <button class="btn btn-red" data-plan="club">Choose Red &amp; Blue</button>
+        <button type="button" class="btn btn-red" data-join="club">Choose Red &amp; Blue</button>
       </article>
     </div>
     
@@ -200,7 +200,7 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
   <div class="wrap faq-grid">
     <div class="sec-hd"><div><p class="eyebrow">FAQ</p><h2 class="sec-t" id="faq-h">Good questions.</h2></div></div>
     <div class="faq">
-      <details open><summary>What is SMU+?<span class="pm"></span></summary><div class="ans"><p>SMU+ is an unofficial student concept for a fan membership built around SMU athletics. It is not affiliated with or endorsed by SMU. In the concept, members unlock exclusive video series, long-form stories, podcasts and game-week access from every Mustang sport, all in one place.</p></div></details>
+      <details open><summary>What is SMU+?<span class="pm"></span></summary><div class="ans"><p>SMU+ is an unofficial student concept for a fan membership built around SMU athletics. It is not affiliated with or endorsed by SMU. In the concept, members would unlock original SMU+ series, long-form stories, podcasts and game-week access from every Mustang sport, all in one place (coming soon; today the library carries official SMU Athletics video and sourced stories, free to everyone).</p></div></details>
       <details><summary>How would NIL work?<span class="pm"></span></summary><div class="ans"><p>In the proposed model, 40% of membership revenue would go to SMU Athletics’ official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</p><p>SMU Athletics would decide how that money is used under NCAA, state and university rules. SMU+ would not choose or pay individual athletes or teams.</p></div></details>
       <details><summary>Can I cancel anytime?<span class="pm"></span></summary><div class="ans"><p>Yes. Memberships are month-to-month with no contract. Cancel in two taps and keep access through the end of your billing period.</p></div></details>
       <details><summary>Is any content free?<span class="pm"></span></summary><div class="ans"><p>Some highlights and articles are free to everyone. Items marked with a <b style="color:var(--red)">lock</b> are members-only.</p></div></details>
@@ -213,13 +213,13 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 </section>
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610260915"></script>
-<script src="assets/data.js?v=202610260915"></script>
-<script src="assets/content.js?v=202610260915"></script>
-<script src="assets/real.js?v=202610260915"></script>
-<script src="assets/athletes.js?v=202610260915"></script>
-<script src="assets/sport-icons.js?v=202610260915"></script>
-<script src="assets/sb.js?v=202610260915"></script>
-<script src="assets/app.js?v=202610260915"></script>
+<script src="assets/config.js?v=202610261030"></script>
+<script src="assets/data.js?v=202610261030"></script>
+<script src="assets/content.js?v=202610261030"></script>
+<script src="assets/real.js?v=202610261030"></script>
+<script src="assets/athletes.js?v=202610261030"></script>
+<script src="assets/sport-icons.js?v=202610261030"></script>
+<script src="assets/sb.js?v=202610261030"></script>
+<script src="assets/app.js?v=202610261030"></script>
 </body>
 </html>
