@@ -400,3 +400,123 @@ MP.PHOTOS={
 (function(){var IMG={'boulevard-nights-1':'students','boulevard-nights-2':'hype','hilltop-unfiltered':'hurdle','rivalry-week':'catch-cal','moody-opening':'moody-bowl','five-am-laps':'swim','film-rotation':'vb-spike','building-contender':'wbb-jumper',
  'film-pressure':'ol-59','film-screen':'snap','film-session-redzone':'carrier-2','building-roster':'huddle','pony-up-pod':'students'};
  MP.LIB.forEach(function(c){if(IMG[c.id])c.img=IMG[c.id]})})();
+/* ===== REAL CONTENT SWAPS (bot/content-real, Oct. 26, 2026) =====
+   Standing rule: carry real content wherever it exists. Each fictional library item listed in SWAP is replaced, in the same spot, by a real one:
+   an official SMU Athletics YouTube video or podcast episode (IDs checked with YouTube oEmbed on Oct. 26, 2026: author "SMU Mustangs", @SMUMustangs),
+   or a short original summary that links out to the official story. Embed only, never rehosted; no article text copied; no quotes.
+   Fictional items with no real equivalent stay, labeled "Sample" (see KEEP). Recruiting stays paused: nothing here touches recruiting/portal items. */
+(function(){var MP=window.MP,YT='https://www.youtube.com/watch?v=',CH=['SMU Mustangs on YouTube','https://www.youtube.com/@SMUMustangs'],N='https://smumustangs.com/news/2026/';
+ function V(id,yt,sport,label,title,desc,dur,lock,big,o){var c={id:id,t:'video',cat:'watch',sport:sport,label:label,title:title,desc:desc,dur:dur,lock:!!lock,tone:'black',big:big,
+   yt:yt,src:YT+yt,credit:'Video: SMU Athletics',channel:CH,real:true};for(var k in o||{})c[k]=o[k];return c}
+ function MIC(id,yt,sport,title,desc,dur,lock){return V(id,yt,sport,"Mustangs Mic'd Up · Official podcast",title,desc,dur,lock,'MIC\'D',{t:'podcast',cat:'podcasts',credit:"Mustangs Mic'd Up · SMU Athletics"})}
+ function A(id,sport,label,title,desc,dur,lock,big,art){MP.ARTICLES[id]=Object.assign({by:'SMU+ Staff',date:'Oct. 26, 2026',sourced:true},art);
+   return {id:id,t:'article',cat:'insider',sport:sport,label:label,title:title,desc:desc,dur:dur,lock:!!lock,tone:'blue',big:big,real:true}}
+
+ /* --- real articles: original summaries, facts from the linked SMU Athletics stories --- */
+ var BIZ=A('smu-business-october','general','Insider · Business of SMU Athletics','A patch on every jersey, and Texas\'s first D-I men\'s lacrosse team',
+   'Two October announcements, one week apart: Texas Capital goes on all 17 SMU uniforms, and SMU starts the state\'s first Division I men\'s lacrosse program.','3 min read',false,'17',
+   {date:'Oct. 26, 2026',sources:[['SMU Athletics: Texas Capital all-sports jersey patch, Oct. 13',N+'10/13/general-smu-athletics-texas-capital-announce-first-all-sports-jersey-patch-partnership-for-a-texas-power-four-program'],['SMU Athletics: men\'s lacrosse program launch, Oct. 15',N+'10/15/general-smu-athletics-to-launch-texas-first-ncaa-division-i-mens-lacrosse-program']],
+    dek:'For a class built around the business of college sports, mid-October was a case study. Here is what SMU Athletics announced, in plain terms.',related:['smu-texas-capital-video','smu-weekend-oct24','recap-cal'],body:[
+    "On Oct. 13, Mustang Partners and Texas Capital announced a jersey patch deal that covers all 17 SMU varsity programs. SMU Athletics calls it the first all-sports patch agreement for a Power Four program in Texas. The Texas Capital logo started appearing on SMU competition uniforms that week.",
+    "It builds on an earlier deal. Weeks before, Texas Capital had become the first end-zone sponsor in the history of SMU Football and Gerald J. Ford Stadium. SMU Athletics says the patch deal was secured together with Learfield.",
+    "Two days later, on Oct. 15, SMU announced a men's lacrosse program, the first NCAA Division I men's lacrosse team in Texas. It begins play in the spring of 2028.",
+    "The conference math matters. SMU will be the ACC's sixth men's lacrosse program, and six is the threshold the ACC needs for an automatic bid to the NCAA tournament, subject to NCAA approval.",
+    "The money came fast. SMU Athletics says it raised $15 million for lacrosse in two months, toward a $25 million goal by April 1, 2027. Ryan McCabe, Senior Associate Athletics Director for Compliance, is leading the build-out of the program.",
+    "The case for Texas, per SMU's announcement: more than 3,200 high school lacrosse players on nearly 160 varsity and junior varsity teams statewide, and, until SMU's announcement, no Division I men's program in the state."]});
+ var WKND=A('smu-weekend-oct24','general','Insider · Weekend roundup','No. 19, a first ACC title, and a fifth in the wind',
+   'Football climbs to No. 19 in the AP poll, men\'s soccer clinches a share of the program\'s first ACC regular-season title, and women\'s golf finishes fifth at the Landfall Tradition.','3 min read',false,'NO. 19',
+   {sources:[['SMU Athletics: SMU rises to 19th in AP poll, Oct. 25',N+'10/25/football-smu-rises-to-19th-in-ap-poll'],['SMU Athletics: men\'s soccer clinches a share of the ACC regular-season title, Oct. 25',N+'10/25/mens-soccer-no-1-smu-clinches-a-share-of-acc-regular-season-title'],['SMU Athletics: women\'s golf fifth at the Landfall Tradition, Oct. 25',N+'10/25/womens-golf-huh-with-career-best-finish-smu-womens-golf-locks-up-fifth-at-landfall-tradition']],
+    dek:'Three SMU stories from the weekend of Oct. 24-25, beyond the 59-20 win over Cal and the volleyball road sweep.',related:['recap-cal','preview-msoc-louisville','preview-syracuse'],body:[
+    "Football moved up to No. 19 in Sunday's AP Top 25 and is No. 16 in the coaches poll. SMU Athletics notes the Mustangs have been ranked in the AP poll every week of the 2026 season, their longest such run since 1985. The jump followed the 59-20 win over Cal, when SMU outscored the Golden Bears 42-0 after halftime and held them to 50 yards in the second half.",
+    "Men's soccer became the first SMU program to win an ACC regular-season title. The 2-0 win at Cal on Saturday, plus Clemson's draw with Virginia Tech on Sunday, put SMU three points clear with one match left, so the Mustangs have at least a share. They won the 2025 ACC Tournament, so this is the first time the program holds both. The outright title is on the line Friday, Oct. 30, against No. 10 Louisville on senior day at Washburne Stadium.",
+    "Women's golf finished fifth of 18 teams at the Landfall Tradition in Wilmington, N.C., at 23 over par (887) in strong winds. SMU finished ahead of three ranked teams in the final standings: No. 2 Auburn, No. 19 Alabama and No. 25 Kentucky. Yoonjeong Huh tied for ninth, her first career top-10 finish, and Celine Chen tied for 14th. It was SMU's last event of the fall. The next one is the Therese Hession Regional Challenge on Jan. 31."]});
+ var SWIM=A('smu-swim-classic','swimming-diving','Swimming & Diving · Meet recap','A record tied after 28 years, and two Mustang podiums',
+   'At the SMU Classic, Maddy Parker matched a 100 free school record set in 1997-98. Both SMU teams finished third.','2 min read',false,'47.87',
+   {date:'Oct. 26, 2026',sources:[['SMU Athletics: women\'s swimming & diving at the SMU Classic, Oct. 10',N+'10/10/womens-swimming-diving-parker-ties-school-record-smu-places-third-at-smu-classic'],['SMU Athletics: men\'s swimming & diving at the SMU Classic, Oct. 10',N+'10/10/mens-swimming-diving-sitz-and-brennan-bring-home-wins-no-21-mustangs-finish-third']],
+    dek:'The home meet at Robson and Lindley Aquatics Center on Oct. 10, in numbers SMU Athletics published.',related:['smu-weekend-oct24','smu-business-october','vb-road-sweep'],body:[
+    "Maddy Parker swam the 100 freestyle in 47.87 seconds, tying the SMU record Martina Moravcova set in the 1997-98 season. The time is also an NCAA standard.",
+    "Dori Hathazi won the 200 butterfly in 1:56.26, another NCAA standard, which makes her the second-fastest Mustang ever in the event. The women finished third behind No. 18 Arizona State and Arkansas, SMU's best SMU Classic finish since 2014-15.",
+    "The No. 21 men also finished third, up from fifth at the same meet last season. Francis Brennan won the 500 freestyle in 4:18.54, and Luke Sitz won 3-meter diving with 427.25 points."]});
+ var ROW=A('smu-rowing-charles','rowing','Rowing · Race recap','Bronze on the Charles',
+   'SMU opened its fall at the Head of the Charles with a third-place medal in the women\'s club fours.','2 min read',false,'3RD',
+   {sources:[['SMU Athletics: SMU rowing at the Head of the Charles, Oct. 22',N+'10/22/bronze-medal-highlights-strong-showing-for-smu-rowing-at-head-of-the-charles']],
+    dek:'Cambridge, Mass., mid-October: the first races of SMU Rowing\'s 2026 fall.',related:['smu-swim-classic','smu-weekend-oct24','smu-micd-ep7'],body:[
+    "The club four, coxed by Sophie Swords with Izie Murray, Britt Potman, Freya Weiser and Jesse Pulford, finished third in 19:18.001 for a bronze medal.",
+    "The club eight started 32nd and finished 14th in 17:35.367.",
+    "The Head of the Charles opened SMU's fall; rowing's championship season is in the spring. Next up: an exhibition against Texas at White Rock Lake on Nov. 8."]});
+
+ /* --- fictional -> real (same spot in the library) --- */
+ var SWAP={
+  'rivalry-week':V('smu-fb-avail-1020','8dF4BnXUwFM','football','Football · Game week','SMU Football: Rhett Lashlee and Kevin Jennings, game-week media availability','The head coach and the quarterback, on the Monday before the Cal game (Oct. 20).','11:55',true,'MON'),
+  'hilltop-unfiltered':V('smu-fb-avail-0814','BROtwaI4fo4','football','Football · Fall camp','SMU Football: Fall camp media availability','From fall camp, Aug. 14: SMU Football\'s media availability with Coach Thibodeaux, J. Jefferson and M. Alcorn-Crowder.','10:27',true,'CAMP'),
+  'thursday-notes':V('smu-fb-avail-1021','pUxLSL-a9EA','football','Football · Practice week','SMU Football: Alexander Kilgore and Jalen Hale, media availability','Mid-week before Cal (Oct. 21), in their own words.','7:52',true,'WED',{cat:'insider'}),
+  'coachs-corner-acc':BIZ,
+  'micd-setter':MIC('smu-micd-s2e3','r8ONHsCIOXI','volleyball',"Mustangs Mic'd Up: S2E3 with Nicole Nelson and Sam Erger","SMU's official podcast-style show. Women's soccer coach Nicole Nelson and volleyball coach Sam Erger.",'55:47',false),
+  'moody-opening':V('smu-mbb-enfield-tipoff','G2j2BzUhIIQ','mens-basketball','Men\'s Basketball · ACC Tipoff','SMU Men\'s Basketball: Andy Enfield at ACC Tipoff','The head coach, live at the ACC\'s preseason media event.','4:15',true,'TIPOFF'),
+  'building-contender':V('smu-wbb-tipoff','WqyK1ihLuS0','womens-basketball','Women\'s Basketball · ACC Tipoff','SMU Women\'s Basketball: Zahra King and Theresa Hagans Jr. at ACC Tipoff','Two Mustangs, live at the ACC\'s preseason media event.','2:06',false,'TIPOFF',{cat:'insider'}),
+  'five-am-laps':SWIM,
+  'film-rotation':V('smu-vb-pitt-highlights','UsFpeU8zQc8','volleyball','Film Room · Official highlights','SMU Volleyball: Highlights at Pittsburgh','Oct. 7: SMU wins 3-1 at No. 2 Pitt and ends the nation\'s longest home winning streak.','6:52',false,'3-1',{cat:'film'}),
+  'coachs-corner-pod':MIC('smu-micd-s2e1','ci3EFPGK9ug','football',"Mustangs Mic'd Up: S2E1 with Kevin Jennings, Yamir Knight and Rhett Lashlee","SMU's official podcast-style show, hosted by Rich Phillips and Breanna Sorensen. Season 2 opener.",'55:09',true),
+  'pony-up-pod':MIC('smu-micd-s2e4','OeuSowGSDKc','football',"Mustangs Mic'd Up: S2E4 with Josh Bates, Malcom Alcorn-Crowder and Rhett Lashlee","SMU's official podcast-style show. Two Mustangs and the head coach.",'44:17',true),
+  'paddock-report':MIC('smu-micd-s2e2','6HGaxWi0pgc','football',"Mustangs Mic'd Up: S2E2 with Yannick Smith, Aakil Washington and Rhett Lashlee","SMU's official podcast-style show. Two Mustangs and the head coach.",'43:35',true)
+ };
+ /* boulevard-nights-1 keeps its id because the home hero (app.js) looks it up by id */
+ var BLVD=V('boulevard-nights-1','K3Frl1564us','football','Gameday · The Boulevard','The Boulevard on The ACC Huddle','SMU\'s tailgate on the Boulevard, as the ACC Huddle saw it. An official SMU Athletics video.','3:06',false,'BLVD');
+
+ /* --- new real items (no fictional item to replace) --- */
+ var ADD=[
+  V('smu-vb-clemson-highlights','qN1Fi-iZKqY','volleyball','Volleyball · Official highlights','SMU Volleyball: Highlights at Clemson','Oct. 23: the first of two straight-set road wins that week.','5:16',false,'3-0'),
+  V('smu-msoc-uca-highlights','r8eRcnB6hgA','mens-soccer',"Men's Soccer · Official highlights","SMU Men's Soccer: Highlights vs. Central Arkansas",'Oct. 20 at Washburne: a 5-2 win with a Stephan Soghomonian hat trick.','5:00',false,'5-2'),
+  V('smu-msoc-duke-highlights','iDFfJ7K_v5M','mens-soccer',"Men's Soccer · Official highlights","SMU Men's Soccer: Highlights vs. Duke",'Oct. 10 at Washburne: six goals against Duke.','7:00',false,'6-0'),
+  V('smu-texas-capital-video','gmS6-Od3kao','general','SMU Athletics · Announcement','SMU Athletics: The Texas Capital jersey patch','The 38-second official unveiling of the all-sports patch.','0:38',false,'PATCH'),
+  V('smu-wsoc-uva-presser','Y13qxDMUcK4','womens-soccer',"Women's Soccer · Postgame","SMU Women's Soccer: Postgame press conference vs. Virginia",'After the Oct. 11 match against Virginia.','4:01',false,'POST'),
+  V('smu-mbb-tipoff-players','dUFQzkxtC5M','mens-basketball',"Men's Basketball · ACC Tipoff","SMU Men's Basketball: Rowan Brumbaugh and Jaden Toombs at ACC Tipoff",'Two Mustangs, live at the ACC\'s preseason media event.','5:44',false,'TIPOFF'),
+  MIC('smu-micd-s2e5','FlfwXzJfJk0','mens-basketball',"Mustangs Mic'd Up: S2E5 with Adia Barnes and Andy Enfield","SMU's official podcast-style show. Both basketball head coaches, before the season.",'59:36',false),
+  MIC('smu-micd-ep14','lFQ8qbqxRJs','tennis',"Mustangs Mic'd Up (2025-26): Episode 14","From last season (Feb. 2026): men's tennis coach Grant Chen, track and field coach 'A Havahla Haynes, Adia Barnes and Andy Enfield.",'51:19',false),
+  MIC('smu-micd-ep13','HpWWtUJ29Hk','swimming-diving',"Mustangs Mic'd Up (2025-26): Episode 13","From last season (Jan. 2026): diving coach Darrian Schmidt, women's golf coach Lauren Mason, Adia Barnes and Chris Capko.",'56:46',false),
+  MIC('smu-micd-ep7','GqriXf_TOME','rowing',"Mustangs Mic'd Up: Episode 7 (last season)","From an earlier season of the show: rowing coach Chase Graham, equestrian coach Brad Kearns and Andy Enfield.",'49:04',false),
+  WKND,ROW];
+
+ /* the existing official videos group by sport in the player's episode list, matching SMU's own titles */
+ var RETITLE={'smu-fb-cal-highlights':'SMU Football: Highlights vs. Cal','smu-fb-uva-highlights':'SMU Football: Highlights vs. Virginia','smu-msoc-cal-highlights':"SMU Men's Soccer: Highlights at Cal",
+  'smu-vb-gt-highlights':'SMU Volleyball: Highlights at Georgia Tech','smu-micd-up-s2e6':"Mustangs Mic'd Up: S2E6 with Kyle Ward, Riley Dodge and Rhett Lashlee"};
+ var SPORT={'smu-fb-cal-highlights':'football','smu-fb-uva-highlights':'football','smu-msoc-cal-highlights':'mens-soccer','smu-vb-gt-highlights':'volleyball','smu-micd-up-s2e6':'football'};
+
+ /* --- fictional items kept (nothing real fits). Labeled Sample on the card; the dek already says fictional. --- */
+ var KEEP=['boulevard-nights-2','walk-on','film-pressure','film-screen','film-session-redzone'];
+
+ var idmap={};
+ MP.LIB=MP.LIB.map(function(c){var r=SWAP[c.id];if(r){idmap[c.id]=r.id;delete MP.ARTICLES[c.id];return r}
+   if(c.id==='boulevard-nights-1'){delete MP.ARTICLES[c.id];return BLVD}
+   if(RETITLE[c.id]){c.title=RETITLE[c.id];c.sport=SPORT[c.id]}
+   if(c.id==='smu-micd-up-s2e6'){c.t='podcast';c.cat='podcasts';c.label="Mustangs Mic'd Up · Official podcast";c.credit="Mustangs Mic'd Up · SMU Athletics"}
+   if(KEEP.indexOf(c.id)>=0&&!/^Sample/.test(c.label)){c.label='Sample · '+c.label;if(!/fictional/i.test(c.desc))c.desc+=' (Fictional sample.)'}
+   return c});
+ var at=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id==='walk-on'){at=i;break}
+ Array.prototype.splice.apply(MP.LIB,[at,0].concat(ADD.filter(function(c){return c.t==='article'})));
+ var vi=0;for(var q=0;q<MP.LIB.length;q++)if(MP.LIB[q].id==='smu-vb-gt-highlights'){vi=q+1;break}
+ Array.prototype.splice.apply(MP.LIB,[vi,0].concat(ADD.filter(function(c){return c.t!=='article'&&c.t!=='podcast'})));
+ var pods=MP.LIB.filter(function(c){return c.cat==='podcasts'}).concat(ADD.filter(function(c){return c.t==='podcast'}));
+ MP.LIB=MP.LIB.filter(function(c){return c.cat!=='podcasts'});var pi=MP.LIB.length;for(var j=0;j<MP.LIB.length;j++)if(MP.LIB[j].id==='trail-live'){pi=j;break}
+ Array.prototype.splice.apply(MP.LIB,[pi,0].concat(pods));
+ /* point every related list at the real items */
+ Object.keys(MP.ARTICLES).forEach(function(k){var a=MP.ARTICLES[k];if(a&&a.related)a.related=a.related.map(function(r){return idmap[r]||r})});
+
+ /* --- hand-picked All Access per sport page: real first (read by app.js once admin-edits/real-content.patch lands) --- */
+ var X=MP.ACCESS||{},keep=function(slug){return (X[slug]||[]).filter(function(x){return typeof x!=='string'||!idmap[x]&&['moody-opening','building-contender','five-am-laps'].indexOf(x)<0})};
+ MP.ACCESS={
+  'football':['preview-syracuse','smu-weekend-oct24','smu-fb-cal-highlights','recap-cal','feature-raphael','smu-fb-avail-1020','smu-micd-s2e1'],
+  'mens-soccer':['preview-msoc-louisville','smu-weekend-oct24','smu-msoc-cal-highlights','smu-msoc-uca-highlights','smu-msoc-duke-highlights'],
+  'volleyball':['vb-road-sweep','smu-vb-gt-highlights','smu-vb-clemson-highlights','smu-vb-pitt-highlights','smu-micd-s2e3'],
+  'mens-basketball':keep('mens-basketball').concat(['smu-mbb-enfield-tipoff','smu-mbb-tipoff-players','smu-micd-s2e5']),
+  'womens-basketball':keep('womens-basketball').concat(['smu-wbb-tipoff','smu-micd-s2e5']),
+  'womens-soccer':keep('womens-soccer').concat(['smu-wsoc-uva-presser','smu-micd-s2e3']),
+  'swimming-diving':keep('swimming-diving').concat(['smu-swim-classic','smu-micd-ep13']),
+  'golf':keep('golf').concat(['smu-weekend-oct24','smu-micd-ep13']),
+  'tennis':keep('tennis').concat(['smu-micd-ep14']),
+  'track-field':keep('track-field').concat(['smu-micd-ep14']),
+  'rowing':keep('rowing').concat(['smu-rowing-charles','smu-micd-ep7']),
+  'equestrian':keep('equestrian').concat(['smu-micd-ep7'])};
+ /* home hero pick (read by app.js once real-content.patch lands; until then the hero stays on boulevard-nights-1) */
+ MP.FEATURED='smu-fb-cal-highlights';
+})();
