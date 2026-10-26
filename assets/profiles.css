@@ -21,7 +21,7 @@
 .pf-id .display span{display:block;color:color-mix(in srgb,var(--white) 72%,transparent)}
 .pf-sub{margin-top:var(--s3);font-weight:700;color:color-mix(in srgb,var(--white) 85%,transparent)}
 .pf-vit{display:grid;grid-template-columns:repeat(4,minmax(0,auto));justify-content:start;gap:var(--s3) var(--s6);margin:var(--s5) 0;padding-top:var(--s4);border-top:1px solid color-mix(in srgb,var(--white) 20%,transparent)}
-.pf-vit dt{font-size:11px;font-weight:800;letter-spacing:0;color:color-mix(in srgb,var(--white) 65%,transparent)}
+.pf-vit dt{font-size:11px;font-weight:800;letter-spacing:0;color:color-mix(in srgb,var(--white) 80%,var(--blue))}
 .pf-vit dd{font-size:17px;font-weight:800}
 .pf-hero .ctas{display:flex;flex-wrap:wrap;gap:var(--s3)}
 .pf-hero .ctas .btn{min-height:44px}
@@ -76,3 +76,5 @@
 .pf-soc a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;color:var(--white);font-size:15px;font-weight:700;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--white) 45%,transparent);text-underline-offset:3px}
 .pf-soc a:hover{text-decoration-color:var(--white)}
 .pf-soc a:focus-visible{outline:2px solid var(--white);outline-offset:2px;border-radius:var(--r1)}
+/* keyboard-scrollable stat tables (role=region, tabindex=0 from athlete()) */
+.tbl-wrap[role="region"]:focus-visible{outline:3px solid var(--blue);outline-offset:-3px;border-radius:var(--r1)}
