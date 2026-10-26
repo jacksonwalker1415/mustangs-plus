@@ -27,9 +27,9 @@ MP.LIB=[
  {id:'film-screen',t:'article',cat:'film',label:'Film Room',title:'Film Room: why the slot screen sets up everything',desc:'It gains four yards. Then it gains forty. A breakdown of one series against an ACC defense.',dur:'5 min read',lock:true,tone:'blue',big:'SCRN'},
  {id:'film-rotation',t:'article',cat:'film',label:'Film Room',title:'Film Room: volleyball\'s rotation four problem',desc:'The weak rotation every team has, and the serve-receive tweak that fixed ours.',dur:'5 min read',lock:false,tone:'red',big:'R4'},
  {id:'film-session-redzone',t:'video',cat:'film',label:'Film Session',title:'Film Session: red zone, frame by frame',desc:'A former linebacker on the telestrator for 20 minutes of goal-line snaps.',dur:'20:05',lock:true,tone:'black',big:'RZ'},
- {id:'coachs-corner-pod',t:'podcast',cat:'podcasts',label:'Podcast',title:"The Coach's Corner",desc:'Weekly with the head coach (fictional for this concept): scheme, recruiting and whatever went wrong Saturday.',dur:'41 min',lock:true,tone:'blue',big:'CC'},
+ {id:'coachs-corner-pod',t:'podcast',cat:'podcasts',label:'Podcast',title:"The Coach's Corner",desc:'Weekly with the head coach (fictional for this concept): scheme, the week ahead and whatever went wrong Saturday.',dur:'41 min',lock:true,tone:'blue',big:'CC'},
  {id:'pony-up-pod',t:'podcast',cat:'podcasts',label:'Podcast',title:'Pony Up: The Locker Room Pod',desc:'Athletes host. Pregame playlists, roommate disputes and the best taco place on Lower Greenville.',dur:'33 min',lock:true,tone:'red',big:'PONY UP'},
- {id:'paddock-report',t:'podcast',cat:'podcasts',label:'Insider Pod',title:'The Paddock Report',desc:'Sam Reyes and J.T. Barlow on practice notes, visit lists and the portal rumor of the week.',dur:'52 min',lock:true,tone:'black',big:'TPR'},
+ {id:'paddock-report',t:'podcast',cat:'podcasts',label:'Insider Pod',title:'The Paddock Report',desc:'Sam Reyes and J.T. Barlow on practice notes, game previews and the rumor of the week.',dur:'52 min',lock:true,tone:'black',big:'TPR'},
  {id:'trail-live',t:'podcast',cat:'recruiting',label:'Podcast',title:'Recruiting Trail Live',desc:'Call-in show every Tuesday night. Yes, someone always asks about the kicker.',dur:'48 min',lock:false,tone:'white',big:'LIVE'}
 ];
 

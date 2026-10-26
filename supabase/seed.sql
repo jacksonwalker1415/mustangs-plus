@@ -3,7 +3,7 @@
 -- Every board user and post here is FICTIONAL sample content for a class concept.
 begin;
 insert into public.forums (id,name,description,premium,grp,sort) values
-  ('paddock','The Paddock','Members-only premium board. Insider intel, practice reports, recruiting nuggets.',true,'Premium',0),
+  ('paddock','The Paddock','Members-only premium board. Insider intel and practice reports.',true,'Premium',0),
   ('hilltop','The Hilltop','Free board for every Mustang fan. Game talk, takes and hype.',false,'Community',1),
   ('filmroom','Film Room Lounge','Frame-by-frame breakdowns with the SMU+ film staff. Members only.',true,'Premium',2),
   ('recruiting','Recruiting Trail','Visits, offers and commitments across every sport.',true,'Premium',3),
@@ -53,7 +53,7 @@ insert into public.threads (id,forum_id,sport,title,author_handle,pinned,hot,rep
   (21,'recruiting','football','Visit list for the Nov. 6 Virginia Tech game (fictional names, updated)','jt',false,true,244,8800,now()-interval '420 minutes',now()-interval '84 minutes'),
   (22,'boulevard',null,'Mustang Band halftime show was unreal. Who has video?','band',false,false,88,2200,now()-interval '1440 minutes',now()-interval '360 minutes');
 insert into public.posts (id,thread_id,author_handle,body,quote_post_id,created_at) values
-  (1901,19,'staff','Welcome. Be civil, no posting about recruits'' families, no screenshots of premium posts. The Paddock, Recruiting Trail and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.',null,now()-interval '30240 minutes'),
+  (1901,19,'staff','Welcome. Be civil, no posting about players'' families, no screenshots of premium posts. The Paddock and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.',null,now()-interval '30240 minutes'),
   (1902,19,'cox','Appreciate the no-screenshots rule. Keeps the good info coming.',null,now()-interval '20160 minutes'),
   (101,1,'staff','Closed practice, but here''s what I can share. The WR rotation looked different in team periods: the junior slot took most of the first-team reps and the true freshman got real run on the outside. Defensive line was healthy and loud. More in Thursday''s report.',null,now()-interval '38 minutes'),
   (102,1,'pete','Freshman getting first-team reps in late October tells you everything. This is why I pay for the Club tier.',101,now()-interval '34 minutes'),
@@ -140,9 +140,9 @@ insert into public.content_items (id,type,category,label,title,description,durat
   ('film-screen','article','film','Film Room','Film Room: why the slot screen sets up everything','It gains four yards. Then it gains forty. A breakdown of one series against an ACC defense.','5 min read',true,null,17),
   ('film-rotation','article','film','Film Room','Film Room: volleyball''s rotation four problem','The weak rotation every team has, and the serve-receive tweak that fixed ours.','5 min read',false,null,18),
   ('film-session-redzone','video','film','Film Session','Film Session: red zone, frame by frame','A former linebacker on the telestrator for 20 minutes of goal-line snaps.','20:05',true,null,19),
-  ('coachs-corner-pod','podcast','podcasts','Podcast','The Coach''s Corner','Weekly with the head coach (fictional for this concept): scheme, recruiting and whatever went wrong Saturday.','41 min',false,null,20),
+  ('coachs-corner-pod','podcast','podcasts','Podcast','The Coach''s Corner','Weekly with the head coach (fictional for this concept): scheme, the week ahead and whatever went wrong Saturday.','41 min',false,null,20),
   ('pony-up-pod','podcast','podcasts','Podcast','Pony Up: The Locker Room Pod','Athletes host. Pregame playlists, roommate disputes and the best taco place on Lower Greenville.','33 min',false,null,21),
-  ('paddock-report','podcast','podcasts','Insider Pod','The Paddock Report','Sam Reyes and J.T. Barlow on practice notes, visit lists and the portal rumor of the week.','52 min',false,null,22),
+  ('paddock-report','podcast','podcasts','Insider Pod','The Paddock Report','Sam Reyes and J.T. Barlow on practice notes, game previews and the rumor of the week.','52 min',false,null,22),
   ('trail-live','podcast','recruiting','Podcast','Recruiting Trail Live','Call-in show every Tuesday night. Yes, someone always asks about the kicker.','48 min',false,null,23)
 on conflict (id) do update set type=excluded.type,category=excluded.category,label=excluded.label,title=excluded.title,description=excluded.description,duration=excluded.duration,members_only=excluded.members_only,sport=excluded.sport,sort=excluded.sort;
 commit;

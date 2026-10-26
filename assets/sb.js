@@ -34,6 +34,10 @@
     reason:configured?'connecting':'no-config'};
   window.SMU=SMU;
   var sb=null;
+  /* Feature flag (data.js): with recruiting off, the Recruiting Trail forum and its threads are hidden client-side. Nothing is deleted in Supabase. */
+  function recOff(){return !!(MP.FEATURES&&MP.FEATURES.recruiting===false)}
+  function recFilter(){if(!recOff())return;MP.FORUMS=(MP.FORUMS||[]).filter(function(f){return f.id!=='recruiting'});
+    MP.THREADS=(MP.THREADS||[]).filter(function(t){return t.f!=='recruiting'&&(!MP.recOK||MP.recOK(t))})}
 
   /* ---------- users shown on the boards ---------- */
   function ensureUser(id,name,tier,since){MP.USERS=MP.USERS||{};
@@ -114,7 +118,7 @@
     ensureProfileName:function(){var u=SMU.user;if(!u)return;ensureUser('u:'+u.id,u.name,tierCache)},
     loadForums:function(strict){return q('forums',sb.from('forums').select('id,name,description,premium,grp,sort').order('sort')).then(function(rows){
       if(rows&&rows.length)MP.FORUMS=rows.map(function(f){var old=(MP.FORUMS||[]).filter(function(x){return x.id===f.id})[0]||{};
-        return {id:f.id,name:f.name,desc:f.description,prem:f.premium,group:f.grp,threads:old.threads||0,posts:old.posts||0}})}).catch(function(e){if(strict)throw e})},
+        return {id:f.id,name:f.name,desc:recOff()&&/recruit/i.test(f.description||'')&&old.desc?old.desc:f.description,prem:f.premium,group:f.grp,threads:old.threads||0,posts:old.posts||0}});recFilter()}).catch(function(e){if(strict)throw e})},
     signUp:function(o){return q('signup',sb.auth.signUp({email:o.email,password:o.password,options:{data:{display_name:o.name||nameFromEmail(o.email)},emailRedirectTo:CFG.SITE_URL+'account/'}}))
       .then(function(d){return {user:d.user,confirm:!d.session}})},
     signIn:function(o){return q('signin',sb.auth.signInWithPassword({email:o.email,password:o.password})).then(function(d){return {user:d.user}})},
@@ -149,8 +153,8 @@
       var op=has?sb.from('saved_athletes').delete().eq('user_id',SMU.user.id).eq('athlete_id',id):sb.from('saved_athletes').insert({user_id:SMU.user.id,athlete_id:id});
       return q('saved',op).then(function(){if(has)savedCache=savedCache.filter(function(x){return x!==id});else savedCache.unshift(id);emit('saved',savedCache);return savedCache})},
     loadThreads:function(){return q('threads',sb.from('threads').select(THREAD_SEL).order('last_post_at',{ascending:false}).limit(200)).then(function(rows){
-      MP.THREADS=(rows||[]).map(toThread);fillUsers();emit('threads');return MP.THREADS})},
-    loadThread:function(id){return q('thread',sb.from('threads').select(THREAD_SEL).eq('id',id).maybeSingle()).then(function(r){if(!r)return null;var t=toThread(r);
+      MP.THREADS=(rows||[]).map(toThread);recFilter();fillUsers();emit('threads');return MP.THREADS})},
+    loadThread:function(id){return q('thread',sb.from('threads').select(THREAD_SEL).eq('id',id).maybeSingle()).then(function(r){if(!r||(recOff()&&r.forum_id==='recruiting'))return null;var t=toThread(r);
       MP.THREADS=MP.THREADS.filter(function(x){return x.id!==id});MP.THREADS.unshift(t);
       sb.rpc('bump_thread_view',{tid:id}).then(function(){},function(){});return t})},
     createThread:function(o){if(!SMU.user)return Promise.reject(new Error('Sign in to start a thread.'));

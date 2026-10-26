@@ -16,10 +16,13 @@ create table if not exists public.waitlist (
   created_at      timestamptz not null default now()
 );
 
--- Row Level Security: visitors may add themselves; nobody but the project owner (service role / dashboard) can read, change or delete rows.
+-- Row Level Security: visitors may add themselves; nobody but the project owner (service role / dashboard) can read or change rows.
 alter table public.waitlist enable row level security;
-drop policy if exists "anyone can join the waitlist" on public.waitlist;
-create policy "anyone can join the waitlist" on public.waitlist for insert to anon, authenticated with check (consent);
+do $$ begin
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'waitlist' and policyname = 'anyone can join the waitlist') then
+    create policy "anyone can join the waitlist" on public.waitlist for insert to anon, authenticated with check (consent);
+  end if;
+end $$;
 
 revoke all on public.waitlist from anon, authenticated;
 grant insert (email, name, affiliation, consent, consent_version, source) on public.waitlist to anon, authenticated;

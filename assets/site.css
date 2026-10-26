@@ -1213,3 +1213,10 @@ nav.main{min-width:0}
 .policy-body a{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 .policy-body #about{background:var(--blue-10);border:0;border-left:3px solid var(--blue);border-radius:var(--r1);padding:var(--s5)}
 @media(max-width:959px){.policy{grid-template-columns:1fr;gap:var(--s5)}.policy-toc{position:static}.policy-toc ol{display:flex;flex-wrap:wrap;gap:var(--s2);border:0}.policy-toc a{display:inline-flex;align-items:center;min-height:44px;border:1px solid var(--line-2);border-radius:999px;padding:6px 14px;margin:0;font-size:14px}}
+
+/* ---------- roster-card: photo or sport icon in the number tile ---------- */
+.roster-card .rnum{position:relative;overflow:hidden}
+.roster-card .rc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.roster-card .sport-ic{width:60px;height:60px;display:block}
+.roster-card.has-photo .rnum{box-shadow:inset 0 0 0 1px rgba(22,33,79,.08)}
+@media (pointer:coarse){body[data-page=sport] .note a{display:inline-block;padding:13px 0;margin:-13px 0}}

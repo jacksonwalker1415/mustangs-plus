@@ -1,6 +1,12 @@
 /* SMU+ concept data. Board users, posts, prices, fund figures and the sample roster names in this file are fictional.
    Real data lives elsewhere: football schedule in content.js, football profiles in athletes.js, and the other 11 programs' schedules, rosters and coaches in real.js (all sourced from smumustangs.com). */
 window.MP = window.MP || {};
+/* Feature flags. recruiting:false hides every recruiting surface (nav, recruiting/ page, Recruiting Trail board, recruiting/portal cards,
+   sitemap entry) without deleting any code or data. Set it to true to bring recruiting back. build_pages.py reads this line too. */
+MP.FEATURES = MP.FEATURES || {};
+/* Contact for data-removal and privacy requests. ONE constant: put the address in email when it exists; until then the site shows the placeholder text. */
+MP.CONTACT = MP.CONTACT || {email:'', pending:'a dedicated SMU+ contact email will be posted here before launch'};
+if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
 
 MP.SPORTS = [
   {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Darren Ellsworth',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
@@ -40,7 +46,7 @@ MP.CLASSES = ['Fr.','R-Fr.','So.','Jr.','Sr.','Gr.'];
 
 /* Message board (fictional users and posts) */
 MP.FORUMS = [
-  {id:'paddock',name:'The Paddock',desc:'Members-only premium board. Insider intel, practice reports, recruiting nuggets.',prem:true,threads:1284,posts:48211},
+  {id:'paddock',name:'The Paddock',desc:'Members-only premium board. Insider intel and practice reports.',prem:true,threads:1284,posts:48211},
   {id:'hilltop',name:'The Hilltop',desc:'Free board for every Mustang fan. Game talk, takes and hype.',prem:false,threads:3907,posts:122640},
   {id:'recruiting',name:'Recruiting Trail',desc:'Visits, offers and commitments across every sport.',prem:true,threads:612,posts:20975},
   {id:'boulevard',name:'The Boulevard',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
@@ -165,7 +171,7 @@ T(2).posts=[
  ['hank','Bold call: if they run it like they did against Cal, this one is decided by halftime.'],
  ['ray','Hank stealing my take. I\'m sticking with 31-24.',2]];
 MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how premium boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
- posts:[['staff','Welcome. Be civil, no posting about recruits\' families, no screenshots of premium posts. The Paddock, Recruiting Trail and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
+ posts:[['staff','Welcome. Be civil, no posting about players\' families, no screenshots of premium posts. The Paddock and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
 MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, all 11 snaps from Saturday',by:'dre',ago:'4h',replies:167,views:'5.1k',
  posts:[['dre','Cut up every snap of the A-gap sim pressure from Saturday. Watch the boundary linebacker: he shows blitz on all 11, comes on three. QB sees six, gets four.'],
   ['ray','The free safety not moving until the snap is so disciplined. You can see the QB staring at him.',0],
