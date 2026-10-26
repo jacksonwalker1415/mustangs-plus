@@ -1421,11 +1421,10 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 .sec{padding:var(--sec-y) 0}
 .sec.tight{padding-top:0}
 .sec.alt{background:#f2f4fa}
-.page-hero:not(.has-photo){position:relative;background:var(--hair),linear-gradient(180deg,var(--b-800) 0%,var(--b-900) 100%);box-shadow:inset 0 -3px 0 var(--red)}
+.page-hero:not(.has-photo){position:relative;background:var(--hair),linear-gradient(180deg,var(--b-800) 0%,var(--b-900) 100%)}
+.page-hero,.hero.has-photo{border-bottom:3px solid var(--red)}
 .page-hero{padding:clamp(48px,6vw,80px) 0 clamp(48px,6vw,88px)}
 .page-hero.compact{padding:var(--s7) 0}
-.page-hero.has-photo{box-shadow:inset 0 -3px 0 var(--red)}
-.hero.has-photo{box-shadow:inset 0 -3px 0 var(--red)}
 .page-hero .lede{margin-top:var(--s4)}
 .sp-ic{border-radius:var(--r-card);background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28)}
 .statbar{border-radius:var(--r-card)}
@@ -1441,3 +1440,26 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 #acctMain .page-hero{background-color:var(--b-900)}
 .acct-card{box-shadow:var(--sh-2)}
 @media(max-width:639px){.page-hero{padding:var(--s6) 0 var(--s7)}}
+
+/* ---- 6.10 Sport tiles, roster and profile cards ---- */
+.sport-grid{gap:var(--s2)}
+.sport-tile{border:0;border-radius:var(--r-card);background:#fff;box-shadow:var(--sh-1),inset 0 0 0 1px var(--card-line);padding:var(--s4) var(--s4) var(--s4) var(--s3);transition:box-shadow var(--t-med) var(--ease),background-color var(--t-fast)}
+.sport-tile:hover{background:#fff;box-shadow:var(--sh-2),inset 3px 0 0 var(--red),inset 0 0 0 1px var(--card-line)}
+.sport-tile svg{width:36px;height:36px;padding:6px;background:none;stroke:var(--blue);border-radius:0}
+.sport-tile b{font-size:var(--fs-16)}
+.sport-tile small{font-size:var(--fs-13);color:var(--ink-3)}
+.sport-tile:hover b{color:var(--blue)}
+@media(max-width:639px){
+  .sport-grid{grid-template-columns:minmax(0,1fr);gap:0;border-radius:var(--r-card);overflow:hidden;box-shadow:var(--sh-1),inset 0 0 0 1px var(--card-line);background:#fff}
+  .sport-tile{border-radius:0;box-shadow:none;border-top:1px solid var(--line);min-height:56px;padding:var(--s2) var(--s4) var(--s2) var(--s2)}
+  .sport-tile:first-child{border-top:0}
+  .sport-tile span{flex-direction:row;align-items:baseline;justify-content:space-between;gap:var(--s3);flex:1}
+  .sport-tile small{text-align:right}
+}
+.rnum,.pc-pic,.ap-photo{border-radius:var(--r-media)}
+.pcard .pc-pic{border-radius:0}
+.pc-b small,.rc-b .rp{letter-spacing:.06em}
+.pc-b b{font-size:var(--fs-18);letter-spacing:-.005em}
+.rail-ath .pcard{box-shadow:var(--sh-1)}
+.fi,.s-ic{border-radius:var(--r-ctl)}
+.av{box-shadow:0 0 0 2px #fff}
