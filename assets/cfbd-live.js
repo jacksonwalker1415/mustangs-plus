@@ -11,6 +11,7 @@
   FB.forEach(function(g){BY[g.id]=g});
   if(!FB.length)return;
   var CREDIT='<p class="cf-credit">Data: <a href="https://collegefootballdata.com" target="_blank" rel="noopener">CollegeFootballData.com</a></p>';
+  function calm(t){return String(t||'').replace(/\b(\d(?:ST|ND|RD|TH)|[A-Z]{4,})\b/g,function(w){return w==='NCAA'?w:w.toLowerCase()})}
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function get(path){return fetch(URL_+'/rest/v1/'+path,{headers:{apikey:KEY,Authorization:'Bearer '+KEY},cache:'no-store'})
     .then(function(r){if(!r.ok)throw r.status;return r.json()})}
@@ -57,7 +58,7 @@
       P.map(function(p){var tm=p.offense==='SMU'?'SMU':(p.offense===home||p.offense===r.away_team)?g.opp:p.offense,
           sc=typeof p.home_score==='number'?(smuHome(r)?p.home_score+'-'+p.away_score:p.away_score+'-'+p.home_score):'';
         return '<li'+(p.scoring?' class="sc"':'')+'><span><b>'+esc(per(p.period))+(p.clock?' '+esc(p.clock):'')+'</b><small>'+esc(tm||'')+(sc?' \u00b7 '+sc:'')+'</small></span>'+
-          '<span>'+(p.scoring?'<b>':'')+esc(p.play_text)+(p.scoring?'</b>':'')+'</span></li>'}).join('')+'</ol></details>'}
+          '<span>'+(p.scoring?'<b>':'')+esc(calm(p.play_text))+(p.scoring?'</b>':'')+'</span></li>'}).join('')+'</ol></details>'}
   function gamePage(){var main=document.getElementById('gamesMain');if(!main)return null;
     var id=new URLSearchParams(location.search).get('id'),g=id&&BY[id];if(!g)return null;
     return function(){var r=rowFor(g),card=main.querySelector('.gm-match');if(!r||!card)return;
