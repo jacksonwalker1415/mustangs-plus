@@ -2,7 +2,7 @@
    written for an SMU Cox class-project concept. Real places (Ford Stadium, Moody, the Boulevard) are used for setting only. */
 window.MP = window.MP || {};
 (function(){var MP=window.MP;
-MP.CATS=[['all','All'],['watch','Watch'],['insider','Insider'],['recruiting','Recruiting'],['portal','Portal'],['film','Film Room'],['podcasts','Podcasts']];
+MP.CATS=[['all','All'],['watch','Watch'],['insider','Insider'],['recruiting','Recruiting'],['portal','Portal'],['podcasts','Podcasts']];
 MP.STAFF={sam:{n:'Sam Reyes',role:'SMU+ Insider'},lena:{n:'Lena Ortiz',role:'Features'},jt:{n:'J.T. Barlow',role:'Recruiting'},dre:{n:'Dre Coleman',role:'Film Room'}};
 
 /* tone = poster color, big = poster type */
@@ -25,7 +25,7 @@ MP.LIB=[
  {id:'portal-primer',t:'article',cat:'portal',label:'Portal',title:'Portal season, explained without the jargon',desc:'The portal is just a database. Here\'s what happens between a name going in and a player arriving for spring ball.',dur:'6 min read',lock:false,tone:'white',big:'101'},
  {id:'film-pressure',t:'article',cat:'film',label:'Film Room',title:'Film Room: the third-down pressure that keeps working',desc:'Two linebackers show blitz, one drops, and the quarterback throws into a safety who never moved.',dur:'6 min read',lock:true,tone:'black',big:'3RD'},
  {id:'film-screen',t:'article',cat:'film',label:'Film Room',title:'Film Room: why the slot screen sets up everything',desc:'Four yards, then six, then 41. A fictional breakdown of how one cheap play gets a defense out of position.',dur:'5 min read',lock:true,tone:'blue',big:'SCRN'},
- {id:'film-rotation',t:'article',cat:'film',label:'Film Room',title:'Film Room: volleyball\'s rotation four problem',desc:'The weak rotation every team has, and the serve-receive tweak that fixes it. A fictional breakdown.',dur:'5 min read',lock:false,tone:'red',big:'R4'},
+ {id:'film-rotation',t:'article',cat:'watch',label:'Film Room',title:'Film Room: volleyball\'s rotation four problem',desc:'The weak rotation every team has, and the serve-receive tweak that fixes it. A fictional breakdown.',dur:'5 min read',lock:false,tone:'red',big:'R4'},
  {id:'film-session-redzone',t:'video',cat:'film',label:'Film Session',title:'Film Session: red zone, frame by frame',desc:'A former linebacker on the telestrator for 20 minutes of goal-line snaps.',dur:'20:05',lock:true,tone:'black',big:'RZ'},
  {id:'coachs-corner-pod',t:'podcast',cat:'podcasts',label:'Podcast',title:'The Sideline Hour',desc:'Weekly with the SMU+ football desk: scheme, the week ahead and whatever went wrong Saturday. A concept show with fictional hosts.',dur:'41 min',lock:true,tone:'blue',big:'CC'},
  {id:'pony-up-pod',t:'podcast',cat:'podcasts',label:'Podcast',title:'Pony Up: The Locker Room Pod',desc:'Athletes host. Pregame playlists, roommate disputes and the best taco place on Lower Greenville.',dur:'33 min',lock:true,tone:'red',big:'PONY UP'},
@@ -819,7 +819,7 @@ MP.PHOTOS={
   'moody-opening':V('smu-mbb-enfield-tipoff','G2j2BzUhIIQ','mens-basketball','Men\'s Basketball · ACC Tipoff','SMU Men\'s Basketball: Andy Enfield at ACC Tipoff','The head coach, live at the ACC\'s preseason media event.','4:15',true,'TIPOFF'),
   'building-contender':V('smu-wbb-tipoff','WqyK1ihLuS0','womens-basketball','Women\'s Basketball · ACC Tipoff','SMU Women\'s Basketball: Zahra King and Theresa Hagans Jr. at ACC Tipoff','Two Mustangs, live at the ACC\'s preseason media event.','2:06',false,'TIPOFF',{cat:'insider'}),
   'five-am-laps':SWIM,
-  'film-rotation':V('smu-vb-pitt-highlights','UsFpeU8zQc8','volleyball','Film Room · Official highlights','SMU Volleyball: Highlights at Pittsburgh','Oct. 7: SMU wins 3-1 at No. 2 Pitt and ends the nation\'s longest home winning streak.','6:52',false,'3-1',{cat:'film'}),
+  'film-rotation':V('smu-vb-pitt-highlights','UsFpeU8zQc8','volleyball','Volleyball · Official highlights','SMU Volleyball: Highlights at Pittsburgh','Oct. 7: SMU wins 3-1 at No. 2 Pitt and ends the nation\'s longest home winning streak.','6:52',false,'3-1'),
   'coachs-corner-pod':MIC('smu-micd-s2e1','ci3EFPGK9ug','football',"Mustangs Mic'd Up: S2E1 with Kevin Jennings, Yamir Knight and Rhett Lashlee","SMU's official podcast-style show, hosted by Rich Phillips and Breanna Sorensen. Season 2 opener.",'55:09',true),
   'pony-up-pod':MIC('smu-micd-s2e4','OeuSowGSDKc','football',"Mustangs Mic'd Up: S2E4 with Josh Bates, Malcom Alcorn-Crowder and Rhett Lashlee","SMU's official podcast-style show. Two Mustangs and the head coach.",'44:17',true),
   'paddock-report':MIC('smu-micd-s2e2','6HGaxWi0pgc','football',"Mustangs Mic'd Up: S2E2 with Yannick Smith, Aakil Washington and Rhett Lashlee","SMU's official podcast-style show. Two Mustangs and the head coach.",'43:35',true)
