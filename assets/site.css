@@ -2233,6 +2233,7 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 .rb-tv dt{font-weight:700;color:var(--ink-2)}
 .rb-tv dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
 .rb-tv a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:899px){.rb-tv a{display:inline-flex;align-items:center;min-height:44px}}
 .rb-wrap .xside{top:calc(50% - 20px)}
 
 /* Watch page podcast rows */
