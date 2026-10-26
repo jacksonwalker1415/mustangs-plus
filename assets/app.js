@@ -1654,8 +1654,7 @@
      Live: email-link sign-up on an @smu.edu address; the plan starts only after the email is confirmed and
      claim_student_membership() (supabase/RUN_ME_16_students.sql) accepts it. Hidden on the live site while MP.FEATURES.students is false. */
   /* Free plans: a Fan account for anyone, and the Student plan for @smu.edu emails. Both read everything and post on the boards. */
-  function fanBand(where){return '<div class="st-band fan-band st-'+where+'"><div class="st-b"><h4>Not a student? Join free.</h4>'+
-      '<p>Create a free Fan account with any email. Read everything and post on the boards.</p></div>'+
+  function fanBand(where){return '<div class="st-band fan-band st-'+where+'"><div class="st-b"><h4>Create your free account</h4></div>'+
       '<button type="button" class="btn btn-navy st-go" data-auth="up">Join free as a fan</button></div>'}
   function studentBand(where){if(!stOn())return '';
     return '<div class="st-band st-'+where+'"><div class="st-b"><h4>SMU student? Join free.</h4>'+
