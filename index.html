@@ -117,8 +117,9 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <section class="sec alt" id="membership" aria-labelledby="tiers-h">
   <div class="wrap">
     <div class="sec-hd"><div><h2 class="sec-t" id="tiers-h">Pick your seat.</h2></div></div>
-    <p class="lede">Fans and SMU students can join free today. Paid plans are coming soon.</p>
-    <div class="tiers">
+    <p class="lede">Fans and SMU students can join free today.</p>
+    <!-- Paid plan cards hidden for now (Jackson, Oct 26). Kept as the single source of tier copy; app.js SHOW_PAID_PLANS=true unhides them. -->
+    <div class="tiers" data-paid-plans hidden>
       <article class="tier soon">
         <span class="tag tag-soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>Coming soon</span>
         <h3>Mustang</h3><p class="for">For every fan, everywhere</p>
@@ -175,19 +176,8 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
   </div></div>
 </section>
 
-<section class="sec" id="faq" aria-labelledby="faq-h">
-  <div class="wrap faq-grid">
-    <div class="sec-hd"><div><h2 class="sec-t" id="faq-h">Good questions.</h2></div></div>
-    <div class="faq">
-      <details open><summary>What is SMU+?<span class="pm"></span></summary><div class="ans"><p>SMU+ is an unofficial student concept for a fan membership built around SMU athletics. It is not affiliated with or endorsed by SMU. In the concept, SMU+ would add original series, long-form stories, podcasts and game-week access from every Mustang sport, all in one place (coming soon; today the library carries official SMU Athletics video and sourced stories, free to everyone).</p></div></details>
-      <details><summary>How would NIL work?<span class="pm"></span></summary><div class="ans"><p>In the proposed model, a share of membership revenue would support SMU Athletics’ official NIL and revenue-sharing programs, with exact terms still to be decided and athlete deals disclosed through the NIL Go clearinghouse.</p><p>SMU Athletics would decide how that money is used under NCAA, state and university rules. SMU+ would not choose or pay individual athletes or teams.</p></div></details>
-      <details><summary>Can I cancel anytime?<span class="pm"></span></summary><div class="ans"><p>Yes. Memberships are month-to-month with no contract. Cancel in two taps and keep access through the end of your billing period.</p></div></details>
-      <details><summary>Is any content free?<span class="pm"></span></summary><div class="ans"><p>Yes. Everything on the site is free to read and watch. Making an account is free too.</p></div></details>
-      <details><summary>What are the message boards?<span class="pm"></span></summary><div class="ans"><p>The Mustang Board is a community forum like other team sites have. Anyone can read every board. Sign in to post. The Paddock has practice reports and insider posts from SMU+ staff.</p></div></details>
-      <details><summary>Who runs it?<span class="pm"></span></summary><div class="ans"><p>Today SMU+ is an unofficial student concept project for an SMU Cox class, run by a student. It is not affiliated with or endorsed by SMU, SMU Athletics or Learfield, and no payments are taken. The concept imagines a school-branded "plus" platform like those at other schools, which would need SMU’s official approval to exist. <a href="privacy/#about">About this project</a></p></div></details>
-    </div>
-    
-  </div>
+<!-- Paid plans hidden for now (Jackson, Oct 26). app.js SHOW_PAID_PLANS=true unhides [data-paid-plans]. -->
+<section class="sec" id="plans-band" data-paid-plans hidden>
   <div class="wrap"><div class="band"><div><h2 class="sec-t">Every Mustang. One membership.</h2><p>Plans from $9.99/mo.</p></div><a href="#membership" class="btn btn-white">See plans</a></div></div>
 </section>
 
