@@ -1663,7 +1663,7 @@
     $('.auth-f',a).hidden=up&&!c.email;
     $('.auth-go',a).textContent=up?'Create free account':'Sign in';$('.auth-m',a).textContent='';
     if(a.classList.contains('auth-inl')){$$('[data-auth-tab]',a).forEach(function(b){b.tabIndex=b.dataset.authTab===m?0:-1});var pn=$('#auPanel',a);if(pn)pn.setAttribute('aria-labelledby','auTab-'+m);
-      var h=$('#auPw-h',a),fn=$('.auth-forgot-note',a);if(h){h.hidden=!up;if(up)pw.setAttribute('aria-describedby','auPw-h');else pw.removeAttribute('aria-describedby')}if(fn)fn.hidden=up;['auEmail','auPw'].forEach(function(id){fieldErr(a,id,'')})}}
+      var h=$('#auPw-h',a),fn=$('.auth-forgot-note',a);if(h){h.hidden=!up;if(up)pw.setAttribute('aria-describedby','auPw-h');else pw.removeAttribute('aria-describedby')}if(fn)fn.hidden=up;$$('.fld-err',a).forEach(function(e){fieldErr(a,e.id.replace(/-err$/,''),'')})}}
   /* Account page form: one message under each field, tied to it with aria-invalid and aria-describedby */
   function fieldErr(root,id,msg){var i=$('#'+id,root),e=$('#'+id+'-err',root);if(!i||!e)return;e.textContent=msg||'';e.hidden=!msg;
     if(msg)i.setAttribute('aria-invalid','true');else i.removeAttribute('aria-invalid');
