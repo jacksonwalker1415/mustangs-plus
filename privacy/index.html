@@ -28,44 +28,41 @@
 <link rel="manifest" href="../manifest.webmanifest">
 <!--/meta-->
 <!--boot--><style>#boot{display:none}html.booting #boot,html.booted #boot{display:grid}
-#boot{position:fixed;inset:0;z-index:10000;place-items:center;background:#354CA1 radial-gradient(70% 55% at 50% 42%,#3d56b0 0,#354CA1 55%,#2b3f8c 100%)}
-html.booting #boot{animation:bootSafe .3s ease 2.5s forwards}
-html.booted #boot{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease,visibility 0s linear .45s}
+#boot{position:fixed;inset:0;z-index:10000;place-items:center;background:#354CA1}
+html.booting #boot{animation:bootSafe .25s ease 1.2s forwards}
+html.booted #boot{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s}
 @keyframes bootSafe{to{opacity:0;visibility:hidden;pointer-events:none}}
-.boot-in{display:grid;justify-items:center;gap:26px}
-#boot img{display:block;width:clamp(200px,58vw,280px);height:auto;animation:bootLogo .5s cubic-bezier(.2,.7,.2,1) both}
-html.booted #boot img{transform:scale(1.03);transition:transform .45s ease}
-@keyframes bootLogo{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(6px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
-.boot-bar{display:block;width:min(160px,40vw);height:2px;border-radius:2px;background:rgba(255,255,255,.18);overflow:hidden}
-.boot-bar i{display:block;height:100%;background:#CC0035;transform-origin:left;animation:bootBar .8s cubic-bezier(.3,.6,.3,1) .05s both}
-html.booted .boot-bar i{animation:none;transform:none}
-@keyframes bootBar{from{transform:scaleX(0)}to{transform:scaleX(.9)}}
+.boot-in{display:grid;justify-items:center;gap:32px}
+#boot img{display:block;width:clamp(180px,52vw,240px);height:auto}
+.boot-ring{display:block;width:36px;height:36px;border-radius:50%;box-sizing:border-box;border:3px solid rgba(255,255,255,.22);border-top-color:#fff;border-right-color:#CC0035;animation:bootSpin .75s linear infinite}
+@keyframes bootSpin{to{transform:rotate(360deg)}}
 .boot-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (prefers-reduced-motion:reduce){#boot img,.boot-bar i{animation:none}.boot-bar{display:none}html.booted #boot{transition:none}html.booted #boot img{transform:none}}
+@media (prefers-reduced-motion:reduce){.boot-ring{animation:none;border-color:rgba(255,255,255,.22);border-top-color:#fff}html.booted #boot{transition:none}}
 </style>
 <script>(function(d,w){var h=d.documentElement;if(w.__SMU_NOBOOT)return;
-var rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches,MIN=rm?600:750,CAP=2500,t0=0,done=1,cap,fade;
+var rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches,MIN=0,CAP=1200,t0=0,done=1,cap,fade;
 function start(){done=0;t0=Date.now();clearTimeout(fade);h.classList.remove('booted');h.classList.add('booting');h.setAttribute('aria-busy','true');
 var b=d.getElementById('boot');if(b)b.removeAttribute('aria-hidden');clearTimeout(cap);cap=setTimeout(end,CAP)}
 function end(){if(done)return;done=1;clearTimeout(cap);h.classList.remove('booting');h.classList.add('booted');h.removeAttribute('aria-busy');
-var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=setTimeout(function(){if(done)h.classList.remove('booted')},rm?30:500)}
+var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=setTimeout(function(){if(done)h.classList.remove('booted')},rm?30:320)}
 function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
 start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
 w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../assets/site.css?v=202610261245">
+<link rel="stylesheet" href="../assets/site.css?v=202610261300">
 </head>
 <body data-page="privacy" data-root="../">
-<!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="../assets/brand/smu-plus-logo-lg.webp"><img src="../assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-bar" aria-hidden="true"><i></i></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
+<!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="../assets/brand/smu-plus-logo-lg.webp"><img src="../assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-ring" aria-hidden="true"></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
 <div class="disclaimer" role="note"><b>Concept built for an SMU Cox MBA class project.</b> Not affiliated with or endorsed by SMU Athletics or Learfield. No payments are taken. <a href="../privacy/#about">About this project</a></div>
 <div id="site-header"></div>
 <main id="top"><section class="page-hero has-photo"><div class="bgph"><picture><source media="(min-width:700px)" srcset="../assets/photos/rowing-eight-blue-blades-wide.webp"><img class="ph" src="../assets/photos/rowing-eight-blue-blades-900.webp" alt="An SMU rowing crew with blue Mustang blades pulls through calm water" style="object-position:65% 40%" fetchpriority="high" decoding="async"></picture></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><p class="eyebrow">Privacy notice</p><h1 class="display">Your data on SMU+</h1>
 <p class="lede on-dark">A plain-language guide to what this student project collects, why, where it’s kept and how to have it deleted. Last updated October 26, 2026.</p></div></section>
 <section class="sec"><div class="wrap policy">
-<nav class="policy-toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol><li><a href="#about">About this project</a></li><li><a href="#collect">What we collect</a></li><li><a href="#why">Why we collect it</a></li><li><a href="#where">Where it’s stored</a></li><li><a href="#share">Selling and sharing</a></li><li><a href="#delete">Deleting your data</a></li><li><a href="#browser">Your browser</a></li><li><a href="#contact">Contact</a></li></ol></nav>
+<nav class="policy-toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol><li><a href="#about">About this project</a></li><li><a href="#sources">Sources</a></li><li><a href="#collect">What we collect</a></li><li><a href="#why">Why we collect it</a></li><li><a href="#where">Where it’s stored</a></li><li><a href="#share">Selling and sharing</a></li><li><a href="#delete">Deleting your data</a></li><li><a href="#browser">Your browser</a></li><li><a href="#contact">Contact</a></li></ol></nav>
 <div class="policy-body">
 <section id="about"><h2>About this project</h2>
 <p>SMU+ is an <strong>unofficial student concept project</strong> made by Jackson Walker, an MBA student at the SMU Cox School of Business, for a class. It is <strong>not affiliated with or endorsed by SMU, SMU Athletics, Learfield or any athlete</strong>.</p>
 <p><strong>No payments are taken.</strong> Membership plans and checkout on this site are a demo. The site never asks for a card, and choosing a plan only changes a setting on a demo account.</p></section>
+<section id="sources"><h2>Sources</h2><p>Real schedules, results, rosters and coaches come from SMU Athletics. Player profiles list their own sources on each page, and sourced stories list theirs at the end. Official X posts and profile images come from each account’s own page.</p><ul class="src-list" id="srcList"></ul></section>
 <section id="collect"><h2>What we collect</h2>
 <ul><li><strong>Waitlist:</strong> your email address, your name, SMU affiliation and the plan you’d be interested in if you choose to give them, the date you joined, that you agreed to this notice, and how you found the site (the campaign tag in the link you used, such as a QR code, and the name of the website that linked you, if any).</li>
 <li><strong>Page visits:</strong> a simple visit count. For each page load we save the page address, the campaign tag and linking website (if any), whether you’re on a phone or a computer, and a random code that lasts only until you close the tab, so visits in one session can be counted once. No cookies, no IP address, no browser details, nothing that identifies you.</li>
@@ -87,13 +84,13 @@ w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(d
 <p>Questions about this notice or this project: <span data-contact>a dedicated SMU+ contact email will be posted here before launch</span>. SMU+ is not intended for children under 13.</p></section>
 </div></div></section></main>
 <div id="site-footer"></div>
-<script src="../assets/config.js?v=202610261245"></script>
-<script src="../assets/data.js?v=202610261245"></script>
-<script src="../assets/content.js?v=202610261245"></script>
-<script src="../assets/real.js?v=202610261245"></script>
-<script src="../assets/athletes.js?v=202610261245"></script>
-<script src="../assets/sport-icons.js?v=202610261245"></script>
-<script src="../assets/sb.js?v=202610261245"></script>
-<script src="../assets/app.js?v=202610261245"></script>
+<script src="../assets/config.js?v=202610261300"></script>
+<script src="../assets/data.js?v=202610261300"></script>
+<script src="../assets/content.js?v=202610261300"></script>
+<script src="../assets/real.js?v=202610261300"></script>
+<script src="../assets/athletes.js?v=202610261300"></script>
+<script src="../assets/sport-icons.js?v=202610261300"></script>
+<script src="../assets/sb.js?v=202610261300"></script>
+<script src="../assets/app.js?v=202610261300"></script>
 </body>
 </html>
