@@ -2301,3 +2301,5 @@ header.site.hs-open .hs-btn{background:rgba(255,255,255,.18)}
 .fx-wait{padding:var(--s6) 0;color:var(--ink-2)}
 .gm-links .gm-thread{margin-right:var(--s2)}
 @media(max-width:639px){.gt-box{padding:var(--s3) var(--s4)}.gt-t{font-size:18px}.gt-st{margin-left:0}}
+.rb-stats{display:flex;align-items:center;gap:4px;min-height:44px;padding:0 var(--s4);border-top:1px solid var(--line);font-size:14px;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.rb-stats:hover{color:var(--b-700)}

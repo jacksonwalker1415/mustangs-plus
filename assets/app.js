@@ -560,6 +560,8 @@
   function gameFor(slug,d){for(var i=0;i<GAMES.length;i++)if(GAMES[i].sport===slug&&GAMES[i].d===d)return GAMES[i];return null}
   function gameUrl(g){return ROOT+'games/?id='+g.id}
   /* Game threads: boards/#game=<id> finds the game's thread (created on first visit, supabase RUN_ME_24) and opens it */
+  /* SMU's official StatBroadcast box score (id from the SMU Athletics schedule card). Link out only: nothing from it is shown here. */
+  function sbUrl(id){return /^\d{3,9}$/.test(String(id||''))?'https://statbroadcast.com/broadcast/?id='+id:null}
   function gameThreadUrl(g){return ROOT+'boards/#game='+g.id}
   /* Pinned score box on a game thread: matchup, time and TV before the game; the official final from the schedule data
      after it. No live scores are shown here: during the game it points to the official Game Center. */
@@ -569,9 +571,9 @@
     return '<section class="gt-box gt-'+state+'" aria-label="Score box: SMU '+gmVs(g)+' '+esc(g.opp)+'">'+
       '<div class="gt-hd"><p class="gt-sp">'+esc(sp?sp.name:'')+(g.ex?' · Exhibition':'')+'</p><p class="gt-t">SMU '+gmVs(g)+' '+esc(g.opp)+'</p>'+
         '<p class="gt-st">'+(state==='final'?'Final':state==='live'?'Under way':'Upcoming')+'</p></div>'+
-      (state==='final'&&gmScore(g)?gmScore(g)+'<p class="gt-links">'+gmOut(L.box,'Box score')+gmOut(L.recap,'Recap')+gmOut(L.gamecenter,'Game Center')+'<a class="gm-out" href="'+gameUrl(g)+'">Game page</a></p>':
+      (state==='final'&&gmScore(g)?gmScore(g)+'<p class="gt-links">'+gmOut(L.box,'Box score')+gmOut(L.recap,'Recap')+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.gamecenter,'Game Center')+'<a class="gm-out" href="'+gameUrl(g)+'">Game page</a></p>':
         '<dl class="gt-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact('TV',g.tv)+gmFact('Radio',g.radio)+(where?gmFact('Where',where):'')+'</dl>'+gc+
-        '<p class="gt-links">'+gmOut(L.watch,'Watch')+gmOut(L.listen,'Listen')+'<a class="gm-out" href="'+gameUrl(g)+'">Game page</a></p>')+
+        '<p class="gt-links">'+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.watch,'Watch')+gmOut(L.listen,'Listen')+'<a class="gm-out" href="'+gameUrl(g)+'">Game page</a></p>')+
       '</section>'}
   function gmDate(g,long){var d=new Date(g.d+'T12:00:00Z'),y=d.getUTCFullYear();return (long?g.dow+'., ':'')+MON[d.getUTCMonth()]+' '+d.getUTCDate()+(long||y!==2026?', '+y:'')}
   function gmVs(g){return g.ha==='away'?'at':'vs.'}
@@ -709,7 +711,8 @@
       '<span class="rb-m">'+vs+esc(e.name)+(e.ex?' (exh.)':'')+'</span><span class="rb-ha rb-'+e.ha+'">'+ha+'</span>'+
       '<span class="rb-w"><b>'+when+'</b>'+(tm?'<span>'+esc(tm)+'</span>':'')+'</span>'+(e.where?'<span class="rb-pl">'+esc(e.where)+'</span>':'')+
       '<span class="rb-go">'+(g?'Game page':'Schedule')+'<span aria-hidden="true"> \u2192</span></span></a>'+
-      '<dl class="rb-tv">'+row('TV',e.tv||'TBA')+row('Stream',e.watch?'Watch':'TBA',e.watch)+row('Radio',e.radio||(e.listen?'Listen':'TBA'),e.listen)+'</dl></li>'}
+      '<dl class="rb-tv">'+row('TV',e.tv||'TBA')+row('Stream',e.watch?'Watch':'TBA',e.watch)+row('Radio',e.radio||(e.listen?'Listen':'TBA'),e.listen)+'</dl>'+
+      (sbUrl(e.sb)?'<a class="rb-stats" href="'+sbUrl(e.sb)+'" target="_blank" rel="noopener" aria-label="Live stats for SMU '+esc(vs+e.name)+' (official StatBroadcast box score, opens in a new tab)">Live stats</a>':'')+'</li>'}
   function ribbon(){var L=ribbonEvents();if(!L.length||$('#ribbon'))return;var gd=$('.gameday'),id='rb-track';if(!gd)return;
     gd.insertAdjacentHTML('beforebegin','<section class="sec tight ribbon" id="ribbon" aria-labelledby="rb-h"><div class="wrap">'+
       '<div class="rb-hd"><h2 id="rb-h">Upcoming games</h2><p>Every SMU sport, from the official <a href="https://smumustangs.com/calendar" target="_blank" rel="noopener">SMU Athletics schedules</a>. Times are Central.</p></div>'+
@@ -888,11 +891,11 @@
         '<article class="gm-card gm-match"><h2 class="gm-h">'+(g.res?'Result':'Matchup')+'</h2>'+(g.res?gmScore(g):'')+
           '<dl class="gm-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact(g.venue?'Venue':'Where',where)+gmFact('TV / stream',g.tv)+gmFact('Radio',g.radio)+'</dl>'+
           (!g.res&&g.ko?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+
-          '<p class="gm-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(L.gamecenter,'Game Center')+'</p></article>'+
+          '<p class="gm-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.gamecenter,'Game Center')+'</p></article>'+
         '<article class="gm-card gm-how" id="how"><h2 class="gm-h">How to watch and listen</h2>'+
           '<div class="gm-how-i"><h3>Watch</h3><p>'+(g.tv?esc(g.tv):'TBA')+'</p>'+gmOut(L.watch,'Watch link from SMU Athletics')+'</div>'+
           '<div class="gm-how-i"><h3>Listen</h3><p>'+(g.radio?esc(g.radio):'TBA')+'</p>'+gmOut(L.listen,'Listen live')+'</div>'+
-          (L.stats?'<div class="gm-how-i"><h3>Follow</h3><p>Live stats during the game.</p>'+gmOut(L.stats,'Live stats')+'</div>':'')+'</article>'+
+          (sbUrl(g.sb)?'<div class="gm-how-i"><h3>Follow</h3><p>Live stats during the game from SMU\u2019s official StatBroadcast box score.</p>'+gmOut(sbUrl(g.sb),'Live stats')+'</div>':'')+'</article>'+
       '</div></div></section>'+
       '<section class="sec tight outlets gm-vids" id="videos" hidden><div class="wrap" id="gmVideos"></div></section>'+
       (function(){var A=gmArticles(g);return A.length?'<section class="sec" id="stories"><div class="wrap">'+secHead('Related articles')+'<div class="cgrid">'+A.map(cardHTML).join('')+'</div></div></section>':''})()+

@@ -108,6 +108,9 @@ def parse(slug, path, start, team):
                 links["listen"] = absu(h)
             elif "/game-center/" in h and "gc" not in links:
                 links["gc"] = absu(h)
+            m = re.search(r"statbroadcast\.com/broadcast/\?id=(\d+)", html.unescape(h))
+            if m and "sb" not in links:
+                links["sb"] = int(m.group(1))   # SMU's official StatBroadcast box score (link out only)
         where = ", ".join(x for x in (fac, loc) if x)
         home = "Dallas" in loc or "Dallas" in fac
         ha = "home" if home else ("away" if stamp == "at" else "neutral")

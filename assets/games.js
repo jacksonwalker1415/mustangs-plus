@@ -50,7 +50,8 @@ window.MP=window.MP||{};MP.GAMES={
 "listen": "https://smumustangs.com/showcase?Live=5382",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=673199&vislive=smu",
 "gamecenter": "https://smumustangs.com/game-center/14454"
-}
+},
+"sb": 673199
 },
 {
 "id": "fb-14455",
@@ -73,6 +74,7 @@ window.MP=window.MP||{};MP.GAMES={
 "stats": "https://stats.statbroadcast.com/broadcast/?id=673166",
 "gamecenter": "https://smumustangs.com/game-center/14455"
 },
+"sb": 673166,
 "note": "Club Takeaway · Wear Blue"
 },
 {
