@@ -202,6 +202,26 @@
   function setSession(s){var u=s&&s.user;SMU.user=u?{id:u.id,email:u.email,name:(u.user_metadata&&u.user_metadata.display_name)||nameFromEmail(u.email),confirmed:!!u.email_confirmed_at||!!u.confirmed_at}:null;
     if(SMU.user)ensureUser('u:'+SMU.user.id,SMU.user.name,tierCache)}
 
+  /* ---------- Post reports ----------
+     REPORTS stays false until supabase/PROPOSED_12_post_reports.sql has run. While it's off (and always in demo mode), a report is kept in
+     this browser (localStorage mp_reports). Once on, signed-in members send it to public.post_reports; if that table is missing or
+     unreachable, the report falls back to this browser instead of failing. Reports are never readable from the site. */
+  var REPORTS=false, REASONS=['harassment','recruit_minor','doxxing','spam','other'];
+  function reportKey(o){return o.thread+':'+o.post}
+  function reportLocal(o,where){var list=lj('mp_reports',[]),k=reportKey(o),me=SMU.user&&SMU.user.id;
+    if(list.some(function(r){return r.key===k&&r.by===me}))return {dup:true,where:where};
+    list.push({key:k,thread:o.thread,post:o.post,postId:o.postId||null,reason:o.reason,note:o.note||'',by:me,at:new Date().toISOString()});sj('mp_reports',list.slice(-200));return {dup:false,where:where}}
+  SMU.REPORT_REASONS=REASONS;
+  SMU.reported=function(thread,post){var k=thread+':'+post,me=SMU.user&&SMU.user.id;return lj('mp_reports',[]).some(function(r){return r.key===k&&r.by===me})};
+  SMU.report=function(o){if(!SMU.user)return Promise.reject(new Error('Sign in to report a post.'));
+    if(REASONS.indexOf(o.reason)<0)return Promise.reject(new Error('Pick a reason.'));
+    if(SMU.reported(o.thread,o.post))return Promise.resolve({dup:true,where:'browser'});
+    if(!SMU.live||!REPORTS||!o.postId||!sb)return Promise.resolve(reportLocal(o,'browser'));
+    return withTimeout(Promise.resolve(sb.from('post_reports').insert({post_id:o.postId,reason:o.reason,note:o.note||null})),12000).then(function(r){
+      if(r&&r.error){if(r.error.code==='23505'){reportLocal(o,'server');return {dup:true,where:'server'}}
+        console.warn('[SMU+] reports table unavailable, keeping the report in this browser',r.error);return reportLocal(o,'browser')}
+      reportLocal(o,'server');return {dup:false,where:'server'}},function(e){console.warn('[SMU+] report not sent, kept in this browser',e);return reportLocal(o,'browser')})};
+
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
   ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch'].forEach(function(k){
