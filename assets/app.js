@@ -473,8 +473,10 @@
       '<div class="panel dark"><div class="panel-h"><h3>Visit list · '+MP.VISITS[0].date+'</h3><a class="see-all" href="'+ROOT+'recruiting/#visits">All visits →</a></div>'+
         '<ul class="plist">'+MP.VISITS[0].list.map(function(v){return '<li><span class="dir '+(v[5]==='Official'?'in':'neutral')+'">'+(v[5]==='Official'?'OV':'UV')+'</span><b>'+v[0]+'</b><small>'+v[1]+' · '+v[2]+' · '+v[3]+'</small>'+stars(v[4])+'</li>'}).join('')+'</ul></div>'+
       '</div><p class="note on-dark">Every recruit, portal name and school in this section is fictional.</p>'}
-  /* Insider, Film Room and Podcasts share one tabbed row (WAI-ARIA tabs: arrows, Home, End) */
-  function homeTabs(T){var el=$('#railTabs');if(!el)return;
+  /* Insider, Film Room and Podcasts: empty groups are left out. 2+ groups = WAI-ARIA tabs; 1 group = a plain section; 0 = section hidden */
+  function homeTabs(T){var el=$('#railTabs');if(!el)return;var sec=el.closest('section');
+    T=T.filter(function(t){return t[4]&&t[4].length});if(sec)sec.hidden=!T.length;if(!T.length){el.innerHTML='';return}
+    if(T.length===1){el.innerHTML=secHead(T[0][1],T[0][2],'See all',T[0][3])+rail(T[0][4]);return}
     el.innerHTML='<div class="sec-hd htabs-hd"><div><p class="eyebrow" id="htKick">'+T[0][3]+'</p><h2 class="sr">'+T.map(function(t){return t[1]}).join(', ')+'</h2>'+
       '<div class="htabs" role="tablist" aria-label="More from SMU+">'+T.map(function(t,i){return '<button type="button" role="tab" class="htab" id="ht-'+t[0]+'" aria-controls="hp-'+t[0]+'" aria-selected="'+(i===0)+'" tabindex="'+(i?-1:0)+'">'+t[1]+'</button>'}).join('')+'</div></div>'+
       '<a class="see-all" id="htAll" href="'+T[0][2]+'">See all<span aria-hidden="true"> →</span></a></div>'+
