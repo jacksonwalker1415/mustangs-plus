@@ -452,9 +452,15 @@
         rows.forEach(function(r){tb.appendChild(r)});if(tot)tb.appendChild(tot)})})}
 
   /* ---------- Shared bits ---------- */
-  function avatar(uid,lg){var u=MP.USERS[uid],n=u.n.replace(/[^A-Za-z]/g,'');
+  /* Member photo if they uploaded one (sb.js only keeps URLs from our own avatars bucket, or a demo data: URL); initials otherwise.
+     The initial sits under the photo, so a photo that fails to load (see avFix) falls back to it. */
+  function avPhoto(u){return u&&!u.staff&&u.av&&window.SMU&&SMU.avatarsOn()&&SMU.avatarOK(u.av)?u.av:''}
+  function avImg(src,eager){return '<img class="av-img" src="'+esc(src)+'" alt="" width="256" height="256" decoding="async"'+(eager?'':' loading="lazy"')+'>'}
+  function avatar(uid,lg,xl){var u=MP.USERS[uid]||{n:'Member'},n=u.n.replace(/[^A-Za-z]/g,''),ph=avPhoto(u);
     var hues=['#354CA1','#1c2a63','#2a3d86','#4259b0','#CC0035'],h=0;for(var i=0;i<n.length;i++)h+=n.charCodeAt(i);
-    return '<span class="av'+(lg?' lg':'')+(u.staff?' staff':'')+'" style="'+(u.staff?'':'background:'+hues[h%hues.length])+'" aria-hidden="true">'+n.charAt(0).toUpperCase()+'</span>'}
+    return '<span class="av'+(lg?' lg':'')+(xl?' xl':'')+(u.staff?' staff':'')+(ph?' has-ph':'')+'" style="'+(u.staff?'':'background:'+hues[h%hues.length])+'" aria-hidden="true">'+(n.charAt(0).toUpperCase()||'M')+(ph?avImg(ph,xl):'')+'</span>'}
+  function avFix(e){var i=e.target;if(i&&i.tagName==='IMG'&&i.classList&&i.classList.contains('av-img')){var p=i.parentNode;i.remove();if(p&&p.classList)p.classList.remove('has-ph')}}
+  document.addEventListener('error',avFix,true);
   function forumBy(id){for(var i=0;i<MP.FORUMS.length;i++)if(MP.FORUMS[i].id===id)return MP.FORUMS[i]}
   function pills(t){var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),p='';
     if(t.pin)p+='<span class="pill pill-pin">'+PIN+'Pinned</span>';if(t.hot)p+='<span class="pill pill-hot">'+FLAME+'Hot</span>';
@@ -521,26 +527,52 @@
      (blockquote + platform.twitter.com/widgets.js) shows each post with its author and a link back.
      data-no-ads: keep ad slots out of this section and away from embedded posts and videos (ad-mock copy follows this). */
   var FEEDS=MP.FEEDS||{posts:{},follow:{}},FO_L={x:'X',instagram:'Instagram',youtube:'YouTube',tiktok:'TikTok'};
-  function followRow(list,h){return list&&list.length?'<div class="follow"><h3 class="follow-h">'+h+'</h3><ul class="follow-l">'+list.map(function(a){
-      return '<li><span class="fo-n"><b>'+esc(a[0])+'</b><small>@'+esc(a[1])+(a[3]?' · '+esc(a[3]):'')+'</small></span><span class="fo-links">'+Object.keys(FO_L).filter(function(k){return a[2][k]}).map(function(k){
-        return '<a class="fo-a" href="'+esc(a[2][k])+'" target="_blank" rel="noopener" aria-label="'+esc(a[0])+' on '+FO_L[k]+' (opens in a new tab)">'+FO_L[k]+'</a>'}).join('')+'</span></li>'}).join('')+'</ul></div>':''}
+  /* Follow rows: each account as a mini X-style profile card (banner, round avatar, name, handle, the account's own bio, icon links),
+     in one sideways swipe row per group. Avatars and banners are self-hosted copies (assets/img/x/), so nothing loads from X before a tap. */
+  var XPROF=MP.XPROF||{},FO_I={
+    x:'<path d="M3 3h4.2l3.6 5 4.2-5H17l-5.3 6.3L18 17h-4.2l-3.9-5.4L5.3 17H3.4l5.7-6.7z"/>',
+    instagram:'<path d="M7 2.5h6A4.5 4.5 0 0 1 17.5 7v6a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 13V7A4.5 4.5 0 0 1 7 2.5zm0 1.8A2.7 2.7 0 0 0 4.3 7v6A2.7 2.7 0 0 0 7 15.7h6a2.7 2.7 0 0 0 2.7-2.7V7A2.7 2.7 0 0 0 13 4.3zm3 2.4a3.3 3.3 0 1 1 0 6.6 3.3 3.3 0 0 1 0-6.6zm0 1.8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM14.2 4.9a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/>',
+    youtube:'<path d="M18 6.3c-.2-.9-.9-1.6-1.8-1.8C14.6 4 10 4 10 4s-4.6 0-6.2.5C2.9 4.7 2.2 5.4 2 6.3 1.6 7.9 1.6 10 1.6 10s0 2.1.4 3.7c.2.9.9 1.6 1.8 1.8C5.4 16 10 16 10 16s4.6 0 6.2-.5c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-3.7.4-3.7s0-2.1-.4-3.7zM8.3 12.6V7.4L12.6 10z"/>',
+    tiktok:'<path d="M13.6 2.5c.3 1.9 1.4 3.1 3.4 3.3v2.4c-1.2.1-2.3-.3-3.4-1v4.9c0 3.4-2.6 5.4-5.5 5.4A5 5 0 0 1 3 12.5c0-3.1 2.6-5.3 5.9-4.9v2.5c-1.6-.3-3.3.6-3.3 2.4 0 1.4 1.1 2.5 2.6 2.5s2.6-1 2.6-2.8V2.5z"/>'};
+  function foCard(a){var h=a[1],k=h.toLowerCase(),p=XPROF[k]||{},nm=p.n||a[0],ban=p.ban?ROOT+'assets/img/x/'+k+'-banner.webp':'';
+    var chk=p.v?'<svg class="fo-v fo-v-'+(p.v==='business'?'g':'b')+'" viewBox="0 0 20 20" width="15" height="15" role="img" aria-label="Verified account"><path d="M10 1.5l2.3 1.7 2.8-.2.9 2.7 2.4 1.5-.9 2.7.9 2.7-2.4 1.5-.9 2.7-2.8-.2L10 18.5l-2.3-1.7-2.8.2-.9-2.7-2.4-1.5.9-2.7-.9-2.7 2.4-1.5.9-2.7 2.8.2z"/><path d="M6.5 10.2l2.3 2.3 4.8-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>':'';
+    return '<li class="fo-card"><div class="fo-ban">'+(ban?'<img src="'+ban+'" alt="" loading="lazy" decoding="async" width="600" height="200">':'')+'</div>'+
+      '<img class="fo-av" src="'+ROOT+'assets/img/x/'+k+'.webp" alt="" loading="lazy" decoding="async" width="96" height="96">'+
+      '<div class="fo-body"><p class="fo-nm"><b>'+esc(nm)+'</b>'+chk+'</p><p class="fo-h">@'+esc(h)+'</p>'+(p.b?'<p class="fo-bio">'+esc(p.b)+'</p>':'')+
+      (a[3]?'<p class="fo-d">'+esc(a[3])+'</p>':'')+
+      '<p class="fo-links">'+Object.keys(FO_L).filter(function(t){return a[2][t]}).map(function(t){
+        return '<a class="fo-a" href="'+esc(a[2][t])+'" target="_blank" rel="noopener" aria-label="'+esc(a[0])+' on '+FO_L[t]+' (opens in a new tab)" title="'+FO_L[t]+'"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="currentColor">'+FO_I[t]+'</svg></a>'}).join('')+'</p></div></li>'}
+  var XARR='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var SLN=0;
+  function navHTML(id,what){return '<div class="xnav" data-xnav="'+id+'" hidden><button type="button" class="xarr xprev" data-xdir="-1" aria-label="Previous '+what+'" aria-controls="'+id+'" disabled>'+XARR+'</button><button type="button" class="xarr" data-xdir="1" aria-label="Next '+what+'" aria-controls="'+id+'">'+XARR+'</button></div>'}
+  function followRow(list,h){if(!list||!list.length)return '';var id='fo-track-'+(++SLN);
+    return '<div class="follow"><div class="follow-hd"><h3 class="follow-h">'+h+'</h3>'+navHTML(id,'accounts')+'</div><ul class="follow-l" id="'+id+'" data-slider role="list" aria-label="'+h+' accounts, scrolls sideways" tabindex="0">'+list.map(foCard).join('')+'</ul></div>'}
   function feedsHTML(key){var P=FEEDS.posts[key]||[],F=FEEDS.follow[key]||[],home=key==='home';if(!P.length&&!F.length)return '';
     var who={};P.forEach(function(x){who['@'+x[1]]=1});var hs=Object.keys(who);
     return '<section class="sec feeds" id="feeds" data-no-ads aria-labelledby="feeds-h"><div class="wrap">'+
-      '<div class="sec-hd"><div><p class="eyebrow">'+(P.length?'Official accounts · free':'Official accounts')+'</p><h2 class="sec-t" id="feeds-h">'+(P.length?'From the feeds':'Follow along')+'</h2></div></div>'+
-      (P.length?'<div class="xgate" data-xgate="'+key+'"><div class="xg-b"><b>'+P.length+' recent '+(P.length===1?'post':'posts')+' from '+esc(hs.slice(0,3).join(', '))+(hs.length>3?' and more':'')+'</b>'+
-        '<p>Posts load from X only when you tap the button, and X\u2019s own privacy policy applies from then on. <a href="'+ROOT+'privacy/">Privacy</a></p></div>'+
-        '<button type="button" class="btn btn-navy" data-load-x>Load posts from X</button></div><div class="xposts" data-xposts hidden></div>':'')+
+      '<div class="sec-hd"><div><p class="eyebrow">'+(P.length?'Official accounts · free':'Official accounts')+'</p><h2 class="sec-t" id="feeds-h">'+(P.length?'From the feeds':'Follow along')+'</h2></div>'+
+      (P.length?navHTML('xtrack-'+key,'posts'):'')+'</div>'+
+      (P.length?'<div class="xgate" data-xgate="'+key+'"><span class="xg-x" aria-hidden="true">X</span><p class="xg-b"><b>'+P.length+' '+(P.length===1?'post':'posts')+'</b><span class="xg-w"> from '+esc(hs.slice(0,2).join(', '))+(hs.length>2?' and more':'')+'</span>'+
+        '<span class="xg-n"> · load from X only when you tap · <a href="'+ROOT+'privacy/">Privacy</a></span></p>'+
+        '<button type="button" class="btn btn-navy xg-btn" data-load-x>Load posts from X</button></div>'+
+        '<div class="xposts" id="xtrack-'+key+'" data-xposts data-slider role="region" aria-label="Posts from X, scrolls sideways" tabindex="0" hidden></div>':'')+
       followRow(F,home?'Follow SMU':'Follow SMU '+esc((sportBy(key)||{}).name||''))+
       (home?followRow(FEEDS.media,'Conference and beat coverage'):'')+
-      '<p class="note">Links go to each account\u2019s own page. SMU+ is a class-project concept and isn\u2019t affiliated with these accounts.</p>'+
+      '<p class="note">Images: each account\u2019s X profile. Links go to each account\u2019s own page. SMU+ is a class-project concept and isn\u2019t affiliated with these accounts.</p>'+
       '</div></section>'}
-  function loadX(btn){var gate=btn.closest('[data-xgate]'),key=gate.dataset.xgate,box=gate.nextElementSibling,P=FEEDS.posts[key]||[];
-    box.innerHTML=P.map(function(x){return '<div class="xpost"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none"><p>Post from '+esc(x[2])+' (@'+esc(x[1])+'), '+esc(x[3])+'.</p><a href="'+esc(x[0])+'">View this post on X</a></blockquote></div>'}).join('');
-    box.hidden=false;gate.hidden=true;
+  function xNavSync(box){var nav=document.querySelector('[data-xnav="'+box.id+'"]');if(!nav)return;var b=nav.querySelectorAll('.xarr'),m=box.scrollWidth-box.clientWidth;
+    nav.hidden=box.hidden||m<=2;b[0].disabled=box.scrollLeft<=2;b[1].disabled=box.scrollLeft>=m-2}
+  function slSyncAll(){[].forEach.call(document.querySelectorAll('[data-slider]'),xNavSync)}
+  document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.hasAttribute&&t.hasAttribute('data-slider'))xNavSync(t)},{capture:true,passive:true});
+  window.addEventListener('resize',slSyncAll);window.addEventListener('load',slSyncAll);setTimeout(slSyncAll,0);setTimeout(slSyncAll,800);
+  function loadX(btn){var gate=btn.closest('[data-xgate]'),key=gate.dataset.xgate,box=document.getElementById('xtrack-'+key),P=FEEDS.posts[key]||[];
+    box.innerHTML=P.map(function(x,i){return '<div class="xpost" role="group" aria-label="Post '+(i+1)+' of '+P.length+'"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none" data-width="320"><p>Post from '+esc(x[2])+' (@'+esc(x[1])+'), '+esc(x[3])+'.</p><a href="'+esc(x[0])+'">View this post on X</a></blockquote></div>'}).join('');
+    box.hidden=false;gate.hidden=true;xNavSync(box);setTimeout(function(){xNavSync(box)},1500);setTimeout(function(){xNavSync(box)},4000);
     if(window.twttr&&twttr.widgets&&twttr.widgets.load){twttr.widgets.load(box);return}
     if(!document.getElementById('x-wjs')){var sc=document.createElement('script');sc.id='x-wjs';sc.async=true;sc.charset='utf-8';sc.src='https://platform.twitter.com/widgets.js';document.body.appendChild(sc)}}
-  document.addEventListener('click',function(e){var b=e.target.closest('[data-load-x]');if(b){e.preventDefault();loadX(b)}});
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-load-x]');if(b){e.preventDefault();loadX(b);return}
+    var a=e.target.closest('[data-xdir]');if(a){var box=document.getElementById(a.getAttribute('aria-controls'));if(!box)return;var c=box.firstElementChild,st=c?c.getBoundingClientRect().width+16:box.clientWidth*.8;
+      box.scrollBy({left:st*(+a.dataset.xdir),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}});
   function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&(c.sport===slug||(c.also||[]).indexOf(slug)>=0)}).sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')})}
   function mediaSection(slug,name){var L=thirdFor(slug);if(!L.length)return '';
     return '<section class="sec alt" id="media"><div class="wrap">'+secHead('Video, podcasts &amp; coverage',libUrl('all'),'Library','Free · official channels and the press')+
@@ -569,6 +601,18 @@
       $('#htKick').textContent=T[i][3];$('#htAll').href=T[i][2];if(focus)tabs[i].focus()}
     tabs.forEach(function(b,i){b.addEventListener('click',function(){pick(i)});
       b.addEventListener('keydown',function(e){var n=tabs.length,k=e.key,j=k==='ArrowRight'?(i+1)%n:k==='ArrowLeft'?(i+n-1)%n:k==='Home'?0:k==='End'?n-1:-1;if(j>-1){e.preventDefault();pick(j,true)}})})}
+  /* ---------- Home: Latest from the Hilltop (components from bot/forum-first). Newest activity first; replies are counted from real posts only ---------- */
+  function hilltop(){var box=$('#hillList');if(!box)return;
+    function replies(t){if(t.locked)return null;return t.replies!=null?t.replies:Math.max(0,t.posts.length-1)}
+    function lastMin(t){var p=t.posts[t.posts.length-1];if(p&&p[3]&&!isNaN(Date.parse(p[3])))return (Date.now()-Date.parse(p[3]))/60000;var m={m:1,h:60,d:1440,w:10080},x=String(lastAgo(t)).match(/(\d+)(\w)/);return x?(+x[1])*(m[x[2]]||1):1e9}
+    function plural(n,a,b){return n.toLocaleString()+' '+(n===1?a:b)}
+    function render(){var hill=MP.THREADS.filter(function(t){return t.f==='hilltop'&&t.posts&&t.posts.length}).sort(function(a,b){return lastMin(a)-lastMin(b)}).slice(0,6);
+      box.innerHTML=hill.length?hill.map(function(t){var s=t.sport&&sportBy(t.sport),r=replies(t),lu=MP.USERS[lastBy(t)];
+        return '<li><a class="hill-row" href="'+threadUrl(t.id)+'"><span class="hill-ic" aria-hidden="true">'+(s?sportIcon(t.sport):CHAT)+'</span><span class="hill-main"><b>'+esc(t.title)+'</b>'+
+          '<small><span class="hill-sp">'+(s?esc(s.name):'Around SMU')+'</span>'+(r==null?'':' \u00b7 '+plural(r,'reply','replies'))+' \u00b7 last post '+lastAgo(t)+' ago'+(lu?' by '+esc(lu.n):'')+'</small></span></a></li>'}).join('')
+        :'<li class="hill-empty">Quiet on the Hilltop. Start the first thread.</li>'}
+    render();SMU.on('threads',render);
+    (SMU.ready||Promise.resolve()).then(function(){if(SMU.live&&SMU.loadThreads)SMU.loadThreads().then(render,function(){})})}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist()}
@@ -579,8 +623,9 @@
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Official SMU Athletics video')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['film','Film Room',libUrl('film'),'Breakdowns',byCat('film')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
-    var ls=$('#listen')||$('#news')||$('#read');/* home reorder drops #listen (Podcasts is a tab), so the feeds follow the news/read block */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));
+    var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before NIL) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
+    hilltop();
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
     $('#boardHot').innerHTML=hot.map(function(t){return threadRow(t,true)}).join('');
     function homeBoards(){var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});var a=$('#homeThreads'),b=$('#homePosts');if(a)a.textContent=tt.toLocaleString();if(b)b.textContent=tp.toLocaleString();
@@ -700,7 +745,7 @@
         return '<article class="post'+(i===0?' op':'')+'" id="p'+(i+1)+'"><aside class="post-user">'+avatar(p[0],true)+'<div><b>'+esc(u.n)+'</b>'+(u.staff?'<span class="badge-ins">Insider</span>':'<span class="badge-tier">'+esc(u.tier)+'</span>')+'<small>Joined '+u.since+(pc==null?'':' · '+pc.toLocaleString()+(pc===1?' post':' posts')+' here')+'</small></div></aside>'+
           '<div class="post-body"><div class="post-h"><span>'+times[i]+'</span><a href="#t'+t.id+'" class="post-n">#'+(i+1)+'</a></div>'+
           (q?'<blockquote><b>'+esc(MP.USERS[q[0]].n)+' said:</b> '+esc(q[1].length>140?q[1].slice(0,140)+'…':q[1])+'</blockquote>':'')+
-          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" data-demo="Report post" class="rep">Report</button></div></div></article>'});
+          '<p>'+esc(p[1])+'</p><div class="post-f"><button type="button" data-demo="Like this post">♥ Like</button><button type="button" data-quote="'+i+'">Quote</button><button type="button" data-reply>Reply</button><button type="button" class="rep" data-report="'+i+'" aria-label="Report post #'+(i+1)+'"'+(SMU.reported&&SMU.reported(t.id,i)?' data-done="1"':'')+'>'+(SMU.reported&&SMU.reported(t.id,i)?'Reported':'Report')+'</button>'+(avPhoto(u)?'<button type="button" data-demo="Report profile photo" class="rep-ph" aria-label="Report '+esc(u.n)+'\u2019s profile photo">Report photo</button>':'')+'</div></div></article>'});
       var shown=locked?postHTML[0]+'<div class="gate">'+postHTML.slice(1,3).join('')+'<div class="gate-cta"><div>'+LOCK+'<h4>Members-only board</h4><p>'+(t.replies?nReplies(t)+(t.replies===1?' reply':' replies')+' in ':'This thread is in ')+esc(f.name)+'. Join any plan to read and post.</p><a class="btn btn-red" href="'+ROOT+'#membership">See plans</a> <button class="btn btn-outline" id="asMember">Preview as member</button></div></div></div>':postHTML.join('');
       threadView.innerHTML='<nav class="crumbs"><a href="#">Boards</a> › <a href="?f='+f.id+'" data-f-link="'+f.id+'">'+esc(f.name)+'</a>'+(s?' › <span>'+esc(s.name)+'</span>':'')+'</nav>'+
         '<div class="tv-head"><div class="pills">'+pills(t)+'</div><h1 class="tv-title">'+esc(t.title)+'</h1><p class="t-meta">Started by <b>'+esc(MP.USERS[t.by].n)+'</b> · '+t.ago+' ago'+(t.replies==null?'':' · '+nReplies(t)+(t.replies===1?' reply':' replies'))+(t.views?' · '+t.views+' views':'')+'</p></div>'+
@@ -708,15 +753,15 @@
         '<div class="posts">'+shown+'</div>'+
         (locked?'':replyBox(t))+
         (member&&f.prem?'<p class="note">Viewing as a member (demo). <button class="linkish" id="asGuest">Switch back to guest view</button></p>':'')+
-        '<p class="note">All usernames and posts are fictional sample content.</p>';
+        '<p class="note">All usernames and posts are fictional sample content. <a href="'+ROOT+'rules/">Community rules</a></p>';
       var am=$('#asMember');if(am)am.addEventListener('click',function(){setMember(true)});
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});
         watching={id:t.id,off:function(){u1();u2()}}}
       var ag=$('#asGuest');if(ag)ag.addEventListener('click',function(){setMember(false)});
     }
     var watching={id:null,off:function(){}};
-    function replyBox(t){if(!SMU.user)return '<div class="reply reply-out"><p><b>Join the conversation.</b> Sign in to reply'+(SMU.live?'':' (demo accounts are saved in this browser)')+'.</p><button type="button" class="btn btn-red btn-sm" data-auth>Sign in to reply</button></div>';
-      var me=SMU.me();return '<form class="reply" id="replyForm" data-thread="'+t.id+'" novalidate>'+avatar(me)+'<div class="reply-main"><p class="reply-q" id="replyQ" hidden></p><label class="sr" for="replyText">Write a reply</label><textarea id="replyText" rows="2" maxlength="5000" placeholder="Write a reply…" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p></div><button class="btn btn-red btn-sm" type="submit">Post</button></form>'}
+    function replyBox(t){if(!SMU.user)return '<div class="reply reply-out"><p><b>Join the conversation.</b> Sign in to reply'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><button type="button" class="btn btn-red btn-sm" data-auth>Sign in to reply</button></div>';
+      var me=SMU.me();return '<form class="reply" id="replyForm" data-thread="'+t.id+'" novalidate>'+avatar(me)+'<div class="reply-main"><p class="reply-q" id="replyQ" hidden></p><label class="sr" for="replyText">Write a reply</label><textarea id="replyText" rows="2" maxlength="5000" placeholder="Write a reply…" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p><p class="reply-rules">Keep it civil: <a href="'+ROOT+'rules/">community rules</a></p></div><button class="btn btn-red btn-sm" type="submit">Post</button></form>'}
     var quoteIdx=null;
     threadView.addEventListener('click',function(e){var qb=e.target.closest('[data-quote]'),rb=e.target.closest('[data-reply]');if(!qb&&!rb)return;
       var ta=$('#replyText');if(!ta){var a=$('[data-auth]',threadView);if(a)a.click();return}
@@ -730,6 +775,7 @@
       SMU.reply(tid,v,quoteIdx).then(function(){quoteIdx=null;renderThread(tid);var posts=$$('.post',threadView);var last=posts[posts.length-1];if(last){last.classList.add('post-new');last.scrollIntoView({block:'center'})}toast('Reply posted.')},
         function(err){m.textContent=err.message||'Could not post. Try again.';b.disabled=false})});
     SMU.on('auth',function(){var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1])});
+    SMU.on('avatar',function(){var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1]);else if(!listView.hidden)renderList()});
     SMU.on('threads',function(){renderIndex();if(!listView.hidden)renderList()});
     document.addEventListener('smu:post',function(ev){var m=location.hash.match(/^#t(\d+)$/);if(!m||+m[1]!==ev.detail)return;var ta=$('#replyText'),draft=ta?ta.value:'';renderThread(+m[1]);var t2=$('#replyText');if(t2&&draft){t2.value=draft}});
     function route(){var m=location.hash.match(/^#t(\d+)$/);
@@ -965,7 +1011,9 @@
   /* header + menu account state */
   function initials(n){return String(n||'?').replace(/[^A-Za-z ]/g,'').split(/\s+/).filter(Boolean).map(function(w){return w[0]}).slice(0,2).join('').toUpperCase()||'?'}
   function syncAcct(){var u=SMU.user,b=$('#acctBtn');if(b){b.classList.toggle('in',!!u);$('.acct-l',b).textContent=u?(u.name||'Account').split(' ')[0]:'Sign in';
-      $('.acct-av',b).innerHTML=u?'<span>'+esc(initials(u.name))+'</span>':SVG.user;b.setAttribute('aria-label',u?'Your account ('+(u.name||u.email)+')':'Sign in or create an account')}
+      var ph=u&&u.avatar&&SMU.avatarsOn()&&SMU.avatarOK(u.avatar)?u.avatar:'';
+      $('.acct-av',b).innerHTML=u?'<span>'+esc(initials(u.name))+'</span>'+(ph?avImg(ph,1):''):SVG.user;$('.acct-av',b).classList.toggle('has-ph',!!ph);
+      var mav=$('.mm-acct .acct-av');if(mav){mav.innerHTML=ph?avImg(ph,1):SVG.user;mav.classList.toggle('has-ph',!!ph)}b.setAttribute('aria-label',u?'Your account ('+(u.name||u.email)+')':'Sign in or create an account')}
     var ml=$('.mm-acct-l'),ms=$('.mm-acct-s');if(ml){ml.textContent=u?(u.name||'Your account'):'Sign in or create an account';ms.textContent=u?TIER_NAME[SMU.tier()]+' member \u00b7 '+(SMU.live?'synced':'demo account'):'Save athletes, post on the boards, sync what you watch'}
     /* Join CTA: signed out = Join; signed in, free = smaller Upgrade link; signed in member = hidden (header + phone menu) */
     var st=!u?'out':(SMU.tier()!=='free'?'member':'free');
@@ -974,7 +1022,7 @@
       el.setAttribute('href',st==='free'?ROOT+'#membership':ROOT+'#waitlist')});
     if(window.fitNav)window.fitNav();
     $$('[data-save-athlete]').forEach(syncSaveBtn)}
-  SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('tier',function(t){store('mp_member',t!=='free'?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
+  SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',t!=='free'?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
   SMU.on('saved',function(){$$('[data-save-athlete]').forEach(syncSaveBtn)});
   function pullHistory(){SMU.pullProgress().then(function(rows){if(!rows||!rows.length)return;var local=hist(),by={};local.concat(rows).forEach(function(x){var o=by[x.id];if(!o||x.p>o.p||x.t>o.t)by[x.id]={id:x.id,p:Math.max(x.p,o?o.p:0),t:Math.max(x.t||0,o?o.t:0)}});
     var all=Object.keys(by).map(function(k){return by[k]}).sort(function(a,b){return b.t-a.t}).slice(0,24);store('mp_history',JSON.stringify(all));document.dispatchEvent(new Event('mp:history'))}).catch(function(){})}
@@ -998,8 +1046,8 @@
   /* ---------- Join pop-up (On3-style): every Join / See plans / Join SMU+ CTA opens this instead of scrolling to #waitlist.
      Same three tiers, prices and perks as the home #membership cards. Each card's button opens the existing free waitlist form
      inline (same SMU.waitlist insert, utm attribution and tier_interest column). No payment. ---------- */
-  /* Tier copy has ONE source: the home page #membership cards (index.html). The modal reads names, prices, perks and any
-     'Coming soon' labels from that markup (this page's DOM on home, a fetched copy elsewhere), so perk edits there show up here too. */
+  /* Tier copy has ONE source: the home page #membership cards (index.html). The modal reads names, prices and perks from that
+     markup (any 'Coming soon' text is dropped; no pills) (this page's DOM on home, a fetched copy elsewhere), so perk edits there show up here too. */
   var JOIN_ORDER=['mustang','pony','club'],JOIN_WL={mustang:'mustang',pony:'all_access',club:'red_blue'},joinTiers=null;
   function readTiers(doc){var out=[];$$('#membership .tier',doc).forEach(function(c){var b=$('[data-join],[data-plan]',c),k=b&&(b.getAttribute('data-join')||b.getAttribute('data-plan'));if(!JOIN_WL[k])return;
       var pr=$('.price b',c),h=$('h3',c),f=$('.for',c);
@@ -1016,15 +1064,14 @@
     '<h4 id="jm-'+t.k+'">'+esc(t.name)+'</h4>'+(t.for?'<p class="jm-for">'+esc(t.for)+'</p>':'')+
     '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Sample price. Nothing is charged.</p>'+
     '<button type="button" class="btn btn-red jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
-    '<span class="nilchip">\u2665 40% to SMU\u2019s official NIL programs (proposed)</span>'+
-    (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+(x.soon?' soon':'')+'">'+JCHK+'<span>'+esc(x.t)+(x.soon?' <span class="jm-soon">'+esc(x.sl)+'</span>':'')+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
+    (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+'">'+JCHK+'<span>'+esc(x.t)+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
   var joinDlg=null;
   function openJoin(tier){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
     if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier)})}
   function buildJoin(T,tier){
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
     var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div><p class="jm-eb">Membership</p><h3 id="joinDlg-h">Pick your seat.</h3>'+
-      '<p class="jm-lede">Every plan: 40% to SMU\u2019s official NIL programs (proposed). Join the free waitlist for the plan you want. There is nothing to buy.</p></div>'+
+      '<p class="jm-lede">Join the free waitlist for the plan you want. There is nothing to buy.</p></div>'+
       '<div class="jm-body"><div class="jm-plans"><div class="jm-tiers">'+T.map(joinCard).join('')+'</div></div>'+
       '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
@@ -1058,12 +1105,64 @@
       '<div class="fld"><label for="cpSport">Sport (optional)</label><select id="cpSport"><option value="">None</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'"'+(s.slug===sport?' selected':'')+'>'+esc(s.name)+'</option>'}).join('')+'</select></div></div>'+
       '<div class="fld"><label for="cpTitle">Title</label><input id="cpTitle" maxlength="140" required placeholder="What do you want to talk about?"></div>'+
       '<div class="fld"><label for="cpBody">First post</label><textarea id="cpBody" rows="5" maxlength="5000" required></textarea></div>'+
+      '<p class="cp-rules">Keep it civil and read the <a href="'+ROOT+'rules/">community rules</a> before you post. Mods may remove posts that break them.</p>'+
       '<p class="auth-m" aria-live="polite"></p><div class="dlg-act"><button class="btn btn-red" type="submit">Post thread</button></div></form>'+(SMU.live?'':'<p class="dlg-mode"><b>Demo mode.</b> Your thread is saved in this browser only.</p>'));
     $('form',d).addEventListener('submit',function(e){e.preventDefault();var ti=$('#cpTitle',d).value.trim(),bo=$('#cpBody',d).value.trim(),m=$('.auth-m',d);
       if(ti.length<3){m.textContent='Give your thread a title (3+ characters).';$('#cpTitle',d).focus();return}if(bo.length<2){m.textContent='Write a first post.';$('#cpBody',d).focus();return}
       var b=$('button[type=submit]',d);b.disabled=true;m.textContent='Posting\u2026';
       SMU.createThread({f:$('#cpForum',d).value,sport:$('#cpSport',d).value,title:ti,body:bo}).then(function(t){d.close();toast('Thread posted.');location.href=threadUrl(t.id)},function(err){b.disabled=false;m.textContent=err.message})})}
+  /* ---------- Report a post: reason picker, then a confirmation. Demo (and live until REPORTS is on in sb.js) keeps it in this browser. ---------- */
+  var REPORT_WHY={harassment:['Harassment','Goes after an athlete, a coach, their family or another fan'],recruit_minor:['Recruit or minor info','Rumors or personal details about a recruit or anyone under 18'],
+    doxxing:['Doxxing','Shares an address, phone number, schedule or other private info'],spam:['Spam','Ads, scams, links or the same post over and over'],other:['Something else','Tell the mods below']};
+  function reportDone(d,dup,where,n){var sh=$('.dlg-sheet',d);
+    sh.innerHTML='<button type="button" class="reader-x dlg-x" aria-label="Close">\u00d7</button><div class="rp-done" role="status"><span class="rp-ic" aria-hidden="true">\u2713</span>'+
+      '<h3 id="reportDlg-h" class="dlg-h">'+(dup?'You already reported this post':'Thanks, we got it')+'</h3>'+
+      '<p>'+(dup?'Your report on post #'+n+' is already with the moderators. You only need to send it once.':'Your report on post #'+n+' is with the moderators. They\u2019ll check it against the <a href="'+ROOT+'rules/">community rules</a> and may remove the post. The poster isn\u2019t told who reported it.')+'</p>'+
+      (where==='browser'?'<p class="dlg-mode"><b>'+(SMU.live?'Preview.':'Demo mode.')+'</b> This report is saved in this browser only.</p>':'')+
+      '<div class="dlg-act"><button type="button" class="btn btn-navy" data-rp-close>Done</button></div></div>';
+    $('[data-rp-close]',d).focus()}
+  function reportPost(t,i,btn){var p=t.posts[i],u=MP.USERS[p[0]],n=i+1;
+    if(SMU.reported(t.id,i)){var dd=dialog('reportDlg','<h3 id="reportDlg-h" class="dlg-h">Report</h3>');reportDone(dd,true,'browser',n);wire(dd);return}
+    var d=dialog('reportDlg','<h3 id="reportDlg-h" class="dlg-h">Report this post</h3><p class="rp-sub">What\u2019s wrong with <b>'+esc(u?u.n:'this member')+'</b>\u2019s post (#'+n+')? Pick the closest reason.</p>'+
+      '<form class="rp-form" novalidate><fieldset class="rp-set"><legend class="sr">Reason for reporting</legend>'+SMU.REPORT_REASONS.map(function(k){return '<label class="rp-opt"><input type="radio" name="rpReason" value="'+k+'"><span><b>'+REPORT_WHY[k][0]+'</b><small>'+REPORT_WHY[k][1]+'</small></span></label>'}).join('')+'</fieldset>'+
+      '<div class="fld"><label for="rpNote">Anything the mods should know? (optional)</label><textarea id="rpNote" rows="2" maxlength="500"></textarea></div>'+
+      '<p class="auth-m" aria-live="polite"></p><div class="dlg-act"><button type="button" class="btn btn-outline" data-rp-close>Cancel</button><button class="btn btn-red" type="submit">Send report</button></div></form>'+
+      '<p class="dlg-mode">Only moderators see reports. <a href="'+ROOT+'rules/">Community rules</a></p>','Report this post');
+    wire(d);
+    $('form',d).addEventListener('submit',function(e){e.preventDefault();var r=$('input[name=rpReason]:checked',d),m=$('.auth-m',d);if(!r){m.textContent='Pick a reason so the mods know what to look for.';$('input[name=rpReason]',d).focus();return}
+      var b=$('button[type=submit]',d);b.disabled=true;m.textContent='Sending\u2026';
+      SMU.report({thread:t.id,post:i,postId:p[4]||null,reason:r.value,note:$('#rpNote',d).value.trim().slice(0,500)}).then(function(res){
+        reportDone(d,res.dup,res.where,n);if(btn&&document.contains(btn)){btn.textContent='Reported';btn.dataset.done='1'}},function(err){b.disabled=false;m.textContent=err.message||'Couldn\u2019t send that. Try again.'})})
+    function wire(x){x.addEventListener('click',function(e){if(e.target.closest('[data-rp-close]'))x.close()})}}
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-report]');if(!b)return;e.preventDefault();var m=location.hash.match(/^#t(\d+)$/),t=m&&MP.THREADS.filter(function(x){return x.id===+m[1]})[0];if(!t)return;
+    var i=+b.dataset.report;requireUser('Sign in to report a post.',function(){reportPost(t,i,b)})});
   document.addEventListener('click',function(e){var b=e.target.closest('[data-compose]');if(!b)return;e.preventDefault();var sp=b.dataset.sport||'';requireUser('Sign in to start a thread.',function(){compose(sp)})});
+
+  /* ---------- Profile photo (Account page) ----------
+     Checks type and size first (JPEG/PNG/WebP, 2 MB), then center-crops to a 256x256 square in the browser and uploads that
+     (WebP, or JPEG where the browser can't make WebP). Storage enforces the same type and size limits on the server. */
+  var AV_RULES='No SMU logos, no photos of athletes or other people, nothing offensive. Photos can be reported.';
+  function photoBlock(u){if(!SMU.avatarsOn())return '';var me=SMU.me(),has=!!avPhoto(MP.USERS[me]);
+    return '<div class="pf"><div class="pf-av">'+avatar(me,true,true)+'</div><div class="pf-ctl"><p class="pf-l" id="pfL">Profile photo</p>'+
+      '<p class="pf-s">Shown next to your posts and on your account button. JPEG, PNG or WebP, up to 2 MB. We crop it to a square.</p>'+
+      '<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden>'+
+      '<div class="pf-btns"><button type="button" class="btn btn-navy btn-sm" id="avPick" aria-describedby="pfRules">'+(has?'Replace photo':'Upload photo')+'</button>'+
+      (has?'<button type="button" class="btn btn-outline btn-sm" id="avRemove">Remove photo</button>':'')+'</div>'+
+      '<p class="pf-rules" id="pfRules">'+AV_RULES+'</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'}
+  function squarePhoto(file){return new Promise(function(res,rej){var url=URL.createObjectURL(file),img=new Image();
+    img.onload=function(){var w=img.naturalWidth,h=img.naturalHeight,s=Math.min(w,h);URL.revokeObjectURL(url);if(!s)return rej(new Error('That image couldn\u2019t be read. Try another photo.'));
+      var c=document.createElement('canvas');c.width=c.height=256;var x=c.getContext('2d');x.imageSmoothingQuality='high';x.fillStyle='#fff';x.fillRect(0,0,256,256);
+      x.drawImage(img,(w-s)/2,(h-s)/2,s,s,0,0,256,256);
+      c.toBlob(function(b){if(b&&b.type==='image/webp')return res(b);c.toBlob(function(j){j?res(j):rej(new Error('That image couldn\u2019t be processed. Try another photo.'))},'image/jpeg',0.86)},'image/webp',0.86)};
+    img.onerror=function(){URL.revokeObjectURL(url);rej(new Error('That image couldn\u2019t be read. Try another photo.'))};img.src=url})}
+  function wirePhoto(root){var pick=$('#avPick',root),inp=$('#avFile',root),rm=$('#avRemove',root),m=$('#avMsg',root);if(!pick)return;
+    function busy(on,t){pick.disabled=on;if(rm)rm.disabled=on;m.textContent=t||''}
+    pick.addEventListener('click',function(){inp.value='';inp.click()});
+    inp.addEventListener('change',function(){var f=inp.files&&inp.files[0];if(!f)return;var bad=SMU.avatarCheck(f);if(bad){m.textContent=bad;return}
+      var had=!!avPhoto(MP.USERS[SMU.me()]);busy(true,'Uploading\u2026');
+      squarePhoto(f).then(function(b){return SMU.setAvatar(b)}).then(function(){toast(had?'Photo replaced.':'Photo added.')},function(err){busy(false,err.message||'Couldn\u2019t upload that photo. Try again.')})});
+    if(rm)rm.addEventListener('click',function(){busy(true,'Removing\u2026');
+      SMU.removeAvatar().then(function(){toast('Photo removed.')},function(err){busy(false,err.message||'Couldn\u2019t remove the photo. Try again.')})})}
 
   /* ---------- Account page ---------- */
   function account(){var main=$('#acctMain');document.title='Your account | SMU+';
@@ -1075,7 +1174,7 @@
       var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6),br=store('mp_brief');
       main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><p class="eyebrow">'+(SMU.live?'Your SMU+ account':'Demo account \u00b7 this browser only')+'</p><h1 class="display">'+esc(u.name||'Your account')+'</h1><p class="lede on-dark">'+esc(u.email)+' \u00b7 '+TIER_NAME[tier]+' member</p></div></section>'+
         '<section class="sec"><div class="wrap">'+conceptNotice('acct-cn')+'</div><div class="wrap acct-grid">'+
-          '<div class="acct-card"><h2 class="acct-h">Profile</h2><form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
+          '<div class="acct-card"><h2 class="acct-h">Profile</h2>'+photoBlock(u)+'<form id="nameForm" class="auth-f" novalidate><div class="fld"><label for="dispName">Display name on the boards</label><input id="dispName" maxlength="40" value="'+esc(u.name||'')+'"></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-outline btn-sm" type="submit">Save name</button></form>'+
             '<p class="acct-meta">'+(SMU.live?'Signed in with '+esc(u.email)+'. Your data is stored in the SMU+ database.':'Demo mode: this account, your tier and your posts are saved only in this browser.')+'</p><button type="button" class="btn btn-outline btn-sm" id="signOut">Sign out</button></div>'+
           '<div class="acct-card"><h2 class="acct-h">Membership</h2><p class="acct-tier"><b>'+TIER_NAME[tier]+'</b>'+(tier!=='free'?' \u00b7 $'+TIER_PRICE[tier]+'/mo (demo)':'')+'</p>'+
             '<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>'+
@@ -1088,9 +1187,10 @@
       syncBriefs();
       $('#signOut').addEventListener('click',function(){SMU.signOut().then(function(){toast('Signed out.');render()},function(err){toast(err.message,'err')})});
       var cp=$('#cancelPlan');if(cp)cp.addEventListener('click',function(){SMU.setTier('free').then(function(){toast('Demo membership canceled.');render()},function(err){toast(err.message,'err')})});
+      wirePhoto(main);
       $('#nameForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#dispName').value.trim(),m=$('.auth-m',this);if(!v){m.textContent='Enter a name.';return}SMU.updateName(v).then(function(){toast('Name saved.');render()},function(err){m.textContent=err.message})})}
     main.innerHTML='<div class="skel-block" aria-hidden="true" style="min-height:420px"><i class="sk"></i></div>';
-    SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()})}
+    SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('avatar',function(){if(SMU.user)render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()})}
 
   SMU.ready.then(function(){syncAcct();syncBriefs();syncWaitlist();if(SMU.user&&SMU.live)pullHistory();
     var s=SMU.user&&SMU.tier();if(SMU.user){store('mp_member',s!=='free'?'1':'0');syncMember()}});

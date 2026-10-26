@@ -17,6 +17,8 @@ create table if not exists public.profiles (
   display_name text not null default 'Member' check (char_length(display_name) between 1 and 40),
   created_at   timestamptz not null default now()
 );
+-- Profile photo URL (RUN_ME_15_avatars.sql adds the storage bucket, its policies and the own-folder check)
+alter table public.profiles add column if not exists avatar_url text;
 
 -- ---------- Memberships (tier) ----------
 create table if not exists public.memberships (
@@ -243,7 +245,7 @@ revoke update on public.memberships from anon, authenticated;
 -- user_id is listed because supabase-js upsert sets every sent column; RLS still pins it to auth.uid().
 grant update (user_id, tier, status, updated_at) on public.memberships to authenticated;
 revoke update on public.profiles from anon, authenticated;
-grant update (display_name) on public.profiles to authenticated;
+grant update (display_name, avatar_url) on public.profiles to authenticated;
 
 -- Function permissions
 revoke all on function public.handle_new_user() from public, anon, authenticated;

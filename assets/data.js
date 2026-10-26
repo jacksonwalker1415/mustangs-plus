@@ -9,6 +9,9 @@ MP.FEATURES = MP.FEATURES || {};
 MP.TIER_LABELS = {free:'Free', mustang:'Mustang', pony:'All-Access', club:'Red & Blue'};
 MP.CONTACT = MP.CONTACT || {email:'', pending:'a dedicated SMU+ contact email will be posted here before launch'};
 if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
+/* avatars: member profile photos on the live site. On since supabase/RUN_ME_15_avatars.sql was applied (profiles.avatar_url and the
+   'avatars' storage bucket exist). Set false to hide uploads and photos again (initials only); nothing is deleted. Demo mode always has photos (saved in the browser). */
+if (MP.FEATURES.avatars == null) MP.FEATURES.avatars = true;
 
 MP.SPORTS = [
   {slug:'football',name:'Football',season:'Fall',g:'M',record:'6-1',conf:'4-1 ACC',coach:'Coach Rhett Lashlee',members:4210,fund:412300,pos:['QB','RB','WR','WR','TE','OL','OL','DL','DL','LB','CB','S','K'],num:[1,99],ht:[69,78],
@@ -173,7 +176,7 @@ T(2).posts=[
  ['hank','Bold call: if they run it like they did against Cal, this one is decided by halftime.'],
  ['ray','Hank stealing my take. I\'m sticking with 31-24.',2]];
 MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how premium boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
- posts:[['staff','Welcome. Be civil, no posting about players\' families, no screenshots of premium posts. The Paddock and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
+ posts:[['staff','Welcome. Be civil, no posting about players\' families, no screenshots of premium posts. Profile photos: no SMU logos, no photos of athletes or other people, nothing offensive. Use Report on a post to flag a photo. The Paddock and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
 MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, snap by snap',by:'dre',ago:'4h',replies:167,views:'5.1k',
  posts:[['dre','Cut up the A-gap sim pressure snap by snap. Watch the boundary linebacker: he always shows blitz and only sometimes comes. QB sees six, gets four.'],
   ['ray','The free safety not moving until the snap is so disciplined. You can see the QB staring at him.',0],
