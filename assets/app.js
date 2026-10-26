@@ -164,12 +164,17 @@
   document.addEventListener('click',function(e){if(!e.target.closest('[data-wl-undo]'))return;try{localStorage.removeItem('mp_waitlist')}catch(x){}syncWaitlist();var i=$('input[type=email]',e.target.closest('[data-waitlist]'));if(i)i.focus()});
 
   /* ---------- Shell ---------- */
-  var NAV=[['Watch',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards'],['Membership',ROOT+'#membership','membership']]);
+  var NAV=[['Media',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards'],['Membership',ROOT+'#membership','membership']]);
   /* Sports is a dropdown (desktop) / accordion (phone menu) listing all 12 programs; #sports links anywhere open it */
   var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
+  /* Media (the Library page, /library/) is a dropdown too: Videos, Podcasts and Articles open the Library with that format filter set (?type=). */
+  var MEDIA=[['Videos',ROOT+'library/?type=video'],['Podcasts',ROOT+'library/?type=podcast'],['Articles',ROOT+'library/?type=article#libRead']];
+  function mediaCur(i){if(PAGE!=='library')return false;var t=new URLSearchParams(location.search).get('type');return t===['video','podcast','article'][i]}
+  function mediaPanel(){return '<div class="sports-dd media-dd" id="mediaMenu" hidden><ul class="sdd-list">'+MEDIA.map(function(m,i){return '<li><a href="'+m[1]+'"'+(mediaCur(i)?' aria-current="page"':'')+'>'+m[0]+'</a></li>'}).join('')+'</ul></div>'}
   function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
     if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
-    return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')+
+    if(n[2]==='library')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="mediaBtn" aria-expanded="false" aria-controls="mediaMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
+    return '<a href=""'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')+
     '<a href="'+ROOT+'search/" class="nav-search'+(PAGE==='search'?' on" aria-current="page':'')+'">'+SVG_SEARCH+'<span>Search</span></a>'}
   function sportsPanel(){return '<div class="sports-dd" id="sportsMenu" hidden><p class="sdd-h">All 12 sports</p><ul class="sdd-list">'+MP.SPORTS.map(function(sp){var cur=PAGE==='sport'&&document.body.dataset.sport===sp.slug;
     return '<li><a href="'+sportUrl(sp.slug)+'"'+(cur?' aria-current="page"':'')+'>'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a></li>'}).join('')+'</ul></div>'}
@@ -190,6 +195,8 @@
       '<nav class="mm-nav" aria-label="Primary">'+NAV.filter(function(n){return n[2]!=='membership'}).map(function(n){var on=PAGE===n[2];
         if(n[2]==='sport')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmSportsBtn" aria-expanded="false" aria-controls="mmSports"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
           '<div class="mm-sports" id="mmSports" hidden>'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a>'}).join('')+'</div>';
+        if(n[2]==='library')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmMediaBtn" aria-expanded="false" aria-controls="mmMedia"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
+          '<div class="mm-sports mm-media" id="mmMedia" hidden>'+MEDIA.map(function(m,i){return '<a href="'+m[1]+'"'+(mediaCur(i)?' aria-current="page"':'')+'><span>'+m[0]+'</span></a>'}).join('')+'</div>';
         return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
       (GATING?'<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting: no payment is involved.</p></div>':'')+
       '<a class="mm-acct" href="'+ROOT+'account/"><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span><b class="mm-acct-l">Sign in or create an account</b><small class="mm-acct-s">Save athletes, post on the boards, sync what you watch</small></span><span class="mm-chev" aria-hidden="true">›</span></a>'+
@@ -200,14 +207,14 @@
     '<div class="hdr-act">'+memberSwitch('Member preview')+
     '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#waitlist">Join</a>'+adfreeSwitch('af-hdr')+
     '<a class="acct-btn" id="acctBtn" href="'+ROOT+'account/"'+(PAGE==='account'?' aria-current="page"':'')+'><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span class="acct-l sr">Sign in</span></a>'+
-    '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+sportsPanel()+
+    '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+sportsPanel()+mediaPanel()+
     mobileMenu()+'</header>';
   var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
   $('#site-footer').outerHTML='<footer class="site-ft"><div class="wrap"><div class="ft">'+
     '<div class="ft-brand">'+wordmark(' lg')+'<p>Every moment. Every Mustang. A proposed fan membership for every SMU sport.</p>'+
       '<div class="ft-brief"><h4>SMU+ Weekly</h4><p>One email on Friday mornings in season.</p>'+briefHTML('briefFt',true)+'</div></div>'+
     '<div class="ft-cols"><div><h4>Fall &amp; Winter</h4><ul>'+sportLinks.slice(0,6).join('')+'</ul></div><div><h4>More Sports</h4><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
-    '<div><h4>Watch &amp; Read</h4><ul><li><a href="'+libUrl()+'">Library</a></li><li><a href="'+libUrl('podcasts')+'">Podcasts</a></li>'+(REC_ON?'<li><a href="'+ROOT+'recruiting/">Recruiting</a></li>':'')+'</ul></div>'+
+    '<div><h4>Media</h4><ul>'+MEDIA.map(function(m){return '<li><a href="'+m[1]+'">'+m[0]+'</a></li>'}).join('')+'<li><a href="'+libUrl()+'">Library</a></li>'+(REC_ON?'<li><a href="'+ROOT+'recruiting/">Recruiting</a></li>':'')+'</ul></div>'+
     '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">Message Boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li><li><a href="'+ROOT+'#membership">Plans</a></li><li><a href="'+ROOT+'#faq">FAQ</a></li><li><a href="'+ROOT+'#waitlist">Join the waitlist</a></li><li><a href="'+ROOT+'privacy/">Privacy notice</a></li><li><a href="mailto:'+esc(CONTACT)+'">Contact us</a></li></ul></div></div></div>'+
     '<div class="legal"><p><strong>Concept built for an SMU Cox MBA class project. Not affiliated with or endorsed by SMU Athletics or Learfield. No payments are taken.</strong> Membership and checkout are a demo. <a href="'+ROOT+'privacy/">Privacy notice</a> \u00b7 Contact: '+contactHTML()+'</p>'+
     '<p>All stories, athletes, coaches, '+(REC_ON?'recruits, portal names, ':'')+'board users, prices and figures are fictional sample data, with these exceptions: the Player Profiles show real SMU football players using public stats with sources on each page; the football schedule, kickoff times, TV and scores, and the schedules, results, rosters and head coaches on the other 11 sport pages, come from smumustangs.com with links on each page; photos credited "Photo: SMU Athletics" are SMU Athletics photography used for this class concept; videos and podcast episodes credited to SMU Athletics are official embeds from SMU\u2019s YouTube channel, not rehosted; and stories marked "Sourced story" use only facts from the SMU Athletics pages they link to. The SMU+ logo is concept artwork made for this class project; SMU marks belong to SMU, and no Learfield marks are used. No payments are processed. Accounts, board posts, newsletter and waitlist signups are saved only in this browser unless the site is connected to its own database; see the privacy notice for what is stored and how to have it deleted.</p></div></div></footer>';
@@ -432,7 +439,7 @@
   function mmFocusables(){return [mb].concat($$('a,button,input',mm).filter(function(x){return x.offsetParent!==null}))}
   function openMenu(){mm.style.top=Math.max(0,hdrEl.getBoundingClientRect().bottom)+'px';mm.hidden=false;
     document.documentElement.classList.add('noscroll','menu-open');mb.setAttribute('aria-expanded','true');mb.setAttribute('aria-label','Close menu');
-    requestAnimationFrame(function(){mm.classList.add('open')});var f=$('.mm-nav a',mm);if(f)f.focus({preventScroll:true})}
+    requestAnimationFrame(function(){mm.classList.add('open')});var f=$('.mm-nav > a, .mm-nav > button',mm);if(f)f.focus({preventScroll:true})}
   function closeMenu(restore){if(mm.hidden)return;mm.classList.remove('open');mm.hidden=true;document.documentElement.classList.remove('menu-open');
     if(reader.hidden&&pw.hidden&&search.hidden)document.documentElement.classList.remove('noscroll');
     mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label','Open menu');if(restore)mb.focus()}
@@ -448,12 +455,13 @@
   window.addEventListener('pageshow',function(){closeMenu()});
 
   /* ---------- Sports dropdown (desktop) and accordion (phone menu) ---------- */
-  (function(){var btn=$('#sportsBtn'),dd=$('#sportsMenu'),acc=$('#mmSportsBtn'),list=$('#mmSports'),hov=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches,ht;
+  /* One dropdown helper for Sports and Media: desktop panel (hover, click, arrow keys, Esc) and phone-menu accordion */
+  function navDD(bid,did,aid,lid,isSports){var btn=$('#'+bid),dd=$('#'+did),acc=$('#'+aid),list=$('#'+lid),hov=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches,ht;
     function place(){var r=btn.getBoundingClientRect(),w=dd.offsetWidth,l=Math.min(Math.max(8,r.left),innerWidth-w-8);dd.style.left=l+'px';dd.style.top=Math.round(hdrEl.getBoundingClientRect().bottom)+'px'}
     function open(focus){if(!btn||!dd)return;dd.hidden=false;place();btn.setAttribute('aria-expanded','true');if(focus){var a=$('a',dd);if(a)a.focus()}}
     function close(back){if(!dd||dd.hidden)return;pinned=false;dd.hidden=true;btn.setAttribute('aria-expanded','false');if(back)btn.focus()}
     function setAcc(on){if(!acc)return;list.hidden=!on;acc.setAttribute('aria-expanded',on?'true':'false')}
-    window.openSports=function(){if(btn&&innerWidth>=960&&btn.offsetParent!==null&&!btn.classList.contains('nav-x'))open(true);else{openMenu();setAcc(true);var a=$('a',list);if(a)a.focus({preventScroll:true})}};
+    if(isSports)window.openSports=function(){if(btn&&innerWidth>=960&&btn.offsetParent!==null&&!btn.classList.contains('nav-x'))open(true);else{openMenu();setAcc(true);var a=$('a',list);if(a)a.focus({preventScroll:true})}};
     var pinned=false;
     if(btn&&dd){btn.addEventListener('click',function(){if(dd.hidden||!pinned){pinned=true;open(false)}else close(false)});
       btn.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){e.preventDefault();pinned=true;open(true)}});
@@ -461,12 +469,15 @@
         if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();a[(i+(e.key==='ArrowDown'?1:a.length-1))%a.length].focus()}
         else if(e.key==='Tab'&&((e.shiftKey&&i===0)||(!e.shiftKey&&i===a.length-1)))close(false)});
       if(hov){[btn,dd].forEach(function(el){el.addEventListener('mouseenter',function(){clearTimeout(ht);open(false)});el.addEventListener('mouseleave',function(){clearTimeout(ht);if(!pinned)ht=setTimeout(function(){close(false)},180)})})}
-      document.addEventListener('click',function(e){if(!dd.hidden&&!e.target.closest('#sportsMenu,#sportsBtn'))close(false)});
+      document.addEventListener('click',function(e){if(!dd.hidden&&!e.target.closest('#'+did+',#'+bid))close(false)});
+      dd.addEventListener('focusout',function(e){if(!dd.hidden&&e.relatedTarget&&!dd.contains(e.relatedTarget)&&e.relatedTarget!==btn)close(false)});
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dd.hidden){e.stopPropagation();close(true)}},true);
       addEventListener('resize',function(){if(!dd.hidden){if(innerWidth<960)close(false);else place()}});addEventListener('scroll',function(){if(!dd.hidden)place()},{passive:true})}
     if(acc)acc.addEventListener('click',function(){setAcc(list.hidden)});
+    if(!isSports)return;
     document.addEventListener('click',function(e){var a=e.target.closest('a[href$="#sports"]');if(!a)return;e.preventDefault();e.stopPropagation();window.openSports()},true);
-    if(location.hash==='#sports'){history.replaceState(null,'',location.pathname+location.search);setTimeout(window.openSports,60)}})();
+    if(location.hash==='#sports'){history.replaceState(null,'',location.pathname+location.search);setTimeout(window.openSports,60)}}
+  navDD('sportsBtn','sportsMenu','mmSportsBtn','mmSports',true);navDD('mediaBtn','mediaMenu','mmMediaBtn','mmMedia',false);
 
   /* ---------- Sortable tables ---------- */
   var MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
@@ -1864,6 +1875,6 @@
       max=document.documentElement.scrollHeight-innerHeight;
       if(n>2&&Math.abs(off)>2&&!(off>0&&scrollY>=max-1))scrollBy({top:off,behavior:'auto'});
       if(++n<14)setTimeout(fix,200);else quit()})()});
-  aboutSources();if(PAGE==='home')home();else if(PAGE==='library')library();else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();else if(PAGE==='search')searchPage();watchX();
+  aboutSources();if(PAGE==='home')home();else if(PAGE==='library'){library();/* Media > Articles: ?type=article#libRead lands on Read the Recap once the grid has rendered */if(location.hash==='#libRead')setTimeout(function(){var r=$('#libRead');if(r)r.scrollIntoView({block:'start'})},350)}else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();else if(PAGE==='search')searchPage();watchX();
   articleFromHash();
 })();
