@@ -1258,3 +1258,71 @@ html:not(.is-member) .gated .poster .np-art{filter:blur(2.5px)}
 .player .yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .player.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .player.yt.locked .yt-thumb{filter:blur(8px);transform:scale(1.1)}
+/* =====================================================================
+   Round 6: design tokens + polish. One layer, appended last.
+   Header and mobile menu rules (header.site, .hdr*, nav.main, .wordmark, .hsearch, .acct-btn, .hdr-join,
+   .menu-btn, .mmenu, .mm-*) are intentionally not restyled here.
+   ===================================================================== */
+/* ---- 6.1 Tokens ---- */
+:root{
+  /* type */
+  --fs-11:11px;--fs-12:12px;--fs-13:13px;--fs-14:14px;--fs-15:15px;--fs-16:16px;--fs-18:18px;--fs-20:20px;--fs-22:22px;--fs-28:28px;
+  --d-hero:clamp(48px,7vw,96px);--d-page:clamp(44px,6.4vw,88px);--d-sec:clamp(32px,4vw,52px);--d-card:clamp(24px,2.2vw,30px);
+  --lh-tight:1.2;--lh-body:1.55;--lh-prose:1.7;
+  --trk-label:.1em;--trk-display:.005em;
+  --serif:Georgia,'Times New Roman',serif; /* article body text only (.prose) */
+  /* brand secondaries (Jackson's SMU brand kit). Sparing accents only: sport/data tags, data viz */
+  --charcoal:#262626;
+  /* radii */
+  --r-tag:3px;--r-ctl:6px;--r-media:8px;--r-card:10px;--r-sheet:16px;--r-round:999px;
+  /* elevation */
+  --sh-1:0 1px 2px rgba(16,24,60,.06),0 1px 1px rgba(16,24,60,.04);
+  --sh-2:0 10px 28px -10px rgba(16,24,60,.28),0 2px 4px rgba(16,24,60,.06);
+  --sh-3:0 28px 60px -20px rgba(16,24,60,.42);
+  --card-line:rgba(22,33,79,.10);
+  /* rhythm + motion */
+  --sec-y:clamp(56px,6.5vw,96px);
+  --ease:cubic-bezier(.2,.7,.2,1);--t-fast:.15s;--t-med:.28s;
+  /* broadcast hairline texture for dark surfaces */
+  --hair:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 1px,transparent 1px 14px);
+}
+
+/* ---- 6.2 Focus: blue ring on light surfaces, yellow stays on dark surfaces ---- */
+main :focus-visible,.site-ft :focus-visible,.dlg :focus-visible,.pw :focus-visible,.search :focus-visible,.reader :focus-visible,.modal :focus-visible,.disclaimer :focus-visible,.toasts :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.disclaimer:focus-visible{outline:3px solid var(--b-900);outline-offset:-3px}
+main :is(.hero,.page-hero,.ap-hero,.gameday,.sec.dark,.brief-panel,.band,.tier.dark,.pw-inline,.metricbar,.fgroup-h,.gd-next) :focus-visible,
+.site-ft :focus-visible,main .poster:focus-visible{outline-color:var(--yellow)}
+main .mcard:focus-visible{outline-offset:4px}
+
+/* ---- 6.3 Type hierarchy ---- */
+.sec-t{font-size:var(--d-sec);line-height:.94;letter-spacing:var(--trk-display)}
+.page-hero .display{font-size:var(--d-page)}
+.hero .display{font-size:var(--d-hero);line-height:.92}
+.sec-hd{margin-bottom:var(--s6);align-items:flex-end}
+.sec-hd.sm .sec-t{font-size:var(--d-card)}
+.eyebrow{font-size:var(--fs-12);letter-spacing:var(--trk-label);color:var(--ink-3);gap:10px}
+.eyebrow::before{content:"";flex:none;width:18px;height:2px;background:var(--red)}
+.eyebrow.red{color:var(--red)}
+.dark .eyebrow,.page-hero .eyebrow,.hero .eyebrow,.ap-hero .eyebrow,.brief-panel .eyebrow,.gd-in .eyebrow,.reader-hd .eyebrow{color:rgba(255,255,255,.86);opacity:1}
+.hero .eyebrow::before,.page-hero .eyebrow::before,.ap-hero .eyebrow::before{background:var(--red)}
+.eyebrow:has(.live-dot)::before,.gd-in .eyebrow::before,.hero .eyebrow:has(.live-dot)::before{display:none}
+.reader-hd.tone-white .eyebrow{color:var(--blue)}
+.see-all{font-size:var(--fs-14);font-weight:700;letter-spacing:.01em;display:inline-flex;align-items:center;gap:2px}
+.see-all span{display:inline-block;transition:transform var(--t-fast) var(--ease)}
+.see-all:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.see-all:hover span{transform:translateX(3px)}
+.lede{color:var(--ink-2)}
+@media(min-width:960px){.lede{font-size:var(--fs-18)}.page-hero .lede,.hero .lede{font-size:19px}}
+/* card text: meta label vs title vs body are now three distinct roles */
+.mcard-b{gap:6px}
+.mcard-b .meta{font-size:var(--fs-12);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.mcard-b .meta .pct{letter-spacing:.06em}
+.mcard-b h3{font-size:var(--fs-18);line-height:var(--lh-tight);letter-spacing:-.005em;font-weight:700}
+.mcard-b p{font-size:var(--fs-15);line-height:1.5;color:var(--ink-2)}
+.dark .mcard-b .meta{color:rgba(255,255,255,.78)}
+/* small UI type floor: 12px for table heads, 10px for photo credits */
+.tbl th,.thead,.thead .num,.cmp thead th,.fgroup-h .num,.fgroup-h .f-last-h{font-size:var(--fs-12);letter-spacing:var(--trk-label)}
+.credit,.pc-pic.has-photo .credit,.ap-photo.has-photo .credit{font-size:10px}
+.pw-pop,.badge-ins,.badge-tier{font-size:var(--fs-11)}
+/* article serif: kept, deliberately, for long-form article body text only */
+.prose p{font-family:var(--serif);line-height:var(--lh-prose)}
