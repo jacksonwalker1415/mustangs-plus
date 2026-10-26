@@ -537,7 +537,7 @@
   function matchup(x){return 'SMU '+(x.home?'vs.':'at')+' '+x.opp}
   function gameStrip(slug){slug=slug||'football';var G=gameFeed(slug),C=GD_SPORTS[slug];if(!G||!C)return '';
     var sp=sportBy(slug),name=sp?sp.name:'Football',n=nextGame(G),l=lastGame(G),H=slug==='football'?MP.HURRYUP:null,
-      sched=sportUrl(slug)+'#schedule',thr=C.thread?threadUrl(C.thread):sportUrl(slug)+'#board';
+      sched=sportUrl(slug)+'#schedule',thr=n&&gameFor(slug,n.d)?gameThreadUrl(gameFor(slug,n.d)):C.thread?threadUrl(C.thread):sportUrl(slug)+'#board';
     var sc=l?l.res.match(/^([WL]) (\d+)-(\d+)/):null,us=sc?+sc[2]:0,them=sc?+sc[3]:0,exh=function(x){return x.ex?' (exh.)':''};
     return '<div class="gd-grid">'+
       (n?'<div class="gd-next">'+photoBg(C.bg,{gd:1,sizes:'(min-width:960px) 50vw, (min-width:640px) 100vw, 170vw'})+'<div class="gd-in"><p class="eyebrow"><span class="live-dot"></span>Next game · '+esc(name)+(n.ex?' · Exhibition':'')+'</p>'+
@@ -560,6 +560,20 @@
   var GAMES=(MP.GAMES&&MP.GAMES.games)||[],GBY={};GAMES.forEach(function(g){GBY[g.id]=g});
   function gameFor(slug,d){for(var i=0;i<GAMES.length;i++)if(GAMES[i].sport===slug&&GAMES[i].d===d)return GAMES[i];return null}
   function gameUrl(g){return ROOT+'games/?id='+g.id}
+  /* Game threads: boards/#game=<id> finds the game's thread (created on first visit, supabase RUN_ME_24) and opens it */
+  function gameThreadUrl(g){return ROOT+'boards/#game='+g.id}
+  /* Pinned score box on a game thread: matchup, time and TV before the game; the official final from the schedule data
+     after it. No live scores are shown here: during the game it points to the official Game Center. */
+  function gtBox(g){var sp=sportBy(g.sport),C=GM_SPORT[g.sport]||{verb:'Start'},L=g.links||{},ko=g.ko?Date.parse(g.ko):null,now=Date.now(),
+      state=g.res?'final':(ko&&now>=ko?'live':'pre'),where=[g.venue,g.city].filter(Boolean).join(', ');
+    var gc=L.gamecenter?'<p class="gt-live">Live score on <a href="'+esc(L.gamecenter)+'" target="_blank" rel="noopener">the official SMU Athletics Game Center'+EXT+'</a></p>':'';
+    return '<section class="gt-box gt-'+state+'" aria-label="Score box: SMU '+gmVs(g)+' '+esc(g.opp)+'">'+
+      '<div class="gt-hd"><p class="gt-sp">'+esc(sp?sp.name:'')+(g.ex?' · Exhibition':'')+'</p><p class="gt-t">SMU '+gmVs(g)+' '+esc(g.opp)+'</p>'+
+        '<p class="gt-st">'+(state==='final'?'Final':state==='live'?'Under way':'Upcoming')+'</p></div>'+
+      (state==='final'&&gmScore(g)?gmScore(g)+'<p class="gt-links">'+gmOut(L.box,'Box score')+gmOut(L.recap,'Recap')+gmOut(L.gamecenter,'Game Center')+'<a class="gm-out" href="'+gameUrl(g)+'">Game page</a></p>':
+        '<dl class="gt-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact('TV',g.tv)+gmFact('Radio',g.radio)+(where?gmFact('Where',where):'')+'</dl>'+gc+
+        '<p class="gt-links">'+gmOut(L.watch,'Watch')+gmOut(L.listen,'Listen')+'<a class="gm-out" href="'+gameUrl(g)+'">Game page</a></p>')+
+      '</section>'}
   function gmDate(g,long){var d=new Date(g.d+'T12:00:00Z'),y=d.getUTCFullYear();return (long?g.dow+'., ':'')+MON[d.getUTCMonth()]+' '+d.getUTCDate()+(long||y!==2026?', '+y:'')}
   function gmVs(g){return g.ha==='away'?'at':'vs.'}
 
@@ -909,7 +923,7 @@
         '<article class="gm-card gm-match"><h2 class="gm-h">'+(g.res?'Result':'Matchup')+'</h2>'+(g.res?gmScore(g):'')+
           '<dl class="gm-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact(g.venue?'Venue':'Where',where)+gmFact('TV / stream',g.tv)+gmFact('Radio',g.radio)+'</dl>'+
           (!g.res&&g.ko?'<div class="cd gm-cd" data-ko="'+Date.parse(g.ko)+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>':'')+
-          '<p class="gm-links">'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(L.gamecenter,'Game Center')+'</p></article>'+
+          '<p class="gm-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(L.recap,'Recap')+gmOut(L.box,'Box score')+gmOut(L.preview,'Preview')+gmOut(L.gamecenter,'Game Center')+'</p></article>'+
         '<article class="gm-card gm-how" id="how"><h2 class="gm-h">How to watch and listen</h2>'+
           '<div class="gm-how-i"><h3>Watch</h3><p>'+(g.tv?esc(g.tv):'TBA')+'</p>'+gmOut(L.watch,'Watch link from SMU Athletics')+'</div>'+
           '<div class="gm-how-i"><h3>Listen</h3><p>'+(g.radio?esc(g.radio):'TBA')+'</p>'+gmOut(L.listen,'Listen live')+'</div>'+
@@ -919,7 +933,7 @@
       (function(){var A=gmArticles(g);return A.length?'<section class="sec" id="stories"><div class="wrap">'+secHead('Related articles')+'<div class="cgrid">'+A.map(cardHTML).join('')+'</div></div></section>':''})()+
       (MP.FEATURES&&MP.FEATURES.checkin===true?'<section class="sec" id="checkin"><div class="wrap">'+secHead('Student check-in')+'<div class="gm-card gm-checkin"><p>Check in at the game.</p></div></div></section>':'')+
       '<section class="sec" id="team"><div class="wrap">'+secHead(esc(sp?sp.name:''))+'<div class="gm-team">'+
-        '<a class="gm-tl" href="'+sportUrl(g.sport)+'#roster">Roster</a><a class="gm-tl" href="'+sportUrl(g.sport)+'#schedule">Schedule</a><a class="gm-tl" href="'+sportUrl(g.sport)+'#board">Team board</a><a class="gm-tl" href="'+ROOT+'games/">All games</a></div>'+
+        '<a class="gm-tl" href="'+sportUrl(g.sport)+'#roster">Roster</a><a class="gm-tl" href="'+sportUrl(g.sport)+'#schedule">Schedule</a><a class="gm-tl" href="'+gameThreadUrl(g)+'">Game thread</a><a class="gm-tl" href="'+sportUrl(g.sport)+'#board">Team board</a><a class="gm-tl" href="'+ROOT+'games/">All games</a></div>'+
         '<nav class="gm-pn" aria-label="Other games">'+(prev?'<a class="gm-p" href="'+gameUrl(prev)+'"><small>Previous game</small><b>SMU '+gmVs(prev)+' '+esc(prev.opp)+' \u00b7 '+gmDate(prev)+'</b></a>':'<span></span>')+
           (next?'<a class="gm-n" href="'+gameUrl(next)+'"><small>Next game</small><b>SMU '+gmVs(next)+' '+esc(next.opp)+' \u00b7 '+gmDate(next)+'</b></a>':'')+'</nav>'+
         '<p class="gm-src">Game details from the <a href="'+esc((MP.GAMES.src||{})[g.sport]||'https://smumustangs.com')+'" target="_blank" rel="noopener">SMU Athletics schedule</a>'+(MP.GAMES.checked?', checked '+esc(MP.GAMES.checked):'')+'.</p></div></section>';
@@ -1191,7 +1205,7 @@
       var crumb=[['Boards','./'],[f.name,'?f='+f.id]];
       threadView.innerHTML=crumbs(crumb)+
         '<header class="fx-th"><h1 class="fx-th-t">'+prefix(t)+esc(t.title)+'</h1>'+
-          '<p class="fx-th-m">'+(t.pin?'<span class="fx-pin">'+PIN+'</span>Pinned \u00b7 ':'')+'Started by <b>'+esc(U(t.by).n)+'</b> \u00b7 '+tm(startT(t))+(r==null?'':' \u00b7 '+num(r)+(r===1?' reply':' replies'))+(SMU.live&&t.views?' \u00b7 '+esc(t.views)+' views':'')+'</p></header>'+
+          '<p class="fx-th-m">'+(t.pin?'<span class="fx-pin">'+PIN+'</span>Pinned \u00b7 ':'')+'Started by <b>'+esc(U(t.by).n)+'</b> \u00b7 '+tm(startT(t))+(r==null?'':' \u00b7 '+num(r)+(r===1?' reply':' replies'))+(SMU.live&&t.views?' \u00b7 '+esc(t.views)+' views':'')+'</p></header>'+(t.game&&GBY[t.game]?gtBox(GBY[t.game]):'')+
         '<div class="fx-bar">'+pg+'<div class="fx-bar-r">'+(un&&sn>0?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-new">Jump to new</a>':'')+(n>1?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-last">Last post</a>':'')+'<button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
         '<div class="fx-msgs">'+posts+'</div>'+
         (pg?'<div class="fx-bar bottom">'+pg+'</div>':'')+
@@ -1235,7 +1249,16 @@
       /* one h1 per view: the board name on the index, the board or thread title elsewhere */
       var br=$('#fxBrand'),want=v==='index'?'H1':'P';if(br&&br.tagName!==want){var nb=document.createElement(want);nb.id='fxBrand';nb.className='fx-brand';nb.textContent=br.textContent;br.replaceWith(nb)}
       $$('.fx-tabs a').forEach(function(a){var h=a.getAttribute('href'),on=v==='index'?h==='./':v==='list'&&state.f==='all'&&!state.q?h==='?f=all':false;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
-    function route(){var h=hashT();
+    function gameRoute(){var m=location.hash.match(/^#game=([a-z]+-\d{3,8})$/);if(!m)return false;var gid=m[1],g=GBY[gid];show('thread');
+      threadView.innerHTML=crumbs([['Boards','./'],['Game thread']])+'<p class="fx-wait" role="status">Opening the game thread…</p>';
+      function fail(msg){threadView.innerHTML=crumbs([['Boards','./'],['Game thread']])+emptyState('chat','Game thread unavailable',msg,(g?'<a class="btn btn-navy btn-sm" href="'+gameUrl(g)+'">Back to the game page</a>':'<a class="btn btn-navy btn-sm" href="./">Back to the boards</a>'))}
+      if(!g){fail('That game is not on the game-day hub.');return true}
+      (SMU.ready||Promise.resolve()).then(function(){
+        if(!SMU.live){var d=(MP.THREADS||[]).filter(function(x){return x.game===gid})[0];if(d){history.replaceState(null,'','#t'+d.id);route()}else fail('Game threads open on the live site. This copy is running in demo mode.');return}
+        return SMU.gameThread(gid).then(function(id){if(!id){fail('This game does not have a thread yet.');return}
+          return SMU.loadThread(id).then(function(){history.replaceState(null,'','#t'+id);route()})})}).catch(function(){fail('Could not reach the boards right now. Try again in a minute.')});
+      return true}
+    function route(){if(gameRoute())return;var h=hashT();
       if(h){show('thread');var anchor=renderThread(h);
         if(anchor){var el=document.getElementById(anchor);if(el)el.scrollIntoView({block:'start'})}else window.scrollTo(0,0);return}
       if(state.f||state.team||state.sport||state.q){show('list');renderList()}else{show('index');renderIndex()}}
