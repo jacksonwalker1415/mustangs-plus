@@ -50,49 +50,53 @@
 <style>:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}body::before{content:"";position:fixed;z-index:9000;top:0;left:0;right:0;height:var(--sat);background:#23347a;pointer-events:none}html body{padding-top:var(--sat)}html header.site{top:var(--sat)}html .jump{top:calc(var(--hdr-h,var(--hdr)) + var(--sat))}:root{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px + var(--sat))}@media(min-width:960px){html .gt-box{top:calc(var(--hdr-h,64px) + 8px + var(--sat))}}html .rec-grid aside{top:calc(var(--hdr) + var(--s5) + var(--sat))}html .policy-toc{top:calc(var(--hdr) + 24px + var(--sat))}html .wrap,html .disclaimer{padding-left:max(var(--gut),var(--sal));padding-right:max(var(--gut),var(--sar))}</style>
 <script>if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1')){addEventListener('load',function(){navigator.serviceWorker.register('../../sw.js',{scope:'../../'}).catch(function(){})})}</script>
 <!--/pwa-->
-<!--boot--><style>#boot{display:none}html.booting #boot,html.booted #boot{display:grid}
-#boot{position:fixed;inset:0;z-index:10000;place-items:center;background:#354CA1}
-html.booting #boot{animation:bootSafe .25s ease 1.2s forwards}
-html.booted #boot{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s}
-@keyframes bootSafe{to{opacity:0;visibility:hidden;pointer-events:none}}
-.boot-in{display:grid;justify-items:center;gap:32px}
-#boot img{display:block;width:clamp(180px,52vw,240px);height:auto}
-.boot-ring{display:block;width:36px;height:36px;border-radius:50%;box-sizing:border-box;border:3px solid rgba(255,255,255,.22);border-top-color:#fff;border-right-color:#CC0035;animation:bootSpin .75s linear infinite}
-@keyframes bootSpin{to{transform:rotate(360deg)}}
-.boot-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (prefers-reduced-motion:reduce){.boot-ring{animation:none;border-color:rgba(255,255,255,.22);border-top-color:#fff}html.booted #boot{transition:none}}
+<!--boot--><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>@view-transition{navigation:auto}
+::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.18s;animation-timing-function:ease}
+#pgbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10000;height:3px;background:#fff;box-shadow:0 1px 0 rgba(22,33,79,.2);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
+html.pg-wait #pgbar{opacity:1;animation:pgGrow 12s cubic-bezier(.08,.7,.2,1) forwards}
+html.pg-done #pgbar{transform:scaleX(1);opacity:0;transition:transform .15s ease,opacity .2s ease .12s}
+@keyframes pgGrow{from{transform:scaleX(.06)}to{transform:scaleX(.9)}}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}html.pg-wait #pgbar{animation:none;transform:scaleX(1)}html.pg-done #pgbar{transition:none}}
 </style>
-<script>(function(d,w){var h=d.documentElement;if(w.__SMU_NOBOOT)return;
-var rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches,MIN=0,CAP=1200,t0=0,done=1,cap,fade;
-function start(){done=0;t0=Date.now();clearTimeout(fade);h.classList.remove('booted');h.classList.add('booting');h.setAttribute('aria-busy','true');
-var b=d.getElementById('boot');if(b)b.removeAttribute('aria-hidden');clearTimeout(cap);var arm=function(){if(!done)cap=setTimeout(end,CAP)};w.requestAnimationFrame?w.requestAnimationFrame(arm):arm()}
-function end(){if(done)return;done=1;clearTimeout(cap);h.classList.remove('booting');h.classList.add('booted');h.removeAttribute('aria-busy');
-var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');fade=setTimeout(function(){if(done)h.classList.remove('booted')},rm?30:320)}
-function ready(){setTimeout(end,Math.max(0,MIN-(Date.now()-t0)))}
-start();if(d.readyState==='complete')ready();else w.addEventListener('load',ready);
-w.addEventListener('pageshow',function(e){if(e.persisted){start();ready()}})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../../assets/site.css?v=202610264900">
+<script>/* Page-load bar: nothing on fast loads. A slim bar shows only when a load is still going after 300ms: on this page until the app has rendered (DOMContentLoaded), and on the page being left after a same-site link tap or form submit. Never covers content; cleared on pagehide and on a back/forward-cache restore.
+   The fade is skipped when the next page took over a second to arrive (it adds nothing then, and the browser would drop it on its render timeout with a console error). */
+(function(d,w){var cl=d.documentElement.classList,t,cap,off,leaving=0,tap=0;if(w.__SMU_NOBOOT)return;
+function show(){clearTimeout(off);cl.remove('pg-done');cl.add('pg-wait');if(leaving)cap=setTimeout(function(){leaving=0;hide()},15000)}
+function hide(){clearTimeout(t);clearTimeout(cap);if(!cl.contains('pg-wait'))return;cl.remove('pg-wait');cl.add('pg-done');off=setTimeout(function(){cl.remove('pg-done')},450)}
+function reset(){leaving=0;clearTimeout(t);clearTimeout(cap);clearTimeout(off);cl.remove('pg-wait','pg-done')}
+function soon(){clearTimeout(t);clearTimeout(cap);t=setTimeout(show,300)}
+soon();d.addEventListener('DOMContentLoaded',function(){if(!leaving)hide()});
+w.addEventListener('click',function(e){if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target.closest&&e.target.closest('a[href]');if(!a||(a.target&&a.target!=='_self')||a.hasAttribute('download'))return;
+var u=new URL(a.href,location.href);if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search)||/\.(pdf|png|jpe?g|webp|gif|svg|zip|txt|xml|json|mp3|mp4|ics)$/i.test(u.pathname))return;leaving=1;tap=performance.now();soon()});
+w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!(f.getAttribute('target')&&f.getAttribute('target')!=='_self')){leaving=1;tap=performance.now();soon()}});
+w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
+function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
+w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
+<link rel="stylesheet" href="../../assets/site.css?v=202610264940">
 </head>
 <body data-page="sport" data-sport="womens-basketball" data-root="../../">
-<!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="../../assets/brand/smu-plus-logo-lg.webp"><img src="../../assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-ring" aria-hidden="true"></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
+<!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->
 <div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, sponsored by or endorsed by SMU, SMU Athletics, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU or Learfield. No payments taken.</span> <a href="../../privacy/#about">About this project</a></div>
 <div id="site-header"></div>
 <main id="sportMain"><div class="skel-block" aria-hidden="true" style="min-height:640px"><i class="sk"></i></div><span class="sr">Loading</span></main>
 <div id="site-footer"></div>
-<script src="../../assets/config.js?v=202610264900"></script>
-<script src="../../assets/data.js?v=202610264900"></script>
-<script src="../../assets/content.js?v=202610264900"></script>
-<script src="../../assets/real.js?v=202610264900"></script>
-<script src="../../assets/athletes.js?v=202610264900"></script>
-<script src="../../assets/socials.js?v=202610264900"></script>
-<script src="../../assets/sport-icons.js?v=202610264900"></script>
-<script src="../../assets/games.js?v=202610264900"></script>
-<script src="../../assets/upcoming.js?v=202610264900"></script>
-<script src="../../assets/boxscores.js?v=202610264900"></script>
-<script src="../../assets/gamestats.js?v=202610264900"></script>
-<script src="../../assets/sb.js?v=202610264900"></script>
-<script src="../../assets/ads.js?v=202610264900"></script>
-<script src="../../assets/app.js?v=202610264900"></script>
-<script src="../../assets/cfbd-live.js?v=202610264900"></script>
+<script src="../../assets/config.js?v=202610264940"></script>
+<script src="../../assets/data.js?v=202610264940"></script>
+<script src="../../assets/content.js?v=202610264940"></script>
+<script src="../../assets/real.js?v=202610264940"></script>
+<script src="../../assets/athletes.js?v=202610264940"></script>
+<script src="../../assets/socials.js?v=202610264940"></script>
+<script src="../../assets/sport-icons.js?v=202610264940"></script>
+<script src="../../assets/games.js?v=202610264940"></script>
+<script src="../../assets/upcoming.js?v=202610264940"></script>
+<script src="../../assets/boxscores.js?v=202610264940"></script>
+<script src="../../assets/gamestats.js?v=202610264940"></script>
+<script src="../../assets/sb.js?v=202610264940"></script>
+<script src="../../assets/ads.js?v=202610264940"></script>
+<script src="../../assets/app.js?v=202610264940"></script>
+<script src="../../assets/cfbd-live.js?v=202610264940"></script>
 </body>
 </html>

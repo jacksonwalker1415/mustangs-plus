@@ -177,7 +177,7 @@ nav.main a.on,.subnav a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--red);borde
 .dark .mcard:hover h3{color:#fff;text-decoration:underline}
 .mcard-b{display:flex;flex-direction:column;gap:var(--s1)}
 .mcard-b h3{font-size:17px}
-.mcard-b p{font-size:14px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mcard-b p{font-size:14px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis}
 .dark .mcard-b p,.dark .meta{color:rgba(255,255,255,.8)}
 .rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - var(--s5)*3)/4);gap:var(--s5);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:var(--s1)}
 .rail::-webkit-scrollbar{display:none}
@@ -1206,7 +1206,7 @@ header.site.nav-collapsed .menu-btn{display:inline-flex}
 .poster.np-video{background:var(--blue)}
 .poster.np-article{background:var(--b-900,#16214f)}
 .poster.np-podcast{background:var(--red)}
-.np-kick{position:absolute;left:var(--s3);right:42%;top:calc(var(--s3) + 30px);font-size:11px;font-weight:800;letter-spacing:0;line-height:1.35;color:rgba(255,255,255,.88);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.np-kick{position:absolute;left:var(--s3);right:42%;top:calc(var(--s3) + 30px);font-size:11px;font-weight:800;letter-spacing:0;line-height:1.35;color:rgba(255,255,255,.88);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis}
 .np-art{position:absolute;right:6%;bottom:9%;height:62%;aspect-ratio:1;display:block}
 .np-art svg{width:100%;height:100%;display:block}
 .np-art .np-mark{opacity:.92}
@@ -1858,6 +1858,11 @@ main[tabindex="-1"]:focus{outline:none}
 .htab[aria-selected="false"]:hover{color:var(--ink)}
 /* form-field focus rings are main's (94ef9e5: SMU blue for keyboard, none after a tap) */
 
+/* ---- Page transitions (bot/page-transitions): the cross-document fade itself lives in the inline boot block of every page.
+   The header keeps its own snapshot, so it holds still while the page under it fades (no double header on narrow or wide screens).
+   Not while the phone menu, the sports drop-down or an overlay is open: then the whole page, open panel included, simply fades. ---- */
+html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden]),#mmenu:not([hidden]))){view-transition-name:site-header}
+
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */
@@ -1952,7 +1957,7 @@ main[tabindex="-1"]:focus{outline:none}
 .fx-latest li{display:flex;gap:10px;padding:10px 16px;border-top:1px solid var(--fx-line)}
 .fx-latest li:first-child{border-top:0}
 .fx-latest li>div{min-width:0;display:flex;flex-direction:column}
-.fx-latest a{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fx-latest a{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis}
 .fx-stats{padding:6px 16px 10px}
 .fx-stats div{display:flex;justify-content:space-between;padding:6px 0;font-size:14px}
 .fx-stats dt{color:var(--ink-2)}.fx-stats dd{font-weight:700}
@@ -2160,7 +2165,7 @@ a.fx-quote-h:hover{text-decoration:underline}
 @media(max-width:767px){.fx-rules a{display:inline-flex;align-items:center;min-height:44px}}
 @media(max-width:767px){.fx-row-f{pointer-events:none;color:inherit;z-index:auto}.fx-reply-tip a,.fx-reply.out a{display:inline-flex;align-items:center;min-height:44px}}
 .outlets .mcard-b .meta{text-transform:none;letter-spacing:0;font-size:13px}
-.outlets .mcard-b h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.outlets .mcard-b h3{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis}
 
 /* ---------- Game-day hub (games/): flat SMU blue header, white cards, red accents only on actions ---------- */
 .gm-hero{background:var(--blue)}
@@ -2614,3 +2619,27 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .ad-lbl-skin{position:absolute;left:12px;top:calc(var(--hdr) + 56px);color:var(--adfg);font-size:14px}
 }
 .jm-note{color:#fff;font-weight:700;margin-bottom:6px}
+/* Weekly hero headline (MP.HERO): one row per line, app.js shrinks the size to fit the column */
+.hero-copy{min-width:0}
+.hero .display.hero-wk{max-width:100%}
+.hero .display.hero-wk b,.hero .display.hero-wk span{display:block;width:max-content;white-space:nowrap;font-weight:inherit}
+@media(max-width:400px){.hero .display.hero-wk b,.hero .display.hero-wk span{white-space:normal;width:auto}}
+/* Ribbon on phones (Oct 26, Jackson): tighter cards, aligned TV/Stream/Radio line, arrows below the cards instead of over them */
+@media(max-width:719px){
+  .rb-main{gap:3px;padding:var(--s3) var(--s3) var(--s2)}
+  .rb-tv{padding:8px var(--s3);gap:4px 14px;align-items:baseline;font-size:14px;line-height:1.4}
+  .rb-tv div{align-items:baseline;gap:5px}
+  .rb-tv a{display:inline;min-height:0;padding:6px 0;margin:-6px 0}
+  .rb-wrap{padding-bottom:52px}
+  .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:40px;height:40px}
+  .rb-wrap .xside.xprev{left:auto;right:50px}
+  .rb-wrap .xside.xnext{right:0}
+  .rb-wrap .xside:disabled{opacity:.35}
+  .rb-wrap.no-ovf{padding-bottom:0}
+  .rb-m{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis}
+  .rb-pl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rb-tv div{min-width:0;max-width:100%}
+  .rb-card{position:relative}
+  .rb-stats{position:absolute;top:10px;right:var(--s3);min-height:0;padding:4px 0;border:0;font-size:13px}
+  .rb-tv dd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
+}
