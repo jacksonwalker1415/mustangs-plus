@@ -1775,7 +1775,6 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 .mini-empty{text-align:left;border-style:solid;border-color:var(--card-line)}
 .note.center{text-align:left;margin-left:0}
 .sheet{text-align:left}.sheet .ic{margin:0 0 var(--s4)}
-.gate-cta>div{text-align:left}.gate-cta svg{margin:0 0 var(--s3)}
 .wl-fine{text-align:left}
 /* "More sports" on sport pages: a plain inline index, not a cloud of pills */
 #more .chips{gap:0;row-gap:var(--s2)}
