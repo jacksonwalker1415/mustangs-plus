@@ -247,10 +247,10 @@
     if(SMU.user)ensureUser('u:'+SMU.user.id,SMU.user.name,tierCache)}
 
   /* ---------- Post reports ----------
-     REPORTS stays false until supabase/PROPOSED_12_post_reports.sql has run. While it's off (and always in demo mode), a report is kept in
+     REPORTS is on (PROPOSED_12_post_reports.sql applied Oct. 26). In demo mode, or if it is turned off, a report is kept in
      this browser (localStorage mp_reports). Once on, signed-in members send it to public.post_reports; if that table is missing or
      unreachable, the report falls back to this browser instead of failing. Reports are never readable from the site. */
-  var REPORTS=false, REASONS=['harassment','recruit_minor','doxxing','spam','other'];
+  var REPORTS=true, REASONS=['harassment','recruit_minor','doxxing','spam','other'];
   function reportKey(o){return o.thread+':'+o.post}
   function reportLocal(o,where){var list=lj('mp_reports',[]),k=reportKey(o),me=SMU.user&&SMU.user.id;
     if(list.some(function(r){return r.key===k&&r.by===me}))return {dup:true,where:where};
