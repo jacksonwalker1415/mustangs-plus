@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jacksonwalker1415.github.io/mustangs-plus/sitemap.xml

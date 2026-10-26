@@ -154,7 +154,7 @@ MP.SCHEDULE={source:['SMU Athletics 2026 football schedule','https://smumustangs
   {d:'2026-11-28',day:'Sat',opp:'Stanford',home:false,site:'Stanford, Calif.',ko:null,tv:null,res:null}],
  radio:'KTCK 96.7 FM/1310 AM & SiriusXM'};
 /* Fictional fan commentary for the last result. The score and record are real; the opinions are invented for the concept. */
-MP.HURRYUP={by:'sam',title:'59 points and not much to argue about',takes:[
+MP.HURRYUP={by:'sam',photo:{'2026-10-24':'cal-raphael'},title:'59 points and not much to argue about',takes:[
  'Four straight wins, 6-1 overall and 4-1 in the ACC. The Louisville night in September feels like a different season.',
  'Fifty-nine goes on the fridge. The real test is whether this offense can carry the same pace into an 11 a.m. kick in Syracuse, which is about as far from a Dallas Saturday as the ACC gets.',
  'Next home date is a Friday: Virginia Tech, Nov. 6, under the lights at Ford. Wear blue.']};
@@ -169,6 +169,9 @@ MP.PHOTOS={
  'jennings-scramble':{file:'jennings-scramble-blue.webp',pos:'55% 35%',alt:'Kevin Jennings in blue runs to his right and points downfield'},
  'ol-59':{file:'ol-59-celebrates-blue.webp',pos:'40% 25%',alt:'SMU offensive lineman number 59 in blue raises both arms, with Kevin Jennings at the edge of the frame'},
  'raphael-carry':{file:'raphael-carry-dallas-jersey.webp',pos:'48% 30%',alt:'Kendrick Raphael, number 6, carries the ball in a blue jersey with Dallas across the chest'},
+ /* Same SMU Athletics photo as the featured image on the official SMU vs. Cal recap (Oct. 24, 2026):
+    smumustangs.com/news/2026/10/24/football-dominating-second-half-leads-smu-to-59-20-win-over-cal */
+ 'cal-raphael':{file:'raphael-carry-dallas-jersey.webp',pos:'50% 28%',alt:'Kendrick Raphael, number 6 in blue, carries the ball against Cal at Gerald J. Ford Stadium on Oct. 24, 2026'},
  'raphael-endzone':{file:'raphael-end-zone-blue.webp',pos:'50% 35%',alt:'Number 6 in blue runs through the end zone'},
  'kilgore':{file:'kilgore-captain-celebrates.webp',pos:'55% 25%',alt:'Alexander Kilgore, number 23 in blue with a captain patch, celebrates on the sideline'},
  'hurdle':{file:'rb-6-hurdle-red.webp',pos:'50% 40%',alt:'An SMU ball carrier in red hurdles a defender'},

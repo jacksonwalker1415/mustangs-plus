@@ -1,4 +1,5 @@
-/* SMU+ concept data. Every athlete, coach, user, opponent and number here is fictional sample data. */
+/* SMU+ concept data. Board users, posts, prices, fund figures and the sample roster names in this file are fictional.
+   Real data lives elsewhere: football schedule in content.js, football profiles in athletes.js, and the other 11 programs' schedules, rosters and coaches in real.js (all sourced from smumustangs.com). */
 window.MP = window.MP || {};
 
 MP.SPORTS = [
@@ -7,9 +8,9 @@ MP.SPORTS = [
   {slug:'mens-basketball',name:"Men's Basketball",season:'Winter',g:'M',record:'2-0',conf:'Preseason',coach:'Coach Marcus Halloway',members:2380,fund:228900,pos:['PG','SG','SG','SF','SF','PF','PF','C'],num:[0,35],ht:[73,85],
    blurb:'From open gym to tip-off at Moody, all access to the hardwood.'},
   {slug:'womens-basketball',name:"Women's Basketball",season:'Winter',g:'W',record:'1-0',conf:'Preseason',coach:'Coach Renee Castillo',members:1640,fund:151200,pos:['PG','G','G','F','F','F','C'],num:[0,35],ht:[66,77],
-   blurb:'A rebuilt roster, a new identity and a fan base that shows up.'},
+   blurb:'Practice, film and every possession at Moody Coliseum.'},
   {slug:'womens-soccer',name:"Women's Soccer",season:'Fall',g:'W',record:'11-3-2',conf:'6-1-1 Conf.',coach:'Coach Elena Marsh',members:1120,fund:98400,pos:['GK','D','D','D','M','M','M','F','F'],num:[1,30],ht:[62,72],
-   blurb:'Postseason push. Behind the scenes of a top-of-the-table run.'},
+   blurb:'Nights at Washburne Stadium and the grind of an ACC schedule.'},
   {slug:'mens-soccer',name:"Men's Soccer",season:'Fall',g:'M',record:'9-4-3',conf:'4-2-1 Conf.',coach:'Coach Julian Ferreira',members:960,fund:87600,pos:['GK','D','D','D','M','M','M','F','F'],num:[1,30],ht:[67,76],
    blurb:'Tactics boards, film sessions and the road to the tournament.'},
   {slug:'volleyball',name:'Volleyball',season:'Fall',g:'W',record:'16-5',conf:'8-2 Conf.',coach:'Coach Kara Lindgren',members:1010,fund:93100,pos:['OH','OH','MB','MB','S','L','OPP','DS'],num:[1,25],ht:[65,77],
@@ -20,7 +21,7 @@ MP.SPORTS = [
    blurb:'Practice rounds, swing breakdowns and tournament day.'},
   {slug:'tennis',name:'Tennis',season:'Spring',g:'X',record:'Fall invites',conf:'Dual season in Jan.',coach:'Coach Priya Natarajan',members:480,fund:39500,pos:['Singles','Singles','Doubles','Singles/Doubles'],
    blurb:'Match-point drama and the grind of a dual-match season.'},
-  {slug:'track-field',name:'Track & Field / XC',season:'Year-round',g:'X',record:'XC: 2nd at regionals',conf:'Indoor starts Jan.',coach:'Coach Andre Whitfield',members:560,fund:46200,pos:['Sprints','Distance','Hurdles','Jumps','Throws','Mid-distance'],
+  {slug:'track-field',name:'Track & Field / XC',season:'Year-round',g:'W',record:'XC: 2nd at regionals',conf:'Indoor starts Jan.',coach:'Coach Andre Whitfield',members:560,fund:46200,pos:['Sprints','Distance','Hurdles','Jumps','Throws','Mid-distance'],
    blurb:'Splits, PRs and long runs on the Katy Trail.'},
   {slug:'rowing',name:'Rowing',season:'Fall/Spring',g:'W',record:'Head races',conf:'Spring sprints',coach:'Coach Fiona Kerr',members:300,fund:22900,pos:['Stroke','Bow','Port','Starboard','Coxswain'],
    blurb:'Dawn on the water. Erg tests, boat selection and race day.'},
@@ -77,11 +78,11 @@ MP.THREADS = [
      ['ray','Whoever runs the visit itinerary deserves a raise.'],
      ['hank','The NIL fund numbers matter here. Fans actually moved the needle this year.']
    ]},
-  {id:4,f:'hilltop',sport:'womens-soccer',hot:true,title:"Women's soccer clinches a top seed. Who's traveling for the tourney?",by:'grace',ago:'6h',replies:146,views:'3.9k',
+  {id:4,f:'hilltop',sport:'womens-soccer',hot:true,title:"Women's soccer wins 3-1 at Cal. Who's going to the Pitt match?",by:'grace',ago:'3d',replies:146,views:'3.9k',
    posts:[
-     ['grace','What a season. Who is road tripping? Thinking of organizing an SMU+ meetup.'],
-     ['belle','Count me in. The Club tier tailgate invite included a postseason watch party too.'],
-     ['cox','The back line has been ridiculous all year. Seven clean sheets.']
+     ['grace','Three goals in Berkeley on Thursday. Two left: at North Carolina on Oct. 29, then Pitt at Washburne on Nov. 5. Thinking of organizing an SMU+ meetup for Pitt.'],
+     ['belle','Count me in. The Club tier invite included a watch party for the UNC match too.'],
+     ['cox','Tough ACC stretch, but that win at Cal was fun to watch.']
    ]},
   {id:5,f:'paddock',sport:'volleyball',title:'Mic\'d up: the setter\'s timeout huddle from Saturday is a must-watch',by:'belle',ago:'9h',replies:92,views:'2.7k',
    posts:[
@@ -113,22 +114,22 @@ MP.THREADS = [
    ]},
   {id:10,f:'recruiting',sport:'football',title:'Offer tracker: 2028 class (updated weekly)',by:'staff',ago:'2d',replies:691,views:'22k',
    posts:[['staff','Updated tracker. All prospects referenced on this demo board are fictional.'],['ray','The DL haul is going to be special.']]},
-  {id:11,f:'hilltop',sport:'golf',title:'Golf team wins the fall invitational. Shoutout to the freshman!',by:'cox',ago:'3d',replies:44,views:'980',
-   posts:[['cox','Won by six strokes. Freshman shot -9 over three rounds.'],['pete','The swing breakdown video on SMU+ was great.']]},
+  {id:11,f:'hilltop',sport:'golf',title:"Women's golf finishes 5th at the Landfall Tradition",by:'cox',ago:'5h',replies:44,views:'980',
+   posts:[['cox','Fifth of 18 in Wilmington, after a T4th in Seattle and a T5th at Haskins. Solid fall.'],['pete','The swing breakdown video on SMU+ was great.']]},
   {id:12,f:'boulevard',sport:null,title:'SMU+ app feature requests thread',by:'mike',ago:'4d',replies:131,views:'3.2k',
    posts:[['mike','Mine: picture-in-picture for live Q&As, and a dark mode.'],['grace','Push alerts when an athlete I follow posts.']]},
-  {id:13,f:'hilltop',sport:'track-field',title:'XC regionals: 2nd place finish, what a run',by:'grace',ago:'4d',replies:37,views:'860',
-   posts:[['grace','Huge day for the distance squad. Three runners in the top 20.']]},
+  {id:13,f:'hilltop',sport:'track-field',title:'XC heads to the ACC Championships on Friday',by:'grace',ago:'4d',replies:37,views:'860',
+   posts:[['grace','Two team wins in September (John McKenzie and the Texas A&M Invitational). ACCs are Oct. 30 in Blacksburg. Who is watching?']]},
   {id:14,f:'paddock',sport:'womens-basketball',title:'Film room: breaking down the new press',by:'staff',ago:'5d',replies:76,views:'2.1k',
    posts:[['staff','The new full-court press is aggressive. Here is how it works and why the staff thinks it fits this roster.'],['belle','Loved the telestrator clips.']]},
-  {id:15,f:'hilltop',sport:'rowing',title:'First head race of the fall: varsity eight looked fast',by:'hank',ago:'6d',replies:21,views:'540',
-   posts:[['hank','Great showing on the water. The 2V was a surprise too.']]},
+  {id:15,f:'hilltop',sport:'rowing',title:'Head of the Charles thread: who watched the stream?',by:'hank',ago:'6d',replies:21,views:'540',
+   posts:[['hank','Great to see SMU racing in Cambridge. Next up is Texas at White Rock Lake on Nov. 8.']]},
   {id:16,f:'hilltop',sport:'tennis',title:'Fall invite results thread',by:'ray',ago:'1w',replies:18,views:'410',
-   posts:[['ray','Two singles titles and a doubles final. Good sign for the spring.']]},
-  {id:17,f:'hilltop',sport:'equestrian',title:'Equestrian 4-1! Anyone been to a meet?',by:'belle',ago:'1w',replies:29,views:'620',
-   posts:[['belle','Went for the first time last week. Highly recommend, the riders are incredible.']]},
-  {id:18,f:'hilltop',sport:'mens-soccer',title:"Men's soccer: must-win stretch to close the season",by:'dallas',ago:'1w',replies:55,views:'1.2k',
-   posts:[['dallas','Three to play. Win two and we are in.']]}
+   posts:[['ray','Fall is all individual events. Who is going to the ITA Sectionals Nov. 5-8? Dual season starts in the spring.']]},
+  {id:17,f:'hilltop',sport:'equestrian',title:'First home equestrian meet is Nov. 6. Anyone been?',by:'belle',ago:'1w',replies:29,views:'620',
+   posts:[['belle','Georgia at the Dallas Equestrian Center on Nov. 6, then Oklahoma State on Nov. 7. Highly recommend, the riders are incredible.']]},
+  {id:18,f:'hilltop',sport:'mens-soccer',title:"Men's soccer is 12-0-2. Louisville on Friday",by:'dallas',ago:'1w',replies:55,views:'1.2k',
+   posts:[['dallas','Unbeaten through 14. Louisville at Washburne on Oct. 30, 6:30 p.m. on ACCN. Pack it out.']]}
 ];
 
 /* Board upgrade: forum groups, more users, longer threads with quoted replies. All fictional. */
