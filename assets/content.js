@@ -173,6 +173,11 @@ MP.PHOTOS={
     smumustangs.com/news/2026/10/24/football-dominating-second-half-leads-smu-to-59-20-win-over-cal */
  'cal-raphael':{file:'raphael-carry-dallas-jersey.webp',pos:'50% 28%',alt:'Kendrick Raphael, number 6 in blue, carries the ball against Cal at Gerald J. Ford Stadium on Oct. 24, 2026'},
  'raphael-endzone':{file:'raphael-end-zone-blue.webp',pos:'50% 35%',alt:'Number 6 in blue runs through the end zone'},
+ 'mcfall-hs':{file:'mcfall-headshot-0.webp',small:'mcfall-headshot-0-900.webp',pos:'50% 22%',alt:'Derrick McFall, number 0, in SMU\'s blue home uniform, official 2026-27 headshot'},
+ 'knight-hs':{file:'knight-headshot-8.webp',small:'knight-headshot-8-900.webp',pos:'50% 22%',alt:'Yamir Knight, number 8, in SMU\'s blue home uniform, official 2026-27 headshot'},
+ /* Ahmaad Moses has no 2026-27 headshot on smumustangs.com; this is his 2025 headshot, taken when he wore number 3 (he wears 7 now). */
+ 'moses-hs':{file:'moses-headshot-3-2025.webp',small:'moses-headshot-3-2025-900.webp',pos:'50% 22%',alt:'Ahmaad Moses in SMU\'s blue uniform, 2025 headshot from when he wore number 3'},
+ 'raphael-bc':{file:'raphael-carry-boston-college.webp',small:'raphael-carry-boston-college-900.webp',pos:'40% 30%',alt:'Kendrick Raphael, number 6 in blue, carries the ball against Boston College on Oct. 3, 2026'},
  'kilgore':{file:'kilgore-captain-celebrates.webp',pos:'55% 25%',alt:'Alexander Kilgore, number 23 in blue with a captain patch, celebrates on the sideline'},
  'hurdle':{file:'rb-6-hurdle-red.webp',pos:'50% 40%',alt:'An SMU ball carrier in red hurdles a defender'},
  'carrier-2':{file:'ballcarrier-2-missouri-state.webp',pos:'55% 50%',alt:'SMU number 2 in red carries the ball against Missouri State'},
