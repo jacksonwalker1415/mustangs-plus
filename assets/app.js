@@ -154,12 +154,12 @@
       '<p class="mm-h">Sports</p><div class="mm-sports">'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+esc(sp.name)+'</a>'}).join('')+'</div>'+
       '<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting: no payment is involved.</p></div>'+
       '<a class="mm-acct" href="'+ROOT+'account/"><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span><b class="mm-acct-l">Sign in or create an account</b><small class="mm-acct-s">Save athletes, post on the boards, sync what you watch</small></span><span class="mm-chev" aria-hidden="true">›</span></a>'+
-      '<a class="btn btn-red mm-join" href="'+ROOT+'#membership">Join SMU+</a>'+
+      '<a class="btn btn-red mm-join" href="'+ROOT+'#waitlist">Join SMU+</a>'+
       '<p class="mm-note">Concept built for an SMU Cox MBA class project. No payments are taken.</p></div></div>'}
   $('#site-header').outerHTML='<header class="site"><div class="wrap hdr">'+wordmark()+'<nav class="main" aria-label="Primary">'+navLinks()+'</nav>'+
     '<div class="hdr-act"><button type="button" class="hsearch" id="searchBtn" aria-haspopup="dialog" aria-label="Search SMU+">'+SVG.search+'<span>Search</span><kbd>/</kbd></button>'+memberSwitch('Member preview')+
     '<a class="acct-btn" id="acctBtn" href="'+ROOT+'account/"'+(PAGE==='account'?' aria-current="page"':'')+'><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span class="acct-l">Sign in</span></a>'+
-    '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#membership">Join</a>'+
+    '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#waitlist">Join</a>'+
     '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+
     mobileMenu()+'</header>';
   var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
@@ -326,6 +326,16 @@
   document.addEventListener('keydown',function(e){var typing=/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||''));
     if(e.key==='Escape'){if(!search.hidden){closeSearch();return}if(!pw.hidden){closePaywall();return}closeModal();closeArticle();return}
     if(((e.key==='/'&&!typing)||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'))&&search.hidden){e.preventDefault();openSearch()}});
+
+  /* ---------- Header fit: collapse lowest-priority nav links into the menu before anything overlaps ---------- */
+  (function(){var nav=$('nav.main'),hd=$('header.site');if(!nav||!hd)return;var links=$$('a',nav);
+    function fit(){links.forEach(function(a){a.classList.remove('nav-x')});hd.classList.remove('nav-collapsed');
+      if(innerWidth<960)return;var i=links.length-1;
+      var over=function(){var nr=nav.getBoundingClientRect().right;return links.some(function(a){return !a.classList.contains('nav-x')&&a.getBoundingClientRect().right>nr-2})};
+      while(i>=0&&over()){links[i].classList.add('nav-x');hd.classList.add('nav-collapsed');i--}}
+    window.fitNav=fit;var t;addEventListener('resize',function(){cancelAnimationFrame(t);t=requestAnimationFrame(fit)});
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+    if(window.ResizeObserver){var ro=new ResizeObserver(function(){cancelAnimationFrame(t);t=requestAnimationFrame(fit)});ro.observe($('.hdr-act'));ro.observe($('.hdr'))}fit()})();
 
   /* ---------- Mobile menu ---------- */
   var mm=$('#mmenu'),mb=$('#menuBtn'),hdrEl=$('header.site');
@@ -839,6 +849,12 @@
   function syncAcct(){var u=SMU.user,b=$('#acctBtn');if(b){b.classList.toggle('in',!!u);$('.acct-l',b).textContent=u?(u.name||'Account').split(' ')[0]:'Sign in';
       $('.acct-av',b).innerHTML=u?'<span>'+esc(initials(u.name))+'</span>':SVG.user;b.setAttribute('aria-label',u?'Your account ('+(u.name||u.email)+')':'Sign in or create an account')}
     var ml=$('.mm-acct-l'),ms=$('.mm-acct-s');if(ml){ml.textContent=u?(u.name||'Your account'):'Sign in or create an account';ms.textContent=u?TIER_NAME[SMU.tier()]+' member \u00b7 '+(SMU.live?'synced':'demo account'):'Save athletes, post on the boards, sync what you watch'}
+    /* Join CTA: signed out = Join; signed in, free = smaller Upgrade link; signed in member = hidden (header + phone menu) */
+    var st=!u?'out':(SMU.tier()!=='free'?'member':'free');
+    $$('.hdr-join,.mm-join').forEach(function(el){var mmj=el.classList.contains('mm-join');el.hidden=st==='member';el.classList.toggle('is-upgrade',st==='free');
+      el.classList.toggle('btn-red',st!=='free');el.textContent=st==='free'?(mmj?'Upgrade your membership':'Upgrade'):(mmj?'Join SMU+':'Join');
+      el.setAttribute('href',st==='free'?ROOT+'#membership':ROOT+'#waitlist')});
+    if(window.fitNav)window.fitNav();
     $$('[data-save-athlete]').forEach(syncSaveBtn)}
   SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('tier',function(t){store('mp_member',t!=='free'?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
   SMU.on('saved',function(){$$('[data-save-athlete]').forEach(syncSaveBtn)});
