@@ -1487,6 +1487,14 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .fo-card .fo-a{width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border-radius:50%;color:var(--blue)}
 .fo-card .fo-a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 @media(max-width:639px){.follow-l li.fo-card{flex-basis:78vw;width:78vw;max-width:300px}}
+/* player follow cards (assets/socials.js): plain text X / Instagram links, no brand icons */
+.fo-pc .fo-av{object-fit:cover}
+.fo-num{display:grid;place-items:center;font-family:var(--display,inherit);font-weight:800;font-size:20px;color:var(--blue)}
+.fo-pl{list-style:none;margin:auto 0 0;padding:var(--s1) 0 0;display:flex;flex-direction:column;gap:var(--s1)}
+.fo-card .fo-a.fo-t{width:100%;height:auto;min-height:44px;justify-content:flex-start;gap:var(--s2);padding:0 var(--s3);border-radius:var(--r1);color:var(--blue);min-width:0}
+.fo-tk{flex:0 0 auto;font-weight:800}
+.fo-th{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--ink-2)}
+.fo-card .fo-a.fo-t:hover .fo-th{color:#fff}
 
 /* ---------- Phones: calmer hero, cleaner menu, Join + menu at the far right (iPhone review notes, Oct. 26) ---------- */
 @media(max-width:959px){.hdr-act{margin-left:auto}}
