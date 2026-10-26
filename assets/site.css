@@ -30,10 +30,10 @@ dl,dd{margin:0}
 /* ---------- Layout ---------- */
 .wrap{width:100%;max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
 .sec{padding:var(--s8) 0}
-.sec.tight{padding-top:0}
+.sec.tight{padding-top:var(--s6)} /* breathing room above the heading now that section kickers are gone */
 .sec.alt{background:var(--surface)}
 .sec.dark{background:var(--black);color:#fff}
-@media(max-width:639px){.sec{padding:var(--s7) 0}}
+@media(max-width:639px){.sec{padding:var(--s7) 0}.sec.tight{padding-top:var(--s5)}}
 .gap{height:var(--s7)}
 
 /* ---------- Type ---------- */
@@ -575,7 +575,6 @@ body:has(#threadView:not([hidden])) .page-hero .display{font-size:clamp(32px,4vw
 .hero.has-photo,.page-hero.has-photo{position:relative;overflow:hidden;background:var(--black)}
 .hero.has-photo .bgph::after,.page-hero.has-photo .bgph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,33,79,.96) 0%,rgba(28,42,99,.9) 45%,rgba(53,76,161,.78) 100%),linear-gradient(0deg,rgba(22,33,79,.55) 0%,rgba(22,33,79,0) 40%)}
 .hero.has-photo>.wrap,.page-hero.has-photo>.wrap{position:relative;z-index:2}
-.hero.has-photo .statbar.plain>div{background:none}
 @media(max-width:959px){.hero.has-photo .bgph::after,.page-hero.has-photo .bgph::after{background:linear-gradient(180deg,rgba(28,42,99,.88) 0%,rgba(22,33,79,.95) 100%)}}
 .poster.has-img .ph{position:absolute;inset:0;transition:transform .3s,filter .3s}
 .poster.has-img::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,24,60,.28) 0%,rgba(16,24,60,0) 35%,rgba(16,24,60,0) 60%,rgba(16,24,60,.45) 100%)}
@@ -722,12 +721,15 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .gd-hurry{display:flex;flex-direction:column;background:#fff;color:var(--ink);border-radius:var(--r3);overflow:hidden}
 .gd-hph{position:relative;aspect-ratio:21/9;flex:none}
 .gd-hb{padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
-.gd-hb .eyebrow{margin:0}
-.score{display:grid;grid-template-columns:1fr 1fr auto;gap:var(--s3);align-items:end;padding-bottom:var(--s3);border-bottom:1px solid var(--line)}
-.sc-t{display:flex;flex-direction:column}.sc-t b{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2)}
-.sc-t em{font-style:normal;font-family:var(--display);font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
-.sc-t:first-child em{color:var(--blue)}
-.sc-f{font-size:12px;font-weight:700;color:var(--ink-3);text-align:right}
+.score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--s4);padding:var(--s2) 0 var(--s4);border-bottom:1px solid var(--line)}
+.sc-t{display:flex;align-items:center;justify-content:flex-end;gap:var(--s3);color:var(--black)}
+.sc-t.sc-r{justify-content:flex-start}
+.sc-t b{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.sc-t em{font-style:normal;font-family:var(--display);font-size:48px;line-height:1;font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
+.sc-t:not(.win){opacity:.5}
+.sc-t.win em{color:var(--blue)}
+.sc-f{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:600;color:var(--ink-3);text-align:center;white-space:nowrap}
+.sc-f b{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--black)}
 .gd-hb h3{font-size:18px;font-weight:800}
 @media(max-width:639px){.gd-in{padding:var(--s5)}.gd-facts{grid-template-columns:1fr 1fr}.cd div{min-width:0;flex:1}.cd b{font-size:24px}.gd-next{min-height:0}}
 #gameday{scroll-margin-top:120px}
@@ -1270,11 +1272,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .player.ap{background:var(--red)}
 .player.ap.on{display:block;aspect-ratio:auto;background:var(--surface);padding:var(--s4)}
 .player.ap iframe{display:block;width:100%;max-width:660px;height:175px;margin:0 auto;border:0;border-radius:var(--r2);overflow:hidden;background:#fff}
-.feeds .xgate{display:flex;align-items:center;justify-content:space-between;gap:var(--s4) var(--s5);flex-wrap:wrap;padding:var(--s5);border:1px solid var(--line-2);border-left:4px solid var(--blue);border-radius:var(--r2);background:#fff}
-.feeds .xg-b{min-width:0;flex:1 1 320px}
-.feeds .xg-b b{display:block;font-size:17px;color:var(--ink)}
-.feeds .xg-b p{margin:var(--s1) 0 0;font-size:14px;color:var(--ink-2)}
-.feeds .xg-b a{color:var(--blue);font-weight:700;text-decoration:underline}
 .feeds .xposts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:0 var(--s5);align-items:start}
 .feeds .xpost{min-width:0}
 .feeds .xpost .twitter-tweet{margin:var(--s3) 0!important}
@@ -1291,7 +1288,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .fo-links{display:flex;flex-wrap:wrap;gap:var(--s2)}
 .fo-a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 var(--s3);border-radius:var(--r1);border:1px solid var(--line-2);background:#fff;font-size:13px;font-weight:700;color:var(--blue)}
 .fo-a:hover{border-color:var(--blue);background:var(--blue-10)}
-@media(max-width:639px){.feeds .xgate{padding:var(--s4)}.feeds .xgate .btn{width:100%}}
 /* SMU-style card template (no YouTube thumbnail): real SMU Athletics photo left, flat SMU-blue panel right. Sized off the card's own width. */
 .tpl-card{container-type:inline-size;background:var(--blue);color:#fff}
 .tpl-card .tpl-ph{position:absolute;inset:0 auto 0 0;width:40%;overflow:hidden;background:var(--b-900)}
@@ -1456,11 +1452,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 
 /* ---------- From the feeds, compact: one-line gate, one sideways row of posts, one sideways row of follow chips ---------- */
 .feeds .sec-hd{align-items:flex-end}
-.feeds .xgate{flex-wrap:nowrap;gap:var(--s3);padding:var(--s2) var(--s2) var(--s2) var(--s4);border:1px solid var(--line-2);border-left:4px solid var(--blue);border-radius:var(--r1);background:#fff;min-width:0}
-.feeds .xg-x{flex:0 0 auto;display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--ink);color:#fff;font-weight:800;font-size:14px}
-.feeds .xg-b{flex:1 1 auto;min-width:0;margin:0;font-size:14px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.feeds .xg-b b{display:inline;font-size:14px;color:var(--ink)}
-.feeds .xg-btn{flex:0 0 auto;min-height:44px;padding:0 var(--s4);font-size:14px;width:auto}
 .feeds .xposts{display:flex;grid-template-columns:none;gap:var(--s4);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-left:0;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding:2px 2px var(--s3);scrollbar-width:thin;scrollbar-color:var(--blue) transparent}
 .feeds .xposts:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:var(--r1)}
 .feeds .xpost{flex:0 0 320px;width:320px;height:440px;overflow-y:auto;overflow-x:hidden;scroll-snap-align:start;border:1px solid var(--line-2);border-radius:var(--r2);background:#fff;scrollbar-width:thin}
@@ -1476,10 +1467,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .feeds .follow{margin-top:var(--s5)}
 .feeds .follow+.follow{margin-top:var(--s4)}
 @media(max-width:639px){
-  .feeds .xgate .btn{width:auto}
-  .feeds .xg-w{display:none}
-  .feeds .xg-b{white-space:normal;font-size:12.5px;line-height:1.35;overflow:visible}
-  .feeds .xg-b b{font-size:13px}
   .feeds .xpost{flex-basis:85vw;width:85vw;max-width:340px;height:420px}
   .xnav{display:none!important}
 }
@@ -1509,7 +1496,6 @@ nav.main .nav-dd-btn.nav-x{display:none}
 /* ---------- Phones: calmer hero, cleaner menu, Join + menu at the far right (Jackson's iPhone notes, Oct. 26) ---------- */
 @media(max-width:959px){.hdr-act{margin-left:auto}}
 @media(max-width:639px){
-  .hero-copy .lede strong,.hero-copy .statbar{display:none}
   .hdr-act .hsearch{display:none}
 }
 .mm-nav a,.mm-nav .mm-acc{min-height:52px;padding:6px 0;grid-template-columns:1fr auto}
@@ -1551,3 +1537,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   .st-band .st-go{width:100%}
   #studentDlg .fld-row{grid-template-columns:1fr}
 }
+
+/* X posts: the blockquote is the fallback card until X's embed replaces it (or for good if X is blocked) */
+.feeds .xpost blockquote.twitter-tweet{display:flex;flex-direction:column;justify-content:center;gap:var(--s3);padding:var(--s5);font-size:15px;line-height:1.45}
+.feeds .xpost blockquote.twitter-tweet a{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;text-decoration:underline}
