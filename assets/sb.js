@@ -9,6 +9,7 @@
   var SUPA_SRC='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';
   var SUPA_SRI='sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK';
   var TIERS={free:'Free',mustang:'Mustang',pony:'Pony Express',club:'Boulevard Club'};
+  var AFFIL=['student','alum','fan','parent','other'],PRIVACY_VERSION='2026-10-26';
   var configured=!!(CFG.SUPABASE_URL&&CFG.SUPABASE_ANON_KEY&&/^https:\/\/.+/.test(CFG.SUPABASE_URL));
 
   /* ---------- tiny utils ---------- */
@@ -58,6 +59,7 @@
     setTier:function(t){ls('mp_tier',t);ls('mp_member',t!=='free'?'1':'0');emit('tier',t);return Promise.resolve(t)},
     brief:function(email){ls('mp_brief',email);return Promise.resolve({ok:true})},
     unbrief:function(){ls('mp_brief',null);return Promise.resolve()},
+    waitlist:function(o){var e=String(o.email).trim().toLowerCase();ls('mp_waitlist',e);return Promise.resolve({ok:true,table:'local'})},
     progress:function(id,p){return Promise.resolve()},  /* app.js already keeps mp_history locally */
     pullProgress:function(){return Promise.resolve(null)},
     saved:function(){return lj('mp_saved',[])},
@@ -128,6 +130,16 @@
     brief:function(email){var row={email:String(email).trim().toLowerCase(),source:'site'};if(SMU.user)row.user_id=SMU.user.id;
       return withTimeout(sb.from('newsletter_signups').insert(row),12000).then(function(r){if(r.error&&r.error.code!=='23505')throw r.error;ls('mp_brief',row.email);return {ok:true,dupe:!!r.error}}).catch(function(e){throw fail('brief',e)})},
     unbrief:function(){ls('mp_brief',null);return Promise.resolve()},
+    /* Waitlist: insert-only (anon can't read it back). Uses public.waitlist once supabase/waitlist.sql has run;
+       until then the table is missing, so the signup goes to newsletter_signups tagged source 'waitlist[:affiliation]'. */
+    waitlist:function(o){var email=String(o.email).trim().toLowerCase(),aff=AFFIL.indexOf(o.affiliation)>=0?o.affiliation:null,name=String(o.name||'').trim().slice(0,80)||null;
+      if(!o.consent)return Promise.reject(new Error('Please agree to the privacy notice first.'));
+      function done(table,r){if(r.error&&r.error.code!=='23505')throw r.error;ls('mp_waitlist',email);return {ok:true,dupe:!!r.error,table:table}}
+      function missing(r){var e=r&&r.error;return !!e&&(e.code==='PGRST205'||e.code==='42P01'||r.status===404||/does not exist|schema cache/i.test(e.message||''))}
+      return withTimeout(sb.from('waitlist').insert({email:email,name:name,affiliation:aff,consent:true,consent_version:PRIVACY_VERSION,source:'site'}),12000).then(function(r){
+        if(!missing(r))return done('waitlist',r);
+        return withTimeout(sb.from('newsletter_signups').insert({email:email,source:'waitlist'+(aff?':'+aff:'')}),12000).then(function(r2){return done('newsletter_signups',r2)})
+      }).catch(function(e){throw fail('waitlist',e)})},
     progress:function(id,p){if(!SMU.user)return Promise.resolve();return q('progress',sb.from('watch_progress').upsert({user_id:SMU.user.id,item_id:id,progress:Math.round(p*1000)/1000,updated_at:new Date().toISOString()}))},
     pullProgress:function(){if(!SMU.user)return Promise.resolve(null);return q('progress',sb.from('watch_progress').select('item_id,progress,updated_at').eq('user_id',SMU.user.id).order('updated_at',{ascending:false}).limit(24))
       .then(function(rows){return (rows||[]).map(function(r){return {id:r.item_id,p:r.progress,t:Date.parse(r.updated_at)}})})},
@@ -156,7 +168,7 @@
 
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
-  ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','progress','pullProgress','toggleSave','loadThreads','loadThread','createThread','reply','watch'].forEach(function(k){
+  ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','loadThread','createThread','reply','watch'].forEach(function(k){
     SMU[k]=function(){var b=B();return b[k].apply(b,arguments)}});
   SMU.reset=function(e){return SMU.live?live.reset(e):Promise.reject(new Error('Password reset needs the live database. In demo mode, just sign in with your email.'))};
   SMU.newPassword=function(p){return SMU.live?live.newPassword(p):Promise.reject(new Error('Not available in demo mode.'))};
