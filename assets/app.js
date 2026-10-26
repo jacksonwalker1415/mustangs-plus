@@ -278,7 +278,8 @@
       '<span class="tpl-p" aria-hidden="true">'+TPL_MARK+'<span class="tpl-k">'+esc(k)+'</span><span class="tpl-w">'+esc(tplWord(c))+'</span>'+(d?'<span class="tpl-d">'+esc(d)+'</span>':'')+'</span>'}
   /* Official YouTube items show the video's real thumbnail (maxresdefault, falling back to hqdefault). Images load from i.ytimg.com. */
   function ytId(c){return c&&c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null}
-  function ytImg(id,cls,eager){return '<img class="'+cls+'" src="https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg" data-yt-fb="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="" '+(eager?'loading="eager"':'loading="lazy"')+' decoding="async" referrerpolicy="no-referrer">'}
+  var NOMAX={};  /* feed videos with no HD thumbnail (tools/fetch_youtube.py marks them) go straight to hqdefault */
+  function ytImg(id,cls,eager){return '<img class="'+cls+'" src="https://i.ytimg.com/vi/'+id+(NOMAX[id]?'/hqdefault.jpg':'/maxresdefault.jpg')+'" data-yt-fb="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="" '+(eager?'loading="eager"':'loading="lazy"')+' decoding="async" referrerpolicy="no-referrer">'}
   function ytFix(e){var i=e.target;if(!i||i.tagName!=='IMG'||!i.dataset||!i.dataset.ytFb)return;
     if(e.type==='error'||(i.naturalWidth&&i.naturalWidth<=120)){var fb=i.dataset.ytFb;delete i.dataset.ytFb;i.src=fb}}
   document.addEventListener('error',ytFix,true);document.addEventListener('load',ytFix,true);
@@ -812,32 +813,66 @@
   /* Watch page outlet rows. data/videos-feed.json is rebuilt daily by tools/fetch_youtube.py (GitHub Actions) from each
      channel's public YouTube RSS feed: full videos only, embeddable, SMU-related. Embed only, never rehosted. */
   var FEED_DATE={timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric'};
-  function feedItem(ch,v){var id='yt-'+v.id,d=new Date(v.published),ds=isNaN(d)?'':d.toLocaleDateString('en-US',FEED_DATE);
+  function feedItem(ch,v){if(v.nomax)NOMAX[v.id]=1;var id='yt-'+v.id,d=new Date(v.published),ds=isNaN(d)?'':d.toLocaleDateString('en-US',FEED_DATE);
     if(!LIBBY[id])LIBBY[id]={id:id,t:'video',cat:'watch',label:ch.name+(ds?' \u00b7 '+ds:''),title:v.title,desc:'Posted '+(ds||'recently')+' on the '+ch.name+' YouTube channel.',
       dur:v.dur||'Video',lock:false,tone:'black',yt:v.id,src:'https://www.youtube.com/watch?v='+v.id,credit:ch.name,pub:ch.name,channel:[ch.name+' on YouTube',ch.url],feed:true,real:true,iso:v.published};
     return LIBBY[id]}
   var ORN=0;
   function outletRail(items,label){var id='orow-'+(++ORN);
     return '<div class="xwrap orow" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Previous videos" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
-      '<div class="rail" id="'+id+'" data-slider role="list" aria-label="'+esc(label)+', scrolls sideways" tabindex="0">'+items.map(function(c){return '<div class="rail-i" role="listitem">'+cardHTML(c)+'</div>'}).join('')+'</div>'+
+      '<div class="rail" id="'+id+'" data-slider role="list" aria-label="'+esc(label)+', scrolls sideways" tabindex="0">'+items.map(function(c){return '<div class="rail-i" role="listitem"'+(c.show?' data-show="'+esc(c.show)+'"':'')+'>'+cardHTML(c)+'</div>'}).join('')+'</div>'+
       '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next videos" aria-controls="'+id+'">'+XARR+'</button></div>'}
   /* centre the side arrows on the thumbnails rather than on the whole card */
   function orowArrows(){[].forEach.call(document.querySelectorAll('.orow'),function(w){var p=w.querySelector('.poster');if(!p)return;var t=p.offsetTop+p.offsetHeight/2;
     [].forEach.call(w.querySelectorAll('.xside'),function(b){b.style.top=t+'px'})})}
   window.addEventListener('resize',orowArrows);
-  function outletsRow(){var el=$('#railOutlets');if(!el||!window.fetch)return;
-    fetch(ROOT+'data/videos-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){
-      var CH={};(F.channels||[]).forEach(function(c){CH[c.key]=c});
-      var html='',fresh=(F.new||[]).map(function(n){var ch=CH[n.key],v=ch&&ch.videos.filter(function(x){return x.id===n.id})[0];return v?feedItem(ch,v):null}).filter(Boolean);
-      if(fresh.length)html+='<div class="orow-sec">'+secHead('New videos')+outletRail(fresh,'New videos')+'</div>';
-      (F.rows||[]).forEach(function(r){var L=[];r.channels.forEach(function(k){var ch=CH[k];if(ch)ch.videos.forEach(function(v){L.push(feedItem(ch,v))})});
-        if(!L.length)return;L.sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')});L=L.slice(0,12);
-        html+='<div class="orow-sec">'+secHead(esc(r.name),r.url,'YouTube channel')+outletRail(L,r.name+' videos')+'</div>'});
+  var LIB_SHOWS=[];   /* [key,name] for the show filter, filled by the outlet and podcast loaders */
+  function addShow(k,n,g){if(!LIB_SHOWS.some(function(x){return x[0]===k}))LIB_SHOWS.push([k,n,g||0])}
+  function outletsRow(){var el=$('#railOutlets');if(!el||!window.fetch)return Promise.resolve();
+    return fetch(ROOT+'data/videos-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){
+      var CH={},ROW={};(F.channels||[]).forEach(function(c){CH[c.key]=c});(F.rows||[]).forEach(function(r){r.channels.forEach(function(k){ROW[k]=r.key})});
+      function item(ch,v){var c=feedItem(ch,v);c.show=ROW[ch.key]||ch.key;return c}
+      var html='',fresh=(F.new||[]).map(function(n){var ch=CH[n.key],v=ch&&ch.videos.filter(function(x){return x.id===n.id})[0];return v?item(ch,v):null}).filter(Boolean);
+      if(fresh.length)html+='<div class="orow-sec" data-new>'+secHead('New videos')+outletRail(fresh,'New videos')+'</div>';
+      (F.rows||[]).forEach(function(r){var L=[];r.channels.forEach(function(k){var ch=CH[k];if(ch)ch.videos.forEach(function(v){L.push(item(ch,v))})});
+        if(!L.length)return;L.sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')});L=L.slice(0,12);addShow(r.key,r.name);
+        html+='<div class="orow-sec" data-show="'+esc(r.key)+'">'+secHead(esc(r.name),r.url,'YouTube channel')+outletRail(L,r.name+' videos')+'</div>'});
       if(!html)return;
       el.innerHTML=html+'<p class="studio-note">Public videos, shown for demo purposes. Not affiliated.</p>';
       [].forEach.call(el.querySelectorAll('.see-all'),function(a){a.target='_blank';a.rel='noopener';a.setAttribute('aria-label',a.closest('.sec-hd').querySelector('.sec-t').textContent+' on YouTube (opens in a new tab)')});
       el.closest('section').hidden=false;orowArrows();slSyncAll();setTimeout(function(){orowArrows();slSyncAll()},600);
       continueRow();if(/^#watch=yt-/.test(location.hash))articleFromHash()}).catch(function(){})}
+  var PODBY={};
+  /* Watch page podcast rows. data/podcasts-feed.json is rebuilt by tools/fetch_podcasts.py from each show's public RSS feed.
+     Audio plays in the browser's own player straight from the feed's enclosure URL; cover art is the feed's own. */
+  var PIC='<svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" fill="currentColor">';
+  function podCard(sh,e){var d=new Date(e.published),ds=isNaN(d)?'':d.toLocaleDateString('en-US',FEED_DATE),ap=e.apple||sh.apple;
+    return '<article class="pcard" aria-label="'+esc(sh.name)+': '+esc(e.title)+'"><div class="pc-top">'+
+      (sh.art?'<img class="pc-art" src="'+ROOT+esc(sh.art)+'" alt="" width="72" height="72" loading="lazy" decoding="async">':'')+
+      '<div class="pc-txt"><p class="pc-show">'+esc(sh.name)+'</p><h3 class="pc-t" title="'+esc(e.title)+'">'+esc(e.title)+'</h3>'+
+      '<p class="pc-m">'+[ds,e.dur].filter(Boolean).map(esc).join(' \u00b7 ')+'</p></div></div>'+
+      '<audio class="pc-au" controls preload="none" src="'+esc(e.audio)+'" aria-label="Play '+esc(sh.name)+' episode: '+esc(e.title)+'"></audio>'+
+      '<p class="pc-links">'+(ap?'<a href="'+esc(ap)+'" target="_blank" rel="noopener" aria-label="'+(e.apple?'This episode':esc(sh.name))+' on Apple Podcasts (opens in a new tab)">Apple Podcasts</a>':'')+
+      (sh.spotify?'<a href="'+esc(sh.spotify)+'" target="_blank" rel="noopener" aria-label="'+esc(sh.name)+' on Spotify (opens in a new tab)">Spotify</a>':'')+'</p></article>'}
+  function podRail(items,label){var id='prow-'+(++ORN);
+    return '<div class="xwrap prow" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Previous episodes" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
+      '<div class="rail" id="'+id+'" data-slider role="list" aria-label="'+esc(label)+', scrolls sideways" tabindex="0">'+items.map(function(x){var id='pod-'+x[1].id;PODBY[id]={id:id,t:'podcast',cat:'podcasts',title:x[1].title,desc:x[0].name,label:x[0].name};
+        return '<div class="rail-i" role="listitem" data-show="'+esc(x[0].key)+'" data-item="'+id+'">'+podCard(x[0],x[1])+'</div>'}).join('')+'</div>'+
+      '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next episodes" aria-controls="'+id+'">'+XARR+'</button></div>'}
+  function podsRow(){var el=$('#railPods');if(!el||!window.fetch)return Promise.resolve();
+    return fetch(ROOT+'data/podcasts-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){
+      var SH={},html='';(F.shows||[]).forEach(function(c){SH[c.key]=c});
+      var fresh=(F.new||[]).map(function(n){var sh=SH[n.key],e=sh&&sh.episodes.filter(function(x){return x.id===n.id})[0];return e?[sh,e]:null}).filter(Boolean);
+      if(fresh.length)html+='<div class="orow-sec" data-new>'+secHead('New episodes')+podRail(fresh,'New podcast episodes')+'</div>';
+      (F.shows||[]).forEach(function(sh){if(!sh.episodes.length)return;addShow(sh.key,sh.name,1);
+        html+='<div class="orow-sec" data-show="'+esc(sh.key)+'">'+secHead(esc(sh.name),sh.apple||sh.spotify,sh.apple?'Apple Podcasts':'Spotify')+podRail(sh.episodes.map(function(e){return [sh,e]}),sh.name+' episodes')+'</div>'});
+      if(!html)return;
+      el.innerHTML=html+'<p class="studio-note">Public podcasts, shown for demo purposes. Not affiliated.</p>';
+      [].forEach.call(el.querySelectorAll('.see-all'),function(a){a.target='_blank';a.rel='noopener';a.setAttribute('aria-label',a.closest('.sec-hd').querySelector('.sec-t').textContent+' on '+a.textContent.replace(/\s*\u2192\s*$/,'')+' (opens in a new tab)')});
+      el.closest('section').hidden=false;slSyncAll();setTimeout(slSyncAll,600)}).catch(function(){})}
+  /* one episode at a time: starting one pauses any other */
+  document.addEventListener('play',function(e){var t=e.target;if(!t||!t.classList||!t.classList.contains('pc-au'))return;
+    [].forEach.call(document.querySelectorAll('audio.pc-au'),function(a){if(a!==t&&!a.paused)a.pause()})},true);
   /* ---------- Game-day hub: games/ (index) and games/?id=<game> (one page per game) ---------- */
   var GM_SPORT={football:{verb:'Kickoff',ph:'gd-football'},'mens-basketball':{verb:'Tip-off',ph:'gd-mbb'},'womens-basketball':{verb:'Tip-off',ph:'gd-wbb'}};
   /* opponent names as they appear in video titles; lookarounds keep 'Virginia' off 'Virginia Tech' and 'Texas A&M' off 'West Texas A&M' */
@@ -908,35 +943,53 @@
         '<p class="gm-empty">No videos about this game yet. Previews and highlights from SMU outlets show up here as they are posted.</p>');
       el.closest('section').hidden=false;orowArrows();slSyncAll();setTimeout(function(){orowArrows();slSyncAll()},600);
       if(/^#watch=yt-/.test(location.hash))articleFromHash()}).catch(function(){})}
-  function library(){continueRow();outletsRow();document.addEventListener('mp:history',continueRow);
-    var P=new URLSearchParams(location.search),st={cat:P.get('cat')||'all',type:P.get('type')||'all',access:'all',q:P.get('q')||''};
-    if(!CATNAME[st.cat])st.cat='all';if(!/^(all|video|article|podcast)$/.test(st.type))st.type='all';if(!/^(all|free|members)$/.test(st.access))st.access='all';
-    var chips=$('#libChips'),grid=$('#libGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty');
-    chips.innerHTML=MP.CATS.map(function(c){var n=c[0]==='all'?MP.LIB.length:MP.LIB.filter(function(x){return x.cat===c[0]}).length;return '<button type="button" class="chip" data-cat="'+c[0]+'" aria-pressed="false">'+c[1]+'<span>'+n+'</span></button>'}).join('');
-    /* phones: the same filters as two native dropdowns (counts kept in the labels) */
+  /* which outlet or show a library item belongs to, for the show filter (articles belong to none) */
+  function libShow(c){var h=(c.credit||'')+' '+(c.label||'');
+    return /On The Pony Express/i.test(h)?'on-the-pony-express':/Locked On SMU/i.test(h)?'locked-on-smu':/ACC Digital/i.test(h)?'acc-media':c.t!=='article'&&/SMU Athletics/i.test(h)?'smu-mustangs':''}
+  function library(){continueRow();document.addEventListener('mp:history',continueRow);
+    var P=new URLSearchParams(location.search),st={cat:P.get('cat')||'all',type:P.get('type')||'all',access:'all',q:P.get('q')||'',show:P.get('show')||'all'};
+    if(!CATNAME[st.cat])st.cat='all';if(!/^(all|video|article|podcast)$/.test(st.type))st.type='all';if(!/^(all|free|members)$/.test(st.access))st.access='all';if(!/^[\w-]+$/.test(st.show))st.show='all';
+    var chips=$('#libChips'),grid=$('#libGrid'),rgrid=$('#libReadGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty'),shows=$('#libShows');
+    chips.innerHTML=MP.CATS.map(function(c){return '<button type="button" class="chip" data-cat="'+c[0]+'" aria-pressed="false">'+c[1]+'</button>'}).join('');
+    /* phones: category and format as two native dropdowns; the show chips scroll sideways */
     var catSel=$('#libCatSel'),typeSel=$('#libTypeSel');
-    if(catSel)catSel.innerHTML=MP.CATS.map(function(c){var n=c[0]==='all'?MP.LIB.length:MP.LIB.filter(function(x){return x.cat===c[0]}).length;return '<option value="'+c[0]+'">'+c[1]+' ('+n+')</option>'}).join('');
-    if(typeSel)typeSel.innerHTML=$$('#libType button').map(function(b){var t=b.dataset.type,n=t==='all'?MP.LIB.length:MP.LIB.filter(function(x){return x.t===t}).length;return '<option value="'+t+'">'+(t==='all'?'Format':b.textContent.trim())+'</option>'}).join('');
-    grid.innerHTML=MP.LIB.map(function(c){return cardHTML(c)}).join('');q.value=st.q;
-    function apply(push){var toks=st.q.toLowerCase().split(/\s+/).filter(Boolean),n=0;
+    if(catSel)catSel.innerHTML=MP.CATS.map(function(c){return '<option value="'+c[0]+'">'+(c[0]==='all'?'All categories':c[1])+'</option>'}).join('');
+    if(typeSel)typeSel.innerHTML=$$('#libType button').map(function(b){var t=b.dataset.type;return '<option value="'+t+'">'+(t==='all'?'Format':b.textContent.trim())+'</option>'}).join('');
+    grid.innerHTML=MP.LIB.filter(function(c){return c.t!=='article'}).map(function(c){return cardHTML(c)}).join('');
+    rgrid.innerHTML=MP.LIB.filter(function(c){return c.t==='article'}).map(function(c){return cardHTML(c)}).join('');q.value=st.q;
+    function itemOf(el){var id=el.dataset.item||(el.querySelector('[data-item]')||{dataset:{}}).dataset.item;return PODBY[id]||LIBBY[id]}
+    function ok(c,show){if(!c)return false;var hay=(c.title+' '+c.desc+' '+c.label).toLowerCase();
+      return (st.cat==='all'||c.cat===st.cat)&&(st.type==='all'||c.t===st.type)&&(st.access==='all'||(st.access==='free')===!c.lock)&&(st.show==='all'||show===st.show)&&
+        st.q.toLowerCase().split(/\s+/).filter(Boolean).every(function(t){return hay.indexOf(t)>=0})}
+    function apply(push){var seen={},n=0;function hit(c){if(!seen[c.id]){seen[c.id]=1;n++}}
       $$('.chip',chips).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cat===st.cat?'true':'false')});
+      $$('.chip',shows).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.show===st.show?'true':'false')});
       $$('#libType button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.type===st.type?'true':'false')});
       if(catSel)catSel.value=st.cat;if(typeSel)typeSel.value=st.type;
-      $$('.mcard',grid).forEach(function(el){var c=LIBBY[el.dataset.item],hay=(c.title+' '+c.desc+' '+c.label).toLowerCase();
-        var show=(st.cat==='all'||c.cat===st.cat)&&(st.type==='all'||c.t===st.type)&&(st.access==='all'||(st.access==='free')===!c.lock)&&toks.every(function(t){return hay.indexOf(t)>=0});
-        el.hidden=!show;if(show)n++});
-      count.textContent=n+' '+(n===1?'title':'titles');$('#libTitle').textContent=st.cat==='all'?'Library':CATNAME[st.cat];
-      var active=st.cat!=='all'||st.type!=='all'||st.access!=='all'||st.q;$('#libClear').hidden=!active;
-      empty.hidden=n>0;if(!n)empty.innerHTML=emptyState('filter','Nothing matches those filters','Try a different category or format, or clear the filters to see all '+MP.LIB.length+' titles.','<button type="button" class="btn btn-navy btn-sm" data-lib-clear>Clear filters</button>');
-      if(push){var u=new URLSearchParams();['cat','type','access'].forEach(function(k){if(st[k]!=='all')u.set(k,st[k])});if(st.q)u.set('q',st.q);var s=u.toString();history.replaceState(null,'',location.pathname+(s?'?'+s:''))}}
-    function clear(){st={cat:'all',type:'all',access:'all',q:''};q.value='';apply(true)}
+      [grid,rgrid].forEach(function(g){var k=0;$$('.mcard',g).forEach(function(el){var c=LIBBY[el.dataset.item],y=ok(c,libShow(c));el.hidden=!y;if(y){k++;hit(c)}});g.closest('section').classList.toggle('is-off',!k)});
+      ['#outlets','#pods'].forEach(function(sel){var sec=$(sel);if(!sec)return;var any=0;
+        $$('.orow-sec',sec).forEach(function(r){var k=0;if(!(r.hasAttribute('data-new')&&st.show!=='all'))$$('.rail-i',r).forEach(function(i){var c=itemOf(i),y=ok(c,i.dataset.show);i.hidden=!y;if(y){k++;hit(c)}});
+          r.hidden=!k;if(k){any=1;var rl=r.querySelector('.rail');if(rl)rl.scrollLeft=0}});
+        sec.classList.toggle('is-off',!any)});
+      var active=st.cat!=='all'||st.type!=='all'||st.access!=='all'||st.q||st.show!=='all';
+      var cs=$('#continue');if(cs)cs.classList.toggle('is-off',!!active);
+      count.textContent=n+' '+(n===1?'title':'titles');$('#libClear').hidden=!active;
+      $('#libNone').hidden=n>0;if(!n)empty.innerHTML=emptyState('filter','Nothing matches those filters','Try a different category, show or format, or clear the filters.','<button type="button" class="btn btn-navy btn-sm" data-lib-clear>Clear filters</button>');
+      slSyncAll();orowArrows();
+      if(push){var u=new URLSearchParams();['cat','type','access','show'].forEach(function(k){if(st[k]!=='all')u.set(k,st[k])});if(st.q)u.set('q',st.q);var s=u.toString();history.replaceState(null,'',location.pathname+(s?'?'+s:'')+location.hash)}}
+    function clear(){st={cat:'all',type:'all',access:'all',q:'',show:'all'};q.value='';apply(true)}
     chips.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b){st.cat=b.dataset.cat;apply(true)}});
+    shows.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b){st.show=b.dataset.show;apply(true)}});
     $('#libType').addEventListener('click',function(e){var b=e.target.closest('button');if(b){st.type=b.dataset.type;apply(true)}});
     q.addEventListener('input',function(){st.q=q.value.trim();apply(true)});
     if(catSel)catSel.addEventListener('change',function(){st.cat=catSel.value;apply(true)});
     if(typeSel)typeSel.addEventListener('change',function(){st.type=typeSel.value;apply(true)});
     document.addEventListener('click',function(e){if(e.target.closest('[data-lib-clear],#libClear'))clear()});
     apply(false);
+    Promise.all([outletsRow().catch(function(){}),podsRow().catch(function(){})]).then(function(){
+      if(LIB_SHOWS.length){LIB_SHOWS.sort(function(a,b){return a[2]-b[2]});shows.innerHTML=[['all','All shows']].concat(LIB_SHOWS).map(function(x){return '<button type="button" class="chip" data-show="'+esc(x[0])+'" aria-pressed="false">'+esc(x[1])+'</button>'}).join('');shows.hidden=false}
+      if(st.show!=='all'&&!LIB_SHOWS.some(function(x){return x[0]===st.show}))st.show='all';
+      apply(false)})
   }
 
   /* ---------- Recruiting hub ---------- */
