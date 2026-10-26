@@ -1636,39 +1636,66 @@
   function oauthBtns(cls,student){var c=caps();if(!c.oauth.length)return '';
     return '<div class="auth-oauth '+(cls||'')+'">'+c.oauth.map(function(p){return '<button type="button" class="btn btn-outline auth-oa" data-oauth="'+p+'">Continue with '+OAUTH_NAME[p]+(student&&p==='azure'?' (SMU email)':'')+'</button>'}).join('')+'</div>'}
   /* mode 'in' = sign in, 'up' = create a free Fan account. No email-link or password-reset options: Supabase can't deliver auth email yet. */
-  function authForm(mode,ctx){var c=caps();mode=mode==='up'&&c.signup?'up':'in';var demo=!SMU.live;
-    return '<div class="auth" data-mode="'+mode+'">'+(ctx?'<p class="auth-ctx">'+esc(ctx)+'</p>':'')+
-      '<div class="auth-tabs" role="tablist"><button type="button" role="tab" data-auth-tab="in" aria-selected="'+(mode==='in')+'">Sign in</button>'+(c.signup?'<button type="button" role="tab" data-auth-tab="up" aria-selected="'+(mode==='up')+'">Create a free account</button>':'')+'</div>'+
+  /* inl: the Account page's own form (not a pop-up). It adds real tabs (arrow keys), show/hide password, a hint and an error under
+     each field, and a forgot-password note. Pop-ups on other pages (inl false) render exactly as before. */
+  function authForm(mode,ctx,inl){var c=caps();mode=mode==='up'&&c.signup?'up':'in';var demo=!SMU.live;
+    function tab(k,l){return '<button type="button" role="tab" data-auth-tab="'+k+'" aria-selected="'+(mode===k)+'"'+(inl?' id="auTab-'+k+'" aria-controls="auPanel"'+(mode===k?'':' tabindex="-1"'):'')+'>'+l+'</button>'}
+    function err(id){return inl?'<p class="fld-err" id="'+id+'-err" hidden></p>':''}
+    return '<div class="auth'+(inl?' auth-inl':'')+'" data-mode="'+mode+'">'+(ctx?'<p class="auth-ctx">'+esc(ctx)+'</p>':'')+
+      '<div class="auth-tabs" role="tablist"'+(inl?' aria-label="Sign in or create an account"':'')+'>'+tab('in','Sign in')+(c.signup?tab('up','Create a free account'):'')+'</div>'+
+      (inl?'<div id="auPanel" role="tabpanel" aria-labelledby="auTab-'+mode+'">':'')+
       '<p class="auth-up-note">A free Fan account lets you read everything and post on the boards. SMU students can use the <button type="button" class="linkish" data-student>free Student plan</button> instead.</p>'+
       oauthBtns()+
       '<form class="auth-f" novalidate>'+
         '<div class="fld f-name"><label for="auName">Display name</label><input id="auName" name="name" autocomplete="nickname" maxlength="40" placeholder="How you appear on the boards"></div>'+
-        '<div class="fld"><label for="auEmail">Email</label><input id="auEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>'+
-        '<div class="fld f-pw"><label for="auPw">Password'+(demo?' <small>(not stored in demo mode)</small>':'')+'</label><input id="auPw" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters"'+(demo?'':' required')+'></div>'+
+        '<div class="fld"><label for="auEmail">Email</label><input id="auEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com"'+(inl?' autocapitalize="none" spellcheck="false" inputmode="email"':'')+'>'+err('auEmail')+'</div>'+
+        (inl?'<div class="fld f-pw"><label for="auPw">Password'+(demo?' <small>(not stored in demo mode)</small>':'')+'</label><div class="set-pw"><input id="auPw" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="72"'+(demo?'':' required')+'>'+
+            '<button type="button" class="set-eye" data-eye="auPw" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div><p class="fld-hint" id="auPw-h">At least 8 characters.</p>'+err('auPw')+'</div>':
+          '<div class="fld f-pw"><label for="auPw">Password'+(demo?' <small>(not stored in demo mode)</small>':'')+'</label><input id="auPw" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters"'+(demo?'':' required')+'></div>')+
         '<p class="auth-m" aria-live="polite"></p>'+
         '<button class="btn btn-red auth-go" type="submit">Sign in</button>'+
-      '</form>'+(c.signup?'':'<p class="auth-paused">New accounts are paused for a moment while we finish setting up sign-up. If you already have an account, sign in above.</p>')+modeNote()+'</div>'}
+      '</form>'+
+      (inl?'<p class="auth-forgot-note">Forgot your password? Password reset is coming soon. For now, check that you\u2019re using the email you signed up with and try again.'+(c.signup?' New to SMU+? <button type="button" class="linkish" data-auth-go="up">Create a free account</button>.':'')+'</p></div>':'')+
+      (c.signup?'':'<p class="auth-paused">New accounts are paused for a moment while we finish setting up sign-up. If you already have an account, sign in above.</p>')+modeNote()+'</div>'}
   function syncAuthForm(root){var a=$('.auth',root),m=a.dataset.mode,c=caps(),up=m==='up';$$('[data-auth-tab]',a).forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.authTab===m))});
     $('.f-name',a).hidden=!up;$('.auth-up-note',a).hidden=!up||!stOn();var pw=$('#auPw',a);pw.setAttribute('autocomplete',up?'new-password':'current-password');
     /* Create account: the email form shows only when email sign-up needs no delivered email; otherwise just the OAuth buttons */
     $('.auth-f',a).hidden=up&&!c.email;
-    $('.auth-go',a).textContent=up?'Create free account':'Sign in';$('.auth-m',a).textContent=''}
-  function wireAuth(root,done){syncAuthForm(root);
+    $('.auth-go',a).textContent=up?'Create free account':'Sign in';$('.auth-m',a).textContent='';
+    if(a.classList.contains('auth-inl')){$$('[data-auth-tab]',a).forEach(function(b){b.tabIndex=b.dataset.authTab===m?0:-1});var pn=$('#auPanel',a);if(pn)pn.setAttribute('aria-labelledby','auTab-'+m);
+      var h=$('#auPw-h',a),fn=$('.auth-forgot-note',a);if(h){h.hidden=!up;if(up)pw.setAttribute('aria-describedby','auPw-h');else pw.removeAttribute('aria-describedby')}if(fn)fn.hidden=up;['auEmail','auPw'].forEach(function(id){fieldErr(a,id,'')})}}
+  /* Account page form: one message under each field, tied to it with aria-invalid and aria-describedby */
+  function fieldErr(root,id,msg){var i=$('#'+id,root),e=$('#'+id+'-err',root);if(!i||!e)return;e.textContent=msg||'';e.hidden=!msg;
+    if(msg)i.setAttribute('aria-invalid','true');else i.removeAttribute('aria-invalid');
+    var d=(i.getAttribute('aria-describedby')||'').split(' ').filter(function(x){return x&&x!==id+'-err'&&!(x==='auPw-h'&&$('#auPw-h',root)&&$('#auPw-h',root).hidden)});if(msg)d.push(id+'-err');
+    if(d.length)i.setAttribute('aria-describedby',d.join(' '));else i.removeAttribute('aria-describedby')}
+  function wireAuth(root,done){syncAuthForm(root);var inl=$('.auth',root).classList.contains('auth-inl');
+    if(inl){var tl=$$('[data-auth-tab]',root);tl.forEach(function(b,i){b.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!d)return;e.preventDefault();
+        var n=tl[(i+d+tl.length)%tl.length];$('.auth',root).dataset.mode=n.dataset.authTab;syncAuthForm(root);n.focus()})});
+      $$('[data-eye]',root).forEach(function(b){b.addEventListener('click',function(){var i=$('#'+b.dataset.eye,root),show=i.type==='password';i.type=show?'text':'password';
+        b.setAttribute('aria-pressed',String(show));b.setAttribute('aria-label',show?'Hide password':'Show password');b.innerHTML=show?EYE_OPEN:EYE})});
+      $('.auth-f',root).addEventListener('input',function(e){if(e.target.id)fieldErr(root,e.target.id,'')});
+      root.addEventListener('click',function(e){var g=e.target.closest('[data-auth-go]');if(!g)return;$('.auth',root).dataset.mode=g.dataset.authGo;syncAuthForm(root);var ae=$('#auEmail',root);if(ae)ae.focus()})}
     root.addEventListener('click',function(e){var t=e.target.closest('[data-auth-tab]');if(t){$('.auth',root).dataset.mode=t.dataset.authTab;syncAuthForm(root);var ae=$('#auEmail',root);if(ae&&!$('.auth-f',root).hidden)ae.focus()}
       var o=e.target.closest('[data-oauth]');if(o&&!o.closest('#studentDlg')){o.disabled=true;SMU.oauth(o.dataset.oauth).catch(function(err){o.disabled=false;$('.auth-m',root).textContent=friendlyAuth(err)})}});
     $('.auth-f',root).addEventListener('submit',function(e){e.preventDefault();var a=$('.auth',root),mode=a.dataset.mode,m=$('.auth-m',root),btn=$('.auth-go',root);
       var em=$('#auEmail',root).value.trim(),pw=$('#auPw',root).value,nm=$('#auName',root).value.trim();
-      if(!EMAIL_RE.test(em)){m.textContent='Enter a full email address.';$('#auEmail',root).focus();return}
-      if(SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}
-      btn.disabled=true;m.textContent='One moment\u2026';
+      if(inl){var bad=0;m.textContent='';
+        if(!em){fieldErr(root,'auEmail','Enter your email address.');bad=bad||'auEmail'}else if(!EMAIL_RE.test(em)){fieldErr(root,'auEmail','Enter a full email address, like name@example.com.');bad=bad||'auEmail'}
+        if(SMU.live&&!pw){fieldErr(root,'auPw','Enter your password.');bad=bad||'auPw'}else if(SMU.live&&pw.length<8){fieldErr(root,'auPw','Use at least 8 characters.');bad=bad||'auPw'}
+        if(bad){$('#'+bad,root).focus();return}}
+      else{if(!EMAIL_RE.test(em)){m.textContent='Enter a full email address.';$('#auEmail',root).focus();return}
+      if(SMU.live&&pw.length<8){m.textContent='Passwords are at least 8 characters.';$('#auPw',root).focus();return}}
+      var lbl=btn.textContent;btn.disabled=true;if(inl){btn.textContent=mode==='up'?'Creating your account\u2026':'Signing in\u2026';btn.setAttribute('aria-busy','true')}else m.textContent='One moment\u2026';
+      function idle(){btn.disabled=false;if(inl){btn.textContent=lbl;btn.removeAttribute('aria-busy')}}
       var p=mode==='up'?SMU.signUp({email:em,password:pw,name:nm}):SMU.signIn({email:em,password:pw});
-      p.then(function(r){btn.disabled=false;
-        if(mode==='up'&&r&&r.confirm){m.innerHTML='<b>Almost there.</b> Your account needs a confirmation email, which we can\u2019t send yet. Try again soon.';return}
+      p.then(function(r){idle();
+        if(mode==='up'&&r&&r.confirm){m.innerHTML='<b>Almost there.</b> Your account was created but still needs a confirmation step we can\u2019t finish yet. Try signing in with the same email and password in a few minutes'+(caps().oauth.length?', or use one of the sign-in buttons above':'')+'.';return}
         toast(mode==='up'?'Welcome to SMU+, '+(SMU.user&&SMU.user.name||'Mustang')+'.':'Signed in.');done&&done()},
-       function(err){btn.disabled=false;m.textContent=friendlyAuth(err)})})}
+       function(err){idle();m.textContent=friendlyAuth(err)})})}
   function friendlyAuth(e){var t=(e&&e.message)||'';if(/Invalid login/i.test(t))return 'That email and password don\u2019t match. Try again.';
     if(/already registered|already exists/i.test(t))return 'That email already has an account. Sign in instead.';if(/rate limit|security purposes/i.test(t))return 'Too many tries. Wait a minute and try again.';
-    if(/not confirmed/i.test(t))return 'This account was never confirmed. Create a new free account instead.';return t||'Something went wrong. Try again.'}
+    if(/not confirmed/i.test(t))return 'This account hasn\u2019t been confirmed yet, and we can\u2019t send confirmation emails yet. Try signing in again in a few minutes'+(caps().oauth.length?', or use one of the sign-in buttons above':'')+'.';return t||'Something went wrong. Try again.'}
   function openAuth(mode,ctx,after){var d=dialog('authDlg','<h3 id="authDlg-h" class="dlg-h">'+(mode==='up'?'Create your free SMU+ account':'Sign in to SMU+')+'</h3>'+authForm(mode,ctx));wireAuth(d,function(){d.close();after&&after()})}
   document.addEventListener('click',function(e){var a=e.target.closest('[data-auth]');if(!a)return;e.preventDefault();var jd=$('#joinDlg'),jx=jd&&$('.dlg-x',jd);if(jx)jx.click();
     if(SMU.user){location.href=ROOT+'account/';return}if(PAGE==='account'&&$('#acctMain .auth')){var t=$('#acctMain [data-auth-tab="'+(a.dataset.auth||'in')+'"]');if(t){t.click();t.scrollIntoView({block:'center'});return}}openAuth(a.dataset.auth||'in',a.dataset.authCtx)});
@@ -1704,7 +1731,9 @@
   function setAdfree(on){var k=afKey();if(!k)return;store(k,on?'1':'0');SMU.user.adfree=on;syncAdfree();toast(on?'Ad-free is on.':'Ad-free is off.');
     if(SMU.live&&SMU.client)SMU.client.auth.updateUser({data:{adfree:on}}).then(function(){},function(){})}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-adfree]');if(!b)return;e.preventDefault();
-    if(!SMU.user){openAuth('in','Sign in to turn on Ad-free.',function(){if(adfreeAllowed())setAdfree(true);else adfreeUpsell()});return}
+    if(!SMU.user){var after=function(){if(adfreeAllowed())setAdfree(true);else adfreeUpsell()};
+      if(PAGE==='account'&&$('#acctMain .auth')){acctAfter=after;acctAsk('Sign in to turn on Ad-free.');return}
+      openAuth('in','Sign in to turn on Ad-free.',after);return}
     if(!adfreeAllowed()){adfreeUpsell();return}
     setAdfree(!adfreeOn())});
   SMU.on('auth',function(u){syncAcct();if(u&&SMU.live)pullHistory()});SMU.on('avatar',syncAcct);SMU.on('tier',function(t){store('mp_member',paidT(t)?'1':'0');syncMember();document.dispatchEvent(new Event('mp:member'));syncAcct()});
@@ -1827,7 +1856,7 @@
       var b=$('.st-submit',d);b.disabled=true;m.textContent='One moment\u2026';
       /* Also join the waitlist as a student (email, name, affiliation and tier_interest only); the account is what counts */
       SMU.waitlist({email:o.email,name:o.name,affiliation:'student',tier_interest:'student',consent:true}).catch(function(){}).then(function(){syncWaitlist();return SMU.studentJoin(o)}).then(function(r){b.disabled=false;
-        if(r&&r.confirm){m.textContent='Your account needs a confirmation email, which we can\u2019t send yet. Try again soon.';return}
+        if(r&&r.confirm){m.textContent='Your account was created but still needs a confirmation step we can\u2019t finish yet. Try signing in with the same email and password in a few minutes.';return}
         d.close();toast('You\u2019re in. Free Student plan, Class of '+o.year+'.');if(PAGE!=='account')location.href=ROOT+'account/#student'},
         function(err){b.disabled=false;m.textContent=friendlyAuth(err)||'Couldn\u2019t sign you up. Try again.'})});
     var first=$('input,select',f);if(first)first.focus()}
@@ -1912,33 +1941,42 @@
   var SET_TABS=['profile','subscriptions','transactions'],acctTab=(location.hash||'').slice(1)==='student'?'subscriptions':(location.hash||'').slice(1);
   var EYE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4 9.5 6-.4.9-1.3 2.2-2.6 3.4M6.6 7.6C4.6 8.9 3.1 10.8 2.5 12c1 2 4.5 6 9.5 6 1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
   var EYE_OPEN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12C3.5 10 7 6 12 6s8.5 4 9.5 6c-1 2-4.5 6-9.5 6s-8.5-4-9.5-6z"/><circle cx="12" cy="12" r="3"/></svg>';
-  function account(){var main=$('#acctMain');document.title='Settings | SMU+';
-    function render(){var u=SMU.user;
-      if(!u){main.innerHTML='<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'+
-        '<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in')+'</div>'+freeBands('acct')+'</div></div></section>';wireAuth(main,render);popSpot();
+  /* Account page: run after an on-page sign-in (set by the header Ad-free switch), and a note above the page's own form */
+  var acctAfter=null;
+  function acctAsk(msg){var mm=$('#mmenu');if(mm&&!mm.hidden&&$('#menuBtn'))$('#menuBtn').click();var a=$('#acctMain .auth');if(!a)return;
+    var p=$('.auth-ctx',a);if(!p){p=document.createElement('p');p.className='auth-ctx';a.insertBefore(p,a.firstChild)}p.textContent=msg;p.setAttribute('role','status');
+    a.scrollIntoView({block:'center'});var ae=$('#auEmail',a);if(ae&&!$('.auth-f',a).hidden)ae.focus({preventScroll:true})}
+  function acctHero(){return '<section class="page-hero acct-hero has-photo"><div class="bgph">'+photo('equestrian',{eager:1})+'</div>'+CREDIT+'<div class="wrap"><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section>'}
+  function account(){var main=$('#acctMain');
+    function render(){var u=SMU.user;document.title=(u?'Settings':'Sign in')+' | SMU+';
+      if(!u){main.innerHTML=acctHero()+
+        '<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in',null,true)+'</div>'+freeBands('acct')+'</div></div></section>';
+        wireAuth(main,function(){var f=acctAfter;acctAfter=null;render();if(f)f()});popSpot();
         if(location.hash==='#student'&&stOn())setTimeout(function(){openStudent()},60);return}
-      if(location.hash==='#reset'&&SMU.live){main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
+      if(location.hash==='#reset'&&SMU.live){document.title='Choose a new password | SMU+';main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';
         $('#npForm').addEventListener('submit',function(e){e.preventDefault();var v=$('#npPw').value,m=$('.auth-m',main);if(v.length<8){m.textContent='At least 8 characters.';return}SMU.newPassword(v).then(function(){history.replaceState(null,'',location.pathname);toast('Password updated.');render()},function(err){m.textContent=err.message})});return}
       var tier=SMU.tier(),saved=SMU.saved().map(function(id){return (MP.ATHLETES||[]).filter(function(a){return a.id===id})[0]}).filter(Boolean),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97}).slice(0,6);
       var tab=SET_TABS.indexOf(acctTab)<0?'profile':acctTab,me=SMU.me(),ph=SMU.avatarsOn()?avPhoto(MP.USERS[me]):'',pwOK=SMU.live&&u.pw!==false;
       var st=stOn()&&SMU.student&&SMU.student(),started=(tier==='student'&&st&&st.at)||u.created||u.since;
       function fmtD(d){var t=d?new Date(d):null;return t&&!isNaN(t)?t.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}):''}
-      function pwFld(id,label,ph,ac){return '<div class="set-f"><label for="'+id+'">'+label+'</label><div class="set-pw"><input id="'+id+'" type="password" autocomplete="'+ac+'" placeholder="'+ph+'" maxlength="72">'+
-        '<button type="button" class="set-eye" data-eye="'+id+'" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div></div>'}
+      function pwFld(id,label,ph,ac,hint){return '<div class="set-f"><label for="'+id+'">'+label+'</label><div class="set-pw"><input id="'+id+'" type="password" autocomplete="'+ac+'" placeholder="'+ph+'" maxlength="72"'+(hint?' aria-describedby="'+id+'-h"':'')+'>'+
+        '<button type="button" class="set-eye" data-eye="'+id+'" aria-label="Show password" aria-pressed="false">'+EYE+'</button></div>'+(hint?'<p class="set-hint" id="'+id+'-h">'+hint+'</p>':'')+'</div>'}
       var planName=tier==='student'?'Student plan':tier==='free'?'Fan account':TIER_NAME[tier]+' (demo)';
       var profile='<form id="setForm" class="set-form" novalidate>'+
           '<div class="set-sec"><h2 class="set-h">Profile information</h2><p class="set-sub">Update your profile information.</p>'+
           '<div class="set-av"><div class="set-av-img">'+(ph?avImg(ph,1):SVG.user)+'</div><div class="set-av-ctl">'+
-            (SMU.avatarsOn()?'<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden><div class="set-av-btns"><button type="button" class="btn set-out" id="avPick">Change avatar</button>'+(ph?'<button type="button" class="linkish" id="avRemove">Remove</button>':'')+'</div>':
-              '<button type="button" class="btn set-out" disabled>Change avatar (coming soon)</button>')+
-            '<p class="set-hint">For best results use an image at least 400x400 pixels.</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'+
-          '<div class="set-f"><label for="dispName">Username</label><input id="dispName" maxlength="40" autocomplete="nickname" value="'+esc(u.name||'')+'"></div>'+
-          '<div class="set-f"><label for="setEmail">Email</label><input id="setEmail" type="email" value="'+esc(u.email||'')+'" readonly aria-describedby="setEmailH"><p class="set-hint" id="setEmailH">If you need to change your email, contact <a href="mailto:smuplusmedia@gmail.com">smuplusmedia@gmail.com</a>.</p></div></div>'+
+            (SMU.avatarsOn()?'<input type="file" id="avFile" accept="image/jpeg,image/png,image/webp" hidden><div class="set-av-btns"><button type="button" class="btn set-out" id="avPick">Change photo</button>'+(ph?'<button type="button" class="linkish" id="avRemove">Remove</button>':'')+'</div>':
+              '<button type="button" class="btn set-out" disabled>Change photo (coming soon)</button>')+
+            '<p class="set-hint">Use a JPEG, PNG or WebP photo under 2 MB. We crop it to a square.</p><p class="auth-m" id="avMsg" aria-live="polite"></p></div></div>'+
+          '<div class="set-f"><label for="dispName">Display name</label><input id="dispName" maxlength="40" autocomplete="nickname" value="'+esc(u.name||'')+'"></div>'+
+          '<div class="set-f"><label for="setEmail">Email</label><input id="setEmail" type="email" value="'+esc(u.email||'')+'" readonly aria-describedby="setEmailH"><p class="set-hint" id="setEmailH">Email changes aren\u2019t available in Settings yet. See <a href="'+ROOT+'privacy/#contact">how to reach us</a>.</p></div></div>'+
           (pwOK?'<div class="set-sec"><h2 class="set-h">Change password</h2><p class="set-sub">Update the password for your account.</p>'+
-            pwFld('pwCur','Current password','Enter your current password','current-password')+pwFld('pwNew','New password','Enter a new password','new-password')+pwFld('pwNew2','Confirm new password','Confirm your new password','new-password')+'</div>':'')+
-          '<p class="auth-m set-m" aria-live="polite"></p><div class="set-act"><button type="submit" class="btn set-save" disabled>Save</button></div></form>'+
+            pwFld('pwCur','Current password','Enter your current password','current-password')+pwFld('pwNew','New password','Enter a new password','new-password','At least 8 characters.')+pwFld('pwNew2','Confirm new password','Confirm your new password','new-password')+'</div>':'')+
+          '<p class="auth-m set-m" id="setM" aria-live="polite"></p><div class="set-act"><button type="submit" class="btn set-save" disabled>Save</button></div></form>'+
+        '<div class="set-sec" id="acctAdfree"><h2 class="set-h">Ad-free</h2><p class="set-sub">Hide the sample ads across SMU+ while you\u2019re signed in to this account.</p><div class="set-af">'+adfreeSwitch('af-set')+'</div></div>'+
         '<div class="set-sec"><h2 class="set-h">Saved players</h2>'+(saved.length?'<ul class="acct-list">'+saved.map(function(a){return '<li><a href="'+athleteUrl(a.id)+'"><b>'+esc(a.name)+'</b><small>#'+a.num+' \u00b7 '+a.pos+'</small></a><button type="button" class="linkish" data-save-athlete="'+a.id+'" aria-pressed="true"><span>Saved</span></button></li>'}).join('')+'</ul>':'<p class="set-sub">No saved players yet. Tap <b>Save player</b> on any <a href="'+ROOT+'athletes/">player profile</a>.</p>')+'</div>'+
-        '<div class="set-sec"><h2 class="set-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="set-sub">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+'</div>';
+        '<div class="set-sec"><h2 class="set-h">Continue watching</h2>'+(h.length?'<ul class="acct-list">'+h.map(function(x){var c=LIBBY[x.id];return '<li><a href="'+libUrl()+itemHref(c)+'"><b>'+esc(c.title)+'</b><small>'+Math.round(x.p*100)+'% \u00b7 '+(VERB[c.t]||'Open')+'</small></a></li>'}).join('')+'</ul>':'<p class="set-sub">Nothing in progress. Start something in the <a href="'+libUrl()+'">library</a>.</p>')+'</div>'+
+        '<div class="set-sec" id="acctDelete"><h2 class="set-h">Delete your account</h2><p class="set-sub">See <a href="'+ROOT+'privacy/#delete">Deleting your data</a> for how to remove your account and what\u2019s tied to it.</p></div>';
       var subs='<div class="set-sec" id="acctPlan"><h2 class="set-h">Your plan</h2><p class="set-sub">'+(tier==='student'||tier==='free'?'Free with your SMU+ account.':'Demo membership. No payments are taken.')+'</p>'+
           '<div class="set-plan"><div><b>'+esc(planName)+'</b>'+(tier==='student'?'<span class="st-badge">Student</span>':'')+
             (tier==='student'&&st?'<p>Class of '+esc(st.year||'\u2014')+'. Checked with your @smu.edu email.</p>':'')+
@@ -1956,7 +1994,7 @@
         '<div class="set-tabs" role="tablist" aria-label="Settings">'+SET_TABS.map(function(k){return '<button type="button" role="tab" id="tab-'+k+'" aria-controls="pane-'+k+'" aria-selected="'+(k===tab)+'"'+(k===tab?'':' tabindex="-1"')+' data-set-tab="'+k+'">'+L[k]+'</button>'}).join('')+'</div>'+
         SET_TABS.map(function(k){return '<div class="set-pane" role="tabpanel" id="pane-'+k+'" aria-labelledby="tab-'+k+'"'+(k===tab?'':' hidden')+'>'+P[k]+'</div>'}).join('')+
         '</div></section>';
-      syncBriefs();
+      syncBriefs();syncAdfree();
       var tabs=$$('[data-set-tab]',main);
       function pick(k,focus){acctTab=k;tabs.forEach(function(b){var on=b.dataset.setTab===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;if(on&&focus)b.focus()});
         SET_TABS.forEach(function(x){$('#pane-'+x,main).hidden=x!==k});try{history.replaceState(null,'',k==='profile'?location.pathname:'#'+k)}catch(e){}}
@@ -1969,19 +2007,23 @@
         b.setAttribute('aria-pressed',show);b.setAttribute('aria-label',show?'Hide password':'Show password');b.innerHTML=show?EYE_OPEN:EYE})});
       var f=$('#setForm',main),save=$('.set-save',f),m=$('.set-m',f),nm=$('#dispName',f),pw=['pwCur','pwNew','pwNew2'].map(function(id){return $('#'+id,f)});
       function dirty(){return nm.value.trim()!==(u.name||'')||pw.some(function(i){return i&&i.value})}
-      f.addEventListener('input',function(){save.disabled=!dirty();m.textContent=''});
+      function bad(el,msg){m.textContent=msg;if(el){el.setAttribute('aria-invalid','true');el.setAttribute('aria-describedby',((el.getAttribute('aria-describedby')||'').replace(/\s*setM/,'')+' setM').trim());el.focus()}}
+      f.addEventListener('input',function(e){save.disabled=!dirty();m.textContent='';var t=e.target;if(t&&t.getAttribute('aria-invalid')){t.removeAttribute('aria-invalid');var d=(t.getAttribute('aria-describedby')||'').replace(/\s*setM/,'').trim();if(d)t.setAttribute('aria-describedby',d);else t.removeAttribute('aria-describedby')}});
       f.addEventListener('submit',function(e){e.preventDefault();if(!dirty())return;var v=nm.value.trim(),cur=pw[0]&&pw[0].value,nw=pw[1]&&pw[1].value,nw2=pw[2]&&pw[2].value,wantPw=!!(cur||nw||nw2);
-        if(!v){m.textContent='Enter a username.';nm.focus();return}
-        if(wantPw){if(!cur){m.textContent='Enter your current password.';pw[0].focus();return}if((nw||'').length<8){m.textContent='Use at least 8 characters for the new password.';pw[1].focus();return}
-          if(nw!==nw2){m.textContent='The new passwords don\u2019t match.';pw[2].focus();return}}
-        save.disabled=true;m.textContent='Saving\u2026';
+        if(!v){bad(nm,'Enter a display name.');return}
+        if(wantPw){if(!cur){bad(pw[0],'Enter your current password.');return}if((nw||'').length<8){bad(pw[1],'Use at least 8 characters for the new password.');return}
+          if(nw!==nw2){bad(pw[2],'The new passwords don\u2019t match.');return}}
+        save.disabled=true;m.textContent='';save.textContent='Saving\u2026';save.setAttribute('aria-busy','true');
         var steps=Promise.resolve(),did=[];
         if(v!==(u.name||''))steps=steps.then(function(){return SMU.updateName(v)}).then(function(){did.push('name')});
         if(wantPw)steps=steps.then(function(){return SMU.changePassword(cur,nw)}).then(function(){did.push('pw')});
-        steps.then(function(){toast(did.length>1?'Username and password saved.':did[0]==='pw'?'Password updated.':'Username saved.');render()},
-          function(err){m.textContent=err.message||'Couldn\u2019t save. Try again.';save.disabled=false;if(err.field==='cur'&&pw[0])pw[0].focus()})});
+        steps.then(function(){toast(did.length>1?'Display name and password saved.':did[0]==='pw'?'Password updated.':'Display name saved.');render()},
+          function(err){save.textContent='Save';save.removeAttribute('aria-busy');save.disabled=false;if(err.field==='cur'&&pw[0])bad(pw[0],err.message);else m.textContent=err.message||'Couldn\u2019t save. Try again.'})});
       if(location.hash==='#student'){pick('subscriptions');var sc=$('#acctStudent')||$('#acctPlan');if(sc)setTimeout(function(){sc.scrollIntoView({block:'start'})},60)}}
-    main.innerHTML='<div class="skel-block" aria-hidden="true" style="min-height:420px"><i class="sk"></i></div>';
+    /* Before the account is known: draw the same frame the page will end up with (sign-in hero, or the Settings title) so nothing jumps */
+    var likelyIn=(function(){try{if(localStorage.getItem('mp_user'))return true;for(var i=0;i<localStorage.length;i++)if(/^sb-.+-auth-token$/.test(localStorage.key(i)||''))return true}catch(e){}return false})();
+    main.innerHTML=likelyIn?'<section class="set"><div class="wrap set-wrap"><div class="set-top"><h1 class="set-title">Settings</h1></div><div class="skel-block acct-skel-in" aria-hidden="true"><i class="sk"></i></div></div></section>':
+      acctHero()+'<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap"><div class="skel-block acct-skel-out" aria-hidden="true"><i class="sk"></i></div></div></div></section>';
     SMU.ready.then(render);SMU.on('auth',function(){render()});SMU.on('avatar',function(){if(SMU.user)render()});SMU.on('tier',function(){if(SMU.user)render()});SMU.on('saved',function(){if(SMU.user)render()});SMU.on('student',function(){if(SMU.user)render()})}
 
   SMU.ready.then(function(){syncAcct();syncBriefs();syncWaitlist();if(SMU.user&&SMU.live)pullHistory();

@@ -2723,3 +2723,21 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+
+/* ---------- Account page: sign-in and Settings polish (Oct. 26, bot/account-signin-polish). Account-only selectors. ---------- */
+body[data-page="account"] .auth-tabs button{min-height:44px}
+.btn.set-out{height:44px;min-height:44px}
+.auth-inl .fld-hint{margin:0;font-size:14px;color:var(--ink-3)}
+.auth-inl .fld-err{margin:0;font-size:14px;font-weight:600;color:var(--red-dk)}
+.auth-inl .fld input[aria-invalid="true"],.set-f input[aria-invalid="true"]{border-color:var(--red)}
+.auth-inl .auth-forgot-note{margin:16px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2)}
+.auth-inl .auth-forgot-note .linkish,.auth-inl .auth-up-note .linkish{display:inline-block;padding:11px 0;margin:-11px 0}
+.acct-skel-out{min-height:560px}
+.acct-skel-in{min-height:640px;margin-top:20px}
+.set-af{margin-top:16px}
+.set-af button.adfree.af-set{height:44px;padding:0 6px 0 16px;border-color:var(--line-2);color:var(--ink)}
+.set-af button.adfree.af-set:hover{border-color:var(--blue)}
+.set-af button.adfree.af-set:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.set-af button.adfree.af-set .af-sw{background:var(--line-2)}
+.set-af button.adfree.af-set[aria-checked="true"] .af-sw{background:var(--blue)}
+.set-af button.adfree.af-set[aria-checked="true"] .af-sw::after{background:#fff}
