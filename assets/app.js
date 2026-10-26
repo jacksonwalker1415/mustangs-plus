@@ -1764,6 +1764,8 @@
     '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Nothing is charged.</p>'+
     '<button type="button" class="btn btn-wl jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
     (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+'">'+JCHK+'<span>'+esc(x.t)+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
+  /* While paid plans are hidden, the Join pop-up still offers the free waitlist (with the price survey): no plan cards, no prices. */
+  var WL_BAND='<div class="st-band wl-band st-jm"><div class="st-b"><h4>Hear first if SMU+ launches</h4></div><button type="button" class="btn btn-red st-go" data-join-pick="survey">Join the waitlist</button></div>';
   var joinDlg=null;
   function openJoin(tier,note){if(joinDlg&&document.contains(joinDlg)){if(tier)joinStep(tier);return}
     if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier,note)})}
@@ -1771,8 +1773,8 @@
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
     var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div>'+(SHOW_PAID_PLANS?'<p class="jm-eb">Membership</p>':'')+'<h3 id="joinDlg-h">Pick your seat.</h3>'+(note?'<p class="jm-lede jm-note">'+esc(note)+'</p>':'')+
       '<p class="jm-lede">Join free today with a free account, or a Student plan if you have an @smu.edu email.'+(SHOW_PAID_PLANS?' Paid plans are coming soon, and you can join the free waitlist for the one you want.':'')+' There is nothing to buy.</p></div>'+
-      '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':'')+'</div>'+
-      '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> All plans</button>'+
+      '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':WL_BAND)+'</div>'+
+      '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> '+(SHOW_PAID_PLANS?'All plans':'Back')+'</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
       conceptNotice('jm-cn')+'</div>');
     d.classList.add('dlg-join');syncWaitlist();
@@ -1780,10 +1782,12 @@
     var obs=new MutationObserver(function(){if(!document.contains(d)){obs.disconnect();joinDlg=null;if(/^#(join|waitlist)$/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}});obs.observe(body,{childList:true});
     if(tier)setTimeout(function(){joinStep(tier)},40)}
   function joinStep(tier){var d=joinDlg;if(!d)return;var plans=$('.jm-plans',d),wl=$('.jm-wl',d),sheet=$('.jm-body',d);
-    if(!tier){wl.hidden=true;plans.hidden=false;sheet.scrollTop=0;var b=$('[data-join-pick="'+(d.dataset.tier||'pony')+'"]',d);if(b)b.focus();return}
-    var t=(joinTiers||[]).filter(function(x){return x.k===tier})[0]||{p:'Coming soon',per:''};if(!JOIN_WL[tier]||!SHOW_PAID_PLANS)return;d.dataset.tier=tier;
+    if(!tier){wl.hidden=true;plans.hidden=false;sheet.scrollTop=0;var b=$('[data-join-pick="'+(d.dataset.tier||(SHOW_PAID_PLANS?'pony':'survey'))+'"]',d);if(b)b.focus();return}
+    var pk=$('.jm-pick',wl);
+    if(tier==='survey'){d.dataset.tier='survey';if(pk)pk.hidden=true}else{  /* free waitlist + price survey, no plan picked */
+    var t=(joinTiers||[]).filter(function(x){return x.k===tier})[0]||{p:'Coming soon',per:''};if(!JOIN_WL[tier]||!SHOW_PAID_PLANS)return;d.dataset.tier=tier;if(pk)pk.hidden=false;
     $('.jm-pick-n',d).textContent=TIER_NAME[tier];$('.jm-pick-p',d).textContent=t.p+t.per;
-    var sel=$('select[name=tier]',wl);if(sel)sel.value=JOIN_WL[tier];
+    var sel=$('select[name=tier]',wl);if(sel)sel.value=JOIN_WL[tier]}
     plans.hidden=true;wl.hidden=false;sheet.scrollTop=0;
     var f=$('.wl',wl),target=f&&f.classList.contains('done')?$('.wl-ok',wl):$('input[type=email]',wl);if(target)target.focus()}
   var JOIN_SEL='.hdr-join,.mm-join,[data-join],a[href$="#waitlist"],a[href$="#join"],a.btn[href$="#membership"]';
@@ -1794,7 +1798,7 @@
     if(!pw.hidden)closePaywall();openJoin(a.dataset.join||null)});
   /* Re-sync after a modal signup so the home #waitlist card shows the same done state. */
   document.addEventListener('submit',function(e){if(e.target&&e.target.id==='wlJoin')setTimeout(syncWaitlist,0)});
-  function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin()}
+  function joinFromHash(){if(/^#(join|waitlist)$/.test(location.hash))openJoin(location.hash==='#waitlist'?'survey':null)}
   window.addEventListener('hashchange',joinFromHash);setTimeout(joinFromHash,0);
 
   /* ---------- Free Student plan (SMU email only) ----------
