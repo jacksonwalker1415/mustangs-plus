@@ -1408,7 +1408,7 @@ nav.main .nav-dd-btn.nav-x{display:none}
 @media(max-width:959px){.rules{grid-template-columns:1fr;gap:var(--s5)}}
 @media(max-width:479px){.rules-list li{padding:var(--s4) var(--s4) var(--s4) 58px}.rules-list li::before{left:14px}}
 
-/* ---------- Home: Latest from the Hilltop ---------- */
+/* ---------- Home: Latest from The Expressway message boards ---------- */
 .hill-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s6);border-top:2px solid var(--blue)}
 .hill-list li{border-bottom:1px solid var(--line);min-width:0}
 .hill-row{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 4px;color:var(--ink)}
@@ -1895,7 +1895,7 @@ html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden
 .disc-short{display:none}
 @media(max-width:639px){.disclaimer .disc-full{display:none}.disclaimer .disc-short{display:inline}}
 
-/* ---------- The Mustang Board: traditional forum layout (boards/). XenForo/On3-style nodes, thread list and posts.
+/* ---------- The Expressway message boards: traditional forum layout (boards/). XenForo/On3-style nodes, thread list and posts.
    SMU blue headers, red for New and the main actions, white everywhere else. Sentence-case headings, no stripes. ---------- */
 .fx{--fx-line:#dfe3f1;--fx-line-2:#c9d0e8;--fx-mute:#5d6588}
 .fx-hero{background:var(--blue);color:#fff}
@@ -2740,3 +2740,12 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+
+/* Legal cleanup (Oct 26): Sample tag on seeded board posts, plain-text Follow cards, sticky ad steps aside next to athletes */
+.tag-sample{display:inline-block;vertical-align:2px;margin-right:6px;padding:1px 6px;border:1px solid #354CA1;border-radius:4px;color:#354CA1;background:#fff;font-size:11px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none}
+.fo-plain .fo-body{padding:var(--s3)}
+.fo-plain .fo-h a{color:var(--blue);font-weight:700}
+html.ad-quiet .ad-sticky{visibility:hidden;pointer-events:none}
+.auth .f-age{margin:var(--s2) 0}
+.legal-doc h2{margin-top:var(--s4)}
+.legal-doc{max-width:760px}
