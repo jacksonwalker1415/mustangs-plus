@@ -7,7 +7,7 @@ MP.FEATURES = MP.FEATURES || {};
 /* Contact for data-removal and privacy requests. ONE constant: put the address in email when it exists; until then the site shows the placeholder text. */
 /* Membership tier display names. Keys stay stable (DB + code use them); change a label here only. */
 MP.TIER_LABELS = {free:'Free', mustang:'Mustang', pony:'All-Access', club:'Red & Blue', student:'Student'};  /* student = the free Student plan (RUN_ME_16), not a paid tier */
-MP.CONTACT = MP.CONTACT || {email:'', pending:'a dedicated SMU+ contact email will be posted here before launch'};
+MP.CONTACT = MP.CONTACT || {email:'smuplusmedia@gmail.com'};
 if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
 /* avatars: member profile photos on the live site. On since supabase/RUN_ME_15_avatars.sql was applied (profiles.avatar_url and the
    'avatars' storage bucket exist). Set false to hide uploads and photos again (initials only); nothing is deleted. Demo mode always has photos (saved in the browser). */

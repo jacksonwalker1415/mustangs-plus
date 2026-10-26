@@ -118,9 +118,10 @@
   function conceptNotice(cls){return '<div class="cnotice'+(cls?' '+cls:'')+'" role="note"><b>Concept built for an SMU Cox MBA class project.</b> Not affiliated with or endorsed by SMU Athletics or Learfield. '+
     'No payments are taken. Membership and checkout here are a demo, and no card is ever asked for. <a href="'+ROOT+'privacy/#about">About this project</a></div>'}
 
-  /* Single privacy contact (MP.CONTACT in data.js). Empty email -> placeholder sentence. Also fills [data-contact] spans on static pages. */
-  function contactHTML(){var C=MP.CONTACT||{};return C.email?'<a href="mailto:'+esc(C.email)+'?subject=SMU%2B%20data%20removal">'+esc(C.email)+'</a>':esc(C.pending||'a dedicated SMU+ contact email will be posted here before launch')}
-  $$('[data-contact]').forEach(function(el){el.innerHTML=contactHTML()});
+  /* Single SMU+ contact (MP.CONTACT in data.js). Fills [data-contact] spans on static pages; data-contact="removal" adds a data-removal subject. */
+  var CONTACT=(MP.CONTACT&&MP.CONTACT.email)||'smuplusmedia@gmail.com';
+  function contactHTML(kind){return '<a href="mailto:'+esc(CONTACT)+(kind==='removal'?'?subject=SMU%2B%20data%20removal%20request':'')+'">'+esc(CONTACT)+'</a>'}
+  $$('[data-contact]').forEach(function(el){el.innerHTML=contactHTML(el.getAttribute('data-contact'))});
   /* ---------- Waitlist: free, no payment. Live: public.waitlist (supabase/waitlist.sql), falling back to newsletter_signups until that migration runs. ---------- */
   var AFFIL=[['student','SMU student'],['alum','SMU alum'],['fan','Fan'],['parent','Parent or family'],['other','Other']];
   var TL=MP.TIER_LABELS||{},INTEREST=[['free','Free newsletter only'],['mustang',(TL.mustang||'Mustang')+' ($9.99/mo)'],['all_access',(TL.pony||'All-Access')+' ($24.99/mo)'],['red_blue',(TL.club||'Red & Blue')+' ($99/mo)'],['not_sure','Not sure yet']];
@@ -131,7 +132,7 @@
     '<div class="fld"><label for="'+id+'-t">Which plan would interest you? <small>(optional, nothing to buy)</small></label><select id="'+id+'-t" name="tier"><option value="">Choose one</option>'+INTEREST.map(function(a){return '<option value="'+a[0]+'">'+esc(a[1])+'</option>'}).join('')+'</select></div>'+
     '<label class="wl-consent" for="'+id+'-c"><input id="'+id+'-c" type="checkbox" name="consent" required><span class="wl-box" aria-hidden="true"></span><span>I agree that SMU+ can store these details to contact me about this student project, as described in the <a href="'+ROOT+'privacy/">privacy notice</a>.</span></label>'+
     '<p class="wl-m" id="'+id+'-m" aria-live="polite"></p><button class="btn btn-red wl-go" type="submit">Join the waitlist</button>'+
-    '<p class="wl-fine">Free. There is nothing to buy. Ask to be removed anytime: '+contactHTML()+'.</p></form>'+
+    '<p class="wl-fine">Free. There is nothing to buy. Ask to be removed anytime: '+contactHTML('removal')+'.</p></form>'+
     '<div class="wl-ok" role="status" tabindex="-1"><b>You\u2019re on the waitlist.</b> <span>We saved <em class="wl-email"></em>. We\u2019ll only use it to contact you about this project.</span>'+
     '<small><span class="wl-mode"></span> <button type="button" class="linkish" data-wl-undo>Add a different email</button></small></div></div>'}
   function waitlistSection(){return '<section class="sec wl-sec" id="waitlist" aria-labelledby="wl-h"><div class="wrap wl-grid">'+
@@ -194,8 +195,8 @@
       '<div class="ft-brief"><h4>SMU+ Weekly</h4><p>One email on Friday mornings in season.</p>'+briefHTML('briefFt',true)+'</div><span class="powered">Powered by Learfield <em>(concept)</em></span></div>'+
     '<div class="ft-cols"><div><h4>Fall &amp; Winter</h4><ul>'+sportLinks.slice(0,6).join('')+'</ul></div><div><h4>More Sports</h4><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
     '<div><h4>Watch &amp; Read</h4><ul><li><a href="'+libUrl()+'">Library</a></li><li><a href="'+libUrl('film')+'">Film Room</a></li><li><a href="'+libUrl('podcasts')+'">Podcasts</a></li>'+(REC_ON?'<li><a href="'+ROOT+'recruiting/">Recruiting</a></li>':'')+'</ul></div>'+
-    '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">Message Boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li><li><a href="'+ROOT+'#membership">Plans</a></li><li><a href="'+ROOT+'#faq">FAQ</a></li><li><a href="'+ROOT+'#waitlist">Join the waitlist</a></li><li><a href="'+ROOT+'privacy/">Privacy notice</a></li></ul></div></div></div>'+
-    '<div class="legal"><p><strong>Concept built for an SMU Cox MBA class project. Not affiliated with or endorsed by SMU Athletics or Learfield. No payments are taken.</strong> Membership and checkout are a demo. <a href="'+ROOT+'privacy/">Privacy notice</a></p>'+
+    '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">Message Boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li><li><a href="'+ROOT+'#membership">Plans</a></li><li><a href="'+ROOT+'#faq">FAQ</a></li><li><a href="'+ROOT+'#waitlist">Join the waitlist</a></li><li><a href="'+ROOT+'privacy/">Privacy notice</a></li><li><a href="mailto:'+esc(CONTACT)+'">Contact us</a></li></ul></div></div></div>'+
+    '<div class="legal"><p><strong>Concept built for an SMU Cox MBA class project. Not affiliated with or endorsed by SMU Athletics or Learfield. No payments are taken.</strong> Membership and checkout are a demo. <a href="'+ROOT+'privacy/">Privacy notice</a> \u00b7 Contact: '+contactHTML()+'</p>'+
     '<p>All stories, athletes, coaches, '+(REC_ON?'recruits, portal names, ':'')+'board users, prices and figures are fictional sample data, with these exceptions: the Player Profiles show real SMU football players using public stats with sources on each page; the football schedule, kickoff times, TV and scores, and the schedules, results, rosters and head coaches on the other 11 sport pages, come from smumustangs.com with links on each page; photos credited "Photo: SMU Athletics" are SMU Athletics photography used for this class concept; videos and podcast episodes credited to SMU Athletics are official embeds from SMU\u2019s YouTube channel, not rehosted; and stories marked "Sourced story" use only facts from the SMU Athletics pages they link to. The SMU+ logo is concept artwork made for this class project; SMU marks belong to SMU, and no Learfield marks are used. No payments are processed. Accounts, board posts, newsletter and waitlist signups are saved only in this browser unless the site is connected to its own database; see the privacy notice for what is stored and how to have it deleted.</p></div></div></footer>';
 
   /* ---------- Newsletter: SMU+ Weekly (demo, localStorage only) ---------- */
