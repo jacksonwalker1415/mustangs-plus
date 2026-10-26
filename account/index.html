@@ -74,28 +74,30 @@ w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../assets/site.css?v=202610265070">
+<script>/* Signed in on this browser (demo or Supabase session)? Show the Settings frame, not the sign-in hero, until app.js renders, so nothing flashes or jumps. */(function(){try{var s=localStorage,k=s.getItem('mp_user'),i;if(!k)for(i=0;i<s.length;i++)if(/^sb-.+-auth-token$/.test(s.key(i)||'')){k=1;break}if(k)document.documentElement.classList.add('acct-in')}catch(e){}})()</script>
+<style>html.acct-in #acctMain>.acct-hero,html:not(.acct-in) #acctMain>.acct-static-in{display:none}</style>
+<link rel="stylesheet" href="../assets/site.css?v=202610265100">
 </head>
 <body data-page="account" data-root="../">
 <!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->
 <div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU, Mustang Partners or Learfield. No payments taken.</span> <a href="../privacy/#about">About this project</a></div>
 <div id="site-header"></div>
-<main id="acctMain"><section class="page-hero acct-hero"><div class="wrap"><h1 class="display">Your account</h1><p class="lede on-dark">Loading your account…</p></div></section><noscript><section class="sec"><div class="wrap"><p>Your account needs JavaScript turned on.</p></div></section></noscript></main>
+<main id="acctMain"><section class="page-hero acct-hero has-photo"><div class="bgph"><img class="ph" src="../assets/photos/eq-practice-arena-wide.webp" alt="SMU equestrian riders work their horses in a covered arena at practice" style="object-position:40% 45%" fetchpriority="high" decoding="async"></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><h1 class="display">Sign in</h1><p class="lede on-dark">Save players, post on the boards and pick up videos where you left off on any device.</p></div></section><section class="set acct-static-in"><div class="wrap set-wrap"><div class="set-top"><h1 class="set-title">Settings</h1></div><div class="skel-block acct-skel-in" aria-hidden="true"><i class="sk"></i></div></div></section><noscript><section class="sec"><div class="wrap"><p>Your account needs JavaScript turned on.</p></div></section></noscript></main>
 <div id="site-footer"></div>
-<script src="../assets/config.js?v=202610265070"></script>
-<script src="../assets/data.js?v=202610265070"></script>
-<script src="../assets/content.js?v=202610265070"></script>
-<script src="../assets/real.js?v=202610265070"></script>
-<script src="../assets/athletes.js?v=202610265070"></script>
-<script src="../assets/socials.js?v=202610265070"></script>
-<script src="../assets/sport-icons.js?v=202610265070"></script>
-<script src="../assets/games.js?v=202610265070"></script>
-<script src="../assets/upcoming.js?v=202610265070"></script>
-<script src="../assets/boxscores.js?v=202610265070"></script>
-<script src="../assets/gamestats.js?v=202610265070"></script>
-<script src="../assets/sb.js?v=202610265070"></script>
-<script src="../assets/ads.js?v=202610265070"></script>
-<script src="../assets/app.js?v=202610265070"></script>
-<script src="../assets/cfbd-live.js?v=202610265070"></script>
+<script src="../assets/config.js?v=202610265100"></script>
+<script src="../assets/data.js?v=202610265100"></script>
+<script src="../assets/content.js?v=202610265100"></script>
+<script src="../assets/real.js?v=202610265100"></script>
+<script src="../assets/athletes.js?v=202610265100"></script>
+<script src="../assets/socials.js?v=202610265100"></script>
+<script src="../assets/sport-icons.js?v=202610265100"></script>
+<script src="../assets/games.js?v=202610265100"></script>
+<script src="../assets/upcoming.js?v=202610265100"></script>
+<script src="../assets/boxscores.js?v=202610265100"></script>
+<script src="../assets/gamestats.js?v=202610265100"></script>
+<script src="../assets/sb.js?v=202610265100"></script>
+<script src="../assets/ads.js?v=202610265100"></script>
+<script src="../assets/app.js?v=202610265100"></script>
+<script src="../assets/cfbd-live.js?v=202610265100"></script>
 </body>
 </html>
