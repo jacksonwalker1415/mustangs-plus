@@ -1412,3 +1412,7 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 .chip{border-color:rgba(22,33,79,.18);transition:border-color var(--t-fast),color var(--t-fast),background-color var(--t-fast)}
 .chip[aria-pressed="true"]{background:var(--b-800);border-color:var(--b-800)}
 .chip[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
+
+/* ---- 6.8 Reader header without a photo: textured navy (no-photo posters themselves use main's flat-by-type cards) ---- */
+.reader-hd.tone-white{background:var(--hair),linear-gradient(155deg,var(--b-700),var(--b-900));color:#fff}
+.reader-hd.tone-white .eyebrow{color:rgba(255,255,255,.86)}
