@@ -8,7 +8,11 @@
   function recOK(c){return REC_ON||!(c&&(c.cat==='recruiting'||c.cat==='portal'||c.f==='recruiting'||REC_RE.test([c.title,c.desc,c.label].join(' '))))}
   MP.recOK=recOK;
   if(!REC_ON){MP.CATS=MP.CATS.filter(function(c){return c[0]!=='recruiting'&&c[0]!=='portal'});MP.LIB=MP.LIB.filter(recOK);
-    MP.FORUMS=MP.FORUMS.filter(function(f){return f.id!=='recruiting'});MP.THREADS=MP.THREADS.filter(recOK)}
+    MP.FORUMS=MP.FORUMS.filter(function(f){return f.id!=='recruiting'});MP.THREADS=MP.THREADS.filter(recOK);
+    /* recruiting off: drop recruiting paragraphs and related links from the stories that stay (data is untouched) */
+    var LIVEIDS={};MP.LIB.forEach(function(c){LIVEIDS[c.id]=1});
+    Object.keys(MP.ARTICLES||{}).forEach(function(k){var a=MP.ARTICLES[k];if(!a)return;
+      if(a.body)a.body=a.body.filter(function(p){return !REC_RE.test(p)});if(a.related)a.related=a.related.filter(function(r){return LIVEIDS[r]})})}
   function $$(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s))}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function money(n){return '$'+Math.round(n).toLocaleString()}
@@ -223,7 +227,7 @@
   var TICON={video:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',article:'<svg viewBox="0 0 24 24"><path d="M5 4h14v2H5zm0 4h14v2H5zm0 4h14v2H5zm0 4h9v2H5z"/></svg>',podcast:'<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg>'};
   var VERB={video:'Watch',article:'Read',podcast:'Listen'};
   /* No-photo poster: solid colour by content type, big white sport icon (or a neutral type mark), small uppercase kicker. No gradients, no watermark word. */
-  var CARD_SPORT={'preview-syracuse':'football','preview-msoc-louisville':'mens-soccer','vb-road-sweep':'volleyball','micd-setter':'volleyball','walk-on':'football','coachs-corner-acc':'football','thursday-notes':'football'};
+  var CARD_SPORT={'smu-fb-cal-highlights':'football','smu-fb-uva-highlights':'football','smu-msoc-cal-highlights':'mens-soccer','smu-vb-gt-highlights':'volleyball','smu-micd-up-s2e6':'football','preview-syracuse':'football','preview-msoc-louisville':'mens-soccer','vb-road-sweep':'volleyball','micd-setter':'volleyball','walk-on':'football','coachs-corner-acc':'football','thursday-notes':'football'};
   var NP_MARK={video:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="46" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M50 40v40l32-20z" fill="#fff"/></svg>',
     article:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="26" y="18" width="68" height="84" rx="4" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M38 38h44M38 52h44M38 66h44M38 80h28" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>',
     podcast:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="46" y="16" width="28" height="52" rx="14" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M34 56a26 26 0 0 0 52 0M60 82v20M46 102h28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>'};
@@ -268,15 +272,20 @@
   function clock(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
   function openMedia(id,push){var c=LIBBY[id];if(!c)return false;lastFocus=lastFocus||document.activeElement;
     var lock=blocked(c),p=progressOf(id),total=secs(c.dur),eps=seriesOf(c),audio=c.t==='podcast';
-    readerBody.innerHTML='<div class="player '+(c.img?'tone-'+(c.tone||'blue')+' has-img':'no-ph np-'+c.t)+(lock?' locked':'')+'">'+(c.img?photo(c.img,{eager:1})+CREDIT:noPhoto(c))+
+    var yt=c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null;
+    readerBody.innerHTML=(yt?'<div class="player yt'+(lock?' locked':'')+'" id="ytBox"><img class="yt-thumb" src="https://i.ytimg.com/vi/'+yt+'/hqdefault.jpg" alt="" loading="eager" referrerpolicy="no-referrer"><span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>'+
+          (lock?'':'<button type="button" class="play" id="ytPlay" aria-label="Play the official SMU Athletics video (loads YouTube)">'+SVG.play+'</button>')+'</div>':
+        '<div class="player '+(c.img?'tone-'+(c.tone||'blue')+' has-img':'no-ph np-'+c.t)+(lock?' locked':'')+'">'+(c.img?photo(c.img,{eager:1})+CREDIT:noPhoto(c))+
         (lock?'':'<button type="button" class="play" id="playBtn" aria-label="'+(p>0.02?'Resume':'Play')+' (demo)">'+SVG.play+'</button>')+
-        '<div class="pbar" aria-hidden="true"><i id="pFill" style="width:'+Math.round(p*100)+'%"></i></div></div>'+
+        '<div class="pbar" aria-hidden="true"><i id="pFill" style="width:'+Math.round(p*100)+'%"></i></div></div>')+
       '<div class="reader-in">'+(lock?inlineGate(c):'')+'<p class="eyebrow red">'+esc(c.label)+(c.lock?' · Members':' · Free')+'</p><h2 id="reader-h" class="m-title">'+esc(c.title)+'</h2><p class="dek">'+esc(c.desc)+'</p>'+
-        '<p class="m-meta"><span><b id="pTime">'+clock(p*total)+'</b> / '+esc(c.dur)+'</span><span>'+(audio?'Podcast':'Video')+'</span><span>Demo player: nothing streams in this concept</span></p>'+
+        '<p class="m-meta"><span>'+(yt?'':'<b id="pTime">'+clock(p*total)+'</b> / ')+esc(c.dur)+'</span><span>'+(audio?'Podcast':'Video')+'</span>'+(yt?'<span>Official SMU Athletics video. It loads from YouTube when you press play'+(c.channel?' \u00b7 <a href="'+esc(c.channel[1])+'" target="_blank" rel="noopener">'+esc(c.channel[0])+'</a>':'')+'</span>':'<span>Demo player: nothing streams in this concept</span>')+'</p>'+
         (eps.length>1?'<div class="eps"><h3 class="eps-h">'+esc(c.title.split(':')[0])+' · '+eps.length+' episodes</h3>'+eps.map(function(e,i){var ep=progressOf(e.id);
           return '<a class="ep'+(e.id===c.id?' on':'')+'" href="'+itemHref(e)+'" data-item="'+e.id+'"'+(e.id===c.id?' aria-current="true"':'')+'><span class="ep-n">'+(i+1)+'</span><span class="ep-b"><b>'+esc(e.title.split(':').slice(1).join(':').trim()||e.title)+'</b><small>'+esc(e.dur)+(ep>0.02?' · '+Math.round(ep*100)+'% watched':'')+'</small></span>'+(e.id===c.id?'<span class="ep-now">Now playing</span>':'')+'</a>'}).join('')+'</div>':'')+
         relatedHTML(c)+'</div>';
     showReader(c,push);
+    if(yt&&!lock){track(id,Math.max(p,0.03));$('#ytPlay').addEventListener('click',function(){var box=$('#ytBox');
+        box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="'+esc(c.title)+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';track(id,0.5)});return true}
     if(!lock){track(id,Math.max(p,0.03));var btn=$('#playBtn'),fill=$('#pFill'),tm=$('#pTime'),busy=false;
       btn.addEventListener('click',function(){if(busy)return;busy=true;var from=progressOf(id),to=Math.min(1,from+0.25),t0=performance.now();btn.classList.add('on');track(id,to);
         (function step(t){var k=Math.min(1,(t-t0)/1200),v=from+(to-from)*k;fill.style.width=(v*100)+'%';tm.textContent=clock(v*total);
