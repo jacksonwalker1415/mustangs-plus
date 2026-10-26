@@ -5,7 +5,7 @@
   'use strict';
   var C = w.Capacitor;
   if (!C || typeof C.isNativePlatform !== 'function' || !C.isNativePlatform()) return;
-  var LIVE = 'https://jacksonwalker1415.github.io/mustangs-plus/';
+  var LIVE = 'https://fanplatformdemo.com/';
   d.documentElement.classList.add('cap-native');
 
   function call(plugin, method, opts) {
@@ -15,7 +15,7 @@
   function tick(style) { call('Haptics', 'impact', { style: style || 'LIGHT' }).catch(function () {}); }
   function root() { return (d.body && d.body.getAttribute('data-root')) || ''; }
 
-  // Public URL of the current page (capacitor://localhost/library/#x -> https://.../mustangs-plus/library/#x)
+  // Public URL of the current page (capacitor://localhost/library/#x -> https://fanplatformdemo.com/library/#x)
   function liveUrl() {
     var path = location.pathname.replace(/^\/+/, '').replace(/index\.html$/, '');
     return LIVE + path + location.search + location.hash;
@@ -36,7 +36,7 @@
     var tabs = [
       ['home', 'Home', r, page === 'home'],
       ['watch', 'Watch', r + 'library/', page === 'library'],
-      ['sports', 'Sports', null, page === 'sport'],
+      ['sports', 'Sports', null, page === 'sport' || page === 'games'],
       ['boards', 'Boards', r + 'boards/', page === 'boards'],
       ['account', 'Account', r + 'account/', page === 'account']
     ];
@@ -98,6 +98,47 @@
       if (err && /cancel/i.test(String(err.message || err))) return;
       if (navigator.share) navigator.share({ title: opts.title, text: opts.text, url: opts.url }).catch(function () {});
     });
+  }, true);
+
+  // Feeds (videos, podcasts, search index) come from the live site so the app never shows a stale bundle;
+  // the bundled copy is only a fallback when the network is down. Supabase data (scores, threads) is always live.
+  var nativeFetch = w.fetch && w.fetch.bind(w);
+  if (nativeFetch) {
+    w.fetch = function (input, init) {
+      try {
+        var u = new URL(typeof input === 'string' ? input : input.url, location.href);
+        if (u.origin === location.origin && /^\/data\/[a-z0-9-]+\.json$/i.test(u.pathname) && (!init || !init.method || init.method === 'GET')) {
+          var ctl = w.AbortController ? new AbortController() : null;
+          var t = ctl && setTimeout(function () { ctl.abort(); }, 5000);
+          return nativeFetch(LIVE + u.pathname.slice(1) + u.search, { cache: 'no-store', signal: ctl && ctl.signal })
+            .then(function (r) { if (t) clearTimeout(t); if (!r.ok) throw new Error(String(r.status)); return r; })
+            .catch(function () { return nativeFetch(input, init); });
+        }
+      } catch (e) {}
+      return nativeFetch(input, init);
+    };
+  }
+
+  // Links: fanplatformdemo.com links stay in the app; other web links (StatBroadcast, smumustangs.com, X, YouTube...)
+  // open in an in-app browser sheet (Safari View Controller) so the user can swipe back to SMU+.
+  d.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey) return;
+    var a = e.target.closest('a[href]');
+    if (!a || a.hasAttribute('download')) return;
+    var u;
+    try { u = new URL(a.getAttribute('href'), location.href); } catch (err) { return; }
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return;   // mailto:, tel:, capacitor:// (in-app) stay as they are
+    if (u.origin === location.origin) return;
+    e.preventDefault();
+    if (u.hostname === 'fanplatformdemo.com' || u.hostname === 'www.fanplatformdemo.com') {
+      var path = u.pathname.replace(/^\/+/, '');
+      if (path && !/\/$/.test(path) && !/\.[a-z0-9]+$/i.test(path)) path += '/';
+      location.href = '/' + path + u.search + u.hash;
+      return;
+    }
+    tick();
+    call('Browser', 'open', { url: u.href, toolbarColor: '#354CA1', presentationStyle: 'fullscreen' })
+      .catch(function () { location.href = u.href; });   // Capacitor hands outside URLs to Safari
   }, true);
 
   // Light haptics on primary actions

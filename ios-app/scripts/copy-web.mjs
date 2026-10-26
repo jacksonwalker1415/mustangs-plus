@@ -13,7 +13,7 @@ const APP = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = join(APP, '..');
 const OUT = join(APP, 'www');
 const SKIP = new Set(['.git', '.github', 'ios-app', 'supabase', 'node_modules', '.nojekyll', 'README.md', 'SETUP.md',
-  'robots.txt', 'sitemap.xml', 'sw.js', 'offline.html', 'mustangs-plus-qr.png']);
+  'robots.txt', 'sitemap.xml', 'sw.js', 'offline.html', 'mustangs-plus-qr.png', 'tools', 'CNAME']);
 
 if (!existsSync(join(SITE, 'index.html')) || !existsSync(join(SITE, 'assets', 'app.js'))) {
   console.error('copy-web: site not found at ' + SITE); process.exit(1);

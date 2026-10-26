@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 import Capacitor
 
 @UIApplicationMain
@@ -7,7 +8,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Podcasts on the Watch page play through the web view's <audio> player. The playback category lets them
+        // play with the silent switch on and keep playing on the lock screen (UIBackgroundModes: audio in Info.plist).
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
         return true
     }
 

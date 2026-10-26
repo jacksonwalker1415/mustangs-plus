@@ -21,7 +21,7 @@ html.cap-native .site-ft{padding-bottom:var(--s6)}
   transform:translateY(8px);opacity:0;transition:opacity .16s ease,transform .16s ease}
 .cap-sheet.open{transform:none;opacity:1}
 .cap-sheet[hidden]{display:none}
-.cap-sheet h2{margin:0 4px 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.cap-sheet h2{margin:0 4px 10px;font-size:17px;font-weight:700;letter-spacing:0;text-transform:none;color:#fff}
 .cap-sheet .list{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .cap-sheet .list a{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 10px;border-radius:10px;background:rgba(255,255,255,.07);color:#fff;font-size:15px;font-weight:600;text-decoration:none}
 .cap-sheet .list a[aria-current="page"]{background:#CC0035}
@@ -29,3 +29,5 @@ html.cap-native .site-ft{padding-bottom:var(--s6)}
 .cap-scrim{position:fixed;inset:0;z-index:93;background:rgba(22,33,79,.45)}
 .cap-scrim[hidden]{display:none}
 @media (prefers-reduced-motion:reduce){.cap-sheet{transition:none}}
+/* Boards compose button and other bottom-pinned site controls sit above the tab bar */
+html.cap-native .fx-fab.show{bottom:calc(var(--tabh) + 16px + env(safe-area-inset-bottom,0px))}
