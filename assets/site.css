@@ -1714,7 +1714,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 
 /* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
 .tag:not(.tag-new){border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:0;padding:3px 7px;line-height:1.25}
-.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(10,16,40,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
+.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(0,0,0,.6);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
 .poster-verb{padding:4px 9px 4px 7px}
 .tone-white .poster-verb,.tone-white .dur{background:rgba(10,16,40,.62);color:#fff}
 /* board pills: status labels stay as compact labels, board and sport names become plain text */
@@ -2296,6 +2296,19 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 /* ---------- Home calendar ribbon (upcoming games, every sport) ---------- */
 .ribbon .rb-hd{margin-bottom:var(--s4)}
 .sec.ribbon{padding-bottom:var(--s6)}
+/* Home CLS (Oct. 26): placeholders in index.html match the rendered ribbon list and game day cards, measured in Chromium at 320-1920px.
+   Ribbon list: 238.6px phone (+56px arrow row), then the tallest card row per breakpoint. Game day: the real .gd-next/.gd-hurry boxes,
+   .gd-hph keeps its 21:9 photo ratio and .gd-hb-sk stands in for the 185px score block. Re-measure if card content changes. */
+.rb-skel{display:flex;height:238.6px;margin-bottom:56px}.rb-skel .sk{flex:1;border-radius:12px}
+@media(min-width:720px){.rb-skel{height:350.1px;margin-bottom:0}}
+@media(min-width:768px){.rb-skel{height:326.4px}}
+@media(min-width:900px){.rb-skel{height:303.5px}}
+@media(min-width:960px){.rb-skel{height:327.2px}}
+@media(min-width:1024px){.rb-skel{height:303.5px}}
+.gd-skel .gd-next{display:flex}.gd-skel .gd-next .sk{flex:1;border-radius:0}
+.gd-skel .gd-hph{display:flex}.gd-skel .gd-hph .sk{flex:1;border-radius:0}
+.gd-skel .gd-hb-sk{height:185px}
+@media(max-width:639px){.gd-skel .gd-next{min-height:372.5px}}
 .ribbon .rb-hd h2{font-family:inherit;text-transform:none;letter-spacing:0;font-weight:800;font-size:clamp(22px,2.4vw,28px);line-height:1.2;color:var(--ink)}
 .ribbon .rb-hd p{margin-top:var(--s1);font-size:15px;color:var(--ink-2)}
 .ribbon .rb-hd a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
@@ -2637,7 +2650,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-main{gap:3px;padding:var(--s3) var(--s3) var(--s2)}
   .rb-tv{padding:8px var(--s3);gap:4px 14px;align-items:baseline;font-size:14px;line-height:1.4}
   .rb-tv div{align-items:baseline;gap:5px}
-  .rb-tv a{display:inline-block;min-height:0;padding:12px 4px;margin:-12px -4px}
+  .rb-tv a{display:inline-block;min-height:0;padding:13px 4px;margin:-13px -4px}
   .rb-wrap{padding-bottom:56px}
   .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:44px;height:44px}
   .rb-wrap .xside.xprev{left:auto;right:54px}
@@ -2791,3 +2804,11 @@ a.sp-rec-nx:focus-visible{outline:3px solid #fff;outline-offset:2px}
 
 /* Sport pages: no backdrop-filter on card tags (WebKit memory/compositing cost with ~27 blurred tags on football); solid navy instead */
 body[data-page=sport] .poster-verb,body[data-page=sport] .dur{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,33,79,.85)}
+/* Tap targets and contrast (Oct. 26 audit, 390px). Inline links get vertical padding: it widens the tap area to 44px+ without moving any text.
+   Shared: .site-ft .legal a (footer) and .cnotice a (concept notice component). Home: ribbon header link. */
+.ribbon .rb-hd p a{padding:1px 0}
+.cnotice a{padding:13px 0}
+.site-ft .legal a{padding:14px 0}
+.fo-plain .fo-h a{padding:13px 0}
+/* Game day final: the losing side was opacity .5 (#919abd on white, 2.77:1). Solid ink-3 is 5.9:1; the winner keeps SMU blue. */
+.gameday .sc-t:not(.win){opacity:1;color:var(--ink-3)}
