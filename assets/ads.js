@@ -43,8 +43,8 @@ var ADS=MP.ADS={
     'game-mpu':{unit:'mpu',brand:'wrenhollow',page:'games',at:['.gc-c3 .gc-links','afterend'],noSkin:1},
     'boards-halfpage':{unit:'halfpage',brand:'pelloway',page:'boards',at:['#indexView .fx-side','beforeend'],wide:1},
     'thread-mpu':{unit:'mpu',brand:'brindlecup',page:'boards',at:['#threadView .fx-msgs > :nth-child(3)','afterend'],ctx:'thread'},
-    'article-mid':{unit:'mpu',brand:'wrenhollow',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',tab:1},
-    'article-mid-phone':{unit:'interscroller',brand:'tellivant',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',phone:1},
+    'article-mid':{unit:'mpu',brand:'wrenhollow',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',tab:1,noAthlete:1},
+    'article-mid-phone':{unit:'interscroller',brand:'tellivant',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',phone:1,noAthlete:1},
     'article-end':{unit:'mpu',brand:'pelloway',at:['#readerBody .prose:not(.teaser) ~ .note','afterend'],ctx:'article'}
   },
   /* site-wide sticky bar (320x50 phones, 728x90 desktop), dismissible for the session. Not on athlete, roster, recruiting or account pages. */
@@ -89,7 +89,7 @@ MP.ad=function(id){var p=ADS.placements[id];if(!ADS.enabled||!p)return '';
 /* insert every placement whose anchor exists (once each). ctx limits to one render context (article, thread). */
 MP.adsMount=function(ctx){if(!ADS.enabled)return;var pg=page();
   Object.keys(ADS.placements).forEach(function(id){var p=ADS.placements[id];if(!p.at)return;
-    if((p.ctx||'')!==(ctx||''))return;if(p.page&&p.page!==pg)return;
+    if((p.ctx||'')!==(ctx||''))return;if(p.page&&p.page!==pg)return;if(p.noAthlete&&document.querySelector('#readerBody[data-athlete]'))return;
     var hold=document.querySelector('[data-ad-hold="'+id+'"]');if(hold){hold.outerHTML=MP.ad(id);return}
     var a=document.querySelector(p.at[0]);if(!a||document.querySelector('[data-ad-slot="'+id+'"]'))return;
     a.insertAdjacentHTML(p.at[1],MP.ad(id))});MP.adsCap()};
@@ -142,4 +142,11 @@ if(page()==='games'&&window.MutationObserver){var gmo=new MutationObserver(funct
   gmo.observe(document.documentElement,{childList:true,subtree:true});addEventListener('load',function(){setTimeout(function(){gmo.disconnect()},4000)})}
 function boot(){if(!ADS.enabled)return;MP.adsMount();sticky();MP.adsCap();interstitial()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else setTimeout(boot,0);
+/* No ads next to athlete content: while the home "Meet the Mustangs" row is on screen the sticky bar steps aside (class ad-quiet on <html>).
+   Also covers any athlete section on athletes/ pages (where the sticky bar is already off). visibility only, so nothing shifts. */
+(function(){if(!('IntersectionObserver' in window))return;var on=new Set(),seen=new WeakSet(),io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting)on.add(e.target);else on.delete(e.target)});document.documentElement.classList.toggle('ad-quiet',on.size>0)});
+  function scan(){var sel='#athletes,#athRow,.rail-ath'+(page()==='athlete'?',main section':'');
+    Array.prototype.forEach.call(document.querySelectorAll(sel),function(el){if(!seen.has(el)){seen.add(el);io.observe(el)}})}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scan);else scan();setTimeout(scan,1500);setTimeout(scan,4000)})();
 })();
