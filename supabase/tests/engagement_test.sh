@@ -47,6 +47,10 @@ expect_has "anon can't check in"              "permission denied" "$(as anon "se
 expect_has "student fields are private"       "permission denied" "$(as anon "select is_student from profiles")"
 expect_eq  "display names still public"       "4" "$(as anon "select count(display_name) from profiles")"
 
+echo "No client-supplied amounts"
+expect_eq  "API RPCs take no points/amount/cost args" "0" "$(su "select count(*) from information_schema.parameters where specific_schema='public' and parameter_mode='IN' and (parameter_name ~* 'point|amount|cost|bonus') and specific_name ~ '^(check_in|redeem_reward|verify_student|set_leaderboard_visibility|gate_code|my_engagement|leaderboard|class_standings)_[0-9]+$'")"
+expect_eq  "ledger-touching functions callable by clients = the API only" "check_in class_standings engage_season engage_tier engage_window gate_code leaderboard my_engagement redeem_reward verify_student" "$(su "select string_agg(p.proname,' ' order by p.proname) from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and has_function_privilege('authenticated',p.oid,'execute') and (p.prosrc ~* 'point_events|checkins|engage_|redemptions' or p.proname ~ '^engage_')")"
+
 echo "Student verification"
 expect_has "non-smu email rejected"   '"reason": "not_smu"'     "$(as $C "select verify_student(2028)")"
 expect_has "unconfirmed email waits"  '"reason": "unconfirmed"' "$(as $D "select verify_student(2028)")"

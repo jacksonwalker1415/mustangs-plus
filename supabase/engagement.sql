@@ -1,6 +1,7 @@
 -- SMU+ student engagement: points, game-day check-in, leaderboards, rewards and student accounts.
 -- PROPOSED MIGRATION. Run it after schema.sql (and seed.sql) in the Supabase SQL Editor. Safe to re-run.
--- Points, check-ins and rewards are a DEMO for a class project: no real tickets, no cash value, nothing redeemable at SMU.
+-- Every points, ticket and reward surface carries the label: Demo, no cash value, not a real ticket.
+-- RPCs never accept a points amount from the client: every amount is derived here from the event kind and the rules below.
 --
 -- Security model
 --   * Clients never write points, check-ins or redemptions directly. Every table here has RLS on, and anon/authenticated
@@ -102,7 +103,7 @@ create table if not exists public.rewards (
   category     text not null check (category in ('concessions','merch','seating','access')),
   name         text not null,
   description  text not null default '',
-  fine_print   text not null default 'Demo reward. No cash value. Not redeemable at SMU.',
+  fine_print   text not null default 'Demo, no cash value, not a real ticket',
   cost         int  not null check (cost > 0),
   stock        int  check (stock >= 0),        -- null = unlimited
   per_user_limit int check (per_user_limit > 0),
@@ -356,7 +357,7 @@ language sql stable security definer set search_path = public as $$
     from public.profiles p
     left join public.point_events e on e.user_id = p.id and e.points > 0 and e.season = public.engage_season()
    where p.is_student and p.smu_email_verified and p.class_year is not null
-   group by p.class_year order by 3 desc
+   group by p.class_year order by 4 desc, 3 desc
 $$;
 
 -- ---------- RLS and grants ----------

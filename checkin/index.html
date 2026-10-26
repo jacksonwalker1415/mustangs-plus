@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Game-day check-in | SMU+</title>
+<meta name="description" content="Check in at the SMU+ student gate on game day to earn student points. Concept demo, no cash value, not a real ticket.">
+<meta name="theme-color" content="#23347a">
+<meta property="og:site_name" content="SMU+">
+<meta property="og:title" content="Game-day check-in | SMU+">
+<meta property="og:description" content="Check in at the SMU+ student gate on game day to earn student points. Concept demo, no cash value, not a real ticket.">
+<meta name="twitter:title" content="Game-day check-in | SMU+">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/brand/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+<!--meta--><link rel="canonical" href="https://jacksonwalker1415.github.io/mustangs-plus/checkin/">
+<meta property="og:url" content="https://jacksonwalker1415.github.io/mustangs-plus/checkin/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jacksonwalker1415.github.io/mustangs-plus/assets/brand/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="An SMU football helmet on the turf beside the SMU+ logo and the line Every Mustang. Every moment.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jacksonwalker1415.github.io/mustangs-plus/assets/brand/og-image.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<!--/meta-->
+<!--boot--><style>#boot{display:none}html.booting #boot,html.booted #boot{display:grid}
+#boot{position:fixed;inset:0;z-index:10000;place-items:center;background:#354CA1 radial-gradient(70% 55% at 50% 42%,#3d56b0 0,#354CA1 55%,#2b3f8c 100%)}
+html.booting #boot{animation:bootSafe .45s ease 2.6s forwards}
+html.booted #boot{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease,visibility 0s linear .45s}
+@keyframes bootSafe{to{opacity:0;visibility:hidden;pointer-events:none}}
+.boot-in{display:grid;justify-items:center;gap:26px}
+#boot img{display:block;width:clamp(200px,58vw,280px);height:auto;animation:bootLogo .9s cubic-bezier(.2,.7,.2,1) .05s both}
+html.booted #boot img{transform:scale(1.03);transition:transform .45s ease}
+@keyframes bootLogo{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(6px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+.boot-bar{display:block;width:min(160px,40vw);height:2px;border-radius:2px;background:rgba(255,255,255,.18);overflow:hidden}
+.boot-bar i{display:block;height:100%;background:#CC0035;transform-origin:left;animation:bootBar 1.8s cubic-bezier(.3,.6,.3,1) .15s both}
+html.booted .boot-bar i{animation:none;transform:none}
+@keyframes bootBar{from{transform:scaleX(0)}to{transform:scaleX(.9)}}
+.boot-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){#boot img,.boot-bar i{animation:none}.boot-bar{display:none}html.booted #boot{transition:none}html.booted #boot img{transform:none}}
+</style>
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.sessionStorage.getItem('smu_boot');w.sessionStorage.setItem('smu_boot','1')}catch(e){s=1}
+if(s)return;h.className+=' booting';h.setAttribute('aria-busy','true');
+var t0=Date.now(),done=0,rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function end(){if(done)return;done=1;h.className=h.className.replace(/ ?booting/,'')+' booted';h.removeAttribute('aria-busy');
+var b=d.getElementById('boot');if(b)b.setAttribute('aria-hidden','true');
+setTimeout(function(){var b=d.getElementById('boot');if(b&&b.parentNode)b.parentNode.removeChild(b);h.className=h.className.replace(/ ?booted/,'')},rm?30:500)}
+function ready(){setTimeout(end,Math.max(0,(rm?1000:2000)-(Date.now()-t0)))}
+if(d.readyState==='complete')ready();else w.addEventListener('load',ready);setTimeout(end,rm?1100:2100)})(document,window)</script><!--/boot-->
+<link rel="stylesheet" href="../assets/site.css?v=202610260110">
+<link rel="stylesheet" href="../assets/engage.css?v=eng1">
+</head>
+<body data-page="engage" data-eng="checkin" data-root="../">
+<!--bootui--><div id="boot" role="status" aria-live="polite"><div class="boot-in"><picture><source type="image/webp" srcset="../assets/brand/smu-plus-logo-lg.webp"><img src="../assets/brand/smu-plus-logo-lg.png" alt="" width="240" height="84"></picture><span class="boot-bar" aria-hidden="true"><i></i></span><span class="boot-sr">Loading SMU+</span></div></div><!--/bootui-->
+<div class="disclaimer" role="note"><b>Concept mockup</b> for an SMU Cox class project. Not affiliated with or endorsed by SMU Athletics or Learfield.</div>
+<div id="site-header"></div>
+<main id="egTop"><section class="eg-hero"><div class="bgph"><picture><source media="(min-width:700px)" srcset="../assets/photos/student-section-balloons-wide.webp"><img class="ph" src="../assets/photos/student-section-balloons-900.webp" alt="The SMU student section in red and blue, with balloons in the air" style="object-position:50% 40%" fetchpriority="high" decoding="async"></picture></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><p class="eyebrow">Student gate</p><h1 class="display">Game-day check-in</h1><p class="lede">Scan the screen at the student gate. The code changes every 30 seconds, so the points go to the people in the stands.</p><p><span class="eg-label">Demo, no cash value, not a real ticket</span></p></div></section><div class="eg-stripe" aria-hidden="true"></div><div id="egBars"></div><div id="egMain" aria-live="polite"><div class="skel-block" aria-hidden="true" style="min-height:420px"><i class="sk"></i></div></div><noscript><section class="sec"><div class="wrap"><p>This page needs JavaScript turned on.</p></div></section></noscript></main>
+<div id="site-footer"></div>
+<script src="../assets/config.js?v=202610260110"></script>
+<script src="../assets/data.js?v=202610260110"></script>
+<script src="../assets/content.js?v=202610260110"></script>
+<script src="../assets/real.js?v=202610260110"></script>
+<script src="../assets/athletes.js?v=202610260110"></script>
+<script src="../assets/sb.js?v=202610260110"></script>
+<script src="../assets/app.js?v=202610260110"></script>
+<script src="../assets/engage.js?v=eng1"></script>
+<script src="../assets/engage-pages.js?v=eng1"></script>
+</body>
+</html>
