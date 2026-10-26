@@ -699,19 +699,7 @@
     }
     var RD=s.slug!=='football'&&MP.REAL?MP.REAL[s.slug]:null,RS=RD?realSummary(RD):null;
     var realLog=s.slug==='football'&&SCH?SCH.games:null,record=realLog?SCH.record:RS?RS.dd:s.record,HERO_PH={football:'runout','mens-basketball':'mbb-jumper','mens-soccer':'msoc',volleyball:'vb-spike','swimming-diving':'swim','womens-basketball':'wbb-drive','womens-soccer':'wsoc',golf:'golf',tennis:'tennis','track-field':'track',rowing:'rowing',equestrian:'equestrian'}[s.slug];
-    var feature={id:'feature-'+s.slug,t:'article',cat:'insider',label:'Player Feature',title:'A Tuesday with '+star.name,desc:'Class, film, practice and a late dinner. One ordinary, very long day.',dur:(5+Math.floor(r()*4))+' min read',lock:true,tone:'white',big:s.season.split('/')[0].toUpperCase()};
-    LIBBY[feature.id]=feature;var first=star.name.split(' ')[0];
-    MP.ARTICLES[feature.id]={by:'lena',date:'Oct. 20, 2026',dek:'One ordinary Tuesday in the life of a fictional '+s.name.toLowerCase()+' athlete, from a 6:15 alarm to lights out.',related:['walk-on','visit-weekend','film-pressure'],body:[
-      'The alarm goes off at 6:15. '+star.name+' (a fictional athlete created for this concept) is out the door of a dorm on the north side of campus by 6:40, headed for treatment before an 8 a.m. accounting class in Fincher.',
-      'Breakfast is eaten walking. Nobody on the team claims otherwise.',
-      'Between classes there is film, usually alone in a meeting room with a laptop and a cold brew from the Dallas Hall lawn cart. "I watch everything twice," '+first+' says. "Once for me, once for whoever is next to me."',
-      s.name+' practice runs through the afternoon'+(RD?'':' under '+s.coach+' (also fictional)')+'. The '+s.season.toLowerCase()+' schedule means weekends on the road are normal, and homework happens on buses and in hotel lobbies in cities '+first+' has mostly seen through a window.',
-      'NIL is part of the week too. '+first+' did a youth clinic in University Park last month, set up through SMU Athletics, and signed more shin guards than expected.',
-      'Dinner is late, sometimes at the training table and sometimes at a taco place on Lovers Lane. Lights out is around 11. Then it starts again.']};
-    var content=[
-      {id:'unfiltered-'+s.slug,t:'video',cat:'watch',label:'Video Series',title:'Hilltop Unfiltered: '+s.name,desc:'All-access cameras inside practice, the locker room and road trips.',dur:(14+Math.floor(r()*14))+':'+(10+Math.floor(r()*49)),lock:true,tone:'blue',big:'EP 0'+(1+Math.floor(r()*6)),img:{football:'runout','mens-basketball':'mbb-ft','mens-soccer':'msoc','womens-basketball':'wbb-jumper'}[s.slug]},
-      feature,
-      {id:'pod-'+s.slug,t:'podcast',cat:'podcasts',label:'Podcast',title:RD?'The '+s.name+' season ahead':s.coach+' on the season ahead',desc:'Expectations, culture and how NIL is changing the program.',dur:(25+Math.floor(r()*25))+' min',lock:false,tone:'black',big:'POD'}];
+    var content=((MP.ACCESS&&MP.ACCESS[s.slug])||[]).map(function(x){return typeof x==='string'?LIBBY[x]:x}).filter(Boolean).filter(recOK);
     content.forEach(function(c){LIBBY[c.id]=LIBBY[c.id]||c});
     var threads=MP.THREADS.filter(function(t){return t.sport===s.slug}),others=MP.SPORTS.filter(function(x){return x.slug!==s.slug});
     var profs=(MP.ATHLETES||[]).filter(function(a){return a.sport===s.slug});
