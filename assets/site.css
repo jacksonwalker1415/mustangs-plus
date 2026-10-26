@@ -2618,10 +2618,10 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-main{gap:3px;padding:var(--s3) var(--s3) var(--s2)}
   .rb-tv{padding:8px var(--s3);gap:4px 14px;align-items:baseline;font-size:14px;line-height:1.4}
   .rb-tv div{align-items:baseline;gap:5px}
-  .rb-tv a{display:inline;min-height:0;padding:6px 0;margin:-6px 0}
-  .rb-wrap{padding-bottom:52px}
-  .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:40px;height:40px}
-  .rb-wrap .xside.xprev{left:auto;right:50px}
+  .rb-tv a{display:inline-block;min-height:0;padding:12px 4px;margin:-12px -4px}
+  .rb-wrap{padding-bottom:56px}
+  .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:44px;height:44px}
+  .rb-wrap .xside.xprev{left:auto;right:54px}
   .rb-wrap .xside.xnext{right:0}
   .rb-wrap .xside:disabled{opacity:.35}
   .rb-wrap.no-ovf{padding-bottom:0}
@@ -2629,7 +2629,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-pl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .rb-tv div{min-width:0;max-width:100%}
   .rb-card{position:relative}
-  .rb-stats{position:absolute;top:10px;right:var(--s3);min-height:0;padding:4px 0;border:0;font-size:13px}
+  .rb-stats{position:absolute;top:2px;right:4px;min-height:44px;padding:0 var(--s2);border:0;font-size:13px}
   .rb-tv dd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
 }
 
