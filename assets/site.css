@@ -1459,6 +1459,14 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 .htabs-hd .eyebrow{margin-bottom:var(--s2)}
 @media(max-width:639px){.htabs{gap:0 var(--s4)}.htab{font-size:28px}.htabs-hd{flex-wrap:wrap}}
 
+/* =====================================================================
+   Round 7: human touch. Editorial fallbacks, no decorative glows or filler type.
+   Inserted above the 6.12 tap-target guard so that guard stays last.
+   ===================================================================== */
+/* ---- 7.1 No-photo items: posters and players use main's flat-by-type cards (199a5a6). Only the reader header follows: flat navy + texture ---- */
+.reader-hd.tone-white,.reader-hd:not(.has-img){background:var(--hair),var(--b-900);color:#fff}
+
+
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn,.btn-sm{min-height:44px}
