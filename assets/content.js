@@ -694,15 +694,15 @@ MP.PHOTOS={
   'smu-vb-gt-highlights':'SMU Volleyball: Highlights at Georgia Tech','smu-micd-up-s2e6':"Mustangs Mic'd Up: S2E6 with Kyle Ward, Riley Dodge and Rhett Lashlee"};
  var SPORT={'smu-fb-cal-highlights':'football','smu-fb-uva-highlights':'football','smu-msoc-cal-highlights':'mens-soccer','smu-vb-gt-highlights':'volleyball','smu-micd-up-s2e6':'football'};
 
- /* --- fictional items kept (nothing real fits). Labeled Sample on the card; the dek already says fictional. --- */
- var KEEP=['boulevard-nights-2','walk-on','film-pressure','film-screen','film-session-redzone'];
+ /* --- fictional sample items: removed (approved Oct. 26, 4:29 AM). Only official and sourced items remain; the recruiting hub's
+    fictional items stay behind MP.FEATURES.recruiting=false and are never shown. --- */
+ var DROP=['boulevard-nights-2','walk-on','film-pressure','film-screen','film-session-redzone'];
 
  var idmap={};
  MP.LIB=MP.LIB.map(function(c){var r=SWAP[c.id];if(r){idmap[c.id]=r.id;delete MP.ARTICLES[c.id];return r}
    if(c.id==='boulevard-nights-1'){delete MP.ARTICLES[c.id];return BLVD}
    if(RETITLE[c.id]){c.title=RETITLE[c.id];c.sport=SPORT[c.id]}
    if(c.id==='smu-micd-up-s2e6'){c.t='podcast';c.cat='podcasts';c.label="Mustangs Mic'd Up · Official podcast";c.credit="Mustangs Mic'd Up · SMU Athletics"}
-   if(KEEP.indexOf(c.id)>=0&&!/^Sample/.test(c.label)){c.label='Sample · '+c.label;if(!/fictional/i.test(c.desc))c.desc+=' (Fictional sample.)'}
    return c});
  var at=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id==='walk-on'){at=i;break}
  Array.prototype.splice.apply(MP.LIB,[at,0].concat(ADD.filter(function(c){return c.t==='article'})));
@@ -731,4 +731,11 @@ MP.PHOTOS={
   'equestrian':keep('equestrian').concat(['smu-micd-ep7'])};
  /* home hero pick (read by app.js once real-content.patch lands; until then the hero stays on boulevard-nights-1) */
  MP.FEATURED='smu-fb-cal-highlights';
+
+ /* drop the fictional samples and scrub every reference to them (and to anything else no longer in the library) */
+ MP.LIB=MP.LIB.filter(function(c){return DROP.indexOf(c.id)<0});
+ DROP.forEach(function(id){delete MP.ARTICLES[id]});
+ var have={};MP.LIB.forEach(function(c){have[c.id]=1});
+ Object.keys(MP.ARTICLES).forEach(function(k){var a=MP.ARTICLES[k];if(a&&a.related)a.related=a.related.filter(function(r){return have[r]})});
+ Object.keys(MP.ACCESS).forEach(function(k){MP.ACCESS[k]=MP.ACCESS[k].filter(function(x){return typeof x!=='string'||have[x]})});
 })();
