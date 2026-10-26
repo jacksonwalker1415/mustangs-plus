@@ -62,8 +62,8 @@
     if(!k&&a.id&&RP[a.id])k=RP[a.id];
     if(!k){var nm=String(a.name||'').toLowerCase(),ath=(MP.ATHLETES||[]).filter(function(x){return x.sport===slug.replace(/^.*football.*$/,'football')&&x.name.toLowerCase()===nm})[0];if(ath)k=ath.cardPhoto||ath.photo}
     return k&&PH[k]?k:null}
-  function rosterCard(a,i,s,o){o=o||{};var v=['home','away','alt'][i%3],key=rosterPhotoKey(a,s.slug),p=key&&PH[key],hasNum=a.num!=null&&a.num!=='';
-    var art=p?'<img class="rc-photo" src="'+ROOT+'assets/photos/'+(p.small||p.file)+'" alt="'+esc(a.name+(hasNum?', number '+a.num:'')+', SMU '+s.name)+'" loading="lazy" decoding="async" style="object-position:'+(p.pos||'50% 22%')+'">'
+  function rosterCard(a,i,s,o){o=o||{};var v=['home','away','alt'][i%3],key='key' in o?o.key:rosterPhotoKey(a,s.slug),p=key&&PH[key],hasNum=a.num!=null&&a.num!=='';
+    var art=p?'<img class="rc-photo" src="'+ROOT+'assets/photos/'+(p.small||p.file)+'" alt="'+esc(o.alt||a.name+(hasNum?', number '+a.num:'')+', SMU '+s.name)+'" loading="lazy" decoding="async" style="object-position:'+(p.pos||'50% 22%')+'">'
       :(MP.sportIcon?MP.sportIcon(s.slug,hasNum?a.num:null,v==='alt'?'light':'dark'):'');
     return '<a class="rcard roster-card'+(p?' has-photo':' has-icon')+(o.more?' r-more':'')+'"'+(o.more?' hidden':'')+' href="'+(a.url||'#')+'" target="_blank" rel="noopener"><span class="rnum" style="background:'+KIT_BG[v]+'">'+art+'</span>'+
       '<span class="rc-b"><b>'+esc(a.name)+'</b><span class="rp">'+esc([a.pos,o.team].filter(Boolean).join(' \u00b7 ')||s.name)+'</span><small>'+esc([a.cls,a.ht,a.town].filter(Boolean).join(' \u00b7 '))+'</small><small class="r-bio">Official bio <span aria-hidden="true">\u2197</span></small></span></a>'}
@@ -78,9 +78,12 @@
   function secHead(title,href,link){return '<div class="sec-hd"><div><h2 class="sec-t">'+title+'</h2></div>'+(href?'<a class="see-all" href="'+href+'">'+(link||'See all')+'<span aria-hidden="true"> →</span></a>':'')+'</div>'}
 
   /* ---------- Local state: member preview, watch history, photos ---------- */
+  /* MP.FEATURES.gating=false (data.js): no locks, blurs, gates or preview switch; everyone sees member content. Old preview state is cleared. */
+  var GATING=!!(MP.FEATURES&&MP.FEATURES.gating);if(!GATING){try{localStorage.removeItem('mp_member')}catch(e){}}
   function isMember(){return store('mp_member')==='1'}
+  function seesMember(){return !GATING||isMember()}
   /* Third-party embeds (official SMU Athletics YouTube videos) are never behind the members gate */
-  function gated(c){return !!(c&&c.lock&&!c.yt&&(c.t==='video'||c.cat==='film'))}
+  function gated(c){return GATING&&!!(c&&c.lock&&!c.yt&&(c.t==='video'||c.cat==='film'))}
   function blocked(c){return gated(c)&&!isMember()}
   function getJSON(k,d){try{return JSON.parse(store(k)||'null')||d}catch(e){return d}}
   function hist(){return getJSON('mp_history',[])}
@@ -88,7 +91,7 @@
   function track(id,p){var all=hist(),old=all.filter(function(x){return x.id===id})[0],rest=all.filter(function(x){return x.id!==id});
     rest.unshift({id:id,p:Math.min(1,Math.max(p||0,old?old.p:0)),t:Date.now()});store('mp_history',JSON.stringify(rest.slice(0,24)));document.dispatchEvent(new Event('mp:history'));syncProgress(id,rest[0].p)}
   var progT={};function syncProgress(id,p){if(!window.SMU||!SMU.live||!SMU.user)return;clearTimeout(progT[id]);progT[id]=setTimeout(function(){SMU.progress(id,p).catch(function(){})},1500)}
-  function syncMember(){var on=isMember();document.documentElement.classList.toggle('is-member',on);
+  function syncMember(){var on=seesMember();document.documentElement.classList.toggle('is-member',on);
     $$('[data-member-toggle]').forEach(function(b){b.setAttribute('aria-checked',on?'true':'false')})}
   /* 'student' is the free Student plan: never a paid membership (sb.js paidTier) */
   function paidT(t){return window.SMU&&SMU.paidTier?SMU.paidTier(t):!!t&&t!=='free'}
@@ -165,7 +168,7 @@
   var BRAND_LOGO='assets/brand/smu-plus-logo.png';
   function wordmark(cls){return '<a href="'+(ROOT||'./')+'" class="wordmark'+(cls||'')+(BRAND_LOGO?' has-logo':'')+'" aria-label="SMU+ home">'+
     (BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="wm-txt">SMU</span><span class="wm-plus" aria-hidden="true">+</span><span class="sr">+</span>')+'</a>'}
-  function memberSwitch(label){return '<button type="button" class="mtoggle" data-member-toggle role="switch" aria-checked="false"><span class="sw-t" aria-hidden="true"></span><span class="mt-l">'+(label||'Preview as member')+'</span></button>'}
+  function memberSwitch(label){if(!GATING)return '';return '<button type="button" class="mtoggle" data-member-toggle role="switch" aria-checked="false"><span class="sw-t" aria-hidden="true"></span><span class="mt-l">'+(label||'Preview as member')+'</span></button>'}
   /* Phone/tablet menu (under 960px). Every primary link, plus search, member preview and Join. */
   function mobileMenu(){
     return '<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Site menu" hidden><div class="mm-in">'+
@@ -174,7 +177,7 @@
         if(n[2]==='sport')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmSportsBtn" aria-expanded="false" aria-controls="mmSports"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
           '<div class="mm-sports" id="mmSports" hidden>'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a>'}).join('')+'</div>';
         return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
-      '<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting: no payment is involved.</p></div>'+
+      (GATING?'<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting: no payment is involved.</p></div>':'')+
       '<a class="mm-acct" href="'+ROOT+'account/"><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span><b class="mm-acct-l">Sign in or create an account</b><small class="mm-acct-s">Save athletes, post on the boards, sync what you watch</small></span><span class="mm-chev" aria-hidden="true">›</span></a>'+
       '<a class="btn btn-red mm-join" href="'+ROOT+'#waitlist">Join SMU+</a>'+
       '<p class="mm-note">Concept built for an SMU Cox MBA class project. No payments are taken.</p></div></div>'}
@@ -186,7 +189,7 @@
     mobileMenu()+'</header>';
   var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
   $('#site-footer').outerHTML='<footer class="site-ft"><div class="wrap"><div class="ft">'+
-    '<div class="ft-brand">'+wordmark(' lg')+'<p>Every moment. Every Mustang. A proposed fan membership for every SMU sport. 40% to SMU\u2019s official NIL programs (proposed).</p>'+
+    '<div class="ft-brand">'+wordmark(' lg')+'<p>Every moment. Every Mustang. A proposed fan membership for every SMU sport.</p>'+
       '<div class="ft-brief"><h4>SMU+ Weekly</h4><p>One email on Friday mornings in season.</p>'+briefHTML('briefFt',true)+'</div><span class="powered">Powered by Learfield <em>(concept)</em></span></div>'+
     '<div class="ft-cols"><div><h4>Fall &amp; Winter</h4><ul>'+sportLinks.slice(0,6).join('')+'</ul></div><div><h4>More Sports</h4><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
     '<div><h4>Watch &amp; Read</h4><ul><li><a href="'+libUrl()+'">Library</a></li><li><a href="'+libUrl('film')+'">Film Room</a></li><li><a href="'+libUrl('podcasts')+'">Podcasts</a></li>'+(REC_ON?'<li><a href="'+ROOT+'recruiting/">Recruiting</a></li>':'')+'</ul></div>'+
@@ -223,7 +226,6 @@
       '<div class="pw-art" id="pwArt"></div><div class="pw-b"><p class="eyebrow pw-eb">'+LOCK+'Members only</p><h3 id="pw-h">Unlock <span id="pwTitle"></span></h3>'+
       '<p class="pw-lede">The members-only boards today. Original SMU+ series, film breakdowns and podcasts are coming soon. Cancel anytime.</p>'+
       '<div class="pw-tiers">'+[[MP.TIER_LABELS.mustang,'9.99','4.00'],[MP.TIER_LABELS.pony,'24.99','10.00'],[MP.TIER_LABELS.club,'99','39.60']].map(function(t,i){return '<div class="pw-t'+(i===1?' pop':'')+'">'+(i===1?'<span class="pw-pop">Most popular</span>':'')+'<b>'+t[0]+'</b><span class="pw-p">$'+t[1]+'<small>/mo</small></span></div>'}).join('')+'</div>'+
-      '<p class="pw-nil"><b>In the proposed model, 40% of membership revenue would go to SMU Athletics\u2019 official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</b></p>'+
       '<div class="pw-act"><a class="btn btn-red" href="'+ROOT+'#membership" id="pwPlans">See plans</a>'+memberSwitch()+'</div>'+
       conceptNotice('pw-cn')+'</div></div></div>'+
     '<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Search SMU+" hidden><div class="search-sheet">'+
@@ -273,7 +275,7 @@
     return '<div class="poster '+(yt?'tone-black has-img has-yt':'tpl-card')+'">'+(yt?ytImg(yt,'ph yt-ph',opt.eager)+'<span class="credit">'+esc(c.credit||'Video: SMU Athletics')+'</span>':smuTpl(c,opt))+
       (g?'<span class="lock-ov" aria-hidden="true">'+LOCK+'<b>Members only</b></span>':'')+
       '<span class="poster-verb">'+TICON[c.t]+(c.ext?'Read at '+esc(c.outlet)+EXT:g?'<span class="pv-g">Preview</span><span class="pv-m">'+VERB[c.t]+'</span>':VERB[c.t])+'</span>'+(c.isNew?'<span class="tag tag-new">New</span>':'')+
-      (c.lock?'<span class="tag tag-lock">'+LOCK+'Members</span>':'')+(c.ext||!c.dur||c.dur==='Video'?'':'<span class="dur">'+esc(c.dur)+'</span>')+
+      (GATING&&c.lock?'<span class="tag tag-lock">'+LOCK+'Members</span>':'')+(c.ext||!c.dur||c.dur==='Video'?'':'<span class="dur">'+esc(c.dur)+'</span>')+
       (pr>0.02?'<span class="prog" role="progressbar" aria-label="Progress" aria-valuenow="'+Math.round(pr*100)+'" aria-valuemin="0" aria-valuemax="100"><i style="width:'+Math.round(pr*100)+'%"></i></span>':'')+'</div>'}
   function itemHref(c){return (c.t==='article'?'#article=':'#watch=')+c.id}
   /* Media batch 1: link-out articles (c.ext) open the outlet's own page in a new tab. Credited, free, our own summary only. */
@@ -295,13 +297,13 @@
     MP.LIB.forEach(function(x){if(x.cat===c.cat)add(x)});MP.LIB.forEach(function(x){if(x.t===c.t)add(x)});MP.LIB.forEach(add);return out}
   function relatedHTML(c){var r=relatedFor(c);return '<div class="sec-hd sm"><h3 class="sec-t">Up next</h3></div><div class="relgrid">'+r.map(function(x){return cardHTML(x)}).join('')+'</div>'}
   function inlineGate(c){return '<div class="pw-inline"><p class="eyebrow">'+LOCK+'Members only</p><h3>Keep '+(c.t==='article'?'reading':c.t==='podcast'?'listening':'watching')+' with any plan</h3>'+
-    '<p>Plans start at $9.99 a month. 40% to SMU\u2019s official NIL programs (proposed).</p><div class="pw-act"><a class="btn btn-red btn-sm" href="'+ROOT+'#membership">See plans</a>'+memberSwitch()+'</div></div>'}
+    '<p>Plans start at $9.99 a month.</p><div class="pw-act"><a class="btn btn-red btn-sm" href="'+ROOT+'#membership">See plans</a>'+memberSwitch()+'</div></div>'}
   function showReader(c,push){reader.hidden=false;document.documentElement.classList.add('noscroll');readerBody.scrollTop=0;readerBody.focus();syncMember();
     var h=itemHref(c);if(push!==false&&location.hash!==h)history.pushState(null,'',h);document.title=c.title+' | SMU+';current=c.id}
   function openArticle(id,push){
     var a=MP.ARTICLES[id],c=LIBBY[id];if(!a||!c)return false;var lock=blocked(c);
     lastFocus=lastFocus||document.activeElement;var st=MP.STAFF[a.by]||{n:a.by,role:'SMU+'};
-    readerBody.innerHTML='<header class="reader-hd tone-'+(c.tone||'blue')+(c.img?' has-img':'')+'">'+(c.img?photoBg(c.img):'')+'<p class="eyebrow">'+esc(c.label)+(c.lock?' · Members':'')+'</p><h2 id="reader-h">'+esc(c.title)+'</h2></header>'+
+    readerBody.innerHTML='<header class="reader-hd tone-'+(c.tone||'blue')+(c.img?' has-img':'')+'">'+(c.img?photoBg(c.img):'')+'<p class="eyebrow">'+esc(c.label)+(GATING&&c.lock?' · Members':'')+'</p><h2 id="reader-h">'+esc(c.title)+'</h2></header>'+
       '<div class="reader-in"><p class="dek">'+esc(a.dek)+'</p><div class="byline"><span class="av staff" aria-hidden="true">'+st.n.charAt(0)+'</span><div><b>'+esc(st.n)+'</b><small>'+esc(st.role)+' · '+a.date+' · '+esc(c.dur)+'</small></div><button class="btn btn-outline btn-sm" data-demo="Share this story">Share</button></div>'+
       '<div class="prose'+(lock?' teaser':'')+'">'+(lock?a.body.slice(0,2):a.body).map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>'+(lock?inlineGate(c):'')+
       (a.sourced?'<p class="note">Sourced story. Facts and stats from '+(a.sources||[]).map(function(x){return '<a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0])+'</a>'}).join(', ')+'. No quotes are used. SMU+ is an SMU Cox class-project concept, not affiliated with SMU Athletics.</p>':'<p class="note">Fictional story written for an SMU Cox class-project concept. Characters and quotes are invented; real places are used as setting only.</p>')+relatedHTML(c)+'</div>';
@@ -316,7 +318,7 @@
         '<div class="player tpl-card'+(lock?' locked':'')+'">'+smuTpl(c,{big:1,eager:1})+
         (lock?'':'<button type="button" class="play" id="playBtn" aria-label="'+(p>0.02?'Resume':'Play')+' (demo)">'+SVG.play+'</button>')+
         '<div class="pbar" aria-hidden="true"><i id="pFill" style="width:'+Math.round(p*100)+'%"></i></div></div>')+
-      '<div class="reader-in">'+(lock?inlineGate(c):'')+'<p class="eyebrow red">'+esc(c.label)+(c.lock?' · Members':'')+'</p><h2 id="reader-h" class="m-title">'+esc(c.title)+'</h2><p class="dek">'+esc(c.desc)+'</p>'+
+      '<div class="reader-in">'+(lock?inlineGate(c):'')+'<p class="eyebrow red">'+esc(c.label)+(GATING&&c.lock?' · Members':'')+'</p><h2 id="reader-h" class="m-title">'+esc(c.title)+'</h2><p class="dek">'+esc(c.desc)+'</p>'+
         '<p class="m-meta"><span>'+(yt||ap?'':'<b id="pTime">'+clock(p*total)+'</b> / ')+esc(c.dur)+'</span><span>'+(audio?'Podcast':'Video')+'</span>'+(ap?'<span>'+esc(c.credit.replace(/^Podcast: /,''))+'. It loads from Apple Podcasts when you press play \u00b7 <a href="'+esc(c.src)+'" target="_blank" rel="noopener">Open in Apple Podcasts</a></span>':yt?'<span>Official SMU Athletics video. It loads from YouTube when you press play'+(c.channel?' \u00b7 <a href="'+esc(c.channel[1])+'" target="_blank" rel="noopener">'+esc(c.channel[0])+'</a>':'')+'</span>':'<span>Demo player: nothing streams in this concept</span>')+'</p>'+
         (eps.length>1?'<div class="eps"><h3 class="eps-h">'+esc(c.title.split(':')[0])+' · '+eps.length+' episodes</h3>'+eps.map(function(e,i){var ep=progressOf(e.id);
           return '<a class="ep'+(e.id===c.id?' on':'')+'" href="'+itemHref(e)+'" data-item="'+e.id+'"'+(e.id===c.id?' aria-current="true"':'')+'><span class="ep-n">'+(i+1)+'</span><span class="ep-b"><b>'+esc(e.title.split(':').slice(1).join(':').trim()||e.title)+'</b><small>'+esc(e.dur)+(ep>0.02?' · '+Math.round(ep*100)+'% watched':'')+'</small></span>'+(e.id===c.id?'<span class="ep-now">Now playing</span>':'')+'</a>'}).join('')+'</div>':'')+
@@ -469,7 +471,7 @@
   function forumBy(id){for(var i=0;i<MP.FORUMS.length;i++)if(MP.FORUMS[i].id===id)return MP.FORUMS[i]}
   function pills(t){var f=forumBy(t.f),s=t.sport&&sportBy(t.sport),p='';
     if(t.pin)p+='<span class="pill pill-pin">'+PIN+'Pinned</span>';if(t.hot)p+='<span class="pill pill-hot">'+FLAME+'Hot</span>';
-    if(f.prem)p+='<span class="pill pill-prem">'+LOCK+'Members</span>';p+='<span class="pill">'+esc(f.name)+'</span>';if(s)p+='<span class="pill">'+esc(s.name)+'</span>';return p}
+    if(GATING&&f.prem)p+='<span class="pill pill-prem">'+LOCK+'Members</span>';p+='<span class="pill">'+esc(f.name)+'</span>';if(s)p+='<span class="pill">'+esc(s.name)+'</span>';return p}
   function lastBy(t){var p=t.posts[t.posts.length-1];return p[0]}
   function lastAgo(t){var m={m:1,h:60,d:1440,w:10080},x=t.ago.match(/(\d+)(\w)/),v=x?(+x[1])*(m[x[2]]||1):60;v=Math.max(1,Math.round(v/(t.posts.length+1)));return v<60?v+'m':v<1440?Math.round(v/60)+'h':Math.round(v/1440)+'d'}
   function nReplies(t){return t.replies==null?'':t.replies.toLocaleString()}
@@ -549,13 +551,15 @@
   function feedsHTML(key){var P=FEEDS.posts[key]||[],F=FEEDS.follow[key]||[],home=key==='home';if(!P.length&&!F.length)return '';
     return '<section class="sec feeds" id="feeds" data-no-ads aria-labelledby="feeds-h"><div class="wrap">'+
       '<div class="sec-hd"><div><h2 class="sec-t" id="feeds-h">'+(P.length?'From the feeds':'Follow along')+'</h2></div>'+
-      (P.length?navHTML('xtrack-'+key,'posts'):'')+'</div>'+
-      (P.length?'<div class="xposts" id="xtrack-'+key+'" data-xposts="'+key+'" data-slider role="region" aria-label="Posts from X, scrolls sideways" tabindex="0">'+P.map(function(x,i){return xPost(x,i,P.length)}).join('')+'</div>':'')+
+      '</div>'+
+      (P.length?'<div class="xwrap" data-xnav="xtrack-'+key+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Previous posts" aria-controls="xtrack-'+key+'" disabled>'+XARR+'</button>'+
+        '<div class="xposts" id="xtrack-'+key+'" data-xposts="'+key+'" data-slider role="region" aria-label="Posts from X, scrolls sideways" tabindex="0">'+P.map(function(x,i){return xPost(x,i,P.length)}).join('')+'</div>'+
+        '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next posts" aria-controls="xtrack-'+key+'">'+XARR+'</button></div>':'')+
       followRow(F,home?'Follow SMU':'Follow SMU '+esc((sportBy(key)||{}).name||''))+
       (home?followRow(FEEDS.media,'Conference and beat coverage'):'')+
       '</div></section>'}
   function xNavSync(box){var nav=document.querySelector('[data-xnav="'+box.id+'"]');if(!nav)return;var b=nav.querySelectorAll('.xarr'),m=box.scrollWidth-box.clientWidth;
-    nav.hidden=box.hidden||m<=2;b[0].disabled=box.scrollLeft<=2;b[1].disabled=box.scrollLeft>=m-2}
+    if(nav.classList.contains('xwrap'))nav.classList.toggle('no-ovf',m<=2);else nav.hidden=box.hidden||m<=2;b[0].disabled=box.scrollLeft<=2;b[1].disabled=box.scrollLeft>=m-2}
   function slSyncAll(){[].forEach.call(document.querySelectorAll('[data-slider]'),xNavSync)}
   document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.hasAttribute&&t.hasAttribute('data-slider'))xNavSync(t)},{capture:true,passive:true});
   window.addEventListener('resize',slSyncAll);window.addEventListener('load',slSyncAll);setTimeout(slSyncAll,0);setTimeout(slSyncAll,800);
@@ -630,7 +634,7 @@
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
     $('#boardHot').innerHTML=hot.map(function(t){return threadRow(t,true)}).join('');
     function homeBoards(){var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});var a=$('#homeThreads'),b=$('#homePosts');if(a)a.textContent=tt.toLocaleString();if(b)b.textContent=tp.toLocaleString();
-      $('#boardForums').innerHTML=MP.FORUMS.slice(0,5).map(function(f){return '<a class="forum-mini" href="'+ROOT+'boards/?f='+f.id+'"><span class="fi'+(f.prem?' prem':'')+'">'+(f.prem?LOCK:CHAT)+'</span><span><b>'+f.name+'</b><small>'+f.threads.toLocaleString()+' threads · '+f.posts.toLocaleString()+' posts</small></span>'+(f.prem?'<span class="pill pill-prem">Members</span>':'')+'</a>'}).join('');}
+      $('#boardForums').innerHTML=MP.FORUMS.slice(0,5).map(function(f){return '<a class="forum-mini" href="'+ROOT+'boards/?f='+f.id+'"><span class="fi'+(GATING&&f.prem?' prem':'')+'">'+(GATING&&f.prem?LOCK:CHAT)+'</span><span><b>'+f.name+'</b><small>'+f.threads.toLocaleString()+' threads · '+f.posts.toLocaleString()+' posts</small></span>'+(GATING&&f.prem?'<span class="pill pill-prem">Members</span>':'')+'</a>'}).join('');}
     (SMU.ready||Promise.resolve()).then(function(){return SMU.boardStats?SMU.boardStats():0}).then(homeBoards,homeBoards);
     $('#athRow').innerHTML='<div class="rail rail-ath" role="list">'+MP.ATHLETES.map(function(a){return '<div class="rail-i" role="listitem">'+profileCard(a)+'</div>'}).join('')+'</div>';
     $('#briefHome').innerHTML=briefHTML('briefMain');syncBriefs();
@@ -708,14 +712,14 @@
   /* ---------- Boards ---------- */
   function boards(){
     var params=new URLSearchParams(location.search),state={f:params.get('f')||'all',sport:params.get('sport')||'',sort:'hot',q:''};
-    var member=isMember(),listView=$('#listView'),threadView=$('#threadView');
+    var member=seesMember(),listView=$('#listView'),threadView=$('#threadView');
     function lastIn(f){var l=MP.THREADS.filter(function(t){return t.f===f.id});return l[0]}
     var groups=['Premium','Community'];
     function renderIndex(){if(!SMU.live)SMU.boardStats();
       var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});[['#statBoards',MP.FORUMS.length],['#statThreads',tt],['#statPosts',tp]].forEach(function(x){var el=$(x[0]);if(el)el.textContent=x[1].toLocaleString()});
-      $('#forumIndex').innerHTML=groups.map(function(g){return '<div class="fgroup"><div class="fgroup-h"><h3>'+g+(g==='Premium'?' <span class="pill pill-prem">'+LOCK+'Members</span>':'')+'</h3><span class="num">Threads</span><span class="num">Posts</span><span class="f-last-h">Last post</span></div>'+
+      $('#forumIndex').innerHTML=groups.map(function(g){return '<div class="fgroup"><div class="fgroup-h"><h3>'+g+(GATING&&g==='Premium'?' <span class="pill pill-prem">'+LOCK+'Members</span>':'')+'</h3><span class="num">Threads</span><span class="num">Posts</span><span class="f-last-h">Last post</span></div>'+
       MP.FORUMS.filter(function(f){return f.group===g}).map(function(f){var t=lastIn(f);
-        return '<button class="frow" data-f="'+f.id+'"><span class="fi'+(f.prem?' prem':'')+'">'+(f.prem?LOCK:CHAT)+'</span><span class="frow-main"><b>'+f.name+'</b><small>'+f.desc+'</small></span>'+
+        return '<button class="frow" data-f="'+f.id+'"><span class="fi'+(GATING&&f.prem?' prem':'')+'">'+(GATING&&f.prem?LOCK:CHAT)+'</span><span class="frow-main"><b>'+f.name+'</b><small>'+(GATING?f.desc:String(f.desc||'').replace(/\s*Members only\.?$/,''))+'</small></span>'+
         '<span class="num">'+f.threads.toLocaleString()+'</span><span class="num">'+f.posts.toLocaleString()+'</span>'+
         '<span class="f-last">'+(t?'<b>'+esc(t.title)+'</b><small>'+esc(MP.USERS[lastBy(t)].n)+' · '+lastAgo(t)+' ago</small>':'<small>No posts yet</small>')+'</span></button>'}).join('')+'</div>'}).join('')+
       '<div class="fgroup"><div class="fgroup-h"><h3>Team boards</h3><span class="f-last-h">12 programs</span></div><div class="team-boards">'+
@@ -733,7 +737,7 @@
     function clearAll(){state.f='all';state.sport='';state.q='';tq.value='';fsel.value='all';sel.value='';renderList()}
     $('#boardClear').addEventListener('click',clearAll);
     $('#threadRows').addEventListener('click',function(e){if(e.target.closest('[data-board-clear]'))clearAll()});
-    document.addEventListener('mp:member',function(){member=isMember();var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1])});
+    document.addEventListener('mp:member',function(){member=seesMember();var m=location.hash.match(/^#t(\d+)$/);if(m)renderThread(+m[1])});
     function renderList(){
       $$('.sort button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.sort===state.sort)});
       var list=MP.THREADS.filter(function(t){return (state.f==='all'||t.f===state.f)&&(!state.sport||t.sport===state.sport)&&(!state.q||(t.title+' '+t.posts.map(function(p){return p[1]}).join(' ')).toLowerCase().indexOf(state.q)>=0)});
@@ -759,7 +763,7 @@
         '<div class="pager"><span>Page 1 of '+Math.max(1,Math.ceil((t.replies||0)/20))+'</span><div><button class="btn btn-outline btn-sm" data-demo="Watch thread">Watch</button><button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
         '<div class="posts">'+shown+'</div>'+
         (locked?'':replyBox(t))+
-        (member&&f.prem?'<p class="note">Viewing as a member (demo). <button class="linkish" id="asGuest">Switch back to guest view</button></p>':'')+
+        (GATING&&member&&f.prem?'<p class="note">Viewing as a member (demo). <button class="linkish" id="asGuest">Switch back to guest view</button></p>':'')+
         '';
       var am=$('#asMember');if(am)am.addEventListener('click',function(){setMember(true)});
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});
@@ -818,7 +822,7 @@
   function realRoster(R,s){var multi=Object.keys(R.rec).length>1,SHOW=12;
     var cards=R.roster.map(function(a,i){return rosterCard(a,i,s,{more:i>=SHOW,team:multi&&TEAM_LBL[a.team]?TEAM_LBL[a.team]:''})}).join('');
     return '<div class="roster">'+cards+'</div>'+(R.roster.length>SHOW?'<button type="button" class="btn btn-outline btn-sm r-toggle" data-r-toggle aria-expanded="false">Show full roster ('+R.roster.length+')</button>':'')+
-      '<div class="coach-row">'+R.coaches.map(function(c){return '<div class="coach"><span class="av lg staff">'+esc(c.name.replace(/^'/,'').split(' ').slice(-1)[0].charAt(0))+'</span><div><b>'+esc(c.name)+'</b><small>'+esc(c.title)+(multi&&TEAM_LBL[c.team]?' · '+TEAM_LBL[c.team]:'')+'</small></div></div>'}).join('')+'</div>'+
+      '<div class="roster r-coaches">'+R.coaches.map(function(c,i){var cp=((MP.COACH_PHOTOS||{})[s.slug]||{})[c.name]||{};return rosterCard({name:c.name,pos:c.title,cls:'Coaching staff',url:cp.bio},i,s,{key:cp.photo&&PH[cp.photo]?cp.photo:null,team:multi&&TEAM_LBL[c.team]?TEAM_LBL[c.team]:'',alt:c.name+', '+c.title+', SMU '+s.name})}).join('')+'</div>'+
       ''}
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-r-toggle]');if(!b)return;
     var box=b.previousElementSibling,open=b.getAttribute('aria-expanded')==='true';if(!b.dataset.lbl)b.dataset.lbl=b.textContent;
@@ -869,7 +873,7 @@
       '<section class="page-hero'+(HERO_PH?' has-photo':'')+'">'+(HERO_PH?photoBg(HERO_PH,{eager:1,hero:1}):'')+'<div class="wrap">'+
         '<nav class="crumbs"><a href="'+ROOT+'#sports">Sports</a> › <span>'+s.name+'</span></nav>'+
         '<div class="ph-row"><span class="sp-ic">'+sportIcon(s.slug)+'</span><div><p class="eyebrow">'+(RD?esc(RD.season)+' season'+(realConf(RD)?' · '+realConf(RD):''):s.season+' sport · '+s.conf)+'</p><h1 class="display">'+s.name+'</h1></div></div>'+
-        '<p class="lede on-dark">'+s.blurb+' <strong>40% to SMU\u2019s official NIL programs (proposed).</strong></p>'+
+        '<p class="lede on-dark">'+s.blurb+'</p>'+
         '<dl class="statbar"><div><dt>'+(RS?RS.dt:'Record')+(realLog||RD?'':' <span>sample</span>')+'</dt><dd>'+esc(record)+'</dd>'+(RS&&RS.sub?'<small class="sb-sub">'+esc(RS.sub)+'</small>':'')+'</div><div><dt>Members following <span>sample</span></dt><dd>'+s.members.toLocaleString()+'</dd></div><div><dt>'+(RDR?'On the roster':'Athletes featured')+'</dt><dd>'+(RDR?'<a href="'+((RDR.src.filter(function(x){return /roster/.test(x[1])})[0]||[])[1]||'#roster')+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;color:inherit" aria-label="'+RDR.roster.length+' players on the official SMU Athletics roster (opens in a new tab)">'+RDR.roster.length+'</a>':roster.length)+'</dd></div></dl>'+
         '<div class="ctas"><a href="'+ROOT+'#membership" class="btn btn-red">Join SMU+</a><a href="#board" class="btn btn-ghost">Team board</a></div>'+
       '</div></section>'+
@@ -888,7 +892,7 @@
         '<div class="box">'+(threads.length?threads.map(function(t){return threadRow(t,true)}).join(''):emptyState('chat','No '+esc(s.name)+' threads yet','Be the first to start the conversation on this board.','<button type="button" class="btn btn-red btn-sm" data-compose data-sport="'+s.slug+'">Start a thread</button><a class="btn btn-outline btn-sm" href="'+ROOT+'boards/">Browse all boards</a>'))+'</div></div></section>'+
       '<section class="sec" id="more"><div class="wrap">'+secHead('More Mustang sports',ROOT+'#sports','All sports')+
         '<div class="chips">'+others.map(function(o){return '<a class="chip" href="'+sportUrl(o.slug)+'">'+o.name+'</a>'}).join('')+'</div>'+
-        '<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Plans from $9.99/mo. 40% to SMU\u2019s official NIL programs (proposed).</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div></div></section>';
+        '<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Plans from $9.99/mo.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div></div></section>';
     $$('.sched td:last-child').forEach(function(td){var v=td.textContent;td.innerHTML='<span class="res '+(/^W|^1st|^2nd/.test(v)?'w':/^L/.test(v)?'l':/^T|^\d/.test(v)&&!/PM|TBA/.test(v)?'t':'up')+'">'+esc(v)+'</span>'});
     if(realLog)startCountdowns();
   }
@@ -1043,7 +1047,6 @@
   /* ---------- Plans: clearly labeled DEMO checkout. No card, no charge. ---------- */
   function checkout(tier){var cur=SMU.tier();
     var d=dialog('payDlg','<p class="eyebrow">'+LOCK+'Demo checkout</p><h3 id="payDlg-h" class="dlg-h">'+TIER_NAME[tier]+' \u00b7 $'+TIER_PRICE[tier]+'/mo</h3>'+
-      '<p>In the proposed model, 40% of membership revenue would go to SMU Athletics\u2019 official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse.</p>'+
       conceptNotice()+'<p class="pay-what">Confirming only switches this demo account to '+TIER_NAME[tier]+'. Nothing is charged.</p>'+
       (cur===tier?'<p class="auth-m">You\u2019re already on this plan.</p>':'')+
       '<div class="dlg-act"><button type="button" class="btn btn-red" id="payGo"'+(cur===tier?' disabled':'')+'>Confirm demo membership</button><button type="button" class="btn btn-outline" id="payNo">Not now</button></div>'+modeNote());
@@ -1180,9 +1183,9 @@
       SMU.claimStudent(sid,+yr).then(function(){toast('You\u2019re on the free Student plan.')},function(err){b.disabled=false;m.textContent=err.message})})}
 
   /* ---------- New thread ---------- */
-  function compose(sport){var member=isMember();
+  function compose(sport){var member=window.SMU&&SMU.live?isMember():seesMember();
     var d=dialog('composeDlg','<h3 id="composeDlg-h" class="dlg-h">Start a thread</h3><form class="compose" novalidate>'+
-      '<div class="fld-row"><div class="fld"><label for="cpForum">Board</label><select id="cpForum">'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'"'+(f.prem&&!member?' disabled':'')+(f.id==='hilltop'?' selected':'')+'>'+esc(f.name)+(f.prem?(member?' (members)':' (members only)'):'')+'</option>'}).join('')+'</select></div>'+
+      '<div class="fld-row"><div class="fld"><label for="cpForum">Board</label><select id="cpForum">'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'"'+(f.prem&&!member?' disabled':'')+(f.id==='hilltop'?' selected':'')+'>'+esc(f.name)+(GATING&&f.prem?(member?' (members)':' (members only)'):'')+'</option>'}).join('')+'</select></div>'+
       '<div class="fld"><label for="cpSport">Sport (optional)</label><select id="cpSport"><option value="">None</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'"'+(s.slug===sport?' selected':'')+'>'+esc(s.name)+'</option>'}).join('')+'</select></div></div>'+
       '<div class="fld"><label for="cpTitle">Title</label><input id="cpTitle" maxlength="140" required placeholder="What do you want to talk about?"></div>'+
       '<div class="fld"><label for="cpBody">First post</label><textarea id="cpBody" rows="5" maxlength="5000" required></textarea></div>'+

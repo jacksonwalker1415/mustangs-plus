@@ -744,6 +744,23 @@ MP.PHOTOS={
  'eq-hs-katelyn-vandenburg':{file:'eq-katelyn-vandenburg-headshot.webp',small:'eq-katelyn-vandenburg-headshot-900.webp',pos:'50% 22%',alt:'Katelyn VanDenburg, SMU equestrian, official headshot'},
  'eq-hs-paige-walkenbach':{file:'eq-paige-walkenbach-headshot.webp',small:'eq-paige-walkenbach-headshot-900.webp',pos:'50% 22%',alt:'Paige Walkenbach, SMU equestrian, official headshot'},
  'eq-hs-sakari-wilkinson':{file:'eq-sakari-wilkinson-headshot.webp',small:'eq-sakari-wilkinson-headshot-900.webp',pos:'50% 22%',alt:'Sakari Wilkinson, SMU equestrian, official headshot'},
+ /* Coach headshots (official SMU Athletics coach bio pages, 4:5). Mapped by MP.COACH_PHOTOS in athletes.js. */
+ 'fb-coach-rhett-lashlee':{file:'fb-coach-rhett-lashlee.webp',small:'fb-coach-rhett-lashlee-900.webp',pos:'50% 20%',alt:'Rhett Lashlee, head coach, SMU football, official headshot'},
+ 'mbb-coach-andy-enfield':{file:'mbb-coach-andy-enfield.webp',small:'mbb-coach-andy-enfield-900.webp',pos:'50% 20%',alt:'Andy Enfield, head coach, SMU men\'s basketball, official headshot'},
+ 'wbb-coach-adia-barnes':{file:'wbb-coach-adia-barnes.webp',small:'wbb-coach-adia-barnes-900.webp',pos:'50% 20%',alt:'Adia Barnes, head coach, SMU women\'s basketball, official headshot'},
+ 'wsoc-coach-nicole-nelson':{file:'wsoc-coach-nicole-nelson.webp',small:'wsoc-coach-nicole-nelson-900.webp',pos:'50% 20%',alt:'Nicole Nelson, head coach, SMU women\'s soccer, official headshot'},
+ 'msoc-coach-kevin-hudson':{file:'msoc-coach-kevin-hudson.webp',small:'msoc-coach-kevin-hudson-900.webp',pos:'50% 20%',alt:'Kevin Hudson, head coach, SMU men\'s soccer, official headshot'},
+ 'vb-coach-sam-erger':{file:'vb-coach-sam-erger.webp',small:'vb-coach-sam-erger-900.webp',pos:'50% 20%',alt:'Sam Erger, head coach, SMU volleyball, official headshot'},
+ 'swim-coach-greg-rhodenbaugh':{file:'swim-coach-greg-rhodenbaugh.webp',small:'swim-coach-greg-rhodenbaugh-900.webp',pos:'50% 20%',alt:'Greg Rhodenbaugh, head coach, SMU men\'s swimming and diving, official headshot'},
+ 'swim-coach-darian-schmidt':{file:'swim-coach-darian-schmidt.webp',small:'swim-coach-darian-schmidt-900.webp',pos:'50% 20%',alt:'Darian Schmidt, head diving coach, SMU swimming and diving, official headshot'},
+ 'swim-coach-ozzie-quevedo':{file:'swim-coach-ozzie-quevedo.webp',small:'swim-coach-ozzie-quevedo-900.webp',pos:'50% 20%',alt:'Ozzie Quevedo, head coach, SMU women\'s swimming and diving, official headshot'},
+ 'mgolf-coach-chris-parra':{file:'mgolf-coach-chris-parra.webp',small:'mgolf-coach-chris-parra-900.webp',pos:'50% 20%',alt:'Chris Parra, head coach, SMU men\'s golf, official headshot'},
+ 'wgolf-coach-lauren-mason':{file:'wgolf-coach-lauren-mason.webp',small:'wgolf-coach-lauren-mason-900.webp',pos:'50% 20%',alt:'Lauren Mason, head coach, SMU women\'s golf, official headshot'},
+ 'mten-coach-grant-chen':{file:'mten-coach-grant-chen.webp',small:'mten-coach-grant-chen-900.webp',pos:'50% 20%',alt:'Grant Chen, head coach, SMU men\'s tennis, official headshot'},
+ 'wten-coach-kelcy-mckenna':{file:'wten-coach-kelcy-mckenna.webp',small:'wten-coach-kelcy-mckenna-900.webp',pos:'50% 20%',alt:'Kelcy McKenna, head coach, SMU women\'s tennis, official headshot'},
+ 'tf-coach-a-havahla-haynes':{file:'tf-coach-a-havahla-haynes.webp',small:'tf-coach-a-havahla-haynes-900.webp',pos:'50% 20%',alt:'\'A Havahla Haynes, head coach, SMU cross country, official headshot'},
+ 'rowing-coach-chase-graham':{file:'rowing-coach-chase-graham.webp',small:'rowing-coach-chase-graham-900.webp',pos:'50% 20%',alt:'Chase Graham, head coach, SMU rowing, official headshot'},
+ 'eq-coach-brad-kearns':{file:'eq-coach-brad-kearns.webp',small:'eq-coach-brad-kearns-900.webp',pos:'50% 20%',alt:'Brad Kearns, head coach, SMU equestrian, official headshot'},
  'msoc':{file:'msoc-salute-night.webp',pos:'50% 62%',alt:'The SMU men\'s soccer team salutes the crowd under the lights'}};
 (function(){var IMG={'boulevard-nights-1':'students','boulevard-nights-2':'hype','hilltop-unfiltered':'hurdle','rivalry-week':'catch-cal','moody-opening':'moody-bowl','five-am-laps':'swim','film-rotation':'vb-spike','building-contender':'wbb-jumper',
  'film-pressure':'ol-59','film-screen':'snap','film-session-redzone':'carrier-2','building-roster':'huddle','pony-up-pod':'students'};
