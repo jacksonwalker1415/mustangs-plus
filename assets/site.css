@@ -1713,7 +1713,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 
 /* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
 .tag:not(.tag-new){border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:0;padding:3px 7px;line-height:1.25}
-.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(10,16,40,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
+.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(0,0,0,.6);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
 .poster-verb{padding:4px 9px 4px 7px}
 .tone-white .poster-verb,.tone-white .dur{background:rgba(10,16,40,.62);color:#fff}
 /* board pills: status labels stay as compact labels, board and sport names become plain text */
@@ -2631,7 +2631,7 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-main{gap:3px;padding:var(--s3) var(--s3) var(--s2)}
   .rb-tv{padding:8px var(--s3);gap:4px 14px;align-items:baseline;font-size:14px;line-height:1.4}
   .rb-tv div{align-items:baseline;gap:5px}
-  .rb-tv a{display:inline-block;min-height:0;padding:12px 4px;margin:-12px -4px}
+  .rb-tv a{display:inline-block;min-height:0;padding:13px 4px;margin:-13px -4px}
   .rb-wrap{padding-bottom:56px}
   .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:44px;height:44px}
   .rb-wrap .xside.xprev{left:auto;right:54px}
@@ -2736,3 +2736,11 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+
+/* Tap targets and contrast (Oct. 26 audit, 390px). Inline links get vertical padding: it widens the tap area to 44px+ without moving any text.
+   Shared: .site-ft .legal a (footer) and .cnotice a (concept notice component). Home: ribbon header link. */
+.ribbon .rb-hd p a{padding:1px 0}
+.cnotice a{padding:13px 0}
+.site-ft .legal a{padding:14px 0}
+/* Game day final: the losing side was opacity .5 (#919abd on white, 2.77:1). Solid ink-3 is 5.9:1; the winner keeps SMU blue. */
+.gameday .sc-t:not(.win){opacity:1;color:var(--ink-3)}
