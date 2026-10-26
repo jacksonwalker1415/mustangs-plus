@@ -2723,3 +2723,15 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+/* Search page: filter chips stay on one row on phones and scroll sideways inside their strip (the page itself never scrolls sideways) */
+@media(max-width:699px){
+  .srch-tabs{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:calc(var(--s4) - 4px) calc(-1*var(--gut)) -4px 0;padding:4px var(--gut) 4px 0}
+  .srch-tabs::-webkit-scrollbar{display:none}
+  .srch-tabs button{flex:none;white-space:nowrap}
+}
+/* 404: search form in the hero */
+.nf-sf{max-width:560px;margin-top:var(--s5)}
+.nf-hero .srch-f input{border-color:#fff}
+.nf-hero .srch-f input:focus{outline-color:#fff;border-color:#fff}
+.nf-hero .srch-f button{background:#fff;color:var(--blue)}
+.nf-hero .srch-f button:hover{background:var(--blue-10)}

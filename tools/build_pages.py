@@ -82,8 +82,9 @@ SHELLS={
  '404.html': head('Page not found | SMU+','That page is not on SMU+.','notfound','',
    '<script>document.write(\'<base href="\'+(location.pathname.indexOf("/mustangs-plus/")===0?"/mustangs-plus/":"/")+\'">\')</script>\n'
    '')+
-   '<main id="top"><section class="page-hero nf-hero"><div class="wrap"><p class="eyebrow">Error 404</p><h1 class="display">Off the field</h1>'
+   '<main id="top"><section class="page-hero nf-hero"><div class="wrap"><h1 class="display">Off the field</h1>'
    '<p class="lede on-dark">We couldn\u2019t find that page. It may have moved, or the link has a typo.</p>'
+   '<form class="srch-f nf-sf" role="search" action="search/" method="get"><label class="sr" for="nfQ">Search SMU+</label><input id="nfQ" name="q" type="search" placeholder="Search players, games and videos" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"><button type="submit">Search</button></form>'
    '<p class="nf-act"><a class="btn btn-red" href="./">Go to the home page</a> <a class="btn btn-ghost" href="library/">Browse the library</a> <a class="btn btn-ghost" href="boards/">The Mustang Board</a></p></div></section></main>\n'
    '<div id="site-footer"></div>\n</body>\n</html>\n',
 }
