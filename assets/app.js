@@ -169,7 +169,8 @@
   var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
   function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
     if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
-    return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')}
+    return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')+
+    '<a href="'+ROOT+'search/" class="nav-search'+(PAGE==='search'?' on" aria-current="page':'')+'">'+SVG_SEARCH+'<span>Search</span></a>'}
   function sportsPanel(){return '<div class="sports-dd" id="sportsMenu" hidden><p class="sdd-h">All 12 sports</p><ul class="sdd-list">'+MP.SPORTS.map(function(sp){var cur=PAGE==='sport'&&document.body.dataset.sport===sp.slug;
     return '<li><a href="'+sportUrl(sp.slug)+'"'+(cur?' aria-current="page"':'')+'>'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a></li>'}).join('')+'</ul></div>'}
   /* Header/footer logo. ONE swappable path (relative to the site root). Set to '' to fall back to the type-only SMU+ lockup. */
@@ -183,7 +184,9 @@
   /* Phone/tablet menu (under 960px). Every primary link, plus search, member preview and Join. */
   function mobileMenu(){
     return '<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Site menu" hidden><div class="mm-in">'+
-      '<button type="button" class="mm-search" data-mm-search>'+SVG_SEARCH+'<span>Search stories, players, threads</span></button>'+
+      '<form class="mm-sf" role="search" action="'+ROOT+'search/" method="get">'+SVG_SEARCH+'<label class="sr" for="mmQ">Search SMU+</label>'+
+        '<input id="mmQ" name="q" type="search" placeholder="Search SMU+" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"'+(PAGE==='search'?' value="'+esc(new URLSearchParams(location.search).get('q')||'')+'"':'')+'>'+
+        '<button type="submit" class="mm-sf-go">Search</button></form>'+
       '<nav class="mm-nav" aria-label="Primary">'+NAV.filter(function(n){return n[2]!=='membership'}).map(function(n){var on=PAGE===n[2];
         if(n[2]==='sport')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmSportsBtn" aria-expanded="false" aria-controls="mmSports"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
           '<div class="mm-sports" id="mmSports" hidden>'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a>'}).join('')+'</div>';
@@ -194,10 +197,7 @@
       '<a class="btn btn-red mm-join" href="'+ROOT+'#waitlist">Join SMU+</a>'+
       '<p class="mm-note">Concept built for an SMU Cox MBA class project. No payments are taken.</p></div></div>'}
   $('#site-header').outerHTML='<header class="site"><div class="wrap hdr">'+wordmark()+'<nav class="main" aria-label="Primary">'+navLinks()+'</nav>'+
-    '<div class="hdr-act"><button type="button" class="hsearch hs-btn" id="searchBtn" aria-expanded="false" aria-controls="hsForm" aria-label="Search SMU+">'+SVG.search+'</button>'+
-      '<form class="hsf" id="hsForm" role="search" action="'+ROOT+'search/" method="get"><label class="sr" for="hsQ">Search SMU+</label>'+SVG.search+
-      '<input id="hsQ" name="q" type="search" placeholder="Search SMU+" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"'+(PAGE==='search'?' value="'+esc(new URLSearchParams(location.search).get('q')||'')+'"':'')+'>'+
-      '<button type="submit" class="hsf-go">Search</button></form>'+memberSwitch('Member preview')+
+    '<div class="hdr-act">'+memberSwitch('Member preview')+
     '<a class="btn btn-red btn-sm hdr-join" href="'+ROOT+'#waitlist">Join</a>'+adfreeSwitch('af-hdr')+
     '<a class="acct-btn" id="acctBtn" href="'+ROOT+'account/"'+(PAGE==='account'?' aria-current="page"':'')+'><span class="acct-av" aria-hidden="true">'+SVG.user+'</span><span class="acct-l sr">Sign in</span></a>'+
     '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+sportsPanel()+
@@ -392,16 +392,13 @@
   function setActive(i){if(!sItems.length)return;sActive=(i+sItems.length)%sItems.length;sItems.forEach(function(el,j){el.setAttribute('aria-selected',j===sActive?'true':'false')});
     sInput.setAttribute('aria-activedescendant',sItems[sActive].id);sItems[sActive].scrollIntoView({block:'nearest'})}
   function openSearch(){search.hidden=false;document.documentElement.classList.add('noscroll');sInput.value='';runSearch();sInput.focus()}
-  function closeSearch(){if(search.hidden)return;search.hidden=true;if(reader.hidden&&pw.hidden)document.documentElement.classList.remove('noscroll');$('#searchBtn').focus()}
+  function closeSearch(){if(search.hidden)return;search.hidden=true;if(reader.hidden&&pw.hidden)document.documentElement.classList.remove('noscroll')}
   function activate(el){var id=el.dataset.sitem;closeSearch();if(id){openItem(id)}else location.href=el.getAttribute('href')}
   /* Header search: one field. Wide screens show it inline; narrower screens get an icon that drops the field open under the header. */
-  var hsF=$('#hsForm'),hsQ=$('#hsQ'),hsB=$('#searchBtn'),hdrS=$('header.site');
-  function hsOpen(on){hdrS.classList.toggle('hs-open',on);hsB.setAttribute('aria-expanded',on?'true':'false');if(on)setTimeout(function(){hsQ.focus()},0)}
-  function hsFocus(){if(getComputedStyle(hsB).display==='none')hsQ.focus();else hsOpen(true)}
-  hsB.addEventListener('click',function(){hsOpen(!hdrS.classList.contains('hs-open'))});
-  hsF.addEventListener('submit',function(e){if(!hsQ.value.trim()){e.preventDefault();hsQ.focus()}});
-  hsQ.addEventListener('keydown',function(e){if(e.key==='Escape'&&hdrS.classList.contains('hs-open')){e.stopPropagation();hsOpen(false);hsB.focus()}});
-  document.addEventListener('click',function(e){if(hdrS.classList.contains('hs-open')&&!e.target.closest('#hsForm,#searchBtn'))hsOpen(false)});$('#searchClose').addEventListener('click',closeSearch);
+  /* Search lives in the menu (phones) and the nav (desktop); '/' and Ctrl/Cmd+K go to the search page, or focus its field there. */
+  function hsFocus(){var f=$('#srchQ');if(f){f.focus();return}location.href=ROOT+'search/'}
+  document.addEventListener('submit',function(e){if(e.target.classList&&e.target.classList.contains('mm-sf')){var q=$('#mmQ');if(!q.value.trim()){e.preventDefault();q.focus()}}});
+  $('#searchClose').addEventListener('click',closeSearch);
   search.addEventListener('click',function(e){if(e.target===search){closeSearch();return}var ch=e.target.closest('[data-q]');if(ch){sInput.value=ch.dataset.q;runSearch();sInput.focus();return}
     var it=e.target.closest('.s-item');if(it){e.preventDefault();e.stopPropagation();activate(it)}});
   sRes.addEventListener('mousemove',function(e){var it=e.target.closest('.s-item');if(it){var i=sItems.indexOf(it);if(i!==sActive)setActive(i)}});
@@ -441,7 +438,6 @@
     mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label','Open menu');if(restore)mb.focus()}
   mb.addEventListener('click',function(){if(mm.hidden)openMenu();else closeMenu(true)});
   mm.addEventListener('click',function(e){
-    if(e.target.closest('[data-mm-search]')){closeMenu();hsFocus();return}
     if(e.target.closest('a'))closeMenu();
     if(e.target.closest('[data-demo]'))closeMenu()});
   document.addEventListener('keydown',function(e){if(mm.hidden)return;
@@ -725,7 +721,16 @@
       '<ul class="rb-l" id="'+id+'" data-slider aria-label="Upcoming SMU games, scrolls sideways" tabindex="0">'+L.map(function(e,i){return ribbonCard(e,i,L.length)}).join('')+'</ul>'+
       '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Later games" aria-controls="'+id+'">'+XARR+'</button></div>'+
       '</div></section>');
-    slSyncAll()}
+    slSyncAll();rbFit()}
+  /* The track is as tall as its tallest card (a football card with a score and Live stats runs ~110px taller), which left a big white
+     gap under short cards. Size the track to the cards actually on screen, re-measured as it scrolls or resizes. */
+  function rbFit(){var l=$('#rb-track');if(!l)return;var raf=0;
+    function fit(){raf=0;var lr=l.getBoundingClientRect(),mx=0;if(!lr.width)return;
+      Array.prototype.forEach.call(l.children,function(c){var r=c.getBoundingClientRect();if(r.right>lr.left+1&&r.left<lr.right-1)mx=Math.max(mx,r.height)});
+      if(mx)l.style.height=Math.ceil(mx+6)+'px'}
+    function q(){if(!raf)raf=requestAnimationFrame(fit)}
+    l.addEventListener('scroll',q,{passive:true});addEventListener('resize',q);if(window.ResizeObserver)new ResizeObserver(q).observe(l);
+    if(window.MutationObserver)new MutationObserver(q).observe(l,{childList:true,subtree:true});fit()}
 
   /* ---------- Search results page (search/?q=...). Static content comes from data/search-index.json (tools/build_search.js);
      forum threads and posts come live from Supabase (public read). Results update as you type; the URL keeps the query. ---------- */
@@ -738,7 +743,7 @@
       '<button type="submit">Search</button></form><p class="srch-sum" id="srchSum" role="status" aria-live="polite"></p>'+
       '<div class="srch-tabs" role="group" aria-label="Filter results">'+[['all','All']].concat(GROUPS).map(function(g){return '<button type="button" data-st="'+g[0]+'" aria-pressed="'+(only===g[0])+'">'+g[1]+'</button>'}).join('')+'</div></div></section>'+
       '<section class="sec tight"><div class="wrap" id="srchRes"></div></section>';
-    var inp=$('#srchQ'),res=$('#srchRes'),sum=$('#srchSum'),hq=$('#hsQ');
+    var inp=$('#srchQ'),res=$('#srchRes'),sum=$('#srchSum'),hq=$('#mmQ');
     function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\u2018\u2019']/g,'').replace(/\s+/g,' ').trim()}
     function toks(q){return norm(q).split(' ').filter(Boolean).slice(0,6)}
     function hlx(text,T){var out=esc(text);T.forEach(function(t){if(t.length<2)return;out=out.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>')});return out}
@@ -785,7 +790,7 @@
     $('#srchF').addEventListener('submit',function(e){e.preventDefault();update(true)});
     main.addEventListener('click',function(e){var b=e.target.closest('[data-st]');if(b){only=b.dataset.st;update(false);return}
       var m=e.target.closest('[data-more]');if(m){shown[m.dataset.more]=1;render()}});
-    if(hq&&hsF)hsF.addEventListener('submit',function(e){if(hq.value.trim()){e.preventDefault();inp.value=hq.value.trim();hsOpen(false);update(true);inp.focus()}});
+    var mf=$('.mm-sf');if(hq&&mf)mf.addEventListener('submit',function(e){if(hq.value.trim()){e.preventDefault();e.stopImmediatePropagation();inp.value=hq.value.trim();closeMenu();update(true);inp.focus()}});
     addEventListener('popstate',function(){var p=new URLSearchParams(location.search);inp.value=p.get('q')||'';only=p.get('type')||'all';render();fetchLive(inp.value.trim()).then(render)});
     fetch(ROOT+'data/search-index.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(J){IDX=J.docs||[];render()},function(){IDX=[];render()});
     render();if(q0)fetchLive(q0).then(render);if(!q0)inp.focus()}
@@ -794,7 +799,7 @@
       if(!$('#waitlist'))mem.insertAdjacentHTML('afterend',waitlistSection());syncWaitlist();
       var tiers=$('.tiers',mem);if(tiers)tiers.insertAdjacentHTML('beforebegin',freeBands('home'))}
     var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
-    $('#heroFeature').innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
+    if($('#heroFeature'))$('#heroFeature').innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3>'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';
     $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','Official SMU Athletics video')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);

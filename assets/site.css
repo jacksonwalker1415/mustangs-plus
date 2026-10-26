@@ -928,8 +928,6 @@ header.site{background:var(--b-800);border-bottom-color:rgba(255,255,255,.12)}
 .mmenu{position:fixed;left:0;right:0;bottom:0;top:var(--hdr);z-index:60;background:var(--b-900);color:#fff;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;opacity:0;transform:translateY(-6px);transition:opacity .16s ease,transform .16s ease;border-top:1px solid rgba(255,255,255,.1)}
 .mmenu.open{opacity:1;transform:none}
 .mm-in{max-width:640px;margin:0 auto;padding:var(--s4) var(--gut) calc(var(--s6) + env(safe-area-inset-bottom));padding-left:max(var(--gut),env(safe-area-inset-left));padding-right:max(var(--gut),env(safe-area-inset-right))}
-.mm-search{display:flex;align-items:center;gap:var(--s3);width:100%;min-height:48px;padding:0 var(--s4);border-radius:var(--r2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);font-size:16px;font-weight:600;text-align:left}
-.mm-search svg{width:18px;height:18px;fill:currentColor;flex:none}
 .mm-nav{margin-top:var(--s3)}
 .mm-nav a{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:var(--s3);min-height:60px;padding:var(--s2) 0;border-bottom:1px solid rgba(255,255,255,.1)}
 .mm-nav b{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.01em;line-height:1.1}
@@ -1506,8 +1504,10 @@ nav.main .nav-dd-btn.nav-x{display:none}
 }
 .mm-nav a,.mm-nav .mm-acc{min-height:52px;padding:6px 0;grid-template-columns:1fr auto}
 .mm-nav b{font-size:24px}
-/* Sticky sub-nav sits flush under the real header (measured), including the iOS safe area in standalone mode */
-header.site{padding-top:env(safe-area-inset-top)}
+/* Sticky sub-nav sits flush under the real header (measured) */
+/* The iOS safe area is handled once, by the app head block in every page (tools/build_pages.py pwa_block): a fixed bar of
+   --sat behind the status bar, and header.site{top:var(--sat)}. Padding the header with the inset as well doubled it (~120px of empty
+   blue above the logo row in Safari while scrolling, and in the home-screen app), so the header carries no top padding. */
 .jump{top:var(--hdr-h,var(--hdr))}
 html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 
@@ -2286,6 +2286,8 @@ a.r-game{color:var(--blue);font-weight:700;text-decoration:underline;text-decora
 a.r-game:hover{text-decoration-color:var(--blue)}
 /* ---------- Home calendar ribbon (upcoming games, every sport) ---------- */
 .ribbon .rb-hd{margin-bottom:var(--s4)}
+.sec.ribbon{padding-bottom:var(--s6)}
+.rb-l{transition:height .2s ease}
 .ribbon .rb-hd h2{font-family:inherit;text-transform:none;letter-spacing:0;font-weight:800;font-size:clamp(22px,2.4vw,28px);line-height:1.2;color:var(--ink)}
 .ribbon .rb-hd p{margin-top:var(--s1);font-size:15px;color:var(--ink-2)}
 .ribbon .rb-hd a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
@@ -2331,28 +2333,16 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 .pc-links a{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .pc-links a:hover{color:var(--red)}
 .pc-au:focus-visible,.pc-links a:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-/* ---------- Header search: one field (inline on wide screens, icon + drop-down field below 1366px) ---------- */
-.hsf{display:flex;align-items:center;gap:var(--s2);height:36px;width:220px;padding:0 var(--s3);border-radius:var(--r1);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);border:1px solid transparent}
-.hsf:focus-within{border-color:#fff;background:rgba(255,255,255,.16)}
-.hsf>svg{width:16px;height:16px;fill:currentColor;flex:none}
-.hsf input{flex:1;min-width:0;height:100%;border:0;background:transparent;color:#fff;font:inherit;font-size:14px;outline:none}
-.hsf input::placeholder{color:rgba(255,255,255,.75)}
-.hsf input::-webkit-search-cancel-button{filter:invert(1)}
-.hsf-go{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
-.hdr-act .hs-btn{display:none}
-@media(max-width:1365px){
-  .hdr-act .hs-btn{display:inline-flex;width:44px;min-width:0;height:44px;padding:0;justify-content:center}
-  .hdr-act .hs-btn span,.hdr-act .hs-btn kbd{display:none}
-  .hsf{display:none;position:absolute;left:0;right:0;top:100%;width:auto;height:auto;padding:var(--s3) max(var(--s4),calc((100vw - 1200px)/2));border-radius:0;background:var(--b-800);border:0;border-top:1px solid rgba(255,255,255,.14);box-shadow:0 8px 16px rgba(22,33,79,.25);z-index:60}
-  header.site.hs-open .hsf{display:flex}
-  .hsf input{height:44px;padding:0 var(--s3);border-radius:var(--r1);background:#fff;color:var(--ink);font-size:16px}
-  .hsf input::placeholder{color:var(--ink-3)}
-  .hsf input::-webkit-search-cancel-button{filter:none}
-  .hsf>svg{display:none}
-  .hsf-go{position:static;width:auto;height:44px;clip:auto;padding:0 var(--s4);border-radius:var(--r1);background:var(--red);color:#fff;font-weight:700;font-size:15px;cursor:pointer}
-  .hsf-go:hover{background:var(--red-dk)}
-}
-header.site.hs-open .hs-btn{background:rgba(255,255,255,.18)}
+/* ---------- Search: a field at the top of the phone menu, a "Search" link in the desktop nav (no header search icon) ---------- */
+.mm-sf{display:flex;align-items:center;gap:var(--s2);height:52px;padding:0 4px 0 var(--s4);border-radius:var(--r2);background:#fff;color:var(--ink-3)}
+.mm-sf:focus-within{outline:3px solid #fff;outline-offset:2px}
+.mm-sf>svg{width:18px;height:18px;fill:currentColor;flex:none}
+.mm-sf input{flex:1;min-width:0;height:100%;border:0;background:transparent;color:var(--ink);font:inherit;font-size:16px;outline:none}
+.mm-sf input::placeholder{color:var(--ink-3)}
+.mm-sf-go{height:44px;padding:0 var(--s4);border:0;border-radius:var(--r1);background:var(--red);color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;flex:none}
+.mm-sf-go:hover{background:var(--red-dk)}
+nav.main a.nav-search{display:inline-flex;align-items:center;gap:6px}
+nav.main a.nav-search svg{width:16px;height:16px;fill:currentColor;flex:none}
 /* ---------- Search results page ---------- */
 .srch-hero{padding:var(--s6) 0 var(--s4)}
 .srch-hero h1{font-size:clamp(26px,3vw,34px);font-weight:800;color:var(--ink);line-height:1.2}
