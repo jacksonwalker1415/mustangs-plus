@@ -624,7 +624,7 @@ header.site .mtoggle{color:rgba(255,255,255,.85);padding:0 var(--s2)}
 .pw-art .poster::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(22,33,79,.3)}
 .pw-art .tag,.pw-art .dur,.pw-art .poster-verb,.pw-art .prog{display:none}
 .pw-b{padding:var(--s5) var(--s6) var(--s6)}
-.pw-eb svg,.pw-inline .eyebrow svg{width:12px;height:12px;fill:currentColor}
+.pw-eb svg,.pw-inline .pw-lbl svg{width:12px;height:12px;fill:currentColor}
 .pw-b h3{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:var(--s2)}
 .pw-lede{color:var(--ink-2);font-size:15px;margin-bottom:var(--s4)}
 .pw-tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);margin-bottom:var(--s4)}
@@ -637,7 +637,7 @@ header.site .mtoggle{color:rgba(255,255,255,.85);padding:0 var(--s2)}
 .pw .reader-x{z-index:4}
 @media(max-width:639px){.pw{padding:0;place-items:end center}.pw-sheet{border-radius:var(--r3) var(--r3) 0 0;max-height:100vh;overflow:auto}.pw-b{padding:var(--s5)}.pw-tiers{grid-template-columns:1fr;gap:var(--s3)}.pw-t{flex-direction:row;align-items:baseline;gap:var(--s3)}.pw-t b{flex:1}.pw-p{font-size:22px}}
 .pw-inline{background:var(--black);color:#fff;border-radius:var(--r2);padding:var(--s5);margin:var(--s5) 0}
-.pw-inline .eyebrow{color:var(--yellow);opacity:1}
+.pw-inline .pw-lbl{display:inline-flex;align-items:center;gap:6px;margin-bottom:var(--s3);padding:4px 10px;border-radius:var(--r1);background:#354CA1;color:#fff;font-size:14px;font-weight:700;line-height:1.3}
 .pw-inline h3{font-size:20px;font-weight:800;margin-bottom:var(--s2)}
 .pw-inline p{color:rgba(255,255,255,.75);font-size:14px;margin-bottom:var(--s4)}
 .pw-inline .mtoggle{color:#fff}
@@ -646,7 +646,7 @@ header.site .mtoggle{color:rgba(255,255,255,.85);padding:0 var(--s2)}
 
 /* Reader: photo header, player, episodes, related */
 .reader-hd.has-img{position:relative;overflow:hidden;color:#fff;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end}
-.reader-hd.has-img .bgph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,33,79,.15) 0%,rgba(22,33,79,.85) 100%)}
+.reader-hd.has-img .bgph::after{content:"";position:absolute;inset:0;background:rgba(22,33,79,.62)}
 .reader-hd.has-img>*:not(.bgph):not(.credit){position:relative;z-index:2}
 .reader-hd.has-img .credit{top:var(--s3);bottom:auto;left:var(--s3);right:auto}
 .reader-hd.has-img .eyebrow{color:#fff}
@@ -2723,3 +2723,29 @@ main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30
 @font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:104%;ascent-override:95.2%;descent-override:29.8%;line-gap-override:0%}
 @font-face{font-family:"DM Sans Fallback";font-weight:700 800;src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Arimo Bold"),local("Liberation Sans Bold");size-adjust:97.5%;ascent-override:101.5%;descent-override:31.8%;line-gap-override:0%}
 @font-face{font-family:"Anton Fallback";src:local("Arial"),local("Helvetica"),local("Arimo"),local("Liberation Sans");size-adjust:88.8%;ascent-override:132.9%;descent-override:37.2%;line-gap-override:0%}
+
+/* ---------- Library reader + typed views (bot/library-reader, Oct 26) ---------- */
+/* byline: one line with the label, author, date and length (replaces the reader eyebrows) */
+.byline .by-line{flex:1;min-width:0;margin:0;font-size:14px;line-height:1.45;color:var(--ink-2)}
+.byline .by-line b{display:inline;font-size:inherit;color:var(--ink)}
+.m-meta .m-lbl{font-weight:700;color:var(--blue)}
+/* typed views (Videos / Podcasts / Articles): no rule line through the view heading */
+main.lib-typed .pods{border-top:0}
+/* phones: the full-screen reader starts below the red disclaimer bar, which stays visible above it */
+@media(max-width:639px){
+  html:has(#reader:not([hidden])) .disclaimer{position:fixed;top:var(--sat,0px);left:0;right:0;z-index:101}
+  .reader:not([hidden]){top:calc(var(--sat,0px) + var(--disc-h,0px));padding-top:0;padding-bottom:0}
+  .reader:not([hidden]) .reader-sheet{max-height:100%;height:100%;border-radius:0;padding-bottom:env(safe-area-inset-bottom)}
+}
+/* sticky sample ad (shared, every page with the bar): the label and Close sit inside the bar, not on tabs above it */
+.ad-sticky{flex-wrap:wrap;align-items:center;padding:0 8px calc(8px + env(safe-area-inset-bottom))}
+.ad-sticky .ad-lbl,.ad-sticky .ad-x{position:static;height:44px;padding:0 4px;background:none;border:0;border-radius:0;display:inline-flex;align-items:center;order:-1}
+.ad-sticky .ad-lbl{flex:1;left:auto;font-size:14px}
+.ad-sticky .ad-x{right:auto;min-width:44px;justify-content:flex-end;font-size:14px}
+@media(min-width:760px) and (max-width:999px){html.ad-sticky-on:not(.adfree) body{padding-bottom:156px}}
+@media(min-width:1000px){
+  .ad-sticky{flex-wrap:nowrap;padding:8px 16px}
+  .ad-sticky .ad-lbl,.ad-sticky .ad-x{position:absolute;top:50%;transform:translateY(-50%)}
+  .ad-sticky .ad-lbl{left:16px;flex:none}
+  .ad-sticky .ad-x{right:16px}
+}
