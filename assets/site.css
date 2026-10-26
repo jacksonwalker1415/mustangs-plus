@@ -1326,3 +1326,65 @@ main .mcard:focus-visible{outline-offset:4px}
 .pw-pop,.badge-ins,.badge-tier{font-size:var(--fs-11)}
 /* article serif: kept, deliberately, for long-form article body text only */
 .prose p{font-family:var(--serif);line-height:var(--lh-prose)}
+
+/* ---- 6.4 Buttons: four styles. Header/menu buttons are excluded and keep their current look.
+   primary   .btn-red (and .btn-white, which now renders as primary)
+   secondary .btn-navy
+   quiet     .btn-outline (light surfaces)
+   on-dark   .btn-ghost / .btn-quiet (outline on dark surfaces) ---- */
+.btn:not(header .btn):not(.mmenu .btn){border-radius:var(--r-ctl);letter-spacing:.01em;font-weight:700;transition:background-color var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.btn-white:not(header .btn){background:var(--red);color:#fff;border-color:transparent}
+.btn-white:not(header .btn):hover{background:var(--red-dk)}
+.btn-red:not(header .btn):not(.mmenu .btn):hover,.btn-white:not(header .btn):hover{box-shadow:0 6px 18px -6px rgba(204,0,53,.55)}
+.btn-navy:not(header .btn):hover{box-shadow:0 6px 18px -6px rgba(35,52,122,.55)}
+.btn-outline{border-width:1.5px;border-color:rgba(22,33,79,.22);background:#fff;color:var(--ink)}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);background:#fff}
+.btn-ghost:not(header .btn),.btn-quiet:not(header .btn){border:1.5px solid rgba(255,255,255,.55);color:#fff;background:transparent}
+.btn-ghost:not(header .btn):hover,.btn-quiet:not(header .btn):hover{border-color:#fff;background:rgba(255,255,255,.1)}
+/* plan cards: one secondary style, the highlighted tier gets primary */
+.tier .btn{background:var(--blue);color:#fff;border-color:transparent}
+.tier .btn:hover{background:var(--blue-dk);box-shadow:0 6px 18px -6px rgba(35,52,122,.55)}
+.tier.dark .btn{background:#fff;color:var(--b-900)}
+.tier.dark .btn:hover{background:var(--blue-10);box-shadow:none}
+.tier.pop .btn{background:var(--red);color:#fff}
+.tier.pop .btn:hover{background:var(--red-dk);box-shadow:0 6px 18px -6px rgba(204,0,53,.55)}
+
+/* ---- 6.5 Cards: one style per card type ----
+   media card  .mcard        borderless, image radius --r-media, title shifts to blue on hover
+   list card   .pcard .rcard .sport-tile .acct-card .forum/thread boxes   10px radius, hairline, --sh-1, hover --sh-2
+   panel       .panel .box   container for lists, same hairline card on white
+   offer card  .tier         sheet radius, raised */
+.poster{border-radius:var(--r-media);box-shadow:var(--sh-1)}
+.mcard .poster{transition:box-shadow var(--t-med) var(--ease)}
+.mcard:hover .poster{transform:none;box-shadow:var(--sh-2)}
+.mcard:hover .poster.has-img .ph{transform:scale(1.04)}
+.poster.has-img .ph{transition:transform .6s var(--ease),filter .3s}
+.mcard h3{transition:color var(--t-fast)}
+.hero-card .poster{box-shadow:none}
+.hero-card{border-radius:var(--r-card)}
+.hero-card:hover{transform:none;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 28px 56px -16px rgba(10,16,40,.55)}
+.pcard,.rcard,.acct-card,.panel,.box,.fgroup,.empty-state,.mini-empty,.post,.reply,.fund,.coach{border-radius:var(--r-card)}
+.pcard,.rcard,.acct-card,.panel:not(.dark),.box,.fgroup,.post,.fund{border-color:var(--card-line);box-shadow:var(--sh-1)}
+a.pcard,a.rcard,.pcard{transition:box-shadow var(--t-med) var(--ease),border-color var(--t-fast)}
+a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in srgb,var(--blue) 35%,transparent);box-shadow:var(--sh-2)}
+.panel.dark{border-radius:var(--r-card);background:rgba(10,16,40,.22);border-color:rgba(255,255,255,.1)}
+.panel-h h3,.box-h h3{font-size:var(--fs-13);letter-spacing:var(--trk-label)}
+.coach{background:#fff;border:1px solid var(--card-line);box-shadow:var(--sh-1)}
+.tier{border-radius:var(--r-sheet);border-color:var(--card-line);box-shadow:var(--sh-1)}
+.tier.pop{box-shadow:var(--sh-3)}
+.tier>.tag{border-radius:var(--r-tag)}
+.tier h3{font-size:var(--d-card)}
+.statline,.tbl-wrap,.ratings div{border-radius:var(--r-card)}
+.tbl-wrap{border-color:var(--card-line);box-shadow:var(--sh-1)}
+.panel .tbl-wrap{box-shadow:none}
+.sheet,.dlg-sheet,.pw-sheet,.search-sheet,.reader-sheet,.gate-cta>div{border-radius:var(--r-sheet)}
+.dlg-sheet,.pw-sheet,.search-sheet{box-shadow:var(--sh-3)}
+.gd-next,.gd-hurry,.brief-panel,.band{border-radius:var(--r-card)}
+.gallery figure,.film-art,.ep{border-radius:var(--r-media)}
+
+/* ---- 6.6 Forms ---- */
+.fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea,.reply input,.reply textarea,.brief-row input{border-radius:var(--r-ctl)}
+.fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea{border-color:rgba(22,33,79,.2)}
+.fsearch:focus-within,.fld input:focus,.fld select:focus,.fld textarea:focus,.reply textarea:focus{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:0;border-color:var(--blue);box-shadow:none}
+.seg,.sort{border-radius:var(--r-ctl);border-color:rgba(22,33,79,.2)}
+.auth-tabs,.auth-tabs button{border-radius:var(--r-ctl)}
