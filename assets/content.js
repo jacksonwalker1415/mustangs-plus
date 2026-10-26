@@ -1062,3 +1062,36 @@ MP.PHOTOS={
   S('ms-nostalgia-ep4','t_pP1ev5xJs','Nostalgia',"Talent Isn't Enough to Make This Team | Nostalgia Episode 4",'Posted Oct. 20, 2026 on the Mustang Studios YouTube channel.','18:10')];
  MP.STUDIOS_CH=CH;
 })();
+/* Sharper photos (Oct. 26, 2026) from the SMU+ photo library (official smumustangs.com galleries, all credited "Photo: SMU Athletics"
+   in the library manifest). Files live in assets/photos/lib/. src = base name; big = width of the large variant (2400, or the
+   2000 px original where SMU has nothing larger). Heroes and game-day backgrounds get srcset 1200/big; cards use the 1200 file.
+   cardSrc = a different 1200 photo for cards only (hero unchanged). 2019-2022 frames never name an athlete (uniforms/rosters are older). */
+(function(){var P=MP.PHOTOS,C='Photo: SMU Athletics';
+ function S(k,src,big,pos,alt,o){var e={src:src,big:big,pos:pos,alt:alt,credit:C};for(var x in o||{})e[x]=o[x];P[k]=e}
+ function CARD(k,src,alt){P[k]=Object.assign({},P[k],{cardSrc:src,cardAlt:alt,credit:C})}
+ /* sport heroes (these keys also feed their sport's Watch & Read cards) */
+ S('runout','football-catch-at-maryland-2022',2400,'50% 35%','An SMU football receiver in white leaps to make a catch on the road');
+ S('swim','swimming-diving-butterfly-pool-wide-2021',2400,'50% 45%','An SMU swimmer in a red cap stretches out at the start of a race at the SMU pool');
+ S('vb-spike','volleyball-moody-match-wide-2021-a',2400,'55% 30%','SMU volleyball players in white go up at the net during a match at Moody Coliseum');
+ S('mbb-jumper','mens-basketball-moody-court-wide-virginia-2026',2000,'50% 60%','SMU men\u2019s basketball plays Virginia on the Moody Coliseum court in front of a full crowd');
+ S('wbb-drive','womens-basketball-13-jumper-vs-houston-2020',2400,'50% 30%','An SMU women\u2019s basketball player in white rises for a jump shot against Houston at Moody Coliseum');
+ S('msoc','mens-soccer-celebration-vs-duke-2019',2400,'50% 35%','SMU men\u2019s soccer players in red celebrate a goal against Duke');
+ S('golf','golf-womens-drive-tree-line-2021',2400,'50% 30%','An SMU women\u2019s golfer holds her finish after a drive along a tree-lined fairway');
+ S('track','track-field-xc-race-start-2019',2400,'50% 35%','SMU cross country runners in blue race in a pack at the start of a meet');
+ S('rowing','rowing-eight-on-water-ncaa-2021',2400,'50% 55%','An SMU eight rows across open water at the NCAA championships');
+ /* game-day backgrounds (game-day blocks only) and last-game photos */
+ S('gd-football','football-tunnel-crowd-louisville-night',2000,'50% 45%','SMU football players wait in the tunnel before a night game as the band and crowd fill the stands');
+ S('gd-mbb','mens-basketball-moody-court-overhead-boston-college',2000,'50% 50%','Overhead view of the Moody Coliseum court and its Moody Coliseum lettering during an SMU men\u2019s basketball game');
+ S('gd-wbb','womens-basketball-moody-anthem-flag-wide',2000,'50% 50%','A giant American flag is spread across the Moody Coliseum floor for the anthem before an SMU women\u2019s basketball game');
+ S('mbb-layup','mens-basketball-dunk-pitt',1200,'50% 25%','An SMU men\u2019s basketball player in red, number 24, rises for a dunk at Pitt');
+ S('wbb-jumper','womens-basketball-layup-arena-dec-2025',1200,'50% 35%','An SMU women\u2019s basketball player goes up for a layup at Moody Coliseum');
+ /* Watch & Read card images */
+ S('ford','football-touchdown-celebration-boston-college',1200,'50% 30%','SMU football players in blue celebrate a touchdown against Boston College');
+ S('helmet','football-helmet-on-turf-2020',1200,'50% 50%','A white SMU football helmet with a red stripe resting on the turf');
+ S('moody-bowl','mens-basketball-team-huddle-north-carolina',1200,'50% 40%','SMU men\u2019s basketball players in red huddle on the bench against North Carolina');
+ S('storm','mens-basketball-court-drive-boston-college',1200,'50% 35%','An SMU men\u2019s basketball player drives to the basket against Boston College');
+ CARD('wsoc','womens-soccer-goal-celebration','SMU women\u2019s soccer players in red and blue celebrate a goal');
+ CARD('equestrian','equestrian-jump-smu-banner-2025','An SMU equestrian rider clears a jump in front of an SMU banner');
+ /* home player cards: the full 969 px headshot instead of the 720 px -900 copy */
+ ['mcfall-hs','knight-hs','moses-hs','raphael-bc'].forEach(function(k){if(P[k])P[k].small=P[k].file});
+})();

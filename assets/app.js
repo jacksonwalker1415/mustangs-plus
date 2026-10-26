@@ -103,11 +103,16 @@
     if(window.SMU&&SMU.user){var t=on?(tier||(paidT(SMU.tier())?SMU.tier():'pony')):'free';SMU.setTier(t).then(function(){if(!on)return backToStudent()}).catch(function(e){toast(e.message,'err');store('mp_member',on?'0':'1');syncMember();document.dispatchEvent(new Event('mp:member'))})}
     else{try{localStorage.setItem('mp_tier',on?(tier||'pony'):'free')}catch(e){}}}
   var PH=MP.PHOTOS||{},CREDIT='<span class="credit">Photo: SMU Athletics</span>';
+  function creditOf(key){var p=PH[key];return '<span class="credit">'+esc((p&&p.credit)||'Photo: SMU Athletics')+'</span>'}
+  function libPh(b,w){return ROOT+'assets/photos/lib/'+b+'-'+w+'.webp'}
   function photo(key,opt){var p=PH[key];if(!p)return '';opt=opt||{};
+    /* library photos: heroes and game-day backgrounds get srcset 1200/big, cards the 1200 file */
+    if(p.src||(opt.small&&p.cardSrc)){var card=opt.small&&!opt.gd,cs=card&&p.cardSrc,b=cs||p.src,big=!card&&p.big>1200;
+      return '<img class="ph" src="'+libPh(b,1200)+'"'+(big?' srcset="'+libPh(b,1200)+' 1200w, '+libPh(b,p.big)+' '+p.big+'w" sizes="'+(opt.sizes||'100vw')+'"':'')+' alt="'+esc(cs?p.cardAlt:p.alt)+'" style="object-position:'+(p.pos||'50% 50%')+'"'+(opt.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async">'}
     var img='<img class="ph" src="'+ROOT+'assets/photos/'+(opt.small&&p.small?p.small:p.file)+'" alt="'+esc(p.alt)+'" style="object-position:'+(p.pos||'50% 50%')+'"'+(opt.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async">';
     /* heroes: a full-resolution 16:9 crop on wide screens so the photo is never upscaled */
     return opt.hero&&p.wide?'<picture><source media="(min-width:700px)" srcset="'+ROOT+'assets/photos/'+p.wide+'">'+img+'</picture>':img}
-  function photoBg(key,opt){return PH[key]?'<div class="bgph" aria-hidden="false">'+photo(key,opt)+'</div>'+CREDIT:''}
+  function photoBg(key,opt){return PH[key]?'<div class="bgph" aria-hidden="false">'+photo(key,opt)+'</div>'+creditOf(key):''}
   var SVG={search:'<svg viewBox="0 0 24 24"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg>',
     play:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',filter:'<svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>',
     chat:'<svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/></svg>',user:'<svg viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm-8 9c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>',
@@ -266,7 +271,7 @@
   function tplDate(c){var a=MP.ARTICLES&&MP.ARTICLES[c.id];return c.date||(c.real&&a&&a.date)||''}
   function smuTpl(c,opt){opt=opt||{};var sp=cardSport(c),sample=/^sample/i.test(c.label||''),k=c.ext?c.outlet+(sp?' \u00b7 '+sp.name:''):(sp?sp.name:(CATNAME[c.cat]||c.t)),d=tplDate(c),key=tplPhoto(c);
     if(sample)k='Sample \u00b7 '+k;
-    return '<span class="tpl-ph">'+photo(key,{small:!opt.big,eager:opt.eager})+'<span class="credit">Photo: SMU Athletics</span></span>'+
+    return '<span class="tpl-ph">'+photo(key,{small:!opt.big,eager:opt.eager,sizes:'(max-width:639px) 90vw, 600px'})+creditOf(key)+'</span>'+
       '<span class="tpl-p" aria-hidden="true">'+TPL_MARK+'<span class="tpl-k">'+esc(k)+'</span><span class="tpl-w">'+esc(tplWord(c))+'</span>'+(d?'<span class="tpl-d">'+esc(d)+'</span>':'')+'</span>'}
   /* Official YouTube items show the video's real thumbnail (maxresdefault, falling back to hqdefault). Images load from i.ytimg.com. */
   function ytId(c){return c&&c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null}
@@ -505,9 +510,9 @@
   function gWhen(x){return x.ko?Date.parse(x.ko):Date.parse(x.d+'T23:59:00-06:00')}
   /* Game day block (next game + last final). One component for every sport that has it: gameFeed() turns football's MP.SCHEDULE
      or a sport's real SMU Athletics schedule (MP.REAL) into the same shape, so football and basketball share markup and CSS. */
-  var GD_SPORTS={football:{bg:'helmet',act:'jennings-celebrate',verb:'Kickoff',thread:2},
-    'mens-basketball':{bg:'moody-bowl',act:'mbb-layup',verb:'Tip-off'},
-    'womens-basketball':{bg:'moody-bowl',act:'wbb-jumper',verb:'Tip-off'}};
+  var GD_SPORTS={football:{bg:'gd-football',act:'jennings-celebrate',verb:'Kickoff',thread:2},
+    'mens-basketball':{bg:'gd-mbb',act:'mbb-layup',verb:'Tip-off'},
+    'womens-basketball':{bg:'gd-wbb',act:'wbb-jumper',verb:'Tip-off'}};
   var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   /* '7 p.m. CT' / '11 am CT' -> ISO kickoff in Central time (CDT until Nov. 1, 2026, CST after); null when TBA/TBD */
   function ctISO(d,t){var m=String(t||'').match(/^(\d{1,2})(?::(\d\d))?\s*(a\.?m\.?|p\.?m\.?)/i);if(!m)return null;var h=+m[1]%12+(/^p/i.test(m[3])?12:0);
@@ -524,13 +529,13 @@
       sched=sportUrl(slug)+'#schedule',thr=C.thread?threadUrl(C.thread):sportUrl(slug)+'#board';
     var sc=l?l.res.match(/^([WL]) (\d+)-(\d+)/):null,us=sc?+sc[2]:0,them=sc?+sc[3]:0,exh=function(x){return x.ex?' (exh.)':''};
     return '<div class="gd-grid">'+
-      (n?'<div class="gd-next">'+photoBg(C.bg,{small:1})+'<div class="gd-in"><p class="eyebrow"><span class="live-dot"></span>Next game · '+esc(name)+(n.ex?' · Exhibition':'')+'</p>'+
+      (n?'<div class="gd-next">'+photoBg(C.bg,{gd:1,sizes:'(min-width:960px) 50vw, 100vw'})+'<div class="gd-in"><p class="eyebrow"><span class="live-dot"></span>Next game · '+esc(name)+(n.ex?' · Exhibition':'')+'</p>'+
         '<h2 class="gd-title">'+(n.home?'SMU <span>vs.</span> ':'SMU <span>at</span> ')+esc(n.opp)+'</h2>'+
         '<dl class="gd-facts"><div><dt>Date</dt><dd>'+gDate(n)+'</dd></div><div><dt>'+C.verb+'</dt><dd>'+gTime(n)+'</dd></div><div><dt>Where</dt><dd>'+esc(n.site)+'</dd></div><div><dt>TV</dt><dd>'+(n.tv?esc(n.tv):'TBA')+'</dd></div></dl>'+
         '<div class="cd" data-ko="'+gWhen(n)+'" data-tba="'+(n.ko?'':'1')+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>'+
         '<div class="gd-act"><a class="btn btn-red btn-sm" href="'+sched+'">Full schedule</a><a class="btn btn-ghost btn-sm" href="'+thr+'">Game thread</a></div>'+
         (n.note?'<p class="gd-note">'+esc(n.note)+'</p>':'')+'</div></div>':'<div class="gd-next"><div class="gd-in"><p class="eyebrow">'+esc(name)+'</p><h2 class="gd-title">Season complete</h2></div></div>')+
-      (l&&sc?'<article class="gd-hurry"><div class="gd-hph">'+photo((H&&H.photo&&H.photo[l.d])||C.act,{small:1})+CREDIT+'</div><div class="gd-hb">'+
+      (l&&sc?'<article class="gd-hurry"><div class="gd-hph">'+photo((H&&H.photo&&H.photo[l.d])||C.act,{small:1})+creditOf((H&&H.photo&&H.photo[l.d])||C.act)+'</div><div class="gd-hb">'+
         '<div class="score" role="group" aria-label="Final'+(l.ex?', exhibition':'')+', '+gDate(l)+': SMU '+us+', '+esc(l.opp)+' '+them+'"><span class="sc-t'+(us>them?' win':'')+'"><b>SMU</b><em>'+us+'</em></span><span class="sc-f"><b>Final'+(l.ex?' · Exh.':'')+'</b>'+gDate(l)+'</span><span class="sc-t sc-r'+(them>us?' win':'')+'"><em>'+them+'</em><b>'+esc(l.opp)+'</b></span></div>'+
         '</div></article>':'')+
       '</div>'}
