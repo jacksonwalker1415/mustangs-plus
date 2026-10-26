@@ -2424,8 +2424,7 @@ header.site .acct-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .mm-af{margin:18px 0 0}
 .mm-af .adfree{height:44px;font-size:16px}
 @media(max-width:639px){
-  header.site .acct-btn{display:inline-flex;width:44px;height:44px}
-  header.site .acct-btn .acct-av,header.site .acct-btn.in .acct-av{width:36px;height:36px}
+  header.site .acct-btn{display:none} /* phones: account lives in the menu (Jackson, Oct 26) */
   .hdr-act .af-hdr{display:none}
 }
 html.adfree [data-ad-slot],html.adfree .ad-slot{display:none!important}
