@@ -730,8 +730,9 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .sc-t.sc-r{justify-content:flex-start}
 .sc-t b{font-size:15px;font-weight:800;letter-spacing:0}
 .sc-t em{font-style:normal;font-family:var(--display);font-size:48px;line-height:1;font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
-.sc-t:not(.win){opacity:.5}
-.sc-t.win em{color:var(--blue)}
+/* losing side: solid SMU blue instead of 50% opacity (was #919abd on white, 2.77:1); the winning score carries the red accent */
+.sc-t:not(.win){color:var(--blue)}.sc-t:not(.win) b{font-weight:600}
+.sc-t.win em{color:var(--red)}
 .sc-f{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:600;color:var(--ink-3);text-align:center;white-space:nowrap}
 .sc-f b{font-size:12px;font-weight:800;letter-spacing:0;color:var(--black)}
 .gd-hb h3{font-size:18px;font-weight:800}
@@ -2737,3 +2738,6 @@ a.sp-rec-nx b{text-decoration:underline;text-decoration-color:rgba(255,255,255,.
 a.sp-rec-nx:hover b,a.sp-rec-nx:focus-visible b{text-decoration-color:#fff}
 a.sp-rec-nx:focus-visible{outline:3px solid #fff;outline-offset:2px}
 @media(max-width:639px){.sp-rec-in{flex-direction:column;align-items:stretch;gap:var(--s1)}.sp-rec-i{font-size:15px}}
+
+/* Sport pages: no backdrop-filter on card tags (WebKit memory/compositing cost with ~27 blurred tags on football); solid navy instead */
+body[data-page=sport] .poster-verb,body[data-page=sport] .dur{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,33,79,.85)}
