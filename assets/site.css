@@ -2199,6 +2199,73 @@ a.fx-quote-h:hover{text-decoration:underline}
 .gm-li-go{color:var(--blue);font-weight:700}
 @media(max-width:639px){.gm-li{grid-template-columns:76px minmax(0,1fr) auto;gap:var(--s3);padding:var(--s3) var(--s4)}}
 .gm-src-sec{padding-top:0}
+/* game-day stats (assets/gamestats.js): box score, team stats, leaders, scoring summary, season comparison */
+.gm-stats{padding-bottom:0}
+.gs-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s5);align-items:start}
+.gs-col{display:flex;flex-direction:column;gap:var(--s5);min-width:0}
+@media(max-width:959px){.gs-grid{grid-template-columns:minmax(0,1fr)}}
+.gs-card{gap:var(--s4);min-width:0}
+.gs-ls-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line-2);border-radius:var(--r1)}
+.gs-ls{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.gs-ls th,.gs-ls td{padding:10px 8px;text-align:center;font-size:15px;white-space:nowrap}
+.gs-ls thead th{font-size:13px;font-weight:700;color:var(--ink-3);border-bottom:1px solid var(--line-2)}
+.gs-ls tbody th{text-align:left;font-weight:700;color:var(--ink);white-space:normal;min-width:96px}
+.gs-ls thead th:first-child{text-align:left}
+.gs-ls tbody tr+tr th,.gs-ls tbody tr+tr td{border-top:1px solid var(--line)}
+.gs-ls tr.smu th{color:var(--blue)}
+.gs-ls .tot{font-weight:800;font-size:17px;color:var(--ink)}
+.gs-ls .tot.win{color:var(--blue)}
+.gs-att{font-size:14px;color:var(--ink-2)}
+.gs-cmp{display:flex;flex-direction:column}
+.gs-cmp-hd{display:flex;justify-content:space-between;font-weight:800;font-size:15px;padding-bottom:var(--s2);border-bottom:1px solid var(--line-2)}
+.gs-cmp-hd span:first-child{color:var(--blue)}
+.gs-cmp-hd span:last-child{color:var(--ink);text-align:right;max-width:60%}
+.gs-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:baseline;column-gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.gs-row:last-child{border-bottom:0}
+.gs-l{font-size:14px;color:var(--ink-2);text-align:center;font-weight:600}
+.gs-v{font-size:16px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.gs-vo{text-align:right}
+.gs-v.best{font-weight:800;color:var(--blue)}
+.gs-vo.best{color:var(--ink)}
+.gs-bar{grid-column:1/-1;display:flex;gap:3px;height:6px;margin-top:var(--s2)}
+.gs-bar i,.gs-bar b{display:block;height:100%;border-radius:3px;min-width:3px}
+.gs-bar i{background:var(--blue)}
+.gs-bar b{background:#B4BEE4}
+.gs-lead{display:flex;flex-direction:column;gap:var(--s4)}
+.gs-lc+.gs-lc{padding-top:var(--s4);border-top:1px solid var(--line)}
+.gs-lc h4{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:var(--s2)}
+.gs-lc-p{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s4)}
+.gs-pl{display:flex;flex-direction:column;gap:1px;min-width:0}
+.gs-pl-t{font-size:13px;font-weight:600;color:var(--ink-3)}
+.gs-pl-n{font-size:16px;font-weight:700;color:var(--ink);overflow-wrap:anywhere}
+a.gs-pl-n{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+a.gs-pl-n:hover{color:var(--red)}
+.gs-pl-v{font-size:14px;color:var(--ink-2)}
+.gs-pl-v b{color:var(--ink);font-weight:800}
+.gs-q{font-size:14px;font-weight:800;color:var(--blue);margin-top:var(--s2)}
+.gs-q:first-of-type{margin-top:0}
+.gs-plays{list-style:none;margin:0;padding:0}
+.gs-plays li{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--line);align-items:start}
+.gs-plays li:last-child{border-bottom:0}
+.gs-pt{display:flex;flex-direction:column;line-height:1.25}
+.gs-pt b{font-size:14px;font-weight:800;color:var(--ink);overflow-wrap:anywhere}
+.gs-plays li.smu .gs-pt b{color:var(--blue)}
+.gs-pt small{font-size:13px;color:var(--ink-3)}
+.gs-px{font-size:15px;color:var(--ink);line-height:1.4}
+.gs-px small{display:block;font-size:13px;color:var(--ink-3);margin-top:2px}
+.gs-ps{font-weight:800;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.gs-sk{font-size:13px;color:var(--ink-3);margin-top:calc(var(--s2) * -1)}
+@media(max-width:639px){.gs-plays li{grid-template-columns:56px minmax(0,1fr);grid-template-areas:"t x" "s x";row-gap:2px}
+  .gs-pt{grid-area:t}.gs-px{grid-area:x}.gs-ps{grid-area:s;font-size:14px;align-self:start}
+  .gs-card{padding:var(--s4)}.gs-lc-p{gap:var(--s3)}}
+.gs-foot{display:flex;flex-direction:column;gap:var(--s1);margin-top:var(--s4)}
+.gs-src{font-size:14px;color:var(--ink-2)}
+.gs-src a{color:var(--blue);font-weight:600}
+.gs-pre{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s5);align-items:start}
+.gs-pre.one{grid-template-columns:minmax(0,1fr);max-width:720px}
+@media(max-width:959px){.gs-pre{grid-template-columns:minmax(0,1fr)}}
+.gs-last-r b{font-size:28px;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums}
+.gs-last-d{font-size:15px;color:var(--ink-2);margin-top:calc(var(--s3) * -1)}
 /* game-day block + schedule links into the hub */
 .gd-glink{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:15px;color:var(--blue)}
 .gd-glink:hover{color:var(--red)}
@@ -2234,6 +2301,22 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 .rb-tv dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
 .rb-tv a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .rb-wrap .xside{top:calc(50% - 20px)}
+
+/* Watch page podcast rows */
+.prow{position:relative}
+.pods{border-top:1px solid var(--line)}
+.pcard{display:flex;flex-direction:column;gap:var(--s3);height:100%;padding:var(--s4);background:#fff;border:1px solid var(--line);border-radius:var(--r2)}
+.pc-top{display:flex;gap:var(--s3);align-items:flex-start;min-width:0}
+.pc-art{flex:none;width:72px;height:72px;border-radius:var(--r1);object-fit:cover;background:var(--blue-10)}
+.pc-txt{min-width:0}
+.pc-show{margin:0;font-size:13px;font-weight:700;color:var(--blue)}
+.pc-t{margin:2px 0 0;font-size:16px;line-height:1.3;font-weight:700;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.pc-m{margin:4px 0 0;font-size:13px;color:var(--ink-2)}
+.pc-au{display:block;width:100%;height:40px;margin-top:auto}
+.pc-links{display:flex;gap:var(--s4);margin:0;font-size:13px}
+.pc-links a{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.pc-links a:hover{color:var(--red)}
+.pc-au:focus-visible,.pc-links a:focus-visible{outline:2px solid var(--red);outline-offset:2px}
 /* ---------- Header search: one field (inline on wide screens, icon + drop-down field below 1366px) ---------- */
 .hsf{display:flex;align-items:center;gap:var(--s2);height:36px;width:220px;padding:0 var(--s3);border-radius:var(--r1);background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);border:1px solid transparent}
 .hsf:focus-within{border-color:#fff;background:rgba(255,255,255,.16)}
@@ -2281,6 +2364,17 @@ header.site.hs-open .hs-btn{background:rgba(255,255,255,.18)}
 .srch-more{margin-top:var(--s2);min-height:40px;padding:0;border:0;background:none;color:var(--blue);font-weight:700;font-size:15px;cursor:pointer;text-decoration:underline}
 .srch-empty{margin-top:var(--s6);color:var(--ink-2);font-size:16px}
 .srch-note{margin-top:var(--s2);font-size:14px;color:var(--ink-2)}
+
+/* Watch page: filter bar on top, show chips, written pieces at the bottom */
+.lib-bar{border-bottom:1px solid var(--line)}
+.lib-bar .filters{margin-bottom:0}
+.lib-bar.sec.tight{padding-bottom:var(--s5)}
+.lib-shows{margin-bottom:var(--s4)}
+.lib-shows::-webkit-scrollbar{display:none}
+.lib-shows .chip[aria-pressed="true"],.lib-chips .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:639px){.lib-shows{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:calc(var(--gut)*-1);padding-right:var(--gut);padding-bottom:2px}.lib-shows .chip{flex:none;height:44px}}
+.is-off{display:none!important}
+#libRead{border-top:1px solid var(--line)}
 /* ---------- Game thread score box (pinned at the top of a game's thread) ---------- */
 .gt-box{margin:var(--s4) 0 0;padding:var(--s4) var(--s5);background:#fff;border:1px solid var(--fx-line-2,var(--line-2));border-radius:8px}
 @media(min-width:960px){.gt-box{position:sticky;top:calc(var(--hdr-h,64px) + 8px);z-index:5;box-shadow:0 2px 10px rgba(22,33,79,.08)}}

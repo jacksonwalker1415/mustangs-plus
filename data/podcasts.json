@@ -1,0 +1,103 @@
+{
+  "_note": "Podcast shows for the Watch page. tools/fetch_podcasts.py reads each RSS feed and writes data/podcasts-feed.json. filter 'smu' keeps only episodes whose title matches the SMU pattern. Beatline Mustangs is left out until its hosts are verified; Pony Up has no podcast feed (YouTube only).",
+  "shows": [
+    {
+      "key": "on-the-pony-express",
+      "name": "On The Pony Express",
+      "rss": "https://feeds.simplecast.com/eSeVNxtA",
+      "apple": "https://podcasts.apple.com/us/podcast/on-the-pony-express-smu-mustangs-podcast/id1604025463",
+      "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
+      "filter": "none",
+      "dedupe_against": "mustang-mood",
+      "dedupe_name": "Mustang Mood"
+    },
+    {
+      "key": "locked-on-smu",
+      "name": "Locked On SMU",
+      "rss": "https://feeds.simplecast.com/MciFpBoA",
+      "apple": "https://podcasts.apple.com/us/podcast/locked-on-smu-daily-podcast-on-smu-mustangs-football/id1824252582",
+      "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
+      "filter": "none"
+    },
+    {
+      "key": "mustang-mood",
+      "name": "The Mustang Mood",
+      "rss": "https://anchor.fm/s/f30ae8a0/podcast/rss",
+      "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-sports-podcast/id1734256145",
+      "spotify": "https://open.spotify.com/show/7nMjtANtm8wKhWspJdykWW",
+      "filter": "none"
+    },
+    {
+      "key": "mustang-studios",
+      "name": "Mustang Studios",
+      "rss": "https://anchor.fm/s/113681870/podcast/rss",
+      "apple": "https://podcasts.apple.com/us/podcast/mustang-studios/id1896902919",
+      "spotify": "https://open.spotify.com/show/033tbiq7DqdWcVjIc4QYCz",
+      "filter": "none"
+    },
+    {
+      "key": "all-access-am",
+      "name": "All-Access AM",
+      "rss": "https://feeds.simplecast.com/CCXG3jol",
+      "apple": "https://podcasts.apple.com/us/podcast/all-access-am-with-billy-embody/id1846140556",
+      "spotify": "https://open.spotify.com/show/3T8zaBlk1yDnsfmfRdj401",
+      "filter": "smu"
+    },
+    {
+      "key": "locked-on-acc",
+      "name": "Locked On ACC",
+      "rss": "https://rss.pdrl.fm/38e601/feeds.simplecast.com/30WG0faH",
+      "apple": "https://podcasts.apple.com/us/podcast/locked-on-acc-daily-college-football-basketball-podcast/id1496630229",
+      "spotify": "https://open.spotify.com/show/645eP4x6J0G3tpazJSYpPN",
+      "filter": "smu"
+    },
+    {
+      "key": "kc-masterpiece",
+      "name": "The K&C Masterpiece",
+      "rss": "https://rss.amperwave.net/v2/feed/audacy/dallas-fort_worth_krldfm-the_k&c_masterpiece",
+      "apple": "https://podcasts.apple.com/us/podcast/the-k-c-masterpiece/id772390971",
+      "spotify": "https://open.spotify.com/show/14ggDlF9fxpbYGCZWMHokQ",
+      "filter": "smu"
+    },
+    {
+      "key": "inside-access",
+      "name": "Inside ACCess",
+      "rss": "https://feeds.megaphone.fm/ESP4057732354",
+      "apple": "https://podcasts.apple.com/us/podcast/inside-access/id1833079426",
+      "spotify": "https://open.spotify.com/show/4Mhj9unLtxFFu4V794KjY1",
+      "filter": "smu"
+    },
+    {
+      "key": "accn-football",
+      "name": "ACC Network Football Podcast",
+      "rss": "https://feeds.megaphone.fm/ESP8048010953",
+      "apple": "https://podcasts.apple.com/us/podcast/acc-network-football-podcast/id1833078177",
+      "spotify": "https://open.spotify.com/show/2dGiVf0yHXhdrIPvetIjBY",
+      "filter": "smu"
+    },
+    {
+      "key": "next-round",
+      "name": "The Next Round",
+      "rss": "https://feeds.megaphone.fm/DBLM5717227298",
+      "apple": "https://podcasts.apple.com/us/podcast/the-next-round/id1797862560",
+      "spotify": "https://open.spotify.com/show/7zlofzLZht7dYxjNcBNpWN",
+      "filter": "smu"
+    },
+    {
+      "key": "jim-rome",
+      "name": "The Jim Rome Show",
+      "rss": "https://feeds.megaphone.fm/WWO1500570782",
+      "apple": "https://podcasts.apple.com/us/podcast/the-jim-rome-show/id1435335050",
+      "spotify": "https://open.spotify.com/show/5BPPijSmlIvjYFIb96deix",
+      "filter": "smu"
+    },
+    {
+      "key": "dmn",
+      "name": "DMN Morning Debrief",
+      "rss": "https://feeds.megaphone.fm/dallas-morning-news",
+      "apple": "https://podcasts.apple.com/us/podcast/the-dallas-morning-news/id1379040585",
+      "spotify": "https://open.spotify.com/show/033Q4qKFrnaZseWfRrqNGa",
+      "filter": "smu"
+    }
+  ]
+}

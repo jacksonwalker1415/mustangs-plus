@@ -76,6 +76,17 @@ def embeddable(vid):
         return False
 
 
+def has_maxres(vid):
+    try:
+        req = urllib.request.Request(f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg", method="HEAD", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return r.status == 200
+    except urllib.error.HTTPError as e:
+        return e.code != 404
+    except Exception:
+        return True
+
+
 def watch_info(vid):
     """Best effort: (length in seconds or None, upcoming?). YouTube may serve a consent page; then both are unknown."""
     try:
@@ -148,6 +159,8 @@ def main():
             item = {"id": v["id"], "title": v["title"], "published": v["published"]}
             if dur:
                 item["dur"] = dur
+            if (known[v["id"]].get("nomax") if v["id"] in known else not has_maxres(v["id"])):
+                item["nomax"] = True  # no HD thumbnail: the page asks for hqdefault directly instead of logging a 404
             vids.append(item)
         # carry forward earlier finds that have scrolled out of the RSS window, if still recent and still embeddable
         in_feed = {v["id"] for v in entries}
