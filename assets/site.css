@@ -1848,6 +1848,11 @@ main[tabindex="-1"]:focus{outline:none}
 .htab[aria-selected="false"]:hover{color:var(--ink)}
 /* form-field focus rings are main's (94ef9e5: SMU blue for keyboard, none after a tap) */
 
+/* ---- Page transitions (bot/page-transitions): the cross-document fade itself lives in the inline boot block of every page.
+   The header keeps its own snapshot, so it holds still while the page under it fades (no double header on narrow or wide screens).
+   Not while the phone menu, the sports drop-down or an overlay is open: then the whole page, open panel included, simply fades. ---- */
+html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden]),#mmenu:not([hidden]))){view-transition-name:site-header}
+
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */

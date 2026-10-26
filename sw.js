@@ -10,6 +10,8 @@
    - static files (css, js, images, fonts): network first too, cached by full URL including ?v=.
      When a new ?v= of a file is stored, older ?v= copies of that file are deleted, so a stale
      version can never be served.
+   Navigation preload is on where supported: the page request starts while the worker is still waking up,
+   so a cold worker never adds a pause (and a blank moment in the home-screen app) before a page arrives.
    Bump VERSION to drop every cache on the next visit. To retire the worker, replace this file with
    one that calls self.registration.unregister(). */
 'use strict';
@@ -38,6 +40,8 @@ self.addEventListener('activate', function (e) {
     return Promise.all(keys.filter(function (k) {
       return k.indexOf(PREFIX) === 0 && k !== SHELL && k !== RUNTIME;
     }).map(function (k) { return caches.delete(k); }));
+  }).then(function () {
+    if (self.registration.navigationPreload) return self.registration.navigationPreload.enable().catch(function () {});
   }).then(function () { return self.clients.claim(); }));
 });
 
@@ -78,9 +82,11 @@ function store(req, res, nav) {
 
 self.addEventListener('fetch', function (e) {
   var req = e.request;
-  if (!handled(req)) return;
+  var pre = req.mode === 'navigate' && e.preloadResponse ? Promise.resolve(e.preloadResponse).catch(function () {}) : null;
+  if (!handled(req)) { if (pre) e.waitUntil(pre); return; }   // let the preload settle quietly; the browser fetches as usual
   var nav = req.mode === 'navigate';
-  e.respondWith(fetch(req).then(function (res) {
+  var net = pre ? pre.then(function (r) { return r || fetch(req); }) : fetch(req);
+  e.respondWith(net.then(function (res) {
     if (cacheable(res)) { var copy = res.clone(); e.waitUntil(store(req, copy, nav)); }
     return res;
   }).catch(function (err) {
