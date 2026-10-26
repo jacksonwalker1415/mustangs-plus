@@ -66,12 +66,15 @@
      counted from the threads this page actually has (the seed plus this browser's posts). Never the old sample numbers. */
   function countBoards(){var F={},S={};(MP.THREADS||[]).forEach(function(t){var n=(t.posts||[]).length||1,f=F[t.f]=F[t.f]||{threads:0,posts:0};f.threads++;f.posts+=n;
     if(t.sport){var s=S[t.sport]=S[t.sport]||{threads:0,posts:0};s.threads++;s.posts+=n}});return {forums:F,sports:S}}
+  /* Per-thread numbers must be real too: replies = posts after the first; views only where the database really counted them */
+  var THREAD_STATS=false;  /* flip after PROPOSED_8_board_counts.sql is applied */
+  function realCounts(){(MP.THREADS||[]).forEach(function(t){if(!t.live){t.replies=Math.max(0,(t.posts||[]).length-1);t.views=null}})}
   function applyBoards(c){(MP.FORUMS||[]).forEach(function(f){var x=c.forums[f.id]||{};f.threads=x.threads||0;f.posts=x.posts||0});MP.SPORT_STATS=c.sports;return c}
   function meKey(){return SMU.user?(SMU.live?'u:'+SMU.user.id:'me'):null}
 
   /* ================= DEMO backend (localStorage) ================= */
   var demo={
-    init:function(){var u=lj('mp_user',null);SMU.user=u;if(u)ensureUser('me',u.name,demo.tier(),String(new Date(u.since||Date.now()).getFullYear()));demo.mergeThreads();fillUsers();applyBoards(countBoards());return Promise.resolve()},
+    init:function(){var u=lj('mp_user',null);SMU.user=u;if(u)ensureUser('me',u.name,demo.tier(),String(new Date(u.since||Date.now()).getFullYear()));demo.mergeThreads();realCounts();fillUsers();applyBoards(countBoards());return Promise.resolve()},
     signUp:function(o){var u={id:uid(),email:String(o.email).trim().toLowerCase(),name:(o.name||'').trim()||nameFromEmail(o.email),since:Date.now()};
       sj('mp_user',u);ls('mp_lastname',u.name);SMU.user=u;ensureUser('me',u.name,demo.tier());MP.USERS.me.n=u.name;emit('auth',u);return Promise.resolve({user:u,confirm:false})},
     signIn:function(o){var u=lj('mp_user',null),em=String(o.email).trim().toLowerCase();
@@ -120,7 +123,7 @@
     var idx={};posts.forEach(function(p,i){idx[p.id]=i});
     var P=posts.map(function(p){var u=p.author_handle||ensureUser('u:'+p.author_id,p.author&&p.author.display_name);
       return [u,p.body,p.quote_post_id!=null&&idx[p.quote_post_id]!=null?idx[p.quote_post_id]:null,p.created_at,p.id]});
-    return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,by:by,ago:ago(r.created_at),replies:Math.max(r.reply_count||0,Math.max(0,P.length-1)),views:kfmt(r.view_count),
+    return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,by:by,ago:ago(r.created_at),replies:P.length?P.length-1:(r.author_handle?null:Math.max(0,r.reply_count||0)),views:r.author_handle?null:kfmt(r.view_count),
       pin:!!r.pinned,hot:!!r.hot,posts:P.length?P:[[by,'',null,r.created_at]],locked:!P.length,live:true,mine:SMU.user&&r.author_id===SMU.user.id}}
   var THREAD_SEL='id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,author:profiles!threads_author_id_fkey(display_name),'+
     'posts(id,author_handle,author_id,body,quote_post_id,created_at,author:profiles!posts_author_id_fkey(display_name))';
@@ -185,7 +188,12 @@
       var op=has?sb.from('saved_athletes').delete().eq('user_id',SMU.user.id).eq('athlete_id',id):sb.from('saved_athletes').insert({user_id:SMU.user.id,athlete_id:id});
       return q('saved',op).then(function(){if(has)savedCache=savedCache.filter(function(x){return x!==id});else savedCache.unshift(id);emit('saved',savedCache);return savedCache})},
     loadThreads:function(){return q('threads',sb.from('threads').select(THREAD_SEL).order('last_post_at',{ascending:false}).limit(200)).then(function(rows){
-      MP.THREADS=(rows||[]).map(toThread);recFilter();fillUsers();emit('threads');return MP.THREADS})},
+      MP.THREADS=(rows||[]).map(toThread);recFilter();fillUsers();
+      /* Members-only posts aren't readable signed out, so their reply counts stay hidden. Once supabase/PROPOSED_8_board_counts.sql
+         has run, set THREAD_STATS to true and the real totals come from the thread_stats view (kept off until then to avoid a 404). */
+      if(!THREAD_STATS||!MP.THREADS.some(function(t){return t.replies==null}))return;
+      return sb.from('thread_stats').select('thread_id,posts').then(function(r){if(r&&!r.error&&r.data){var m={};r.data.forEach(function(x){m[x.thread_id]=x.posts});
+        MP.THREADS.forEach(function(t){if(t.replies==null&&m[t.id]!=null)t.replies=Math.max(0,m[t.id]-1)})}},function(){})}).then(function(){emit('threads');return MP.THREADS})},
     loadThread:function(id){return q('thread',sb.from('threads').select(THREAD_SEL).eq('id',id).maybeSingle()).then(function(r){if(!r||(recOff()&&r.forum_id==='recruiting'))return null;var t=toThread(r);
       MP.THREADS=MP.THREADS.filter(function(x){return x.id!==id});MP.THREADS.unshift(t);
       sb.rpc('bump_thread_view',{tid:id}).then(function(){},function(){});return t})},
@@ -211,7 +219,7 @@
   SMU.tier=function(){return B().tier()};
   SMU.saved=function(){return B().saved()};
   SMU.me=meKey;
-  applyBoards(countBoards());  /* replace the sample totals before anything renders */
+  realCounts();applyBoards(countBoards());  /* replace the sample totals and per-thread counts before anything renders */
   SMU.ready=(configured?live.init():demo.init()).then(function(){emit('ready',SMU.mode);return SMU.mode});
   if(typeof window!=='undefined'){window.addEventListener('offline',function(){emit('net',false)});window.addEventListener('online',function(){emit('net',true)})}
 })();
