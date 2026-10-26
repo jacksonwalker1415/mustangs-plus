@@ -806,7 +806,7 @@
     var HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>';
     /* ================= Board index ================= */
     function nodeRow(o){var t=o.last,lu=t&&U(t.posts[t.posts.length-1][0]),un=o.list.some(unread);
-      return '<div class="fx-node'+(un?' unread':'')+'"><span class="fx-node-ic" aria-hidden="true">'+(o.icon||CHAT)+'</span>'+
+      return '<div class="fx-node'+(un?' unread':'')+'">'+
         '<div class="fx-node-main"><h3 class="fx-node-t"><a href="'+o.href+'">'+esc(o.name)+'</a>'+(un?'<span class="fx-new">New</span>':'')+'</h3><p class="fx-node-d">'+esc(o.desc)+'</p>'+
         (o.subs?'<p class="fx-subs">'+o.subs+'</p>':'')+
         '<p class="fx-node-mob">'+num(o.threads)+(o.threads===1?' thread':' threads')+' \u00b7 '+num(o.posts)+(o.posts===1?' message':' messages')+'</p></div>'+
@@ -815,7 +815,7 @@
     function renderIndex(){var used={},html='';
       CATS.forEach(function(c,ci){var rows=[];
         if(c.teams)TEAMS.forEach(function(tm){var list=MP.THREADS.filter(function(t){return inTeam(t,tm)}),st=teamStats(tm);
-          rows.push(nodeRow({name:tm.name,desc:tm.desc,href:'?team='+tm.id,list:list,last:newest(list),threads:st.threads||list.length,posts:st.posts,icon:tm.sports&&tm.sports.length===1?sportIcon(tm.sports[0]):tm.id==='basketball'?sportIcon('mens-basketball'):CHAT,
+          rows.push(nodeRow({name:tm.name,desc:tm.desc,href:'?team='+tm.id,list:list,last:newest(list),threads:st.threads||list.length,posts:st.posts,
             subs:tm.sports&&tm.sports.length===1?'':teamSports(tm).map(function(s){var sp=sportBy(s);return sp?'<a href="?sport='+s+'">'+esc(sp.name)+'</a>':''}).join('')}))});
         else{var ids=c.ids.slice();if(ci===CATS.length-1)MP.FORUMS.forEach(function(f){if(!used[f.id]&&ids.indexOf(f.id)<0&&!CATS.some(function(x){return x.ids&&x.ids.indexOf(f.id)>=0}))ids.push(f.id)});
           ids.forEach(function(id){var f=forumBy(id);if(!f)return;used[id]=1;var list=MP.THREADS.filter(function(t){return t.f===id});
