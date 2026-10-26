@@ -1617,7 +1617,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
   --sec-y:clamp(48px,5.5vw,80px);
   --ease:cubic-bezier(.2,.7,.2,1);--t-fast:.15s;--t-med:.28s;
   /* broadcast hairline texture for dark surfaces */
-  --hair:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 1px,transparent 1px 14px);
+  --hair:none; /* audit Oct. 26: the diagonal hatch texture was a gradient; flat SMU blue only */
 }
 
 /* ---- 6.2 Focus: main (94ef9e5) owns the focus ring (SMU blue for keyboard, white on dark, none after a tap or click); nothing here ---- */
@@ -1734,8 +1734,8 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 .hero.has-photo{border-bottom:3px solid var(--red)}
 .jump{box-shadow:0 1px 0 var(--card-line)}
 .jump a{position:relative;transition:color var(--t-fast)}
-.brief-panel,.band{background:var(--hair),linear-gradient(135deg,var(--b-800) 0%,var(--b-900) 100%);box-shadow:inset 4px 0 0 var(--red)}
-.gameday{background:var(--hair),linear-gradient(180deg,var(--b-800) 0%,var(--b-900) 100%)}
+.brief-panel,.band{background:var(--b-800);box-shadow:inset 4px 0 0 var(--red)}
+.gameday{background:var(--b-800)}
 .sec.dark{background:var(--hair),var(--b-800)}
 .site-ft{box-shadow:inset 0 3px 0 var(--red)}
 .acct-card{box-shadow:var(--sh-2)}
@@ -1843,7 +1843,7 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 .skip-link:focus{transform:none}  /* its keyboard ring is main's :focus-visible (94ef9e5) */
 main[tabindex="-1"]:focus{outline:none}
 /* home tabs: inactive labels were 1.9:1 on white; now 4.9:1 (large-text AA needs 3:1) */
-.htab[aria-selected="false"]{color:#6b7190}
+.htab[aria-selected="false"]{color:var(--ink-3)}
 .htab[aria-selected="false"]:hover{color:var(--ink)}
 /* form-field focus rings are main's (94ef9e5: SMU blue for keyboard, none after a tap) */
 
@@ -2404,3 +2404,19 @@ header.site.hs-open .hs-btn{background:rgba(255,255,255,.18)}
 @media(max-width:639px){.gt-box{padding:var(--s3) var(--s4)}.gt-t{font-size:18px}.gt-st{margin-left:0}}
 .rb-stats{display:flex;align-items:center;gap:4px;min-height:36px;padding:0 var(--s4);border-top:1px solid var(--line);font-size:14px;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:2px}
 .rb-stats:hover{color:var(--b-700)}
+
+/* ---------- Site audit (Oct. 26, 2026): palette and phone tap targets ----------
+   No yellow or teal: results, chips and stars use SMU blue / red tints. Links and filters are at least 44px tall on phones. */
+.res.w,.stat-chip.good,.rk-s.good,.vb.ov{background:var(--blue-10);color:var(--blue)}
+.dir.in{background:var(--blue);color:#fff}
+.stars,.rk .stars,.tbl.vis td:nth-child(5){color:var(--blue)}
+.sec.dark .stars,.gameday .stars,.page-hero .stars,.tier.dark .stars,.dark .note-t,.pw-inline .eyebrow{color:#fff}
+.brief-f.err input{border-color:var(--red)}
+.brief-panel .brief-f.err .brief-m::before{background:var(--red)}
+mark{background:var(--blue-10)}
+.srch-tabs button,.srch-more{min-height:44px}
+@media(max-width:699px){
+  .disclaimer a{display:inline-block;padding:13px 0;margin:-13px 0}
+  a.r-game{display:inline-block;padding:13px 0;margin:-13px 0}
+  .rb-stats{min-height:44px}
+}

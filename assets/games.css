@@ -1,6 +1,16 @@
 /* Game-day hub (games/ and games/?id=...): matchup header, schedule board, box score hierarchy.
    Loaded only by games/index.html, after site.css. Blue dominant, red as the accent, white sections, 1px light-blue hairlines. */
-body[data-page="games"]{--gm-hair:rgba(53,76,161,.16);--gm-hair-2:rgba(53,76,161,.28);--gm-tint:#C9D1EC}
+body[data-page="games"]{--gm-hair:rgba(53,76,161,.16);--gm-hair-2:rgba(53,76,161,.28)}
+
+/* Palette on game pages: SMU blue and red for every highlight, bar, leader and accent; neutrals for text; blue hairlines */
+body[data-page="games"] main{--ink:#1f1f1f;--ink-2:#4d4d4d;--ink-3:#5c5c5c;--black:#1f1f1f;--line:rgba(53,76,161,.16);--line-2:rgba(53,76,161,.28);color:var(--ink)}
+body[data-page="games"] main .credit{background:rgba(0,0,0,.55)}
+body[data-page="games"] main .poster{background:#1f1f1f;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+body[data-page="games"] main .poster-verb,body[data-page="games"] main .tpl-card>.poster-verb,body[data-page="games"] main .mcard.ext .poster.tpl-card .poster-verb{background:rgba(0,0,0,.45)}
+body[data-page="games"] main .tpl-card .tpl-ph{background:var(--blue)}
+body[data-page="games"] main .dur{background:rgba(0,0,0,.62)}
+body[data-page="games"] main .xarr{box-shadow:0 2px 8px rgba(0,0,0,.2)}
+body[data-page="games"] main .gm-pn a{border-color:var(--gm-hair-2)}
 
 /* ---------- Matchup header ---------- */
 .gmx{position:relative;background:var(--blue);color:#fff;overflow:hidden;border-bottom:4px solid var(--red)}
@@ -86,18 +96,18 @@ body[data-page="games"] .gm-h{font-size:18px;color:var(--blue)}
 .gs-l{font-size:14px;color:var(--ink);font-weight:700;align-self:center}
 .gs-bar{height:10px;gap:4px;margin-top:var(--s2)}
 .gs-bar i,.gs-bar b{border-radius:2px}
-.gs-bar b{background:var(--gm-tint)}
+.gs-bar b{background:#fff;box-shadow:inset 0 0 0 1px var(--blue)}
 .gs-lc+.gs-lc{border-top:1px solid var(--gm-hair)}
 .gs-lc h4{font-size:14px;color:var(--ink-3);font-weight:700}
-.gs-lc-p .gs-pl{padding-left:var(--s3);border-left:3px solid var(--gm-tint)}
-.gs-lc-p .gs-pl:first-child{border-left-color:var(--blue)}
+.gs-lc-p .gs-pl{padding-left:var(--s3);border-left:1px solid var(--gm-hair-2)}
+.gs-lc-p .gs-pl:first-child{border-left:3px solid var(--blue)}
 .gs-pl-v b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.05;color:var(--ink);display:inline-block;margin-right:2px}
 .gs-lc-p .gs-pl:first-child .gs-pl-v b{color:var(--blue)}
 .gs-pl-v{display:block;margin-top:2px}
 .gs-q{font-size:15px;padding-bottom:var(--s1);border-bottom:2px solid var(--blue);display:inline-block;margin-top:var(--s4)}
 .gs-plays li{border-bottom:1px solid var(--gm-hair)}
 .gs-plays li.smu{box-shadow:inset 3px 0 0 var(--blue);padding-left:var(--s3)}
-.gs-plays li:not(.smu){padding-left:var(--s3);box-shadow:inset 3px 0 0 var(--gm-tint)}
+.gs-plays li:not(.smu){padding-left:var(--s3);box-shadow:inset 1px 0 0 var(--gm-hair-2)}
 .gs-ps{font-family:var(--display);font-weight:400;font-size:20px;line-height:1.1}
 .gs-plays li.smu .gs-ps{color:var(--blue)}
 .gs-last-r b{font-family:var(--display);font-weight:400;font-size:48px;line-height:1}
@@ -155,6 +165,8 @@ body[data-page="games"] .gm-h{font-size:18px;color:var(--blue)}
   .gmu-row{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:639px){
+  /* player names in the leaders block: 44px tap targets */
+  a.gs-pl-n{display:inline-flex;align-items:center;min-height:44px;align-self:flex-start}
   .gmx-ph{height:200px}
   .gmx-h1{font-size:clamp(44px,13vw,60px)}
   .gmx-meta{font-size:15px}
