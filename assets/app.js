@@ -223,7 +223,7 @@
   var TICON={video:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',article:'<svg viewBox="0 0 24 24"><path d="M5 4h14v2H5zm0 4h14v2H5zm0 4h14v2H5zm0 4h9v2H5z"/></svg>',podcast:'<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg>'};
   var VERB={video:'Watch',article:'Read',podcast:'Listen'};
   /* No-photo poster: solid colour by content type, big white sport icon (or a neutral type mark), small uppercase kicker. No gradients, no watermark word. */
-  var CARD_SPORT={'micd-setter':'volleyball','walk-on':'football','coachs-corner-acc':'football','thursday-notes':'football'};
+  var CARD_SPORT={'preview-syracuse':'football','preview-msoc-louisville':'mens-soccer','vb-road-sweep':'volleyball','micd-setter':'volleyball','walk-on':'football','coachs-corner-acc':'football','thursday-notes':'football'};
   var NP_MARK={video:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="46" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M50 40v40l32-20z" fill="#fff"/></svg>',
     article:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="26" y="18" width="68" height="84" rx="4" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M38 38h44M38 52h44M38 66h44M38 80h28" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>',
     podcast:'<svg class="np-mark" viewBox="0 0 120 120" aria-hidden="true"><rect x="46" y="16" width="28" height="52" rx="14" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M34 56a26 26 0 0 0 52 0M60 82v20M46 102h28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>'};

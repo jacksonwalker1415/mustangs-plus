@@ -1,0 +1,31 @@
+-- SMU+ RUN_ME_4: content_items upsert after merging bot/content-timely (Syracuse preview, men's soccer vs. Louisville, volleyball road sweep).
+-- Safe to run more than once (insert ... on conflict do update). Nothing is removed. Generated from supabase/seed.sql.
+insert into public.content_items (id,type,category,label,title,description,duration,members_only,sport,sort) values
+  ('boulevard-nights-1','video','watch','Docuseries · Ep. 1','Boulevard Nights: The Tent Line','Six hours before kickoff, from the first canopy on Bishop Boulevard to the Mustang Band''s walk.','21:40',true,null,0),
+  ('boulevard-nights-2','video','watch','Docuseries · Ep. 2','Boulevard Nights: Band Day','Three hundred instruments, one halftime show and a drumline that practices in the parking garage.','19:12',true,null,1),
+  ('hilltop-unfiltered','video','watch','Video Series','Hilltop Unfiltered: Fall Camp','Ep. 4 · Two-a-days, the cold tub and the meeting room nobody films. Until now.','24:18',true,null,2),
+  ('rivalry-week','video','watch','Game Week','Game Week Access: Rivalry Week','Walkthroughs on Thursday, film on Friday and the bus ride down Mockingbird to Ford Stadium.','18:02',true,null,3),
+  ('five-am-laps','video','watch','Swimming & Diving','5 a.m. Laps','Taper week at the natatorium, filmed before most of campus is awake.','12:55',true,null,4),
+  ('micd-setter','video','watch','Mic''d Up','Mic''d Up: The Setter','Every call, every timeout huddle and one very honest conversation with an official.','9:47',false,null,5),
+  ('moody-opening','video','watch','Basketball','Opening Night at Moody','Lights out, smoke on, and the walk from the locker room to the tunnel.','14:30',true,null,6),
+  ('preview-syracuse','article','insider','Game Preview','SMU at Syracuse: one trip north, then back to the lights','Four straight wins, a 42-0 second half in the rearview and the only road date in a seven-week stretch. Sat., 11 a.m. CT, ESPN2.','4 min read',false,null,7),
+  ('preview-msoc-louisville','article','insider','Men''s Soccer · Preview','Fourteen games, no losses: men''s soccer hosts Louisville','Ten clean sheets, 41 goals and a Friday night on ACC Network. The unbeaten Mustangs come home to Washburne.','3 min read',false,null,8),
+  ('vb-road-sweep','article','insider','Volleyball','Six sets, zero dropped: volleyball sweeps its way out of a rough week','Two home losses, then straight-set wins at Clemson and Georgia Tech. Two more road matches, then four straight at Moody.','3 min read',false,null,9),
+  ('walk-on','article','insider','Feature','From walk-on to Saturday starter','Four years, no scholarship, and a locker next to the laundry room.','8 min read',false,null,10),
+  ('coachs-corner-acc','article','insider','Coach''s Corner','Coach''s Corner: Year two in the ACC','Longer flights, louder road stadiums and the recovery day nobody used to need.','7 min read',false,null,11),
+  ('thursday-notes','article','insider','Practice Report','Thursday notes: what changed after the open week','A new third-down personnel group, a kicker who finally relaxed, and a freshman who is not leaving the field.','5 min read',false,null,12),
+  ('building-contender','article','insider','Interview','Building a contender in 90 days','Women''s basketball had six scholarship players in April. Here is how the staff got to fifteen.','6 min read',false,null,13),
+  ('visit-weekend','article','recruiting','Recruiting','Visit Weekend: 48 hours on the Hilltop','Steak dinner in Uptown, a Saturday on the Boulevard and a very quiet Sunday brunch.','6 min read',false,null,14),
+  ('recruiting-notebook','article','recruiting','Notebook','Recruiting notebook: a Friday night in Dallas ISD','Three stadiums, two staff cars and one sophomore everybody is about to know.','5 min read',false,null,15),
+  ('board-2028','article','recruiting','Big Board','The 2028 board, as of late October','Where the (fictional) top targets stand, and which ones are coming back for an official visit.','7 min read',false,null,16),
+  ('building-roster','article','portal','Portal','Building the Roster: the whiteboard in the war room','Pencil, never marker. Inside the meeting where portal targets get ranked.','9 min read',false,null,17),
+  ('portal-primer','article','portal','Portal','Portal season, explained without the jargon','What actually happens between the window opening and a kid showing up for spring ball.','6 min read',false,null,18),
+  ('film-pressure','article','film','Film Room','Film Room: the third-down pressure that keeps working','Two linebackers show blitz, one drops, and the quarterback throws into a safety who never moved.','6 min read',true,null,19),
+  ('film-screen','article','film','Film Room','Film Room: why the slot screen sets up everything','It gains four yards. Then it gains forty. A breakdown of one series against an ACC defense.','5 min read',true,null,20),
+  ('film-rotation','article','film','Film Room','Film Room: volleyball''s rotation four problem','The weak rotation every team has, and the serve-receive tweak that fixed ours.','5 min read',false,null,21),
+  ('film-session-redzone','video','film','Film Session','Film Session: red zone, frame by frame','A former linebacker on the telestrator for 20 minutes of goal-line snaps.','20:05',true,null,22),
+  ('coachs-corner-pod','podcast','podcasts','Podcast','The Coach''s Corner','Weekly with the head coach (fictional for this concept): scheme, the week ahead and whatever went wrong Saturday.','41 min',false,null,23),
+  ('pony-up-pod','podcast','podcasts','Podcast','Pony Up: The Locker Room Pod','Athletes host. Pregame playlists, roommate disputes and the best taco place on Lower Greenville.','33 min',false,null,24),
+  ('paddock-report','podcast','podcasts','Insider Pod','The Paddock Report','Sam Reyes and J.T. Barlow on practice notes, game previews and the rumor of the week.','52 min',false,null,25),
+  ('trail-live','podcast','recruiting','Podcast','Recruiting Trail Live','Call-in show every Tuesday night. Yes, someone always asks about the kicker.','48 min',false,null,26)
+on conflict (id) do update set type=excluded.type,category=excluded.category,label=excluded.label,title=excluded.title,description=excluded.description,duration=excluded.duration,members_only=excluded.members_only,sport=excluded.sport,sort=excluded.sort;
