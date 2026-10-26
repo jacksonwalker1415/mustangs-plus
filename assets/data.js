@@ -60,7 +60,7 @@ MP.CLASSES = ['Fr.','R-Fr.','So.','Jr.','Sr.','Gr.'];
 
 /* Message board (fictional users and posts) */
 MP.FORUMS = [
-  {id:'paddock',name:'The Paddock',desc:'Members-only premium board. Insider intel and practice reports.',prem:true,threads:1284,posts:48211},
+  {id:'paddock',name:'The Paddock',desc:'Insider intel and practice reports from SMU+ staff.',prem:true,threads:1284,posts:48211},
   {id:'hilltop',name:'The Hilltop',desc:'Free board for every Mustang fan. Game talk, takes and hype.',prem:false,threads:3907,posts:122640},
   {id:'recruiting',name:'Recruiting Trail',desc:'Visits, offers and commitments across every sport.',prem:true,threads:612,posts:20975},
   {id:'boulevard',name:'The Boulevard',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
@@ -155,7 +155,7 @@ MP.THREADS = [
 /* Board upgrade: forum groups, more users, longer threads with quoted replies. All fictional. */
 (function(){var MP=window.MP;
 MP.FORUMS.forEach(function(f){f.group=f.prem?'Premium':'Community'});
-MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame breakdowns with the SMU+ film staff. Members only.',prem:true,threads:388,posts:9140,group:'Premium'});
+MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame breakdowns with the SMU+ film staff.',prem:true,threads:388,posts:9140,group:'Premium'});
 MP.FORUMS.push({id:'help',name:'Site Help & Feedback',desc:'Bugs, feature requests and membership questions.',prem:false,threads:214,posts:1630,group:'Community'});
 MP.USERS.dre={n:'Dre Coleman',tier:'SMU+ Film Room',staff:true,since:'2024',posts:'2,214'};
 MP.USERS.jt={n:'J.T. Barlow',tier:'SMU+ Recruiting',staff:true,since:'2024',posts:'3,377'};
@@ -184,8 +184,8 @@ T(2).posts=[
  ['peruna','11 a.m. Central, noon in Syracuse. Set an alarm and get the queso going early.',5],
  ['hank','Bold call: if they run it like they did against Cal, this one is decided by halftime.'],
  ['ray','Hank stealing my take. I\'m sticking with 31-24.',2]];
-MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how premium boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
- posts:[['staff','Welcome. Be civil, no posting about players\' families, no screenshots of premium posts. Profile photos: no SMU logos, no photos of athletes or other people, nothing offensive. Use Report on a post to flag a photo. The Paddock and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
+MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how the boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
+ posts:[['staff','Welcome. Be civil, no posting about players\' families, don\'t copy whole staff reports to other sites. Profile photos: no SMU logos, no photos of athletes or other people, nothing offensive. Use Report on a post to flag a photo. Anyone can read every board. Sign in to post. Every username and post on this demo board is fictional.'],['cox','Appreciate the rule on staff reports. Keeps the good info coming.']]});
 MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, snap by snap',by:'dre',ago:'4h',replies:167,views:'5.1k',
  posts:[['dre','Cut up the A-gap sim pressure snap by snap. Watch the boundary linebacker: he always shows blitz and only sometimes comes. QB sees six, gets four.'],
   ['ray','The free safety not moving until the snap is so disciplined. You can see the QB staring at him.',0],
