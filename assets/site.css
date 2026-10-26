@@ -874,7 +874,7 @@ th[aria-sort="ascending"],th[aria-sort="descending"]{color:var(--blue)}
 .gallery.g3 figure:first-child{grid-column:span 2;aspect-ratio:auto}
 @media(max-width:639px){.gallery{grid-template-columns:1fr 1fr}.gallery.g3 figure:first-child{grid-column:1/-1;aspect-ratio:16/10}}
 .hero-card .poster.has-img{aspect-ratio:16/9}
-.sched-full td:nth-child(3){color:var(--ink-2)}
+.sched-full td:nth-child(4){color:var(--ink-2)}
 .cmp{min-width:980px;font-size:13px}
 .cmp th,.cmp td{padding:var(--s3) 10px}
 .cmp tbody th{font-size:14px;text-transform:none;letter-spacing:0;color:var(--ink);font-weight:700}
@@ -1038,7 +1038,7 @@ a.rcard:hover b{text-decoration:underline;text-decoration-color:var(--red);text-
 .r-team{display:inline-block;margin-right:6px;padding:1px 6px;border-radius:4px;background:color-mix(in srgb,#354CA1 10%,#fff);color:#354CA1;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
 .r-recap{font-size:12px;font-weight:600;color:var(--blue);white-space:nowrap}
 .sched-real tr.r-next td{box-shadow:inset 0 2px 0 var(--red)}
-.sched-real td:nth-child(3){color:var(--ink-3)}
+.sched-real td:nth-child(4){color:var(--ink-3)}
 @media(max-width:639px){.r-recap{display:inline-flex;align-items:center;min-height:44px}.sb-sub{font-size:13px}}
 /* ---------- Accounts, dialogs, toasts (live/demo backend) ---------- */
 .acct-btn{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 12px 0 4px;border-radius:999px;color:#fff;font-weight:700;font-size:14px;border:1px solid rgba(255,255,255,.22);transition:border-color .15s,background .15s}
@@ -1282,7 +1282,7 @@ nav.main .nav-dd-btn.nav-x{display:none}
 .feeds blockquote.twitter-tweet a{color:var(--blue);font-weight:700}
 .feeds .follow{margin-top:var(--s6)}
 .feeds .follow+.follow{margin-top:var(--s5)}
-.follow-h{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:var(--s3)}
+.follow-h{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:var(--s3)}
 .follow-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:var(--s3)}
 .follow-l li{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;padding:var(--s3) var(--s4);border:1px solid var(--line);border-radius:var(--r1);background:var(--surface);min-width:0}
 .fo-n{min-width:0;flex:1 1 140px}
@@ -1516,7 +1516,7 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 /* ---------- Free Student plan: entry band (home plans, Join pop-up, account), form, badge ---------- */
 .st-band{display:flex;align-items:center;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;margin:0 0 24px;padding:20px 24px;background:#fff;color:var(--ink);border:1px solid var(--line-2);border-left:4px solid var(--red);border-radius:var(--r2)}
 .st-b{min-width:0;flex:1 1 320px}
-.st-k{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin:0 0 2px}
+.st-k{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0 0 2px}
 .st-band h4{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.05;text-transform:uppercase;letter-spacing:.01em;color:var(--blue);margin:0 0 4px}
 .st-band p:not(.st-k){font-size:15px;color:var(--ink-2);margin:0;max-width:56ch}
 .st-band .st-go{flex:none;min-height:48px;padding:0 22px}
@@ -1588,3 +1588,272 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 /* Sport pages on phones: no hero; the sub-nav is the first thing under the header and sticks flush to it */
 .sp-srh{display:none}
 @media(max-width:639px){body[data-page=sport] .sp-hero{display:none}body[data-page=sport] .sp-srh{display:block}}
+
+/* =====================================================================
+   Round 6: design tokens + polish. One layer, appended last.
+   Header and mobile menu rules (header.site, .hdr*, nav.main, .wordmark, .hsearch, .acct-btn, .hdr-join,
+   .menu-btn, .mmenu, .mm-*) are intentionally not restyled here.
+   ===================================================================== */
+/* ---- 6.1 Tokens ---- */
+:root{
+  /* type */
+  --fs-11:11px;--fs-12:12px;--fs-13:13px;--fs-14:14px;--fs-15:15px;--fs-16:16px;--fs-18:18px;--fs-20:20px;--fs-22:22px;--fs-28:28px;
+  --d-hero:clamp(48px,7vw,96px);--d-page:clamp(44px,6.4vw,88px);--d-sec:clamp(32px,4vw,52px);--d-card:clamp(24px,2.2vw,30px);
+  --lh-tight:1.2;--lh-body:1.55;--lh-prose:1.7;
+  --trk-label:.1em;--trk-display:.005em;
+  --serif:Georgia,Charter,'Bitstream Charter','Iowan Old Style','Palatino Linotype','Noto Serif','Source Serif Pro','Times New Roman',serif; /* article body text only (.prose) */
+  /* brand secondaries (Jackson's SMU brand kit). Sparing accents only: sport/data tags, data viz */
+  --charcoal:#262626;
+  /* radii */
+  --r-tag:3px;--r-ctl:6px;--r-media:8px;--r-card:10px;--r-sheet:16px;--r-round:999px;
+  /* elevation */
+  --sh-1:0 1px 2px rgba(16,24,60,.06),0 1px 1px rgba(16,24,60,.04);
+  --sh-2:0 10px 28px -10px rgba(16,24,60,.28),0 2px 4px rgba(16,24,60,.06);
+  --sh-3:0 28px 60px -20px rgba(16,24,60,.42);
+  --card-line:rgba(22,33,79,.10);
+  /* rhythm + motion */
+  --sec-y:clamp(48px,5.5vw,80px);
+  --ease:cubic-bezier(.2,.7,.2,1);--t-fast:.15s;--t-med:.28s;
+  /* broadcast hairline texture for dark surfaces */
+  --hair:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 1px,transparent 1px 14px);
+}
+
+/* ---- 6.2 Focus: main (94ef9e5) owns the focus ring (SMU blue for keyboard, white on dark, none after a tap or click); nothing here ---- */
+main .mcard:focus-visible{outline-offset:4px}
+
+/* ---- 6.3 Type hierarchy ---- */
+.sec-t{font-size:var(--d-sec);line-height:.94;letter-spacing:var(--trk-display)}
+.hero .display{font-size:var(--d-hero);line-height:.92}
+.sec-hd{margin-bottom:var(--s6);align-items:flex-end}
+.sec-hd.sm .sec-t{font-size:var(--d-card)}
+.eyebrow{font-size:var(--fs-12);letter-spacing:var(--trk-label);color:var(--ink-3);gap:10px}
+.dark .eyebrow,.hero .eyebrow,.brief-panel .eyebrow,.gd-in .eyebrow{color:rgba(255,255,255,.86);opacity:1}
+.see-all{font-size:var(--fs-14);font-weight:700;letter-spacing:.01em;display:inline-flex;align-items:center;gap:2px}
+.see-all span{display:inline-block;transition:transform var(--t-fast) var(--ease)}
+.see-all:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.see-all:hover span{transform:translateX(3px)}
+.lede{color:var(--ink-2)}
+@media(min-width:960px){.lede{font-size:var(--fs-18)}.hero .lede{font-size:19px}}
+/* card text: meta label vs title vs body are now three distinct roles */
+.mcard-b{gap:6px}
+.mcard-b .meta{font-size:var(--fs-12);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.mcard-b .meta .pct{letter-spacing:.06em}
+.mcard-b h3{font-size:var(--fs-18);line-height:var(--lh-tight);letter-spacing:-.005em;font-weight:700}
+.mcard-b p{font-size:var(--fs-15);line-height:1.5;color:var(--ink-2)}
+.dark .mcard-b .meta{color:rgba(255,255,255,.78)}
+/* small UI type floor: 12px for table heads, 10px for photo credits */
+.tbl th,.thead,.thead .num,.cmp thead th,.fgroup-h .num,.fgroup-h .f-last-h{font-size:var(--fs-12);letter-spacing:var(--trk-label)}
+.credit,.pc-pic.has-photo .credit,.ap-photo.has-photo .credit{font-size:10px}
+.badge-tier{font-size:var(--fs-11)}
+/* article serif: kept, deliberately, for long-form article body text only */
+.prose p{font-family:var(--serif);line-height:var(--lh-prose)}
+
+/* ---- 6.4 Buttons: four styles. Header/menu buttons are excluded and keep their current look.
+   primary   .btn-red (and .btn-white, which now renders as primary)
+   secondary .btn-navy
+   quiet     .btn-outline (light surfaces)
+   on-dark   .btn-ghost / .btn-quiet (outline on dark surfaces) ---- */
+.btn:not(header .btn):not(.mmenu .btn){border-radius:var(--r-ctl);letter-spacing:.01em;font-weight:700;transition:background-color var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.btn-white:not(header .btn){background:var(--red);color:#fff;border-color:transparent}
+.btn-white:not(header .btn):hover{background:var(--red-dk)}
+.btn-red:not(header .btn):not(.mmenu .btn):hover,.btn-white:not(header .btn):hover{box-shadow:0 6px 18px -6px rgba(204,0,53,.55)}
+.btn-navy:not(header .btn):hover{box-shadow:0 6px 18px -6px rgba(35,52,122,.55)}
+.btn-outline{border-width:1.5px;border-color:rgba(22,33,79,.22);background:#fff;color:var(--ink)}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);background:#fff}
+.btn-ghost:not(header .btn),.btn-quiet:not(header .btn){border:1.5px solid rgba(255,255,255,.55);color:#fff;background:transparent}
+.btn-ghost:not(header .btn):hover,.btn-quiet:not(header .btn):hover{border-color:#fff;background:rgba(255,255,255,.1)}
+/* plan cards: one secondary style, the highlighted tier gets primary */
+.tier .btn{background:var(--blue);color:#fff;border-color:transparent}
+.tier .btn:hover{background:var(--blue-dk);box-shadow:0 6px 18px -6px rgba(35,52,122,.55)}
+.tier.dark .btn{background:#fff;color:var(--b-900)}
+.tier.dark .btn:hover{background:var(--blue-10);box-shadow:none}
+.tier.pop .btn{background:var(--red);color:#fff}
+.tier.pop .btn:hover{background:var(--red-dk);box-shadow:0 6px 18px -6px rgba(204,0,53,.55)}
+
+/* ---- 6.5 Cards: one style per card type ----
+   media card  .mcard        borderless, image radius --r-media, title shifts to blue on hover
+   list card   .pcard .rcard .sport-tile .acct-card .forum/thread boxes   10px radius, hairline, --sh-1, hover --sh-2
+   panel       .panel .box   container for lists, same hairline card on white
+   offer card  .tier         sheet radius, raised */
+.poster{border-radius:var(--r-media);box-shadow:var(--sh-1)}
+.mcard .poster{transition:box-shadow var(--t-med) var(--ease)}
+.mcard:hover .poster{transform:none;box-shadow:var(--sh-2)}
+.mcard:hover .poster.has-img .ph{transform:scale(1.04)}
+.poster.has-img .ph{transition:transform .6s var(--ease),filter .3s}
+.mcard h3{transition:color var(--t-fast)}
+.hero-card .poster{box-shadow:none}
+.hero-card{border-radius:var(--r-card)}
+.hero-card:hover{transform:none;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 28px 56px -16px rgba(10,16,40,.55)}
+.pcard,.rcard,.acct-card,.panel,.box,.fgroup,.empty-state,.mini-empty,.post,.reply{border-radius:var(--r-card)}
+.pcard,.rcard,.acct-card,.panel:not(.dark),.box,.fgroup,.post,.fund{border-color:var(--card-line);box-shadow:var(--sh-1)}
+a.pcard,a.rcard,.pcard{transition:box-shadow var(--t-med) var(--ease),border-color var(--t-fast)}
+a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in srgb,var(--blue) 35%,transparent);box-shadow:var(--sh-2)}
+.panel.dark{border-radius:var(--r-card);background:rgba(10,16,40,.22);border-color:rgba(255,255,255,.1)}
+.panel-h h3,.box-h h3{font-size:var(--fs-13);letter-spacing:var(--trk-label)}
+.tier{border-radius:var(--r-sheet);border-color:var(--card-line);box-shadow:var(--sh-1)}
+.tier.pop{box-shadow:var(--sh-3)}
+.tier>.tag{border-radius:var(--r-tag)}
+.tier h3{font-size:var(--d-card)}
+.statline,.tbl-wrap,.ratings div{border-radius:var(--r-card)}
+.tbl-wrap{border-color:var(--card-line);box-shadow:var(--sh-1)}
+.panel .tbl-wrap{box-shadow:none}
+.sheet,.dlg-sheet,.search-sheet,.reader-sheet{border-radius:var(--r-sheet)}
+.dlg-sheet,.search-sheet{box-shadow:var(--sh-3)}
+.gd-next,.gd-hurry,.brief-panel,.band{border-radius:var(--r-card)}
+.gallery figure,.film-art,.ep{border-radius:var(--r-media)}
+
+/* ---- 6.6 Forms ---- */
+.fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea,.reply input,.reply textarea,.brief-row input{border-radius:var(--r-ctl)}
+.fsearch,.fsel select,.filters select,.filters-row select,.fld input,.fld select,.fld textarea{border-color:rgba(22,33,79,.2)}
+.seg,.sort{border-radius:var(--r-ctl);border-color:rgba(22,33,79,.2)}
+.auth-tabs,.auth-tabs button{border-radius:var(--r-ctl)}
+
+/* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
+.tag:not(.tag-new){border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:.08em;padding:3px 7px;line-height:1.25}
+.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(10,16,40,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
+.poster-verb{padding:4px 9px 4px 7px}
+.tone-white .poster-verb,.tone-white .dur{background:rgba(10,16,40,.62);color:#fff}
+/* board pills: status labels stay as compact labels, board and sport names become plain text */
+.pills{gap:6px 8px;align-items:center}
+.pill{border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:.04em;padding:2px 7px}
+.pills .pill:not(.pill-pin):not(.pill-hot):not(.pill-prem){background:none;border:0;padding:0;color:var(--ink-3);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pills .pill:not(.pill-pin):not(.pill-hot):not(.pill-prem)+.pill:not(.pill-pin):not(.pill-hot):not(.pill-prem)::before{content:"·";margin-right:6px;color:var(--line-2)}
+.forum-mini .pill,.fgroup-h .pill{border-radius:var(--r-tag)}
+.rk-s,.stat-chip,.vb,.res,.rk-c,.r-team,.badge-tier,.dir{border-radius:var(--r-tag)}
+/* filter chips are the one legit pill: keep the shape, firm up the states */
+.chip{border-color:rgba(22,33,79,.18);transition:border-color var(--t-fast),color var(--t-fast),background-color var(--t-fast)}
+.chip[aria-pressed="true"]{background:var(--b-800);border-color:var(--b-800)}
+.chip[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
+
+
+/* ---- 6.9 Section rhythm (inner-page headers are main's; only the home hero keeps its red rule) ---- */
+.sec{padding:var(--sec-y) 0}
+/* .sec.tight top padding is main's (2297fae: room above headings now that kickers are gone); not overridden here */
+.hero.has-photo{border-bottom:3px solid var(--red)}
+.jump{box-shadow:0 1px 0 var(--card-line)}
+.jump a{position:relative;transition:color var(--t-fast)}
+.brief-panel,.band{background:var(--hair),linear-gradient(135deg,var(--b-800) 0%,var(--b-900) 100%);box-shadow:inset 4px 0 0 var(--red)}
+.gameday{background:var(--hair),linear-gradient(180deg,var(--b-800) 0%,var(--b-900) 100%)}
+.sec.dark{background:var(--hair),var(--b-800)}
+.site-ft{box-shadow:inset 0 3px 0 var(--red)}
+.acct-card{box-shadow:var(--sh-2)}
+
+/* ---- 6.10 Sport tiles, roster and profile cards ---- */
+.sport-grid{gap:var(--s2)}
+.sport-tile{border:0;border-radius:var(--r-card);background:#fff;box-shadow:var(--sh-1),inset 0 0 0 1px var(--card-line);padding:var(--s4) var(--s4) var(--s4) var(--s3);transition:box-shadow var(--t-med) var(--ease),background-color var(--t-fast)}
+.sport-tile:hover{background:#fff;box-shadow:var(--sh-2),inset 3px 0 0 var(--red),inset 0 0 0 1px var(--card-line)}
+.sport-tile svg{width:36px;height:36px;padding:6px;background:none;stroke:var(--blue);border-radius:0}
+.sport-tile b{font-size:var(--fs-16)}
+.sport-tile small{font-size:var(--fs-13);color:var(--ink-3)}
+.sport-tile:hover b{color:var(--blue)}
+@media(max-width:639px){
+  .sport-grid{grid-template-columns:minmax(0,1fr);gap:0;border-radius:var(--r-card);overflow:hidden;box-shadow:var(--sh-1),inset 0 0 0 1px var(--card-line);background:#fff}
+  .sport-tile{border-radius:0;box-shadow:none;border-top:1px solid var(--line);min-height:56px;padding:var(--s2) var(--s4) var(--s2) var(--s2)}
+  .sport-tile:first-child{border-top:0}
+  .sport-tile span{flex:1}
+}
+.rnum,.pc-pic,.ap-photo{border-radius:var(--r-media)}
+.pcard .pc-pic{border-radius:0}
+.pc-b small,.rc-b .rp{letter-spacing:.06em}
+.pc-b b{font-size:var(--fs-18);letter-spacing:-.005em}
+.rail-ath .pcard{box-shadow:var(--sh-1)}
+.fi,.s-ic{border-radius:var(--r-ctl)}
+.av{box-shadow:0 0 0 2px #fff}
+
+/* ---- 6.11 Home: tabbed Insider / Film Room / Podcasts row ---- */
+.htabs{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s5);margin-top:2px}
+.htab{position:relative;min-height:44px;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:var(--d-sec);line-height:.94;letter-spacing:var(--trk-display);color:rgba(26,35,80,.3);padding:0 0 10px;transition:color var(--t-fast)}
+.htab:hover{color:rgba(26,35,80,.6)}
+.htab[aria-selected="true"]{color:var(--ink)}
+.htab[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red)}
+.htab:focus-visible{outline-offset:4px}
+@media(max-width:639px){.htabs{gap:0 var(--s4)}.htab{font-size:28px}.htabs-hd{flex-wrap:wrap}}
+
+/* =====================================================================
+   Round 7: human touch. Editorial fallbacks, no decorative glows or filler type.
+   Inserted above the 6.12 tap-target guard so that guard stays last.
+   ===================================================================== */
+
+/* ---- 7.2 Decorative gradients and glows out: flat brand surfaces + texture, scrims only over photos ---- */
+.brief-panel,.band{background:var(--hair),var(--b-900)}
+.gameday{background:var(--hair),var(--b-800)}
+.live-dot{box-shadow:none}
+.hero-card:hover{box-shadow:0 0 0 1px rgba(255,255,255,.3),var(--sh-2)}
+.btn-red:not(header .btn):not(.mmenu .btn):hover,.btn-white:not(header .btn):hover,.btn-navy:not(header .btn):hover,.tier .btn:hover,.tier.pop .btn:hover{box-shadow:none}
+
+/* ---- 7.3 Decorative symbols: CSS check glyph becomes a drawn tick, like the waitlist list ---- */
+.brief-pts li{position:relative;padding-left:22px}
+.brief-pts li::before{content:"";position:absolute;left:2px;top:.45em;width:10px;height:5px;margin:0;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
+
+/* ---- 7.4 Left-aligned, editorial blocks instead of centered-everything ---- */
+.empty-state{align-items:flex-start;text-align:left;border-style:solid;border-color:var(--card-line);padding:var(--s6)}
+.es-ic{width:auto;height:auto;background:none;border-radius:0;color:var(--red);margin:0 0 var(--s1)}
+.es-act{justify-content:flex-start}
+.mini-empty{text-align:left;border-style:solid;border-color:var(--card-line)}
+.note.center{text-align:left;margin-left:0}
+.sheet{text-align:left}.sheet .ic{margin:0 0 var(--s4)}
+.wl-fine{text-align:left}
+/* "More sports" on sport pages: a plain inline index, not a cloud of pills */
+#more .chips{gap:0;row-gap:var(--s2)}
+#more .chip{height:auto;min-height:0;padding:0;border:0;border-radius:0;background:none;font-size:var(--fs-16);font-weight:700;color:var(--blue)}
+#more .chip:hover{text-decoration:underline;text-underline-offset:4px;background:none}
+#more .chip+.chip::before{content:"";display:inline-block;width:1px;height:14px;background:var(--line-2);margin:0 var(--s4)}
+
+/* ---- 7.5 Density and hierarchy closer to On3 / smumustangs.com: tighter display sizes, tighter rails ---- */
+:root{--d-sec:clamp(28px,3.2vw,44px)}
+.mcard-b h3{font-size:17px}
+.sec-hd{margin-bottom:var(--s5)}
+.cgrid,.lgrid{gap:var(--s6) var(--s4)}
+.rail{gap:var(--s4)}
+@media(min-width:960px){.rail{grid-auto-columns:calc((100% - var(--s4)*3)/4)}}
+
+@media(max-width:639px){#more .chips{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s4);row-gap:0}#more .chip+.chip::before{display:none}}
+.plans-cn{margin-left:0}
+
+/* =====================================================================
+   Round 8: polish-next (audit next-up items 11, 12, 16). Inserted above the 6.12 guard.
+   ===================================================================== */
+/* ---- 8.1 Sport/profile jump bar on phones (main c73dccf owns its sticky offset via the measured --hdr-h): a solid "More ›" end chip pinned to the right edge shows there is more.
+   The chip rides at the end of the row, so Board and Other sports always scroll fully into view;
+   where scroll-driven animations exist it hides itself at the end of the row. ---- */
+@media(max-width:639px){
+  .jump .wrap{gap:var(--s4);scroll-snap-type:x proximity;scroll-padding-inline:var(--gut)}
+  .jump a{scroll-snap-align:start}
+  .jump .wrap::after{content:"More \203A" / "";position:sticky;right:calc(var(--gut) * -1);flex:none;align-self:stretch;display:flex;align-items:center;
+    margin-left:auto;padding:0 var(--gut) 0 var(--s4);background:#fff;border-left:1px solid var(--line);
+    font:700 13px/1 var(--sans);color:var(--blue);pointer-events:none}  /* blue sentence-case, not the red kicker style Jackson removed */
+  @supports (animation-timeline:scroll()){
+    .jump .wrap::after{animation:jump-end linear both;animation-timeline:scroll(nearest inline)}
+  }
+}
+@keyframes jump-end{0%,88%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+
+/* ---- 8.2 One self-hosted serif for long-form article body only (Source Serif 4 subset,
+   renamed per its OFL licence: assets/fonts/OFL.txt). One weight, the only one .prose uses. ---- */
+@font-face{font-family:"Story Serif";font-style:normal;font-weight:400;font-display:swap;
+  src:url("fonts/story-serif-400.woff2") format("woff2")}
+.prose p{font-family:"Story Serif",var(--serif)}
+
+/* ---- 8.3 Accessibility ---- */
+/* skip link: first tab stop, hidden until focused (inserted by app.js before the header) */
+.skip-link{position:fixed;left:var(--s3);top:var(--s3);z-index:10002;transform:translateY(-200%);padding:12px 16px;min-height:44px;display:inline-flex;align-items:center;
+  background:var(--b-900);color:#fff;font:700 15px/1 var(--sans);border-radius:var(--r-ctl);box-shadow:var(--sh-2);text-decoration:none}
+.skip-link:focus{transform:none}  /* its keyboard ring is main's :focus-visible (94ef9e5) */
+main[tabindex="-1"]:focus{outline:none}
+/* home tabs: inactive labels were 1.9:1 on white; now 4.9:1 (large-text AA needs 3:1) */
+.htab[aria-selected="false"]{color:#6b7190}
+.htab[aria-selected="false"]:hover{color:var(--ink)}
+/* form-field focus rings are main's (94ef9e5: SMU blue for keyboard, none after a tap) */
+
+/* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
+@media(max-width:639px){
+  .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */
+  .chip,.seg button,.sort button,.tier-toggle button{min-height:44px}
+  .see-all,.htab{min-height:44px}
+  #more .chip{min-height:44px;display:inline-flex;align-items:center}
+  .sport-tile{min-height:56px}
+  .fsearch{height:46px}
+}
+/* Schedules on phones: Date, Opponent and Result fit; site/time/TV columns drop (Result sits right after Opponent at every width) */
+.sched td:nth-child(3),.sched th:nth-child(3){font-weight:700}
+@media(max-width:639px){.sched th:nth-child(n+4),.sched td:nth-child(n+4){display:none}.sched{white-space:normal}.sched th,.sched td{padding-left:8px;padding-right:8px}.sched td:nth-child(2){overflow-wrap:anywhere}.sched td:nth-child(3){max-width:34vw}}
