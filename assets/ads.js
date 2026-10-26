@@ -9,6 +9,8 @@
    - per placement, add creative:{img:'url', href:'https://...', alt:'...'} or creative:{html:'<...>'} (the "Sample ad" label is replaced
      by label:'Advertisement' or whatever the seller requires), or point brand at another entry in brands;
    - or set MP.ADS.render=function(slot){return html} to hand every slot to a network or ad server tag.
+   A page can reserve a slot's space in its HTML with a same-size placeholder carrying data-ad-hold="<placement id>" (no layout shift
+   when the ad fills it; library/index.html does this for its billboard).
    Placements with "at" are mounted by MP.adsMount() (on load, and by app.js after it renders an article or a board thread). */
 (function(){
 var MP=window.MP=window.MP||{};
@@ -31,10 +33,10 @@ var ADS=MP.ADS={
     'home-billboard':{unit:'billboard',brand:'brindlecup',page:'home',at:['section.hero','afterend'],wide:1},
     'ribbon-presented':{unit:'presented',brand:'tellivant',page:'home',at:['#ribbon .rb-hd','beforeend'],inline:1},
     'library-billboard':{unit:'billboard',brand:'kestrelvale',page:'library',at:['#libBar','afterend'],wide:1},
-    'library-mpu':{unit:'mpu',brand:'marrowbys',page:'library',at:['#libRead','beforebegin'],band:1},
+    'library-mpu':{unit:'mpu',brand:'marrowbys',page:'library',at:['#libView [data-ad-after]','afterend'],band:1},
     'games-billboard':{unit:'billboard',brand:'pelloway',page:'games',at:['.gmi-hero','afterend'],wide:1},
-    'game-presented':{unit:'presented',brand:'tellivant',page:'games',at:['section.gmx','afterend']},
-    'game-mpu':{unit:'mpu',brand:'wrenhollow',page:'games',at:['section.gm-top','afterend'],band:1,noSkin:1},
+    'game-presented':{unit:'presented',brand:'tellivant',page:'games',at:['.gc-hd','afterend']},
+    'game-mpu':{unit:'mpu',brand:'wrenhollow',page:'games',at:['.gc-c3 .gc-links','afterend'],noSkin:1},
     'boards-halfpage':{unit:'halfpage',brand:'pelloway',page:'boards',at:['#indexView .fx-side','beforeend'],wide:1},
     'thread-mpu':{unit:'mpu',brand:'brindlecup',page:'boards',at:['#threadView .fx-msgs > :nth-child(3)','afterend'],ctx:'thread'},
     'article-mid':{unit:'mpu',brand:'wrenhollow',at:['#readerBody .prose:not(.teaser) > p:nth-child(3):not(:last-child)','afterend'],ctx:'article',tab:1},
@@ -84,6 +86,7 @@ MP.ad=function(id){var p=ADS.placements[id];if(!ADS.enabled||!p)return '';
 MP.adsMount=function(ctx){if(!ADS.enabled)return;var pg=page();
   Object.keys(ADS.placements).forEach(function(id){var p=ADS.placements[id];if(!p.at)return;
     if((p.ctx||'')!==(ctx||''))return;if(p.page&&p.page!==pg)return;if(p.noSkin&&ADS.skinOn)return;
+    var hold=document.querySelector('[data-ad-hold="'+id+'"]');if(hold){hold.outerHTML=MP.ad(id);return}
     var a=document.querySelector(p.at[0]);if(!a||document.querySelector('[data-ad-slot="'+id+'"]'))return;
     a.insertAdjacentHTML(p.at[1],MP.ad(id))})};
 

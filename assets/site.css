@@ -740,7 +740,6 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 #gameday{scroll-margin-top:120px}
 
 /* Filters */
-.lib-chips{margin-bottom:var(--s4)}
 .filters{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3) var(--s4);margin-bottom:var(--s6)}
 .fsearch{display:inline-flex;align-items:center;gap:var(--s2);height:40px;padding:0 var(--s3);border:1px solid var(--line-2);border-radius:var(--r1);background:#fff;min-width:240px}
 .fsearch:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 18%,transparent)}
@@ -1557,17 +1556,8 @@ html{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px)}
 .feeds .xpost blockquote.twitter-tweet{display:flex;flex-direction:column;justify-content:center;gap:var(--s3);padding:var(--s5);font-size:15px;line-height:1.45}
 .feeds .xpost blockquote.twitter-tweet a{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;text-decoration:underline}
 
-/* Library filters on phones: category + format as two native dropdowns side by side; desktop keeps pills + segmented control */
-.lib-dd{display:none}
-@media(max-width:699px){
-  #libChips,#libType{display:none}
-  .lib-dd{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:var(--s2);margin-bottom:var(--s3)}
-  .lib-dd .dd{position:relative;display:block;min-width:0}
-  .lib-dd .dd::after{content:"";position:absolute;right:11px;top:50%;width:7px;height:7px;margin-top:-6px;border:solid var(--blue);border-width:0 2px 2px 0;transform:rotate(45deg);pointer-events:none}
-  .lib-dd select{-webkit-appearance:none;appearance:none;width:100%;height:44px;padding:0 28px 0 10px;border:1px solid var(--blue);border-radius:var(--r1);background:#fff;color:var(--blue);font:inherit;font-size:16px;font-weight:600;text-overflow:ellipsis}
-  .lib-dd select:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:2px}
-  .filters{gap:var(--s2) var(--s3)}
-}
+/* Library filters on phones: the type buttons span the width, search and show below */
+@media(max-width:699px){.filters{gap:var(--s2) var(--s3)}}
 
 /* From the feeds: cards grow to the full X embed (no inner scroll); row scrolls by side arrows, swipe or trackpad, no visible scroll bar */
 .feeds .xwrap{position:relative}
@@ -2376,7 +2366,6 @@ nav.main a.nav-search svg{width:16px;height:16px;fill:currentColor;flex:none}
 .lib-bar{border-bottom:1px solid var(--line)}
 .lib-bar .filters{margin-bottom:0}
 .lib-bar.sec.tight{padding-bottom:var(--s5)}
-.lib-chips .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
 .lib-show{display:inline-flex;align-items:center;gap:var(--s2);min-width:0}
 .lib-show-l{font-size:14px;font-weight:700;color:var(--ink)}
 .lib-show-dd{position:relative;display:block;min-width:0}
@@ -2627,10 +2616,10 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-main{gap:3px;padding:var(--s3) var(--s3) var(--s2)}
   .rb-tv{padding:8px var(--s3);gap:4px 14px;align-items:baseline;font-size:14px;line-height:1.4}
   .rb-tv div{align-items:baseline;gap:5px}
-  .rb-tv a{display:inline;min-height:0;padding:6px 0;margin:-6px 0}
-  .rb-wrap{padding-bottom:52px}
-  .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:40px;height:40px}
-  .rb-wrap .xside.xprev{left:auto;right:50px}
+  .rb-tv a{display:inline-block;min-height:0;padding:12px 4px;margin:-12px -4px}
+  .rb-wrap{padding-bottom:56px}
+  .rb-wrap .xside{top:auto;bottom:0;margin-top:0;width:44px;height:44px}
+  .rb-wrap .xside.xprev{left:auto;right:54px}
   .rb-wrap .xside.xnext{right:0}
   .rb-wrap .xside:disabled{opacity:.35}
   .rb-wrap.no-ovf{padding-bottom:0}
@@ -2638,6 +2627,28 @@ html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-b
   .rb-pl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .rb-tv div{min-width:0;max-width:100%}
   .rb-card{position:relative}
-  .rb-stats{position:absolute;top:10px;right:var(--s3);min-height:0;padding:4px 0;border:0;font-size:13px}
+  .rb-stats{position:absolute;top:2px;right:4px;min-height:44px;padding:0 var(--s2);border:0;font-size:13px}
   .rb-tv dd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
 }
+
+/* ---------- Library type views (/library/?type=video|podcast|article): one row of type buttons, the current one filled ---------- */
+.lib-seg a{display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 var(--s4);font-size:14px;font-weight:700;color:var(--ink-2);border-left:1px solid var(--line-2);text-decoration:none}
+.lib-seg a:first-child{border-left:0}
+.lib-seg a:hover{color:var(--blue)}
+.lib-seg a[aria-current]{background:var(--blue);color:#fff}
+.lib-seg a:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:-3px}
+@media(max-width:699px){.lib-seg{display:flex;width:100%}.lib-seg a{flex:1;min-height:44px;height:44px;padding:0 var(--s2)}}
+.lib-vh.sec.tight{padding-bottom:0}
+.lib-vh + .lib-skel.sec.tight,.lib-vh ~ section.sec.tight:not([hidden]){padding-top:var(--s5)}
+.lib-skel .skel-rail + .skel-rail{margin-top:var(--s6)}
+main.lib-wait .lib-skel{min-height:120vh}
+main.lib-wait #libView > section:not(#libVh):not(#libSkel),main.lib-wait #libAll{display:none!important}
+/* ribbon sponsor line: one line on phones */
+@media(max-width:719px){.ad-pr-inline .ad-pr-in{flex-wrap:nowrap;gap:6px;font-size:13px;white-space:nowrap}.ad-pr-inline .ad-pr-b{gap:5px}.ad-pr-inline .ad-pr-b .ad-mk{width:18px;height:18px}.ad-pr-inline .ad-lbl{font-size:12px;margin-left:2px}}
+@media(max-width:419px){.ad-pr-inline .ad-pr-b .ad-mk{display:none}}
+.ad-hold-cr{background:#fff}
+/* inside a type view the rows sit under the view heading (Videos / Podcasts / Articles), so their titles step down a size */
+main.lib-typed #libView section:not(#libVh) .sec-t{font-size:clamp(24px,2.6vw,30px)}
+/* Last-game card: centered red View Game Details button (Jackson, Oct 26) */
+.gd-hurry .gd-glink.btn{align-self:center;color:#fff;margin-top:var(--s2)}
+.gd-hurry .gd-glink.btn:hover{color:#fff}
