@@ -7,6 +7,7 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function money(n){return '$'+Math.round(n).toLocaleString()}
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  var SVG_SEARCH='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg>';
   var PLUS='<svg viewBox="0 0 20 20"><path d="M8 2h4v6h6v4h-6v6H8v-6H2V8h6z" fill="#fff"/></svg>';
   var LOCK='<svg viewBox="0 0 24 24"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>';
   var CHAT='<svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/></svg>';
@@ -82,10 +83,21 @@
   function wordmark(cls){return '<a href="'+(ROOT||'./')+'" class="wordmark'+(cls||'')+(BRAND_LOGO?' has-logo':'')+'" aria-label="SMU+ home">'+
     (BRAND_LOGO?'<img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async">':'<span class="wm-txt">SMU</span><span class="wm-plus" aria-hidden="true">+</span><span class="sr">+</span>')+'</a>'}
   function memberSwitch(label){return '<button type="button" class="mtoggle" data-member-toggle role="switch" aria-checked="false"><span class="sw-t" aria-hidden="true"></span><span class="mt-l">'+(label||'Preview as member')+'</span></button>'}
+  /* Phone/tablet menu (under 960px). Every primary link, plus search, member preview and Join. */
+  var NAV_DESC={library:'Series, film room and podcasts',recruiting:'Big board, visits and the portal',sport:'All 12 Mustang programs',boards:'The Mustang Board',athlete:'Player profiles and real stats',membership:'Plans and where the money goes'};
+  function mobileMenu(){
+    return '<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Site menu" hidden><div class="mm-in">'+
+      '<button type="button" class="mm-search" data-mm-search>'+SVG_SEARCH+'<span>Search stories, players, threads</span></button>'+
+      '<nav class="mm-nav" aria-label="Primary">'+NAV.map(function(n){var on=PAGE===n[2];return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><small>'+NAV_DESC[n[2]]+'</small><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
+      '<p class="mm-h">Sports</p><div class="mm-sports">'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+esc(sp.name)+'</a>'}).join('')+'</div>'+
+      '<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting, saved only in this browser.</p></div>'+
+      '<button type="button" class="btn btn-red mm-join" data-demo="Join SMU+">Join SMU+</button>'+
+      '<p class="mm-note">Concept mockup for an SMU Cox class project.</p></div></div>'}
   $('#site-header').outerHTML='<header class="site"><div class="wrap hdr">'+wordmark()+'<nav class="main" aria-label="Primary">'+navLinks()+'</nav>'+
     '<div class="hdr-act"><button type="button" class="hsearch" id="searchBtn" aria-haspopup="dialog" aria-label="Search SMU+">'+SVG.search+'<span>Search</span><kbd>/</kbd></button>'+memberSwitch('Member preview')+
-    '<button class="btn btn-red btn-sm" data-demo="Join SMU+">Join</button></div></div>'+
-    '<nav class="subnav" aria-label="Sections"><div class="wrap">'+navLinks()+'</div></nav></header>';
+    '<button class="btn btn-red btn-sm" data-demo="Join SMU+">Join</button>'+
+    '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+
+    mobileMenu()+'</header>';
   var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
   $('#site-footer').outerHTML='<footer class="site-ft"><div class="wrap"><div class="ft">'+
     '<div class="ft-brand">'+wordmark(' lg')+'<p>Every moment. Every Mustang. A fan membership where your subscription helps pay the athletes you cheer for.</p>'+
@@ -247,6 +259,27 @@
   document.addEventListener('keydown',function(e){var typing=/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||''));
     if(e.key==='Escape'){if(!search.hidden){closeSearch();return}if(!pw.hidden){closePaywall();return}closeModal();closeArticle();return}
     if(((e.key==='/'&&!typing)||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'))&&search.hidden){e.preventDefault();openSearch()}});
+
+  /* ---------- Mobile menu ---------- */
+  var mm=$('#mmenu'),mb=$('#menuBtn'),hdrEl=$('header.site');
+  function mmFocusables(){return [mb].concat($$('a,button,input',mm).filter(function(x){return x.offsetParent!==null}))}
+  function openMenu(){mm.style.top=Math.max(0,hdrEl.getBoundingClientRect().bottom)+'px';mm.hidden=false;
+    document.documentElement.classList.add('noscroll','menu-open');mb.setAttribute('aria-expanded','true');mb.setAttribute('aria-label','Close menu');
+    requestAnimationFrame(function(){mm.classList.add('open')});var f=$('.mm-nav a',mm);if(f)f.focus({preventScroll:true})}
+  function closeMenu(restore){if(mm.hidden)return;mm.classList.remove('open');mm.hidden=true;document.documentElement.classList.remove('menu-open');
+    if(reader.hidden&&pw.hidden&&search.hidden)document.documentElement.classList.remove('noscroll');
+    mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label','Open menu');if(restore)mb.focus()}
+  mb.addEventListener('click',function(){if(mm.hidden)openMenu();else closeMenu(true)});
+  mm.addEventListener('click',function(e){
+    if(e.target.closest('[data-mm-search]')){closeMenu();$('#searchBtn').click();return}
+    if(e.target.closest('a'))closeMenu();
+    if(e.target.closest('[data-demo]'))closeMenu()});
+  document.addEventListener('keydown',function(e){if(mm.hidden)return;
+    if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeMenu(true);return}
+    if(e.key==='Tab'){var f=mmFocusables(),i=f.indexOf(document.activeElement);
+      if(e.shiftKey&&(i<=0)){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus()}}},true);
+  var wideMQ=window.matchMedia('(min-width:960px)');(wideMQ.addEventListener?wideMQ.addEventListener('change',function(q){if(q.matches)closeMenu()}):wideMQ.addListener(function(q){if(q.matches)closeMenu()}));
+  window.addEventListener('pageshow',function(){closeMenu()});
 
   /* ---------- Sortable tables ---------- */
   var MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
@@ -564,7 +597,7 @@
         CMP.map(function(c){var v=m[c[0]];if(c[0]==='INT'&&!def)v=undefined;return '<td class="n">'+(v==null?'\u2014':esc(v))+'</td>'}).join('')+'</tr>'}).join('');
     return '<div class="sec-hd" id="compare"><div><p class="eyebrow">Real stats · tap a column to sort</p><h2 class="sec-t">Compare players</h2></div></div>'+
       '<div class="toolbar"><div class="chips" id="cmpPos" role="group" aria-label="Filter by position"><button type="button" class="chip" data-pos="" aria-pressed="true">All</button>'+Object.keys(pos).map(function(p){return '<button type="button" class="chip" data-pos="'+p+'" aria-pressed="false">'+p+'</button>'}).join('')+'</div><span class="meta" id="cmpCount"></span></div>'+
-      '<div class="tbl-wrap"><table class="tbl cmp" id="cmpTable"><caption class="sr">Player comparison</caption><thead><tr><th>Player</th><th class="n">No.</th><th>Pos</th><th>Class</th><th class="n">Season</th>'+CMP.map(function(c){return '<th class="n">'+c[1]+'</th>'}).join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>'+
+      '<p class="swipe-hint" aria-hidden="true">Swipe the table for every stat <span>→</span></p><div class="tbl-wrap cmp-wrap"><table class="tbl cmp" id="cmpTable"><caption class="sr">Player comparison</caption><thead><tr><th>Player</th><th class="n">No.</th><th>Pos</th><th>Class</th><th class="n">Season</th>'+CMP.map(function(c){return '<th class="n">'+c[1]+'</th>'}).join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>'+
       '<p class="note">Season stats as shown on each profile: 2026 through Oct. 24, except *Ahmaad Moses, whose numbers are from 2025 because ESPN lists no 2026 stats for him yet. Def. INT counts interceptions made, not thrown. Sources are linked on each profile.</p>'}
   function initCompare(){var t=$('#cmpTable');if(!t)return;
     t.querySelectorAll('tbody th').forEach(function(th){th.dataset.v=th.textContent});

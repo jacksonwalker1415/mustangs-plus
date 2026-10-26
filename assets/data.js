@@ -154,15 +154,15 @@ T(1).posts=[
  ['dre','Already cut it up. It\'s going in the Film Room Lounge tomorrow morning.',5],
  ['peruna','Dre with the assist. Somebody get this man a corny dog.',6]];
 T(2).posts=[
- ['mike','Kickoff 7:00 at Ford. Drop your score predictions and keep it civil. Pony Up!'],
+ ['mike','Kickoff is 11 a.m. CT Saturday in Syracuse, on ESPN2. Drop your score predictions and keep it civil. Pony Up!'],
  ['dallas','34-17 Mustangs. Defense gets two picks.'],
  ['ray','31-24. Too many people sleeping on their run game.',1],
- ['belle','Tailgate is at our usual tent near the big oak on the Boulevard. Red and blue cookies again this week.'],
- ['band','Band alumni block is in 113 if anybody wants to yell the fight song with people who actually know the words.'],
- ['snider','First game as a member. Where do people park if they don\'t want to sit in traffic on Mockingbird for an hour?'],
- ['peruna','Park east of 75 and walk over. Or take the DART to Mockingbird Station and walk. Thank me later.',5],
- ['hank','HALFTIME: that two-minute drive was the best they\'ve looked all year.'],
- ['ray','I\'ll take my 31-24 prediction back and politely ask for a mulligan.',2]];
+ ['belle','Watch party is at our usual spot off Lovers Lane. Red and blue cookies again this week.'],
+ ['band','Anybody making the trip? A few of us band alumni fly into Syracuse Friday night and would love company in the visitors section.'],
+ ['snider','First road game as a member. Is the 11 a.m. kick Dallas time or Syracuse time?'],
+ ['peruna','11 a.m. Central, noon in Syracuse. Set an alarm and get the queso going early.',5],
+ ['hank','Bold call: if they run it like they did against Cal, this one is decided by halftime.'],
+ ['ray','Hank stealing my take. I\'m sticking with 31-24.',2]];
 MP.THREADS.unshift({id:19,f:'help',sport:null,title:'Board rules and how premium boards work (read before posting)',by:'staff',ago:'3w',replies:12,views:'14k',pin:true,
  posts:[['staff','Welcome. Be civil, no posting about recruits\' families, no screenshots of premium posts. The Paddock, Recruiting Trail and Film Room Lounge are members-only; everything else is free. Every username and post on this demo board is fictional.'],['cox','Appreciate the no-screenshots rule. Keeps the good info coming.']]});
 MP.THREADS.push({id:20,f:'filmroom',sport:'football',hot:true,title:'Breakdown: the third-down sim pressure, all 11 snaps from Saturday',by:'dre',ago:'4h',replies:167,views:'5.1k',
