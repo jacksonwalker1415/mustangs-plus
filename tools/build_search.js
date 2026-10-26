@@ -16,7 +16,9 @@ const docs = [], seen = new Set();
 const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\u2018\u2019']/g, '').replace(/\s+/g, ' ').trim();
 function add(d) { const k = d.t + '|' + d.u + '|' + d.ti; if (seen.has(k)) return; seen.add(k); d.h = norm([d.ti, d.s, d.h].join(' ')); docs.push(d) }
 const KIND = { video: 'video', article: 'article', podcast: 'podcast' };
-MP.LIB.forEach(c => {
+/* Recruiting is unpublished: none of its items go in the index */
+const REC_RE = /recruit|portal|visit weekend|visit list|offer tracker|commitment|2028 (board|class)/i;
+MP.LIB.filter(c => c.cat !== 'recruiting' && !REC_RE.test([c.title, c.label, c.desc].join(' '))).forEach(c => {
   add({ t: KIND[c.t], ti: c.title, s: c.label + (c.dur ? ' · ' + c.dur : ''), u: (c.t === 'article' ? '#article=' : '#watch=') + c.id,
         h: [c.desc, sportName[c.sport] || '', c.credit || ''].join(' '), ...(c.expires ? { x: c.expires } : {}) });
 });

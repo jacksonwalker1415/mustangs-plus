@@ -8,7 +8,7 @@
   var CFG=window.SMU_CONFIG||{},MP=window.MP||{};
   var SUPA_SRC='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';
   var SUPA_SRI='sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK';
-  var TIERS=(window.MP&&MP.TIER_LABELS)||{free:'Free',mustang:'Mustang',pony:'All-Access',club:'Red & Blue'};
+  var TIERS=(window.MP&&MP.TIER_LABELS)||{free:'Free',mustang:'Fan',pony:'Plus',club:'Founder'};
   var AFFIL=['student','alum','fan','parent','other'],PRIVACY_VERSION='2026-10-26';
   var INTEREST=['free','mustang','all_access','red_blue','not_sure','student'];
   /* Attribution (D4): utm_* + referrer host from the landing URL, kept in sessionStorage only (no cookies). A new URL with utm_* replaces it. */
@@ -233,7 +233,7 @@
     ensureProfileName:function(){var u=SMU.user;if(!u)return;ensureUser('u:'+u.id,u.name,tierCache)},
     loadForums:function(strict){return q('forums',sb.from('forums').select('id,name,description,premium,grp,sort').order('sort')).then(function(rows){
       if(rows&&rows.length)MP.FORUMS=rows.map(function(f){var old=(MP.FORUMS||[]).filter(function(x){return x.id===f.id})[0]||{};
-        return {id:f.id,name:f.name,desc:recOff()&&/recruit/i.test(f.description||'')&&old.desc?old.desc:f.description,prem:f.premium,group:f.grp,threads:old.threads||0,posts:old.posts||0}});recFilter()}).catch(function(e){if(strict)throw e})},
+        return {id:f.id,name:f.name,desc:recOff()&&/recruit/i.test(f.description||'')&&old.desc?old.desc:f.description,prem:f.premium,group:f.grp,threads:old.threads||0,posts:old.posts||0}});recFilter();if(MP.cleanBoards)MP.cleanBoards()}).catch(function(e){if(strict)throw e})},
     /* views from supabase/RUN_ME_7_boards_stats.sql; rows marked rec are left out while recruiting is off */
     boardStats:function(){return Promise.all([q('stats',sb.from('forum_stats').select('forum_id,rec,threads,posts')),q('stats',sb.from('sport_stats').select('sport,rec,threads,posts'))]).then(function(r){
       var c={forums:{},sports:{}};function add(m,k,x){if(x.rec&&recOff())return;var o=m[k]=m[k]||{threads:0,posts:0};o.threads+=x.threads||0;o.posts+=x.posts||0}
@@ -284,14 +284,14 @@
       var op=has?sb.from('saved_athletes').delete().eq('user_id',SMU.user.id).eq('athlete_id',id):sb.from('saved_athletes').insert({user_id:SMU.user.id,athlete_id:id});
       return q('saved',op).then(function(){if(has)savedCache=savedCache.filter(function(x){return x!==id});else savedCache.unshift(id);emit('saved',savedCache);return savedCache})},
     loadThreads:function(){return q('threads',sb.from('threads').select(threadSel()).order('last_post_at',{ascending:false}).limit(200)).then(function(rows){
-      MP.THREADS=(rows||[]).map(toThread);recFilter();fillUsers();
+      MP.THREADS=(rows||[]).map(toThread);recFilter();if(MP.cleanBoards)MP.cleanBoards();fillUsers();
       /* Members-only posts aren't readable signed out, so their reply counts stay hidden. Once supabase/PROPOSED_8_board_counts.sql
          has run, set THREAD_STATS to true and the real totals come from the thread_stats view (kept off until then to avoid a 404). */
       if(!THREAD_STATS||!MP.THREADS.some(function(t){return t.replies==null}))return;
       return sb.from('thread_stats').select('thread_id,posts').then(function(r){if(r&&!r.error&&r.data){var m={};r.data.forEach(function(x){m[x.thread_id]=x.posts});
         MP.THREADS.forEach(function(t){if(t.replies==null&&m[t.id]!=null)t.replies=Math.max(0,m[t.id]-1)})}},function(){})}).then(function(){emit('threads');return MP.THREADS})},
     loadThread:function(id){return q('thread',sb.from('threads').select(threadSel()).eq('id',id).maybeSingle()).then(function(r){if(!r||(recOff()&&r.forum_id==='recruiting'))return null;var t=toThread(r);
-      MP.THREADS=MP.THREADS.filter(function(x){return x.id!==id});MP.THREADS.unshift(t);
+      MP.THREADS=MP.THREADS.filter(function(x){return x.id!==id});MP.THREADS.unshift(t);if(MP.cleanBoards){MP.cleanBoards();if(MP.THREADS.indexOf(t)<0)return null}
       sb.rpc('bump_thread_view',{tid:id}).then(function(){},function(){});return t})},
     createThread:function(o){if(!SMU.user)return Promise.reject(new Error('Sign in to start a thread.'));
       return q('newthread',sb.rpc('create_thread',{p_forum:o.f,p_sport:o.sport||null,p_title:o.title,p_body:o.body})).then(function(id){return live.loadThread(+id)}).then(function(t){emit('threads');return t})},
