@@ -1,0 +1,31 @@
+/* SMU+ native app (Capacitor) chrome. Every rule is scoped to html.cap-native, which only
+   native.js sets when window.Capacitor reports a native platform. The website never loads this file. */
+html.cap-native{--tabh:56px}
+html.cap-native body{padding-bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px))}
+html.cap-native .toasts{bottom:calc(var(--tabh) + 12px + env(safe-area-inset-bottom,0px))}
+html.cap-native .mmenu{bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px))}
+html.cap-native .site-ft{padding-bottom:var(--s6)}
+.cap-tabs{position:fixed;left:0;right:0;bottom:0;z-index:95;display:grid;grid-template-columns:repeat(5,1fr);
+  height:calc(var(--tabh) + env(safe-area-inset-bottom,0px));padding:0 env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+  background:#1c2a63;border-top:1px solid rgba(255,255,255,.12);box-shadow:0 -6px 18px rgba(22,33,79,.18);-webkit-user-select:none;user-select:none}
+.cap-tabs a,.cap-tabs button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;height:var(--tabh);
+  margin:0;padding:0;border:0;background:none;color:rgba(255,255,255,.66);font:600 10.5px/1 var(--sans,-apple-system,system-ui,sans-serif);letter-spacing:.02em;
+  text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cap-tabs svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cap-tabs [aria-current="page"],.cap-tabs [aria-expanded="true"]{color:#fff}
+.cap-tabs [aria-current="page"]::before{content:"";position:absolute;top:0;left:50%;width:28px;height:3px;margin-left:-14px;border-radius:0 0 3px 3px;background:#CC0035}
+.cap-tabs a:active,.cap-tabs button:active{color:#fff;transform:scale(.96)}
+.cap-sheet{position:fixed;left:0;right:0;bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px));z-index:94;max-height:calc(100dvh - var(--tabh) - env(safe-area-inset-bottom,0px) - env(safe-area-inset-top,0px) - 72px);
+  overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#1c2a63;color:#fff;border-radius:16px 16px 0 0;
+  padding:14px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));box-shadow:0 -12px 32px rgba(22,33,79,.35);
+  transform:translateY(8px);opacity:0;transition:opacity .16s ease,transform .16s ease}
+.cap-sheet.open{transform:none;opacity:1}
+.cap-sheet[hidden]{display:none}
+.cap-sheet h2{margin:0 4px 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.cap-sheet .list{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.cap-sheet .list a{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 10px;border-radius:10px;background:rgba(255,255,255,.07);color:#fff;font-size:15px;font-weight:600;text-decoration:none}
+.cap-sheet .list a[aria-current="page"]{background:#CC0035}
+.cap-sheet .list svg{flex:none;width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cap-scrim{position:fixed;inset:0;z-index:93;background:rgba(22,33,79,.45)}
+.cap-scrim[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.cap-sheet{transition:none}}

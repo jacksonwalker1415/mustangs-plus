@@ -1,0 +1,26 @@
+{
+  "name": "smu-plus-ios",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SMU+ iOS app shell (Capacitor). Concept for an SMU Cox MBA class project; not affiliated with or endorsed by SMU Athletics or Learfield.",
+  "scripts": {
+    "copy-web": "node scripts/copy-web.mjs",
+    "sync": "node scripts/copy-web.mjs && cap sync ios",
+    "open": "cap open ios"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/share": "^8.0.3",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3"
+  }
+}
