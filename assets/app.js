@@ -986,7 +986,7 @@
     /* scoreboard */
     var rec=pre&&pre.season&&(pre.season.rows||[]).filter(function(r){return /^record$/i.test(r.l)})[0];
     function team(smu){var sc=smu?us:them,win=m&&(smu?us>them:them>us),nm=smu?'SMU':g.opp,rc=rec?(smu?rec.s:rec.o):'';
-      return '<div class="gc-team '+(smu?'gc-l':'gc-r')+(m?(win?' win':' lose'):'')+'">'+(smu?smuMark():oppMark())+
+      return '<div class="gc-team '+(smu?'gc-l':'gc-r')+(m?(win?' win':' lose'):'')+'">'+
         '<span class="gc-tn"><b>'+esc(nm)+'</b>'+(rc?'<small>'+esc(rc)+'</small>':'')+'</span>'+
         (m?'<span class="gc-sc">'+sc+'</span>'+(win?'<span class="gc-win" aria-hidden="true"></span>':''):'')+'</div>'}
     var LS=fin&&fin.line,lsRows=LS?LS.rows.slice().sort(function(a,b){return (b.smu?1:0)-(a.smu?1:0)}):[];

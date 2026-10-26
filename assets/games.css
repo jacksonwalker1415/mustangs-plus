@@ -29,7 +29,7 @@ body[data-page="games"] main{--gc-top:var(--hdr-h,64px)}
 .gc-l .gc-tn b{color:var(--blue)}
 .gc-tn small{font-size:13px;color:var(--ink-2)}
 .gc-l .gc-tn{text-align:right}
-.gc-r .gc-tn{order:3}.gc-r .gc-mono{order:4}.gc-r .gc-sc{order:1}.gc-r .gc-win{order:0}
+.gc-r .gc-tn{order:3}.gc-r .gc-sc{order:1}.gc-r .gc-win{order:0}
 .gc-sc{font-family:var(--display);font-weight:400;font-size:52px;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
 .gc-team.lose .gc-sc{color:var(--ink-3)}
 .gc-l.win .gc-sc{color:var(--blue)}
@@ -234,14 +234,13 @@ body:has(#gmLive .cf-on) .gc-sb .gm-cd{display:none}
   .gc-lsd{grid-area:x;justify-self:center}
   .gc-lsd summary{display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:700;color:var(--blue);cursor:pointer}
   .gc-team{gap:var(--s2)}
-  .gc-mark,.gc-mono{width:32px;height:32px;font-size:11px}
   .gc-tn b{font-size:14px}
   .gc-tn small{font-size:12px}
   .gc-sc{font-size:34px}
   .gc-l .gc-win{margin-left:-4px}.gc-r .gc-win{margin-right:-4px}
   .gc-vids .rail,body[data-page="games"] .gc-vids .rail{grid-auto-columns:86%}
-  .gc-l .gc-tn{display:none}
-  .gc-r .gc-tn{display:none}
+  .gc-tn small{display:none}
+  .gc-tn b{overflow-wrap:break-word}
   .gc-sb.is-pre{position:static}
   .gc-sb .gm-cd div{min-width:40px}
   .gc-sb .gm-cd b{font-size:17px}
