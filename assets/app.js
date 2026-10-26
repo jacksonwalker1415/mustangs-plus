@@ -712,7 +712,7 @@
       '<span class="rb-m">'+vs+esc(e.name)+(e.ex?' (exh.)':'')+'</span><span class="rb-ha rb-'+e.ha+'">'+ha+'</span>'+
       '<span class="rb-w"><b>'+when+'</b>'+(tm?'<span>'+esc(tm)+'</span>':'')+'</span>'+(e.where?'<span class="rb-pl">'+esc(e.where)+'</span>':'')+
       '<span class="rb-go">'+(g?'Game page':'Schedule')+'<span aria-hidden="true"> \u2192</span></span></a>'+
-      '<dl class="rb-tv">'+row('TV',e.tv||'TBA')+row('Stream',e.watch?'Watch':'TBA',e.watch)+row('Radio',e.radio||(e.listen?'Listen':'TBA'),e.listen)+'</dl>'+
+      '<dl class="rb-tv">'+((e.tv?row('TV',e.tv):'')+(e.watch?row('Stream','Watch',e.watch):'')+(e.radio||e.listen?row('Radio',e.radio||'Listen',e.listen):'')||row('TV','TBA'))+'</dl>'+
       (sbUrl(e.sb)?'<a class="rb-stats" href="'+sbUrl(e.sb)+'" target="_blank" rel="noopener" aria-label="Live stats for SMU '+esc(vs+e.name)+' (official StatBroadcast box score, opens in a new tab)">Live stats</a>':'')+'</li>'}
   function ribbon(){var L=ribbonEvents();if(!L.length||$('#ribbon'))return;var gd=$('.gameday'),id='rb-track';if(!gd)return;
     gd.insertAdjacentHTML('beforebegin','<section class="sec tight ribbon" id="ribbon" aria-labelledby="rb-h"><div class="wrap">'+
