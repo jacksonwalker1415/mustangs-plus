@@ -1187,7 +1187,7 @@
           (avPhoto(u)?'<button type="button" data-demo="Report profile photo" class="fx-a rep" aria-label="Report '+esc(u.n)+'\u2019s profile photo">Report photo</button>':'')+
           '<span class="fx-act-r"><button type="button" class="fx-a" data-like="'+i+'" aria-pressed="false">'+HEART+'<span>Like</span></button><button type="button" class="fx-a" data-quote="'+i+'">Quote</button><button type="button" class="fx-a" data-reply>Reply</button></span></footer>'+
         '<div class="fx-likes" hidden></div></div></article>'}
-    function replyBox(t){var tf=forumBy(t.f);if(SMU.user&&SMU.live&&tf&&tf.prem&&!isMember())return '<div class="fx-reply out" id="fxReply"><p><b>Replies here come from SMU+ staff and demo members.</b> Anyone can read '+esc(tf.name)+'. You can post on The Hilltop, The Boulevard and every team board.</p><a class="btn btn-red" href="'+ROOT+'boards/?f=hilltop">Go to The Hilltop</a></div>';if(!SMU.user)return '<div class="fx-reply out" id="fxReply"><p><b>Join the conversation.</b> Sign in to reply'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><button type="button" class="btn btn-red" data-auth>Sign in to reply</button></div>';
+    function replyBox(t){if(!SMU.user)return '<div class="fx-reply out" id="fxReply"><p><b>Sign in or join free to post.</b> Anyone can read the boards. Posting takes a free account'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><a class="btn btn-red" href="'+ROOT+'account/" data-auth="in">Sign in</a> <a class="btn btn-outline" href="'+ROOT+'account/" data-auth="up">Join free</a></div>';
       return '<form class="fx-reply" id="fxReply" data-thread="'+t.id+'" novalidate><span class="fx-reply-av">'+avatar(SMU.me(),true)+'</span><div class="fx-reply-main"><div id="replyQ" hidden></div><label class="sr" for="replyText">Write your reply</label>'+
         '<textarea id="replyText" rows="4" maxlength="5000" placeholder="Write your reply\u2026" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p>'+
         '<div class="fx-reply-f"><span class="fx-reply-tip">Type @ and a name to mention someone. Keep it civil: <a href="'+ROOT+'rules/">community rules</a></span><button class="btn btn-red" type="submit">Post reply</button></div></div></form>'}
@@ -1532,7 +1532,7 @@
       (cur===tier?'<p class="auth-m">You\u2019re already on this plan.</p>':'')+
       '<div class="dlg-act"><button type="button" class="btn btn-red" id="payGo"'+(cur===tier?' disabled':'')+'>Confirm demo membership</button><button type="button" class="btn btn-outline" id="payNo">Not now</button></div>'+modeNote());
     $('#payNo',d).addEventListener('click',d.close);
-    $('#payGo',d).addEventListener('click',function(){var b=this;b.disabled=true;SMU.setTier(tier).then(function(){d.close();toast('You\u2019re a '+TIER_NAME[tier]+' member (demo). The members-only boards are unlocked.')},function(err){b.disabled=false;toast(err.message,'err')})})}
+    $('#payGo',d).addEventListener('click',function(){var b=this;b.disabled=true;SMU.setTier(tier).then(function(){d.close();toast('You\u2019re a '+TIER_NAME[tier]+' member (demo).')},function(err){b.disabled=false;toast(err.message,'err')})})}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-plan]');if(!b)return;e.preventDefault();var t=b.dataset.plan;if(!PAID_OPEN){openJoin(JOIN_WL[t]?t:null);return}requireUser('Create an account or sign in to choose the '+TIER_NAME[t]+' plan.',function(){checkout(t)})});
   /* ---------- Join pop-up (On3-style): every Join / See plans / Join SMU+ CTA opens this instead of scrolling to #waitlist.
      Same three tiers, prices and perks as the home #membership cards. Each card's button opens the existing free waitlist form
@@ -1656,9 +1656,9 @@
       SMU.claimStudent(+yr).then(function(){toast('You\u2019re on the free Student plan.')},function(err){b.disabled=false;m.textContent=err.message})})}
 
   /* ---------- New thread ---------- */
-  function compose(sport,forum){var member=window.SMU&&SMU.live?isMember():seesMember(),pf=forum&&forumBy(forum),pick=pf&&(!pf.prem||member)?forum:'hilltop';
+  function compose(sport,forum){var pf=forum&&forumBy(forum),pick=pf?forum:'hilltop';
     var d=dialog('composeDlg','<h3 id="composeDlg-h" class="dlg-h">Start a thread</h3><form class="compose" novalidate>'+
-      '<div class="fld-row"><div class="fld"><label for="cpForum">Board</label><select id="cpForum">'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'"'+(f.prem&&!member?' disabled':'')+(f.id===pick?' selected':'')+'>'+esc(f.name)+(GATING&&f.prem?(member?' (members)':' (members only)'):'')+'</option>'}).join('')+'</select></div>'+
+      '<div class="fld-row"><div class="fld"><label for="cpForum">Board</label><select id="cpForum">'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'"'+(f.id===pick?' selected':'')+'>'+esc(f.name)+'</option>'}).join('')+'</select></div>'+
       '<div class="fld"><label for="cpSport">Sport (optional)</label><select id="cpSport"><option value="">None</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'"'+(s.slug===sport?' selected':'')+'>'+esc(s.name)+'</option>'}).join('')+'</select></div></div>'+
       '<div class="fld"><label for="cpTitle">Title</label><input id="cpTitle" maxlength="140" required placeholder="What do you want to talk about?"></div>'+
       '<div class="fld"><label for="cpBody">First post</label><textarea id="cpBody" rows="5" maxlength="5000" required></textarea></div>'+
