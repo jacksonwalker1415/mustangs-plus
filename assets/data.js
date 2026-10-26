@@ -5,6 +5,8 @@ window.MP = window.MP || {};
    sitemap entry) without deleting any code or data. Set it to true to bring recruiting back. build_pages.py reads this line too. */
 MP.FEATURES = MP.FEATURES || {};
 /* Contact for data-removal and privacy requests. ONE constant: put the address in email when it exists; until then the site shows the placeholder text. */
+/* Membership tier display names. Keys stay stable (DB + code use them); change a label here only. */
+MP.TIER_LABELS = {free:'Free', mustang:'Mustang', pony:'All-Access', club:'Red & Blue'};
 MP.CONTACT = MP.CONTACT || {email:'', pending:'a dedicated SMU+ contact email will be posted here before launch'};
 if (MP.FEATURES.recruiting == null) MP.FEATURES.recruiting = false;
 
@@ -53,12 +55,12 @@ MP.FORUMS = [
 ];
 MP.USERS = {
   staff:{n:'Sam Reyes',tier:'SMU+ Insider',staff:true,since:'2024',posts:'6,102'},
-  pete:{n:'PonyUpPete',tier:'Boulevard Club',since:'2025',posts:'4,388'},
-  hank:{n:'HilltopHank',tier:'Pony Express',since:'2025',posts:'2,911'},
-  belle:{n:'BoulevardBelle',tier:'Boulevard Club',since:'2025',posts:'1,764'},
+  pete:{n:'PonyUpPete',tier:'Red & Blue',since:'2025',posts:'4,388'},
+  hank:{n:'HilltopHank',tier:'All-Access',since:'2025',posts:'2,911'},
+  belle:{n:'BoulevardBelle',tier:'Red & Blue',since:'2025',posts:'1,764'},
   mike:{n:'MustangMike88',tier:'Mustang',since:'2026',posts:'812'},
-  ray:{n:'RedAndBlueRay',tier:'Pony Express',since:'2025',posts:'3,040'},
-  grace:{n:'GameDayGrace',tier:'Pony Express',since:'2026',posts:'655'},
+  ray:{n:'RedAndBlueRay',tier:'All-Access',since:'2025',posts:'3,040'},
+  grace:{n:'GameDayGrace',tier:'All-Access',since:'2026',posts:'655'},
   cox:{n:'CoxGrad09',tier:'Mustang',since:'2026',posts:'290'},
   dallas:{n:'BigD_Stang',tier:'Free',since:'2026',posts:'47'}
 };
@@ -145,10 +147,10 @@ MP.FORUMS.splice(2,0,{id:'filmroom',name:'Film Room Lounge',desc:'Frame-by-frame
 MP.FORUMS.push({id:'help',name:'Site Help & Feedback',desc:'Bugs, feature requests and membership questions.',prem:false,threads:214,posts:1630,group:'Community'});
 MP.USERS.dre={n:'Dre Coleman',tier:'SMU+ Film Room',staff:true,since:'2024',posts:'2,214'};
 MP.USERS.jt={n:'J.T. Barlow',tier:'SMU+ Recruiting',staff:true,since:'2024',posts:'3,377'};
-MP.USERS.peruna={n:'PerunaPapa',tier:'Boulevard Club',since:'2025',posts:'5,920'};
-MP.USERS.ford={n:'FordStadiumFaithful',tier:'Pony Express',since:'2025',posts:'1,408'};
+MP.USERS.peruna={n:'PerunaPapa',tier:'Red & Blue',since:'2025',posts:'5,920'};
+MP.USERS.ford={n:'FordStadiumFaithful',tier:'All-Access',since:'2025',posts:'1,408'};
 MP.USERS.snider={n:'SniderPlazaSam',tier:'Mustang',since:'2026',posts:'233'};
-MP.USERS.band={n:'MustangBandAlum04',tier:'Pony Express',since:'2025',posts:'967'};
+MP.USERS.band={n:'MustangBandAlum04',tier:'All-Access',since:'2025',posts:'967'};
 function T(id){for(var i=0;i<MP.THREADS.length;i++)if(MP.THREADS[i].id===id)return MP.THREADS[i]}
 /* posts: [user, text, quotedPostIndex?] */
 T(1).posts=[

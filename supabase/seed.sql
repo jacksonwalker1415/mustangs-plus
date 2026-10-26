@@ -12,20 +12,20 @@ insert into public.forums (id,name,description,premium,grp,sort) values
 on conflict (id) do update set name=excluded.name,description=excluded.description,premium=excluded.premium,grp=excluded.grp,sort=excluded.sort;
 insert into public.personas (handle,display_name,tier_label,since,post_count,staff) values
   ('staff','Sam Reyes','SMU+ Insider','2024','6,102',true),
-  ('pete','PonyUpPete','Boulevard Club','2025','4,388',false),
-  ('hank','HilltopHank','Pony Express','2025','2,911',false),
-  ('belle','BoulevardBelle','Boulevard Club','2025','1,764',false),
+  ('pete','PonyUpPete','Red & Blue','2025','4,388',false),
+  ('hank','HilltopHank','All-Access','2025','2,911',false),
+  ('belle','BoulevardBelle','Red & Blue','2025','1,764',false),
   ('mike','MustangMike88','Mustang','2026','812',false),
-  ('ray','RedAndBlueRay','Pony Express','2025','3,040',false),
-  ('grace','GameDayGrace','Pony Express','2026','655',false),
+  ('ray','RedAndBlueRay','All-Access','2025','3,040',false),
+  ('grace','GameDayGrace','All-Access','2026','655',false),
   ('cox','CoxGrad09','Mustang','2026','290',false),
   ('dallas','BigD_Stang','Free','2026','47',false),
   ('dre','Dre Coleman','SMU+ Film Room','2024','2,214',true),
   ('jt','J.T. Barlow','SMU+ Recruiting','2024','3,377',true),
-  ('peruna','PerunaPapa','Boulevard Club','2025','5,920',false),
-  ('ford','FordStadiumFaithful','Pony Express','2025','1,408',false),
+  ('peruna','PerunaPapa','Red & Blue','2025','5,920',false),
+  ('ford','FordStadiumFaithful','All-Access','2025','1,408',false),
   ('snider','SniderPlazaSam','Mustang','2026','233',false),
-  ('band','MustangBandAlum04','Pony Express','2025','967',false)
+  ('band','MustangBandAlum04','All-Access','2025','967',false)
 on conflict (handle) do update set display_name=excluded.display_name,tier_label=excluded.tier_label,since=excluded.since,post_count=excluded.post_count,staff=excluded.staff;
 alter table public.posts disable trigger posts_after_insert;
 delete from public.threads where id < 1000 and author_handle is not null;

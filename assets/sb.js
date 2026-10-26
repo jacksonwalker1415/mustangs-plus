@@ -8,7 +8,7 @@
   var CFG=window.SMU_CONFIG||{},MP=window.MP||{};
   var SUPA_SRC='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';
   var SUPA_SRI='sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK';
-  var TIERS={free:'Free',mustang:'Mustang',pony:'Pony Express',club:'Boulevard Club'};
+  var TIERS=(window.MP&&MP.TIER_LABELS)||{free:'Free',mustang:'Mustang',pony:'All-Access',club:'Red & Blue'};
   var AFFIL=['student','alum','fan','parent','other'],PRIVACY_VERSION='2026-10-26';
   var configured=!!(CFG.SUPABASE_URL&&CFG.SUPABASE_ANON_KEY&&/^https:\/\/.+/.test(CFG.SUPABASE_URL));
 

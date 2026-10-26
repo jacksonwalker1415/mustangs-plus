@@ -4,7 +4,7 @@ Concept fan membership site for an SMU Cox class project. Not affiliated with or
 
 Live: https://jacksonwalker1415.github.io/mustangs-plus/
 
-- `index.html`: home page (game day strip, Continue Watching, Boulevard Brief signup)
+- `index.html`: home page (game day strip, Continue Watching, SMU+ Weekly signup)
 - `library/`: content library with filters
 - `recruiting/`: recruiting hub and transfer portal tracker (fictional names)
 - `boards/`: The Mustang Board (message boards)
