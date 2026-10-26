@@ -75,7 +75,9 @@
   function sportUrl(slug){return ROOT+'sports/'+slug+'/'}
   function threadUrl(id){return ROOT+'boards/#t'+id}
   function athleteUrl(id){return ROOT+'athletes/?id='+id}
-  function libUrl(cat){return ROOT+'library/'+(cat&&cat!=='all'?'?cat='+cat:'')}
+  /* Library links by category open the matching type view (videos, podcasts or articles) */
+  var CAT_TYPE={watch:'video',podcasts:'podcast',insider:'article',news:'article',recruiting:'article',portal:'article'};
+  function libUrl(cat){var t=cat&&CAT_TYPE[cat];return ROOT+'library/'+(t?'?type='+t:'')}
   function rng(seed){var h=1779033703^seed.length;for(var i=0;i<seed.length;i++){h=Math.imul(h^seed.charCodeAt(i),3432918353);h=h<<13|h>>>19}
     return function(){h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);var t=(h^=h>>>16)>>>0;return t/4294967296}}
   function pick(r,a){return a[Math.floor(r()*a.length)]}
@@ -169,9 +171,9 @@
   var NAV=[['Media',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards']].concat(SHOW_PAID_PLANS?[['Membership',ROOT+'#membership','membership']]:[]));
   /* Sports is a dropdown (desktop) / accordion (phone menu) listing all 12 programs; #sports links anywhere open it */
   var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
-  /* Media (the Library page, /library/) is a dropdown too: Videos, Podcasts and Articles open the Library with that format filter set (?type=). */
-  var MEDIA=[['Videos',ROOT+'library/?type=video'],['Podcasts',ROOT+'library/?type=podcast'],['Articles',ROOT+'library/?type=article#libRead']];
-  function mediaCur(i){if(PAGE!=='library')return false;var t=new URLSearchParams(location.search).get('type');return t===['video','podcast','article'][i]}
+  /* Media (the Library page, /library/) is a dropdown too: Videos, Podcasts and Articles open the Library's view for that type (?type=video|podcast|article). */
+  var MEDIA=[['Videos',ROOT+'library/?type=video'],['Podcasts',ROOT+'library/?type=podcast'],['Articles',ROOT+'library/?type=article']];
+  function mediaCur(i){if(PAGE!=='library')return false;var P=new URLSearchParams(location.search),t=P.get('type')||CAT_TYPE[P.get('cat')];return t===['video','podcast','article'][i]}
   function mediaPanel(){return '<div class="sports-dd media-dd" id="mediaMenu" hidden><ul class="sdd-list">'+MEDIA.map(function(m,i){return '<li><a href="'+m[1]+'"'+(mediaCur(i)?' aria-current="page"':'')+'>'+m[0]+'</a></li>'}).join('')+'</ul></div>'}
   function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
     if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
@@ -593,10 +595,10 @@
   function gmVs(g){return g.ha==='away'?'at':'vs.'}
 
   /* ---------- Continue watching ---------- */
-  /* Continue watching: Library only. Hidden when nothing is in progress. */
-  function continueRow(){var el=$('#railContinue');if(!el)return;var sec=el.closest('section'),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97});
+  /* Continue watching: Library only, just the current view's type (all types on /library/). Hidden when nothing is in progress. */
+  function continueRow(){var el=$('#railContinue');if(!el)return;var V=LIB_VIEW&&LIB_VIEW!=='all'?LIB_VIEW:null,sec=el.closest('section'),h=hist().filter(function(x){return LIBBY[x.id]&&x.p<0.97&&(!V||LIBBY[x.id].t===V)});
     if(!h.length){el.innerHTML='';if(sec)sec.hidden=true;return}if(sec)sec.hidden=false;
-    el.innerHTML='<div class="sec-hd"><div><h2 class="sec-t">Continue watching</h2></div><button type="button" class="see-all linkish-plain" id="clearHist">Clear history</button></div>'+rail(h.slice(0,8).map(function(x){return LIBBY[x.id]}),{progress:true});
+    el.innerHTML='<div class="sec-hd"><div><h2 class="sec-t">'+(V?LIB_TYPES[V][2]:'Continue watching')+'</h2></div><button type="button" class="see-all linkish-plain" id="clearHist">Clear history</button></div>'+rail(h.slice(0,8).map(function(x){return LIBBY[x.id]}),{progress:true});
     var c=$('#clearHist');if(c)c.addEventListener('click',function(){try{localStorage.removeItem('mp_history')}catch(e){}continueRow()})}
 
   /* ---------- From the feeds (media batch 1): official X posts + verified accounts to follow ----------
@@ -1007,50 +1009,57 @@
   /* which outlet or show a library item belongs to, for the show filter (articles belong to none) */
   function libShow(c){var h=(c.credit||'')+' '+(c.label||'');
     return /On The Pony Express/i.test(h)?'on-the-pony-express':/Locked On SMU/i.test(h)?'locked-on-smu':/ACC Digital/i.test(h)?'acc-media':c.t!=='article'&&/SMU Athletics/i.test(h)?'smu-mustangs':''}
-  function library(){continueRow();document.addEventListener('mp:history',continueRow);
-    var P=new URLSearchParams(location.search),st={cat:P.get('cat')||'all',type:P.get('type')||'all',access:'all',q:P.get('q')||'',show:P.get('show')||'all'};
-    if(!CATNAME[st.cat])st.cat='all';if(!/^(all|video|article|podcast)$/.test(st.type))st.type='all';if(!/^(all|free|members)$/.test(st.access))st.access='all';if(!/^[\w-]+$/.test(st.show))st.show='all';
-    var chips=$('#libChips'),grid=$('#libGrid'),rgrid=$('#libReadGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty'),showSel=$('#libShowSel');
-    chips.innerHTML=MP.CATS.map(function(c){return '<button type="button" class="chip" data-cat="'+c[0]+'" aria-pressed="false">'+c[1]+'</button>'}).join('');
-    /* phones: category and format as two native dropdowns; the show chips scroll sideways */
-    var catSel=$('#libCatSel'),typeSel=$('#libTypeSel');
-    if(catSel)catSel.innerHTML=MP.CATS.map(function(c){return '<option value="'+c[0]+'">'+(c[0]==='all'?'All categories':c[1])+'</option>'}).join('');
-    if(typeSel)typeSel.innerHTML=$$('#libType button').map(function(b){var t=b.dataset.type;return '<option value="'+t+'">'+(t==='all'?'Format':b.textContent.trim())+'</option>'}).join('');
-    grid.innerHTML=MP.LIB.filter(function(c){return c.t!=='article'}).map(function(c){return cardHTML(c)}).join('');
-    rgrid.innerHTML=MP.LIB.filter(function(c){return c.t==='article'}).map(function(c){return cardHTML(c)}).join('');q.value=st.q;
+  /* ---------- Library (/library/): one view per media type, picked by ?type= (the Media menu and the buttons under the hero link
+     to the same URLs): Videos (?type=video), Podcasts (?type=podcast), Articles (?type=article). No type = all media, one row per type,
+     each linking to its own view. Older ?cat= links land on the matching type (CAT_TYPE). The video and podcast views wait for their
+     feeds (data/videos-feed.json, data/podcasts-feed.json) behind a skeleton and then show everything at once, so nothing jumps. ---------- */
+  var LIB_TYPES={video:['Videos','More videos','Continue watching','video','videos'],podcast:['Podcasts','More episodes','Continue listening','episode','episodes'],article:['Articles','Read the Recap','Continue reading','article','articles']},LIB_VIEW='all';
+  function libTypeUrl(t){return ROOT+'library/'+(t&&t!=='all'?'?type='+t:'')}
+  function library(){
+    var P=new URLSearchParams(location.search),type=P.get('type')||CAT_TYPE[P.get('cat')]||'all';if(!LIB_TYPES[type])type='all';LIB_VIEW=type;
+    if(P.has('cat')){P.delete('cat');if(type!=='all')P.set('type',type);var qs=P.toString();history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash)}
+    var st={q:(P.get('q')||'').slice(0,80),show:P.get('show')||'all'};if(!/^[\w-]+$/.test(st.show))st.show='all';
+    var main=$('main'),grid=$('#libGrid'),rgrid=$('#libReadGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty'),showSel=$('#libShowSel'),showL=$('#libShow'),T=LIB_TYPES[type];
+    $$('#libType a').forEach(function(a){if(a.dataset.type===type)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    $('#libH').textContent=T?T[0]:'All media';$('#libVh').hidden=!T;main.classList.toggle('lib-typed',!!T);q.value=st.q;
+    var wait=type==='video'||type==='podcast';main.classList.toggle('lib-wait',wait);$('#libSkel').hidden=!wait;
+    function ofType(t){return MP.LIB.filter(function(c){return c.t===t})}
+    if(type==='all'){var rows=['video','podcast','article'].map(function(t){var L=ofType(t);if(!L.length)return '';
+        return '<section class="sec tight lib-row" data-type="'+t+'"><div class="wrap">'+secHead(LIB_TYPES[t][0],libTypeUrl(t),'See all '+LIB_TYPES[t][4])+rail(L.slice(0,12))+'</div></section>'}).join('');
+      var all=$('#libAll');all.innerHTML=rows;all.hidden=false}
+    else if(type==='article'){rgrid.innerHTML=ofType('article').map(function(c){return cardHTML(c)}).join('');$('#libRead').hidden=false}
+    else{grid.innerHTML=ofType(type).map(function(c){return cardHTML(c)}).join('');$('#media-h').textContent=T[1];$('#libMedia').hidden=!grid.children.length}
+    continueRow();document.addEventListener('mp:history',continueRow);
     function itemOf(el){var id=el.dataset.pod||el.dataset.item||(el.querySelector('[data-item]')||{dataset:{}}).dataset.item;return PODBY[id]||LIBBY[id]}
-    function ok(c,show){if(!c)return false;var hay=(c.title+' '+c.desc+' '+c.label).toLowerCase();
-      return (st.cat==='all'||c.cat===st.cat)&&(st.type==='all'||c.t===st.type)&&(st.access==='all'||(st.access==='free')===!c.lock)&&(st.show==='all'||show===st.show)&&
-        st.q.toLowerCase().split(/\s+/).filter(Boolean).every(function(t){return hay.indexOf(t)>=0})}
+    function ok(c,show){if(!c)return false;var hay=(c.title+' '+(c.desc||'')+' '+(c.label||'')).toLowerCase();
+      return (st.show==='all'||show===st.show)&&st.q.toLowerCase().split(/\s+/).filter(Boolean).every(function(t){return hay.indexOf(t)>=0})}
     function apply(push){var seen={},n=0;function hit(c){if(!seen[c.id]){seen[c.id]=1;n++}}
-      $$('.chip',chips).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cat===st.cat?'true':'false')});
       if(showSel){showSel.value=st.show;if(showSel.value!==st.show)showSel.value='all';showSel.classList.toggle('on',st.show!=='all')}
-      $$('#libType button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.type===st.type?'true':'false')});
-      if(catSel)catSel.value=st.cat;if(typeSel)typeSel.value=st.type;
-      [grid,rgrid].forEach(function(g){var k=0;$$('.mcard',g).forEach(function(el){var c=LIBBY[el.dataset.item],y=ok(c,libShow(c));el.hidden=!y;if(y){k++;hit(c)}});g.closest('section').classList.toggle('is-off',!k)});
-      ['#outlets','#pods'].forEach(function(sel){var sec=$(sel);if(!sec)return;var any=0;
+      [grid,rgrid].forEach(function(g){if(g.closest('section').hidden)return;var k=0;$$('.mcard',g).forEach(function(el){var c=LIBBY[el.dataset.item],y=ok(c,libShow(c));el.hidden=!y;if(y){k++;hit(c)}});g.closest('section').classList.toggle('is-off',!k)});
+      $$('#libAll .lib-row').forEach(function(r){var k=0;$$('.rail-i',r).forEach(function(i){var c=itemOf(i),y=ok(c,libShow(c||{}));i.hidden=!y;if(y){k++;hit(c)}});r.classList.toggle('is-off',!k);var rl=r.querySelector('.rail');if(rl)rl.scrollLeft=0});
+      ['#outlets','#pods'].forEach(function(sel){var sec=$(sel);if(!sec||sec.hidden)return;var any=0;
         $$('.orow-sec',sec).forEach(function(r){var k=0;if(!(r.hasAttribute('data-new')&&st.show!=='all'))$$('.rail-i',r).forEach(function(i){var c=itemOf(i),y=ok(c,i.dataset.show);i.hidden=!y;if(y){k++;hit(c)}});
           r.hidden=!k;if(k){any=1;var rl=r.querySelector('.rail');if(rl)rl.scrollLeft=0}});
         sec.classList.toggle('is-off',!any)});
-      var active=st.cat!=='all'||st.type!=='all'||st.access!=='all'||st.q||st.show!=='all';
-      var cs=$('#continue');if(cs)cs.classList.toggle('is-off',!!active);
-      count.textContent=n+' '+(n===1?'title':'titles');$('#libClear').hidden=!active;
-      $('#libNone').hidden=n>0;if(!n)empty.innerHTML=emptyState('filter','Nothing matches those filters','Try a different category, show or format, or clear the filters.','<button type="button" class="btn btn-navy btn-sm" data-lib-clear>Clear filters</button>');
+      var active=!!st.q||st.show!=='all',cs=$('#continue');if(cs)cs.classList.toggle('is-off',active);
+      count.textContent=n+' '+(T?(n===1?T[3]:T[4]):(n===1?'title':'titles'));$('#libClear').hidden=!active;
+      $('#libNone').hidden=n>0;if(!n)empty.innerHTML=emptyState('filter','Nothing matches','Try other words'+(showL.hidden?'':' or a different show')+', or clear the filters.','<button type="button" class="btn btn-navy btn-sm" data-lib-clear>Clear filters</button>');
       slSyncAll();orowArrows();
-      if(push){var u=new URLSearchParams();['cat','type','access','show'].forEach(function(k){if(st[k]!=='all')u.set(k,st[k])});if(st.q)u.set('q',st.q);var s=u.toString();history.replaceState(null,'',location.pathname+(s?'?'+s:'')+location.hash)}}
-    function clear(){st={cat:'all',type:'all',access:'all',q:'',show:'all'};q.value='';apply(true)}
-    chips.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b){st.cat=b.dataset.cat;apply(true)}});
+      if(push){var u=new URLSearchParams();if(type!=='all')u.set('type',type);if(st.show!=='all')u.set('show',st.show);if(st.q)u.set('q',st.q);var s=u.toString();history.replaceState(null,'',location.pathname+(s?'?'+s:'')+location.hash)}}
+    function clear(){st.q='';st.show='all';q.value='';apply(true)}
     if(showSel)showSel.addEventListener('change',function(){st.show=showSel.value;apply(true)});
-    $('#libType').addEventListener('click',function(e){var b=e.target.closest('button');if(b){st.type=b.dataset.type;apply(true)}});
     q.addEventListener('input',function(){st.q=q.value.trim();apply(true)});
-    if(catSel)catSel.addEventListener('change',function(){st.cat=catSel.value;apply(true)});
-    if(typeSel)typeSel.addEventListener('change',function(){st.type=typeSel.value;apply(true)});
     document.addEventListener('click',function(e){if(e.target.closest('[data-lib-clear],#libClear'))clear()});
-    apply(false);
-    Promise.all([outletsRow().catch(function(){}),podsRow().catch(function(){})]).then(function(){
-      if(LIB_SHOWS.length){LIB_SHOWS.sort(function(a,b){return a[2]-b[2]});if(showSel)showSel.innerHTML=[['all','All shows']].concat(LIB_SHOWS).map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>'}).join('')}
-      if(st.show!=='all'&&!LIB_SHOWS.some(function(x){return x[0]===st.show}))st.show='all';
-      apply(false)})
+    function reveal(){main.classList.remove('lib-wait');$('#libSkel').hidden=true;
+      var S=LIB_SHOWS.filter(function(x){return x[2]===(type==='podcast'?1:0)}).sort(function(a,b){return a[2]-b[2]});
+      if(wait&&S.length&&showSel){showSel.innerHTML=[['all','All shows']].concat(S).map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>'}).join('');showL.hidden=false}
+      if(st.show!=='all'&&!S.some(function(x){return x[0]===st.show}))st.show='all';
+      /* the in-page sample ad goes after the first block of the view (assets/ads.js 'library-mpu'); the Articles view has none */
+      var adAt=type==='all'?$('#libAll .lib-row'):type==='video'?$('#outlets'):type==='podcast'?$('#pods'):null;if(adAt&&!adAt.hidden)adAt.setAttribute('data-ad-after','');
+      apply(false);if(MP.adsMount)MP.adsMount();setTimeout(function(){orowArrows();slSyncAll()},300)}
+    if(!wait){reveal();return}
+    var done=false;function fin(){if(done)return;done=true;reveal()}
+    (type==='video'?outletsRow():podsRow()).then(fin,fin);setTimeout(fin,4000)
   }
 
   /* ---------- Recruiting hub ---------- */
@@ -1889,6 +1898,6 @@
       max=document.documentElement.scrollHeight-innerHeight;
       if(n>2&&Math.abs(off)>2&&!(off>0&&scrollY>=max-1))scrollBy({top:off,behavior:'auto'});
       if(++n<14)setTimeout(fix,200);else quit()})()});
-  aboutSources();if(PAGE==='home')home();else if(PAGE==='library'){library();/* Media > Articles: ?type=article#libRead lands on Read the Recap once the grid has rendered */if(location.hash==='#libRead')setTimeout(function(){var r=$('#libRead');if(r)r.scrollIntoView({block:'start'})},350)}else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();else if(PAGE==='search')searchPage();watchX();
+  aboutSources();if(PAGE==='home')home();else if(PAGE==='library'){library()}else if(PAGE==='recruiting')recruiting();else if(PAGE==='boards')boards();else if(PAGE==='sport')sport();else if(PAGE==='athlete')athlete();else if(PAGE==='games')gamePage();else if(PAGE==='account')account();else if(PAGE==='search')searchPage();watchX();
   articleFromHash();
 })();
