@@ -1261,6 +1261,40 @@ html:not(.is-member) .gated .poster .np-art{filter:blur(2.5px)}
 
 /* Reserve the header height until app.js renders it, so the page does not jump down (ported from the ads-mock review fix; no ad code) */
 #site-header:empty{min-height:calc(var(--hdr) + 1px);background:var(--black)}
+/* Real YouTube thumbnails on official video cards: photo full-bleed, a light scrim only along the bottom so the Watch pill stays legible. */
+.poster.has-yt{background:#16214f}
+.poster.has-yt .ph{width:100%;height:100%;object-fit:cover;display:block}
+.poster.has-yt::after{background:linear-gradient(180deg,rgba(16,24,60,0) 58%,rgba(16,24,60,.5) 100%)}
+.poster.has-yt .credit{top:var(--s3);bottom:auto;right:var(--s3)}
+.poster.has-yt .dur{top:auto;bottom:var(--s3)}
+
+/* ---------- Header: Sports dropdown (desktop) and accordion (phone menu) ---------- */
+nav.main .nav-dd-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:15px;font-weight:600;color:rgba(255,255,255,.75);background:none;border:0;padding:var(--s2) var(--s3);border-radius:var(--r1);cursor:pointer;white-space:nowrap}
+nav.main .nav-dd-btn:hover,nav.main .nav-dd-btn[aria-expanded="true"]{color:#fff;background:rgba(255,255,255,.08)}
+nav.main .nav-dd-btn.on{color:#fff;box-shadow:inset 0 -2px 0 var(--red);border-radius:0}
+nav.main .nav-dd-btn.nav-x{display:none}
+.dd-chev{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+.nav-dd-btn[aria-expanded="true"] .dd-chev{transform:rotate(180deg)}
+@media(max-width:1279px){nav.main .nav-dd-btn{padding:var(--s2) 10px}}
+.sports-dd{position:fixed;z-index:60;width:min(520px,calc(100vw - 16px));background:#fff;color:var(--ink);border:1px solid var(--line-2);border-top:3px solid var(--blue);border-radius:0 0 var(--r2) var(--r2);box-shadow:0 12px 32px rgba(22,33,79,.18);padding:var(--s4) var(--s4) var(--s3)}
+.sports-dd[hidden]{display:none}
+.sdd-h{margin:0 0 var(--s2) var(--s2);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.sdd-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px var(--s2)}
+.sdd-list a{display:flex;align-items:center;gap:10px;min-height:44px;padding:6px var(--s2);border-radius:var(--r1);font-size:15px;font-weight:600;color:var(--ink)}
+.sdd-list a svg{flex:none;width:30px;height:30px;padding:5px;border-radius:6px;background:var(--blue);fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sdd-list a:hover,.sdd-list a:focus-visible{background:#eef1fa;color:var(--blue)}
+.sdd-list a[aria-current="page"]{color:var(--blue);box-shadow:inset 3px 0 0 var(--red)}
+@media(max-width:959px){.sports-dd{display:none!important}}
+.mm-nav .mm-acc{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:var(--s3);width:100%;min-height:60px;padding:var(--s2) 0;border:0;border-bottom:1px solid rgba(255,255,255,.1);background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.mm-acc .mm-chev{transition:transform .15s}
+.mm-acc[aria-expanded="true"] .mm-chev{transform:rotate(90deg)}
+.mm-acc.on b{color:#fff;box-shadow:inset 0 -3px 0 var(--red)}
+.mm-nav .mm-sports{display:grid;grid-template-columns:1fr;gap:0;margin:0 0 var(--s2);border-bottom:1px solid rgba(255,255,255,.1)}
+.mm-nav .mm-sports[hidden]{display:none}
+.mm-nav .mm-sports a{display:flex;grid-template-columns:none;align-items:center;gap:12px;min-height:44px;padding:0 var(--s2);border-radius:0;border-bottom:0;background:none;font-size:16px;font-weight:600;color:rgba(255,255,255,.92)}
+.mm-nav .mm-sports a svg{flex:none;width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mm-nav .mm-sports a:hover,.mm-nav .mm-sports a:focus-visible{background:rgba(255,255,255,.08)}
+
 /* =====================================================================
    Round 6: design tokens + polish. One layer, appended last.
    Header and mobile menu rules (header.site, .hdr*, nav.main, .wordmark, .hsearch, .acct-btn, .hdr-join,
