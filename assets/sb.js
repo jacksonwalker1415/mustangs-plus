@@ -62,11 +62,16 @@
   /* every author on the boards needs a USERS entry (e.g. posts written in this browser before signing out) */
   function fillUsers(){(MP.THREADS||[]).forEach(function(t){[t.by].concat((t.posts||[]).map(function(p){return p[0]})).forEach(function(id){
     if(id&&!(MP.USERS&&MP.USERS[id]))ensureUser(id,id==='me'?(ls('mp_lastname')||'Demo member'):'Member')})})}
+  /* Board totals. Live: the forum_stats/sport_stats views (supabase/boards_stats.sql). Demo, or if the views aren't there yet:
+     counted from the threads this page actually has (the seed plus this browser's posts). Never the old sample numbers. */
+  function countBoards(){var F={},S={};(MP.THREADS||[]).forEach(function(t){var n=(t.posts||[]).length||1,f=F[t.f]=F[t.f]||{threads:0,posts:0};f.threads++;f.posts+=n;
+    if(t.sport){var s=S[t.sport]=S[t.sport]||{threads:0,posts:0};s.threads++;s.posts+=n}});return {forums:F,sports:S}}
+  function applyBoards(c){(MP.FORUMS||[]).forEach(function(f){var x=c.forums[f.id]||{};f.threads=x.threads||0;f.posts=x.posts||0});MP.SPORT_STATS=c.sports;return c}
   function meKey(){return SMU.user?(SMU.live?'u:'+SMU.user.id:'me'):null}
 
   /* ================= DEMO backend (localStorage) ================= */
   var demo={
-    init:function(){var u=lj('mp_user',null);SMU.user=u;if(u)ensureUser('me',u.name,demo.tier(),String(new Date(u.since||Date.now()).getFullYear()));demo.mergeThreads();fillUsers();return Promise.resolve()},
+    init:function(){var u=lj('mp_user',null);SMU.user=u;if(u)ensureUser('me',u.name,demo.tier(),String(new Date(u.since||Date.now()).getFullYear()));demo.mergeThreads();fillUsers();applyBoards(countBoards());return Promise.resolve()},
     signUp:function(o){var u={id:uid(),email:String(o.email).trim().toLowerCase(),name:(o.name||'').trim()||nameFromEmail(o.email),since:Date.now()};
       sj('mp_user',u);ls('mp_lastname',u.name);SMU.user=u;ensureUser('me',u.name,demo.tier());MP.USERS.me.n=u.name;emit('auth',u);return Promise.resolve({user:u,confirm:false})},
     signIn:function(o){var u=lj('mp_user',null),em=String(o.email).trim().toLowerCase();
@@ -91,6 +96,7 @@
       Object.keys(L.replies).forEach(function(id){var t=MP.THREADS.filter(function(x){return String(x.id)===id})[0];if(!t||t._merged)return;t._merged=1;
         L.replies[id].forEach(function(p){t.posts.push(p);t.replies++})})},
     loadThreads:function(){return Promise.resolve(MP.THREADS)},
+    boardStats:function(){return Promise.resolve(applyBoards(countBoards()))},
     loadThread:function(id){return Promise.resolve(MP.THREADS.filter(function(t){return t.id===id})[0]||null)},
     createThread:function(o){if(!SMU.user)return Promise.reject(new Error('Sign in to start a thread.'));
       var L=demo.local(),id=Math.max.apply(null,MP.THREADS.map(function(t){return t.id}).concat([100]))+1,now=new Date().toISOString();
@@ -135,6 +141,11 @@
     loadForums:function(strict){return q('forums',sb.from('forums').select('id,name,description,premium,grp,sort').order('sort')).then(function(rows){
       if(rows&&rows.length)MP.FORUMS=rows.map(function(f){var old=(MP.FORUMS||[]).filter(function(x){return x.id===f.id})[0]||{};
         return {id:f.id,name:f.name,desc:recOff()&&/recruit/i.test(f.description||'')&&old.desc?old.desc:f.description,prem:f.premium,group:f.grp,threads:old.threads||0,posts:old.posts||0}});recFilter()}).catch(function(e){if(strict)throw e})},
+    /* views from supabase/RUN_ME_7_boards_stats.sql; rows marked rec are left out while recruiting is off */
+    boardStats:function(){return Promise.all([q('stats',sb.from('forum_stats').select('forum_id,rec,threads,posts')),q('stats',sb.from('sport_stats').select('sport,rec,threads,posts'))]).then(function(r){
+      var c={forums:{},sports:{}};function add(m,k,x){if(x.rec&&recOff())return;var o=m[k]=m[k]||{threads:0,posts:0};o.threads+=x.threads||0;o.posts+=x.posts||0}
+      (r[0]||[]).forEach(function(x){add(c.forums,x.forum_id,x)});(r[1]||[]).forEach(function(x){add(c.sports,x.sport,x)});return applyBoards(c)},
+      function(){return applyBoards(countBoards())})},
     signUp:function(o){return q('signup',sb.auth.signUp({email:o.email,password:o.password,options:{data:{display_name:o.name||nameFromEmail(o.email)},emailRedirectTo:CFG.SITE_URL+'account/'}}))
       .then(function(d){return {user:d.user,confirm:!d.session}})},
     signIn:function(o){return q('signin',sb.auth.signInWithPassword({email:o.email,password:o.password})).then(function(d){return {user:d.user}})},
@@ -193,13 +204,14 @@
 
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
-  ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','loadThread','createThread','reply','watch'].forEach(function(k){
+  ['signUp','signIn','magic','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch'].forEach(function(k){
     SMU[k]=function(){var b=B();return b[k].apply(b,arguments)}});
   SMU.reset=function(e){return SMU.live?live.reset(e):Promise.reject(new Error('Password reset needs the live database. In demo mode, just sign in with your email.'))};
   SMU.newPassword=function(p){return SMU.live?live.newPassword(p):Promise.reject(new Error('Not available in demo mode.'))};
   SMU.tier=function(){return B().tier()};
   SMU.saved=function(){return B().saved()};
   SMU.me=meKey;
+  applyBoards(countBoards());  /* replace the sample totals before anything renders */
   SMU.ready=(configured?live.init():demo.init()).then(function(){emit('ready',SMU.mode);return SMU.mode});
   if(typeof window!=='undefined'){window.addEventListener('offline',function(){emit('net',false)});window.addEventListener('online',function(){emit('net',true)})}
 })();
