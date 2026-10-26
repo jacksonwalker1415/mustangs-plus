@@ -1022,10 +1022,11 @@
           (has?'<span class="gs-bar" aria-hidden="true"><i style="width:'+ps+'%"></i><b style="width:'+(100-ps)+'%"></b></span>':'')+'</div>'}).join('')+'</div>'}
     /* scoreboard */
     var rec=pre&&pre.season&&(pre.season.rows||[]).filter(function(r){return /^record$/i.test(r.l)})[0];
-    function team(smu){var sc=smu?us:them,win=m&&(smu?us>them:them>us),nm=smu?'SMU':g.opp,rc=rec?(smu?rec.s:rec.o):'';
-      return '<div class="gc-team '+(smu?'gc-l':'gc-r')+(m?(win?' win':' lose'):'')+'">'+
-        '<span class="gc-tn"><b>'+esc(nm)+'</b>'+(rc?'<small>'+esc(rc)+'</small>':'')+'</span>'+
-        (m?'<span class="gc-sc">'+sc+'</span>'+(win?'<span class="gc-win" aria-hidden="true"></span>':''):'')+'</div>'}
+    /* one side of the scoreboard. S (optional) is a live score from cfbd-live.js: {us,them,done,ball} */
+    function team(smu,S){var has=S?true:!!m,a=S?S.us:us,b=S?S.them:them,done=S?S.done:!!m,sc=smu?a:b,win=done&&(smu?a>b:b>a),nm=smu?'SMU':g.opp,rc=rec?(smu?rec.s:rec.o):'',ball=S&&!S.done&&S.ball===(smu?'SMU':g.opp);
+      return '<div class="gc-team '+(smu?'gc-l':'gc-r')+(done?(win?' win':' lose'):'')+'">'+
+        '<span class="gc-tn"><b>'+esc(nm)+(ball?'<i class="gc-ball" role="img" aria-label="has the ball"></i>':'')+'</b>'+(rc?'<small>'+esc(rc)+'</small>':'')+'</span>'+
+        (has?'<span class="gc-sc">'+sc+'</span>'+(win?'<span class="gc-win" aria-hidden="true"></span>':''):'')+'</div>'}
     var LS=fin&&fin.line,lsRows=LS?LS.rows.slice().sort(function(a,b){return (b.smu?1:0)-(a.smu?1:0)}):[];
     var lsTable=LS?'<table class="gc-ls"><caption class="sr">Score by '+per+'</caption><thead><tr><th scope="col"><span class="sr">Team</span></th>'+LS.h.map(function(h){return '<th scope="col">'+esc(h)+'</th>'}).join('')+'<th scope="col">T</th></tr></thead><tbody>'+
       lsRows.map(function(r){return '<tr'+(r.smu?' class="smu"':'')+'><th scope="row">'+esc(r.smu?'SMU':g.opp)+'</th>'+r.s.map(function(v){return '<td>'+v+'</td>'}).join('')+'<td class="t">'+r.tot+'</td></tr>'}).join('')+'</tbody></table>':'';
@@ -1073,7 +1074,9 @@
     var vids='<article class="gc-card gc-vids" id="videos" hidden><h2 class="gc-h">Videos</h2><div id="gmVideos"></div></article>';
     /* right column: CFBD live card (cfbd-live.js fills this .gm-match card), game info, how to watch, links */
     var att=fin&&fin.att;
-    right='<article class="gc-card gm-live gm-match" id="gmLive"><h2 class="gm-h gc-h">Live</h2></article>'+
+    /* during a football game's window (kickoff to five hours after, no result yet) the Live card holds its space for cfbd-live.js, so nothing jumps */
+    var koT=g.ko?Date.parse(g.ko):NaN,liveWin=g.sport==='football'&&!g.res&&!isNaN(koT)&&Date.now()>=koT&&Date.now()<koT+5*36e5;
+    right='<article class="gc-card gm-live gm-match'+(liveWin?' gm-wait':'')+'" id="gmLive"'+(liveWin?' aria-busy="true"':'')+'><h2 class="gm-h gc-h">Live</h2></article>'+
       '<article class="gc-card"><h2 class="gc-h">Game info</h2><dl class="gc-facts">'+gmFact('Date',gmDate(g,1))+gmFact(C.verb,g.time)+gmFact(g.venue?'Venue':'Where',where)+(att?gmFact('Attendance',att):'')+'</dl></article>'+
       '<article class="gc-card gc-how" id="how"><h2 class="gc-h">How to watch and listen</h2>'+
         '<div class="gm-how-i"><h3>Watch</h3><p>'+(g.tv?esc(g.tv):'TBA')+'</p>'+gmOut(L.watch,'Watch link from SMU Athletics')+'</div>'+
@@ -1092,6 +1095,17 @@
         '<p class="gm-src">Game details from the <a href="'+esc((MP.GAMES.src||{})[g.sport]||'https://smumustangs.com')+'" target="_blank" rel="noopener">SMU Athletics schedule</a>'+(MP.GAMES.checked?', checked '+esc(MP.GAMES.checked):'')+'.</p></div></section>';
     var grid=$('.gc-grid',main);if(!left)grid.classList.add('no-c1');
     function layout(){grid.classList.toggle('no-c2',!$$('.gc-c2>.gc-card',main).some(function(c){return !c.hidden}))}layout();
+    /* live score from cfbd-live.js (football): the sticky scoreboard shows the score and the quarter and clock, or Final.
+       o = {us, them, status ('Live · 3rd 8:12', 'Final'), live (in progress), ball ('SMU' or the opponent), sit (down and distance)} */
+    MP.gcLive=function(o){var box=$('.gc-sb',main);if(!box||!o||typeof o.us!=='number'||typeof o.them!=='number')return;
+      var st=String(o.status||'').replace(/^Live \u00b7 /,''),S={us:o.us,them:o.them,done:!o.live,ball:o.ball},
+        lbl=(o.live?'Live'+(st&&st!=='Live'?', '+st:''):st||'Final')+': SMU '+o.us+', '+g.opp+' '+o.them,
+        md='<div class="gc-mid"><p class="gc-st">'+(o.live?'<span class="gc-on">Live</span>'+(st&&st!=='Live'?' '+esc(st):''):esc(st||'Final'))+'</p>'+
+          (o.live&&o.sit?'<p class="gc-ko">'+esc(o.sit)+'</p>':'')+'</div>',
+        h='<div class="wrap gc-sb-in" role="group" aria-label="'+esc(lbl)+'">'+team(1,S)+md+team(0,S)+'</div>';
+      if(box.getAttribute('data-live')===h)return;box.setAttribute('data-live',h);
+      box.className='gc-sb '+(o.live?'is-live':'is-final');box.innerHTML=h};
+    if(liveWin)setTimeout(function(){var c=$('#gmLive',main);if(c){c.classList.remove('gm-wait');c.removeAttribute('aria-busy')}},12000);
     var lsd=$('.gc-lsd',main);if(lsd&&window.matchMedia&&matchMedia('(max-width:759px)').matches)lsd.open=false;
     if(isNext&&g.sport==='football'&&MP.adSkin)MP.adSkin();
     function tab(id,on){var t=$('.gc-tabs [data-tab="'+id+'"]',main);if(t)t.hidden=!on}

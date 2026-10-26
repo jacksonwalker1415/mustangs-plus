@@ -22,8 +22,8 @@ body[data-page="games"] main{--gc-top:var(--hdr-h,64px)}
 .gc-r{justify-content:flex-start}
 .gc-mark{width:48px;height:48px;border-radius:50%;flex:none;display:block}
 .gc-mono{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;flex:none;background:#fff;color:var(--ink);border:1px solid var(--gm-hair-2);font-weight:700;font-size:15px}
-.gc-mark.sm,.gc-mono.sm{width:24px;height:24px;font-size:9px}
-.gc-mark.xs,.gc-mono.xs{width:28px;height:28px;font-size:10px}
+.gc-mark.sm,.gc-mono.sm{width:24px;height:24px;font-size:13px;letter-spacing:-.02em}
+.gc-mark.xs,.gc-mono.xs{width:28px;height:28px;font-size:13px}
 .gc-tn{display:flex;flex-direction:column;min-width:0;line-height:1.2}
 .gc-tn b{font-size:18px;font-weight:700;color:var(--ink);overflow-wrap:anywhere}
 .gc-l .gc-tn b{color:var(--blue)}
@@ -47,7 +47,7 @@ body[data-page="games"] main{--gc-top:var(--hdr-h,64px)}
 .gc-ls tbody th{text-align:left;font-weight:700;color:var(--ink);padding-left:0}
 .gc-ls tr.smu th{color:var(--blue)}
 .gc-ls .t{font-weight:700;color:var(--ink)}
-body:has(#gmLive .cf-on) /* page title, meta and section tabs */
+/* page title, meta and section tabs */
 .gc-hd{background:#fff;border-bottom:1px solid var(--gm-hair);scroll-margin-top:calc(var(--gc-top) + 120px)}
 .gc-h1{font-size:15px;font-weight:700;color:var(--ink);margin:var(--s3) 0 0;display:inline}
 .gc-meta{display:inline;margin:0 0 0 var(--s2);font-size:14px;color:var(--ink-2)}
@@ -84,12 +84,12 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 .gc-ini.smu{background:var(--blue);border-color:var(--blue);color:#fff}
 .gc-pl-v{grid-area:v;font-weight:700;font-size:26px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
 .gc-pl.smu .gc-pl-v{color:var(--blue)}
-.gc-pl-v small{font-size:var(--fs-12);font-weight:400;color:var(--ink-3);margin-left:3px}
+.gc-pl-v small{font-size:13px;font-weight:400;color:var(--ink-3);margin-left:3px}
 .gc-pl-b{grid-area:b;display:flex;flex-direction:column;min-width:0;line-height:1.3}
 .gc-pl.r .gc-pl-b{align-items:flex-end}
 .gc-pl-b .gs-pl-n{font-size:15px;font-weight:700;color:var(--ink);overflow-wrap:anywhere}
 .gc-pl-b a.gs-pl-n{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-.gc-pl-b small{font-size:12px;color:var(--ink-2)}
+.gc-pl-b small{font-size:13px;color:var(--ink-2)}
 .gc-pl-b small:empty{display:none}
 /* team stats (shared compare rows) */
 .gs-cmp-hd{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:700;padding-bottom:var(--s2);border-bottom:1px solid var(--gm-hair)}
@@ -121,7 +121,7 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 /* play-by-play */
 .gc-seg{display:flex;border:1px solid var(--blue);border-radius:99px;padding:3px;margin-bottom:var(--s3)}
 .gc-seg[hidden]{display:none}
-.gc-seg button{flex:1;min-height:38px;border:0;border-radius:99px;background:#fff;color:var(--blue);font-weight:700;font-size:14px;cursor:pointer}
+.gc-seg button{flex:1;min-height:44px;border:0;border-radius:99px;background:#fff;color:var(--blue);font-weight:700;font-size:14px;cursor:pointer}
 .gc-seg button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .gc-panel[hidden]{display:none}
 .gc-q{font-size:14px;font-weight:700;color:var(--ink);margin:var(--s4) 0 var(--s2)}
@@ -140,7 +140,7 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 .gc-ps span{display:flex;flex-direction:column;line-height:1.1}
 .gc-ps b{font-weight:700;font-size:var(--fs-20);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
 .gc-ps span:first-child b{color:var(--blue)}
-.gc-ps small{font-size:11px;font-weight:700;color:var(--ink-3)}
+.gc-ps small{font-size:13px;font-weight:700;color:var(--ink-3)}
 .gc-all .cf-pbp{border-top:0;padding-top:0}
 .gc-all .cf-pbp summary{display:none}
 .gc-all .cf-pbp li{border-top:1px solid var(--gm-hair);padding-left:var(--s3);grid-template-columns:88px minmax(0,1fr)}
@@ -173,8 +173,8 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 .gmu-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);margin-top:var(--s6)}
 .gmu{display:flex;flex-direction:column;gap:var(--s1);padding:var(--s4) var(--s5);background:#fff;color:var(--ink);border-radius:8px;border-top:4px solid var(--red);min-height:44px}
 .gmu:hover{box-shadow:0 0 0 2px #fff}
-.gmu-m{font-family:var(--display);font-size:30px;line-height:1.02;color:var(--blue)}
-.gmu-m i,.gmb-m i{font-style:normal;font-family:var(--sans);font-size:.55em;font-weight:700;color:var(--ink-3);vertical-align:.18em}
+.gmu-m{font-family:var(--sans);font-weight:700;font-size:24px;line-height:1.15;letter-spacing:-.01em;color:var(--blue)}
+.gmu-m i,.gmb-m i{font-style:normal;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink-3);vertical-align:.1em}
 .gmu-d{font-size:15px;font-weight:700;color:var(--ink)}
 .gmu-t{font-size:14px;color:var(--ink-2)}
 .gm-idx{padding-top:var(--s7);padding-bottom:0}
@@ -183,7 +183,7 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 .gmb-hd{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s4);min-height:120px;padding:var(--s5);background:var(--blue);color:#fff;border-radius:8px 8px 0 0;overflow:hidden}
 .gmb-hd .bgph{left:auto;width:40%}
 .gmb-hd .bgph .ph{width:100%;height:100%;object-fit:cover}
-.gmb-t{position:relative;z-index:2;font-family:var(--display);font-weight:400;font-size:clamp(36px,4vw,52px);line-height:.95;margin:0}
+.gmb-t{position:relative;z-index:2;font-family:var(--sans);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.05;letter-spacing:-.01em;margin:0}
 .gmb-all{position:relative;z-index:2;margin-right:40%;display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s2);font-weight:700;color:#fff;text-decoration:underline;text-underline-offset:4px}
 .gmb-hd .credit{z-index:3}
 .gmb{border:1px solid var(--gm-hair-2);border-top:0;border-radius:0 0 8px 8px}
@@ -191,7 +191,7 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 .gmb .gm-li{grid-template-columns:84px minmax(0,1fr) 170px 104px 16px;gap:var(--s5);padding:var(--s3) var(--s5);min-height:72px}
 .gmb .gm-li:hover{background:#fff;box-shadow:inset 4px 0 0 var(--blue)}
 .gmb-d{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
-.gmb-d b{font-family:var(--display);font-weight:400;font-size:36px;color:var(--blue);font-variant-numeric:tabular-nums}
+.gmb-d b{font-family:var(--sans);font-weight:700;font-size:28px;line-height:1.05;color:var(--blue);font-variant-numeric:tabular-nums}
 .gmb-d small{font-size:13px;font-weight:700;color:var(--ink-3);margin-top:4px;white-space:nowrap}
 .gmb-m{min-width:0}
 .gmb-m b{display:block;font-size:18px;font-weight:800;color:var(--ink);line-height:1.25}
@@ -200,7 +200,7 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 .gmb-s b{font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap}
 .gmb-s small{font-size:14px;color:var(--ink-2)}
 .is-final .gmb-s{display:grid;grid-template-columns:auto auto;justify-content:end;align-items:center;column-gap:var(--s2)}
-.is-final .gmb-s b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;color:var(--blue)}
+.is-final .gmb-s b{font-family:var(--sans);font-weight:700;font-size:24px;line-height:1;color:var(--blue)}
 .is-final .gmb-s small{grid-column:1/-1;font-weight:600}
 .gmb-wl{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:4px;background:var(--blue);color:#fff;font-weight:800;font-size:14px}
 .gmb-wl.wl-L{background:var(--red)}
@@ -232,7 +232,7 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
   .gc-lsd summary{display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:700;color:var(--blue);cursor:pointer}
   .gc-team{gap:var(--s2)}
   .gc-tn b{font-size:14px}
-  .gc-tn small{font-size:12px}
+  .gc-tn small{font-size:13px}
   .gc-sc{font-size:32px}
   .gc-l .gc-win{margin-left:-4px}.gc-r .gc-win{margin-right:-4px}
   .gc-vids .rail,body[data-page="games"] .gc-vids .rail{grid-auto-columns:86%}
@@ -246,21 +246,47 @@ body:has(#gmLive .cf-on) /* page title, meta and section tabs */
 }
 @media(max-width:639px){
   /* player names in the leaders block: 44px tap targets */
-  .gc-pl-b a.gs-pl-n{display:inline-flex;align-items:center;min-height:44px}
   .gmu-row{gap:var(--s2);margin-top:var(--s5)}
   .gmu{padding:var(--s3) var(--s4)}
-  .gmu-m{font-size:24px}
+  .gmu-m{font-size:20px}
   .gmb-hd{min-height:104px;padding:var(--s4);flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:0}
   .gmb-hd .bgph{width:46%}
   .gmb-t,.gmb-all{max-width:54%}
   .gmb-all{margin:0;padding:0}
   .gmb .gm-li{grid-template-columns:52px minmax(0,1fr) auto;grid-template-areas:"d m s" "d x s";gap:2px var(--s3);padding:var(--s3) var(--s4);min-height:72px}
-  .gmb-d{grid-area:d}.gmb-m{grid-area:m}.gmb-s{grid-area:s}.gmb-nx{grid-area:x;justify-self:start;height:24px;font-size:12px}
+  .gmb-d{grid-area:d}.gmb-m{grid-area:m}.gmb-s{grid-area:s}.gmb-nx{grid-area:x;justify-self:start;height:28px;font-size:13px}
   .gmb .gm-li-go{display:none}
-  .gmb-d b{font-size:30px}
-  .gmb-d small{font-size:12px}
+  .gmb-d b{font-size:24px}
+  .gmb-d small{font-size:13px}
   .gmb-m b{font-size:16px}
   .gmb-m small,.gmb-s small{font-size:13px}
   .gmb-s b{font-size:14px}
-  .is-final .gmb-s b{font-size:26px}
+  .is-final .gmb-s b{font-size:22px}
+}
+
+/* ---------- DM Sans on the game-day board and game pages (shared .display and .sec-t stay Anton elsewhere) ---------- */
+body[data-page="games"] .gmi-hero .display{font-family:var(--sans);font-weight:700;letter-spacing:-.02em;line-height:1.05;font-size:clamp(36px,5vw,56px)}
+body[data-page="games"] .sec-t{font-family:var(--sans);font-weight:700;letter-spacing:-.01em;line-height:1.1;font-size:clamp(24px,2.6vw,32px)}
+/* photo credit on the board's sport headers: no fine print */
+body[data-page="games"] main .credit{font-size:13px}
+
+/* ---------- tap targets: 44px (scoped here; shared .btn-sm is unchanged) ---------- */
+.gc-links .gm-thread{min-height:44px}
+.gc-pl-b a.gs-pl-n{display:inline-flex;align-items:center;min-height:44px}
+
+/* ---------- live football (cfbd-live.js): score and status in the sticky scoreboard, Live card first on phones ---------- */
+.gc-on{color:var(--red)}
+.gc-sb.is-live .gc-st{font-size:15px}
+.gm-live.gm-wait:not(:has(.cf-score)){display:block;min-height:188px}
+.gc-ball{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin:0 6px;vertical-align:middle}
+.gm-live .cf-score{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:var(--s3)}
+.gm-live .cf-score .sc-t{min-width:0}
+.gm-live .cf-score .sc-t b{min-width:0;overflow-wrap:anywhere}
+.gm-live .cf-score .sc-f b{font-size:13px;white-space:normal}
+@media(max-width:759px){
+  /* one column of cards; the right column's cards join it so the Live card can lead and every card spans the width */
+  .gc-grid,.gc-grid.no-c1,.gc-grid.no-c2,.gc-grid.no-c1.no-c2{display:flex;flex-direction:column;align-items:stretch;gap:var(--s4)}
+  .gc-grid .gc-c3,.gc-grid:not(.no-c1) .gc-c3,.gc-grid.no-c2 .gc-c3{display:contents}
+  .gc-grid #gmLive{order:-1}
+  .gm-live .cf-score .sc-t em{font-size:32px}
 }
