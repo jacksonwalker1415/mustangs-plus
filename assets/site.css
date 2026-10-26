@@ -1482,12 +1482,30 @@ html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
 .nilchip{display:inline-block}
 .nilchip::first-letter{font-size:0}
 
+/* ---- 7.4 Left-aligned, editorial blocks instead of centered-everything ---- */
+.empty-state{align-items:flex-start;text-align:left;border-style:solid;border-color:var(--card-line);padding:var(--s6)}
+.es-ic{width:auto;height:auto;background:none;border-radius:0;color:var(--red);margin:0 0 var(--s1)}
+.es-act{justify-content:flex-start}
+.mini-empty{text-align:left;border-style:solid;border-color:var(--card-line)}
+.note.center{text-align:left;margin-left:0}
+.sheet{text-align:left}.sheet .ic{margin:0 0 var(--s4)}
+.gate-cta>div{text-align:left}.gate-cta svg{margin:0 0 var(--s3)}
+.wl-fine{text-align:left}
+/* "More sports" on sport pages: a plain inline index, not a cloud of pills */
+#more .chips{gap:0;row-gap:var(--s2)}
+#more .chip{height:auto;min-height:0;padding:0;border:0;border-radius:0;background:none;font-size:var(--fs-16);font-weight:700;color:var(--blue)}
+#more .chip:hover{text-decoration:underline;text-underline-offset:4px;background:none}
+#more .chip+.chip::before{content:"";display:inline-block;width:1px;height:14px;background:var(--line-2);margin:0 var(--s4)}
+
+@media(max-width:639px){#more .chips{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s4);row-gap:0}#more .chip+.chip::before{display:none}}
+.plans-cn{margin-left:0}
 
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn,.btn-sm{min-height:44px}
   .chip,.seg button,.sort button,.tier-toggle button{min-height:44px}
   .see-all,.htab{min-height:44px}
+  #more .chip{min-height:44px;display:inline-flex;align-items:center}
   .sport-tile{min-height:56px}
   .fsearch{height:46px}
 }
