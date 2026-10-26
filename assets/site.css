@@ -1388,3 +1388,27 @@ a.pcard:hover,.pcard:hover,a.rcard:hover,.rcard:hover{border-color:color-mix(in 
 .fsearch:focus-within,.fld input:focus,.fld select:focus,.fld textarea:focus,.reply textarea:focus{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:0;border-color:var(--blue);box-shadow:none}
 .seg,.sort{border-radius:var(--r-ctl);border-color:rgba(22,33,79,.2)}
 .auth-tabs,.auth-tabs button{border-radius:var(--r-ctl)}
+
+/* ---- 6.7 Badges and pills: fewer, squarer, quieter. Brand secondaries stay, as small intentional accents ---- */
+.tag{border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:.08em;padding:3px 7px;line-height:1.25}
+.tag-lock{background:rgba(255,255,255,.94)}
+/* gated posters already say "Members only" in the center: drop the duplicate corner tag until the member view */
+html:not(.is-member) .gated .poster .tag-lock{display:none}
+html:not(.is-member) .gated .poster .tag-new+.tag-lock+.dur{right:var(--s3)}
+.poster-verb,.dur{border-radius:var(--r-tag);background:rgba(10,16,40,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:var(--fs-12);letter-spacing:.02em}
+.poster-verb{padding:4px 9px 4px 7px}
+.tone-white .poster-verb,.tone-white .dur{background:rgba(10,16,40,.62);color:#fff}
+.lock-ov b{border-radius:var(--r-tag);background:rgba(10,16,40,.62);letter-spacing:.02em}
+.lock-ov svg{background:rgba(10,16,40,.55)}
+/* board pills: status labels stay as compact labels, board and sport names become plain text */
+.pills{gap:6px 8px;align-items:center}
+.pill{border-radius:var(--r-tag);font-size:var(--fs-11);letter-spacing:.04em;padding:2px 7px}
+.pills .pill:not(.pill-pin):not(.pill-hot):not(.pill-prem){background:none;border:0;padding:0;color:var(--ink-3);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pills .pill:not(.pill-pin):not(.pill-hot):not(.pill-prem)+.pill:not(.pill-pin):not(.pill-hot):not(.pill-prem)::before{content:"·";margin-right:6px;color:var(--line-2)}
+.forum-mini .pill,.fgroup-h .pill{border-radius:var(--r-tag)}
+.nilchip,.rk-s,.stat-chip,.vb,.res,.rk-c,.r-team,.badge-ins,.badge-tier,.dir,.pw-pop{border-radius:var(--r-tag)}
+.nilchip{font-size:var(--fs-12);letter-spacing:.02em}
+/* filter chips are the one legit pill: keep the shape, firm up the states */
+.chip{border-color:rgba(22,33,79,.18);transition:border-color var(--t-fast),color var(--t-fast),background-color var(--t-fast)}
+.chip[aria-pressed="true"]{background:var(--b-800);border-color:var(--b-800)}
+.chip[aria-pressed="true"] span{color:rgba(255,255,255,.72)}
