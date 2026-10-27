@@ -1478,7 +1478,7 @@
     SMU.on('auth',rerender);SMU.on('avatar',rerender);
     SMU.on('threads',function(){if(!indexView.hidden)renderIndex();if(!listView.hidden)renderList()});
     document.addEventListener('smu:post',function(ev){var h=hashT();if(!h||h.id!==ev.detail)return;renderThread({id:h.id,x:''})});
-    function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';var m=$('main.fx');if(m){m.classList.toggle('fx-sub',v!=='index');m.classList.toggle('fx-thr',v==='thread')}
+    function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';var m=$('main.fx');if(m){m.classList.toggle('fx-sub',v!=='index');m.classList.toggle('fx-thr',v==='thread');m.classList.add('fx-ready')}
       /* one h1 per view: the board name on the index, the board or thread title elsewhere */
       var br=$('#fxBrand'),want=v==='index'?'H1':'P';if(br&&br.tagName!==want){var nb=document.createElement(want);nb.id='fxBrand';nb.className='fx-brand';nb.textContent=br.textContent;br.replaceWith(nb)}
       $$('.fx-tabs a').forEach(function(a){var h=a.getAttribute('href'),on=v==='index'?h==='./':v==='list'&&state.f==='all'&&!state.q?h==='?f=all':false;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
