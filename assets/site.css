@@ -2930,6 +2930,14 @@ main.lib-typed .pods{border-top:0}
 }
 /* News cards: their accessible name now comes from the visible text plus a visually hidden "(opens … in a new tab)" span; this keeps that span inside the card so it cannot widen the page. */
 .mcard.ext{position:relative}
+/* 13+ checkbox (sign-up form, /account/ and the pop-up): at least a 44px tap target, box centered in the row */
+label.f-age{min-height:44px;align-items:center}
+label.f-age input{top:50%;transform:translateY(-50%)}
+/* Join sheet on phones: keep its top (logo, close button) below the iOS status bar. Inset is 0 on screens without one, so nothing changes there. */
+@media(max-width:639px){
+  .dlg.dlg-join{padding-top:max(12px,env(safe-area-inset-top,0px))}
+  .dlg-join .dlg-sheet{max-height:calc(100dvh - max(12px,env(safe-area-inset-top,0px)))}
+}
 
 /* ---------- Boards #3: thread follow button + header notification bell (bell injected by app.js into .hdr-act) ---------- */
 .fx-follow[aria-pressed="true"],.fx-follow[aria-pressed="true"]:hover{background:var(--blue);border-color:var(--blue);color:#fff}
