@@ -78,3 +78,11 @@
 .pf-soc a:focus-visible{outline:2px solid var(--white);outline-offset:2px;border-radius:var(--r1)}
 /* keyboard-scrollable stat tables (role=region, tabindex=0 from athlete()) */
 .tbl-wrap[role="region"]:focus-visible{outline:3px solid var(--blue);outline-offset:-3px;border-radius:var(--r1)}
+
+/* ---------- /athletes/ index cards: reserve size before photos and fonts load (CLS) ----------
+   The cards stack photo over text here (site.css .pcard is column with padding), so an unsized lazy photo
+   used to grow from 0 to 130px and push every card below it. Sizes match the loaded layout: no visual change. */
+.pgrid .pc-pic.has-photo{width:104px;aspect-ratio:4/5}
+.pgrid .pc-pic.has-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.pgrid .pc-b{display:flex;flex-direction:column;min-height:116px}
+.pgrid .pcard{min-height:292px}
