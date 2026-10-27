@@ -175,7 +175,7 @@
   document.addEventListener('click',function(e){if(!e.target.closest('[data-wl-undo]'))return;try{localStorage.removeItem('mp_waitlist')}catch(x){}syncWaitlist();var i=$('input[type=email]',e.target.closest('[data-waitlist]'));if(i)i.focus()});
 
   /* ---------- Shell ---------- */
-  var NAV=[['Media',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards']].concat(SHOW_PAID_PLANS?[['Membership',ROOT+'#membership','membership']]:[]));
+  var NAV=[['Media',libUrl(),'library']].concat(REC_ON?[['Recruiting',ROOT+'recruiting/','recruiting']]:[],[['Sports',ROOT+'#sports','sport'],['Boards',ROOT+'boards/','boards'],['Player Profiles',ROOT+'athletes/','athlete']].concat(SHOW_PAID_PLANS?[['Membership',ROOT+'#membership','membership']]:[]));
   /* Sports is a dropdown (desktop) / accordion (phone menu) listing all 12 programs; #sports links anywhere open it */
   var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
   /* Media (the Library page, /library/) is a dropdown too: Videos, Podcasts and Articles open the Library's view for that type (?type=video|podcast|article). */
@@ -183,8 +183,9 @@
   function mediaCur(i){if(PAGE!=='library')return false;var P=new URLSearchParams(location.search),t=P.get('type')||CAT_TYPE[P.get('cat')];return t===['video','podcast','article'][i]}
   function mediaPanel(){return '<div class="sports-dd media-dd" id="mediaMenu" hidden><ul class="sdd-list">'+MEDIA.map(function(m,i){return '<li><a href="'+m[1]+'"'+(mediaCur(i)?' aria-current="page"':'')+'>'+m[0]+'</a></li>'}).join('')+'</ul></div>'}
   function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
-    if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
-    if(n[2]==='library')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="mediaBtn" aria-expanded="false" aria-controls="mediaMenu" aria-haspopup="true">'+n[0]+CHEV+'</button>';
+    if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu">'+n[0]+CHEV+'</button>';
+    /* Media is a real link to the Library page; its own chevron button opens Videos, Podcasts and Articles (disclosure, so no aria-haspopup) */
+    if(n[2]==='library')return '<a href="'+n[1]+'" class="nav-media'+(on?' on':'')+'" id="mediaLink"'+(on?' aria-current="page"':'')+'>'+n[0]+'</a><button type="button" class="nav-dd-btn nav-chev" id="mediaBtn" aria-label="Show Media sections" aria-expanded="false" aria-controls="mediaMenu">'+CHEV+'</button>';
     return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'>'+n[0]+'</a>'}).join('')+
     '<a href="'+ROOT+'search/" class="nav-search'+(PAGE==='search'?' on" aria-current="page':'')+'">'+SVG_SEARCH+'<span>Search</span></a>'}
   function sportsPanel(){return '<div class="sports-dd" id="sportsMenu" hidden><p class="sdd-h">All 12 sports</p><ul class="sdd-list">'+MP.SPORTS.map(function(sp){var cur=PAGE==='sport'&&document.body.dataset.sport===sp.slug;
@@ -204,9 +205,9 @@
         '<input id="mmQ" name="q" type="search" placeholder="Search SMU+" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"'+(PAGE==='search'?' value="'+esc(new URLSearchParams(location.search).get('q')||'')+'"':'')+'>'+
         '<button type="submit" class="mm-sf-go">Search</button></form>'+
       '<nav class="mm-nav" aria-label="Primary">'+NAV.filter(function(n){return n[2]!=='membership'}).map(function(n){var on=PAGE===n[2];
-        if(n[2]==='sport')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmSportsBtn" aria-expanded="false" aria-controls="mmSports"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
-          '<div class="mm-sports" id="mmSports" hidden>'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a>'}).join('')+'</div>';
-        if(n[2]==='library')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmMediaBtn" aria-expanded="false" aria-controls="mmMedia"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
+        if(n[2]==='sport')return '<button type="button" class="mm-acc'+(on?' on':'')+'" id="mmSportsBtn" aria-expanded="true" aria-controls="mmSports"><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></button>'+
+          '<div class="mm-sports" id="mmSports">'+MP.SPORTS.map(function(sp){return '<a href="'+sportUrl(sp.slug)+'">'+sportIcon(sp.slug)+'<span>'+esc(sp.name)+'</span></a>'}).join('')+'</div>';
+        if(n[2]==='library')return '<a href="'+n[1]+'" class="mm-media-a'+(on?' on':'')+'"'+(on?' aria-current="page"':'')+'><b>'+n[0]+'</b></a><button type="button" class="mm-acc mm-acc-chev" id="mmMediaBtn" aria-label="Show Media sections" aria-expanded="false" aria-controls="mmMedia"><span class="mm-chev" aria-hidden="true">›</span></button>'+
           '<div class="mm-sports mm-media" id="mmMedia" hidden>'+MEDIA.map(function(m,i){return '<a href="'+m[1]+'"'+(mediaCur(i)?' aria-current="page"':'')+'><span>'+m[0]+'</span></a>'}).join('')+'</div>';
         return '<a href="'+n[1]+'"'+(on?' class="on" aria-current="page"':'')+'><b>'+n[0]+'</b><span class="mm-chev" aria-hidden="true">›</span></a>'}).join('')+'</nav>'+
       (GATING?'<div class="mm-member">'+memberSwitch('Member preview')+'<p>See the site the way members do. Demo setting: no payment is involved.</p></div>':'')+
@@ -472,8 +473,8 @@
 
   /* ---------- Sports dropdown (desktop) and accordion (phone menu) ---------- */
   /* One dropdown helper for Sports and Media: desktop panel (hover, click, arrow keys, Esc) and phone-menu accordion */
-  function navDD(bid,did,aid,lid,isSports){var btn=$('#'+bid),dd=$('#'+did),acc=$('#'+aid),list=$('#'+lid),hov=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches,ht;
-    function place(){var r=btn.getBoundingClientRect(),w=dd.offsetWidth,l=Math.min(Math.max(8,r.left),innerWidth-w-8);dd.style.left=l+'px';dd.style.top=Math.round(hdrEl.getBoundingClientRect().bottom)+'px'}
+  function navDD(bid,did,aid,lid,isSports,linkId){var lnk=linkId?$('#'+linkId):null,btn=$('#'+bid),dd=$('#'+did),acc=$('#'+aid),list=$('#'+lid),hov=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches,ht;
+    function place(){var r=(lnk||btn).getBoundingClientRect(),w=dd.offsetWidth,l=Math.min(Math.max(8,r.left),innerWidth-w-8);dd.style.left=l+'px';dd.style.top=Math.round(hdrEl.getBoundingClientRect().bottom)+'px'}
     function open(focus){if(!btn||!dd)return;dd.hidden=false;place();btn.setAttribute('aria-expanded','true');if(focus){var a=$('a',dd);if(a)a.focus()}}
     function close(back){if(!dd||dd.hidden)return;pinned=false;dd.hidden=true;btn.setAttribute('aria-expanded','false');if(back)btn.focus()}
     function setAcc(on){if(!acc)return;list.hidden=!on;acc.setAttribute('aria-expanded',on?'true':'false')}
@@ -481,19 +482,20 @@
     var pinned=false;
     if(btn&&dd){btn.addEventListener('click',function(){if(dd.hidden||!pinned){pinned=true;open(false)}else close(false)});
       btn.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){e.preventDefault();pinned=true;open(true)}});
+      if(lnk)lnk.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){e.preventDefault();pinned=true;open(true)}});
       dd.addEventListener('keydown',function(e){var a=$$('a',dd),i=a.indexOf(document.activeElement);
         if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();a[(i+(e.key==='ArrowDown'?1:a.length-1))%a.length].focus()}
         else if(e.key==='Tab'&&((e.shiftKey&&i===0)||(!e.shiftKey&&i===a.length-1)))close(false)});
-      if(hov){[btn,dd].forEach(function(el){el.addEventListener('mouseenter',function(){clearTimeout(ht);open(false)});el.addEventListener('mouseleave',function(){clearTimeout(ht);if(!pinned)ht=setTimeout(function(){close(false)},180)})})}
-      document.addEventListener('click',function(e){if(!dd.hidden&&!e.target.closest('#'+did+',#'+bid))close(false)});
-      dd.addEventListener('focusout',function(e){if(!dd.hidden&&e.relatedTarget&&!dd.contains(e.relatedTarget)&&e.relatedTarget!==btn)close(false)});
+      if(hov){[btn,dd].concat(lnk?[lnk]:[]).forEach(function(el){el.addEventListener('mouseenter',function(){clearTimeout(ht);open(false)});el.addEventListener('mouseleave',function(){clearTimeout(ht);if(!pinned)ht=setTimeout(function(){close(false)},180)})})}
+      document.addEventListener('click',function(e){if(!dd.hidden&&!e.target.closest('#'+did+',#'+bid+(lnk?',#'+linkId:'')))close(false)});
+      dd.addEventListener('focusout',function(e){if(!dd.hidden&&e.relatedTarget&&!dd.contains(e.relatedTarget)&&e.relatedTarget!==btn&&e.relatedTarget!==lnk)close(false)});
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dd.hidden){e.stopPropagation();close(true)}},true);
       addEventListener('resize',function(){if(!dd.hidden){if(innerWidth<960)close(false);else place()}});addEventListener('scroll',function(){if(!dd.hidden)place()},{passive:true})}
     if(acc)acc.addEventListener('click',function(){setAcc(list.hidden)});
     if(!isSports)return;
     document.addEventListener('click',function(e){var a=e.target.closest('a[href$="#sports"]');if(!a)return;e.preventDefault();e.stopPropagation();window.openSports()},true);
     if(location.hash==='#sports'){history.replaceState(null,'',location.pathname+location.search);setTimeout(window.openSports,60)}}
-  navDD('sportsBtn','sportsMenu','mmSportsBtn','mmSports',true);navDD('mediaBtn','mediaMenu','mmMediaBtn','mmMedia',false);
+  navDD('sportsBtn','sportsMenu','mmSportsBtn','mmSports',true);navDD('mediaBtn','mediaMenu','mmMediaBtn','mmMedia',false,'mediaLink');
 
   /* ---------- Sortable tables ---------- */
   var MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};

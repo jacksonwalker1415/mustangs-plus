@@ -2930,3 +2930,27 @@ main.lib-typed .pods{border-top:0}
 }
 /* News cards: their accessible name now comes from the visible text plus a visually hidden "(opens … in a new tab)" span; this keeps that span inside the card so it cannot widen the page. */
 .mcard.ext{position:relative}
+
+/* ---- Nav held fixes (bot/nav-held): #1 Media link + chevron, phone Sports open by default; #2 Player Profiles in NAV;
+   #4 header, footer and phone-menu frame on SMU blue (--blue, #354CA1). Polish-system tokens: --blue is the SMU blue there too. ---- */
+/* #1 desktop: "Media" is a link to /library/, the chevron beside it is its own disclosure button */
+nav.main a.nav-media{padding-right:4px}
+nav.main .nav-dd-btn.nav-chev{padding-left:4px;padding-right:8px}
+@media(max-width:1279px){nav.main a.nav-media{padding-right:2px}nav.main .nav-dd-btn.nav-chev{padding-left:2px;padding-right:6px}}
+/* #1 phone menu: Media link and its chevron share one row */
+.mm-nav{display:grid;grid-template-columns:1fr auto}
+.mm-nav>*{grid-column:1/-1}
+.mm-nav>a.mm-media-a{grid-column:1}
+.mm-nav>.mm-acc.mm-acc-chev{grid-column:2;width:56px;display:flex;justify-content:flex-end;align-items:center}
+/* #4 SMU blue frame */
+header.site,#site-header:empty{background:var(--blue);border-bottom-color:rgba(255,255,255,.22)}
+.site-ft{background:var(--blue);color:#fff}
+.site-ft .legal,.site-ft small,.site-ft .legal strong,.site-ft .ft-brand p,.site-ft .ft-brief p{color:#fff}
+.mmenu{background:var(--blue)}
+.mm-chev{color:rgba(255,255,255,.85)}
+.mm-acct small{color:#fff}
+.mm-nav .mm-sports a{color:#fff}
+.brief.compact .brief-row input{border-color:rgba(255,255,255,.7)}
+.brief.compact .brief-row input::placeholder{color:#fff}
+.hdr-join.is-upgrade::before,.mm-join.is-upgrade{border-color:rgba(255,255,255,.7)}
+.mm-note{color:#fff}
