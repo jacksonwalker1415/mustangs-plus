@@ -10,7 +10,8 @@ Inputs
 ## Steps
 
 0. Start clean: move the previous `posts-*.txt` and `lookup-*.txt` out of the raw dir (for example into `old/<date>/`).
-   Keep `users.json` (user ids rarely change). Leftover files from accounts no longer on the list are ignored.
+   Keep `users.json` for now (plan reads user ids from it); step 2 overwrites it with a fresh read. Leftover files from accounts
+   no longer on the list are ignored.
 1. Plan
    ```
    python3 tools/build_socials.py plan > /tmp/socials-plan.jsonl
@@ -32,8 +33,8 @@ Inputs
    python3 tools/build_socials.py build            # options: --cap 150 --per 12
    node tools/build_search.js                      # only if the page's search entry changed
    ```
-   Writes `data/socials.json` and prints counts (posts, accounts, skipped replies/quotes/duplicates/sensitive).
-5. Check `socials/` locally (feed loads, no console errors), then commit `data/socials.json`.
+   Writes `data/socials.json` and `data/x-avatars.json` and prints counts (posts, accounts, skipped replies/quotes/duplicates/sensitive).
+5. Check `socials/` locally (feed loads, no console errors), then commit `data/socials.json` and `data/x-avatars.json`.
 
 A full refresh is about 24-26 reads. Twice a day is about 50 of the 1000-a-day budget.
 
@@ -50,3 +51,9 @@ A full refresh is about 24-26 reads. Twice a day is about 50 of the 1000-a-day b
   everywhere if widgets.js can't load.
 - Coach accounts (@rhettlashlee, @AdiaBarnes, @SamFish9) were checked against their X bios on Oct 27 as current SMU head
   coaches. Recheck when the curator list changes.
+- Profile pictures (Counsel, Oct 27): only Writers-group accounts (writers and outlets) get an `av` URL, taken from this
+  refresh's users read (`profile_image_url`, pbs.twimg.com only). Private or missing accounts and X's default picture get none,
+  so the page shows initials. Official, team and coach accounts never get one. The page hotlinks the URL; nothing is downloaded.
+  `data/x-avatars.json` carries the same URLs for the home page's "Conference and beat coverage" row, which shows only
+  @SMUMustangsOn3's picture (theACC and accnetwork keep initials: their pictures are ACC logos). If a writer's picture becomes an
+  SMU, team or ACC logo, move that account out of the Writers group or ask Counsel before shipping.
