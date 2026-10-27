@@ -2009,6 +2009,10 @@ html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden
 .fx-row-last span{color:var(--fx-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fx-row-av .av,.fx-row-lav .av{width:36px;height:36px;font-size:15px}
 .fx-row-lav .av{width:28px;height:28px;font-size:12px}
+/* thread lists (?f=all and every board): 44px hit areas on the title, board tag and last-post links with a matching
+   negative margin, so rows keep their height; desktop sort buttons 44px with the group's -1px margin keeping it at 44px */
+.fx-row-link,.fx-row-f,.fx-row-last a{padding-block:calc((44px - 1lh)/2 + .5px);margin-block:calc((1lh - 44px)/2 - .5px)}
+@media(min-width:768px){.fx-sort{margin-block:-1px}.fx-sort button{height:44px}}
 .fx-pages{display:flex;flex-wrap:wrap;gap:6px;margin:var(--s4) 0}
 .fx-pg{min-width:44px;height:44px;padding:0 12px;display:inline-grid;place-items:center;border:1px solid var(--fx-line-2);border-radius:6px;font-weight:600;font-size:14px;color:var(--ink-2);background:#fff}
 a.fx-pg:hover{border-color:var(--blue);color:var(--blue)}
@@ -2029,7 +2033,7 @@ a.fx-pg:hover{border-color:var(--blue);color:var(--blue)}
 @media(min-width:768px){
   .fx-node-t a,.fx-node-lt,.fx-latest a{position:relative;z-index:1;padding-block:calc((44px - 1lh)/2 + .5px);margin-block:calc((1lh - 44px)/2 - .5px)}
   .fx-latest a{display:block;white-space:nowrap}
-  .fx-rules a,.fx-reply-tip a,.fx-reply.out p a{padding-block:13px}
+  .fx-rules a,.fx-reply-tip a,.fx-reply.out p a{padding-block:14px}
   .fx-crumbs a{min-height:44px;margin-block:-6px}
   .fx-bar{margin-block:calc(var(--s4) - 2px)}.fx-bar .btn{height:44px}
 }
@@ -2869,3 +2873,36 @@ main.lib-typed .pods{border-top:0}
 .nf-hero .srch-f input:focus{outline-color:#fff;border-color:#fff}
 .nf-hero .srch-f button{background:#fff;color:var(--blue)}
 .nf-hero .srch-f button:hover{background:var(--blue-10)}
+
+/* ---- Desktop 44px hit areas, shared chrome (bot/desktop-taps). Desktop only: phones (<960px) are untouched.
+   Nothing moves: bordered/filled controls get a transparent ::after that extends the hit box past the visible
+   shape; unstyled links use padding with an equal negative margin. nav.main is overflow:hidden, so it stretches
+   to the header's full height (children stay centred where they were) so the nav ::after boxes aren't clipped.
+   Footer column links sit on a 26px pitch, so they fill the gaps (26px, no dead zones) rather than overlap. ---- */
+@media(min-width:960px){
+  /* header: wordmark 38 -> 44 */
+  header.site .wordmark{padding-block:3px;margin-block:-3px}
+  /* header: Media, Sports, Boards, Search 39 -> 44+ */
+  nav.main{align-self:stretch;align-items:center}
+  nav.main>a,nav.main>.nav-dd-btn{position:relative}
+  nav.main>a::after,nav.main>.nav-dd-btn::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+  /* header: Join, Ad-free switch, account button 36 -> 44 */
+  .hdr-act .hdr-join,.hdr-act button.adfree,header.site .acct-btn{position:relative}
+  .hdr-act .hdr-join::after,.hdr-act button.adfree::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+  header.site .acct-btn::after{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px}
+  /* disclaimer "About this project" 17 -> 44; bar height unchanged. Lifted over the sticky header (z 50) so the
+     few px that reach past the bar's bottom edge (empty header padding) still land on the link */
+  .disclaimer a{position:relative;z-index:51}
+  .disclaimer a::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+  /* footer column links 18 -> 29.7 (the full row pitch, no dead zones; 44 would need ~14px more row spacing, a visual
+     change). flow-root on the li stops the negative margins collapsing through it */
+  .site-ft .ft-cols li{display:flow-root}
+  .site-ft .ft-cols a{display:block;padding-block:4px;margin-block:-4px}
+  /* footer newsletter 40 -> 44: the visually hidden label (clicking it focuses the input) becomes a transparent
+     box 2px taller than the row on each side, behind the input; the button gets its own ::after above it */
+  .site-ft .brief.compact .brief-f{position:relative}
+  .site-ft .brief.compact .brief-f>label.sr{top:-2px;left:0;right:0;width:auto;height:44px;clip:auto;overflow:hidden;color:transparent;font-size:0;z-index:0}
+  .site-ft .brief.compact .brief-row{position:relative;z-index:1}
+  .site-ft .brief.compact .brief-row .btn{position:relative}
+  .site-ft .brief.compact .brief-row .btn::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
+}
