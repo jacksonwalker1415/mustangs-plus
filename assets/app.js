@@ -735,7 +735,7 @@
       g=e.game&&GBY[e.game],href=g?gameUrl(g):sportUrl(e.sport)+'#schedule',
       vs=e.vs==='vs'?'vs. ':e.vs==='at'?'at ':'',ha=e.ha==='home'?'Home':e.ha==='away'?'Away':'Neutral site',
       when=rbDate(e.d)+(e.d2?' \u2013 '+rbDate(e.d2):''),tm=e.time||(e.d2?'':'TBA');
-    function row(k,v,a){return '<div><dt>'+k+'</dt><dd>'+(a?'<a href="'+esc(a)+'" target="_blank" rel="noopener" aria-label="'+k+': '+esc(v)+' (official link, opens in a new tab)">'+esc(v)+'</a>':esc(v))+'</dd></div>'}
+    function row(k,v,a){return '<div><dt>'+k+'</dt><dd>'+(a?'<a href="'+esc(a)+'" target="_blank" rel="noopener" aria-label="'+esc(v)+' ('+k+', official link, opens in a new tab)">'+esc(v)+'</a>':esc(v))+'</dd></div>'}
     return '<li class="rb-card" aria-label="'+(i+1)+' of '+n+'"><a class="rb-main" href="'+href+'"><span class="rb-sp">'+esc(nm)+'</span>'+
       '<span class="rb-m">'+vs+esc(e.name)+(e.ex?' (exh.)':'')+'</span><span class="rb-ha rb-'+e.ha+'">'+ha+'</span>'+
       '<span class="rb-w"><b>'+when+'</b>'+(tm?'<span>'+esc(tm)+'</span>':'')+'</span>'+(e.where?'<span class="rb-pl">'+esc(e.where)+'</span>':'')+
