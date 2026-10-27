@@ -429,7 +429,7 @@
     return MEDIA_LIVE.test(u)&&!!configured||(!SMU.live&&/^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+\/=]+$/.test(u)&&u.length<7500000)}
   function mediaClean(a){if(!Array.isArray(a))return null;var out=a.slice(0,MEDIA_MAX).filter(function(x){return x&&mediaURLok(x.u)&&+x.w>0&&+x.h>0}).map(function(x){
       return {u:x.u,w:Math.min(10000,Math.round(+x.w)),h:Math.min(10000,Math.round(+x.h)),t:MEDIA_TYPES.indexOf(x.t)>=0?x.t:'image/jpeg'}});return out.length?out:null}
-  function mediaDemo(m){return m&&m.length?mediaClean(m.map(function(x){return {u:x.data,w:x.w,h:x.h,t:x.t}})):null}
+  function mediaDemo(m){return m&&m.length&&mediaFlag()?mediaClean(m.map(function(x){return {u:x.data,w:x.w,h:x.h,t:x.t}})):null}
   /* demo: localStorage holds about 5 MB per site; if the photos don't fit, the post is still saved without them and they show until reload */
   function mediaSave(L,has){var v=JSON.stringify(L);try{localStorage.setItem('mp_posts',v);return}catch(e){}
     if(!has)return;var lite=JSON.parse(v);lite.threads.forEach(function(t){t.posts.forEach(function(p){if(p[5])p.length=5})});
@@ -440,9 +440,11 @@
       var path=id+'/'+Date.now().toString(36)+'-'+i+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
       return q('media',st.upload(path,x.blob,{contentType:x.t,cacheControl:'31536000',upsert:false})).then(function(){return {u:st.getPublicUrl(path).data.publicUrl,w:x.w,h:x.h,t:x.t}})}))
       .then(function(m){return mediaClean(m)})}
-  SMU.mediaOn=function(){return !!SMU.user&&(!SMU.live||mediaLive())};
+  /* Photos are off everywhere (demo too) until MEDIA is true: no photo button, no grids, nothing sent to board-media or posts.media */
+  function mediaFlag(){return MEDIA||!!(MP.FEATURES&&MP.FEATURES.media===true)}
+  SMU.mediaOn=function(){return !!SMU.user&&mediaFlag()&&(!SMU.live||mediaLive())};
   SMU.mediaLocal=function(){return !SMU.live};
-  SMU.mediaOf=function(p){return p&&p[5]?mediaClean(p[5]):null};
+  SMU.mediaOf=function(p){return mediaFlag()&&p&&p[5]?mediaClean(p[5]):null};
   SMU.MEDIA={max:MEDIA_MAX,types:MEDIA_TYPES,bytes:MEDIA_BYTES};
 
   /* ---------- public API: pick the backend at call time ---------- */

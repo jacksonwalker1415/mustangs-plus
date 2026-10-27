@@ -1285,8 +1285,8 @@
      Photos: picked in the composer (reply box, which the phone reply bar opens, and Start a thread), checked (jpg/png/webp/gif, under
      5 MB, up to 4), then resized and re-encoded in the browser through a canvas. Re-encoding drops EXIF, including GPS location.
      GIFs are kept as-is (re-drawing would freeze the animation); GIF has no EXIF block, only optional comment/app extensions.
-     Upload and storage are in sb.js (SMU.mediaOn / MEDIA flag). Links: X, YouTube, Instagram and TikTok URLs become the platform's
-     own embed once scrolled near (IntersectionObserver), in a box sized up front so nothing below moves; anything else, or an embed
+     Upload and storage are in sb.js (SMU.mediaOn / MEDIA flag). Links: X, YouTube, Instagram and TikTok URLs get a click-to-load placeholder
+     in a box sized up front (nothing is requested from the platform until "Load post from ..." is pressed), then the platform's own embed; anything else, or an embed
      that fails or times out, is a plain link card. Only http(s) links; all text escaped. */
   var MPICK={},MLONG=2048,MQ=0.85;
   function mpItems(k){return MPICK[k]=MPICK[k]||[]}
@@ -1340,7 +1340,15 @@
   function linkCard(e,off){return '<a class="fx-card" href="'+esc(e.u)+'" target="_blank" rel="noopener nofollow ugc"><span class="fx-card-d">'+esc(EMB_L[e.k]?EMB_L[e.k]+' \u00b7 '+e.h:e.h)+'</span>'+
     '<span class="fx-card-u">'+esc(e.u)+'</span>'+(off?'<span class="fx-card-n">Couldn\u2019t show it here. Opens in a new tab.</span>':'')+'<span class="sr"> (opens in a new tab)</span></a>'}
   function embeds(body){var seen={},out=[];(String(body||'').match(URL_RE)||[]).forEach(function(raw){if(out.length>=2)return;var e=embKind(raw);if(!e||seen[e.u])return;seen[e.u]=1;out.push(e)});
-    return out.map(function(e){return e.k==='link'?linkCard(e):'<div class="fx-emb fx-emb-'+e.k+'" data-emb="'+e.k+'" data-id="'+esc(e.id)+'" data-url="'+esc(e.u)+'">'+linkCard(e)+'</div>'}).join('')}
+    return out.map(function(e){return e.k==='link'?linkCard(e):'<div class="fx-emb fx-emb-'+e.k+'" data-emb="'+e.k+'" data-id="'+esc(e.id)+'" data-url="'+esc(e.u)+'" tabindex="-1">'+embPh(e)+'</div>'}).join('')}
+  /* Click to load: until the button is pressed nothing is requested from the platform (no script, no iframe) */
+  var EMB_P={yt:'YouTube',x:'X',ig:'Instagram',tt:'TikTok'};
+  function embPh(e){var pn=EMB_P[e.k];return '<div class="fx-emb-ph"><p class="fx-emb-pt">'+(e.k==='yt'?'Video':'Post')+' from '+pn+'</p>'+
+    '<a class="fx-emb-pu" href="'+esc(e.u)+'" target="_blank" rel="noopener nofollow ugc">'+esc(e.u)+'<span class="sr"> (opens in a new tab)</span></a>'+
+    '<button type="button" class="btn btn-red fx-emb-go" data-emb-go>Load post from '+pn+'</button>'+
+    '<p class="fx-emb-pn">Loads content from '+pn+', which may set its own cookies.</p></div>'}
+  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-emb-go]');if(!b)return;var box=b.closest('.fx-emb');if(!box)return;
+    e.preventDefault();embLoad(box);try{box.focus({preventScroll:true})}catch(er){box.focus()}});
   var embScripts={};
   function embScript(k,src,cb){var s=embScripts[k];if(s&&s.ok){cb(true);return}if(s&&s.failed){cb(false);return}if(s){s.q.push(cb);return}
     s=embScripts[k]={q:[cb]};var el=k==='x'&&document.getElementById('x-wjs');
@@ -1349,8 +1357,8 @@
     el.onload=function(){s.ok=true;s.q.splice(0).forEach(function(f){f(true)})};el.onerror=function(){s.failed=true;s.q.splice(0).forEach(function(f){f(false)})};document.body.appendChild(el)}
   function embFail(box){if(box.dataset.state==='off')return;box.dataset.state='off';box.classList.add('off');box.innerHTML=linkCard({k:box.dataset.emb,u:box.dataset.url,h:(function(){try{return new URL(box.dataset.url).hostname.replace(/^www\./,'')}catch(e){return ''}})()},true)}
   function embCheck(box,ms){setTimeout(function(){if(box.dataset.state==='off')return;var f=box.querySelector('iframe');if(!f||f.offsetHeight<60)embFail(box);else box.dataset.state='on'},ms)}
-  function embLoad(box){if(box.dataset.state)return;box.dataset.state='loading';var k=box.dataset.emb,id=box.dataset.id,u=box.dataset.url,card=box.innerHTML;
-    if(k==='yt'){box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0" title="YouTube video" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';box.dataset.state='on';return}
+  function embLoad(box){if(box.dataset.state)return;box.dataset.state='loading';var k=box.dataset.emb,id=box.dataset.id,u=box.dataset.url,card=linkCard({k:k,u:u,h:(function(){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}})()});
+    if(k==='yt'){box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0&autoplay=1&playsinline=1" title="YouTube video" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';box.dataset.state='on';return}
     if(k==='x'){box.innerHTML='<div class="fx-emb-in"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none">'+card+'<a href="'+esc(u)+'">View this post on X</a></blockquote></div>';
       embScript('x','https://platform.twitter.com/widgets.js',function(ok){if(!ok){embFail(box);return}if(window.twttr&&twttr.widgets&&twttr.widgets.load)twttr.widgets.load(box);embCheck(box,9000)});return}
     if(k==='ig'){box.innerHTML='<div class="fx-emb-in"><blockquote class="instagram-media" data-instgrm-permalink="'+esc(u)+'" data-instgrm-version="14">'+card+'</blockquote></div>';
@@ -1358,11 +1366,6 @@
     if(k==='tt'){box.innerHTML='<div class="fx-emb-in"><blockquote class="tiktok-embed" cite="'+esc(u)+'" data-video-id="'+esc(id)+'"><section>'+card+'</section></blockquote></div>';
       /* TikTok's embed.js renders the blockquotes on the page when it runs, so it is loaded once per new embed */
       delete embScripts.tt;embScript('tt','https://www.tiktok.com/embed.js',function(ok){if(!ok){embFail(box);return}embCheck(box,9000)});return}}
-  var embIO=null;
-  function watchEmbeds(root){var L=$$('.fx-emb:not([data-state]):not([data-w])',root);if(!L.length)return;L.forEach(function(b){b.setAttribute('data-w','1')});
-    if(!('IntersectionObserver' in window)){L.forEach(embLoad);return}
-    embIO=embIO||new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){embIO.unobserve(x.target);embLoad(x.target)}})},{rootMargin:'300px 0px'});
-    L.forEach(function(b){embIO.observe(b)})}
   /* ---- lightbox: Escape or the close button closes it, focus stays inside while open and goes back to the photo after ---- */
   var LB=null;
   function lightbox(list,at,from){if(!LB){LB=document.createElement('div');LB.className='fx-lb';LB.hidden=true;LB.setAttribute('role','dialog');LB.setAttribute('aria-modal','true');LB.setAttribute('aria-labelledby','fxLbT');
@@ -1585,7 +1588,7 @@
         (t.locked?'':'<div class="fx-rbar" id="fxRbar">'+(SMU.user?'<button type="button" class="fx-rbar-b" data-reply><span class="fx-rbar-av" aria-hidden="true">'+avatar(SMU.me(),true)+'</span><span class="fx-rbar-t">Write a reply\u2026</span></button>'
           :'<a class="fx-rbar-b" href="'+ROOT+'account/" data-auth="in"><span class="fx-rbar-t">Sign in to reply</span><span class="fx-rbar-go">Sign in</span></a>')+'</div>');
       var t2=$('#replyText');if(t2&&draft)t2.value=draft;quotePreview(t);
-      if(likes[t.id])paintLikes(t);loadLikes(t);watchEmbeds(threadView);
+      if(likes[t.id])paintLikes(t);loadLikes(t);
       document.title=t.title+' | Message Boards | SMU+';
       markRead(t);if(SMU.followRead&&SMU.user&&SMU.isFollowing(t.id))SMU.followRead(t);if(MP.adsMount)MP.adsMount('thread');/* sample ad slot after the 3rd post: assets/ads.js */
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});watching={id:t.id,off:function(){u1();u2()}}}
