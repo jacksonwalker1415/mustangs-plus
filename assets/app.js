@@ -25,6 +25,7 @@
   var HEART='<svg class="ic-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.4 2.6.8-1.5 2.3-2.6 4.4-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>';
   var PLUS='<svg viewBox="0 0 20 20"><path d="M8 2h4v6h6v4h-6v6H8v-6H2V8h6z" fill="#fff"/></svg>';
   var PAID_OPEN=false;  /* paid plans are coming soon: see checkout() */
+  var SHOW_HOME_PLAYERS=false;  /* Jackson, Oct 26: 'Meet the Mustangs' rail hidden on home (only 6 profiles). Flip to true and remove hidden from section#athletes in index.html to bring it back; profile data and /athletes/ are unchanged */
   var SHOW_PAID_PLANS=false;  /* Jackson, Oct 26: hidden for now, flip to true to bring the paid plans back (cards, Membership nav, Plans links, waitlist plan choices) */
   if(SHOW_PAID_PLANS)$$('[data-paid-plans]').forEach(function(el){el.hidden=false});
   var LOCK='<svg viewBox="0 0 24 24"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>';
@@ -880,7 +881,8 @@
     function homeBoards(){var tt=0,tp=0;MP.FORUMS.forEach(function(f){tt+=f.threads;tp+=f.posts});var a=$('#homeThreads'),b=$('#homePosts');if(a)a.textContent=tt.toLocaleString();if(b)b.textContent=tp.toLocaleString();
       $('#boardForums').innerHTML=MP.FORUMS.slice(0,5).map(function(f){return '<a class="forum-mini" href="'+ROOT+'boards/?f='+f.id+'"><span class="fi'+(GATING&&f.prem?' prem':'')+'">'+(GATING&&f.prem?LOCK:CHAT)+'</span><span><b>'+f.name+'</b><small>'+f.threads.toLocaleString()+' threads · '+f.posts.toLocaleString()+' posts</small></span>'+(GATING&&f.prem?'<span class="pill pill-prem">Members</span>':'')+'</a>'}).join('');}
     (SMU.ready||Promise.resolve()).then(function(){return SMU.boardStats?SMU.boardStats():0}).then(homeBoards,homeBoards);
-    $('#athRow').innerHTML='<div class="rail rail-ath" role="list">'+MP.ATHLETES.filter(function(a){return !a.basic}).map(function(a){return '<div class="rail-i" role="listitem">'+profileCard(a)+'</div>'}).join('')+'</div>';
+    if(SHOW_HOME_PLAYERS){var athS=$('#athletes');if(athS)athS.hidden=false;
+    $('#athRow').innerHTML='<div class="rail rail-ath" role="list">'+MP.ATHLETES.filter(function(a){return !a.basic}).map(function(a){return '<div class="rail-i" role="listitem">'+profileCard(a)+'</div>'}).join('')+'</div>';}
     $('#briefHome').innerHTML=briefHTML('briefMain');syncBriefs();
   }
 

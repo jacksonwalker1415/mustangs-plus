@@ -2962,3 +2962,40 @@ header.site,#site-header:empty{background:var(--blue);border-bottom-color:rgba(2
 .brief.compact .brief-row input::placeholder{color:#fff}
 .hdr-join.is-upgrade::before,.mm-join.is-upgrade{border-color:rgba(255,255,255,.7)}
 .mm-note{color:#fff}
+
+/* ---- Phones (Jackson, Oct 26): compact Upcoming games ribbon (it sits under Watch, index.html moves it) and the
+   class-project bar as a dismissible pop-up. Desktop and tablet keep the full ribbon and the red bar. ---- */
+.rb-src,.disc-x{display:none}
+@media(max-width:719px){
+  .sec.ribbon{padding-top:var(--s4);padding-bottom:var(--s4)}
+  .ribbon .rb-hd{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;margin-bottom:var(--s2)}
+  .ribbon .rb-hd h2{font-size:20px}
+  .ribbon .rb-hd>p{display:none}
+  .rb-src{display:inline-flex;align-items:center;min-height:44px;font-size:12px;font-weight:600;color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+  .ribbon .ad-pr-inline{flex-basis:100%;margin-top:0}
+  .rb-l{grid-auto-columns:calc((100% - var(--s3))/1.55)}
+}
+@media(min-width:480px) and (max-width:719px){.rb-l{grid-auto-columns:calc((100% - var(--s3)*2)/2.5)}}
+@media(max-width:719px){
+  .rb-main{display:grid;grid-template-columns:minmax(0,max-content) 1fr;align-items:center;gap:2px 8px;padding:10px 12px 4px}
+  .rb-card:has(.rb-stats) .rb-main{padding-right:76px}
+  .rb-sp{grid-area:1/1;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rb-ha{grid-area:1/2;justify-self:start;white-space:nowrap}
+  .rb-m{grid-area:2/1/3/-1;font-size:16px}
+  .rb-w{grid-area:3/1/4/-1;flex-wrap:nowrap;gap:0 8px;font-size:13px;white-space:nowrap;overflow:hidden}
+  .rb-pl,.rb-go{display:none}
+  .rb-tv{border-top:0;padding:0 12px 8px;flex-wrap:nowrap;gap:0 12px;font-size:13px;overflow:hidden}
+  .rb-wrap,.rb-wrap.no-ovf{padding-bottom:0}
+  .rb-wrap .xside{display:none}
+  .rb-skel{height:114.9px;margin-bottom:0}
+}
+@media(max-width:639px){
+  html body .disclaimer{position:fixed;left:8px;right:8px;bottom:calc(8px + var(--sab,0px));z-index:200;padding:10px 48px 10px 14px;border-radius:12px;text-align:left;box-shadow:0 6px 24px rgba(22,33,79,.35)}
+  html.ad-sticky-on:not(.adfree) body .disclaimer{bottom:calc(116px + var(--sab,0px))}
+  html:has(#reader:not([hidden])) body .disclaimer{top:auto;left:8px;right:8px}
+  .reader:not([hidden]){top:var(--sat,0px)}
+  .disc-x{display:grid;place-items:center;position:absolute;top:0;right:0;width:44px;height:44px;padding:0;border:0;border-radius:12px;background:none;color:#fff;cursor:pointer}
+  .disc-x svg{fill:currentColor}
+  .disc-x:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+  html.disc-off .disclaimer{display:none}
+}
