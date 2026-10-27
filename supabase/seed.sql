@@ -7,7 +7,7 @@ insert into public.forums (id,name,description,premium,grp,sort) values
   ('hilltop','The Hilltop','Free board for every Mustang fan. Game talk, takes and hype.',false,'Community',1),
   ('filmroom','Film Room Lounge','Frame-by-frame breakdowns with the SMU+ film staff. Members only.',true,'Premium',2),
   ('recruiting','Recruiting Trail','Visits, offers and commitments across every sport.',true,'Premium',3),
-  ('boulevard','The Boulevard','Off-topic, tailgates, Dallas eats and everything else.',false,'Community',4),
+  ('boulevard','The Corral','Off-topic, tailgates, Dallas eats and everything else.',false,'Community',4),
   ('help','Site Help & Feedback','Bugs, feature requests and membership questions.',false,'Community',5)
 on conflict (id) do update set name=excluded.name,description=excluded.description,premium=excluded.premium,grp=excluded.grp,sort=excluded.sort;
 insert into public.personas (handle,display_name,tier_label,since,post_count,staff) values

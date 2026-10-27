@@ -57,7 +57,7 @@ MP.FORUMS = [
   {id:'paddock',name:'The Paddock',desc:'For longer takes and analysis.',prem:true,threads:1284,posts:48211},
   {id:'hilltop',name:'Main board',desc:'The main board, free for every Mustang fan. Game talk, takes and hype.',prem:false,threads:3907,posts:122640},
   {id:'recruiting',name:'Recruiting Trail',desc:'Visits, offers and commitments across every sport.',prem:true,threads:612,posts:20975},
-  {id:'boulevard',name:'The Boulevard',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
+  {id:'boulevard',name:'The Corral',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
 ];
 MP.USERS = {
   staff:{n:'SMU+ Boards',tier:'Board account',staff:true,since:'2024',posts:'6,102'},

@@ -1437,7 +1437,8 @@
       return code==='PT429'||/\bslow_down\b/.test(msg)?'Slow down. You\u2019re posting faster than the boards allow. Wait a minute, then try again.':''}
     window.MP_slowDown=slowDown;
     var indexView=$('#indexView'),listView=$('#listView'),threadView=$('#threadView');
-    var state={f:Q.get('f')||'',sport:Q.get('sport')||'',team:Q.get('team')||'',sort:Q.get('sort')||'latest',q:(Q.get('q')||'').trim(),page:Math.max(1,parseInt(Q.get('page'),10)||1)};
+    /* The Corral (renamed Oct 27) keeps its stored slug 'boulevard' because threads reference it; ?f=corral is an alias. */
+    var state={f:({corral:'boulevard'})[Q.get('f')]||Q.get('f')||'',sport:Q.get('sport')||'',team:Q.get('team')||'',sort:Q.get('sort')||'latest',q:(Q.get('q')||'').trim(),page:Math.max(1,parseInt(Q.get('page'),10)||1)};
     if(['latest','new','top'].indexOf(state.sort)<0)state.sort='latest';
     var TEAMS=[{id:'football',name:'Football',desc:'Game threads, depth chart talk and everything on the gridiron.',sports:['football']},
       {id:'basketball',name:'Basketball',desc:'Men\u2019s and women\u2019s hoops at Moody Coliseum.',sports:['mens-basketball','womens-basketball']},
