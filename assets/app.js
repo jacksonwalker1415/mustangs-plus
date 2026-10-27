@@ -1297,7 +1297,7 @@
     function teamSports(tm){return tm.sports||MP.SPORTS.map(function(s){return s.slug}).filter(function(s){return MAIN.indexOf(s)<0})}
     function teamBy(id){for(var i=0;i<TEAMS.length;i++)if(TEAMS[i].id===id)return TEAMS[i];return null}
     var CATS=[{name:'SMU sports talk',ids:['hilltop','paddock','recruiting']},{name:'Team boards',teams:true},{name:'Around SMU',ids:['boulevard','help']}];
-    var DESC={hilltop:'The main board of The Expressway, free for every Mustang fan. Game talk, takes and hype.',paddock:'Members board for longer takes and analysis.'};
+    var DESC={hilltop:'The main board of The Expressway, free for every Mustang fan. Game talk, takes and hype.',paddock:'For longer takes and analysis.'};
     function fdesc(f){return DESC[f.id]||String(f.desc||'').replace(/\s*Members[- ]only[^.]*\.?/ig,'').trim()}
     /* ---- time: real timestamps when the post has one; sample posts are spread between the thread's start and now ---- */
     var NOW=Date.now(),DAY=864e5;
@@ -1442,6 +1442,9 @@
           (avPhoto(u)?'<button type="button" data-demo="Report profile photo" class="fx-a rep" aria-label="Report '+esc(u.n)+'\u2019s profile photo">Report photo</button>':'')+
           '<span class="fx-act-r"><button type="button" class="fx-a" data-like="'+i+'" aria-pressed="false">'+HEART+'<span>Like</span></button><button type="button" class="fx-a" data-quote="'+i+'">Quote</button><button type="button" class="fx-a" data-reply>Reply</button></span></footer>'+
         '<div class="fx-likes" hidden></div></div></article>'}
+    /* Follow (Boards #3): signed out, the button opens the free-account sign-in; follows and the bell live in sb.js (SMU.toggleFollow) */
+    function followBtn(t){if(!SMU.toggleFollow||t.locked)return '';var on=!!SMU.user&&SMU.isFollowing(t.id);
+      return '<button type="button" class="btn btn-outline btn-sm fx-follow" data-follow aria-pressed="'+on+'">'+(on?'Following':'Follow')+'</button>'}
     function replyBox(t){if(!SMU.user)return '<div class="fx-reply out" id="fxReply"><p><b>Sign in or join free to post.</b> Anyone can read the boards. Posting takes a free account'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><a class="btn btn-red" href="'+ROOT+'account/" data-auth="in">Sign in</a> <a class="btn btn-outline" href="'+ROOT+'account/" data-auth="up">Join free</a></div>';
       return '<form class="fx-reply" id="fxReply" data-thread="'+t.id+'" novalidate><span class="fx-reply-av">'+avatar(SMU.me(),true)+'</span><div class="fx-reply-main"><div id="replyQ" hidden></div><label class="sr" for="replyText">Write your reply</label>'+
         '<textarea id="replyText" rows="4" maxlength="5000" placeholder="Write your reply\u2026" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p>'+
@@ -1464,7 +1467,7 @@
       threadView.innerHTML=crumbs(crumb)+
         '<header class="fx-th"><h1 class="fx-th-t">'+prefix(t)+esc(t.title)+'</h1>'+
           '<p class="fx-th-m">'+(t.pin?'<span class="fx-pin">'+PIN+'</span>Pinned \u00b7 ':'')+'Started by <b>'+esc(U(t.by).n)+'</b> \u00b7 '+tm(startT(t))+(r==null?'':' \u00b7 '+num(r)+(r===1?' reply':' replies'))+(SMU.live&&t.views?' \u00b7 '+esc(t.views)+' views':'')+'</p></header>'+(t.game&&GBY[t.game]?gtBox(GBY[t.game]):'')+
-        '<div class="fx-bar">'+pg+'<div class="fx-bar-r">'+(un&&sn>0?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-new">Jump to new</a>':'')+(n>1?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-last">Last post</a>':'')+'<button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
+        '<div class="fx-bar">'+pg+'<div class="fx-bar-r">'+(un&&sn>0?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-new">Jump to new</a>':'')+(n>1?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-last">Last post</a>':'')+followBtn(t)+'<button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
         '<div class="fx-msgs">'+posts+'</div>'+
         (pg?'<div class="fx-bar bottom">'+pg+'</div>':'')+
         (page===pages?replyBox(t):'<p class="fx-more"><a class="btn btn-outline" href="#t'+t.id+'-page'+(page+1)+'">Next page</a></p>')+
@@ -1472,7 +1475,7 @@
       var t2=$('#replyText');if(t2&&draft)t2.value=draft;quotePreview(t);
       if(likes[t.id])paintLikes(t);loadLikes(t);
       document.title=t.title+' | The Expressway message boards | SMU+';
-      markRead(t);if(MP.adsMount)MP.adsMount('thread');/* sample ad slot after the 3rd post: assets/ads.js */
+      markRead(t);if(SMU.followRead&&SMU.user&&SMU.isFollowing(t.id))SMU.followRead(t);if(MP.adsMount)MP.adsMount('thread');/* sample ad slot after the 3rd post: assets/ads.js */
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});watching={id:t.id,off:function(){u1();u2()}}}
       fab();
       return target?(target===sn+1&&h.x==='new'&&$('#t'+t.id+'-newline')?'t'+t.id+'-newline':'t'+t.id+'-p'+target):null}
@@ -1482,6 +1485,9 @@
       io=new IntersectionObserver(function(es){es.forEach(function(x){vis[els.indexOf(x.target)]=x.isIntersecting});b.classList.toggle('show',!els.some(function(_,i){return vis[i]}))});els.forEach(function(x){io.observe(x)})}
     threadView.addEventListener('click',function(e){var h=hashT();var t=h&&findT(h.id);if(!t)return;
       var qb=e.target.closest('[data-quote]'),rb=e.target.closest('[data-reply]'),lb=e.target.closest('[data-like]'),sb=e.target.closest('[data-share]'),mb=e.target.closest('[data-mark]');
+      var fb=e.target.closest('[data-follow]');
+      if(fb){requireUser('Sign in to follow this thread. New replies show under the bell.',function(){var on=!SMU.isFollowing(t.id);fb.disabled=true;
+        SMU.toggleFollow(t,on).then(function(){fb.disabled=false;paintFollow(t);toast(on?'Following. New replies show under the bell.':'Unfollowed.')},function(err){fb.disabled=false;toast(err.message,'err')})});return}
       if(e.target.id==='unquote'){quoteIdx=null;quotePreview(t);var tx=$('#replyText');if(tx)tx.focus();return}
       if(lb){var i=+lb.dataset.like;requireUser('Sign in to like a post.',function(){var o=(likes[t.id]||{})[i],on=!(o&&o.mine);lb.disabled=true;
         SMU.toggleLike(t,i,on).then(function(){var m=likes[t.id]=likes[t.id]||{},x=m[i]=m[i]||{names:[],mine:false};
@@ -1501,6 +1507,8 @@
         function(err){m.textContent=slowDown(err)||err.message||'Could not post. Try again.';b.disabled=false})});
     function rerender(){var h=hashT();if(h)renderThread(h);else if(!listView.hidden)renderList();else renderIndex()}
     SMU.on('auth',rerender);SMU.on('avatar',rerender);
+    function paintFollow(t){var on=!!SMU.user&&!!SMU.isFollowing&&SMU.isFollowing(t.id);$$('[data-follow]',threadView).forEach(function(b){b.setAttribute('aria-pressed',String(on));b.textContent=on?'Following':'Follow'})}
+    SMU.on('follows',function(){var h=hashT(),t=h&&findT(h.id);if(t&&!threadView.hidden)paintFollow(t)});
     SMU.on('threads',function(){if(!indexView.hidden)renderIndex();if(!listView.hidden)renderList()});
     document.addEventListener('smu:post',function(ev){var h=hashT();if(!h||h.id!==ev.detail)return;renderThread({id:h.id,x:''})});
     function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';var m=$('main.fx');if(m){m.classList.toggle('fx-sub',v!=='index');m.classList.toggle('fx-thr',v==='thread');m.classList.add('fx-ready')}
@@ -1728,6 +1736,43 @@
     requestAnimationFrame(function(){el.classList.add('in')});setTimeout(function(){el.classList.remove('in');setTimeout(function(){el.remove()},300)},kind==='err'?6000:3500)}
   var lastNetToast=0;
   SMU.on('error',function(e){if(e&&e.network&&Date.now()-lastNetToast>4000){lastNetToast=Date.now();toast(e.message,'err')}else if(e&&e.where==='connect')toast('Live features are unavailable right now, so SMU+ is running in demo mode.','err')});
+  /* ---------- Notification bell (Boards #3): new replies on followed threads. In-app only, no email. ----------
+     Injected as the first child of the header's .hdr-act (right-aligned, so nothing else in the header moves). No header markup change.
+     Signed out: no bell. Until supabase/PROPOSAL_boards_follows.sql is applied (sb.js FOLLOWS), follows are kept in this browser and
+     the bell shows on the boards only, where the threads it counts are loaded. */
+  (function(){var act=$('.hdr-act');if(!act||!SMU.followNotes)return;
+    var BELL='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 0 0-5.5-6.84V3a1.5 1.5 0 0 0-3 0v1.16A7 7 0 0 0 5 11v5l-2 2v1h18v-1l-2-2zm-2 1H7v-6a5 5 0 0 1 10 0v6z"/></svg>';
+    var w=document.createElement('div');w.className='hdr-bell';w.hidden=true;
+    w.innerHTML='<button type="button" class="bell-btn" id="bellBtn" aria-expanded="false" aria-controls="bellDd" aria-label="Notifications">'+BELL+'<span class="bell-n" hidden></span></button>'+
+      '<div class="bell-dd" id="bellDd" role="region" aria-label="New replies on threads you follow" hidden></div>';
+    act.insertBefore(w,act.firstChild);
+    var btn=$('#bellBtn',w),dd=$('#bellDd',w),badge=$('.bell-n',w),notes=[];
+    function want(){return !!SMU.user&&(PAGE==='boards'||(SMU.followsServer&&SMU.followsServer()))}
+    function link(n){return ROOT+'boards/#t'+n.thread+(n.post?'-p'+n.post:'-new')}
+    function paint(){var on=want();w.hidden=!on;if(!on){close();return}
+      var total=notes.reduce(function(a,n){return a+(+n.unread||0)},0);
+      badge.hidden=!total;badge.textContent=total>9?'9+':String(total);
+      btn.setAttribute('aria-label',total?'Notifications, '+total+(total===1?' new reply':' new replies'):'Notifications');
+      if(!dd.hidden)fill()}
+    function fill(){dd.innerHTML='<p class="bell-h">New replies</p>'+(notes.length?notes.map(function(n){
+        return '<a class="bell-i" href="'+link(n)+'"><b>'+esc(n.title||'Thread')+'</b><span>'+n.unread+(n.unread===1?' new reply':' new replies')+(n.at&&SMU.ago?' \u00b7 '+SMU.ago(n.at)+' ago':'')+'</span></a>'}).join('')+
+        '<button type="button" class="bell-all" data-bell-all>Mark all read</button>':
+        '<p class="bell-e">No new replies on threads you follow. Tap Follow on any thread to get its replies here.</p>')}
+    /* drop down from the header's bottom edge (the red disclaimer bar above it scrolls away), like the phone menu */
+    function place(){if(dd.hidden)return;var hb=$('header.site');dd.style.top=Math.max(0,Math.round(hb?hb.getBoundingClientRect().bottom:56))+'px'}
+    addEventListener('scroll',place,{passive:true});addEventListener('resize',place);
+    function open(){fill();dd.hidden=false;place();btn.setAttribute('aria-expanded','true');SMU.followNotes()}
+    function close(){if(dd.hidden)return;dd.hidden=true;btn.setAttribute('aria-expanded','false')}
+    btn.addEventListener('click',function(){if(dd.hidden)open();else close()});
+    dd.addEventListener('click',function(e){if(e.target.closest('[data-bell-all]')){SMU.followRead(null);close();btn.focus();toast('All caught up.');return}
+      if(e.target.closest('.bell-i'))close()});
+    document.addEventListener('click',function(e){if(!dd.hidden&&!w.contains(e.target))close()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dd.hidden){close();btn.focus()}});
+    SMU.on('follows',function(d){notes=(d&&d.notes)||[];paint()});
+    SMU.on('auth',function(){notes=[];paint()});
+    SMU.on('threads',function(){if(want())SMU.followNotes()});
+    document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&want())SMU.followNotes()});
+    (SMU.ready||Promise.resolve()).then(function(){if(!SMU.user){paint();return}return SMU.loadFollows().then(function(){return SMU.followNotes()})}).catch(function(){}).then(paint)})();
   SMU.on('net',function(up){toast(up?'Back online.':'You\u2019re offline. Changes may not save until you reconnect.',up?'':'err')});
 
   /* dialog helper: focus trap, Esc, restore focus */

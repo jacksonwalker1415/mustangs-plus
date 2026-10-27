@@ -364,6 +364,55 @@
     var op=on?sb.from('post_likes').insert({post_id:p[4]}):sb.from('post_likes').delete().eq('post_id',p[4]).eq('user_id',SMU.user.id);
     return withTimeout(Promise.resolve(op),12000).then(function(r){if(r&&r.error){if(likesMissing(r)){likesOff=true;return local()}if(r.error.code==='23505')return on;throw fail('like',r.error)}return on})};
 
+  /* ---------- Thread follows + reply notifications (supabase/PROPOSAL_boards_follows.sql) ----------
+     FOLLOWS stays false until that SQL is applied, so the site never asks Supabase for a table or function that isn't there (no 404s).
+     While off, in demo mode, or if the server call fails, follows are kept in this browser per account (localStorage mp_follows:
+     {account:{threadId:[postsSeen,followedAt]}}) and unread counts come from the threads this page has loaded. In-app only, no email. */
+  var FOLLOWS=false,followsOff=false,folCache=null,folNotes=[];
+  function folLive(){return SMU.live&&!!sb&&!!SMU.user&&!followsOff&&(FOLLOWS||!!(MP.FEATURES&&MP.FEATURES.follows===true))}
+  function folKey(){return SMU.user?(SMU.live?'u:'+SMU.user.id:'me'):null}
+  function folAll(){var a=lj('mp_follows',{});return a&&typeof a==='object'?a:{}}
+  function folMine(){var k=folKey();return k?(folAll()[k]||{}):{}}
+  function folSave(m){var k=folKey();if(!k)return;var a=folAll();a[k]=m;sj('mp_follows',a)}
+  function folThread(id){return (MP.THREADS||[]).filter(function(t){return String(t.id)===String(id)})[0]||null}
+  function folBad(r){var e=r&&r.error;if(!e)return false;if(likesMissing(r)||e.code==='PGRST202'||e.code==='42883')followsOff=true;return true}
+  function folLocalNotes(){var m=folMine(),me=meKey(),out=[];Object.keys(m).forEach(function(id){var t=folThread(id);if(!t||t.locked)return;
+    var seen=+((m[id]||[])[0])||0,np=t.posts.slice(seen).filter(function(p){return p[0]!==me});
+    if(np.length)out.push({thread:t.id,title:t.title,unread:np.length,post:seen+1,at:np[np.length-1][3]||null})});
+    return out.sort(function(a,b){return (b.at||'')<(a.at||'')?-1:1}).slice(0,20)}
+  function folEmit(){emit('follows',{ids:SMU.followed(),notes:folNotes})}
+  SMU.followsOn=function(){return !!SMU.user};
+  SMU.followsServer=folLive;
+  SMU.followed=function(){if(!SMU.user)return [];if(folLive()&&folCache)return folCache.slice();return Object.keys(folMine()).map(Number)};
+  SMU.isFollowing=function(id){return SMU.followed().indexOf(+id)>=0};
+  /* Load this account's follows from the server (no-op locally). Never throws. */
+  SMU.loadFollows=function(){if(!folLive()){folCache=null;return Promise.resolve(SMU.followed())}
+    return withTimeout(Promise.resolve(sb.from('thread_follows').select('thread_id').eq('user_id',SMU.user.id).limit(500)),12000).then(function(r){
+      if(folBad(r))return SMU.followed();folCache=(r.data||[]).map(function(x){return +x.thread_id});return folCache.slice()},function(){return SMU.followed()})};
+  SMU.toggleFollow=function(t,on){if(!SMU.user)return Promise.reject(new Error('Sign in to follow threads.'));if(!t)return Promise.reject(new Error('Thread not found.'));
+    function local(){var m=folMine();if(on)m[t.id]=[(t.posts||[]).length,Date.now()];else delete m[t.id];folSave(m);return on}
+    function done(v){if(!on)folNotes=folNotes.filter(function(n){return n.thread!==t.id});folEmit();return v}
+    if(!folLive()||!t.live)return Promise.resolve(done(local()));
+    var op=on?sb.from('thread_follows').insert({thread_id:t.id}):sb.from('thread_follows').delete().eq('user_id',SMU.user.id).eq('thread_id',t.id);
+    return withTimeout(Promise.resolve(op),12000).then(function(r){
+      if(r&&r.error&&r.error.code!=='23505'){if(folBad(r)&&followsOff){folCache=null;return done(local())}throw fail('follow',r.error)}
+      folCache=folCache||[];folCache=folCache.filter(function(x){return x!==t.id});if(on)folCache.unshift(t.id);return done(on)})};
+  /* New replies on followed threads: [{thread,title,unread,post,at}], newest first. Never throws; empty when signed out. */
+  SMU.followNotes=function(){if(!SMU.user){folNotes=[];return Promise.resolve([])}
+    if(!folLive()){folNotes=folLocalNotes();folEmit();return Promise.resolve(folNotes)}
+    return withTimeout(Promise.resolve(sb.rpc('follow_notifications',{p_limit:20})),12000).then(function(r){
+      if(folBad(r)){folNotes=folLocalNotes()}else folNotes=(r.data||[]).map(function(x){var t=folThread(x.thread_id),i=-1;
+        if(t)t.posts.forEach(function(p,j){if(i<0&&p[4]===x.first_unread_post_id)i=j});
+        return {thread:+x.thread_id,title:x.title,unread:x.unread,post:i>=0?i+1:null,at:x.last_post_at}});
+      folEmit();return folNotes},function(){folNotes=folLocalNotes();folEmit();return folNotes})};
+  /* Mark one followed thread read (opening it), or all of them (null). Never throws. */
+  SMU.followRead=function(t){if(!SMU.user)return Promise.resolve();var m=folMine(),ch=false;
+    (t?[t]:Object.keys(m).map(folThread).filter(Boolean)).forEach(function(x){if(m[x.id]&&m[x.id][0]!==x.posts.length){m[x.id][0]=x.posts.length;ch=true}});if(ch)folSave(m);
+    var had=folNotes.length;folNotes=t?folNotes.filter(function(n){return n.thread!==t.id}):[];if(had!==folNotes.length||ch)folEmit();
+    if(!folLive()||(t&&!SMU.isFollowing(t.id)))return Promise.resolve();
+    return withTimeout(Promise.resolve(sb.rpc('follow_mark_read',{p_thread:t?t.id:null})),12000).then(function(r){folBad(r)},function(){})};
+  on('auth',function(){folCache=null;folNotes=[];SMU.loadFollows().then(function(){return SMU.followNotes()})});
+
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
   ['signUp','signIn','oauth','signOut','updateName','setTier','brief','unbrief','waitlist','progress','pullProgress','toggleSave','loadThreads','boardStats','loadThread','createThread','reply','watch','setAvatar','removeAvatar','studentJoin','claimStudent'].forEach(function(k){
