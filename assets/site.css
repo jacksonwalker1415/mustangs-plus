@@ -2910,3 +2910,5 @@ main.lib-typed .pods{border-top:0}
   .site-ft .brief.compact .brief-row .btn{position:relative}
   .site-ft .brief.compact .brief-row .btn::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
 }
+/* News cards: their accessible name now comes from the visible text plus a visually hidden "(opens … in a new tab)" span; this keeps that span inside the card so it cannot widen the page. */
+.mcard.ext{position:relative}
