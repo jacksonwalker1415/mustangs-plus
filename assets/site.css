@@ -3023,6 +3023,16 @@ header.site,#site-header:empty{background:var(--blue);border-bottom-color:rgba(2
 .fo-v-g{fill:var(--red)}
 /* the sport jump bar belongs to Header & Nav: keep its hairline as it was until that owner signs off */
 nav.jump{--card-line:rgba(22,33,79,.10)}
+/* photo credits: 9-10px .85 white on a .55 navy wash measured 3.16-4.06. Now a flat .7 navy label with white 500 text: 6.46:1 even over a pure white photo. Position and corner unchanged */
+.credit,.ap-photo.has-photo .credit,.pc-pic.has-photo .credit,.tpl-card .tpl-ph .credit{font-size:12px;font-weight:500;line-height:1;color:#fff;background:rgba(16,24,60,.7);padding:2px 6px;border-radius:var(--r-ctl)}
+body[data-page="games"] main .credit{background:rgba(16,24,60,.7)}
+/* template posters: the photo is 40% of the card (109px on a 390 phone, 119px at 1440), too narrow for 'Photo: SMU Athletics' at 11px+ (it needs 124-131px).
+   Tighter inset and padding there, and the size steps up as soon as the photo is wide enough */
+.tpl-card .tpl-ph{container-type:inline-size}
+.tpl-card .tpl-ph .credit{font-size:9px;left:var(--s1);bottom:var(--s1);padding:2px 4px}
+@container (min-width:114px){.tpl-card .tpl-ph .credit{font-size:10px}}
+@container (min-width:126px){.tpl-card .tpl-ph .credit{font-size:11px}}
+@container (min-width:134px){.tpl-card .tpl-ph .credit{font-size:12px;left:var(--s2);bottom:var(--s2)}}
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */
