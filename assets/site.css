@@ -2930,3 +2930,6 @@ main.lib-typed .pods{border-top:0}
 }
 /* News cards: their accessible name now comes from the visible text plus a visually hidden "(opens … in a new tab)" span; this keeps that span inside the card so it cannot widen the page. */
 .mcard.ext{position:relative}
+/* 13+ checkbox (sign-up form, /account/ and the pop-up): at least a 44px tap target, box centered in the row */
+label.f-age{min-height:44px;align-items:center}
+label.f-age input{top:50%;transform:translateY(-50%)}
