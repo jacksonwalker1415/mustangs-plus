@@ -3081,7 +3081,7 @@ body[data-page="games"] main .credit{background:rgba(53,76,161,.88)}
 .sx-feed[aria-busy="true"]{min-height:100vh}
 /* reserved height before the embed arrives (text card, then X's iframe), so cards near the top do not jump */
 .sx-card{min-height:190px}.sx-card.sx-m{min-height:420px}
-.sx-card.sx-live{min-height:0}
+.sx-card.sx-live,.sx-noembed .sx-card{min-height:0}
 .sx-card .twitter-tweet{margin:0!important}
 .sx-bq{margin:0;background:#fff;border:1px solid var(--line-2);border-radius:var(--r2);padding:12px 14px 0;color:#262626;font-size:15px;line-height:1.45}
 .sx-by{margin:0;font-size:13px;line-height:1.35}
