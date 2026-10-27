@@ -2357,6 +2357,10 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 .rb-tv dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
 .rb-tv a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:899px){.rb-tv a{display:inline-flex;align-items:center;min-height:44px}}
+/* Desktop: same 44px hit area as phones (padding + matching negative margin, so the text does not move). Lighthouse target-size. */
+@media(min-width:900px){.rb-tv a{display:inline-block;padding:13px 4px;margin:-13px -4px}}
+/* When TV, Stream and Radio wrap onto stacked lines, the padded hit areas overlap by a few px; earlier links sit on top so each keeps 24px+ unobscured (Lighthouse target-size). No visual change. */
+.rb-tv a{position:relative}.rb-tv div:nth-child(1) a{z-index:3}.rb-tv div:nth-child(2) a{z-index:2}.rb-tv div:nth-child(3) a{z-index:1}
 .rb-wrap .xside{top:calc(50% - 20px)}
 
 /* Watch page podcast rows */
@@ -2911,3 +2915,5 @@ main.lib-typed .pods{border-top:0}
   .site-ft .brief.compact .brief-row .btn{position:relative}
   .site-ft .brief.compact .brief-row .btn::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;margin-top:-22px}
 }
+/* News cards: their accessible name now comes from the visible text plus a visually hidden "(opens … in a new tab)" span; this keeps that span inside the card so it cannot widen the page. */
+.mcard.ext{position:relative}
