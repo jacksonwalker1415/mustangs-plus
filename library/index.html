@@ -74,7 +74,7 @@ w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../assets/site.css?v=202610270620">
+<link rel="stylesheet" href="../assets/site.css?v=202610270640">
 </head>
 <body data-page="library" data-root="../">
 <!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->
@@ -82,9 +82,18 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU, Mustang Partners or Learfield. No payments taken.</span> <a href="../privacy/#about">About this project</a><button type="button" class="disc-x" aria-label="Dismiss"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 19 5 17.6 10.6 12 5 6.4z"/></svg></button><script>(function(){var h=document.documentElement,b=document.currentScript.previousElementSibling,k="mp_disc_x";try{if(localStorage.getItem(k))h.classList.add("disc-off")}catch(e){}b.addEventListener("click",function(){h.classList.add("disc-off");try{localStorage.setItem(k,"1")}catch(e){}var t=document.getElementById("menuBtn");if(!t||!t.offsetParent)t=document.querySelector("main a[href],main button:not([disabled]),main input,main [tabindex]:not([tabindex='-1'])");if(t)t.focus({preventScroll:true})})})()</script></div>
 <main id="top">
 <section class="page-hero compact has-photo"><div class="bgph"><img class="ph" src="../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-1200.webp" srcset="../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-800.webp 800w, ../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-1200.webp 1200w, ../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-2000.webp 2000w" sizes="100vw" alt="An SMU football player in blue celebrates in the end zone at Gerald J. Ford Stadium on a sunny day" style="object-position:50% 35%" fetchpriority="high" decoding="async"></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><h1 class="display" id="libTitle">Library</h1><p class="lede on-dark">Video from SMU Athletics on YouTube and Mustangs Mic’d Up, public videos and podcasts about SMU, and sourced stories.</p></div></section>
+<script>/* Sub-pages (?type=video|podcast|article): the hero names the page and gets its own line, set before first paint so nothing
+   jumps; the page title and description follow. The All page keeps "Library". Older ?cat= links map like app.js CAT_TYPE. */
+(function(){var P=new URLSearchParams(location.search),C={watch:"video",podcasts:"podcast",insider:"article",news:"article",recruiting:"article",portal:"article"},t=P.get("type")||C[P.get("cat")];
+var T={video:["Videos","Videos from SMU Athletics and SMU Football on YouTube, including Mustangs Mic\u2019d Up, plus public videos about the Mustangs."],
+podcast:["Podcasts","Shows and episodes about SMU sports, newest first."],
+article:["Articles","Sourced stories about SMU athletics, with links to SMU Athletics and the outlets that reported them."]}[t];if(!T)return;
+var h=document.getElementById("libTitle"),l=h&&h.nextElementSibling;if(h)h.textContent=T[0];if(l)l.textContent=T[1];document.title=T[0]+" | Media | SMU+";
+[].forEach.call(document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]'),function(m){m.content=T[1]});
+[].forEach.call(document.querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]'),function(m){m.content=T[0]+" | SMU+"})})()</script>
 <section class="sec tight lib-bar" id="libBar" aria-label="Browse the library"><div class="wrap">
   <div class="filters">
-    <nav class="seg lib-seg" id="libType" aria-label="Media type"><a href="./" data-type="all">All</a><a href="?type=video" data-type="video">Videos</a><a href="?type=podcast" data-type="podcast">Podcasts</a><a href="?type=article" data-type="article">Articles</a></nav>
+    <nav class="seg lib-seg" id="libType" aria-label="Media type"><a href="./" data-type="all">All</a><a href="?type=video" data-type="video">Videos</a><a href="?type=podcast" data-type="podcast">Podcasts</a><a href="?type=article" data-type="article">Articles</a><a href="../socials/" data-type="socials"><span class="ls-from">From&nbsp;</span>Socials</a></nav>
     <label class="fsearch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg><span class="sr">Filter titles</span><input id="libQ" type="search" placeholder="Filter titles" autocomplete="off" maxlength="80"></label>
     <label class="lib-show" id="libShow" hidden><span class="lib-show-l">Show</span><span class="lib-show-dd"><select id="libShowSel"><option value="all">All shows</option></select></span></label>
     <span class="meta" id="libCount"></span><button type="button" class="linkish" id="libClear" hidden>Clear filters</button>
@@ -109,17 +118,17 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 </div>
 </main>
 <div id="site-footer"></div>
-<script src="../assets/config.js?v=202610270620" defer></script>
-<script src="../assets/data.js?v=202610270620" defer></script>
-<script src="../assets/content.js?v=202610270620" defer></script>
-<script src="../assets/real.js?v=202610270620" defer></script>
-<script src="../assets/athletes.js?v=202610270620" defer></script>
-<script src="../assets/socials.js?v=202610270620" defer></script>
-<script src="../assets/sport-icons.js?v=202610270620" defer></script>
-<script src="../assets/games.js?v=202610270620" defer></script>
-<script src="../assets/sb.js?v=202610270620" defer></script>
-<script src="../assets/ads.js?v=202610270620" defer></script>
-<script src="../assets/app.js?v=202610270620" defer></script>
-<script src="../assets/cfbd-live.js?v=202610270620" defer></script>
+<script src="../assets/config.js?v=202610270640" defer></script>
+<script src="../assets/data.js?v=202610270640" defer></script>
+<script src="../assets/content.js?v=202610270640" defer></script>
+<script src="../assets/real.js?v=202610270640" defer></script>
+<script src="../assets/athletes.js?v=202610270640" defer></script>
+<script src="../assets/socials.js?v=202610270640" defer></script>
+<script src="../assets/sport-icons.js?v=202610270640" defer></script>
+<script src="../assets/games.js?v=202610270640" defer></script>
+<script src="../assets/sb.js?v=202610270640" defer></script>
+<script src="../assets/ads.js?v=202610270640" defer></script>
+<script src="../assets/app.js?v=202610270640" defer></script>
+<script src="../assets/cfbd-live.js?v=202610270640" defer></script>
 </body>
 </html>

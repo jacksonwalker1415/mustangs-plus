@@ -1,0 +1,47 @@
+{
+  "_readme": "EDITED BY HAND. No script or bot writes this file and nothing fetches it from another site. Each item links to a real outside story: copy the headline exactly as the publisher shows it, write the one-line summary yourself in neutral words from the headline or the story's free text only (never from behind a paywall), set paywalled to true for subscriber stories, and keep 5 items at most, newest first. Never add On3 or 247Sports links found by a bot (their terms ban automation); only links Jackson picks by hand. An empty items list hides the module. See tools/README.md.",
+  "_contact_note": "PLACEHOLDER: Jackson still has to pick the project email for removal requests. While contact is an empty string the removal line is hidden; the module still shows.",
+  "contact": "",
+  "items": [
+    {
+      "title": "ACC Announces Volleyball Players of the Week",
+      "source": "theACC.com",
+      "url": "https://theacc.com/news/2026/10/26/womens-volleyball-acc-announces-volleyball-players-of-the-week.aspx",
+      "published": "2026-10-26",
+      "summary": "SMU setter Hannah Beauford shared the ACC's Setter of the Week honor after sweeps of Clemson and Georgia Tech.",
+      "paywalled": false
+    },
+    {
+      "title": "No. 1 SMU men's soccer clinches a share of school's first ACC regular-season title",
+      "source": "The Dallas Morning News",
+      "url": "https://www.dallasnews.com/sports/smu-mustangs/article/smu-mustangs-mens-soccer-regular-season-title-22494009.php",
+      "published": "2026-10-26T02:56:13Z",
+      "summary": "The top-ranked Mustangs secured at least a share of SMU's first ACC regular-season title in men's soccer.",
+      "paywalled": true
+    },
+    {
+      "title": "Kevin Jennings breaks SMU's TD passing record in win over Cal",
+      "source": "ESPN",
+      "url": "https://www.espn.com/college-football/story/_/id/50269946/kevin-jennings-breaks-smu-td-passing-record-win-cal",
+      "published": "2026-10-24T21:21:00Z",
+      "summary": "Jennings threw his 73rd career touchdown pass, passing Tanner Mordecai for the school record, as SMU beat Cal 59-20.",
+      "paywalled": false
+    },
+    {
+      "title": "SMU scores 42 unanswered second-half points in revenge game against Cal",
+      "source": "The Daily Campus",
+      "url": "https://smudailycampus.com/1070829/sports/smu-scores-42-unanswered-second-half-points-in-revenge-game-against-cal/",
+      "published": "2026-10-24",
+      "summary": "The student paper's recap of SMU coming back from a 20-17 halftime deficit to beat Cal.",
+      "paywalled": false
+    },
+    {
+      "title": "Oppliger Sweeps Diving Events, SMU Wraps Dual Meet At No. 18 Arizona State",
+      "source": "SMU Athletics",
+      "url": "https://smumustangs.com/news/2026/10/22/womens-swimming-diving-oppliger-sweeps-diving-events-smu-wraps-dual-meet-at-no-18-arizona-state",
+      "published": "2026-10-22",
+      "summary": "Macey Oppliger won both diving events and Maddy Parker won the 50 free as SMU women's swimming and diving met Arizona State in Tempe.",
+      "paywalled": false
+    }
+  ]
+}

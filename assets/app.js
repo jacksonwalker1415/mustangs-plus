@@ -182,10 +182,10 @@
   /* Sports is a dropdown (desktop) / accordion (phone menu) listing all 12 programs; #sports links anywhere open it */
   var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
   /* Media (the Library page, /library/) is a dropdown too: Videos, Podcasts and Articles open the Library's view for that type (?type=video|podcast|article). */
-  var MEDIA=[['Videos',ROOT+'library/?type=video'],['Podcasts',ROOT+'library/?type=podcast'],['Articles',ROOT+'library/?type=article']];
-  function mediaCur(i){if(PAGE!=='library')return false;var P=new URLSearchParams(location.search),t=P.get('type')||CAT_TYPE[P.get('cat')];return t===['video','podcast','article'][i]}
+  var MEDIA=[['Videos',ROOT+'library/?type=video'],['Podcasts',ROOT+'library/?type=podcast'],['Articles',ROOT+'library/?type=article'],['From Socials',ROOT+'socials/']];
+  function mediaCur(i){if(PAGE==='socials')return i===3;if(PAGE!=='library')return false;var P=new URLSearchParams(location.search),t=P.get('type')||CAT_TYPE[P.get('cat')];return t===['video','podcast','article'][i]}
   function mediaPanel(){return '<div class="sports-dd media-dd" id="mediaMenu" hidden><ul class="sdd-list">'+MEDIA.map(function(m,i){return '<li><a href="'+m[1]+'"'+(mediaCur(i)?' aria-current="page"':'')+'>'+m[0]+'</a></li>'}).join('')+'</ul></div>'}
-  function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
+  function navLinks(){return NAV.map(function(n){var on=PAGE===n[2]||(n[2]==='library'&&PAGE==='socials');
     if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu">'+n[0]+CHEV+'</button>';
     /* Media is a real link to the Library page; its own chevron button opens Videos, Podcasts and Articles (disclosure, so no aria-haspopup) */
     if(n[2]==='library')return '<a href="'+n[1]+'" class="nav-media'+(on?' on':'')+'" id="mediaLink"'+(on?' aria-current="page"':'')+'>'+n[0]+'</a><button type="button" class="nav-dd-btn nav-chev" id="mediaBtn" aria-label="Show Media sections" aria-expanded="false" aria-controls="mediaMenu">'+CHEV+'</button>';
@@ -853,6 +853,24 @@
     addEventListener('popstate',function(){var p=new URLSearchParams(location.search);inp.value=p.get('q')||'';only=p.get('type')||'all';render();fetchLive(inp.value.trim()).then(render)});
     fetch(ROOT+'data/search-index.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(J){IDX=J.docs||[];render()},function(){IDX=[];render()});
     render();if(q0)fetchLive(q0).then(render);if(!q0)inp.focus()}
+  /* Around the Web (home only, Jackson Oct 27, Counsel guardrails): up to 5 outside stories from data/around-the-web.json, which is edited by hand
+     (tools/README.md). Sits right after our own stories (#news, else #read), away from Join buttons and ads. Text only: headline link (new tab),
+     plain-text source, date, our one-line summary, a "Subscriber story" tag when paywalled. Section is in the DOM hidden from the start and only
+     unhides when the file has items, below the fold. Empty contact hides the removal line, not the module. */
+  function aroundWeb(){var at=$('#news')||$('#read');if(!at||$('#atw'))return;
+    at.insertAdjacentHTML('afterend','<section class="sec tight atw-sec" id="atw" aria-labelledby="atw-h" hidden><div class="wrap"><div class="sec-hd"><div><h2 class="sec-t" id="atw-h">Around the Web</h2></div></div><ol class="atw-list" id="atwList"></ol><p class="atw-lbl">Links to outside sites. SMU+ isn\u2019t affiliated with these publishers or with SMU.<span id="atwRm"></span></p></div></section>');
+    if(!window.fetch)return;
+    function day(s){var m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})$/),d;
+      if(m)d=new Date(Date.UTC(+m[1],m[2]-1,+m[3],12));else{d=new Date(s);if(isNaN(d))return ''}
+      return d.toLocaleDateString('en-US',m?{timeZone:'UTC',month:'short',day:'numeric'}:{timeZone:'America/Chicago',month:'short',day:'numeric'})}
+    fetch(ROOT+'data/around-the-web.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(J){
+      var I=(J&&J.items||[]).filter(function(x){return x&&x.title&&x.source&&/^https:\/\//.test(x.url||'')}).slice(0,5),sec=$('#atw');if(!I.length||!sec)return;
+      $('#atwList').innerHTML=I.map(function(x){var ds=day(x.published);
+        return '<li><a class="atw-a" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.title)+'<span class="sr"> (opens '+esc(x.source)+' in a new tab)</span></a>'+
+          '<p class="atw-m"><span class="atw-sd">'+esc(x.source)+(ds?'<span aria-hidden="true"> \u00b7 </span><time datetime="'+esc(x.published)+'">'+ds+'</time>':'')+'</span>'+(x.paywalled?'<span class="atw-pw">Subscriber story</span>':'')+'</p>'+
+          (x.summary?'<p class="atw-s">'+esc(x.summary)+'</p>':'')+'</li>'}).join('');
+      var c=String(J.contact||'').trim();if(/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(c))$('#atwRm').innerHTML=' Want a link removed? Email <a href="mailto:'+esc(c)+'">'+esc(c)+'</a> and we\u2019ll remove it within 2 business days.';
+      sec.hidden=false}).catch(function(){})}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       /* Home waitlist section removed (Oct 26, Jackson); Join CTAs open the join pop-up. */
@@ -874,6 +892,7 @@
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','From SMU Athletics on YouTube')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
+    aroundWeb();
     var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before the message boards) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));watchX();
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
     hilltop();
@@ -1205,7 +1224,7 @@
     var st={q:(P.get('q')||'').slice(0,80),show:P.get('show')||'all'};if(!/^[\w-]+$/.test(st.show))st.show='all';
     var main=$('main'),grid=$('#libGrid'),rgrid=$('#libReadGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty'),showSel=$('#libShowSel'),showL=$('#libShow'),T=LIB_TYPES[type];
     $$('#libType a').forEach(function(a){if(a.dataset.type===type)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
-    $('#libH').textContent=T?T[0]:'All media';$('#libVh').hidden=!T;main.classList.toggle('lib-typed',!!T);q.value=st.q;
+    $('#libH').textContent=T?T[0]:'All media';$('#libVh').hidden=true;/* the hero now names the sub-page (inline script in library/index.html), so no second heading */main.classList.toggle('lib-typed',!!T);q.value=st.q;
     var wait=type==='video'||type==='podcast';main.classList.toggle('lib-wait',wait);$('#libSkel').hidden=!wait;
     function ofType(t){return MP.LIB.filter(function(c){return c.t===t})}
     if(type==='all'){var rows=['video','podcast','article'].map(function(t){var L=ofType(t);if(!L.length)return '';

@@ -77,6 +77,7 @@ const PAGES = [
   ['Videos', 'Highlights, press conferences and series', 'library/?type=video', 'videos video highlights watch'],
   ['Podcasts', 'SMU podcasts and episodes', 'library/?type=podcast', 'podcasts podcast episodes listen'],
   ['Articles', 'Stories, previews and recaps', 'library/?type=article', 'articles stories news read recaps previews'],
+  ['From Socials', 'The newest public posts from SMU-related accounts on X', 'socials/', 'from socials social media x twitter posts tweets feed official teams writers smufb smumustangs'],
   ['Game day', 'Schedules, results, kickoff times and where to watch', 'games/', 'game day games schedule schedules scores results kickoff tv watch tickets'],
   ['Football player profiles', 'Profiles of SMU football players', 'athletes/', 'players player profiles roster athletes football'],
   ['Search', 'Search all of SMU+', 'search/', 'search find'],
