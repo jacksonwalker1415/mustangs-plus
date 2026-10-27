@@ -2021,6 +2021,11 @@ html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden
 .fx-row-last span{color:var(--fx-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fx-row-av .av,.fx-row-lav .av{width:36px;height:36px;font-size:15px}
 .fx-row-lav .av{width:28px;height:28px;font-size:12px}
+/* no layout shift on first render: until boards() picks the view (app.js show() adds .fx-ready, same task as the render),
+   the static index placeholder, tabs and hero search stay invisible but keep their space. The hero title stays visible.
+   Fallback: shown anyway after 8s if the app never runs */
+main.fx:not(.fx-ready) :is(.fx-page,.fx-tabs,.fx-hsearch,.fx-sbtn){visibility:hidden;animation:fxReveal 0s 8s forwards}
+@keyframes fxReveal{to{visibility:visible}}
 /* thread lists (?f=all and every board): 44px hit areas on the title, board tag and last-post links with a matching
    negative margin, so rows keep their height; desktop sort buttons 44px with the group's -1px margin keeping it at 44px */
 .fx-row-link,.fx-row-f,.fx-row-last a{padding-block:calc((44px - 1lh)/2 + .5px);margin-block:calc((1lh - 44px)/2 - .5px)}
