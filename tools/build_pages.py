@@ -9,7 +9,12 @@ REPO=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE='https://fanplatformdemo.com/'
 VER=sys.argv[1] if len(sys.argv)>1 else time.strftime('%Y%m%d%H%M')
 # Order matters: config -> data -> app. supabase-js is loaded lazily by sb.js only when config has keys.
+# Every script is `defer`: they still run in this order, after the HTML is parsed and before DOMContentLoaded,
+# but no longer hold up first paint. No inline script may call into these files at parse time.
 SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js','sport-icons.js','games.js','upcoming.js','boxscores.js','gamestats.js','sb.js','ads.js','app.js','cfbd-live.js']
+# Data files only one page reads. upcoming.js (MP.UPCOMING) feeds the home calendar ribbon only; boxscores.js (MP.BOX) and
+# gamestats.js (MP.gameStats) are read only by the game page (app.js gamePage). Every other script loads on every page.
+ONLY_ON={'upcoming.js':('index.html',),'boxscores.js':('games/index.html',),'gamestats.js':('games/index.html',)}
 def DISC(root):
     # One wording site-wide (Business Ops lock-exposure notice). build_pages.py rewrites it on every page.
     # Full wording on tablets/desktop; phones get the short line (CSS swaps them) so the bar stays two lines max.
@@ -82,8 +87,9 @@ SHELLS={
  '404.html': head('Page not found | SMU+','That page is not on SMU+.','notfound','',
    '<script>document.write(\'<base href="\'+(location.pathname.indexOf("/mustangs-plus/")===0?"/mustangs-plus/":"/")+\'">\')</script>\n'
    '')+
-   '<main id="top"><section class="page-hero nf-hero"><div class="wrap"><p class="eyebrow">Error 404</p><h1 class="display">Off the field</h1>'
+   '<main id="top"><section class="page-hero nf-hero"><div class="wrap"><h1 class="display">Off the field</h1>'
    '<p class="lede on-dark">We couldn\u2019t find that page. It may have moved, or the link has a typo.</p>'
+   '<form class="srch-f nf-sf" role="search" action="search/" method="get"><label class="sr" for="nfQ">Search SMU+</label><input id="nfQ" name="q" type="search" placeholder="Search players, games and videos" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"><button type="submit">Search</button></form>'
    '<p class="nf-act"><a class="btn btn-red" href="./">Go to the home page</a> <a class="btn btn-ghost" href="library/">Browse the library</a> <a class="btn btn-ghost" href="boards/">The Expressway message boards</a></p></div></section></main>\n'
    '<div id="site-footer"></div>\n</body>\n</html>\n',
 }
@@ -93,8 +99,9 @@ for rel,src in SHELLS.items():
 
 # Page loads: no full-screen loader. A slim white bar appears only if a load is still going after 300ms (never on fast or cached loads),
 # cross-document View Transitions fade pages in 180ms (off for reduced motion), and nothing sticks after Back/Forward (bfcache).
-BOOT_HEAD='''<!--boot--><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+# Fonts are self-hosted (assets/fonts, @font-face in site.css). Preload the two latin files every page paints above the fold.
+BOOT_HEAD='''<!--boot--><link rel="preload" href="{PRE}assets/fonts/dm-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{PRE}assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>@view-transition{navigation:auto}
 ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.18s;animation-timing-function:ease}
 #pgbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10000;height:3px;background:#fff;box-shadow:0 1px 0 rgba(22,33,79,.2);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
@@ -187,7 +194,7 @@ for p in pages:
     if rel=='games/index.html': s=re.sub(r'(<link rel="stylesheet" href="((?:\.\./)*)assets/site\.css\?v=\d+">)',lambda m_:m_.group(1)+'\n<link rel="stylesheet" href="'+m_.group(2)+'assets/games.css?v='+VER+'">',s,count=1)
     if rel=='athletes/index.html': s=re.sub(r'(<link rel="stylesheet" href="((?:\.\./)*)assets/site\.css\?v=\d+">)',lambda m_:m_.group(1)+'\n<link rel="stylesheet" href="'+m_.group(2)+'assets/profiles.css?v='+VER+'">',s,count=1)
     s=re.sub(r'\n?<script src="(?:\.\./)*assets/[a-z-]+\.js(?:\?v=\d+)?"(?: defer)?></script>','',s)
-    s=s.replace('</body>','\n'.join('<script src="%sassets/%s?v=%s"></script>'%(pre,f,VER) for f in SCRIPTS)+'\n</body>',1)
+    s=s.replace('</body>','\n'.join('<script src="%sassets/%s?v=%s" defer></script>'%(pre,f,VER) for f in SCRIPTS if rel in ONLY_ON.get(f,(rel,)))+'\n</body>',1)
     # managed blocks: strip then re-insert
     s=re.sub(r'<!--(meta|boot|bootui|pwa)-->.*?<!--/\1-->\n?','',s,flags=re.S)
     s=re.sub(r'<div class="disclaimer" role="note">.*?</div>',lambda m_:DISC(pre),s,count=1,flags=re.S)
@@ -196,7 +203,7 @@ for p in pages:
     url=SITE+re.sub(r'index\.html$','',rel)
     s=re.sub(r'(<link rel="apple-touch-icon"[^>]*>\n)',lambda m_:m_.group(1)+meta(url,pre,is404,(re.search(r'<meta property="og:description" content="([^"]*)">',s) or [None,None])[1],crumbs_ld(rel,s)),s,count=1)
     s=s.replace('<!--/meta-->\n','<!--/meta-->\n'+pwa_block(pre),1)
-    s=s.replace('<link rel="stylesheet" href="',BOOT_HEAD+'<link rel="stylesheet" href="',1)
+    s=s.replace('<link rel="stylesheet" href="',BOOT_HEAD.replace('{PRE}',pre)+'<link rel="stylesheet" href="',1)
     s=re.sub(r'(<body[^>]*>\n)',lambda m_:m_.group(1)+boot_body(pre),s,count=1)
     open(p,'w').write(s)
     if not is404 and not (rel=='recruiting/index.html' and not REC_ON): urls.append(url)

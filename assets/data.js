@@ -49,13 +49,7 @@ MP.SPORTS = [
    blurb:'Riders, horses and the barn crew behind every point at the Dallas Equestrian Center.'}
 ];
 
-MP.NAMES = {
-  M:['Jalen','Marcus','Tyler','Isaiah','Cole','Darius','Ethan','Brandon','Caleb','Xavier','Trent','Mason','Andre','Luis','Owen','Malik','Grant','Elijah','Noah','Reggie','Dominic','Jace','Kendrick','Tomas','Rhys','Kai','Hudson','Bryce','Camden','Zion'],
-  W:['Maya','Ava','Kennedy','Jordan','Sophia','Aaliyah','Riley','Brooke','Sienna','Camila','Tessa','Imani','Harper','Zoe','Lauren','Nia','Elise','Kayla','Paige','Mia','Gabriela','Reese','Talia','Nora','Jada','Lucia','Quinn','Aubrey','Skye','Hailey'],
-  L:['Whitaker','Okonkwo','Castellanos','Lindqvist','Brennan','Holloway','Maddox','Reyes','Thibodeaux','Okafor','Prescott','Delgado','Ashford','Kincaid','Mbeki','Sorensen','Calloway','Fairbanks','Quintero','Navarro','Pemberton','Ellison','Vasquez','Harrington','Abernathy','Sutton','Gallagher','Ramos','Whitlock','Beaumont','Fontaine','Okoro','Lachance','Stratton','Merritt','Dunleavy','Achebe','Kowalski','Marchetti','Treadwell']
-};
 MP.TOWNS = ['Dallas, TX','Houston, TX','Austin, TX','Plano, TX','Frisco, TX','San Antonio, TX','Fort Worth, TX','McKinney, TX','Katy, TX','Tulsa, OK','Shreveport, LA','Atlanta, GA','Phoenix, AZ','Denver, CO','Nashville, TN','Miami, FL','San Diego, CA','Chicago, IL','Melbourne, Australia','Stockholm, Sweden','Madrid, Spain','Toronto, Canada'];
-MP.OPP = ['Gulf Coast','North Plains State','Rio Valley','Lone Star Tech','Mesa A&M','Pinehurst','Bay City','Red River','Harbor State','Summit','Prairie View Tech','Cedar Ridge','Westbrook','Iron Hills','Coastal Carolina State'];
 MP.CLASSES = ['Fr.','R-Fr.','So.','Jr.','Sr.','Gr.'];
 
 /* Message board (fictional users and posts) */

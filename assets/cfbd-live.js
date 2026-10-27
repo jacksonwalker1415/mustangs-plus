@@ -62,11 +62,13 @@
   function gamePage(){var main=document.getElementById('gamesMain');if(!main)return null;
     var id=new URLSearchParams(location.search).get('id'),g=id&&BY[id];if(!g)return null;
     return function(){var r=rowFor(g),card=main.querySelector('.gm-match');if(!r||!card)return;
-      var old=card.querySelector('.cf-wrap');if(old)old.remove();
+      /* the old score stays until the new one is ready, so the card never collapses between refreshes */
       var top=show(r,g)?scoreBox(r,g):'';
+      /* the game page's sticky scoreboard (app.js MP.gcLive) shows the same live score and status */
+      if(top&&window.MP&&typeof window.MP.gcLive==='function'){var p=pts(r);window.MP.gcLive({us:p.us,them:p.them,status:status(r),live:r.status==='in_progress',ball:r.status==='in_progress'?ball(r,g):'',sit:r.situation||''})}
       var need=r.status!=='scheduled';
       (need?get('game_plays?select=period,clock,offense,home_score,away_score,play_text,scoring&game_id=eq.'+r.game_id+'&play_type=not.in.(%22End%20Period%22,%22End%20of%20Half%22,%22End%20of%20Game%22,%22Timeout%22,%22End%20of%20Regulation%22)&order=seq.desc&limit=10'):Promise.resolve([]))
-        .then(function(P){var pl=playsList(P,g,r);if(!top&&!pl)return;
+        .then(function(P){var pl=playsList(P,g,r);if(!top&&!pl){var x=card.querySelector('.cf-wrap');if(x)x.remove();return}
           var o=card.querySelector('.cf-wrap');if(o)o.remove();
           var w=document.createElement('div');w.className='cf-wrap cf-live';w.innerHTML=top+pl+CREDIT;
           var h=card.querySelector('.gm-h');if(top&&h){var t=h.nextSibling;h.textContent=r.status==='final'?'Result':'Live';
@@ -107,5 +109,5 @@
       setTimeout(function(){pend=0;if(!Object.keys(ROWS).length)return;thread();ribbon()},150)});
       obs.observe(document.body,{childList:true,subtree:true})});
     window.addEventListener('hashchange',function(){setTimeout(thread,300)})}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+  if(document.readyState==='loading'||(function(){try{var n=performance.getEntriesByType('navigation')[0];return !!n&&!n.domContentLoadedEventStart}catch(e){return false}})())document.addEventListener('DOMContentLoaded',start);else start();
 })();
