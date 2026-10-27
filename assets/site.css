@@ -3197,17 +3197,6 @@ a.sx-xav:focus-visible{outline:3px solid #354CA1;outline-offset:-2px;border-radi
 .atw-lbl{margin:var(--s3) 0 0;font-size:13px;line-height:1.45;color:var(--ink);max-width:80ch}
 .atw-lbl a{color:var(--blue);text-decoration:underline;display:inline-flex;align-items:center;min-height:44px}
 @media(min-width:960px){.atw-list{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s6)}.atw-a{padding:10px 0 4px}}
-/* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
-@media(max-width:639px){
-  .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */
-  .chip,.seg button,.sort button,.tier-toggle button{min-height:44px}
-  .see-all,.htab{min-height:44px}
-  #more .chip{min-height:44px;display:inline-flex;align-items:center}
-  .sport-tile{min-height:56px}
-  .fsearch{height:46px}
-  .cnotice a{display:inline-flex;align-items:center;min-height:44px}  /* Round 9: 'About this project' link was 18px tall */
-}
-
 /* ---------- Board media: composer photos, post photo grid, lightbox, link embeds and cards (app.js "Board media") ---------- */
 .fx-mp{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
 .fx-mp-in{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
@@ -3271,3 +3260,13 @@ a.sx-xav:focus-visible{outline:3px solid #354CA1;outline-offset:-2px;border-radi
 .fx-emb-pn{margin:0;font-size:13px;color:#262626}
 .fx-emb:focus{outline:none}
 .fx-emb:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+/* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
+@media(max-width:639px){
+  .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */
+  .chip,.seg button,.sort button,.tier-toggle button{min-height:44px}
+  .see-all,.htab{min-height:44px}
+  #more .chip{min-height:44px;display:inline-flex;align-items:center}
+  .sport-tile{min-height:56px}
+  .fsearch{height:46px}
+  .cnotice a{display:inline-flex;align-items:center;min-height:44px}  /* Round 9: 'About this project' link was 18px tall */
+}
