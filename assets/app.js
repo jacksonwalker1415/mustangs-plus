@@ -82,7 +82,7 @@
 
   /* ---------- Local state: member preview, watch history, photos ---------- */
   /* MP.FEATURES.gating=false (data.js): no locks, blurs, gates or preview switch; everyone sees member content. Old preview state is cleared. */
-  var GATING=!!(MP.FEATURES&&MP.FEATURES.gating);if(!GATING){try{localStorage.removeItem('mp_member')}catch(e){}}
+  var GATING=SHOW_PAID_PLANS&&!!(MP.FEATURES&&MP.FEATURES.gating);/* no member gates (locks, Members only, Unlock) while paid plans are hidden */if(!GATING){try{localStorage.removeItem('mp_member')}catch(e){}}
   function isMember(){return store('mp_member')==='1'}
   function seesMember(){return !GATING||isMember()}
   /* Third-party embeds (official SMU Athletics YouTube videos) are never behind the members gate */
@@ -256,10 +256,11 @@
     '<button class="btn btn-red" id="modalClose">Got it</button></div></div>'+
     '<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="reader-h" hidden><div class="reader-sheet"><button class="reader-x" id="readerClose" aria-label="Close">×</button><div id="readerBody" tabindex="-1"></div></div></div>'+
     '<div class="pw" id="paywall" role="dialog" aria-modal="true" aria-labelledby="pw-h" hidden><div class="pw-sheet"><button class="reader-x" id="pwClose" aria-label="Close">×</button>'+
-      '<div class="pw-art" id="pwArt"></div><div class="pw-b"><p class="eyebrow pw-eb">'+LOCK+'Members only</p><h3 id="pw-h">Unlock <span id="pwTitle"></span></h3>'+
+      '<div class="pw-art" id="pwArt"></div><div class="pw-b">'+(GATING?'<p class="eyebrow pw-eb">'+LOCK+'Members only</p><h3 id="pw-h">Unlock <span id="pwTitle"></span></h3>'+
       '<p class="pw-lede">The members-only boards today. Original SMU+ series, film breakdowns and podcasts are coming soon. Cancel anytime.</p>'+
       '<div class="pw-tiers">'+[MP.TIER_LABELS.mustang,MP.TIER_LABELS.pony,MP.TIER_LABELS.club].map(function(t){return '<div class="pw-t"><b>'+t+'</b><span class="pw-p">Coming soon</span></div>'}).join('')+'</div>'+
-      '<div class="pw-act"><a class="btn btn-red" href="'+ROOT+'#membership" id="pwPlans">See plans</a>'+memberSwitch()+'</div>'+
+      '<div class="pw-act"><a class="btn btn-red" href="'+ROOT+'#membership" id="pwPlans">See plans</a>'+memberSwitch()+'</div>'
+      /* paid plans hidden: no paywall wording, only a neutral free sign-up prompt */:'<h3 id="pw-h"><span id="pwTitle"></span></h3><p class="pw-lede">Create a free SMU+ account to keep watching.</p><div class="pw-act"><a class="btn btn-red" href="'+ROOT+'account/" data-auth="up">Join free</a></div>')+
       conceptNotice('pw-cn')+'</div></div></div>'+
     '<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Search SMU+" hidden><div class="search-sheet">'+
       '<div class="search-bar">'+SVG.search+'<input id="searchInput" type="text" placeholder="Search stories, episodes, players, threads" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="searchResults" aria-autocomplete="list"><button type="button" class="search-esc" id="searchClose">Esc</button></div>'+
