@@ -2354,6 +2354,8 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 @media(max-width:899px){.rb-tv a{display:inline-flex;align-items:center;min-height:44px}}
 /* Desktop: same 44px hit area as phones (padding + matching negative margin, so the text does not move). Lighthouse target-size. */
 @media(min-width:900px){.rb-tv a{display:inline-block;padding:13px 4px;margin:-13px -4px}}
+/* When TV, Stream and Radio wrap onto stacked lines, the padded hit areas overlap by a few px; earlier links sit on top so each keeps 24px+ unobscured (Lighthouse target-size). No visual change. */
+.rb-tv a{position:relative}.rb-tv div:nth-child(1) a{z-index:3}.rb-tv div:nth-child(2) a{z-index:2}.rb-tv div:nth-child(3) a{z-index:1}
 .rb-wrap .xside{top:calc(50% - 20px)}
 
 /* Watch page podcast rows */
