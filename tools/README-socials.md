@@ -54,6 +54,7 @@ A full refresh is about 24-26 reads. Twice a day is about 50 of the 1000-a-day b
 - Profile pictures (Counsel, Oct 27): only Writers-group accounts (writers and outlets) get an `av` URL, taken from this
   refresh's users read (`profile_image_url`, pbs.twimg.com only). Private or missing accounts and X's default picture get none,
   so the page shows initials. Official, team and coach accounts never get one. The page hotlinks the URL; nothing is downloaded.
-  `data/x-avatars.json` carries the same URLs for the home page's "Conference and beat coverage" row, which shows only
-  @SMUMustangsOn3's picture (theACC and accnetwork keep initials: their pictures are ACC logos). If a writer's picture becomes an
+  Accounts in `NO_AVATAR` never get one (Counsel, Oct 27: @SMUMustangsOn3, whose red mustang reads as SMU's logo).
+  `data/x-avatars.json` carries the same URLs for the home page's "Conference and beat coverage" row; that row is initials
+  only for now (On3 is in NO_AVATAR; theACC and accnetwork are ACC logos), so it shows no pictures and no note. If a writer's picture becomes an
   SMU, team or ACC logo, move that account out of the Writers group or ask Counsel before shipping.

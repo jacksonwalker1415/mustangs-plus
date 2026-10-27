@@ -31,6 +31,8 @@ RAW = os.environ.get('SOCIALS_RAW', '/workspace/smu-media/socials-raw')
 OUT = os.path.join(ROOT, 'data', 'socials.json')
 AV_OUT = os.path.join(ROOT, 'data', 'x-avatars.json')
 TOP = 25
+# Counsel, Oct 27: accounts whose X picture reads as an SMU, team or ACC logo never get one (initials instead), even in Writers
+NO_AVATAR = {'smumustangson3'}  # On3's red mustang reads as SMU's logo
 DROP = {'billyembody', 'kevin8jennings', 'goodwin2026'}          # Counsel, Oct 27: NIL tie (On3 stays via @SMUMustangsOn3); athletes off for now
 HOLD_WORDS = ('exclude', 'class-of-2026', 'out for the se', 'fan account', 'general news', 'hold', 'nil activity', 'unaffiliated')
 SMU_WORDS = re.compile(r"\b(SMU|Mustangs?|Ponies|Pony ?Up|Pony Express|Hilltop|Peruna|Ford Stadium|Moody Coliseum|Lashlee|Dallas'? Team)\b", re.I)
@@ -135,7 +137,7 @@ def build(acc):
         """Writers only (Counsel, Oct 27): the X profile picture URL from this refresh's users read, hotlinked by the page and
         never downloaded. Official, team and coach accounts keep initials. Private, suspended or missing: no URL (initials)."""
         u = users.get(a['h'].lower())
-        if a['g'] != 'writers' or not u or u.get('protected'): return {}
+        if a['g'] != 'writers' or a['h'].lower() in NO_AVATAR or not u or u.get('protected'): return {}
         url = str(u.get('profile_image_url') or '')
         if not re.match(r'^https://pbs\.twimg\.com/profile_images/[^\s"<>]+$', url) or 'default_profile' in url: return {}
         return {'av': url}

@@ -3260,6 +3260,9 @@ a.sx-xav:focus-visible{outline:3px solid #354CA1;outline-offset:-2px;border-radi
 .fx-emb-pn{margin:0;font-size:13px;color:#262626}
 .fx-emb:focus{outline:none}
 .fx-emb:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+/* Counsel, Oct 27: no sticky sample ad while the From Socials Following panel shows (always on screen beside the feed at 1024px+).
+   On phones the panel is a sheet; ads.js hides the bar while it is open (ad-quiet). Ad-free hides everything as before. */
+@media(min-width:1024px){body[data-page="socials"] .ad-sticky{display:none!important}html.ad-sticky-on:not(.adfree) body[data-page="socials"]{padding-bottom:0}}
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */

@@ -646,7 +646,7 @@
   /* "Conference and beat coverage" row (home). Counsel, Oct 27: outlet/writer accounts may show their X profile picture, hotlinked from
      pbs.twimg.com with the URL from the latest X users read (data/x-avatars.json, written by tools/build_socials.py; never stored on
      our side). Accounts whose picture is a conference or SMU logo keep initials (COV_INI). No description lines, no banners. */
-  var COV_INI={theacc:1,accnetwork:1};
+  var COV_INI={theacc:1,accnetwork:1,smumustangson3:1}; /* Counsel, Oct 27: On3's red mustang reads as SMU's logo */
   function covIni(nm){var w=String(nm).replace(/^(The|SMU)\s+/i,'').split(/\s+/);return esc((w[0]||'?').charAt(0)+(w[1]&&/^[A-Z(]/.test(w[1])?w[1].replace(/^\(/,'').charAt(0):''))}
   function covCard(a){var h=a[1],nm=a[0],xu=(a[2]&&a[2].x)||'https://x.com/'+encodeURIComponent(h);
     return '<li class="fo-card fo-plain fo-cov"><div class="fo-body fo-cov-b">'+
@@ -687,7 +687,7 @@
         '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next posts" aria-controls="xtrack-'+key+'">'+XARR+'</button></div>':'')+
       followRow(F,home?'Follow SMU':'Follow SMU '+esc((sportBy(key)||{}).name||''))+
       followRow(PL,'Follow the players',plCard)+
-      (home?followRow(FEEDS.media,'Conference and beat coverage',covCard)+'<p class="fo-note" id="feedsAvNote" hidden>Profile pictures from X. Not affiliated with these accounts.</p>':'')+
+      (home?followRow(FEEDS.media,'Conference and beat coverage',covCard)+((FEEDS.media||[]).some(function(a){return !COV_INI[String(a[1]).toLowerCase()]})?'<p class="fo-note" id="feedsAvNote" hidden>Profile pictures from X. Not affiliated with these accounts.</p>':''):'')+
       '</div></section>'}
   function xNavSync(box){var nav=document.querySelector('[data-xnav="'+box.id+'"]');if(!nav)return;var b=nav.querySelectorAll('.xarr'),m=box.scrollWidth-box.clientWidth;
     nav.classList.toggle('no-ovf',box.hidden||m<=2);b[0].disabled=box.scrollLeft<=2;b[1].disabled=box.scrollLeft>=m-2}
@@ -712,7 +712,7 @@
     if(window.twttr&&twttr.widgets&&twttr.widgets.load){twttr.widgets.load(box);return}
     if(!document.getElementById('x-wjs')){var sc=document.createElement('script');sc.id='x-wjs';sc.async=true;sc.charset='utf-8';sc.src='https://platform.twitter.com/widgets.js';
       sc.onerror=function(){[].forEach.call(document.querySelectorAll('[data-xposts]'),function(b){b.classList.add('x-off')})};document.body.appendChild(sc)}}
-  function watchX(){var L=document.querySelectorAll('[data-xposts]:not([data-xw])');if(!L.length)return;
+  function watchX(){if(MP.adsQuietScan)MP.adsQuietScan();var L=document.querySelectorAll('[data-xposts]:not([data-xw])');if(!L.length)return;
     [].forEach.call(L,function(b){b.setAttribute('data-xw','1')});
     if(!('IntersectionObserver' in window)){[].forEach.call(L,loadX);return}
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.unobserve(e.target);loadX(e.target)}})},{rootMargin:'400px 0px'});

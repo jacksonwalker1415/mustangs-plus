@@ -150,10 +150,12 @@ if(page()==='games'&&window.MutationObserver){var gmo=new MutationObserver(funct
 function boot(){if(!ADS.enabled)return;MP.adsMount();sticky();MP.adsCap();interstitial()}
 if(document.readyState==='loading'||(function(){try{var n=performance.getEntriesByType('navigation')[0];return !!n&&!n.domContentLoadedEventStart}catch(e){return false}})())document.addEventListener('DOMContentLoaded',boot);else setTimeout(boot,0);
 /* No ads next to athlete content: while the home "Meet the Mustangs" row is on screen the sticky bar steps aside (class ad-quiet on <html>).
-   Also covers any athlete section on athletes/ pages (where the sticky bar is already off). visibility only, so nothing shifts. */
+   Also covers any athlete section on athletes/ pages (where the sticky bar is already off). visibility only, so nothing shifts.
+   Counsel, Oct 27: the same for account-follow sections (Follow SMU and coverage rows in "From the feeds", the From Socials
+   Following list, including its phone sheet). app.js calls MP.adsQuietScan() after it renders a feeds section. */
 (function(){if(!('IntersectionObserver' in window))return;var on=new Set(),seen=new WeakSet(),io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting)on.add(e.target);else on.delete(e.target)});document.documentElement.classList.toggle('ad-quiet',on.size>0)});
-  function scan(){var sel='#athletes,#athRow,.rail-ath'+(page()==='athlete'?',main section':'');
+  function scan(){var sel='#athletes,#athRow,.rail-ath,#feeds .follow,#sxFollow'+(page()==='athlete'?',main section':'');
     Array.prototype.forEach.call(document.querySelectorAll(sel),function(el){if(!seen.has(el)){seen.add(el);io.observe(el)}})}
-  if(document.readyState==='loading'||(function(){try{var n=performance.getEntriesByType('navigation')[0];return !!n&&!n.domContentLoadedEventStart}catch(e){return false}})())document.addEventListener('DOMContentLoaded',scan);else scan();setTimeout(scan,1500);setTimeout(scan,4000)})();
+  if(document.readyState==='loading'||(function(){try{var n=performance.getEntriesByType('navigation')[0];return !!n&&!n.domContentLoadedEventStart}catch(e){return false}})())document.addEventListener('DOMContentLoaded',scan);else scan();setTimeout(scan,1500);setTimeout(scan,4000);MP.adsQuietScan=scan})();
 })();

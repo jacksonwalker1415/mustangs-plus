@@ -15,7 +15,7 @@
    Bump VERSION to drop every cache on the next visit. To retire the worker, replace this file with
    one that calls self.registration.unregister(). */
 'use strict';
-var VERSION = 'smu-pwa-v8';
+var VERSION = 'smu-pwa-v9';
 var PREFIX = 'smu-pwa-';
 var SHELL = VERSION + '-shell';
 var RUNTIME = VERSION + '-runtime';
