@@ -49,8 +49,8 @@
 <style>:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}body::before{content:"";position:fixed;z-index:9000;top:0;left:0;right:0;height:var(--sat);background:#23347a;pointer-events:none}html body{padding-top:var(--sat)}html header.site{top:var(--sat)}html .jump{top:calc(var(--hdr-h,var(--hdr)) + var(--sat))}:root{scroll-padding-top:calc(var(--hdr-h,var(--hdr)) + 56px + var(--sat))}@media(min-width:960px){html .gt-box{top:calc(var(--hdr-h,64px) + 8px + var(--sat))}}html .rec-grid aside{top:calc(var(--hdr) + var(--s5) + var(--sat))}html .policy-toc{top:calc(var(--hdr) + 24px + var(--sat))}html .wrap,html .disclaimer{padding-left:max(var(--gut),var(--sal));padding-right:max(var(--gut),var(--sar))}</style>
 <script>if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1')){addEventListener('load',function(){navigator.serviceWorker.register('../sw.js',{scope:'../'}).catch(function(){})})}</script>
 <!--/pwa-->
-<!--boot--><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--boot--><link rel="preload" href="../assets/fonts/dm-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>@view-transition{navigation:auto}
 ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.18s;animation-timing-function:ease}
 #pgbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10000;height:3px;background:#fff;box-shadow:0 1px 0 rgba(22,33,79,.2);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
@@ -74,7 +74,7 @@ w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="../assets/site.css?v=202610265200">
+<link rel="stylesheet" href="../assets/site.css?v=202610265210">
 </head>
 <body data-page="rules" data-root="../">
 <!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->
@@ -97,20 +97,17 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 </div>
 </div></section></main>
 <div id="site-footer"></div>
-<script src="../assets/config.js?v=202610265200"></script>
-<script src="../assets/data.js?v=202610265200"></script>
-<script src="../assets/content.js?v=202610265200"></script>
-<script src="../assets/real.js?v=202610265200"></script>
-<script src="../assets/athletes.js?v=202610265200"></script>
-<script src="../assets/socials.js?v=202610265200"></script>
-<script src="../assets/sport-icons.js?v=202610265200"></script>
-<script src="../assets/games.js?v=202610265200"></script>
-<script src="../assets/upcoming.js?v=202610265200"></script>
-<script src="../assets/boxscores.js?v=202610265200"></script>
-<script src="../assets/gamestats.js?v=202610265200"></script>
-<script src="../assets/sb.js?v=202610265200"></script>
-<script src="../assets/ads.js?v=202610265200"></script>
-<script src="../assets/app.js?v=202610265200"></script>
-<script src="../assets/cfbd-live.js?v=202610265200"></script>
+<script src="../assets/config.js?v=202610265210" defer></script>
+<script src="../assets/data.js?v=202610265210" defer></script>
+<script src="../assets/content.js?v=202610265210" defer></script>
+<script src="../assets/real.js?v=202610265210" defer></script>
+<script src="../assets/athletes.js?v=202610265210" defer></script>
+<script src="../assets/socials.js?v=202610265210" defer></script>
+<script src="../assets/sport-icons.js?v=202610265210" defer></script>
+<script src="../assets/games.js?v=202610265210" defer></script>
+<script src="../assets/sb.js?v=202610265210" defer></script>
+<script src="../assets/ads.js?v=202610265210" defer></script>
+<script src="../assets/app.js?v=202610265210" defer></script>
+<script src="../assets/cfbd-live.js?v=202610265210" defer></script>
 </body>
 </html>
