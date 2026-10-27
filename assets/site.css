@@ -1040,6 +1040,9 @@ html.menu-open header.site{border-bottom-color:transparent}
 }
 .ft>*,.ft-brand,.ft-brief,.brief{min-width:0}.brief-row input{width:100%}
 @media(max-width:639px){#cmpPos{flex-wrap:wrap;overflow:visible}.toolbar{flex-wrap:wrap}}
+/* Brand pass contrast (QA gate 5607712): game-day card labels and hero ledes sit on photo + blue overlay; translucent white measured 4.16-4.43:1, so solid white */
+.gd-next .gd-facts dt,.gd-next .cd small{color:#fff}
+.hero .lede.on-dark,.page-hero .lede.on-dark,.lede.on-dark{color:#fff}
 /* ---------- Real rosters, coaches and schedules (non-football) ---------- */
 .r-ini{display:grid;place-items:center;width:100%;height:100%;font-family:var(--display);font-weight:400;font-size:28px;letter-spacing:.03em;color:#fff}
 .rcard:nth-child(3n) .r-ini{color:var(--blue)}
