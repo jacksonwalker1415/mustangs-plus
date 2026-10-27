@@ -2756,3 +2756,7 @@ a.sp-rec-nx:focus-visible{outline:3px solid #fff;outline-offset:2px}
 
 /* Sport pages: no backdrop-filter on card tags (WebKit memory/compositing cost with ~27 blurred tags on football); solid navy instead */
 body[data-page=sport] .poster-verb,body[data-page=sport] .dur{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(22,33,79,.85)}
+
+/* Sport pages render the footer headings as h3 (heading order after the section h2s); same look as the footer h4s */
+.ft-cols h3,.ft-brief h3{color:#fff;font-size:12px;font-weight:700;letter-spacing:0;line-height:1.15}
+.ft-cols h3{margin-bottom:var(--s3)}.ft-brief h3{margin-bottom:var(--s1)}

@@ -221,12 +221,13 @@
     '<button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span class="mb-bars" aria-hidden="true"><i></i><i></i><i></i></span></button></div></div>'+sportsPanel()+mediaPanel()+
     mobileMenu()+'</header>';
   var sportLinks=MP.SPORTS.map(function(s){return '<li><a href="'+sportUrl(s.slug)+'">'+s.name+'</a></li>'});
+  var FH=PAGE==='sport'?'h3':'h4'; /* sport pages: footer headings follow section h2s, so h3 keeps the heading order (axe heading-order) */
   $('#site-footer').outerHTML='<footer class="site-ft"><div class="wrap"><div class="ft">'+
     '<div class="ft-brand">'+wordmark(' lg')+'<p>Every moment. Every Mustang. A proposed fan membership for every SMU sport.</p>'+
-      '<div class="ft-brief"><h4>SMU+ Weekly</h4><p>One email on Friday mornings in season.</p>'+briefHTML('briefFt',true)+'</div></div>'+
-    '<div class="ft-cols"><div><h4>Fall &amp; Winter</h4><ul>'+sportLinks.slice(0,6).join('')+'</ul></div><div><h4>More Sports</h4><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
-    '<div><h4>Media</h4><ul>'+MEDIA.map(function(m){return '<li><a href="'+m[1]+'">'+m[0]+'</a></li>'}).join('')+'<li><a href="'+libUrl()+'">Library</a></li>'+(REC_ON?'<li><a href="'+ROOT+'recruiting/">Recruiting</a></li>':'')+'</ul></div>'+
-    '<div><h4>Community</h4><ul><li><a href="'+ROOT+'boards/">The Expressway message boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li>'+(SHOW_PAID_PLANS?'<li><a href="'+ROOT+'#membership">Plans</a></li>':'')+'<li><a href="'+ROOT+'faq/">FAQ</a></li><li><a href="'+ROOT+'#waitlist">Join SMU+</a></li><li><a href="'+ROOT+'privacy/">Privacy notice</a></li><li><a href="'+ROOT+'terms/">Terms of use</a></li><li><a href="'+ROOT+'dmca/">Copyright and DMCA</a></li><li><a href="mailto:'+esc(CONTACT)+'">Contact us</a></li></ul></div></div></div>'+
+      '<div class="ft-brief"><'+FH+'>SMU+ Weekly</'+FH+'><p>One email on Friday mornings in season.</p>'+briefHTML('briefFt',true)+'</div></div>'+
+    '<div class="ft-cols"><div><'+FH+'>Fall &amp; Winter</'+FH+'><ul>'+sportLinks.slice(0,6).join('')+'</ul></div><div><'+FH+'>More Sports</'+FH+'><ul>'+sportLinks.slice(6).join('')+'</ul></div>'+
+    '<div><'+FH+'>Media</'+FH+'><ul>'+MEDIA.map(function(m){return '<li><a href="'+m[1]+'">'+m[0]+'</a></li>'}).join('')+'<li><a href="'+libUrl()+'">Library</a></li>'+(REC_ON?'<li><a href="'+ROOT+'recruiting/">Recruiting</a></li>':'')+'</ul></div>'+
+    '<div><'+FH+'>Community</'+FH+'><ul><li><a href="'+ROOT+'boards/">The Expressway message boards</a></li><li><a href="'+ROOT+'athletes/">Player Profiles</a></li>'+(SHOW_PAID_PLANS?'<li><a href="'+ROOT+'#membership">Plans</a></li>':'')+'<li><a href="'+ROOT+'faq/">FAQ</a></li><li><a href="'+ROOT+'#waitlist">Join SMU+</a></li><li><a href="'+ROOT+'privacy/">Privacy notice</a></li><li><a href="'+ROOT+'terms/">Terms of use</a></li><li><a href="'+ROOT+'dmca/">Copyright and DMCA</a></li><li><a href="mailto:'+esc(CONTACT)+'">Contact us</a></li></ul></div></div></div>'+
     '<div class="legal"><p><strong>Concept built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners or Learfield. No payments are taken.</strong> Membership and checkout are a demo. <a href="'+ROOT+'privacy/">Privacy notice</a> \u00b7 <a href="'+ROOT+'terms/">Terms of use</a> \u00b7 <a href="'+ROOT+'dmca/">Copyright and DMCA</a> \u00b7 Contact: '+contactHTML()+'</p>'+
     '<p>All stories, athletes, coaches, '+(REC_ON?'recruits, portal names, ':'')+'sample board posts (labeled Sample), prices and figures are fictional sample data, with these exceptions: the Player Profiles show real SMU football players using public stats with sources on each page; the football schedule, kickoff times, TV and scores, and the schedules, results, rosters and head coaches on the other 11 sport pages, come from smumustangs.com with links on each page; photos credited "Photo: SMU Athletics" are SMU Athletics photography used for this class concept; videos and podcast episodes credited to SMU Athletics are embeds from SMU Athletics on YouTube, not rehosted; and stories marked "Sourced story" use only facts from the SMU Athletics pages they link to. The SMU+ logo is concept artwork made for this class project; SMU marks belong to SMU, and no Learfield marks are used. No payments are processed. Accounts, board posts, newsletter and waitlist signups are saved only in this browser unless the site is connected to its own database; see the privacy notice for what is stored and how to have it deleted.</p></div></div></footer>';
 
@@ -1469,8 +1470,9 @@
     return '<div class="tbl-wrap"><table class="tbl sched sched-real"><thead><tr><th>Date</th><th>'+(team?'Opponent':'Event')+'</th><th>Result</th><th>Site</th><th>Time / TV</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
       (hidden>0?'<button type="button" class="btn btn-outline btn-sm r-toggle" data-r-toggle aria-expanded="false">Show full schedule ('+ev.length+')</button>':'')+
       ''}
-  function realRoster(R,s){var multi=Object.keys(R.rec).length>1,SHOW=matchMedia('(max-width:639px)').matches?4:12;
-    var cards=R.roster.map(function(a,i){return rosterCard(a,i,s,{more:i>=SHOW,team:multi&&TEAM_LBL[a.team]?TEAM_LBL[a.team]:''})}).join('');
+  /* lazy (sport page): only the cards shown before "Show full roster" are built now; o.more gets a function that builds the hidden rest */
+  function realRoster(R,s,o){var multi=Object.keys(R.rec).length>1,SHOW=matchMedia('(max-width:639px)').matches?4:12,card=function(a,i){return rosterCard(a,i,s,{more:i>=SHOW,team:multi&&TEAM_LBL[a.team]?TEAM_LBL[a.team]:''})};
+    var cards=(o?R.roster.slice(0,SHOW):R.roster).map(card).join('');if(o)o.more=function(){return R.roster.slice(SHOW).map(function(a,j){return card(a,SHOW+j)}).join('')};
     return '<div class="roster">'+cards+'</div>'+(R.roster.length>SHOW?'<button type="button" class="btn btn-outline btn-sm r-toggle" data-r-toggle aria-expanded="false">Show full roster ('+R.roster.length+')</button>':'')+
       '<div class="roster r-coaches">'+R.coaches.map(function(c,i){var cp=((MP.COACH_PHOTOS||{})[s.slug]||{})[c.name]||{};return rosterCard({name:c.name,pos:c.title,cls:'Coaching staff',url:cp.bio},i,s,{coach:1,key:cp.photo&&PH[cp.photo]?cp.photo:null,team:multi&&TEAM_LBL[c.team]?TEAM_LBL[c.team]:'',alt:c.name+', '+c.title+', SMU '+s.name})}).join('')+'</div>'+
       ''}
@@ -1511,6 +1513,12 @@
     content.forEach(function(c){LIBBY[c.id]=LIBBY[c.id]||c});
     var threads=MP.THREADS.filter(function(t){return t.sport===s.slug}),others=MP.SPORTS.filter(function(x){return x.slug!==s.slug});
     var RDR=RD||(s.slug==='football'&&MP.REAL&&MP.REAL.football)||null; /* roster block: football's real roster lives in MP.REAL.football */
+    /* Below-the-fold sections are built after first paint (perf, Oct 26): each starts as an empty placeholder with the section's id and a
+       reserved height, and is rendered when it comes within 600px of the viewport, in idle time after load, or right away when a link
+       targets it (jump nav, #hash links, the record strip). Same markup as before, so nothing looks different once rendered. */
+    var RO={},LZ=[],hasMedia=MP.LIB.some(function(c){return c.third&&(c.sport===s.slug||(c.also||[]).indexOf(s.slug)>=0)});
+    function lz(id,h,html,after){LZ.push({id:id,html:html,after:after});return '<div class="lz-ph" data-lz="'+id+'" id="'+id+'" style="min-height:'+h+'px" aria-hidden="true"></div>'}
+    var schedRows=RD?Math.min(RD.events.length,13):realLog?realLog.length:2;
     main.innerHTML=
       /* Phones: the hero is hidden so the sub-nav sits right under the header; this h1 stands in for screen readers (CSS shows only one) */
       '<h1 class="sr sp-srh">'+s.name+'</h1>'+
@@ -1518,22 +1526,45 @@
         /* Title only: no breadcrumb trail, icon tile or kicker (Oct 26). Breadcrumbs live in the head as BreadcrumbList JSON-LD (build_pages.py). */
         '<h1 class="display sp-title">'+s.name+'</h1>'+
       '</div></section>'+REC+
-      '<nav class="jump" aria-label="On this page"><div class="wrap">'+(GD?'<a href="#gameday">Game day</a>':'')+'<a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Read</a>'+(thirdFor(s.slug).length?'<a href="#media">Media</a>':'')+(FEEDS.posts[s.slug]?'<a href="#feeds">Feeds</a>':'')+'<a href="#board">Board</a><a href="#more">Other sports</a></div></nav>'+
+      '<nav class="jump" aria-label="On this page"><div class="wrap">'+(GD?'<a href="#gameday">Game day</a>':'')+'<a href="#roster">Roster</a><a href="#schedule">Schedule</a><a href="#content">Watch &amp; Read</a>'+(hasMedia?'<a href="#media">Media</a>':'')+(FEEDS.posts[s.slug]?'<a href="#feeds">Feeds</a>':'')+'<a href="#board">Board</a><a href="#more">Other sports</a></div></nav>'+
       (GD?'<section class="gameday" aria-label="Game day"><div class="wrap" id="gameday">'+GD+'</div></section>':'')+'<section class="sec" id="roster"><div class="wrap">'+
-        (RDR?secHead('Roster',null,null,'Real '+esc(RDR.season)+' roster')+'<p class="lede">The full '+esc(s.name.toLowerCase())+' roster from SMU Athletics. Tap a player for their bio.</p>'+realRoster(RDR,s):secHead('Roster')+emptyState('grid','No roster listed yet','SMU Athletics has not posted a roster for this season yet. Check <a href="https://smumustangs.com/" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+
+        (RDR?secHead('Roster',null,null,'Real '+esc(RDR.season)+' roster')+'<p class="lede">The full '+esc(s.name.toLowerCase())+' roster from SMU Athletics. Tap a player for their bio.</p>'+realRoster(RDR,s,RO):secHead('Roster')+emptyState('grid','No roster listed yet','SMU Athletics has not posted a roster for this season yet. Check <a href="https://smumustangs.com/" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+
       '</div></section>'+
-      '<section class="sec alt" id="schedule"><div class="wrap">'+secHead((teamSport?'Schedule':s.slug==='golf'||s.slug==='tennis'?'Events':'Meets')+' &amp; results',null,null,realLog?'2026 season · real results':RD?esc(RD.season)+' · real schedule':'')+
+      lz('schedule',140+schedRows*49,function(){return '<section class="sec alt" id="schedule"><div class="wrap">'+secHead((teamSport?'Schedule':s.slug==='golf'||s.slug==='tennis'?'Events':'Meets')+' &amp; results',null,null,realLog?'2026 season · real results':RD?esc(RD.season)+' · real schedule':'')+
         (RD?realSched(RD,teamSport,s.slug):realLog?table({cols:['Date','Opponent','Result','Site','Kickoff','TV'],rows:realLog.map(function(g){var gp=gameFor('football',g.d),nm=(g.home?'vs. ':'at ')+g.opp;return [gDate(g),gp?{html:'<a class="r-game" href="'+gameUrl(gp)+'">'+esc(nm)+'</a>'}:nm,g.res||'\u2014',g.site,gTime(g),g.tv||'TBA']})},{cls:'sched sched-full'}):
-        emptyState('grid','No schedule listed yet','SMU Athletics has not posted a schedule for this season yet. Check <a href="https://smumustangs.com/" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+'</div></section>'+
-      '<section class="sec" id="content"><div class="wrap">'+secHead(s.name+' all access',libUrl(),'Library','Only on SMU+')+'<div class="cgrid">'+content.map(cardHTML).join('')+'</div></div></section>'+
-      mediaSection(s.slug,s.name)+feedsHTML(s.slug)+
-      '<section class="sec alt" id="board"><div class="wrap">'+secHead('Team board',ROOT+'boards/?sport='+s.slug,'Open board','Talk '+s.name)+
-        '<div class="box">'+(threads.length?threads.map(function(t){return threadRow(t,true)}).join(''):emptyState('chat','No '+esc(s.name)+' threads yet','Be the first to start the conversation on this board.','<button type="button" class="btn btn-red btn-sm" data-compose data-sport="'+s.slug+'">Start a thread</button><a class="btn btn-outline btn-sm" href="'+ROOT+'boards/">Browse all boards</a>'))+'</div></div></section>'+
-      '<section class="sec" id="more"><div class="wrap">'+secHead('More Mustang sports',ROOT+'#sports','All sports')+
+        emptyState('grid','No schedule listed yet','SMU Athletics has not posted a schedule for this season yet. Check <a href="https://smumustangs.com/" target="_blank" rel="noopener">smumustangs.com</a> for the latest.'))+'</div></section>'},function(el){decorateRes(el)})+
+      lz('content',560,function(){return '<section class="sec" id="content"><div class="wrap">'+secHead(s.name+' all access',libUrl(),'Library','Only on SMU+')+'<div class="cgrid">'+content.map(cardHTML).join('')+'</div></div></section>'})+
+      (hasMedia?lz('media',520,function(){return mediaSection(s.slug,s.name)}):'')+
+      (FEEDS.posts[s.slug]||(FEEDS.follow[s.slug]||[]).length||((MP.SOCIALS||{})[s.slug])?lz('feeds',760,function(){return feedsHTML(s.slug)},function(){watchX()}):'')+
+      lz('board',360,function(){return '<section class="sec alt" id="board"><div class="wrap">'+secHead('Team board',ROOT+'boards/?sport='+s.slug,'Open board','Talk '+s.name)+
+        '<div class="box">'+(threads.length?threads.map(function(t){return threadRow(t,true)}).join(''):emptyState('chat','No '+esc(s.name)+' threads yet','Be the first to start the conversation on this board.','<button type="button" class="btn btn-red btn-sm" data-compose data-sport="'+s.slug+'">Start a thread</button><a class="btn btn-outline btn-sm" href="'+ROOT+'boards/">Browse all boards</a>'))+'</div></div></section>'})+
+      lz('more',240,function(){return '<section class="sec" id="more"><div class="wrap">'+secHead('More Mustang sports',ROOT+'#sports','All sports')+
         '<div class="chips">'+others.map(function(o){return '<a class="chip" href="'+sportUrl(o.slug)+'">'+o.name+'</a>'}).join('')+'</div>'+
-        (SHOW_PAID_PLANS?'<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Paid plans are coming later.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div>':'')+'</div></section>';
-    $$('.sched td:last-child').forEach(function(td){var v=td.textContent;td.innerHTML='<span class="res '+(/^W|^1st|^2nd/.test(v)?'w':/^L/.test(v)?'l':/^T|^\d/.test(v)&&!/PM|TBA/.test(v)?'t':'up')+'">'+esc(v)+'</span>'});
+        (SHOW_PAID_PLANS?'<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Paid plans are coming later.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div>':'')+'</div></section>'});
+    function decorateRes(root){$$('.sched td:last-child',root).forEach(function(td){var v=td.textContent;td.innerHTML='<span class="res '+(/^W|^1st|^2nd/.test(v)?'w':/^L/.test(v)?'l':/^T|^\d/.test(v)&&!/PM|TBA/.test(v)?'t':'up')+'">'+esc(v)+'</span>'})}
+    decorateRes(document);
     if(GD)startCountdowns();
+    var rosterBox=RO.more&&$('#roster .roster:not(.r-coaches)');
+    if(rosterBox)LZ.unshift({id:'roster-more',run:function(){rosterBox.insertAdjacentHTML('beforeend',RO.more())}});
+    function render(it){if(it.done)return;it.done=1;
+      if(it.run){it.run();return}
+      var ph=main.querySelector('[data-lz="'+it.id+'"]');if(!ph)return;
+      var tmp=document.createElement('div');tmp.innerHTML=it.html();var el=tmp.firstElementChild;
+      if(el)ph.parentNode.replaceChild(el,ph);else ph.parentNode.removeChild(ph);
+      if(el&&it.after)it.after(el);if(el)$$('[data-slider]',el).forEach(xNavSync)}
+    function through(id){for(var i=0;i<LZ.length;i++){render(LZ[i]);if(LZ[i].id===id)return true}return false}
+    function has(id){for(var i=0;i<LZ.length;i++)if(LZ[i].id===id)return !LZ[i].done;return false}
+    /* a link to a section on this page: build it (and everything above it) before the browser or the jump-nav handler scrolls */
+    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="#"]');if(!a)return;
+      var u=a.getAttribute('href'),k=u.indexOf('#'),id=u.slice(k+1);if(k>0&&(a.pathname!==location.pathname||a.search!==location.search))return;if(has(id))through(id)},true);
+    document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#roster [data-r-toggle]'))through('roster-more')},true);
+    addEventListener('hashchange',function(){var id=location.hash.slice(1);if(has(id)){through(id);var t=document.getElementById(id);if(t)t.scrollIntoView()}});
+    var h0=location.hash.slice(1);if(h0&&has(h0))through(h0);
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){io.unobserve(en.target);through(en.target.getAttribute('data-lz'))}})},{rootMargin:'600px 0px'});
+      $$('[data-lz]',main).forEach(function(ph){io.observe(ph)})}
+    var ric=window.requestIdleCallback||function(f){return setTimeout(function(){f({timeRemaining:function(){return 8}})},200)};
+    function idle(){ric(function(){for(var i=0;i<LZ.length;i++)if(!LZ[i].done){render(LZ[i]);break}if(LZ.some(function(x){return !x.done}))idle()},{timeout:2000})}
+    if(document.readyState==='complete')idle();else addEventListener('load',idle);
   }
 
   /* ---------- Athletes ---------- */
