@@ -2352,6 +2352,8 @@ a.r-game:hover{text-decoration-color:var(--blue)}
 .rb-tv dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
 .rb-tv a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:899px){.rb-tv a{display:inline-flex;align-items:center;min-height:44px}}
+/* Desktop: same 44px hit area as phones (padding + matching negative margin, so the text does not move). Lighthouse target-size. */
+@media(min-width:900px){.rb-tv a{display:inline-block;padding:13px 4px;margin:-13px -4px}}
 .rb-wrap .xside{top:calc(50% - 20px)}
 
 /* Watch page podcast rows */
