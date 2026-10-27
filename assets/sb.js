@@ -368,7 +368,7 @@
      FOLLOWS stays false until that SQL is applied, so the site never asks Supabase for a table or function that isn't there (no 404s).
      While off, in demo mode, or if the server call fails, follows are kept in this browser per account (localStorage mp_follows:
      {account:{threadId:[postsSeen,followedAt]}}) and unread counts come from the threads this page has loaded. In-app only, no email. */
-  var FOLLOWS=false,followsOff=false,folCache=null,folNotes=[];
+  var FOLLOWS=true,followsOff=false,folCache=null,folNotes=[];
   function folLive(){return SMU.live&&!!sb&&!!SMU.user&&!followsOff&&(FOLLOWS||!!(MP.FEATURES&&MP.FEATURES.follows===true))}
   function folKey(){return SMU.user?(SMU.live?'u:'+SMU.user.id:'me'):null}
   function folAll(){var a=lj('mp_follows',{});return a&&typeof a==='object'?a:{}}
