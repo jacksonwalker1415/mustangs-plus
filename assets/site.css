@@ -2976,10 +2976,14 @@ header.site,#site-header:empty{background:var(--blue);border-bottom-color:rgba(2
   .rb-wrap,.rb-wrap.no-ovf{padding-bottom:0}
   .rb-wrap .xside{display:none}
   .rb-skel{height:114.9px;margin-bottom:0}
+  /* Game day now opens the phone page: the photo keeps its 21:9 box when the image arrives (it used to grow ~50px on load) */
+  .gd-hph{overflow:hidden}.gd-hph>.ph{position:absolute;inset:0}
 }
 @media(max-width:639px){
   html body .disclaimer{position:fixed;left:8px;right:8px;bottom:calc(8px + var(--sab,0px));z-index:200;padding:10px 48px 10px 14px;border-radius:12px;text-align:left;box-shadow:0 6px 24px rgba(22,33,79,.35)}
-  html.ad-sticky-on:not(.adfree) body .disclaimer{bottom:calc(116px + var(--sab,0px))}
+  /* lifted over the sticky sample ad with a transform, so the move is not a layout shift */
+  html body .disclaimer{transition:transform .2s}
+  html.ad-sticky-on:not(.adfree) body .disclaimer{transform:translateY(-108px)}
   html:has(#reader:not([hidden])) body .disclaimer{top:auto;left:8px;right:8px}
   .reader:not([hidden]){top:var(--sat,0px)}
   .disc-x{display:grid;place-items:center;position:absolute;top:0;right:0;width:44px;height:44px;padding:0;border:0;border-radius:12px;background:none;color:#fff;cursor:pointer}
