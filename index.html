@@ -75,6 +75,8 @@ w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){i
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
 <link rel="stylesheet" href="assets/site.css?v=202610265220">
+<!-- Speed: the game-day photo is this page's phone LCP but app.js draws it; preload it (same srcset/sizes as GD_SIZES in app.js). -->
+<link rel="preload" as="image" href="assets/photos/lib/football-tunnel-crowd-louisville-night-1200.webp" imagesrcset="assets/photos/lib/football-tunnel-crowd-louisville-night-800.webp 800w, assets/photos/lib/football-tunnel-crowd-louisville-night-1200.webp 1200w, assets/photos/lib/football-tunnel-crowd-louisville-night-2000.webp 2000w" imagesizes="(min-width:960px) 50vw, (min-width:640px) 100vw, 150vw" media="(max-width:719px)" fetchpriority="high">
 </head>
 <body data-page="home" data-root="">
 <!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->

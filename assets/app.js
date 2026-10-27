@@ -109,7 +109,8 @@
   function photo(key,opt){var p=PH[key];if(!p)return '';opt=opt||{};
     /* library photos: heroes and game-day backgrounds get srcset 1200/big, cards the 1200 file */
     if(p.src||(opt.small&&p.cardSrc)){var card=opt.small&&!opt.gd,cs=card&&p.cardSrc,b=cs||p.src,big=!card&&p.big>1200;
-      return '<img class="ph" src="'+libPh(b,1200)+'"'+(big?' srcset="'+libPh(b,1200)+' 1200w, '+libPh(b,p.big)+' '+p.big+'w" sizes="'+(opt.sizes||'100vw')+'"':'')+' alt="'+esc(cs?p.cardAlt:p.alt)+'" style="object-position:'+(p.pos||'50% 50%')+'"'+(opt.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async">'}
+      /* every library photo also has an 800w file (phones at 1.75-2x get it instead of the 1200); sizes defaults to 100vw, an upper bound, so nothing is ever upscaled */
+      return '<img class="ph" src="'+libPh(b,1200)+'" srcset="'+libPh(b,800)+' 800w, '+libPh(b,1200)+' 1200w'+(big?', '+libPh(b,p.big)+' '+p.big+'w':'')+'" sizes="'+(opt.sizes||'100vw')+'" alt="'+esc(cs?p.cardAlt:p.alt)+'" style="object-position:'+(p.pos||'50% 50%')+'"'+(opt.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async">'}
     var img='<img class="ph" src="'+ROOT+'assets/photos/'+(opt.small&&p.small?p.small:p.file)+'" alt="'+esc(p.alt)+'" style="object-position:'+(p.pos||'50% 50%')+'"'+(opt.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async">';
     /* heroes: a full-resolution 16:9 crop on wide screens so the photo is never upscaled */
     return opt.hero&&p.wide?'<picture><source media="(min-width:700px)" srcset="'+ROOT+'assets/photos/'+p.wide+'">'+img+'</picture>':img}
@@ -301,7 +302,8 @@
   /* Official YouTube items show the video's real thumbnail (maxresdefault, falling back to hqdefault). Images load from i.ytimg.com. */
   function ytId(c){return c&&c.yt&&/^[A-Za-z0-9_-]{11}$/.test(c.yt)?c.yt:null}
   var NOMAX={};  /* feed videos with no HD thumbnail (tools/fetch_youtube.py marks them) go straight to hqdefault */
-  function ytImg(id,cls,eager){return '<img class="'+cls+'" src="https://i.ytimg.com/vi/'+id+(NOMAX[id]?'/hqdefault.jpg':'/maxresdefault.jpg')+'" data-yt-fb="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="" '+(eager?'loading="eager"':'loading="lazy"')+' decoding="async" referrerpolicy="no-referrer">'}
+  /* Speed: card thumbnails use hqdefault (480x360; its letterbox bars fall outside the 16:9 cover crop). Only eager images (the reader's player) try maxresdefault. */
+  function ytImg(id,cls,eager){var mx=eager&&!NOMAX[id];return '<img class="'+cls+'" src="https://i.ytimg.com/vi/'+id+(mx?'/maxresdefault.jpg':'/hqdefault.jpg')+'"'+(mx?' data-yt-fb="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg"':'')+' alt="" '+(eager?'loading="eager"':'loading="lazy"')+' decoding="async" referrerpolicy="no-referrer">'}
   function ytFix(e){var i=e.target;if(!i||i.tagName!=='IMG'||!i.dataset||!i.dataset.ytFb)return;
     if(e.type==='error'||(i.naturalWidth&&i.naturalWidth<=120)){var fb=i.dataset.ytFb;delete i.dataset.ytFb;i.src=fb}}
   document.addEventListener('error',ytFix,true);document.addEventListener('load',ytFix,true);
@@ -562,12 +564,15 @@
   function nextGame(G){G=G||(SCH&&SCH.games)||[];var now=Date.now();return G.filter(function(x){return !x.res&&gWhen(x)+4*3600e3>now})[0]||null}
   function lastGame(G){G=G||(SCH&&SCH.games)||[];var r=null;G.forEach(function(x){if(x.res)r=x});return r}
   function matchup(x){return 'SMU '+(x.home?'vs.':'at')+' '+x.opp}
+  /* Game-day photo: about 372px square on phones, a 3:2 photo cropped to cover it needs ~1.4x the viewport width (was 170vw, which sent 2000w files to phones).
+     Home and football preload this same srcset/sizes in their <head> (keep GD_SIZES and those <link rel=preload> tags in step). */
+  var GD_SIZES='(min-width:960px) 50vw, (min-width:640px) 100vw, 150vw';
   function gameStrip(slug){slug=slug||'football';var G=gameFeed(slug),C=GD_SPORTS[slug];if(!G||!C)return '';
     var sp=sportBy(slug),name=sp?sp.name:'Football',n=nextGame(G),l=lastGame(G),H=slug==='football'?MP.HURRYUP:null,
       sched=sportUrl(slug)+'#schedule',thr=n&&gameFor(slug,n.d)?gameThreadUrl(gameFor(slug,n.d)):C.thread?threadUrl(C.thread):sportUrl(slug)+'#board';
     var sc=l?l.res.match(/^([WL]) (\d+)-(\d+)/):null,us=sc?+sc[2]:0,them=sc?+sc[3]:0,exh=function(x){return x.ex?' (exh.)':''};
     return '<div class="gd-grid">'+
-      (n?'<div class="gd-next">'+photoBg(C.bg,{gd:1,sizes:'(min-width:960px) 50vw, (min-width:640px) 100vw, 170vw'})+'<div class="gd-in"><p class="eyebrow"><span class="live-dot"></span>Next game · '+esc(name)+(n.ex?' · Exhibition':'')+'</p>'+
+      (n?'<div class="gd-next">'+photoBg(C.bg,{gd:1,eager:1,sizes:GD_SIZES})+'<div class="gd-in"><p class="eyebrow"><span class="live-dot"></span>Next game · '+esc(name)+(n.ex?' · Exhibition':'')+'</p>'+
         '<h2 class="gd-title">'+(n.home?'SMU <span>vs.</span> ':'SMU <span>at</span> ')+esc(n.opp)+'</h2>'+
         '<dl class="gd-facts"><div><dt>Date</dt><dd>'+gDate(n)+'</dd></div><div><dt>'+C.verb+'</dt><dd>'+gTime(n)+'</dd></div><div><dt>Where</dt><dd>'+esc(n.site)+'</dd></div><div><dt>TV</dt><dd>'+(n.tv?esc(n.tv):'TBA')+'</dd></div></dl>'+
         '<div class="cd" data-ko="'+gWhen(n)+'" data-tba="'+(n.ko?'':'1')+'" role="timer" aria-label="Countdown to '+C.verb.toLowerCase()+'">'+['Days','Hrs','Min','Sec'].map(function(u){return '<div><b>--</b><small>'+u+'</small></div>'}).join('')+'</div>'+

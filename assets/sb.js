@@ -158,6 +158,12 @@
     var s=document.createElement('script');s.src=src;if(sri){s.integrity=sri;s.crossOrigin='anonymous'}s.async=true;
     s.onload=function(){window.supabase&&window.supabase.createClient?res():rej(new Error('supabase-js did not load'))};s.onerror=function(){rej(new Error('Could not load supabase-js from the CDN'))};
     document.head.appendChild(s)})}
+  /* Speed: outside boards and account (and OAuth returns), fetch supabase-js only after app.js has drawn the page (DOMContentLoaded + one task),
+     so the CDN script never runs between the deferred scripts and holds up first render. Everything still waits on SMU.ready as before. */
+  function afterFirstRender(){var pg=(document.body&&document.body.dataset.page)||'',now=pg==='boards'||pg==='account'||/[?&#](code|access_token|error)=/.test(location.href);
+    if(now)return Promise.resolve();return new Promise(function(res){function go(){setTimeout(res,0)}
+      var n=null;try{n=performance.getEntriesByType('navigation')[0]}catch(e){}
+      if(document.readyState==='loading'||(n&&!n.domContentLoadedEventStart))document.addEventListener('DOMContentLoaded',go);else go()})}
   var tierCache='free',savedCache=[];
   /* Which sign-up paths really work, read from Supabase's public auth settings (no key beyond the anon key).
      email: email + password sign-up that needs no delivered email ("Confirm email" off, so mailer_autoconfirm is true).
@@ -182,7 +188,7 @@
   var myAv={id:null,url:null};
   var live={
     init:function(){
-      return loadScript(SUPA_SRC,SUPA_SRI).then(function(){
+      return afterFirstRender().then(function(){return loadScript(SUPA_SRC,SUPA_SRI)}).then(function(){
         sb=window.supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
         SMU.client=sb;SMU.live=true;SMU.mode='live';SMU.reason='ok';pageView(sb);
         sb.auth.onAuthStateChange(function(ev,session){var was=SMU.user&&SMU.user.id;setSession(session);
