@@ -1417,7 +1417,7 @@ nav.main .nav-dd-btn.nav-x{display:none}
 @media(max-width:959px){.rules{grid-template-columns:1fr;gap:var(--s5)}}
 @media(max-width:479px){.rules-list li{padding:var(--s4) var(--s4) var(--s4) 58px}.rules-list li::before{left:14px}}
 
-/* ---------- Home: Latest from The Expressway message boards ---------- */
+/* ---------- Home: Latest from the message boards ---------- */
 .hill-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s6);border-top:2px solid var(--blue)}
 .hill-list li{border-bottom:1px solid var(--line);min-width:0}
 .hill-row{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 4px;color:var(--ink)}
@@ -1896,7 +1896,7 @@ html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden
 .disc-short{display:none}
 @media(max-width:639px){.disclaimer .disc-full{display:none}.disclaimer .disc-short{display:inline}}
 
-/* ---------- The Expressway message boards: traditional forum layout (boards/). XenForo/On3-style nodes, thread list and posts.
+/* ---------- Message boards: traditional forum layout (boards/). XenForo/On3-style nodes, thread list and posts.
    SMU blue headers, red for New and the main actions, white everywhere else. Sentence-case headings, no stripes. ---------- */
 .fx{--fx-line:#dfe3f1;--fx-line-2:#c9d0e8;--fx-mute:#5d6588}
 .fx-hero{background:var(--blue);color:#fff}

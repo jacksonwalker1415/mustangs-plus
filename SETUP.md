@@ -94,7 +94,7 @@ These tell Supabase where to send people back after they click a link in an emai
 2. Click **Create account**, use a real email address, and confirm it from your inbox (if confirmation is on).
 3. On the account page, the small label should say **Your SMU+ account**, not "Demo account".
 4. Pick a plan. The demo checkout should switch your tier.
-5. Go to **The Expressway message boards**, start a thread, and reply to it.
+5. Go to **Message Boards**, start a thread, and reply to it.
 6. Open the same thread in a second browser signed in as someone else. A new reply should show up in the other browser within a second or two.
 7. In Supabase, open **Table Editor**. You should see your rows in `profiles`, `memberships`, `threads` and `posts`.
 

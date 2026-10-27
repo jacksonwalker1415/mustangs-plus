@@ -7,7 +7,7 @@ Live: https://fanplatformdemo.com/ (the old https://jacksonwalker1415.github.io/
 - `index.html`: home page (game day strip, Continue Watching, SMU+ Weekly signup)
 - `library/`: content library with filters
 - `recruiting/`: recruiting hub and transfer portal tracker (fictional names)
-- `boards/`: The Expressway (SMU+’s message boards)
+- `boards/`: Message Boards (SMU+’s community forum)
 - `athletes/`: real SMU football player profiles and a comparison table
 - `account/`: sign in, membership (demo checkout), saved players, Continue Watching, Brief
 - `404.html`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`: hosting extras

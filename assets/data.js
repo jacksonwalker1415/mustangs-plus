@@ -55,7 +55,7 @@ MP.CLASSES = ['Fr.','R-Fr.','So.','Jr.','Sr.','Gr.'];
 /* Message board (fictional users and posts) */
 MP.FORUMS = [
   {id:'paddock',name:'The Paddock',desc:'For longer takes and analysis.',prem:true,threads:1284,posts:48211},
-  {id:'hilltop',name:'Main board',desc:'The main board of The Expressway, free for every Mustang fan. Game talk, takes and hype.',prem:false,threads:3907,posts:122640},
+  {id:'hilltop',name:'Main board',desc:'The main board, free for every Mustang fan. Game talk, takes and hype.',prem:false,threads:3907,posts:122640},
   {id:'recruiting',name:'Recruiting Trail',desc:'Visits, offers and commitments across every sport.',prem:true,threads:612,posts:20975},
   {id:'boulevard',name:'The Boulevard',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
 ];
@@ -174,9 +174,9 @@ MP.THREADS.push({id:22,f:'boulevard',sport:null,title:'Mustang Band halftime sho
    the live site) so the rendering layer never shows: testimonial-style lines from the seeded sample accounts, the insider and
    closed-practice report threads, or a made-up staffer's name. Seeded threads get t.sample (shown as a "Sample" tag). Real members'
    posts (author ids starting u:, or 'me' in demo) are never touched, and nothing in Supabase is changed or deleted. */
-MP.BOARD_NAME='The Expressway';
-MP.BOARD_FULL='The Expressway message boards';
-MP.FORUM_FIX={hilltop:{name:'Main board',desc:'The main board of The Expressway, free for every Mustang fan. Game talk, takes and hype.'},
+MP.BOARD_NAME='Message Boards';
+MP.BOARD_FULL='Message Boards';
+MP.FORUM_FIX={hilltop:{name:'Main board',desc:'The main board, free for every Mustang fan. Game talk, takes and hype.'},
   paddock:{desc:'For longer takes and analysis.'}};
 MP.HIDE_THREADS=[1,8,14];  /* seeded insider / closed-practice reports */
 MP.TESTIMONIAL=/(I pay for|\btier\b|membership worth|worth it\b|why I joined|until SMU\+|on SMU\+ was great|as a member|telestrator|rule on staff reports)/i;
