@@ -72,7 +72,7 @@ const PAGES = [
   ['Community rules', 'The rules for the message boards', 'rules/', 'rules guidelines conduct code of conduct moderation report'],
   ['Your account', 'Sign in, your profile, saved players and settings', 'account/', 'account sign in signin login log in profile settings password saved'],
   ...(MP.FEATURES && MP.FEATURES.students !== false ? [['Student sign-up', 'SMU students sign up with an @smu.edu email', 'account/#student', 'student students smu edu sign up']] : []),
-  ['The Expressway message boards', 'Talk SMU sports with other fans', 'boards/', 'boards board forum forums message boards expressway mustang board community'],
+  ['Message Boards', 'Talk SMU sports with other fans', 'boards/', 'boards board forum forums message boards mustang board community'],
   ['Media library', 'Every video, podcast and story on SMU+', 'library/', 'media library watch videos podcasts articles stories'],
   ['Videos', 'Highlights, press conferences and series', 'library/?type=video', 'videos video highlights watch'],
   ['Podcasts', 'SMU podcasts and episodes', 'library/?type=podcast', 'podcasts podcast episodes listen'],

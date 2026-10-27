@@ -105,7 +105,7 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <script>/* phones (<720px): Upcoming games sits under the Watch rail. Moved before first paint, so nothing jumps; moved back above Game day when the screen widens */(function(){var mq=matchMedia("(max-width:719px)"),r=document.getElementById("ribbon"),w=document.getElementById("watch"),g=document.querySelector("main>.gameday");if(!r||!w||!g)return;function place(){if(mq.matches)w.after(r);else g.before(r)}place();if(mq.addEventListener)mq.addEventListener("change",place)})()</script>
 <section class="sec tight hill-sec" id="hilltop" aria-labelledby="hill-h">
   <div class="wrap">
-    <div class="sec-hd"><div><h2 class="sec-t" id="hill-h">Latest from The Expressway message boards</h2></div></div>
+    <div class="sec-hd"><div><h2 class="sec-t" id="hill-h">Latest from the message boards</h2></div></div>
     <ol class="hill-list" id="hillList"></ol>
     <div class="hill-ctas"><a class="btn btn-navy" href="boards/?f=hilltop">Open the message boards</a></div>
   </div>
@@ -122,7 +122,7 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 
 <section class="sec alt" id="board" aria-labelledby="board-h">
   <div class="wrap">
-    <div class="sec-hd"><div><h2 class="sec-t" id="board-h">Where Mustang fans talk.</h2></div><a class="see-all" href="boards/">Open The Expressway<span aria-hidden="true"> →</span></a></div>
+    <div class="sec-hd"><div><h2 class="sec-t" id="board-h">Where Mustang fans talk.</h2></div><a class="see-all" href="boards/">Open the message boards<span aria-hidden="true"> →</span></a></div>
     <p class="board-stats"><span><b id="homeThreads">&nbsp;</b> threads</span><span><b id="homePosts">&nbsp;</b> posts</span></p>
     <div class="board-preview">
       <div class="box"><div class="box-h"><h3>Hot right now</h3></div><div id="boardHot"></div></div>

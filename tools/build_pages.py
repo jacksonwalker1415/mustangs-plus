@@ -78,7 +78,7 @@ PRIVACY_BODY='''<main id="top"><section class="page-hero has-photo"><div class="
 '''
 SHELLS={
  'privacy/index.html': head('Privacy notice | SMU+','What the SMU+ student concept project collects, why, where it is stored and how to have it deleted.','privacy','../')+PRIVACY_BODY,
- 'account/index.html': head('Your account | SMU+','Sign in to SMU+ to save players, post on The Expressway message boards and keep your place in videos (concept site).','account','../')+
+ 'account/index.html': head('Your account | SMU+','Sign in to SMU+ to save players, post on the message boards and keep your place in videos (concept site).','account','../')+
    '<main id="acctMain"><section class="page-hero acct-hero"><div class="wrap"><p class="eyebrow">SMU+ account</p><h1 class="display">Your account</h1><p class="lede on-dark">Loading your account\u2026</p></div></section>'
    '<noscript><section class="sec"><div class="wrap"><p>Your account needs JavaScript turned on.</p></div></section></noscript></main>\n<div id="site-footer"></div>\n</body>\n</html>\n',
  'search/index.html': head('Search | SMU+','Search SMU+ videos, articles, podcasts, players and forum posts (class-project concept).','search','../')+
@@ -92,7 +92,7 @@ SHELLS={
    '<main id="top"><section class="page-hero nf-hero"><div class="wrap"><h1 class="display">Off the field</h1>'
    '<p class="lede on-dark">We couldn\u2019t find that page. It may have moved, or the link has a typo.</p>'
    '<form class="srch-f nf-sf" role="search" action="search/" method="get"><label class="sr" for="nfQ">Search SMU+</label><input id="nfQ" name="q" type="search" placeholder="Search players, games and videos" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="80"><button type="submit">Search</button></form>'
-   '<p class="nf-act"><a class="btn btn-red" href="./">Go to the home page</a> <a class="btn btn-ghost" href="library/">Browse the library</a> <a class="btn btn-ghost" href="boards/">The Expressway message boards</a></p></div></section></main>\n'
+   '<p class="nf-act"><a class="btn btn-red" href="./">Go to the home page</a> <a class="btn btn-ghost" href="library/">Browse the library</a> <a class="btn btn-ghost" href="boards/">Message Boards</a></p></div></section></main>\n'
    '<div id="site-footer"></div>\n</body>\n</html>\n',
 }
 for rel,src in SHELLS.items():
