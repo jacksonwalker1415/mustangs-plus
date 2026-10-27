@@ -29,6 +29,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ACCOUNTS = os.environ.get('SOCIALS_ACCOUNTS', '/workspace/smu-media/from-socials-accounts.json')
 RAW = os.environ.get('SOCIALS_RAW', '/workspace/smu-media/socials-raw')
 OUT = os.path.join(ROOT, 'data', 'socials.json')
+AV_OUT = os.path.join(ROOT, 'data', 'x-avatars.json')
 TOP = 25
 DROP = {'billyembody', 'kevin8jennings', 'goodwin2026'}          # Counsel, Oct 27: NIL tie (On3 stays via @SMUMustangsOn3); athletes off for now
 HOLD_WORDS = ('exclude', 'class-of-2026', 'out for the se', 'fan account', 'general news', 'hold', 'nil activity', 'unaffiliated')
@@ -68,7 +69,7 @@ def user_ids():
 def plan(acc):
     def line(tool, args, save): print(json.dumps({'tool': tool, 'args': args, 'save': save}))
     ids = user_ids()   # ids rarely change; with users.json present the timeline reads carry real ids
-    line('get_users_by_usernames', {'usernames': ','.join(a['h'] for a in acc), 'user.fields': 'name,username,protected'}, 'users.json')
+    line('get_users_by_usernames', {'usernames': ','.join(a['h'] for a in acc), 'user.fields': 'name,username,protected,profile_image_url'}, 'users.json')
     for a in acc:
         if a['kw']:  # mixed-topic accounts: search their originals for SMU words instead of reading the whole timeline
             q = 'from:%s (SMU OR Mustangs OR Ponies OR "Pony Up" OR Hilltop OR Peruna OR "Ford Stadium" OR "Moody Coliseum" OR Lashlee) -is:retweet -is:reply -is:quote' % a['h']
@@ -130,11 +131,23 @@ def build(acc):
         if n[x['h']] <= PER: keep.append(x)
     keep = keep[:CAP]
     inf = {x['h'].lower() for x in keep}
-    follow = [{'h': users.get(a['h'].lower(), {}).get('username', a['h']), 'n': users.get(a['h'].lower(), {}).get('name', a['n']), 'g': a['g']}
+    def av(a):
+        """Writers only (Counsel, Oct 27): the X profile picture URL from this refresh's users read, hotlinked by the page and
+        never downloaded. Official, team and coach accounts keep initials. Private, suspended or missing: no URL (initials)."""
+        u = users.get(a['h'].lower())
+        if a['g'] != 'writers' or not u or u.get('protected'): return {}
+        url = str(u.get('profile_image_url') or '')
+        if not re.match(r'^https://pbs\.twimg\.com/profile_images/[^\s"<>]+$', url) or 'default_profile' in url: return {}
+        return {'av': url}
+    follow = [{'h': users.get(a['h'].lower(), {}).get('username', a['h']), 'n': users.get(a['h'].lower(), {}).get('name', a['n']), 'g': a['g'], **av(a)}
               for a in acc if a['h'].lower() in inf]
     data = {'checked': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'source': 'Public posts read from X; shown as X embeds',
             'count': len(keep), 'accounts': follow, 'posts': keep}
     json.dump(data, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    # the home page's "Conference and beat coverage" row reads writer/outlet avatars from here (small file, same refresh)
+    avs = {a['h']: av(a)['av'] for a in acc if a['g'] == 'writers' and av(a)}
+    json.dump({'checked': data['checked'], 'note': 'X profile picture URLs for writer and outlet accounts only; hotlinked, never stored',
+               'avatars': avs}, open(AV_OUT, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     print('wrote %s: %d posts from %d of %d accounts; skipped %s' % (os.path.relpath(OUT, ROOT), len(keep), len(follow), len(acc), sk))
 
 if __name__ == '__main__':

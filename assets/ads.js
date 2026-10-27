@@ -33,7 +33,12 @@ var ADS=MP.ADS={
     'home-billboard':{unit:'billboard',brand:'brindlecup',page:'home',at:['section.hero','afterend'],wide:1},
     'ribbon-presented':{unit:'presented',brand:'tellivant',page:'home',at:['#ribbon .rb-hd','beforeend'],inline:1},
     'library-billboard':{unit:'billboard',brand:'kestrelvale',page:'library',at:['#libBar','afterend'],wide:1},
-    'socials-mpu':{unit:'mpu',brand:'brindlecup',page:'socials',at:['#sxFeed > :nth-child(5)','afterend']},
+    /* From Socials: phones get one 300x250 after the 5th post; desktop (1024px+, where the rail shows) gets the two rail slots instead.
+       With the sticky bar that is 3 at most either way. The second rail ad goes after Podcasts, not between Videos and Podcasts: on
+       1260px+ that spot lines up with the Writers rows (X profile pictures) in the Following column, and Counsel wants no ad beside them. */
+    'socials-mpu':{unit:'mpu',brand:'brindlecup',page:'socials',at:['#sxFeed > :nth-child(5)','afterend'],cls:'ad-sx-ph'},
+    'socials-rail-1':{unit:'mpu',brand:'kestrelvale',page:'socials',at:['#sxRgGames','afterend'],cls:'ad-sx-dk'},
+    'socials-rail-2':{unit:'mpu',brand:'pelloway',page:'socials',at:['#sxRgPods','afterend'],cls:'ad-sx-dk'},
     'library-mpu':{unit:'mpu',brand:'marrowbys',page:'library',at:['#libView [data-ad-after]','afterend'],band:1},
     'games-billboard':{unit:'billboard',brand:'pelloway',page:'games',at:['.gmi-hero','afterend'],wide:1},
     'game-presented':{unit:'presented',brand:'tellivant',page:'games',at:['.gc-hd','beforebegin']},
@@ -80,7 +85,7 @@ function slotBody(id,p){var c=p.creative;
 function lbl(p){return '<span class="ad-lbl">'+esc(p.label||ADS.label)+'</span>'}
 /* one slot's markup, by placement id */
 MP.ad=function(id){var p=ADS.placements[id];if(!ADS.enabled||!p)return '';
-  var cls='ad ad-'+p.unit+(p.wide?' ad-wide':'')+(p.tab?' ad-tab':'')+(p.phone?' ad-phone':'')+(p.band?' ad-band':'');
+  var cls='ad ad-'+p.unit+(p.wide?' ad-wide':'')+(p.tab?' ad-tab':'')+(p.phone?' ad-phone':'')+(p.band?' ad-band':'')+(p.cls?' '+p.cls:'');
   if(p.unit==='presented'){var b=brandOf(p.brand,p);
     return '<div class="ad ad-presented'+(p.inline?' ad-pr-inline':'')+'" data-ad-slot="'+id+'"><div class="'+(p.inline?'':'wrap ')+'ad-pr-in"><span class="ad-pr-t">Game Day presented by</span>'+
       '<span class="ad-pr-b" style="--adac:'+b.bg+'">'+mark(b)+'<b>'+esc(b.name)+'</b></span>'+lbl(p)+'</div></div>'}

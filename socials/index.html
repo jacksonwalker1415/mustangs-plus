@@ -96,10 +96,19 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
     <p class="sx-empty" id="sxEmpty" hidden>No posts to show here yet.</p>
     <p class="sx-src" id="sxSrc"></p>
   </div>
+  <div class="sx-side">
   <aside class="sx-follow" id="sxFollow" aria-labelledby="sxFollowH"><div class="sx-follow-in">
     <div class="sx-follow-hd"><h2 id="sxFollowH">Following</h2><button type="button" class="sx-follow-x" id="sxFollowX" aria-label="Close the Following list">×</button></div>
     <div id="sxFollowList"></div>
+    <p class="sx-fl-note" id="sxFlNote" hidden>Profile pictures from X. Not affiliated with these accounts.</p>
   </div></aside>
+  <!-- desktop rail (1024px and up): next games, sample ad, videos, sample ad, podcasts. Filled by socials-feed.js; ads by ads.js -->
+  <aside class="sx-rail" id="sxRail" aria-label="Games, videos and podcasts">
+    <section class="sx-rg" id="sxRgGames" aria-labelledby="sxRgGh"><div class="sx-rg-hd"><h2 id="sxRgGh">Next games</h2><a class="see-all" href="../games/">See all<span class="sr"> games</span><span aria-hidden="true"> →</span></a></div><ol class="sx-games" id="sxGames"></ol></section>
+    <section class="sx-rg" id="sxRgVids" aria-labelledby="sxRgVh"><div class="sx-rg-hd"><h2 id="sxRgVh">Videos</h2><a class="see-all" href="../library/?type=video">See all<span class="sr"> videos</span><span aria-hidden="true"> →</span></a></div><ol class="pm-l sx-rl" id="sxVids"></ol></section>
+    <section class="sx-rg" id="sxRgPods" aria-labelledby="sxRgPh"><div class="sx-rg-hd"><h2 id="sxRgPh">Podcasts</h2><a class="see-all" href="../library/?type=podcast">See all<span class="sr"> podcasts</span><span aria-hidden="true"> →</span></a></div><ol class="pm-l pm-eps sx-rl" id="sxPods"></ol></section>
+  </aside>
+  </div>
 </div></section>
 </main>
 <div id="site-footer"></div>
@@ -111,6 +120,7 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <script src="../assets/socials.js?v=202610270640" defer></script>
 <script src="../assets/sport-icons.js?v=202610270640" defer></script>
 <script src="../assets/games.js?v=202610270640" defer></script>
+<script src="../assets/upcoming.js?v=202610270640" defer></script>
 <script src="../assets/sb.js?v=202610270640" defer></script>
 <script src="../assets/ads.js?v=202610270640" defer></script>
 <script src="../assets/app.js?v=202610270640" defer></script>

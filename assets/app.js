@@ -643,6 +643,23 @@
       (a[3]?'<p class="fo-d">'+esc(a[3])+'</p>':'')+
       '<p class="fo-links">'+Object.keys(FO_L).filter(function(t){return a[2][t]}).map(function(t){
         return '<a class="fo-a" href="'+esc(a[2][t])+'" target="_blank" rel="noopener" aria-label="'+esc(a[0])+' on '+FO_L[t]+' (opens in a new tab)" title="'+FO_L[t]+'"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="currentColor">'+FO_I[t]+'</svg></a>'}).join('')+'</p></div></li>'}
+  /* "Conference and beat coverage" row (home). Counsel, Oct 27: outlet/writer accounts may show their X profile picture, hotlinked from
+     pbs.twimg.com with the URL from the latest X users read (data/x-avatars.json, written by tools/build_socials.py; never stored on
+     our side). Accounts whose picture is a conference or SMU logo keep initials (COV_INI). No description lines, no banners. */
+  var COV_INI={theacc:1,accnetwork:1};
+  function covIni(nm){var w=String(nm).replace(/^(The|SMU)\s+/i,'').split(/\s+/);return esc((w[0]||'?').charAt(0)+(w[1]&&/^[A-Z(]/.test(w[1])?w[1].replace(/^\(/,'').charAt(0):''))}
+  function covCard(a){var h=a[1],nm=a[0],xu=(a[2]&&a[2].x)||'https://x.com/'+encodeURIComponent(h);
+    return '<li class="fo-card fo-plain fo-cov"><div class="fo-body fo-cov-b">'+
+      '<a class="fo-xav" href="'+esc(xu)+'" target="_blank" rel="noopener" aria-label="'+esc(nm)+' on X (opens in a new tab)"'+(COV_INI[h.toLowerCase()]?'':' data-xav="'+esc(h)+'"')+'><span class="fo-ini" aria-hidden="true">'+covIni(nm)+'</span></a>'+
+      '<div class="fo-cov-t"><p class="fo-nm"><b>'+esc(nm)+'</b></p><p class="fo-h"><a href="'+esc(xu)+'" target="_blank" rel="noopener">@'+esc(h)+' on X</a></p>'+
+      '<p class="fo-links">'+Object.keys(FO_L).filter(function(t){return a[2][t]}).map(function(t){
+        return '<a class="fo-a" href="'+esc(a[2][t])+'" target="_blank" rel="noopener" aria-label="'+esc(a[0])+' on '+FO_L[t]+' (opens in a new tab)" title="'+FO_L[t]+'"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="currentColor">'+FO_I[t]+'</svg></a>'}).join('')+'</p></div></div></li>'}
+  /* fill avatars once the row is on the page; a picture that fails to load leaves the initials */
+  function covAvatars(){var L=document.querySelectorAll('.fo-xav[data-xav]:not([data-xd])');if(!L.length||!window.fetch)return;[].forEach.call(L,function(a){a.setAttribute('data-xd','1')});
+    fetch(ROOT+'data/x-avatars.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(J){var A=(J&&J.avatars)||{};
+      [].forEach.call(L,function(a){var u=A[a.getAttribute('data-xav')];if(!u||!/^https:\/\/pbs\.twimg\.com\/profile_images\//.test(u))return;
+        var im=new Image();im.alt='';im.width=im.height=48;im.decoding='async';im.referrerPolicy='no-referrer';im.className='fo-xav-i';
+        im.onload=function(){a.appendChild(im);a.classList.add('has-av');var n=document.getElementById('feedsAvNote');if(n)n.hidden=false};im.src=u.replace('_normal.','_bigger.')});}).catch(function(){})}
   var XARR='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var SLN=0;
   /* Follow rows use the same side arrows as the X posts row: one per side, centered on the cards, hidden when nothing scrolls */
@@ -670,7 +687,7 @@
         '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Next posts" aria-controls="xtrack-'+key+'">'+XARR+'</button></div>':'')+
       followRow(F,home?'Follow SMU':'Follow SMU '+esc((sportBy(key)||{}).name||''))+
       followRow(PL,'Follow the players',plCard)+
-      (home?followRow(FEEDS.media,'Conference and beat coverage'):'')+
+      (home?followRow(FEEDS.media,'Conference and beat coverage',covCard)+'<p class="fo-note" id="feedsAvNote" hidden>Profile pictures from X. Not affiliated with these accounts.</p>':'')+
       '</div></section>'}
   function xNavSync(box){var nav=document.querySelector('[data-xnav="'+box.id+'"]');if(!nav)return;var b=nav.querySelectorAll('.xarr'),m=box.scrollWidth-box.clientWidth;
     nav.classList.toggle('no-ovf',box.hidden||m<=2);b[0].disabled=box.scrollLeft<=2;b[1].disabled=box.scrollLeft>=m-2}
@@ -678,10 +695,20 @@
   document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.hasAttribute&&t.hasAttribute('data-slider'))xNavSync(t)},{capture:true,passive:true});
   window.addEventListener('resize',slSyncAll);window.addEventListener('load',slSyncAll);setTimeout(slSyncAll,0);setTimeout(slSyncAll,800);
   function xPost(x,i,n){return '<div class="xpost" role="group" aria-label="Post '+(i+1)+' of '+n+'"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none" data-width="320"><p>Post from '+esc(x[2])+' (@'+esc(x[1])+'), '+esc(x[3])+'.</p><a href="'+esc(x[0])+'">View this post on X</a></blockquote></div>'}
+  /* equal-height row: CSS stretches the slides; this marks rendered slides (drops the 420px reservation) and re-syncs the arrows
+     when X reports a render or an embed changes height (photos, "Show more"). Resizes are batched into one frame. */
+  var xRO=window.ResizeObserver?new ResizeObserver(function(es){var seen=[];es.forEach(function(e){var b=e.target.closest('[data-xposts]');if(b&&seen.indexOf(b)<0)seen.push(b)});
+      requestAnimationFrame(function(){seen.forEach(xNavSync)})}):null,xEvOn=false;
+  function xEq(box){if(xRO)xRO.observe(box);
+    function bind(){if(xEvOn||!(window.twttr&&twttr.events&&twttr.events.bind))return false;xEvOn=true;
+      twttr.events.bind('rendered',function(ev){var el=ev&&ev.target,s=el&&el.closest&&el.closest('.xpost');if(!s)return;s.classList.add('x-live');
+        var f=s.querySelector('iframe');if(f&&xRO)xRO.observe(f);var b=s.closest('[data-xposts]');if(b)requestAnimationFrame(function(){xNavSync(b)})});return true}
+    if(!bind()){var n=0,t=setInterval(function(){if(bind()||++n>40)clearInterval(t)},250)}}
   function loadX(box){if(box.dataset.xon)return;box.dataset.xon='1';[0,1500,4000].forEach(function(t){setTimeout(function(){xNavSync(box)},t)});
     /* a post X could not show (deleted, private, blocked) gets its fallback card back instead of an empty frame */
     setTimeout(function(){var P=FEEDS.posts[box.dataset.xposts]||[];[].forEach.call(box.querySelectorAll('.xpost'),function(el,i){var f=el.querySelector('iframe');
       if(!el.querySelector('blockquote')&&(!f||f.offsetHeight<60)&&P[i])el.outerHTML=xPost(P[i],i,P.length).replace('class="twitter-tweet"','class="twitter-tweet x-fb"')})},12000);
+    xEq(box);
     if(window.twttr&&twttr.widgets&&twttr.widgets.load){twttr.widgets.load(box);return}
     if(!document.getElementById('x-wjs')){var sc=document.createElement('script');sc.id='x-wjs';sc.async=true;sc.charset='utf-8';sc.src='https://platform.twitter.com/widgets.js';
       sc.onerror=function(){[].forEach.call(document.querySelectorAll('[data-xposts]'),function(b){b.classList.add('x-off')})};document.body.appendChild(sc)}}
@@ -769,6 +796,7 @@
   function tcase(t){return String(t||'').replace(/\b[A-Z][A-Z'\u2019]*[A-Z]\b/g,function(w,at,all){var poss=/['\u2019]S$/.test(w),b=poss?w.slice(0,-2):w;if(/['\u2019]/.test(b))return b.charAt(0)+b.slice(1).toLowerCase()+(poss?w.slice(-2).toLowerCase():'');
     var out=TC_KEEP.indexOf(' '+b+' ')>=0?b:(at>0&&TC_SMALL.indexOf(' '+b+' ')>=0&&!/[:|\u2014(-]\s*$/.test(all.slice(0,at)))?b.toLowerCase():b.charAt(0)+b.slice(1).toLowerCase();
     return out+(poss?w.charAt(w.length-2)+'s':'')})}
+  MP.tcase=tcase; /* the From Socials rail (socials-feed.js) shows outside titles the way the Library does */
   function searchPage(){var main=$('#searchMain');if(!main)return;
     var P=new URLSearchParams(location.search),q0=(P.get('q')||'').slice(0,80),only=P.get('type')||'all',IDX=null,live=[],liveQ=null,seq=0;
     var GROUPS=[['video','Videos'],['article','Articles'],['podcast','Podcasts'],['player','Players'],['post','Forum posts'],['game','Games'],['sport','Sports'],['page','Pages']];
@@ -893,7 +921,7 @@
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
     aroundWeb();
-    var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before the message boards) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));watchX();
+    var ls=$('#listen')||$('#recruiting');/* Podcasts is a tab now, so #listen is gone: anchor to #recruiting, which keeps the feeds where main places them (after the content block, before the message boards) */if(ls&&!$('#feeds'))ls.insertAdjacentHTML('afterend',feedsHTML('home'));watchX();covAvatars();
     var rsec=$('#recruiting');if(!REC_ON){if(rsec)rsec.hidden=true}else $('#recruitBand').innerHTML=secHead('Recruiting &amp; Portal',ROOT+'recruiting/','Open hub','Visits, offers and the portal')+rail(byCat('recruiting').concat(byCat('portal')))+recruitBand();
     hilltop();
     var hot=MP.THREADS.filter(function(t){return t.hot||t.pin}).slice(0,6);
