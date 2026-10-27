@@ -54,7 +54,7 @@ MP.CLASSES = ['Fr.','R-Fr.','So.','Jr.','Sr.','Gr.'];
 
 /* Message board (fictional users and posts) */
 MP.FORUMS = [
-  {id:'paddock',name:'The Paddock',desc:'Members board for longer takes and analysis.',prem:true,threads:1284,posts:48211},
+  {id:'paddock',name:'The Paddock',desc:'For longer takes and analysis.',prem:true,threads:1284,posts:48211},
   {id:'hilltop',name:'Main board',desc:'The main board of The Expressway, free for every Mustang fan. Game talk, takes and hype.',prem:false,threads:3907,posts:122640},
   {id:'recruiting',name:'Recruiting Trail',desc:'Visits, offers and commitments across every sport.',prem:true,threads:612,posts:20975},
   {id:'boulevard',name:'The Boulevard',desc:'Off-topic, tailgates, Dallas eats and everything else.',prem:false,threads:1450,posts:30318}
@@ -177,7 +177,7 @@ MP.THREADS.push({id:22,f:'boulevard',sport:null,title:'Mustang Band halftime sho
 MP.BOARD_NAME='The Expressway';
 MP.BOARD_FULL='The Expressway message boards';
 MP.FORUM_FIX={hilltop:{name:'Main board',desc:'The main board of The Expressway, free for every Mustang fan. Game talk, takes and hype.'},
-  paddock:{desc:'Members board for longer takes and analysis.'}};
+  paddock:{desc:'For longer takes and analysis.'}};
 MP.HIDE_THREADS=[1,8,14];  /* seeded insider / closed-practice reports */
 MP.TESTIMONIAL=/(I pay for|\btier\b|membership worth|worth it\b|why I joined|until SMU\+|on SMU\+ was great|as a member|telestrator|rule on staff reports)/i;
 MP.isReal=function(h){return typeof h==='string'&&(/^u:/.test(h)||h==='me')};
