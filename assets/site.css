@@ -590,11 +590,11 @@ body:has(#threadView:not([hidden])) .page-hero .display{font-size:clamp(32px,4vw
 .credit{position:absolute;right:var(--s2);bottom:var(--s2);z-index:3;font-size:10px;font-weight:700;letter-spacing:.02em;line-height:1;color:rgba(255,255,255,.85);background:rgba(22,33,79,.55);padding:3px 6px;border-radius:var(--r-tag);pointer-events:none;white-space:nowrap}
 .bgph{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero.has-photo,.page-hero.has-photo{position:relative;overflow:hidden;background:var(--black)}
-.hero.has-photo .bgph::after,.page-hero.has-photo .bgph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,33,79,.96) 0%,rgba(28,42,99,.9) 45%,rgba(53,76,161,.78) 100%),linear-gradient(0deg,rgba(22,33,79,.55) 0%,rgba(22,33,79,0) 40%)}
+.hero.has-photo .bgph::after,.page-hero.has-photo .bgph::after{content:"";position:absolute;inset:0;background:rgba(22,33,79,.9)}
 .hero.has-photo>.wrap,.page-hero.has-photo>.wrap{position:relative;z-index:2}
-@media(max-width:959px){.hero.has-photo .bgph::after,.page-hero.has-photo .bgph::after{background:linear-gradient(180deg,rgba(28,42,99,.88) 0%,rgba(22,33,79,.95) 100%)}}
+@media(max-width:959px){.hero.has-photo .bgph::after,.page-hero.has-photo .bgph::after{background:rgba(22,33,79,.92)}}
 .poster.has-img .ph{position:absolute;inset:0;transition:transform .3s,filter .3s}
-.poster.has-img::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,24,60,.28) 0%,rgba(16,24,60,0) 35%,rgba(16,24,60,0) 60%,rgba(16,24,60,.45) 100%)}
+.poster.has-img::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(16,24,60,.25)}
 .poster.has-img>span:not(.credit){z-index:2}
 .poster .credit{bottom:auto;top:auto;right:var(--s3);bottom:var(--s3)}
 .poster.has-img .dur{z-index:2}
@@ -654,7 +654,7 @@ header.site .mtoggle{color:rgba(255,255,255,.85);padding:0 var(--s2)}
 .pw-inline p{color:rgba(255,255,255,.75);font-size:14px;margin-bottom:var(--s4)}
 .pw-inline .mtoggle{color:#fff}
 .prose.teaser{position:relative;max-height:260px;overflow:hidden}
-.prose.teaser::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
+.prose.teaser::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;display:none}
 
 /* Reader: photo header, player, episodes, related */
 .reader-hd.has-img{position:relative;overflow:hidden;color:#fff;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end}
@@ -665,7 +665,7 @@ header.site .mtoggle{color:rgba(255,255,255,.85);padding:0 var(--s2)}
 .player{position:relative;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center}
 .player .poster-type{position:absolute;right:-4px;bottom:-.14em;font-family:var(--display);font-size:clamp(90px,16vw,170px);line-height:1;opacity:.18}
 .player.has-img .ph{position:absolute;inset:0}
-.player.has-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,24,60,.1),rgba(16,24,60,.45))}
+.player.has-img::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(16,24,60,.3)}
 .player.locked .ph,.player.locked .poster-type{filter:blur(8px);transform:scale(1.1)}
 .play{position:relative;z-index:2;width:76px;height:76px;border-radius:50%;background:var(--red);display:grid;place-items:center;box-shadow:0 8px 24px rgba(16,24,60,.3);transition:transform .15s}
 .play:hover{transform:scale(1.06)}.play.on{animation:pulse 1.2s ease-in-out}
@@ -719,7 +719,7 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .gd-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s5);align-items:stretch}
 @media(max-width:959px){.gd-grid{grid-template-columns:minmax(0,1fr)}}
 .gd-next{position:relative;overflow:hidden;border-radius:var(--r3);background:var(--blue);min-height:360px;display:flex}
-.gd-next .bgph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,33,79,.94) 0%,rgba(22,33,79,.8) 55%,rgba(22,33,79,.45) 100%)}
+.gd-next .bgph::after{content:"";position:absolute;inset:0;background:rgba(22,33,79,.85)}
 .gd-in{position:relative;z-index:2;padding:var(--s6);display:flex;flex-direction:column;gap:var(--s4);width:100%}
 .gd-in .eyebrow{color:#fff;opacity:.8;margin:0}
 .gd-title{font-family:var(--display);font-weight:400;font-size:clamp(38px,5vw,60px);line-height:.95}
@@ -779,8 +779,8 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .linkish-plain{background:none;border:0;cursor:pointer}
 
 /* Skeletons */
-.sk{display:block;background:linear-gradient(90deg,#e2e7f4 0%,#f1f4fb 40%,#e2e7f4 80%);background-size:300% 100%;animation:sk 1.3s ease-in-out infinite;border-radius:var(--r1)}
-.sec.dark .sk,.gameday .sk,.hero .sk{background:linear-gradient(90deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.16) 40%,rgba(255,255,255,.08) 80%);background-size:300% 100%}
+.sk{display:block;background:var(--blue-10);background-size:300% 100%;animation:sk 1.3s ease-in-out infinite;border-radius:var(--r1)}
+.sec.dark .sk,.gameday .sk,.hero .sk{background:rgba(255,255,255,.12);background-size:300% 100%}
 @keyframes sk{0%{background-position:100% 0}100%{background-position:0 0}}
 .skel-hd{display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s5)}
 .sk-eb{width:120px;height:12px}.sk-t{width:220px;height:32px}
@@ -859,7 +859,7 @@ mark{background:color-mix(in srgb,var(--yellow) 55%,#fff);color:inherit;border-r
 .th-sort{display:inline-flex;align-items:center;gap:4px;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;white-space:nowrap}
 th.n .th-sort{flex-direction:row-reverse}
 .th-sort:hover{color:var(--blue)}
-.si{width:8px;height:10px;opacity:.35;background:linear-gradient(to bottom,transparent 0 0) ;position:relative}
+.si{width:8px;height:10px;opacity:.35;background:none;position:relative}
 .si::before,.si::after{content:"";position:absolute;left:0;border-left:4px solid transparent;border-right:4px solid transparent}
 .si::before{top:0;border-bottom:4px solid currentColor}.si::after{bottom:0;border-top:4px solid currentColor}
 th[aria-sort="ascending"] .si,th[aria-sort="descending"] .si{opacity:1;color:var(--blue)}
@@ -908,10 +908,10 @@ th[aria-sort="ascending"],th[aria-sort="descending"]{color:var(--blue)}
 .bgph picture{display:block;width:100%;height:100%}
 header.site{background:var(--b-800);border-bottom-color:rgba(255,255,255,.12)}
 .page-hero{background:var(--blue)}
-.ap-hero{background:linear-gradient(160deg,var(--b-800) 0%,var(--b-900) 100%)}
+.ap-hero{background:var(--b-800)}
 .hero.has-photo,.page-hero.has-photo{background:var(--b-900)}
 .sec.dark{background:var(--b-700)}
-.gameday{background:linear-gradient(180deg,var(--b-800) 0%,var(--b-700) 100%)}
+.gameday{background:var(--b-800)}
 .site-ft{background:var(--b-900);color:rgba(255,255,255,.82)}
 .site-ft .legal,.site-ft small{color:rgba(255,255,255,.72)}
 .hero-card{background:var(--b-900)}
@@ -1030,11 +1030,7 @@ html.menu-open header.site{border-bottom-color:transparent}
   .cmp{min-width:900px}
 }
 @media(max-width:639px){
-  .tbl-wrap{background:
-    linear-gradient(to right,#fff 30%,rgba(255,255,255,0)) left center/32px 100% no-repeat local,
-    linear-gradient(to left,#fff 30%,rgba(255,255,255,0)) right center/32px 100% no-repeat local,
-    radial-gradient(farthest-side at 0 50%,rgba(22,33,79,.2),rgba(22,33,79,0)) left center/12px 100% no-repeat scroll,
-    radial-gradient(farthest-side at 100% 50%,rgba(22,33,79,.2),rgba(22,33,79,0)) right center/12px 100% no-repeat scroll;background-color:#fff}
+  .tbl-wrap{background:#fff}
 }
 .ft>*,.ft-brand,.ft-brief,.brief{min-width:0}.brief-row input{width:100%}
 @media(max-width:639px){#cmpPos{flex-wrap:wrap;overflow:visible}.toolbar{flex-wrap:wrap}}
@@ -1243,7 +1239,7 @@ html:not(.is-member) .gated .poster .np-art{filter:blur(2.5px)}
 /* Real YouTube thumbnails on official video cards: photo full-bleed, a light scrim only along the bottom so the Watch pill stays legible. */
 .poster.has-yt{background:var(--b-950)}
 .poster.has-yt .ph{width:100%;height:100%;object-fit:cover;display:block}
-.poster.has-yt::after{background:linear-gradient(180deg,rgba(16,24,60,0) 58%,rgba(16,24,60,.5) 100%)}
+.poster.has-yt::after{background:rgba(16,24,60,.25)}
 .poster.has-yt .credit{top:var(--s3);bottom:auto;right:var(--s3)}
 .poster.has-yt .dur{top:auto;bottom:var(--s3)}
 
