@@ -109,5 +109,5 @@
       setTimeout(function(){pend=0;if(!Object.keys(ROWS).length)return;thread();ribbon()},150)});
       obs.observe(document.body,{childList:true,subtree:true})});
     window.addEventListener('hashchange',function(){setTimeout(thread,300)})}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+  if(document.readyState==='loading'||(function(){try{var n=performance.getEntriesByType('navigation')[0];return !!n&&!n.domContentLoadedEventStart}catch(e){return false}})())document.addEventListener('DOMContentLoaded',start);else start();
 })();
