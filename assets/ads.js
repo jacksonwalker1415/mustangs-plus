@@ -33,6 +33,7 @@ var ADS=MP.ADS={
     'home-billboard':{unit:'billboard',brand:'brindlecup',page:'home',at:['section.hero','afterend'],wide:1},
     'ribbon-presented':{unit:'presented',brand:'tellivant',page:'home',at:['#ribbon .rb-hd','beforeend'],inline:1},
     'library-billboard':{unit:'billboard',brand:'kestrelvale',page:'library',at:['#libBar','afterend'],wide:1},
+    'socials-mpu':{unit:'mpu',brand:'brindlecup',page:'socials',at:['#sxFeed > :nth-child(5)','afterend']},
     'library-mpu':{unit:'mpu',brand:'marrowbys',page:'library',at:['#libView [data-ad-after]','afterend'],band:1},
     'games-billboard':{unit:'billboard',brand:'pelloway',page:'games',at:['.gmi-hero','afterend'],wide:1},
     'game-presented':{unit:'presented',brand:'tellivant',page:'games',at:['.gc-hd','beforebegin']},

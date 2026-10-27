@@ -182,10 +182,10 @@
   /* Sports is a dropdown (desktop) / accordion (phone menu) listing all 12 programs; #sports links anywhere open it */
   var CHEV='<svg class="dd-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
   /* Media (the Library page, /library/) is a dropdown too: Videos, Podcasts and Articles open the Library's view for that type (?type=video|podcast|article). */
-  var MEDIA=[['Videos',ROOT+'library/?type=video'],['Podcasts',ROOT+'library/?type=podcast'],['Articles',ROOT+'library/?type=article']];
-  function mediaCur(i){if(PAGE!=='library')return false;var P=new URLSearchParams(location.search),t=P.get('type')||CAT_TYPE[P.get('cat')];return t===['video','podcast','article'][i]}
+  var MEDIA=[['Videos',ROOT+'library/?type=video'],['Podcasts',ROOT+'library/?type=podcast'],['Articles',ROOT+'library/?type=article'],['From Socials',ROOT+'socials/']];
+  function mediaCur(i){if(PAGE==='socials')return i===3;if(PAGE!=='library')return false;var P=new URLSearchParams(location.search),t=P.get('type')||CAT_TYPE[P.get('cat')];return t===['video','podcast','article'][i]}
   function mediaPanel(){return '<div class="sports-dd media-dd" id="mediaMenu" hidden><ul class="sdd-list">'+MEDIA.map(function(m,i){return '<li><a href="'+m[1]+'"'+(mediaCur(i)?' aria-current="page"':'')+'>'+m[0]+'</a></li>'}).join('')+'</ul></div>'}
-  function navLinks(){return NAV.map(function(n){var on=PAGE===n[2];
+  function navLinks(){return NAV.map(function(n){var on=PAGE===n[2]||(n[2]==='library'&&PAGE==='socials');
     if(n[2]==='sport')return '<button type="button" class="nav-dd-btn'+(on?' on':'')+'" id="sportsBtn" aria-expanded="false" aria-controls="sportsMenu">'+n[0]+CHEV+'</button>';
     /* Media is a real link to the Library page; its own chevron button opens Videos, Podcasts and Articles (disclosure, so no aria-haspopup) */
     if(n[2]==='library')return '<a href="'+n[1]+'" class="nav-media'+(on?' on':'')+'" id="mediaLink"'+(on?' aria-current="page"':'')+'>'+n[0]+'</a><button type="button" class="nav-dd-btn nav-chev" id="mediaBtn" aria-label="Show Media sections" aria-expanded="false" aria-controls="mediaMenu">'+CHEV+'</button>';
