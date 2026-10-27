@@ -1043,6 +1043,10 @@ html.menu-open header.site{border-bottom-color:transparent}
 /* Brand pass contrast (QA gate 5607712): game-day card labels and hero ledes sit on photo + blue overlay; translucent white measured 4.16-4.43:1, so solid white */
 .gd-next .gd-facts dt,.gd-next .cd small{color:#fff}
 .hero .lede.on-dark,.page-hero .lede.on-dark,.lede.on-dark{color:#fff}
+/* Blue-on-blue cards (Jackson, Oct 27): the game-day card and the home hero feature card share the page blue, so they get a white edge.
+   Drawn by a pseudo-element on top of the photo, so the card size and layout do not change (no CLS) */
+.hero-card{position:relative}
+.gd-next::before,.hero-card::before{content:"";position:absolute;inset:0;z-index:5;border:2px solid rgba(255,255,255,.55);border-radius:inherit;pointer-events:none}
 /* ---------- Real rosters, coaches and schedules (non-football) ---------- */
 .r-ini{display:grid;place-items:center;width:100%;height:100%;font-family:var(--display);font-weight:400;font-size:28px;letter-spacing:.03em;color:#fff}
 .rcard:nth-child(3n) .r-ini{color:var(--blue)}
