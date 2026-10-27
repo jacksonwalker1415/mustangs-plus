@@ -1281,6 +1281,104 @@
   /* ---------- Boards: a traditional forum (XenForo/On3-style index, thread list and thread view, Reddit-style sorting).
      Every number shown is counted from real threads and posts (or the database's views); nothing is seeded.
      Unread tracking, bookmarks and the "mark all read" cutoff live in this browser (localStorage). ---------- */
+  /* ---------- Board media: photos in posts, link embeds, lightbox (Boards media) ----------
+     Photos: picked in the composer (reply box, which the phone reply bar opens, and Start a thread), checked (jpg/png/webp/gif, under
+     5 MB, up to 4), then resized and re-encoded in the browser through a canvas. Re-encoding drops EXIF, including GPS location.
+     GIFs are kept as-is (re-drawing would freeze the animation); GIF has no EXIF block, only optional comment/app extensions.
+     Upload and storage are in sb.js (SMU.mediaOn / MEDIA flag). Links: X, YouTube, Instagram and TikTok URLs become the platform's
+     own embed once scrolled near (IntersectionObserver), in a box sized up front so nothing below moves; anything else, or an embed
+     that fails or times out, is a plain link card. Only http(s) links; all text escaped. */
+  var MPICK={},MLONG=2048,MQ=0.85;
+  function mpItems(k){return MPICK[k]=MPICK[k]||[]}
+  function mpClear(k){(MPICK[k]||[]).forEach(function(x){try{URL.revokeObjectURL(x.thumb)}catch(e){}});MPICK[k]=[]}
+  function mediaPicker(k){if(!window.SMU||!SMU.mediaOn||!SMU.mediaOn())return '';
+    return '<div class="fx-mp" data-mp="'+k+'"><input type="file" class="fx-mp-in" id="mpIn-'+k+'" data-mp-in="'+k+'" accept="image/jpeg,image/png,image/webp,image/gif" multiple tabindex="-1" aria-hidden="true">'+
+      '<button type="button" class="btn btn-outline btn-sm fx-mp-add" data-mp-add="'+k+'">'+PHOTO_I+'<span>Add photos</span></button>'+
+      '<ul class="fx-mp-list" aria-label="Photos to attach">'+mpThumbs(k)+'</ul><p class="fx-mp-m" aria-live="polite">'+(SMU.mediaLocal&&SMU.mediaLocal()?'Demo mode: photos stay in this browser.':'')+'</p></div>'}
+  var PHOTO_I='<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path fill="currentColor" d="M4 5h3l1.5-2h7L17 5h3a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm8 3.5A4.5 4.5 0 1 0 12 17.5 4.5 4.5 0 0 0 12 8.5zm0 2A2.5 2.5 0 1 1 12 15.5 2.5 2.5 0 0 1 12 10.5z"/></svg>';
+  function mpThumbs(k){var L=mpItems(k);return L.map(function(x,i){return '<li class="fx-mp-i"><img src="'+x.thumb+'" alt="" width="88" height="88"><button type="button" class="fx-mp-rm" data-mp-rm="'+k+':'+i+'" aria-label="Remove photo '+(i+1)+' of '+L.length+'">\u00d7</button></li>'}).join('')}
+  function mpPaint(k){$$('[data-mp="'+k+'"]').forEach(function(box){$('.fx-mp-list',box).innerHTML=mpThumbs(k);var add=$('[data-mp-add]',box),full=mpItems(k).length>=SMU.MEDIA.max;add.disabled=full;$('span',add).textContent=full?'4 photos max':'Add photos'})}
+  function mpMsg(k,t){$$('[data-mp="'+k+'"] .fx-mp-m').forEach(function(m){m.textContent=t})}
+  function blobData(b){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(r.result)};r.onerror=function(){rej(new Error('Could not read that photo.'))};r.readAsDataURL(b)})}
+  function loadImg(file){return new Promise(function(res,rej){var u=URL.createObjectURL(file),im=new Image();im.decoding='async';
+    im.onload=function(){res({im:im,url:u})};im.onerror=function(){URL.revokeObjectURL(u);rej(new Error('That file doesn\u2019t look like a photo.'))};im.src=u})}
+  function prepImage(file){var M=SMU.MEDIA;if(M.types.indexOf(file.type)<0)return Promise.reject(new Error('Use a JPEG, PNG, WebP or GIF image.'));
+    if(file.size>=M.bytes)return Promise.reject(new Error('That photo is over 5 MB. Pick a smaller one.'));
+    var demo=SMU.mediaLocal&&SMU.mediaLocal(),long=demo?1280:MLONG;
+    return loadImg(file).then(function(o){var w=o.im.naturalWidth,h=o.im.naturalHeight;if(!w||!h){URL.revokeObjectURL(o.url);throw new Error('That file doesn\u2019t look like a photo.')}
+      if(file.type==='image/gif'){URL.revokeObjectURL(o.url);return {blob:file,w:w,h:h,t:'image/gif'}}
+      var s=Math.min(1,long/Math.max(w,h)),cw=Math.max(1,Math.round(w*s)),ch=Math.max(1,Math.round(h*s)),c=document.createElement('canvas');c.width=cw;c.height=ch;
+      var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,cw,ch);x.drawImage(o.im,0,0,cw,ch);URL.revokeObjectURL(o.url);
+      return new Promise(function(res,rej){c.toBlob(function(b){b?res({blob:b,w:cw,h:ch,t:'image/jpeg'}):rej(new Error('Could not process that photo.'))},'image/jpeg',demo?0.8:MQ)})
+    }).then(function(it){if(it.blob.size>=M.bytes)throw new Error('That photo is still over 5 MB after resizing.');it.thumb=URL.createObjectURL(it.blob);
+      return demo?blobData(it.blob).then(function(d){it.data=d;return it}):it})}
+  function mpAdd(k,files){var L=mpItems(k),room=SMU.MEDIA.max-L.length,list=[].slice.call(files||[]);if(!list.length)return;
+    if(room<=0){mpMsg(k,'You can attach up to 4 photos.');return}var skipped=list.length>room;list=list.slice(0,room);mpMsg(k,'Preparing '+(list.length===1?'photo':'photos')+'\u2026');
+    var errs=[];Promise.all(list.map(function(f){return prepImage(f).then(null,function(e){errs.push(e.message);return null})})).then(function(done){
+      done.forEach(function(it){if(it&&mpItems(k).length<SMU.MEDIA.max)mpItems(k).push(it)});
+      mpPaint(k);mpMsg(k,errs.length?errs[0]:skipped?'Only the first 4 photos were added.':'')})}
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-mp-add]');if(a){var i=document.getElementById('mpIn-'+a.dataset.mpAdd);if(i)i.click();return}
+    var r=e.target.closest&&e.target.closest('[data-mp-rm]');if(r){var p=r.dataset.mpRm.split(':'),k=p[0],L=mpItems(k),x=L.splice(+p[1],1)[0];if(x)try{URL.revokeObjectURL(x.thumb)}catch(er){}
+      mpPaint(k);mpMsg(k,'Photo removed.');var nx=$('[data-mp="'+k+'"] [data-mp-rm]')||$('[data-mp="'+k+'"] [data-mp-add]');if(nx)nx.focus()}});
+  document.addEventListener('change',function(e){var i=e.target;if(!i.dataset||!i.dataset.mpIn)return;mpAdd(i.dataset.mpIn,i.files);i.value=''});
+  /* the grid in a post: fixed shapes per count (one 4:3, two squares, three 2:1 + stacked, four 2x2), so nothing moves as photos load */
+  function mediaGrid(p,i,name){var M=SMU.mediaOf?SMU.mediaOf(p):null;if(!M)return '';var n=M.length;
+    return '<div class="fx-media n'+n+'" role="group" aria-label="'+n+(n===1?' photo':' photos')+'">'+M.map(function(m,j){
+      return '<button type="button" class="fx-ph" data-ph="'+i+':'+j+'" aria-label="Open photo '+(j+1)+' of '+n+' from '+esc(name)+'"><img src="'+esc(m.u)+'" alt="" loading="lazy" decoding="async" width="'+m.w+'" height="'+m.h+'"></button>'}).join('')+'</div>'}
+  /* ---- link embeds ---- */
+  var URL_RE=/\bhttps?:\/\/[^\s<]+[^\s<.,;:!?)]/g;
+  function embKind(raw){var u;try{u=new URL(raw)}catch(e){return null}if(u.protocol!=='https:'&&u.protocol!=='http:')return null;
+    var h=u.hostname.toLowerCase().replace(/^(www|m|mobile)\./,''),p=u.pathname,m;
+    if(h==='youtu.be'&&(m=p.match(/^\/([A-Za-z0-9_-]{11})/)))return {k:'yt',id:m[1],u:u.href,h:h};
+    if(h==='youtube.com'||h==='music.youtube.com'){var v=u.searchParams.get('v');if(p==='/watch'&&/^[A-Za-z0-9_-]{11}$/.test(v||''))return {k:'yt',id:v,u:u.href,h:h};
+      if((m=p.match(/^\/(?:shorts|embed|live)\/([A-Za-z0-9_-]{11})/)))return {k:'yt',id:m[1],u:u.href,h:h}}
+    if((h==='x.com'||h==='twitter.com')&&(m=p.match(/^\/([A-Za-z0-9_]{1,15})\/status(?:es)?\/(\d{5,25})/)))return {k:'x',id:m[2],user:m[1],u:'https://twitter.com/'+m[1]+'/status/'+m[2],h:h};
+    if(h==='instagram.com'&&(m=p.match(/^\/(p|reel|tv)\/([A-Za-z0-9_-]{5,40})/)))return {k:'ig',id:m[2],u:'https://www.instagram.com/'+m[1]+'/'+m[2]+'/',h:h};
+    if(h==='tiktok.com'&&(m=p.match(/^\/@([A-Za-z0-9_.]{1,40})\/video\/(\d{5,25})/)))return {k:'tt',id:m[2],u:'https://www.tiktok.com/@'+m[1]+'/video/'+m[2],h:h};
+    return {k:'link',u:u.href,h:h}}
+  var EMB_L={yt:'YouTube video',x:'Post on X',ig:'Instagram post',tt:'TikTok video',link:''};
+  function linkCard(e,off){return '<a class="fx-card" href="'+esc(e.u)+'" target="_blank" rel="noopener nofollow ugc"><span class="fx-card-d">'+esc(EMB_L[e.k]?EMB_L[e.k]+' \u00b7 '+e.h:e.h)+'</span>'+
+    '<span class="fx-card-u">'+esc(e.u)+'</span>'+(off?'<span class="fx-card-n">Couldn\u2019t show it here. Opens in a new tab.</span>':'')+'<span class="sr"> (opens in a new tab)</span></a>'}
+  function embeds(body){var seen={},out=[];(String(body||'').match(URL_RE)||[]).forEach(function(raw){if(out.length>=2)return;var e=embKind(raw);if(!e||seen[e.u])return;seen[e.u]=1;out.push(e)});
+    return out.map(function(e){return e.k==='link'?linkCard(e):'<div class="fx-emb fx-emb-'+e.k+'" data-emb="'+e.k+'" data-id="'+esc(e.id)+'" data-url="'+esc(e.u)+'">'+linkCard(e)+'</div>'}).join('')}
+  var embScripts={};
+  function embScript(k,src,cb){var s=embScripts[k];if(s&&s.ok){cb(true);return}if(s&&s.failed){cb(false);return}if(s){s.q.push(cb);return}
+    s=embScripts[k]={q:[cb]};var el=k==='x'&&document.getElementById('x-wjs');
+    if(el&&window.twttr&&twttr.widgets){s.ok=true;cb(true);return}
+    el=document.createElement('script');el.async=true;el.src=src;if(k==='x')el.id=el.id||'x-wjs-b';
+    el.onload=function(){s.ok=true;s.q.splice(0).forEach(function(f){f(true)})};el.onerror=function(){s.failed=true;s.q.splice(0).forEach(function(f){f(false)})};document.body.appendChild(el)}
+  function embFail(box){if(box.dataset.state==='off')return;box.dataset.state='off';box.classList.add('off');box.innerHTML=linkCard({k:box.dataset.emb,u:box.dataset.url,h:(function(){try{return new URL(box.dataset.url).hostname.replace(/^www\./,'')}catch(e){return ''}})()},true)}
+  function embCheck(box,ms){setTimeout(function(){if(box.dataset.state==='off')return;var f=box.querySelector('iframe');if(!f||f.offsetHeight<60)embFail(box);else box.dataset.state='on'},ms)}
+  function embLoad(box){if(box.dataset.state)return;box.dataset.state='loading';var k=box.dataset.emb,id=box.dataset.id,u=box.dataset.url,card=box.innerHTML;
+    if(k==='yt'){box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0" title="YouTube video" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';box.dataset.state='on';return}
+    if(k==='x'){box.innerHTML='<div class="fx-emb-in"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none">'+card+'<a href="'+esc(u)+'">View this post on X</a></blockquote></div>';
+      embScript('x','https://platform.twitter.com/widgets.js',function(ok){if(!ok){embFail(box);return}if(window.twttr&&twttr.widgets&&twttr.widgets.load)twttr.widgets.load(box);embCheck(box,9000)});return}
+    if(k==='ig'){box.innerHTML='<div class="fx-emb-in"><blockquote class="instagram-media" data-instgrm-permalink="'+esc(u)+'" data-instgrm-version="14">'+card+'</blockquote></div>';
+      embScript('ig','https://www.instagram.com/embed.js',function(ok){if(!ok){embFail(box);return}if(window.instgrm&&instgrm.Embeds&&instgrm.Embeds.process)instgrm.Embeds.process();embCheck(box,9000)});return}
+    if(k==='tt'){box.innerHTML='<div class="fx-emb-in"><blockquote class="tiktok-embed" cite="'+esc(u)+'" data-video-id="'+esc(id)+'"><section>'+card+'</section></blockquote></div>';
+      /* TikTok's embed.js renders the blockquotes on the page when it runs, so it is loaded once per new embed */
+      delete embScripts.tt;embScript('tt','https://www.tiktok.com/embed.js',function(ok){if(!ok){embFail(box);return}embCheck(box,9000)});return}}
+  var embIO=null;
+  function watchEmbeds(root){var L=$$('.fx-emb:not([data-state]):not([data-w])',root);if(!L.length)return;L.forEach(function(b){b.setAttribute('data-w','1')});
+    if(!('IntersectionObserver' in window)){L.forEach(embLoad);return}
+    embIO=embIO||new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){embIO.unobserve(x.target);embLoad(x.target)}})},{rootMargin:'300px 0px'});
+    L.forEach(function(b){embIO.observe(b)})}
+  /* ---- lightbox: Escape or the close button closes it, focus stays inside while open and goes back to the photo after ---- */
+  var LB=null;
+  function lightbox(list,at,from){if(!LB){LB=document.createElement('div');LB.className='fx-lb';LB.hidden=true;LB.setAttribute('role','dialog');LB.setAttribute('aria-modal','true');LB.setAttribute('aria-labelledby','fxLbT');
+      LB.innerHTML='<div class="fx-lb-bar"><p id="fxLbT" class="fx-lb-t"></p><button type="button" class="fx-lb-b fx-lb-x" aria-label="Close photo">\u00d7</button></div>'+
+        '<div class="fx-lb-stage"><img class="fx-lb-img" alt=""></div><div class="fx-lb-nav"><button type="button" class="fx-lb-b" data-lb="-1" aria-label="Previous photo">\u2039</button><button type="button" class="fx-lb-b" data-lb="1" aria-label="Next photo">\u203a</button></div>';
+      document.body.appendChild(LB);
+      LB.addEventListener('click',function(e){if(e.target.closest('.fx-lb-x')||e.target.classList.contains('fx-lb-stage')){lbClose();return}var d=e.target.closest('[data-lb]');if(d)lbGo(+d.dataset.lb)});
+      LB.addEventListener('keydown',function(e){if(e.key==='Escape'){e.preventDefault();e.stopPropagation();lbClose();return}if(e.key==='ArrowLeft')lbGo(-1);else if(e.key==='ArrowRight')lbGo(1);
+        else if(e.key==='Tab'){var f=$$('button',LB).filter(function(b){return !b.hidden&&b.offsetParent}),a=f.indexOf(document.activeElement);
+          if(e.shiftKey&&a<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&a===f.length-1){e.preventDefault();f[0].focus()}}})}
+    LB._l=list;LB._i=at;LB._from=from;lbShow();LB.hidden=false;document.documentElement.classList.add('noscroll');$('.fx-lb-x',LB).focus()}
+  function lbShow(){var L=LB._l,m=L[LB._i];$('.fx-lb-img',LB).src=m.u;$('.fx-lb-img',LB).width=m.w;$('.fx-lb-img',LB).height=m.h;$('.fx-lb-img',LB).alt='Photo '+(LB._i+1)+' of '+L.length;
+    $('#fxLbT',LB).textContent='Photo '+(LB._i+1)+' of '+L.length;$('.fx-lb-nav',LB).hidden=L.length<2}
+  function lbGo(d){var n=LB._l.length;if(n<2)return;LB._i=(LB._i+d+n)%n;lbShow()}
+  function lbClose(){if(!LB||LB.hidden)return;LB.hidden=true;$('.fx-lb-img',LB).removeAttribute('src');document.documentElement.classList.remove('noscroll');if(LB._from&&LB._from.focus)LB._from.focus()}
+
   function boards(){
     var Q=new URLSearchParams(location.search),PER=20,PPER=20;
     /* Posting rate limit (supabase/PROPOSAL_boards_rate_limit.sql, not applied yet): the database answers PT429 / "slow_down".
@@ -1337,7 +1435,7 @@
     function stat(k){return (MP.SPORT_STATS||{})[k]||{threads:0,posts:0}}
     function teamStats(tm){var o={threads:0,posts:0};teamSports(tm).forEach(function(s){var x=stat(s);o.threads+=x.threads||0;o.posts+=x.posts||0});return o}
     function fmt(s){var h=esc(String(s||'')).replace(/\r\n?/g,'\n');
-      h=h.replace(/\bhttps?:\/\/[^\s<]+[^\s<.,;:!?)]/g,function(u){return '<a href="'+u+'" rel="nofollow noopener" target="_blank">'+u+'</a>'});
+      h=h.replace(/\bhttps?:\/\/[^\s<]+[^\s<.,;:!?)]/g,function(u){return '<a href="'+u+'" rel="noopener nofollow ugc" target="_blank">'+u+'</a>'});
       h=h.replace(/(^|[\s(])@([A-Za-z0-9_][A-Za-z0-9_.-]{1,29}[A-Za-z0-9_])/g,'$1<span class="fx-at">@$2</span>');
       return h.split(/\n{2,}/).map(function(par){return '<p>'+par.replace(/\n/g,'<br>')+'</p>'}).join('')}
     function crumbs(items){return '<nav class="fx-crumbs" aria-label="Breadcrumb"><ol>'+items.map(function(x,i){return '<li>'+(x[1]?'<a href="'+x[1]+'">'+esc(x[0])+'</a>':'<span aria-current="page">'+esc(x[0])+'</span>')+'</li>'}).join('')+'</ol></nav>'}
@@ -1448,7 +1546,7 @@
           '<button type="button" class="fx-ico'+(mk?' on':'')+'" data-mark="'+i+'" aria-pressed="'+(mk?'true':'false')+'" aria-label="Bookmark post #'+(i+1)+'">'+BOOK+'</button>'+
           '<a class="fx-n" href="#t'+t.id+'-p'+(i+1)+'">#'+(i+1)+'</a></span></header>'+
         '<div class="fx-body">'+(q?'<blockquote class="fx-quote"><a class="fx-quote-h" href="#t'+t.id+'-p'+(p[2]+1)+'">'+esc(U(q[0]).n)+' said:</a><div class="fx-quote-b">'+fmt(q[1].length>400?q[1].slice(0,400)+'\u2026':q[1])+'</div></blockquote>':'')+
-          (t.locked&&i===0?'<p class="fx-locked">The posts in this thread can\u2019t be shown right now.</p>':fmt(p[1]))+'</div>'+
+          (t.locked&&i===0?'<p class="fx-locked">The posts in this thread can\u2019t be shown right now.</p>':fmt(p[1])+mediaGrid(p,i,u.n)+embeds(p[1]))+'</div>'+
         '<footer class="fx-act"><button type="button" class="fx-a rep" data-report="'+i+'" aria-label="Report post #'+(i+1)+'"'+(SMU.reported&&SMU.reported(t.id,i)?' data-done="1">Reported':'>Report')+'</button>'+
           (avPhoto(u)?'<button type="button" data-demo="Report profile photo" class="fx-a rep" aria-label="Report '+esc(u.n)+'\u2019s profile photo">Report photo</button>':'')+
           '<span class="fx-act-r"><button type="button" class="fx-a" data-like="'+i+'" aria-pressed="false">'+HEART+'<span>Like</span></button><button type="button" class="fx-a" data-quote="'+i+'">Quote</button><button type="button" class="fx-a" data-reply>Reply</button></span></footer>'+
@@ -1458,7 +1556,7 @@
       return '<button type="button" class="btn btn-outline btn-sm fx-follow" data-follow aria-pressed="'+on+'">'+(on?'Following':'Follow')+'</button>'}
     function replyBox(t){if(!SMU.user)return '<div class="fx-reply out" id="fxReply"><p><b>Sign in or join free to post.</b> Anyone can read the boards. Posting takes a free account'+(SMU.live?'':' (demo accounts are saved in this browser)')+'. Please read the <a href="'+ROOT+'rules/">community rules</a> first.</p><a class="btn btn-red" href="'+ROOT+'account/" data-auth="in">Sign in</a> <a class="btn btn-outline" href="'+ROOT+'account/" data-auth="up">Join free</a></div>';
       return '<form class="fx-reply" id="fxReply" data-thread="'+t.id+'" novalidate><span class="fx-reply-av">'+avatar(SMU.me(),true)+'</span><div class="fx-reply-main"><div id="replyQ" hidden></div><label class="sr" for="replyText">Write your reply</label>'+
-        '<textarea id="replyText" rows="4" maxlength="5000" placeholder="Write your reply\u2026" required></textarea><p class="reply-m" id="replyM" aria-live="polite"></p>'+
+        '<textarea id="replyText" rows="4" maxlength="5000" placeholder="Write your reply\u2026" required></textarea>'+mediaPicker('r'+t.id)+'<p class="reply-m" id="replyM" aria-live="polite"></p>'+
         '<div class="fx-reply-f"><span class="fx-reply-tip">Type @ and a name to mention someone. Keep it civil: <a href="'+ROOT+'rules/">community rules</a></span><button class="btn btn-red" type="submit">Post reply</button></div></div></form>'}
     function quotePreview(t){var rq=$('#replyQ');if(!rq)return;var p=quoteIdx!=null&&t.posts[quoteIdx];
       if(!p){rq.hidden=true;rq.innerHTML='';return}
@@ -1487,7 +1585,7 @@
         (t.locked?'':'<div class="fx-rbar" id="fxRbar">'+(SMU.user?'<button type="button" class="fx-rbar-b" data-reply><span class="fx-rbar-av" aria-hidden="true">'+avatar(SMU.me(),true)+'</span><span class="fx-rbar-t">Write a reply\u2026</span></button>'
           :'<a class="fx-rbar-b" href="'+ROOT+'account/" data-auth="in"><span class="fx-rbar-t">Sign in to reply</span><span class="fx-rbar-go">Sign in</span></a>')+'</div>');
       var t2=$('#replyText');if(t2&&draft)t2.value=draft;quotePreview(t);
-      if(likes[t.id])paintLikes(t);loadLikes(t);
+      if(likes[t.id])paintLikes(t);loadLikes(t);watchEmbeds(threadView);
       document.title=t.title+' | Message Boards | SMU+';
       markRead(t);if(SMU.followRead&&SMU.user&&SMU.isFollowing(t.id))SMU.followRead(t);if(MP.adsMount)MP.adsMount('thread');/* sample ad slot after the 3rd post: assets/ads.js */
       if(watching.id!==t.id){watching.off();var u1=SMU.watch(t.id),u2=SMU.on('post:'+t.id,function(){setTimeout(function(){document.dispatchEvent(new CustomEvent('smu:post',{detail:t.id}))},0)});watching={id:t.id,off:function(){u1();u2()}}}
@@ -1501,6 +1599,7 @@
       var qb=e.target.closest('[data-quote]'),rb=e.target.closest('[data-reply]'),lb=e.target.closest('[data-like]'),sb=e.target.closest('[data-share]'),mb=e.target.closest('[data-mark]');
       var fb=e.target.closest('[data-follow]'),so=e.target.closest('[data-tsort]');
       if(so){if(tsort.v===so.dataset.tsort)return;tsort={id:t.id,v:so.dataset.tsort};history.replaceState(null,'','#t'+t.id);renderThread({id:t.id,x:''});var sc=$('.fx-tsort',threadView);if(sc){var y=sc.getBoundingClientRect().top;if(y<0||y>innerHeight)sc.scrollIntoView({block:'start'})}var nb=$('[data-tsort="'+tsort.v+'"]',threadView);if(nb)nb.focus({preventScroll:true});return}
+      var ph=e.target.closest('[data-ph]');if(ph){var pp=ph.dataset.ph.split(':'),M=SMU.mediaOf&&SMU.mediaOf(t.posts[+pp[0]]);if(M)lightbox(M,+pp[1],ph);return}
       if(fb){requireUser('Sign in to follow this thread. New replies show under the bell.',function(){var on=!SMU.isFollowing(t.id);fb.disabled=true;
         SMU.toggleFollow(t,on).then(function(){fb.disabled=false;paintFollow(t);toast(on?'Following. New replies show under the bell.':'Unfollowed.')},function(err){fb.disabled=false;toast(err.message,'err')})});return}
       if(e.target.id==='unquote'){quoteIdx=null;quotePreview(t);var tx=$('#replyText');if(tx)tx.focus();return}
@@ -1518,10 +1617,11 @@
     threadView.addEventListener('submit',function(e){var f=e.target;if(f.id!=='fxReply')return;e.preventDefault();var ta=$('#replyText'),m=$('#replyM'),v=ta.value.trim(),tid=+f.dataset.thread;
       if(v.length<2){m.textContent='Write a little more before posting.';ta.focus();return}
       var b=$('button[type=submit]',f);b.disabled=true;m.textContent='Posting\u2026';
-      SMU.reply(tid,v,quoteIdx).then(function(){quoteIdx=null;ta.value='';var t=findT(tid);location.hash='#t'+tid+'-p'+(t?t.posts.length:1);route();var el=$('#t'+tid+'-p'+(t?t.posts.length:1));if(el)el.classList.add('fx-just');toast('Reply posted.')},
+      var mk='r'+tid,med=mpItems(mk).slice();SMU.reply(tid,v,quoteIdx,med.length?med:undefined).then(function(){quoteIdx=null;ta.value='';mpClear(mk);var t=findT(tid);location.hash='#t'+tid+'-p'+(t?t.posts.length:1);route();var el=$('#t'+tid+'-p'+(t?t.posts.length:1));if(el)el.classList.add('fx-just');toast('Reply posted.')},
         function(err){m.textContent=slowDown(err)||err.message||'Could not post. Try again.';b.disabled=false})});
     function rerender(){var h=hashT();if(h)renderThread(h);else if(!listView.hidden)renderList();else renderIndex()}
     SMU.on('auth',rerender);SMU.on('avatar',rerender);
+    SMU.on('media:full',function(){toast('Demo mode: this browser is out of room for photos, so they show until you reload.','err')});
     function paintFollow(t){var on=!!SMU.user&&!!SMU.isFollowing&&SMU.isFollowing(t.id);$$('[data-follow]',threadView).forEach(function(b){b.setAttribute('aria-pressed',String(on));b.textContent=on?'Following':'Follow'})}
     SMU.on('follows',function(){var h=hashT(),t=h&&findT(h.id);if(t&&!threadView.hidden)paintFollow(t)});
     SMU.on('threads',function(){if(!indexView.hidden)renderIndex();if(!listView.hidden)renderList()});
@@ -2089,13 +2189,13 @@
       '<div class="fld-row"><div class="fld"><label for="cpForum">Board</label><select id="cpForum">'+MP.FORUMS.map(function(f){return '<option value="'+f.id+'"'+(f.id===pick?' selected':'')+'>'+esc(f.name)+'</option>'}).join('')+'</select></div>'+
       '<div class="fld"><label for="cpSport">Sport (optional)</label><select id="cpSport"><option value="">None</option>'+MP.SPORTS.map(function(s){return '<option value="'+s.slug+'"'+(s.slug===sport?' selected':'')+'>'+esc(s.name)+'</option>'}).join('')+'</select></div></div>'+
       '<div class="fld"><label for="cpTitle">Title</label><input id="cpTitle" maxlength="140" required placeholder="What do you want to talk about?"></div>'+
-      '<div class="fld"><label for="cpBody">First post</label><textarea id="cpBody" rows="5" maxlength="5000" required></textarea></div>'+
+      '<div class="fld"><label for="cpBody">First post</label><textarea id="cpBody" rows="5" maxlength="5000" required></textarea></div>'+mediaPicker('c')+
       '<p class="cp-rules">Keep it civil and read the <a href="'+ROOT+'rules/">community rules</a> before you post. Mods may remove posts that break them.</p>'+
       '<p class="auth-m" aria-live="polite"></p><div class="dlg-act"><button class="btn btn-red" type="submit">Post thread</button></div></form>'+(SMU.live?'':'<p class="dlg-mode"><b>Demo mode.</b> Your thread is saved in this browser only.</p>'));
     $('form',d).addEventListener('submit',function(e){e.preventDefault();var ti=$('#cpTitle',d).value.trim(),bo=$('#cpBody',d).value.trim(),m=$('.auth-m',d);
       if(ti.length<3){m.textContent='Give your thread a title (3+ characters).';$('#cpTitle',d).focus();return}if(bo.length<2){m.textContent='Write a first post.';$('#cpBody',d).focus();return}
       var b=$('button[type=submit]',d);b.disabled=true;m.textContent='Posting\u2026';
-      SMU.createThread({f:$('#cpForum',d).value,sport:$('#cpSport',d).value,title:ti,body:bo}).then(function(t){d.close();toast('Thread posted.');location.href=threadUrl(t.id)},function(err){b.disabled=false;m.textContent=(window.MP_slowDown&&MP_slowDown(err))||err.message})})}
+      var med=mpItems('c').slice();SMU.createThread({f:$('#cpForum',d).value,sport:$('#cpSport',d).value,title:ti,body:bo,media:med.length?med:undefined}).then(function(t){mpClear('c');d.close();toast('Thread posted.');location.href=threadUrl(t.id)},function(err){b.disabled=false;m.textContent=(window.MP_slowDown&&MP_slowDown(err))||err.message})})}
   /* ---------- Report a post: reason picker, then a confirmation. Demo (and live until REPORTS is on in sb.js) keeps it in this browser. ---------- */
   var REPORT_WHY={harassment:['Harassment','Goes after an athlete, a coach, their family or another fan'],recruit_minor:['Recruit or minor info','Rumors or personal details about a recruit or anyone under 18'],
     doxxing:['Doxxing','Shares an address, phone number, schedule or other private info'],spam:['Spam','Ads, scams, links or the same post over and over'],other:['Something else','Tell the mods below']};

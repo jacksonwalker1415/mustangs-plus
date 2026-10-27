@@ -145,10 +145,10 @@
     loadThread:function(id){return Promise.resolve(MP.THREADS.filter(function(t){return t.id===id})[0]||null)},
     createThread:function(o){if(!SMU.user)return Promise.reject(new Error('Sign in to start a thread.'));
       var L=demo.local(),id=Math.max.apply(null,MP.THREADS.map(function(t){return t.id}).concat([100]))+1,now=new Date().toISOString();
-      var t={id:id,f:o.f,sport:o.sport||null,title:o.title,by:'me',ago:'1m',replies:0,views:'1',mine:true,posts:[['me',o.body,null,now]]};
-      L.threads.unshift(t);sj('mp_posts',L);MP.THREADS.unshift(t);emit('threads');return Promise.resolve(t)},
-    reply:function(tid,body,quote){if(!SMU.user)return Promise.reject(new Error('Sign in to reply.'));
-      var L=demo.local(),p=['me',body,quote==null?null:quote,new Date().toISOString()];(L.replies[tid]=L.replies[tid]||[]).push(p);sj('mp_posts',L);
+      var md=mediaDemo(o.media),t={id:id,f:o.f,sport:o.sport||null,title:o.title,by:'me',ago:'1m',replies:0,views:'1',mine:true,posts:[['me',o.body,null,now].concat(md?[null,md]:[])]};
+      L.threads.unshift(t);mediaSave(L,!!md);MP.THREADS.unshift(t);emit('threads');return Promise.resolve(t)},
+    reply:function(tid,body,quote,media){if(!SMU.user)return Promise.reject(new Error('Sign in to reply.'));
+      var md=mediaDemo(media),L=demo.local(),p=['me',body,quote==null?null:quote,new Date().toISOString()].concat(md?[null,md]:[]);(L.replies[tid]=L.replies[tid]||[]).push(p);mediaSave(L,!!md);
       var t=MP.THREADS.filter(function(x){return x.id===tid})[0];if(t){t.posts.push(p);t.replies++}emit('post:'+tid,p);return Promise.resolve(p)},
     watch:function(){return function(){}}
   };
@@ -178,12 +178,12 @@
     var posts=(r.posts||[]).slice().sort(function(a,b){return a.created_at<b.created_at?-1:1});
     var idx={};posts.forEach(function(p,i){idx[p.id]=i});
     var P=posts.map(function(p){var u=p.author_handle||ensureUser('u:'+p.author_id,p.author&&p.author.display_name,undefined,undefined,avOf(p.author));
-      return [u,p.body,p.quote_post_id!=null&&idx[p.quote_post_id]!=null?idx[p.quote_post_id]:null,p.created_at,p.id]});
+      var row=[u,p.body,p.quote_post_id!=null&&idx[p.quote_post_id]!=null?idx[p.quote_post_id]:null,p.created_at,p.id],md=mediaClean(p.media);if(md)row[5]=md;return row});
     return {id:r.id,f:r.forum_id,sport:r.sport,title:r.title,game:r.game_id||null,by:by,ago:ago(r.created_at),replies:P.length?P.length-1:(r.author_handle?null:Math.max(0,r.reply_count||0)),views:r.author_handle?null:kfmt(r.view_count),
       pin:!!r.pinned,hot:!!r.hot,posts:P.length?P:[[by,'',null,r.created_at]],locked:!P.length,live:true,mine:SMU.user&&r.author_id===SMU.user.id}}
   function threadSel(){var pf=avOn()?'display_name,avatar_url':'display_name';
     return 'id,forum_id,sport,title,pinned,hot,reply_count,view_count,created_at,last_post_at,author_handle,author_id,game_id,author:profiles!threads_author_id_fkey('+pf+'),'+
-      'posts(id,author_handle,author_id,body,quote_post_id,created_at,author:profiles!posts_author_id_fkey('+pf+'))'}
+      'posts(id,author_handle,author_id,body,quote_post_id,created_at'+(mediaLive()?',media':'')+',author:profiles!posts_author_id_fkey('+pf+'))'}
   function avOf(a){return avOn()&&a?(a.avatar_url||null):undefined}
   var myAv={id:null,url:null};
   var live={
@@ -306,11 +306,15 @@
       MP.THREADS=MP.THREADS.filter(function(x){return x.id!==id});MP.THREADS.unshift(t);if(MP.cleanBoards){MP.cleanBoards();if(MP.THREADS.indexOf(t)<0)return null}
       sb.rpc('bump_thread_view',{tid:id}).then(function(){},function(){});return t})},
     createThread:function(o){if(!SMU.user)return Promise.reject(new Error('Sign in to start a thread.'));
-      return q('newthread',sb.rpc('create_thread',{p_forum:o.f,p_sport:o.sport||null,p_title:o.title,p_body:o.body})).then(function(id){return live.loadThread(+id)}).then(function(t){emit('threads');return t})},
-    reply:function(tid,body,quote){if(!SMU.user)return Promise.reject(new Error('Sign in to reply.'));
-      var t=MP.THREADS.filter(function(x){return x.id===tid})[0],qid=quote!=null&&t&&t.posts[quote]?t.posts[quote][4]:null;
-      return q('reply',sb.from('posts').insert({thread_id:tid,author_id:SMU.user.id,body:body,quote_post_id:qid}).select('id,created_at').single()).then(function(r){
-        var p=['u:'+SMU.user.id,body,quote==null?null:quote,r.created_at,r.id];if(t&&!t.posts.some(function(x){return x[4]===r.id})){t.posts.push(p);t.replies++}emit('post:'+tid,p);return p})},
+      var up=mediaLive()&&o.media&&o.media.length?mediaUpload(o.media):Promise.resolve(null);
+      return up.then(function(md){return q('newthread',sb.rpc('create_thread',{p_forum:o.f,p_sport:o.sport||null,p_title:o.title,p_body:o.body})).then(function(id){
+        if(!md)return id;return live.loadThread(+id).then(function(t){var pid=t&&t.posts[0]&&t.posts[0][4];if(pid==null)return id;
+          return q('media',sb.rpc('set_post_media',{p_post:pid,p_media:md})).then(function(){return id},function(){return id})})})}).then(function(id){return live.loadThread(+id)}).then(function(t){emit('threads');return t})},
+    reply:function(tid,body,quote,media){if(!SMU.user)return Promise.reject(new Error('Sign in to reply.'));
+      var t=MP.THREADS.filter(function(x){return x.id===tid})[0],qid=quote!=null&&t&&t.posts[quote]?t.posts[quote][4]:null,md=null;
+      return (mediaLive()&&media&&media.length?mediaUpload(media):Promise.resolve(null)).then(function(m){md=m;var row={thread_id:tid,author_id:SMU.user.id,body:body,quote_post_id:qid};if(md)row.media=md;
+        return q('reply',sb.from('posts').insert(row).select('id,created_at').single())}).then(function(r){
+        var p=['u:'+SMU.user.id,body,quote==null?null:quote,r.created_at,r.id];if(md)p[5]=md;if(t&&!t.posts.some(function(x){return x[4]===r.id})){t.posts.push(p);t.replies++}emit('post:'+tid,p);return p})},
     watch:function(tid){var ch=sb.channel('thread-'+tid).on('postgres_changes',{event:'INSERT',schema:'public',table:'posts',filter:'thread_id=eq.'+tid},function(){
         live.loadThread(tid).then(function(t){emit('post:'+tid,t)})}).subscribe();
       return function(){try{sb.removeChannel(ch)}catch(e){}}}
@@ -412,6 +416,34 @@
     if(!folLive()||(t&&!SMU.isFollowing(t.id)))return Promise.resolve();
     return withTimeout(Promise.resolve(sb.rpc('follow_mark_read',{p_thread:t?t.id:null})),12000).then(function(r){folBad(r)},function(){})};
   on('auth',function(){folCache=null;folNotes=[];SMU.loadFollows().then(function(){return SMU.followNotes()})});
+
+  /* ---------- Photos on posts (supabase/PROPOSAL_boards_media.sql) ----------
+     MEDIA stays false until that SQL is applied, so the live site never asks for the board-media bucket or the posts.media column
+     (no 404s or 400s) and the photo button stays hidden there. Demo mode (or Supabase unreachable): photos are a local preview kept
+     in this browser with the demo post (data: URLs, already resized and re-encoded by app.js). A post's media is [{u,w,h,t}], up to 4.
+     Only our own bucket's public URLs (live) or data:image URLs (demo) are ever shown. */
+  var MEDIA=false,MEDIA_MAX=4,MEDIA_TYPES=['image/jpeg','image/png','image/webp','image/gif'],MEDIA_BYTES=5*1024*1024;
+  var MEDIA_LIVE=new RegExp('^'+String(CFG.SUPABASE_URL||'').replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'/storage/v1/object/public/board-media/[0-9a-f-]{36}/[A-Za-z0-9._-]{1,100}$');
+  function mediaLive(){return SMU.live&&!!sb&&(MEDIA||!!(MP.FEATURES&&MP.FEATURES.media===true))}
+  function mediaURLok(u){if(typeof u!=='string')return false;
+    return MEDIA_LIVE.test(u)&&!!configured||(!SMU.live&&/^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+\/=]+$/.test(u)&&u.length<7500000)}
+  function mediaClean(a){if(!Array.isArray(a))return null;var out=a.slice(0,MEDIA_MAX).filter(function(x){return x&&mediaURLok(x.u)&&+x.w>0&&+x.h>0}).map(function(x){
+      return {u:x.u,w:Math.min(10000,Math.round(+x.w)),h:Math.min(10000,Math.round(+x.h)),t:MEDIA_TYPES.indexOf(x.t)>=0?x.t:'image/jpeg'}});return out.length?out:null}
+  function mediaDemo(m){return m&&m.length?mediaClean(m.map(function(x){return {u:x.data,w:x.w,h:x.h,t:x.t}})):null}
+  /* demo: localStorage holds about 5 MB per site; if the photos don't fit, the post is still saved without them and they show until reload */
+  function mediaSave(L,has){var v=JSON.stringify(L);try{localStorage.setItem('mp_posts',v);return}catch(e){}
+    if(!has)return;var lite=JSON.parse(v);lite.threads.forEach(function(t){t.posts.forEach(function(p){if(p[5])p.length=5})});
+    Object.keys(lite.replies).forEach(function(k){lite.replies[k].forEach(function(p){if(p[5])p.length=5})});
+    try{localStorage.setItem('mp_posts',JSON.stringify(lite))}catch(e){}emit('media:full')}
+  function mediaUpload(items){var id=SMU.user.id,st=sb.storage.from('board-media');
+    return Promise.all(items.slice(0,MEDIA_MAX).map(function(x,i){var ext=x.t==='image/gif'?'gif':x.t==='image/png'?'png':x.t==='image/webp'?'webp':'jpg';
+      var path=id+'/'+Date.now().toString(36)+'-'+i+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
+      return q('media',st.upload(path,x.blob,{contentType:x.t,cacheControl:'31536000',upsert:false})).then(function(){return {u:st.getPublicUrl(path).data.publicUrl,w:x.w,h:x.h,t:x.t}})}))
+      .then(function(m){return mediaClean(m)})}
+  SMU.mediaOn=function(){return !!SMU.user&&(!SMU.live||mediaLive())};
+  SMU.mediaLocal=function(){return !SMU.live};
+  SMU.mediaOf=function(p){return p&&p[5]?mediaClean(p[5]):null};
+  SMU.MEDIA={max:MEDIA_MAX,types:MEDIA_TYPES,bytes:MEDIA_BYTES};
 
   /* ---------- public API: pick the backend at call time ---------- */
   function B(){return SMU.live?live:demo}
