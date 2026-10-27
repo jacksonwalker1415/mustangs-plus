@@ -16,7 +16,7 @@ SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js'
 # gamestats.js (MP.gameStats) are read only by the game page (app.js gamePage). Every other script loads on every page.
 ONLY_ON={'upcoming.js':('index.html',),'boxscores.js':('games/index.html',),'gamestats.js':('games/index.html',)}
 # Phones (<640px): the bar is a dismissible pop-up; the X stores mp_disc_x so it stays gone on later pages and visits (site.css)
-DISC_X='<button type="button" class="disc-x" aria-label="Dismiss"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 19 5 17.6 10.6 12 5 6.4z"/></svg></button><script>(function(){var h=document.documentElement,b=document.currentScript.previousElementSibling,k="mp_disc_x";try{if(localStorage.getItem(k))h.classList.add("disc-off")}catch(e){}b.addEventListener("click",function(){h.classList.add("disc-off");try{localStorage.setItem(k,"1")}catch(e){}})})()</script>'
+DISC_X='<button type="button" class="disc-x" aria-label="Dismiss"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 19 5 17.6 10.6 12 5 6.4z"/></svg></button><script>(function(){var h=document.documentElement,b=document.currentScript.previousElementSibling,k="mp_disc_x";try{if(localStorage.getItem(k))h.classList.add("disc-off")}catch(e){}b.addEventListener("click",function(){h.classList.add("disc-off");try{localStorage.setItem(k,"1")}catch(e){}var t=document.getElementById("menuBtn");if(!t||!t.offsetParent)t=document.querySelector("main a[href],main button:not([disabled]),main input,main [tabindex]:not([tabindex=\'-1\'])");if(t)t.focus({preventScroll:true})})})()</script>'
 def DISC(root):
     # One wording site-wide (Business Ops lock-exposure notice). build_pages.py rewrites it on every page.
     # Full wording on tablets/desktop; phones get the short line (CSS swaps them) so the bar stays two lines max.
@@ -31,7 +31,7 @@ def head(title,desc,page,root,extra=''):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta name="theme-color" content="#23347a">
+<meta name="theme-color" content="#354CA1">
 <meta property="og:site_name" content="SMU+">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
@@ -106,7 +106,7 @@ BOOT_HEAD='''<!--boot--><link rel="preload" href="{PRE}assets/fonts/dm-sans-var-
 <link rel="preload" href="{PRE}assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>@view-transition{navigation:auto}
 ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.18s;animation-timing-function:ease}
-#pgbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10000;height:3px;background:#fff;box-shadow:0 1px 0 rgba(22,33,79,.2);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
+#pgbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10000;height:3px;background:#fff;box-shadow:0 1px 0 rgba(38,38,38,.2);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
 html.pg-wait #pgbar{opacity:1;animation:pgGrow 12s cubic-bezier(.08,.7,.2,1) forwards}
 html.pg-done #pgbar{transform:scaleX(1);opacity:0;transition:transform .15s ease,opacity .2s ease .12s}
 @keyframes pgGrow{from{transform:scaleX(.06)}to{transform:scaleX(.9)}}
@@ -156,7 +156,7 @@ def meta(url,root,noindex=False,desc=None,ld=''):
 PWA_DEV=[(320,568,2),(375,667,2),(414,736,3),(375,812,3),(414,896,2),(414,896,3),(390,844,3),(428,926,3),(393,852,3),(430,932,3),(402,874,3),(440,956,3),(420,912,3)]
 PWA_CSS=(':root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}'
  # status-bar strip: in the home-screen app the page runs under the status bar / Dynamic Island
- 'body::before{content:"";position:fixed;z-index:9000;top:0;left:0;right:0;height:var(--sat);background:#23347a;pointer-events:none}'
+ 'body::before{content:"";position:fixed;z-index:9000;top:0;left:0;right:0;height:var(--sat);background:#354CA1;pointer-events:none}'
  'html body{padding-top:var(--sat)}'
  'html header.site{top:var(--sat)}'
  'html .jump{top:calc(var(--hdr-h,var(--hdr)) + var(--sat))}'
@@ -217,7 +217,7 @@ open(REPO+'/sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<ur
 # Approved 2026-10-26: keep the concept out of search engines (same URL keeps serving).
 open(REPO+'/robots.txt','w').write('User-agent: *\nDisallow: /\n')
 json.dump({'id':'./','name':'SMU+','short_name':'SMU+','description':'Concept SMU fan membership site for an SMU Cox class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners or Learfield.',
-  'lang':'en-US','dir':'ltr','start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#23347a','categories':['sports','entertainment'],
+  'lang':'en-US','dir':'ltr','start_url':'./','scope':'./','display':'standalone','background_color':'#354CA1','theme_color':'#354CA1','categories':['sports','entertainment'],
   'icons':[{'src':'assets/brand/icon-192.png','sizes':'192x192','type':'image/png','purpose':'any'},
            {'src':'assets/brand/icon-512.png','sizes':'512x512','type':'image/png','purpose':'any'},
            {'src':'assets/brand/icon-maskable-512.png','sizes':'512x512','type':'image/png','purpose':'maskable'}]},

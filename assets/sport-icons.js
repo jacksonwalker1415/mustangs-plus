@@ -3,8 +3,8 @@
    MP.sportIcon(slug, number, tone) -> SVG string. tone: 'dark' (blue/navy tile) or 'light' (white tile). */
 (function(){
   var MP=window.MP=window.MP||{};
-  var BLUE='#354CA1',NAVY='#1c2a63',RED='#CC0035',WHITE='#fff';
-  function pal(tone){return tone==='light'?{body:BLUE,line:NAVY,num:WHITE,acc:RED,soft:'#e6e9f5'}:{body:WHITE,line:WHITE,num:BLUE,acc:RED,soft:'rgba(255,255,255,.2)'}}
+  var BLUE='#354CA1',NAVY='#354CA1',RED='#CC0035',WHITE='#fff';
+  function pal(tone){return tone==='light'?{body:BLUE,line:NAVY,num:WHITE,acc:RED,soft:'#e7eaf4'}:{body:WHITE,line:WHITE,num:BLUE,acc:RED,soft:'rgba(255,255,255,.2)'}}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   var S=' stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"';
   function num(n,x,y,size,c){if(n==null||n==='')return '';n=String(n);var fs=size*(n.length>2?.62:n.length>1?.85:1);
@@ -33,7 +33,7 @@
       '<path d="M16 88 H104" stroke="'+p.line+'" stroke-width="2.5" stroke-linecap="round"/><rect x="34" y="82" width="20" height="13" rx="6.5" fill="'+p.acc+'" stroke="'+p.line+'"'+S+'/><rect x="66" y="82" width="20" height="13" rx="6.5" fill="'+p.acc+'" stroke="'+p.line+'"'+S+'/>'},
     /* golf ball on a tee */
     golf:function(n,p){return '<circle cx="60" cy="48" r="26" fill="'+p.body+'" stroke="'+p.line+'"'+S+'/>'+
-      [[50,38],[62,34],[72,42],[54,50],[66,52],[48,60],[60,64],[72,58]].map(function(d){return '<circle cx="'+d[0]+'" cy="'+d[1]+'" r="2.4" fill="'+p.soft.replace('rgba(255,255,255,.2)','#c9d0ea')+'"/>'}).join('')+
+      [[50,38],[62,34],[72,42],[54,50],[66,52],[48,60],[60,64],[72,58]].map(function(d){return '<circle cx="'+d[0]+'" cy="'+d[1]+'" r="2.4" fill="'+p.soft.replace('rgba(255,255,255,.2)','#cad0e7')+'"/>'}).join('')+
       '<path d="M46 76 H74 L64 84 V106 Q60 110 56 106 V84 Z" fill="'+p.acc+'" stroke="'+p.line+'"'+S+'/>'},
     /* tennis racket with a ball */
     tennis:function(n,p){return '<g transform="rotate(-35 54 54)"><ellipse cx="54" cy="44" rx="24" ry="30" fill="none" stroke="'+p.line+'" stroke-width="5"/>'+

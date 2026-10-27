@@ -22,8 +22,8 @@ var ADS=MP.ADS={
   /* made-up brands. Not real companies; no gambling, alcohol or crypto. bg = creative background, fg = text, ac = accent / button, ct = button text (default white). */
   brands:{
     tellivant:{name:'Tellivant Wireless',line:'Game day coverage, end zone to end zone.',cta:'See plans',bg:'#354CA1',fg:'#fff',ac:'#CC0035',mark:'wave'},
-    brindlecup:{name:'Brindlecup Coffee',line:'Small-batch roasts for early kickoffs.',cta:'Find a caf\u00e9',bg:'#fff',fg:'#16214f',ac:'#CC0035',mark:'cup'},
-    wrenhollow:{name:'Wrenhollow Sports Medicine',line:'Sprains, strains and weekend warriors. Same-week visits.',cta:'Book a visit',bg:'#16214f',fg:'#fff',ac:'#CC0035',mark:'cross'},
+    brindlecup:{name:'Brindlecup Coffee',line:'Small-batch roasts for early kickoffs.',cta:'Find a caf\u00e9',bg:'#fff',fg:'#354CA1',ac:'#CC0035',mark:'cup'},
+    wrenhollow:{name:'Wrenhollow Sports Medicine',line:'Sprains, strains and weekend warriors. Same-week visits.',cta:'Book a visit',bg:'#354CA1',fg:'#fff',ac:'#CC0035',mark:'cross'},
     pelloway:{name:'Pelloway Insurance',line:'Home, auto and the drive to the game.',cta:'Get a quote',bg:'#CC0035',fg:'#fff',ac:'#fff',ct:'#CC0035',mark:'shield'},
     kestrelvale:{name:'Kestrelvale Auto Care',line:'Oil, tires and a wash before the tailgate.',cta:'Schedule service',bg:'#fff',fg:'#354CA1',ac:'#354CA1',mark:'gear'},
     marrowbys:{name:'Marrowby\u2019s Burgers',line:'Smash burgers with game-day hours.',cta:'Order ahead',bg:'#354CA1',fg:'#fff',ac:'#fff',ct:'#354CA1',mark:'burger'}

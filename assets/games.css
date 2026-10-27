@@ -3,13 +3,12 @@
 body[data-page="games"]{--gm-hair:rgba(53,76,161,.16);--gm-hair-2:rgba(53,76,161,.28)}
 
 /* Palette on game pages: SMU blue and red for every highlight, bar, leader and accent; neutrals for text; blue hairlines */
-body[data-page="games"] main{--ink:#1f1f1f;--ink-2:#4d4d4d;--ink-3:#5c5c5c;--black:#1f1f1f;--line:rgba(53,76,161,.16);--line-2:rgba(53,76,161,.28);color:var(--ink)}
-body[data-page="games"] main .credit{background:rgba(0,0,0,.55)}
-body[data-page="games"] main .poster{background:#1f1f1f;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-body[data-page="games"] main .poster-verb,body[data-page="games"] main .tpl-card>.poster-verb,body[data-page="games"] main .mcard.ext .poster.tpl-card .poster-verb{background:rgba(0,0,0,.45)}
+body[data-page="games"] main{--line:rgba(53,76,161,.16);--line-2:rgba(53,76,161,.28);color:var(--ink)} /* ink and --black come from site.css: SMU dark #262626 and SMU blue */
+body[data-page="games"] main .poster{background:var(--blue);box-shadow:0 1px 2px rgba(38,38,38,.06)}
+body[data-page="games"] main .poster-verb,body[data-page="games"] main .tpl-card>.poster-verb,body[data-page="games"] main .mcard.ext .poster.tpl-card .poster-verb{background:rgba(53,76,161,.88)}
 body[data-page="games"] main .tpl-card .tpl-ph{background:var(--blue)}
-body[data-page="games"] main .dur{background:rgba(0,0,0,.62)}
-body[data-page="games"] main .xarr{box-shadow:0 2px 8px rgba(0,0,0,.2)}
+body[data-page="games"] main .dur{background:rgba(53,76,161,.88)}
+body[data-page="games"] main .xarr{box-shadow:0 2px 8px rgba(38,38,38,.2)}
 body[data-page="games"] main .gm-pn a{border-color:var(--gm-hair-2)}
 
 
@@ -292,8 +291,8 @@ body[data-page="games"] main .credit{font-size:13px}
 }
 
 /* ---------- losing score (.sc-t): solid color instead of site.css opacity .5 ---------- */
-/* was --black (#1f1f1f on game pages) at .5 = #8f8f8f on #fff, 3.23:1. #536197 (78% SMU navy #23347a on white) = 5.96:1 on #fff */
-body[data-page="games"] .sc-t:not(.win){opacity:1;color:#536197}
+/* losing side: solid --ink-3 (SMU dark #262626 at 70%) = 5.66:1 on #fff, instead of opacity .5 */
+body[data-page="games"] .sc-t:not(.win){opacity:1;color:var(--ink-3)}
 
 /* ---------- previews: season leaders reuse the Game leaders layout; last five games for each team ---------- */
 .gc-fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s5)}
