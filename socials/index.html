@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>From Socials | SMU+</title>
-<meta name="description" content="The newest public posts on X from SMU Athletics, SMU teams, writers and players, in one feed (concept mockup).">
+<meta name="description" content="The newest public posts from SMU-related accounts on X. Not affiliated with these accounts or with X.">
 <meta name="theme-color" content="#354CA1">
 <meta property="og:site_name" content="SMU+">
 <meta property="og:title" content="From Socials | SMU+">
-<meta property="og:description" content="The newest public posts on X from SMU Athletics, SMU teams, writers and players, in one feed (concept mockup).">
+<meta property="og:description" content="The newest public posts from SMU-related accounts on X. Not affiliated with these accounts or with X.">
 <meta name="twitter:title" content="From Socials | SMU+">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/brand/favicon-64.png">
 <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://fanplatformdemo.com/assets/brand/og-share.png">
 <meta name="twitter:image:alt" content="The SMU+ logo on flat SMU blue, with the line SMU+ · fan concept, not affiliated with SMU">
-<meta name="twitter:description" content="The newest public posts on X from SMU Athletics, SMU teams, writers and players, in one feed (concept mockup).">
+<meta name="twitter:description" content="The newest public posts from SMU-related accounts on X. Not affiliated with these accounts or with X.">
 <link rel="manifest" href="../manifest.webmanifest">
 <!--/meta-->
 <!--pwa--><meta name="apple-mobile-web-app-capable" content="yes">
@@ -81,15 +81,25 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 <div id="site-header"></div>
 <div class="disclaimer" role="note"><span class="disc-full">Built for an SMU Cox MBA class project. Not affiliated with, endorsed by, or sponsored by SMU, SMU Athletics, Mustang Partners, Learfield or any athlete or organization shown. Memberships are for demonstration only. No payments are taken and no real product or service is offered. For educational purposes only.</span><span class="disc-short">SMU Cox MBA class project. Not affiliated with SMU, Mustang Partners or Learfield. No payments taken.</span> <a href="../privacy/#about">About this project</a><button type="button" class="disc-x" aria-label="Dismiss"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 19 5 17.6 10.6 12 5 6.4z"/></svg></button><script>(function(){var h=document.documentElement,b=document.currentScript.previousElementSibling,k="mp_disc_x";try{if(localStorage.getItem(k))h.classList.add("disc-off")}catch(e){}b.addEventListener("click",function(){h.classList.add("disc-off");try{localStorage.setItem(k,"1")}catch(e){}var t=document.getElementById("menuBtn");if(!t||!t.offsetParent)t=document.querySelector("main a[href],main button:not([disabled]),main input,main [tabindex]:not([tabindex='-1'])");if(t)t.focus({preventScroll:true})})})()</script></div>
 <main id="top" class="sx-page">
-<section class="page-hero compact sx-hero"><div class="wrap"><h1>From Socials</h1><p class="lede on-dark">The newest public posts from SMU accounts on X, newest first.</p></div></section>
-<section class="sec tight lib-bar sx-bar" id="sxBar" aria-label="Browse From Socials"><div class="wrap">
-  <nav class="seg lib-seg sx-tabs" aria-label="Media"><a href="../library/">All</a><a href="../library/?type=video">Videos</a><a href="../library/?type=podcast">Podcasts</a><a href="../library/?type=article">Articles</a><a href="./" aria-current="page">From Socials</a></nav>
-  <div class="chips sx-chips" id="sxChips" role="group" aria-label="Filter posts"><button type="button" class="chip" data-g="" aria-pressed="true">All</button><button type="button" class="chip" data-g="official" aria-pressed="false">Official</button><button type="button" class="chip" data-g="teams" aria-pressed="false">Teams</button><button type="button" class="chip" data-g="writers" aria-pressed="false">Writers</button><button type="button" class="chip" data-g="athletes" aria-pressed="false">Athletes</button></div>
+<section class="page-hero compact has-photo"><div class="bgph"><img class="ph" src="../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-1200.webp" srcset="../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-800.webp 800w, ../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-1200.webp 1200w, ../assets/photos/lib/football-end-zone-dive-ford-stadium-day-wide-2000.webp 2000w" sizes="100vw" alt="An SMU football player in blue celebrates in the end zone at Gerald J. Ford Stadium on a sunny day" style="object-position:50% 35%" fetchpriority="high" decoding="async"></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><h1 class="display">From Socials</h1><p class="lede on-dark">The newest public posts from SMU-related accounts on X. Not affiliated with these accounts or with X.</p></div></section>
+<section class="sec tight lib-bar" id="sxBar" aria-label="Browse From Socials"><div class="wrap">
+  <div class="filters">
+    <nav class="seg lib-seg" aria-label="Media type"><a href="../library/" data-type="all">All</a><a href="../library/?type=video" data-type="video">Videos</a><a href="../library/?type=podcast" data-type="podcast">Podcasts</a><a href="../library/?type=article" data-type="article">Articles</a><a href="./" data-type="socials" aria-current="page"><span class="ls-from">From&nbsp;</span>Socials</a></nav>
+    <label class="lib-show sx-show"><span class="lib-show-l">Show</span><span class="lib-show-dd"><select id="sxShow"><option value="">All posts</option></select></span></label>
+    <button type="button" class="linkish sx-fl-btn" id="sxFollowBtn" aria-controls="sxFollow" aria-expanded="false" hidden>Following</button>
+    <span class="meta" id="sxCount"></span><button type="button" class="linkish" id="sxClear" hidden>Show all posts</button>
+  </div>
 </div></section>
-<section class="sec tight sx-sec" aria-label="Posts"><div class="wrap sx-wrap">
-  <ol class="sx-feed" id="sxFeed" aria-busy="true"></ol>
-  <p class="sx-empty" id="sxEmpty" hidden>No posts from this group yet.</p>
-  <p class="sx-src" id="sxSrc"></p>
+<section class="sec tight sx-sec" aria-label="Posts"><div class="wrap sx-grid">
+  <div class="sx-col">
+    <ol class="sx-feed" id="sxFeed" aria-busy="true"></ol>
+    <p class="sx-empty" id="sxEmpty" hidden>No posts to show here yet.</p>
+    <p class="sx-src" id="sxSrc"></p>
+  </div>
+  <aside class="sx-follow" id="sxFollow" aria-labelledby="sxFollowH"><div class="sx-follow-in">
+    <div class="sx-follow-hd"><h2 id="sxFollowH">Following</h2><button type="button" class="sx-follow-x" id="sxFollowX" aria-label="Close the Following list">×</button></div>
+    <div id="sxFollowList"></div>
+  </div></aside>
 </div></section>
 </main>
 <div id="site-footer"></div>

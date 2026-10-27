@@ -1205,7 +1205,7 @@
     var st={q:(P.get('q')||'').slice(0,80),show:P.get('show')||'all'};if(!/^[\w-]+$/.test(st.show))st.show='all';
     var main=$('main'),grid=$('#libGrid'),rgrid=$('#libReadGrid'),count=$('#libCount'),q=$('#libQ'),empty=$('#libEmpty'),showSel=$('#libShowSel'),showL=$('#libShow'),T=LIB_TYPES[type];
     $$('#libType a').forEach(function(a){if(a.dataset.type===type)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
-    $('#libH').textContent=T?T[0]:'All media';$('#libVh').hidden=!T;main.classList.toggle('lib-typed',!!T);q.value=st.q;
+    $('#libH').textContent=T?T[0]:'All media';$('#libVh').hidden=true;/* the hero now names the sub-page (inline script in library/index.html), so no second heading */main.classList.toggle('lib-typed',!!T);q.value=st.q;
     var wait=type==='video'||type==='podcast';main.classList.toggle('lib-wait',wait);$('#libSkel').hidden=!wait;
     function ofType(t){return MP.LIB.filter(function(c){return c.t===t})}
     if(type==='all'){var rows=['video','podcast','article'].map(function(t){var L=ofType(t);if(!L.length)return '';
