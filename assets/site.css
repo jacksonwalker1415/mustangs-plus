@@ -2117,7 +2117,6 @@ a.fx-quote-h:hover{text-decoration:underline}
 .fx-reply-f{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-top:8px;flex-wrap:wrap}
 .fx-reply-tip{font-size:13px;color:var(--fx-mute)}
 .fx-reply-tip a{color:var(--blue);text-decoration:underline}
-.fx-fab{display:none}
 /* tablet and phone */
 @media(max-width:1099px){.fx-node{grid-template-columns:minmax(0,1fr) 150px}.fx-node-last{grid-column:1/3}}
 @media(max-width:767px){
@@ -2165,7 +2164,6 @@ a.fx-quote-h:hover{text-decoration:underline}
   .fx-reply-av{display:none}
   .fx-reply-f .btn{width:100%}
   .fx-reply.out .btn{width:100%}
-  .fx-fab.show{display:inline-flex;align-items:center;justify-content:center;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;height:52px;min-width:120px;padding:0 24px;border-radius:26px;background:var(--red);color:#fff;font-weight:700;font-size:16px;box-shadow:0 4px 16px rgba(38,38,38,.25)}
 }
 .fx-ico .fx-book{fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
 .fx-ico.on .fx-book{fill:currentColor}
@@ -2652,7 +2650,6 @@ mark{background:var(--blue-10)}
 .ad-sticky{box-sizing:border-box;max-width:100%;overflow:visible;overflow-x:clip} /* clip sideways only: the Label and Close tabs sit above the bar and must stay clickable */.ad-st-ph>*,.ad-st-dk>*{max-width:100%;box-sizing:border-box}
 html.ad-sticky-on:not(.adfree) body{padding-bottom:calc(106px + env(safe-area-inset-bottom))}
 @media(min-width:760px){html.ad-sticky-on:not(.adfree) body{padding-bottom:146px}}
-html.ad-sticky-on:not(.adfree) .fx-fab.show{bottom:calc(116px + env(safe-area-inset-bottom))}
 html.ad-sticky-on:not(.adfree) .toasts{bottom:calc(116px + env(safe-area-inset-bottom))}
 @media(min-width:760px){html.ad-sticky-on:not(.adfree) .toasts{bottom:156px}}
 @media print{.ad,.ad-sticky,.ad-ist,.ad-skin-bg{display:none!important}}
@@ -2992,18 +2989,19 @@ header.site,#site-header:empty{background:var(--blue);border-bottom-color:rgba(2
   /* Game day now opens the phone page: the photo keeps its 21:9 box when the image arrives (it used to grow ~50px on load) */
   .gd-hph{overflow:hidden}.gd-hph>.ph{position:absolute;inset:0}
 }
-@media(max-width:639px){
-  html body .disclaimer{position:fixed;left:8px;right:8px;bottom:calc(8px + var(--sab,0px));z-index:200;padding:10px 48px 10px 14px;border-radius:12px;text-align:left;box-shadow:0 6px 24px rgba(38,38,38,.35)}
-  /* lifted over the sticky sample ad with a transform, so the move is not a layout shift */
-  html body .disclaimer{transition:transform .2s}
-  html.ad-sticky-on:not(.adfree) body .disclaimer{transform:translateY(-108px)}
-  html:has(#reader:not([hidden])) body .disclaimer{top:auto;left:8px;right:8px}
-  .reader:not([hidden]){top:var(--sat,0px)}
-  .disc-x{display:grid;place-items:center;position:absolute;top:0;right:0;width:44px;height:44px;padding:0;border:0;border-radius:12px;background:none;color:#fff;cursor:pointer}
-  .disc-x svg{fill:currentColor}
-  .disc-x:focus-visible{outline:3px solid #fff;outline-offset:-6px}
-  html.disc-off .disclaimer{display:none}
-}
+/* Disclaimer strip (Mobbin quick win 1, Jackson Oct 27): a slim red strip right under the header, every page and every width.
+   In the page flow, so it scrolls away with the page (never fixed or sticky) and cannot cover the home hero buttons, the sign-in
+   form, the phone menu or the sample ad. Own stacking context (z 1), so the sticky header (z 50) slides over it on scroll.
+   The X is 44px and stores mp_disc_x (build_pages.py DISC_X), so it stays closed on later pages and visits. */
+html body .disclaimer{position:relative;z-index:1;display:block;margin:0;padding:6px max(52px,var(--sar,0px)) 6px max(var(--gut),var(--sal,0px));font-size:13px;line-height:1.4;text-align:left;background:#CC0035;color:#fff;border-radius:0;box-shadow:none;transform:none;transition:none}
+@media(min-width:640px){html body .disclaimer{text-align:center;padding-left:52px}}
+html body .disclaimer a{z-index:auto}
+html:has(#reader:not([hidden])) body .disclaimer{position:relative;top:auto;left:auto;right:auto}
+@media(max-width:639px){.reader:not([hidden]){top:var(--sat,0px)}}
+.disc-x{display:grid;place-items:center;position:absolute;top:50%;right:4px;margin-top:-22px;width:44px;height:44px;padding:0;border:0;border-radius:var(--r1);background:none;color:#fff;cursor:pointer}
+.disc-x svg{fill:currentColor}
+.disc-x:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+html.disc-off .disclaimer{display:none}
 
 /* ---------- Boards #3: thread follow button + header notification bell (bell injected by app.js into .hdr-act) ---------- */
 .fx-follow[aria-pressed="true"],.fx-follow[aria-pressed="true"]:hover{background:var(--blue);border-color:var(--blue);color:#fff}
@@ -3046,6 +3044,33 @@ body[data-page="games"] main .credit{background:rgba(53,76,161,.88)}
 @container (min-width:114px){.tpl-card .tpl-ph .credit{font-size:10px}}
 @container (min-width:126px){.tpl-card .tpl-ph .credit{font-size:11px}}
 @container (min-width:134px){.tpl-card .tpl-ph .credit{font-size:12px;left:var(--s2);bottom:var(--s2)}}
+/* Roster (quick win 2, Oct 27): no real photo means a blue circle with the white jersey number (initials for staff), not an empty tile */
+.roster-card.has-num .rnum{background:none;box-shadow:none}
+.rn-c{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:#354CA1;color:#fff;font-family:var(--display);font-weight:400;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.r-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 var(--s4)}
+.r-chips .chip{min-height:44px;height:auto}
+@media(max-width:639px){.r-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:calc(var(--gut)*-1);padding-right:var(--gut)}.r-chips::-webkit-scrollbar{display:none}.r-chips .chip{flex:none}}
+.r-chips .chip[aria-pressed="true"]{background:#354CA1;border-color:#354CA1;color:#fff}
+.r-chips .chip[aria-pressed="true"] span{color:#fff}
+/* Board threads (quick win 3, Oct 27): reply sort and the phone reply bar */
+.fx-tsort{margin:0 0 var(--s4)}
+.fx-tsort button{height:44px}
+.fx-rbar{display:none}
+@media(max-width:767px){
+  .fx-tsort{display:flex;width:100%}.fx-tsort button{flex:1;padding:0 8px}
+  .fx-rbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:44;background:#fff;border-top:1px solid var(--line-2);padding:8px var(--gut) calc(8px + env(safe-area-inset-bottom));transition:transform .2s}
+  .fx-rbar.away{transform:translateY(110%)}
+  .fx-rbar-b{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:0 6px 0 6px;border:1px solid var(--line-2);border-radius:22px;background:#fff;color:#262626;font:inherit;font-size:15px;text-align:left;text-decoration:none;cursor:pointer}
+  .fx-rbar-b .av{width:32px;height:32px;font-size:14px;flex:none}
+  .fx-rbar-t{flex:1;padding-left:8px}
+  .fx-rbar-go{flex:none;display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:16px;background:#CC0035;color:#fff;font-weight:700;font-size:14px}
+  .fx-rbar-b:focus-visible{outline:3px solid #354CA1;outline-offset:2px}
+  /* room under the thread for the bar; the sample ad sits in the page here (MP.adFlow in app.js), not on the bottom edge */
+  html.fx-thr-on body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .ad-sticky.ad-inflow{position:relative;left:auto;right:auto;bottom:auto;z-index:auto;box-shadow:none;border:1px solid var(--line-2);border-radius:var(--r2);margin:var(--s5) 0 0;padding-bottom:8px}
+  html.ad-quiet .ad-sticky.ad-inflow{visibility:visible;pointer-events:auto}
+  html.fx-thr-on .toasts{bottom:calc(76px + env(safe-area-inset-bottom))}
+}
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */

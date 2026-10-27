@@ -61,16 +61,17 @@
     'equestrian':'<path d="M9 27V15a7 7 0 0 1 14 0v12M6 27h6M20 27h6"/>'
   };
   function sportIcon(slug){return '<svg viewBox="0 0 32 32" aria-hidden="true">'+(ICON[slug]||ICON.football)+'</svg>'}
-  /* ---------- Shared roster card: real SMU Athletics photo when one exists, otherwise a sport-specific icon (assets/sport-icons.js) ---------- */
+  /* ---------- Shared roster card: real SMU Athletics photo when one exists, otherwise a blue circle with the jersey number (initials for
+     staff, who have no number). Quick win 2, Oct 27: replaces the sport icon tile that read as an empty blue square. ---------- */
   function rosterPhotoKey(a,slug){var RP=(MP.ROSTER_PHOTOS||{})[slug]||{},m=String(a.url||'').match(/\/roster\/(.+?)\/?$/),k=m&&RP[m[1]];
     if(!k&&a.id&&RP[a.id])k=RP[a.id];
     if(!k){var nm=String(a.name||'').toLowerCase(),ath=(MP.ATHLETES||[]).filter(function(x){return x.sport===slug.replace(/^.*football.*$/,'football')&&x.name.toLowerCase()===nm})[0];if(ath)k=ath.cardPhoto||ath.photo}
     return k&&PH[k]?k:null}
   function rosterCard(a,i,s,o){o=o||{};var v=['home','away','alt'][i%3],key='key' in o?o.key:rosterPhotoKey(a,s.slug),p=key&&PH[key],hasNum=a.num!=null&&a.num!=='';
     var art=p?'<img class="rc-photo" src="'+ROOT+'assets/photos/'+(p.small||p.file)+'" alt="'+esc(o.alt||a.name+(hasNum?', number '+a.num:'')+', SMU '+s.name)+'" loading="lazy" decoding="async" style="object-position:'+(p.pos||'50% 22%')+'">'
-      :(MP.sportIcon?MP.sportIcon(s.slug,hasNum?a.num:null,v==='alt'?'light':'dark'):'');
+      :'<span class="rn-c" aria-hidden="true">'+esc(hasNum?String(a.num):initials(a.name))+'</span>'+(hasNum?'<span class="sr">Number '+esc(a.num)+'</span>':'');
     var pr=o.coach?null:(MP.ATHLETES||[]).filter(function(x){return x.sport===s.slug&&x.name===a.name})[0];
-    return '<a class="rcard roster-card'+(p?' has-photo':' has-icon')+(o.more?' r-more':'')+'"'+(o.more?' hidden':'')+' href="'+(pr?athleteUrl(pr.id):(a.url||'#'))+'"'+(pr?'':' target="_blank" rel="noopener"')+'><span class="rnum" style="background:'+KIT_BG[v]+'">'+art+'</span>'+
+    return '<a class="rcard roster-card'+(p?' has-photo':' has-num')+(o.more?' r-more':'')+'"'+(o.grp?' data-grp="'+o.grp+'"':'')+(o.more?' hidden':'')+' href="'+(pr?athleteUrl(pr.id):(a.url||'#'))+'"'+(pr?'':' target="_blank" rel="noopener"')+'><span class="rnum"'+(p?' style="background:'+KIT_BG[v]+'"':'')+'>'+art+'</span>'+
       '<span class="rc-b"><b>'+esc(a.name)+'</b><span class="rp">'+esc([a.pos,o.team].filter(Boolean).join(' \u00b7 ')||s.name)+'</span><small>'+esc([a.cls,a.ht,a.town].filter(Boolean).join(' \u00b7 '))+'</small>'+(pr?'<small class="r-bio">SMU+ profile <span aria-hidden="true">\u203a</span></small>':'<small class="r-bio">Official bio <span aria-hidden="true">\u2197</span></small>')+'</span></a>'}
   function sportBy(slug){for(var i=0;i<MP.SPORTS.length;i++)if(MP.SPORTS[i].slug===slug)return MP.SPORTS[i];return null}
   function sportUrl(slug){return ROOT+'sports/'+slug+'/'}
@@ -1419,14 +1420,24 @@
       return '<span class="fx-likes-ic">'+HEART+'</span><span>'+esc(s)+'</span>'}
     function paintLikes(t){var m=likes[t.id]||{};$$('.fx-msg',threadView).forEach(function(el){var i=+el.dataset.i,o=m[i],bar=$('.fx-likes',el),b=$('[data-like]',el);
       if(bar){bar.innerHTML=likeLine(o);bar.hidden=!(o&&o.names.length)}if(b){b.setAttribute('aria-pressed',String(!!(o&&o.mine)));$('span',b).textContent=o&&o.mine?'Liked':'Like'}})}
-    function loadLikes(t){SMU.likes(t).then(function(m){likes[t.id]=m;var cur=hashT();if(cur&&cur.id===t.id)paintLikes(t)},function(){})}
+    function loadLikes(t){SMU.likes(t).then(function(m){likes[t.id]=m;var cur=hashT();if(cur&&cur.id===t.id){paintLikes(t);topBtn(t)}},function(){})}
+    /* Reply sort (quick win 3, Oct 27): Oldest (thread order) or Newest by post time. Top only appears once real likes exist on a reply
+       (SMU.likes, the stored likes); sample posts carry no counts, so there is nothing to rank them by and Top stays hidden. The opening post stays first. */
+    var tsort={id:null,v:'old'};
+    function likeN(t,i){var o=(likes[t.id]||{})[i];return o&&o.names?o.names.length:0}
+    function hasTop(t){for(var i=1;i<t.posts.length;i++)if(likeN(t,i)>0)return true;return false}
+    function order(t){var a=[];for(var i=1;i<t.posts.length;i++)a.push(i);
+      if(tsort.v==='new')a.reverse();else if(tsort.v==='top'&&hasTop(t))a.sort(function(x,y){return likeN(t,y)-likeN(t,x)||x-y});return [0].concat(a)}
+    function sortCtl(t){if(t.posts.length<3)return '';var b=function(k,l,h){return '<button type="button" data-tsort="'+k+'" aria-pressed="'+(tsort.v===k)+'"'+(h?' hidden':'')+'>'+l+'</button>'};
+      return '<div class="fx-sort fx-tsort" role="group" aria-label="Sort replies">'+b('old','Oldest')+b('new','Newest')+b('top','Top',!hasTop(t))+'</div>'}
+    function topBtn(t){var b=$('[data-tsort="top"]',threadView);if(b)b.hidden=!hasTop(t)}
     function hashT(){var m=location.hash.match(/^#t(\d+)(?:-(p\d+|new|last|page\d+))?$/);return m?{id:+m[1],x:m[2]||''}:null}
     function findT(id){var t=null;MP.THREADS.forEach(function(x){if(x.id===id)t=x});return t}
     function msg(t,p,i,ctx){var u=U(p[0]),q=p[2]!=null?t.posts[p[2]]:null,me=SMU.me(),cnt=ctx.counts[p[0]]||0,ts=times(t)[i],st=u.staff,isNew=ctx.seen>0&&i>=ctx.seen&&ctx.unread;
       var badge=st?'<span class="fx-banner staff">Staff</span>':(p[0]===me&&SMU.tier&&SMU.tier()==='student')?'<span class="fx-banner">Student</span>':'<span class="fx-banner">Member</span>';
       var title=st?esc(u.tier||'SMU+ staff'):rank(cnt);
       var mk=MARKS[t.id+':'+i];
-      return (isNew&&i===ctx.seen&&i>0?'<div class="fx-newline" id="t'+t.id+'-newline"><span>New</span></div>':'')+
+      return (isNew&&i===ctx.seen&&i>0&&!ctx.sorted?'<div class="fx-newline" id="t'+t.id+'-newline"><span>New</span></div>':'')+
         '<article class="fx-msg'+(i===0?' op':'')+'" id="t'+t.id+'-p'+(i+1)+'" data-i="'+i+'">'+
         '<div class="fx-user">'+avatar(p[0],true,true)+'<div class="fx-user-d"><b class="fx-name">'+esc(u.n)+'</b><span class="fx-rank">'+title+'</span>'+badge+
           '<span class="fx-time-m">'+tm(ts)+'</span></div>'+
@@ -1454,13 +1465,14 @@
       rq.hidden=false;rq.innerHTML='<blockquote class="fx-quote"><span class="fx-quote-h">'+esc(U(p[0]).n)+' said:</span><div class="fx-quote-b">'+fmt(p[1].length>240?p[1].slice(0,240)+'\u2026':p[1])+'</div><button type="button" class="fx-unquote" id="unquote" aria-label="Remove quote">Remove</button></blockquote>'}
     function renderThread(h){var t=findT(h.id);if(!t){threadView.innerHTML=crumbs([['Boards','./'],['Thread not found']])+emptyState('chat','That thread isn\u2019t here','It may have been removed, or the link is wrong.','<a class="btn btn-navy btn-sm" href="./">Back to the boards</a>');return}
       var f=forumBy(t.f)||{id:t.f,name:'Board'},n=t.posts.length,pages=Math.max(1,Math.ceil(n/PPER)),sn=seen(t),un=unread(t);
-      var target=null,page=1;
-      if(/^p\d+$/.test(h.x)){target=Math.min(n,Math.max(1,+h.x.slice(1)));page=Math.ceil(target/PPER)}
-      else if(h.x==='last'){target=n;page=pages}else if(h.x==='new'){target=un?sn+1:n;page=Math.ceil(target/PPER)}
+      var target=null,page=1;if(tsort.id!==t.id)tsort={id:t.id,v:'old'};if(tsort.v==='top'&&!hasTop(t))tsort.v='old';
+      var ord=order(t),pos=function(k){return ord.indexOf(k-1)+1};
+      if(/^p\d+$/.test(h.x)){target=Math.min(n,Math.max(1,+h.x.slice(1)));page=Math.ceil(pos(target)/PPER)}
+      else if(h.x==='last'){target=n;page=pages}else if(h.x==='new'){target=un?sn+1:n;page=Math.ceil(pos(target)/PPER)}
       else if(/^page\d+$/.test(h.x))page=Math.min(pages,Math.max(1,+h.x.slice(4)));
       var counts={};MP.THREADS.forEach(function(x){if(!x.locked)x.posts.forEach(function(p){counts[p[0]]=(counts[p[0]]||0)+1})});
-      var ctx={counts:counts,seen:sn,unread:un,all:!SMU.live||paidT(SMU.tier())};
-      var from=(page-1)*PPER,posts=t.posts.slice(from,from+PPER).map(function(p,j){return msg(t,p,from+j,ctx)}).join('');
+      var ctx={counts:counts,seen:sn,unread:un,all:!SMU.live||paidT(SMU.tier()),sorted:tsort.v!=='old'};
+      var from=(page-1)*PPER,posts=ord.slice(from,from+PPER).map(function(i){return msg(t,t.posts[i],i,ctx)}).join('');
       var r=nRep(t),ta=$('#replyText'),draft=ta&&+$('#fxReply').dataset.thread===t.id?ta.value:'';
       var pg=pager(page,pages,function(p){return '#t'+t.id+'-page'+p});
       var crumb=[['Boards','./'],[f.name,'?f='+f.id]];
@@ -1468,10 +1480,12 @@
         '<header class="fx-th"><h1 class="fx-th-t">'+prefix(t)+esc(t.title)+'</h1>'+
           '<p class="fx-th-m">'+(t.pin?'<span class="fx-pin">'+PIN+'</span>Pinned \u00b7 ':'')+'Started by <b>'+esc(U(t.by).n)+'</b> \u00b7 '+tm(startT(t))+(r==null?'':' \u00b7 '+num(r)+(r===1?' reply':' replies'))+(SMU.live&&t.views?' \u00b7 '+esc(t.views)+' views':'')+'</p></header>'+(t.game&&GBY[t.game]?gtBox(GBY[t.game]):'')+
         '<div class="fx-bar">'+pg+'<div class="fx-bar-r">'+(un&&sn>0?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-new">Jump to new</a>':'')+(n>1?'<a class="btn btn-outline btn-sm" href="#t'+t.id+'-last">Last post</a>':'')+followBtn(t)+'<button type="button" class="btn btn-red btn-sm" data-reply>Reply</button></div></div>'+
-        '<div class="fx-msgs">'+posts+'</div>'+
+        sortCtl(t)+'<div class="fx-msgs">'+posts+'</div>'+
         (pg?'<div class="fx-bar bottom">'+pg+'</div>':'')+
         (page===pages?replyBox(t):'<p class="fx-more"><a class="btn btn-outline" href="#t'+t.id+'-page'+(page+1)+'">Next page</a></p>')+
-        '<button type="button" class="fx-fab" data-reply aria-label="Reply to this thread">Reply</button>';
+        /* phones: reply bar pinned to the bottom (quick win 3). Signed out it is the sign-in link; signed in it jumps to the reply box */
+        (t.locked?'':'<div class="fx-rbar" id="fxRbar">'+(SMU.user?'<button type="button" class="fx-rbar-b" data-reply><span class="fx-rbar-av" aria-hidden="true">'+avatar(SMU.me(),true)+'</span><span class="fx-rbar-t">Write a reply\u2026</span></button>'
+          :'<a class="fx-rbar-b" href="'+ROOT+'account/" data-auth="in"><span class="fx-rbar-t">Sign in to reply</span><span class="fx-rbar-go">Sign in</span></a>')+'</div>');
       var t2=$('#replyText');if(t2&&draft)t2.value=draft;quotePreview(t);
       if(likes[t.id])paintLikes(t);loadLikes(t);
       document.title=t.title+' | Message Boards | SMU+';
@@ -1480,12 +1494,13 @@
       fab();
       return target?(target===sn+1&&h.x==='new'&&$('#t'+t.id+'-newline')?'t'+t.id+'-newline':'t'+t.id+'-p'+target):null}
     var watching={id:null,off:function(){}},io=null;
-    function fab(){var b=$('.fx-fab',threadView),els=[$('.fx-bar',threadView),$('#fxReply')].filter(Boolean),vis={};if(io)io.disconnect();if(!b)return;if(!('IntersectionObserver' in window)){b.classList.add('show');return}
-      /* phones: the floating Reply shows only while neither the top Reply button nor the reply box is on screen */
-      io=new IntersectionObserver(function(es){es.forEach(function(x){vis[els.indexOf(x.target)]=x.isIntersecting});b.classList.toggle('show',!els.some(function(_,i){return vis[i]}))});els.forEach(function(x){io.observe(x)})}
+    function fab(){var b=$('.fx-rbar',threadView),r=$('#fxReply');if(io)io.disconnect();if(!b||!r||!('IntersectionObserver' in window))return;
+      /* phones: the reply bar slides away (transform, no layout shift) while the reply box itself is on screen */
+      io=new IntersectionObserver(function(es){b.classList.toggle('away',es[es.length-1].isIntersecting)});io.observe(r)}
     threadView.addEventListener('click',function(e){var h=hashT();var t=h&&findT(h.id);if(!t)return;
       var qb=e.target.closest('[data-quote]'),rb=e.target.closest('[data-reply]'),lb=e.target.closest('[data-like]'),sb=e.target.closest('[data-share]'),mb=e.target.closest('[data-mark]');
-      var fb=e.target.closest('[data-follow]');
+      var fb=e.target.closest('[data-follow]'),so=e.target.closest('[data-tsort]');
+      if(so){if(tsort.v===so.dataset.tsort)return;tsort={id:t.id,v:so.dataset.tsort};history.replaceState(null,'','#t'+t.id);renderThread({id:t.id,x:''});var sc=$('.fx-tsort',threadView);if(sc){var y=sc.getBoundingClientRect().top;if(y<0||y>innerHeight)sc.scrollIntoView({block:'start'})}var nb=$('[data-tsort="'+tsort.v+'"]',threadView);if(nb)nb.focus({preventScroll:true});return}
       if(fb){requireUser('Sign in to follow this thread. New replies show under the bell.',function(){var on=!SMU.isFollowing(t.id);fb.disabled=true;
         SMU.toggleFollow(t,on).then(function(){fb.disabled=false;paintFollow(t);toast(on?'Following. New replies show under the bell.':'Unfollowed.')},function(err){fb.disabled=false;toast(err.message,'err')})});return}
       if(e.target.id==='unquote'){quoteIdx=null;quotePreview(t);var tx=$('#replyText');if(tx)tx.focus();return}
@@ -1497,7 +1512,7 @@
         else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){toast('Link to post #'+sb.dataset.share+' copied.')},function(){prompt('Copy this link:',url)})}else prompt('Copy this link:',url);return}
       if(mb){var k=t.id+':'+mb.dataset.mark;if(MARKS[k])delete MARKS[k];else MARKS[k]=Date.now();lss('mp_fx_marks',MARKS);var on2=!!MARKS[k];mb.classList.toggle('on',on2);mb.setAttribute('aria-pressed',String(on2));toast(on2?'Bookmarked in this browser.':'Bookmark removed.');return}
       if(!qb&&!rb)return;
-      var ta=$('#replyText');if(!ta){var a=$('[data-auth]',threadView);if(a)a.click();else{var nx=$('.fx-more a',threadView);if(nx)nx.click()}return}
+      var ta=$('#replyText');if(!ta){var a=$('[data-auth]',threadView);if(a)a.click();else if(SMU.user){location.hash='#t'+t.id+'-last';setTimeout(function(){var x=$('#replyText');if(x){if(qb){quoteIdx=+qb.dataset.quote;quotePreview(t)}x.scrollIntoView({block:'center'});x.focus()}},60)}return}
       if(qb){quoteIdx=+qb.dataset.quote;quotePreview(t)}
       ta.scrollIntoView({block:'center',behavior:'smooth'});ta.focus()});
     threadView.addEventListener('submit',function(e){var f=e.target;if(f.id!=='fxReply')return;e.preventDefault();var ta=$('#replyText'),m=$('#replyM'),v=ta.value.trim(),tid=+f.dataset.thread;
@@ -1511,7 +1526,14 @@
     SMU.on('follows',function(){var h=hashT(),t=h&&findT(h.id);if(t&&!threadView.hidden)paintFollow(t)});
     SMU.on('threads',function(){if(!indexView.hidden)renderIndex();if(!listView.hidden)renderList()});
     document.addEventListener('smu:post',function(ev){var h=hashT();if(!h||h.id!==ev.detail)return;renderThread({id:h.id,x:''})});
-    function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';var m=$('main.fx');if(m){m.classList.toggle('fx-sub',v!=='index');m.classList.toggle('fx-thr',v==='thread');m.classList.add('fx-ready')}
+    /* Thread pages on phones (quick win 3): the reply bar takes the bottom edge, so the sample ad bar leaves it and sits in the page
+       right after the thread (same ad, so the 3-per-page cap is unchanged). Back to the bottom bar on the index, lists and wider screens. */
+    var adMq=matchMedia('(max-width:767px)');
+    MP.adFlow=function(){var ad=$('.ad-sticky'),h=document.documentElement,on=!threadView.hidden&&adMq.matches;h.classList.toggle('fx-thr-on',!threadView.hidden);if(!ad)return;
+      if(on){if(ad.previousElementSibling!==threadView)threadView.after(ad);ad.classList.add('ad-inflow');h.classList.remove('ad-sticky-on')}
+      else if(ad.classList.contains('ad-inflow')){document.body.appendChild(ad);ad.classList.remove('ad-inflow');h.classList.add('ad-sticky-on')}};
+    if(adMq.addEventListener)adMq.addEventListener('change',MP.adFlow);
+    function show(v){indexView.hidden=v!=='index';listView.hidden=v!=='list';threadView.hidden=v!=='thread';MP.adFlow();var m=$('main.fx');if(m){m.classList.toggle('fx-sub',v!=='index');m.classList.toggle('fx-thr',v==='thread');m.classList.add('fx-ready')}
       /* one h1 per view: the board name on the index, the board or thread title elsewhere */
       var br=$('#fxBrand'),want=v==='index'?'H1':'P';if(br&&br.tagName!==want){var nb=document.createElement(want);nb.id='fxBrand';nb.className='fx-brand';nb.textContent=br.textContent;br.replaceWith(nb)}
       $$('.fx-tabs a').forEach(function(a){var h=a.getAttribute('href'),on=v==='index'?h==='./':v==='list'&&state.f==='all'&&!state.q?h==='?f=all':false;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
@@ -1561,11 +1583,25 @@
       (hidden>0?'<button type="button" class="btn btn-outline btn-sm r-toggle" data-r-toggle aria-expanded="false">Show full schedule ('+ev.length+')</button>':'')+
       ''}
   /* lazy (sport page): only the cards shown before "Show full roster" are built now; o.more gets a function that builds the hidden rest */
-  function realRoster(R,s,o){var multi=Object.keys(R.rec).length>1,SHOW=matchMedia('(max-width:639px)').matches?4:12,card=function(a,i){return rosterCard(a,i,s,{more:i>=SHOW,team:multi&&TEAM_LBL[a.team]?TEAM_LBL[a.team]:''})};
+  /* Football roster unit chips (quick win 2, Oct 27): built only from the position SMU Athletics lists. A position that is not in these
+     lists, or one that spans two units, gets no unit, so that player shows under All only. */
+  var UNIT={off:'QB RB FB HB WR TE OL OT OG IOL C G T',def:'DL DT DE NT EDGE LB ILB OLB MLB DB CB S SS FS NB',st:'K PK P LS KR PR H'},UNIT_LBL={off:'Offense',def:'Defense',st:'Special teams'};
+  function unitOf(pos){var g='',parts=String(pos||'').toUpperCase().split(/[\/,\s]+/).filter(Boolean);if(!parts.length)return '';
+    for(var i=0;i<parts.length;i++){var k='';for(var u in UNIT)if((' '+UNIT[u]+' ').indexOf(' '+parts[i]+' ')>=0)k=u;if(!k||(g&&g!==k))return '';g=k}return g}
+  function unitChips(R){var n={off:0,def:0,st:0};R.roster.forEach(function(a){var u=unitOf(a.pos);if(u)n[u]++});
+    var ks=Object.keys(n).filter(function(k){return n[k]});if(!ks.length)return '';
+    return '<div class="r-chips" role="group" aria-label="Filter the roster"><button type="button" class="chip" data-r-f="" aria-pressed="true">All <span>'+R.roster.length+'</span></button>'+
+      ks.map(function(k){return '<button type="button" class="chip" data-r-f="'+k+'" aria-pressed="false">'+UNIT_LBL[k]+' <span>'+n[k]+'</span></button>'}).join('')+'</div>'}
+  function realRoster(R,s,o){var multi=Object.keys(R.rec).length>1,SHOW=matchMedia('(max-width:639px)').matches?4:12,fb=s.slug==='football',card=function(a,i){return rosterCard(a,i,s,{more:i>=SHOW,grp:fb?unitOf(a.pos):'',team:multi&&TEAM_LBL[a.team]?TEAM_LBL[a.team]:''})};
     var cards=(o?R.roster.slice(0,SHOW):R.roster).map(card).join('');if(o)o.more=function(){return R.roster.slice(SHOW).map(function(a,j){return card(a,SHOW+j)}).join('')};
-    return '<div class="roster">'+cards+'</div>'+(R.roster.length>SHOW?'<button type="button" class="btn btn-outline btn-sm r-toggle" data-r-toggle aria-expanded="false">Show full roster ('+R.roster.length+')</button>':'')+
+    return (fb?unitChips(R):'')+'<div class="roster">'+cards+'</div>'+(R.roster.length>SHOW?'<button type="button" class="btn btn-outline btn-sm r-toggle" data-r-toggle aria-expanded="false">Show full roster ('+R.roster.length+')</button>':'')+
       '<div class="roster r-coaches">'+R.coaches.map(function(c,i){var cp=((MP.COACH_PHOTOS||{})[s.slug]||{})[c.name]||{};return rosterCard({name:c.name,pos:c.title,cls:'Coaching staff',url:cp.bio},i,s,{coach:1,key:cp.photo&&PH[cp.photo]?cp.photo:null,team:multi&&TEAM_LBL[c.team]?TEAM_LBL[c.team]:'',alt:c.name+', '+c.title+', SMU '+s.name})}).join('')+'</div>'+
       ''}
+  /* unit chip: filters every card (the lazy rest is built first by the sport page's capture listener); All goes back to the short list or the open one */
+  document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('[data-r-f]');if(!c)return;var w=c.closest('.r-chips'),box=w&&w.nextElementSibling;if(!box)return;
+    var f=c.dataset.rF,tg=box.nextElementSibling&&box.nextElementSibling.matches('[data-r-toggle]')?box.nextElementSibling:null,open=!!tg&&tg.getAttribute('aria-expanded')==='true';
+    [].forEach.call(box.querySelectorAll('.rcard'),function(x){x.hidden=f?x.dataset.grp!==f:(x.classList.contains('r-more')&&!open)});
+    if(tg)tg.hidden=!!f;[].forEach.call(w.querySelectorAll('[data-r-f]'),function(b){b.setAttribute('aria-pressed',String(b===c))});if(c.scrollIntoView&&w.scrollWidth>w.clientWidth)c.scrollIntoView({block:'nearest',inline:'nearest'})});
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-r-toggle]');if(!b)return;
     var box=b.previousElementSibling,open=b.getAttribute('aria-expanded')==='true';if(!b.dataset.lbl)b.dataset.lbl=b.textContent;
     [].forEach.call(box.querySelectorAll('.r-more'),function(x){x.hidden=open});b.setAttribute('aria-expanded',String(!open));b.textContent=open?b.dataset.lbl:'Show less'});
@@ -1647,7 +1683,7 @@
     /* a link to a section on this page: build it (and everything above it) before the browser or the jump-nav handler scrolls */
     document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="#"]');if(!a)return;
       var u=a.getAttribute('href'),k=u.indexOf('#'),id=u.slice(k+1);if(k>0&&(a.pathname!==location.pathname||a.search!==location.search))return;if(has(id))through(id)},true);
-    document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#roster [data-r-toggle]'))through('roster-more')},true);
+    document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#roster [data-r-toggle],#roster [data-r-f]'))through('roster-more')},true);
     addEventListener('hashchange',function(){var id=location.hash.slice(1);if(has(id)){through(id);var t=document.getElementById(id);if(t)t.scrollIntoView()}});
     var h0=location.hash.slice(1);if(h0&&has(h0))through(h0);
     if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){io.unobserve(en.target);through(en.target.getAttribute('data-lz'))}})},{rootMargin:'600px 0px'});
@@ -2118,7 +2154,7 @@
   function account(){var main=$('#acctMain');
     function render(){var u=SMU.user;document.title=(u?'Settings':'Sign in')+' | SMU+';
       if(!u){main.innerHTML=acctHero()+
-        '<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap">'+conceptNotice('acct-cn')+'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in',null,true)+'</div>'+freeBands('acct')+'</div></div></section>';
+        '<section class="sec"><div class="wrap acct-cols"><div class="acct-wrap">'+/* no second class-project box here: the sitewide disclaimer strip already says it (quick win 1, Oct 27) */'<div class="acct-card">'+authForm(location.hash==='#signup'?'up':'in',null,true)+'</div>'+freeBands('acct')+'</div></div></section>';
         wireAuth(main,function(){var f=acctAfter;acctAfter=null;render();if(f)f()});popSpot();
         if(location.hash==='#student'&&stOn())setTimeout(function(){openStudent()},60);return}
       if(location.hash==='#reset'&&SMU.live){document.title='Choose a new password | SMU+';main.innerHTML='<section class="sec"><div class="wrap acct-wrap"><div class="acct-card"><h2 class="sec-t">Choose a new password</h2><form id="npForm" class="auth-f" novalidate><div class="fld"><label for="npPw">New password</label><input id="npPw" type="password" autocomplete="new-password" minlength="8" required></div><p class="auth-m" aria-live="polite"></p><button class="btn btn-red" type="submit">Save password</button></form></div></div></section>';

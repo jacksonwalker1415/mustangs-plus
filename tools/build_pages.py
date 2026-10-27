@@ -15,7 +15,7 @@ SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js'
 # Data files only one page reads. upcoming.js (MP.UPCOMING) feeds the home calendar ribbon only; boxscores.js (MP.BOX) and
 # gamestats.js (MP.gameStats) are read only by the game page (app.js gamePage). Every other script loads on every page.
 ONLY_ON={'upcoming.js':('index.html',),'boxscores.js':('games/index.html',),'gamestats.js':('games/index.html',)}
-# Phones (<640px): the bar is a dismissible pop-up; the X stores mp_disc_x so it stays gone on later pages and visits (site.css)
+# Every width: a slim strip right under the header, in the page flow (scrolls away). The X stores mp_disc_x so it stays gone on later pages and visits (site.css)
 DISC_X='<button type="button" class="disc-x" aria-label="Dismiss"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 19 5 17.6 10.6 12 5 6.4z"/></svg></button><script>(function(){var h=document.documentElement,b=document.currentScript.previousElementSibling,k="mp_disc_x";try{if(localStorage.getItem(k))h.classList.add("disc-off")}catch(e){}b.addEventListener("click",function(){h.classList.add("disc-off");try{localStorage.setItem(k,"1")}catch(e){}var t=document.getElementById("menuBtn");if(!t||!t.offsetParent)t=document.querySelector("main a[href],main button:not([disabled]),main input,main [tabindex]:not([tabindex=\'-1\'])");if(t)t.focus({preventScroll:true})})})()</script>'
 def DISC(root):
     # One wording site-wide (Business Ops lock-exposure notice). build_pages.py rewrites it on every page.
@@ -41,8 +41,8 @@ def head(title,desc,page,root,extra=''):
 <link rel="stylesheet" href="{root}assets/site.css?v={VER}">
 </head>
 <body data-page="{page}" data-root="{root}">
-{DISC(root)}
 <div id="site-header"></div>
+{DISC(root)}
 '''
 
 PRIVACY_BODY='''<main id="top"><section class="page-hero has-photo"><div class="bgph"><picture><img class="ph" src="../assets/photos/lib/rowing-boat-wide-ncaa-2021-1200.webp" srcset="../assets/photos/lib/rowing-boat-wide-ncaa-2021-1200.webp 1200w, ../assets/photos/lib/rowing-boat-wide-ncaa-2021-2400.webp 2400w" sizes="100vw" alt="An SMU rowing crew races on open water" style="object-position:60% 55%" fetchpriority="high" decoding="async"></picture></div><span class="credit">Photo: SMU Athletics</span><div class="wrap"><h1 class="display">Your data on SMU+</h1>

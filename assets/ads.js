@@ -121,7 +121,7 @@ function sticky(){var S=ADS.sticky;if(!S||S.noPages.indexOf(page())>=0||ss('mp_a
   document.body.insertAdjacentHTML('beforeend','<div class="ad-sticky" data-ad-slot="sticky" role="complementary" aria-label="'+esc(ADS.label)+'">'+
     '<span class="ad-lbl">'+esc(ADS.label)+'</span><button type="button" class="ad-x" aria-label="Close this sample ad">Close<span aria-hidden="true"> \u00d7</span></button>'+
     '<div class="ad-st-ph">'+creative('sticky',b)+'</div><div class="ad-st-dk">'+creative('leaderboard',b)+'</div></div>');
-  document.documentElement.classList.add('ad-sticky-on');
+  document.documentElement.classList.add('ad-sticky-on');if(MP.adFlow)MP.adFlow(); /* board threads on phones: app.js moves it into the page */
   document.querySelector('.ad-sticky .ad-x').addEventListener('click',function(){ss('mp_ad_sticky_x','1');var el=document.querySelector('.ad-sticky');if(el)el.remove();document.documentElement.classList.remove('ad-sticky-on');MP.adsCap()})}
 function interstitial(){var I=ADS.interstitial;if(!I)return;var n=(+ss('mp_ad_pv')||0)+1;ss('mp_ad_pv',String(n));
   if(n<I.fromPage||ss('mp_ad_ist')||I.noPages.indexOf(page())>=0)return;
