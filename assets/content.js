@@ -337,6 +337,7 @@ MP.PHOTOS={
  'wbb-drive':{file:'wbb-2-drive-vs-notre-dame-wide.webp',small:'wbb-2-drive-vs-notre-dame-900.webp',pos:'45% 30%',alt:'An SMU women\'s basketball player, number 2 in white, sizes up the defense against Notre Dame at Moody Coliseum'},
  'wsoc':{file:'wsoc-13-dribble-vs-virginia-wide.webp',small:'wsoc-13-dribble-vs-virginia-900.webp',pos:'55% 45%',alt:'SMU\'s number 13 in blue dribbles toward a Virginia defender'},
  'golf':{file:'wgolf-haskins-fairway-wide.webp',small:'wgolf-haskins-fairway-900.webp',pos:'50% 20%',alt:'SMU women\'s golfers walk the fairway beside their SMU golf bags at the Haskins Intercollegiate'},
+ 'tennis':{file:'wten-doubles-high-five-wide.webp',small:'wten-doubles-high-five-900.webp',pos:'50% 10%',alt:'Two SMU women\'s tennis doubles partners in black high-five in front of the blue SMU wall'},
  'track':{file:'tf-ncaa-west-stride-wide.webp',small:'tf-ncaa-west-stride-900.webp',pos:'70% 35%',alt:'An SMU runner in red races down the straightaway at the NCAA West First Round'},
  'rowing':{file:'rowing-eight-blue-blades-wide.webp',small:'rowing-eight-blue-blades-900.webp',pos:'65% 40%',alt:'An SMU rowing crew with blue Mustang blades pulls through calm water'},
  'equestrian':{file:'eq-practice-arena-wide.webp',small:'eq-practice-arena-900.webp',pos:'40% 45%',alt:'SMU equestrian riders work their horses in a covered arena at practice'},
@@ -1054,7 +1055,7 @@ MP.PHOTOS={
  S('moody-bowl','mens-basketball-team-huddle-north-carolina',1200,'50% 40%','SMU men\u2019s basketball players in red huddle on the bench against North Carolina');
  S('storm','mens-basketball-court-drive-boston-college',1200,'50% 35%','An SMU men\u2019s basketball player drives to the basket against Boston College');
  S('wsoc','womens-soccer-attack-wide',2000,'50% 40%','SMU women\u2019s soccer players in blue run onto the field together');
- S('tennis','tennis-womens-doubles-smu-banner-2026',1200,'45% 28%','Two SMU women\u2019s tennis players in black high-five in front of an SMU banner');
+ CARD('tennis','tennis-womens-doubles-smu-banner-2026','Two SMU women\u2019s tennis players in black high-five in front of an SMU banner');
  CARD('wsoc','womens-soccer-goal-celebration','SMU women\u2019s soccer players in red and blue celebrate a goal');
  CARD('equestrian','equestrian-jump-smu-banner-2025','An SMU equestrian rider clears a jump in front of an SMU banner');
  /* home player cards: the full 969 px headshot instead of the 720 px -900 copy */

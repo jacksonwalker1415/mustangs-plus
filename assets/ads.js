@@ -50,7 +50,7 @@ var ADS=MP.ADS={
   /* site-wide sticky bar (320x50 phones, 728x90 desktop), dismissible for the session. Not on athlete, roster, recruiting or account pages. */
   sticky:{brand:'marrowbys',noPages:['athlete','sport','recruiting','account']},
   /* phone takeover: once per session, never on the first page of a visit */
-  interstitial:{brand:'kestrelvale',fromPage:2,delay:1500,noPages:['athlete','sport','recruiting','account']},
+  interstitial:{brand:'kestrelvale',fromPage:2,delay:1500,noPages:['athlete','sport','recruiting','account','boards']},
   /* one skin takeover: the next football game's page (desktop). Every unit on that page shows the skin brand. */
   skin:{brand:'tellivant',minWidth:1300}
 };

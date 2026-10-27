@@ -617,6 +617,79 @@ def espn_map(sport):
     return M
 
 
+LEAD_CATS = {"football": [("passingYards", "Passing"), ("rushingYards", "Rushing"), ("receivingYards", "Receiving")],
+             "bb": [("pointsPerGame", "Points"), ("reboundsPerGame", "Rebounds"), ("assistsPerGame", "Assists")]}
+_SUMMARY = {}
+LOW = {"YDS": "yds", "CAR": "carries", "REC": "catches", "PTS": "pts", "REB": "reb", "AST": "ast"}
+
+
+def espn_preview(sport, g, emap, opp_name):
+    """ESPN game summary for an upcoming game -> season leaders, last five results and records for SMU and the opponent.
+    Only current-season data: the summary must be for this season, and results before this season are dropped."""
+    dd = datetime.strptime(g["d"], "%Y-%m-%d")
+    em = next((emap[k] for k in (g["d"], (dd - timedelta(days=1)).strftime("%Y-%m-%d"), (dd + timedelta(days=1)).strftime("%Y-%m-%d")) if k in emap), None)
+    if not em:
+        return {}
+    if em["event"] not in _SUMMARY:
+        try:
+            _SUMMARY[em["event"]] = getj(f"https://site.api.espn.com/apis/site/v2/sports/{ESPN[sport]}/summary?event={em['event']}")
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! ESPN summary {g['opp']}: {e}", file=sys.stderr)
+            _SUMMARY[em["event"]] = {}
+    d = _SUMMARY[em["event"]]
+    yy = CUR[sport] if sport == "football" else CUR[sport] + 1
+    if ((d.get("header") or {}).get("season") or {}).get("year") != yy:
+        return {}
+    u = f"https://www.espn.com/{'college-football' if sport == 'football' else ESPN[sport].split('/')[1]}/game/_/gameId/{em['event']}"
+    side = lambda tid: "s" if str(tid) == SMU_ESPN else "o" if str(tid) == str(em["team"]) else None
+    start = f"{CUR[sport]}-07-01"
+    out = {}
+    # season leaders
+    L = {}
+    for t in d.get("leaders") or []:
+        k = side((t.get("team") or {}).get("id"))
+        if not k:
+            continue
+        cats = {c.get("name"): c for c in t.get("leaders") or []}
+        for name, label in LEAD_CATS["football" if sport == "football" else "bb"]:
+            c = cats.get(name)
+            ld = (c or {}).get("leaders") or []
+            if not ld or not (ld[0].get("athlete") or {}).get("displayName"):
+                continue
+            x = ld[0]
+            ms = x.get("mainStat") or {}
+            L.setdefault(label, {})[k] = {"n": x["athlete"]["displayName"], "v": f"{ms.get('value', '')} {LOW.get(ms.get('label', ''), ms.get('label', ''))}".strip(),
+                                          **({"d": re.sub(r"\b(CAR|REC|YDS|PTS|REB|AST)\b", lambda m: LOW[m.group(1)], x["summary"])} if x.get("summary") else {}),
+                                          **({"pos": x["athlete"]["position"]["abbreviation"]} if (x["athlete"].get("position") or {}).get("abbreviation") else {})}
+    rows = [{"c": label, **L[label]} for _, label in LEAD_CATS["football" if sport == "football" else "bb"] if label in L]
+    if rows:
+        out["leaders"] = rows
+    # last five results this season, oldest first
+    F = {}
+    for t in d.get("lastFiveGames") or []:
+        k = side((t.get("team") or {}).get("id"))
+        if not k:
+            continue
+        ev = [e for e in t.get("events") or [] if start <= (e.get("gameDate") or "")[:10] < g["d"] and e.get("gameResult") in ("W", "L", "T") and e.get("score")]
+        if ev:
+            F[k] = [{"d": e["gameDate"][:10], "at": e.get("atVs") or "", "opp": (e.get("opponent") or {}).get("displayName") or "",
+                     "r": e["gameResult"], "sc": e["score"]} for e in ev[-5:]]
+    if F:
+        out["form"] = F
+    # records
+    R = {}
+    for c in ((d.get("header") or {}).get("competitions") or [{}])[0].get("competitors") or []:
+        k = side((c.get("team") or {}).get("id"))
+        recs = {r.get("type"): r.get("summary") for r in c.get("record") or []}
+        if k and recs.get("total"):
+            R[k] = recs["total"] + (f" ({recs['vsconf']} ACC)" if recs.get("vsconf") else "")
+    if "s" in R and "o" in R:
+        out["rec"] = R
+    if out:
+        out["src"] = {"n": "ESPN game preview", "u": u}
+    return out
+
+
 def upcoming(g, smu_season, cur_cards, hist, emap, opp_cache):
     out = {"kind": "pre"}
     sport = g["sport"]
@@ -665,6 +738,11 @@ def upcoming(g, smu_season, cur_cards, hist, emap, opp_cache):
         h = max(past, key=lambda h: h["d"])
         out["last"] = {"d": h["d"], "res": h["res"], "ha": h["ha"], "opp": h["opp"], **({"u": h["box"]} if h.get("box") else {}),
                        "src": f"{BASE}/sports/{sport}/schedule/{season_path(sport, int(h['d'][:4]) - (0 if sport == 'football' or int(h['d'][5:7]) >= 7 else 1))}"}
+    # season leaders, last five results and records (ESPN game preview); basketball only once SMU's season has started
+    if not g.get("ex") and (sport == "football" or smu_season):
+        pv = espn_preview(sport, g, emap, g["opp"])
+        if pv:
+            out["pv"] = pv
     return out if len(out) > 1 else None
 
 
@@ -698,7 +776,7 @@ def main():
             print(f"  ! schedule {sport}: {e}", file=sys.stderr)
             cur = []
         hist = history(sport)
-        emap = espn_map(sport) if smu else {}
+        emap = espn_map(sport)
         oc = {}
         for g in up:
             d = upcoming(g, smu, cur, hist, emap, oc)
@@ -706,7 +784,9 @@ def main():
                 box[g["id"]] = d
         n_s = sum(1 for g in up if "season" in box.get(g["id"], {}))
         n_l = sum(1 for g in up if "last" in box.get(g["id"], {}))
-        print(f"{sport}: {len(up)} upcoming, {n_s} with season comparison, {n_l} with last meeting" + ("" if smu else " (no SMU season stats yet)"))
+        n_p = sum(1 for g in up if "leaders" in box.get(g["id"], {}).get("pv", {}))
+        n_f = sum(1 for g in up if "form" in box.get(g["id"], {}).get("pv", {}))
+        print(f"{sport}: {len(up)} upcoming, {n_s} with season comparison, {n_l} with last meeting, {n_p} with season leaders, {n_f} with last five" + ("" if smu else " (no SMU season stats yet)"))
     checked = datetime.now().strftime("%b. %-d, %Y").replace("May.", "May")
     js = ("/* Game-day stats, generated by tools/build_boxscores.py from official SMU Athletics box scores, Game Center and\n"
           "   season stats pages (opponent season stats from the opponent's official site, else ESPN). Do not edit by hand. */\n"

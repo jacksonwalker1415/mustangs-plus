@@ -1065,6 +1065,7 @@
           (has?'<span class="gs-bar" aria-hidden="true"><i style="width:'+ps+'%"></i><b style="width:'+(100-ps)+'%"></b></span>':'')+'</div>'}).join('')+'</div>'}
     /* scoreboard */
     var rec=pre&&pre.season&&(pre.season.rows||[]).filter(function(r){return /^record$/i.test(r.l)})[0];
+    if(!rec&&pre&&pre.pv&&pre.pv.rec)rec={s:pre.pv.rec.s,o:pre.pv.rec.o};
     /* one side of the scoreboard. S (optional) is a live score from cfbd-live.js: {us,them,done,ball} */
     function team(smu,S){var has=S?true:!!m,a=S?S.us:us,b=S?S.them:them,done=S?S.done:!!m,sc=smu?a:b,win=done&&(smu?a>b:b>a),nm=smu?'SMU':g.opp,rc=rec?(smu?rec.s:rec.o):'',ball=S&&!S.done&&S.ball===(smu?'SMU':g.opp);
       return '<div class="gc-team '+(smu?'gc-l':'gc-r')+(done?(win?' win':' lose'):'')+'">'+
@@ -1078,16 +1079,30 @@
     var sb='<section class="gc-sb'+(m?' is-final':' is-pre')+'" aria-label="Scoreboard"><div class="wrap gc-sb-in"'+(m?' role="group" aria-label="Final'+(g.ex?', exhibition':'')+': SMU '+us+', '+esc(g.opp)+' '+them+'"':'')+'>'+team(1)+mid+team(0)+'</div></section>';
     /* left column */
     var left='',box='',stats='',pbp='',recap='',right='';
+    /* one leader cell: p = {n (name), v ('2,062 yds'), d (detail line), no, pos} */
+    function leadCell(p,smu){if(!p)return '<div class="gc-pl'+(smu?'':' r')+' none"></div>';
+      var r=smu&&rosterOf(p.n),href=smu?profileOf(p.n):'',num=String(p.v||'').match(/^([\d.,]+)\s*(.*)$/),pos=r&&r.pos?r.pos:(p.pos||'');
+      return '<div class="gc-pl'+(smu?' smu':' r')+'">'+head(p.n,smu)+'<span class="gc-pl-b">'+
+        (href?'<a class="gs-pl-n" href="'+href+'">'+esc(p.n)+'</a>':'<span class="gs-pl-n">'+esc(p.n)+'</span>')+
+        '<small>'+esc([pos,p.no?'#'+p.no:''].filter(Boolean).join(' \u00b7 '))+'</small>'+(p.d?'<small class="gc-pl-d">'+esc(p.d)+'</small>':'')+'</span>'+
+        '<span class="gc-pl-v">'+(num?esc(num[1])+(num[2]?'<small>'+esc(num[2])+'</small>':''):esc(p.v))+'</span></div>'}
+    function leadRows(rows){return rows.map(function(c){return '<div class="gc-lr"><h3 class="gc-lc">'+esc(c.c)+'</h3>'+leadCell(c.s,1)+leadCell(c.o,0)+'</div>'}).join('')}
+    var leadHd='<div class="gc-lead-hd">'+smuMark('sm')+'<b>SMU</b><b class="r">'+esc(g.opp)+'</b>'+oppMark('sm')+'</div>';
     if(fin&&fin.leaders&&fin.leaders.length){
-      box='<article class="gc-card gc-lead" id="box"><h2 class="gc-h">Game leaders</h2><div class="gc-lead-hd">'+smuMark('sm')+'<b>SMU</b><b class="r">'+esc(g.opp)+'</b>'+oppMark('sm')+'</div>'+
-        fin.leaders.map(function(c){function cell(p,smu){if(!p)return '<div class="gc-pl'+(smu?'':' r')+' none"></div>';
-            var r=smu&&rosterOf(p.n),href=smu?profileOf(p.n):'',num=String(p.v||'').match(/^([\d.,]+)\s*(.*)$/),pos=r&&r.pos?r.pos:'';
-            return '<div class="gc-pl'+(smu?' smu':' r')+'">'+head(p.n,smu)+'<span class="gc-pl-b">'+
-              (href?'<a class="gs-pl-n" href="'+href+'">'+esc(p.n)+'</a>':'<span class="gs-pl-n">'+esc(p.n)+'</span>')+
-              '<small>'+esc([pos,p.no?'#'+p.no:''].filter(Boolean).join(' \u00b7 '))+'</small>'+(p.d?'<small class="gc-pl-d">'+esc(p.d)+'</small>':'')+'</span>'+
-              '<span class="gc-pl-v">'+(num?esc(num[1])+(num[2]?'<small>'+esc(num[2])+'</small>':''):esc(p.v))+'</span></div>'}
-          return '<div class="gc-lr"><h3 class="gc-lc">'+esc(c.c)+'</h3>'+cell(c.s,1)+cell(c.o,0)+'</div>'}).join('')+
+      box='<article class="gc-card gc-lead" id="box"><h2 class="gc-h">Game leaders</h2>'+leadHd+
+        leadRows(fin.leaders)+
         '<div class="gc-foot">'+gmOut(fin.box||L.box,fin.box&&/boxscore/.test(fin.box)?'Full box score':'Full stats on Game Center')+srcLn(fin.src)+(photoUsed?'<p class="gs-src">Headshots: Photo: SMU Athletics</p>':'')+'</div></article>'}
+    /* upcoming games: season leaders and last five results for both teams (ESPN game preview, built by tools/build_boxscores.py) */
+    var PV=pre&&pre.pv||{},form='';
+    if(PV.leaders&&PV.leaders.length){photoUsed=0;
+      box='<article class="gc-card gc-lead" id="box"><h2 class="gc-h">Season leaders</h2>'+leadHd+leadRows(PV.leaders)+
+        '<div class="gc-foot">'+srcLn([PV.src])+(photoUsed?'<p class="gs-src">Headshots: Photo: SMU Athletics</p>':'')+'</div></article>'}
+    if(PV.form&&(PV.form.s||PV.form.o)){
+      var fRow=function(e){var sc=String(e.sc||''),mm=/^(\d+)-(\d+)(.*)$/.exec(sc);if(mm&&e.r==='L')sc=mm[2]+'\u2013'+mm[1]+mm[3];else if(mm)sc=mm[1]+'\u2013'+mm[2]+mm[3];
+          var x=new Date(e.d+'T12:00:00Z');
+          return '<li><span class="gc-fr gc-fr-'+esc(e.r)+'">'+esc(e.r)+'</span><span class="gc-fo"><b>'+esc(sc)+'</b> '+(e.at==='@'?'at':'vs.')+' '+esc(e.opp)+'</span><small>'+MON[x.getUTCMonth()]+' '+x.getUTCDate()+'</small></li>'},
+        fCol=function(k,nm,mk){var E=PV.form[k];return E&&E.length?'<div class="gc-fcol"><h3 class="gc-fh">'+mk+esc(nm)+'</h3><ol class="gc-form" aria-label="'+esc(nm)+' last '+E.length+' results, newest first">'+E.slice().reverse().map(fRow).join('')+'</ol></div>':''};
+      form='<article class="gc-card gc-last5" id="form"><h2 class="gc-h">Last five games</h2><div class="gc-fgrid">'+fCol('s','SMU',smuMark('sm'))+fCol('o',g.opp,oppMark('sm'))+'</div>'+srcLn([PV.src])+'</article>'}
     if(fin&&fin.stats&&fin.stats.length)stats='<article class="gc-card" id="stats"><h2 class="gc-h">Team stats</h2>'+cmp(fin.stats,'Team stats, SMU and '+g.opp)+'</article>';
     if(pre&&pre.season)stats='<article class="gc-card" id="stats"><h2 class="gc-h">Season so far</h2>'+cmp(pre.season.rows,'Season to date, SMU and '+g.opp)+srcLn(pre.season.src)+'</article>';
     var last='';if(pre&&pre.last){var lm=/^([WLT]) (\d+)-(\d+)/.exec(pre.last.res||'');
@@ -1110,7 +1125,7 @@
           '<p class="gc-ps" aria-label="SMU '+p.ss+', '+esc(g.opp)+' '+p.os+'"><span><b>'+p.ss+'</b><small>SMU</small></span><span><b>'+p.os+'</b><small>'+esc(initials(g.opp))+'</small></span></p></li>'});
       return h+(q?'</ol>':'')})();
     /* team stats sit in the wide middle column for upcoming games and finals with no scoring plays (basketball) */
-    var mstats='';if(pre||!scoringHTML){left=box+last;mstats=stats}else left=box+stats;
+    var mstats='';if(pre||!scoringHTML){left=box+form+last;mstats=stats}else left=box+stats;
     if(g.sport==='football'||scoringHTML)pbp='<article class="gc-card gc-pbp" id="pbp"'+(scoringHTML?'':' hidden')+'><h2 class="gc-h">Play-by-play</h2>'+
       '<div class="gc-seg" role="group" aria-label="Plays to show" hidden><button type="button" data-seg="score" aria-pressed="true">Scoring plays</button><button type="button" data-seg="all" aria-pressed="false">Latest plays</button></div>'+
       '<div class="gc-panel" data-panel="score"'+(scoringHTML?'':' hidden')+'>'+scoringHTML+'</div><div class="gc-panel gc-all" data-panel="all" id="gcAll" hidden></div></article>';
@@ -1126,7 +1141,7 @@
         '<div class="gm-how-i"><h3>Listen</h3><p>'+(g.radio?esc(g.radio):'TBA')+'</p>'+gmOut(L.listen,'Listen live')+'</div>'+
         (sbUrl(g.sb)?'<div class="gm-how-i"><h3>Follow</h3><p>Live stats during the game from SMU\u2019s official StatBroadcast box score.</p>'+gmOut(sbUrl(g.sb),'Live stats')+'</div>':'')+'</article>'+
       '<article class="gc-card gc-links"><h2 class="gc-h">Game links</h2><p class="gm-links"><a class="btn btn-red btn-sm gm-thread" href="'+gameThreadUrl(g)+'">Game thread</a>'+gmOut(sbUrl(g.sb),'Live stats')+gmOut(L.gamecenter,'Game Center')+gmOut(L.box,'Box score')+gmOut(L.program,'Digital program')+'</p></article>';
-    var tabs=[['top','Gamecast',1],['recap',rcT,recap],['box','Box score',box],['pbp','Play-by-play',pbp&&scoringHTML],['stats',pre?'Season stats':'Team stats',stats||mstats],['videos','Videos',0]];
+    var tabs=[['top','Gamecast',1],['recap',rcT,recap],['box',pre?'Leaders':'Box score',box],['pbp','Play-by-play',pbp&&scoringHTML],['stats',pre?'Season stats':'Team stats',stats||mstats],['videos','Videos',0]];
     main.innerHTML=sb+'<div class="gc-hd" id="top"><div class="wrap"><h1 class="gc-h1">'+esc(title)+'</h1><p class="gc-meta">'+esc(sp?sp.name:'')+(g.ex?' \u00b7 Exhibition':'')+' \u00b7 '+gmDate(g,1)+(g.note?' \u00b7 '+esc(g.note):'')+'</p>'+
         '<nav class="gc-tabs" aria-label="Game sections">'+tabs.map(function(t){return '<a href="#'+t[0]+'" data-tab="'+t[0]+'"'+(t[0]==='top'?' aria-current="true"':'')+(t[2]?'':' hidden')+'>'+t[1]+'</a>'}).join('')+'</nav></div></div>'+
       '<section class="gc-body"><div class="wrap gc-grid"><div class="gc-col gc-c1">'+left+'</div><div class="gc-col gc-c2">'+vids+recap+mstats+pbp+'</div><div class="gc-col gc-c3">'+right+'</div></div></section>'+
