@@ -90,7 +90,7 @@ insert into public.posts (id,thread_id,author_handle,body,quote_post_id,created_
   (802,8,'grace','Didn''t know I cared about swim until SMU+. Now I''m hooked.',null,now()-interval '960 minutes'),
   (901,9,'staff','Pinned. 14% of net membership revenue will fund paid content deals with SMU athletes, and we’ll publish what we spend each year. No athlete is promised a payment. (Sample post for this concept.)',null,now()-interval '2880 minutes'),
   (902,9,'cox','Clear rules like this are why I joined.',null,now()-interval '2160 minutes'),
-  (903,9,'hank','Good that it runs through SMU’s official programs.',null,now()-interval '1440 minutes'),
+  (903,9,'hank','Good that they’ll publish what they actually spend.',null,now()-interval '1440 minutes'),
   (1001,10,'staff','Updated tracker. All prospects referenced on this demo board are fictional.',null,now()-interval '2880 minutes'),
   (1002,10,'ray','The DL haul is going to be special.',null,now()-interval '1920 minutes'),
   (1101,11,'cox','Fifth of 18 in Wilmington, after a T4th in Seattle and a T5th at Haskins. Solid fall.',null,now()-interval '300 minutes'),

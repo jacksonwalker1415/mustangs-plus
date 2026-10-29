@@ -115,7 +115,7 @@ MP.THREADS = [
    posts:[
      ['staff','Pinned. 14% of net membership revenue will fund paid content deals with SMU athletes, and we\u2019ll publish what we spend each year. No athlete is promised a payment. (Sample post for this concept.)'],
      ['cox','Clear rules like this are why I joined.'],
-     ['hank','Good that it runs through SMU\u2019s official programs.']
+     ['hank','Good that they\u2019ll publish what they actually spend.']
    ]},
   {id:10,f:'recruiting',sport:'football',title:'Offer tracker: 2028 class (updated weekly)',by:'staff',ago:'2d',
    posts:[['staff','Updated tracker. All prospects referenced on this demo board are fictional.'],['ray','The DL haul is going to be special.']]},
