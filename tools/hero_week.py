@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Set the home hero of the week (desktop/tablet h1 + the featured card beside it).
 
+Oct 29 (Jackson): the home hero is now a slideshow of the week's most watched videos (app.js heroShow) with no headline.
+line1/line2 are no longer shown anywhere; MP.HERO.item is only the fallback slide if data/videos-feed.json has no counts.
+
 Rewrites only the block between /* HERO-WEEK:BEGIN */ and /* HERO-WEEK:END */ in assets/content.js.
 app.js renders the h1 from MP.HERO.line1/line2 and the card from MP.HERO.item, so they always match.
 
