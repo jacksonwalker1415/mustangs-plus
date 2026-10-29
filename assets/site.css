@@ -122,8 +122,6 @@ nav.main a.on,.subnav a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--red);borde
 .hero .display{font-size:clamp(48px,6.2vw,84px)}
 .hero .display span{color:#fff;opacity:.55}
 /* Phones: no home hero (Jackson, Oct 26); the page starts with the Upcoming games ribbon. Its photo source is a 1px placeholder under 720px. */
-@media(max-width:719px){section.hero{display:none}}
-@media(min-width:720px){.hero-ph-h1{display:none}}
 .hero .lede{margin-top:var(--s5)}
 .live-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(204,0,53,.3)}
 .statbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:rgba(255,255,255,.14);border-radius:var(--r2);overflow:hidden;margin-top:var(--s6)}
@@ -3263,6 +3261,54 @@ a.sx-xav:focus-visible{outline:3px solid #354CA1;outline-offset:-2px;border-radi
 /* Counsel, Oct 27: no sticky sample ad while the From Socials Following panel shows (always on screen beside the feed at 1024px+).
    On phones the panel is a sheet; ads.js hides the bar while it is open (ad-quiet). Ad-free hides everything as before. */
 @media(min-width:1024px){body[data-page="socials"] .ad-sticky{display:none!important}html.ad-sticky-on:not(.adfree) body[data-page="socials"]{padding-bottom:0}}
+/* ---- Home hero slideshow (Jackson, Oct 29): no headline; the week's most watched SMU videos, every screen size. app.js heroShow().
+   Every slide sits in the same grid cell, so the stage is as tall as one card and never changes height. Official colors only. ---- */
+.hero.hero-ss{padding:var(--s6) 0 var(--s7)}
+.hs{position:relative;max-width:1040px;margin:0 auto}
+.hs-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:var(--s4);min-height:44px}
+.hs-t{font:700 20px/1.2 var(--sans);color:#fff;letter-spacing:0}
+.hs-ctl{display:flex;align-items:center;gap:4px;visibility:hidden}
+.hs.ready .hs-ctl{visibility:visible}
+.hs-bar.hs-one .hs-ctl{visibility:hidden}
+.hs-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.55);background:var(--blue);color:#fff;cursor:pointer;padding:0}
+.hs-btn svg{fill:currentColor}
+.hs-btn:hover{background:#fff;color:var(--blue)}
+.hs-pause .hs-i-play,.hs-pause.paused .hs-i-pause{display:none}
+.hs-pause.paused .hs-i-play{display:block}
+.hs-dots{display:flex;align-items:center}
+.hs-dot{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;padding:0;cursor:pointer}
+.hs-dot i{display:block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);transition:width .25s}
+.hs-dot[aria-current] i{width:24px;border-radius:5px;background:#fff}
+.hs-stage{display:grid}
+.hs-slide{grid-area:1/1;min-width:0;opacity:0;visibility:hidden;transition:opacity .45s,visibility 0s .45s}
+.hs-slide.on{opacity:1;visibility:visible;transition:opacity .45s}
+.hs-card{height:100%}
+.hs-card .poster{aspect-ratio:16/9;margin:0}
+.hs-card .hero-card-b{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.hs-card .hero-card-b h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.hs-card .hero-card-b p{color:#fff;font-size:15px}
+.hs-card .meta{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs-sk .poster .sk{display:block;width:100%;height:100%;border-radius:0}
+.hs-sk .hero-card-b .sk{display:block;height:14px;border-radius:4px;margin:4px 0}
+.hs-sk .hs-sk-1{width:40%}.hs-sk .hs-sk-2{height:24px!important;width:90%}.hs-sk .hs-sk-3{width:55%}
+@media(min-width:720px){
+  .hs-card{display:grid;grid-template-columns:62fr 38fr;align-items:stretch}
+  .hs-card .hero-card-b{padding:var(--s5) var(--s6)}
+}
+@media(min-width:720px) and (max-width:959px){.hs-card .hero-card-b{padding:var(--s4)}.hs-card .hero-card-b h3{font-size:20px}}
+@media(max-width:719px){
+  .hero.hero-ss{padding:var(--s4) 0 var(--s5)}
+  .hs-bar{flex-wrap:wrap;margin-bottom:var(--s3)}
+  .hs-t{font-size:18px}
+  /* fixed body height: one meta line, two title lines, one views line */
+  .hs-card .hero-card-b{height:132px;justify-content:flex-start;padding:var(--s3) var(--s4)}
+  .hs-card .hero-card-b h3{-webkit-line-clamp:2;font-size:18px;line-height:1.25;margin:4px 0}
+  .hs-card .hero-card-b p{font-size:14px}
+  /* prev/next sit on the thumbnail's edges so the bar has room for the dots and the pause button */
+  .hs-prev,.hs-next{position:absolute;z-index:6;top:calc(44px + var(--s3) + (100vw - var(--gut)*2)*9/32 - 22px)}
+  .hs-prev{left:8px}.hs-next{right:8px}
+}
+@media(prefers-reduced-motion:reduce){.hs-slide,.hs-slide.on,.hs-dot i{transition:none}}
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */

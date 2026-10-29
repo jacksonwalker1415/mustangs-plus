@@ -899,23 +899,70 @@
           (x.summary?'<p class="atw-s">'+esc(x.summary)+'</p>':'')+'</li>'}).join('');
       var c=String(J.contact||'').trim();if(/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(c))$('#atwRm').innerHTML=' Want a link removed? Email <a href="mailto:'+esc(c)+'">'+esc(c)+'</a> and we\u2019ll remove it within 2 business days.';
       sec.hidden=false}).catch(function(){})}
+  /* ---------- Home hero slideshow (Jackson, Oct 29): the week's most watched SMU videos, no headline ----------
+     Ranked by YouTube's own public view count ("views" in data/videos-feed.json; tools/fetch_youtube.py reads it from each
+     channel's RSS feed on the daily refresh). Videos posted in the last 7 days come first, by views; if fewer than 4, the next
+     most-viewed from the last 30 days fill in. Nothing is estimated: a video without a count is never shown here.
+     Height is reserved in index.html and site.css (every slide sits in one grid cell), so filling it never moves the page.
+     Auto-advances every 7 s; pauses on hover, on keyboard focus, off screen, in a background tab, and with the pause button;
+     never auto-advances with prefers-reduced-motion. Swipe on touch screens. */
+  var HS_N=6,HS_MIN=4,HS_MS=7000;
+  function hsRank(F){var all=[],seen={};
+    (F&&F.channels||[]).forEach(function(ch){(ch.videos||[]).forEach(function(v){if(typeof v.views!=='number'||!/^[A-Za-z0-9_-]{11}$/.test(v.id||''))return;
+      var t=Date.parse(v.published),k=String(v.title||'').toLowerCase().replace(/\W+/g,' ').trim();if(isNaN(t)||!k||seen[v.id]||seen[k])return;seen[v.id]=seen[k]=1;all.push({ch:ch,v:v,t:t})})});
+    var now=Date.now(),by=function(a,b){return b.v.views-a.v.views};
+    var wk=all.filter(function(x){return x.t>=now-7*864e5}).sort(by).slice(0,HS_N);wk.forEach(function(x){x.wk=1});
+    if(wk.length<HS_MIN)wk=wk.concat(all.filter(function(x){return x.t<now-7*864e5&&x.t>=now-30*864e5}).sort(by).slice(0,HS_MIN-wk.length));
+    return wk}
+  function heroShow(){var box=$('#heroShow');if(!box)return;
+    var stage=$('.hs-stage',box),dotsEl=$('.hs-dots',box),bar=$('.hs-bar',box),pauseB=$('.hs-pause',box),prevB=$('.hs-prev',box),nextB=$('.hs-next',box);
+    var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function slide(x,i,n,asOf){var c=x.c,eager=i===0,p=poster(c,{eager:1});if(!eager)p=p.replace('loading="eager"','loading="lazy"');
+      var m=x.v?esc(x.ch.name)+' \u00b7 '+esc(day(x.v.published)):esc(c.label);
+      var line=x.v?x.v.views.toLocaleString('en-US')+(x.v.views===1?' view':' views')+' on YouTube'+(asOf?' as of '+esc(asOf):''):esc(c.desc);
+      return '<div class="hs-slide'+(i?'':' on')+'" role="group" aria-roledescription="slide" aria-label="'+(i+1)+' of '+n+'"'+(i?' aria-hidden="true" inert':'')+'>'+
+        '<a class="hero-card hs-card" href="'+itemHref(c)+'" data-item="'+c.id+'">'+p+'<div class="hero-card-b"><span class="meta">'+m+'</span><h3 aria-level="2">'+esc(x.v?tcase(c.title):c.title)+'</h3><p>'+line+'</p></div></a></div>'}
+    function day(iso){var d=new Date(iso);return isNaN(d)?'':d.toLocaleDateString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric'})}
+    function render(F){var R=hsRank(F),asOf=F&&F.updated?day(F.updated):'',X;
+      if(R.length){X=R.map(function(x){x.c=feedItem(x.ch,x.v);return x})}
+      else{var f=LIBBY[MP.FEATURED]||MP.LIB.filter(function(c){return c.t==='video'})[0];if(!f){box.hidden=true;return}X=[{c:f}]}
+      var n=X.length,i=0,timer=0,user=false,hov=false,foc=false,vis=true;
+      stage.innerHTML=X.map(function(x,k){return slide(x,k,n,asOf)}).join('');
+      var S=[].slice.call(stage.children);
+      var bk=R.length&&!R.every(function(x){return x.wk}),t=$('.hs-t',box);if(t&&R.length)t.textContent=bk?'Most watched recently':'Most watched this week';
+      if(n<2){bar.classList.add('hs-one');box.classList.add('ready');return}
+      dotsEl.innerHTML=X.map(function(x,k){return '<button type="button" class="hs-dot" aria-label="Show video '+(k+1)+' of '+n+': '+esc(x.v?tcase(x.c.title):x.c.title)+'"'+(k?'':' aria-current="true"')+'><i></i></button>'}).join('');
+      var D=[].slice.call(dotsEl.children);
+      function go(k,fromUser){i=(k+n)%n;S.forEach(function(s,j){var on=j===i;s.classList.toggle('on',on);if(on){s.removeAttribute('aria-hidden');s.removeAttribute('inert')}else{s.setAttribute('aria-hidden','true');s.setAttribute('inert','')}});
+        D.forEach(function(d,j){if(j===i)d.setAttribute('aria-current','true');else d.removeAttribute('aria-current')});
+        var nx=S[(i+1)%n].querySelector('img[loading="lazy"]');if(nx)nx.loading='eager';  /* warm the next thumbnail */
+        if(fromUser)arm()}
+      function playing(){return !calm&&!user&&!hov&&!foc&&vis&&!document.hidden}
+      function arm(){clearTimeout(timer);timer=0;if(playing())timer=setTimeout(function(){go(i+1);arm()},HS_MS);
+        stage.setAttribute('aria-live',playing()?'off':'polite');
+        pauseB.setAttribute('aria-label',(user||calm)?'Play slideshow':'Pause slideshow');pauseB.classList.toggle('paused',user||calm)}
+      prevB.addEventListener('click',function(){go(i-1,1)});nextB.addEventListener('click',function(){go(i+1,1)});
+      D.forEach(function(d,j){d.addEventListener('click',function(){go(j,1)})});
+      pauseB.addEventListener('click',function(){if(calm){calm=false;user=false}else user=!user;arm();if(!user&&!calm)go(i+1,1)});
+      box.addEventListener('mouseenter',function(){hov=true;arm()});box.addEventListener('mouseleave',function(){hov=false;arm()});
+      box.addEventListener('focusin',function(){foc=true;arm()});box.addEventListener('focusout',function(e){if(!box.contains(e.relatedTarget)){foc=false;arm()}});
+      document.addEventListener('visibilitychange',arm);
+      if(window.IntersectionObserver)new IntersectionObserver(function(es){vis=es[0].isIntersecting;arm()},{threshold:.35}).observe(box);
+      box.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){go(i-1,1);e.preventDefault()}else if(e.key==='ArrowRight'){go(i+1,1);e.preventDefault()}});
+      /* swipe: horizontal drags over 40px change slide; the click that can follow a drag is swallowed so it doesn't open the video */
+      var x0=null,y0=0,swiped=0;
+      stage.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY},{passive:true});
+      stage.addEventListener('touchend',function(e){if(x0==null)return;var t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;x0=null;
+        if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.2){swiped=Date.now();go(i+(dx<0?1:-1),1)}},{passive:true});
+      stage.addEventListener('click',function(e){if(Date.now()-swiped<500){e.preventDefault();e.stopPropagation()}},true);
+      box.classList.add('ready');arm()}
+    if(!window.fetch){render(null);return}
+    fetch(ROOT+'data/videos-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(render,function(){render(null)})}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       /* Home waitlist section removed (Oct 26, Jackson); Join CTAs open the join pop-up. */
       var tiers=$('.tiers',mem);if(tiers)tiers.insertAdjacentHTML('beforebegin',freeBands('home'))}
-    var feat=LIBBY[MP.FEATURED]||LIBBY['boulevard-nights-1'];
-    /* Weekly hero headline (MP.HERO in content.js). Only swap the h1 when its item is the card being shown, so headline and media always match. */
-    (function(){var H=MP.HERO,h=$('#hero-h');if(!h||!H||!H.line1||!H.line2||!LIBBY[H.item]||LIBBY[H.item]!==feat)return;
-      h.innerHTML='<b>'+esc(H.line1)+'</b><span>'+esc(H.line2)+'</span>';h.classList.add('hero-wk');
-      /* Each line stays on one row: shrink from the CSS size until the longer line fits the column (floor 36px, then it may wrap). */
-      function fit(){h.style.fontSize='';if(!h.offsetWidth)return;var base=parseFloat(getComputedStyle(h).fontSize),w=h.clientWidth,need=0;
-        [].forEach.call(h.children,function(c){need=Math.max(need,c.scrollWidth)});
-        if(need>w)h.style.fontSize=Math.max(36,Math.floor(base*w/need*0.98))+'px'}
-      fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var ft;addEventListener('resize',function(){clearTimeout(ft);ft=setTimeout(fit,100)})})();
-    /* Hero featured card: desktop/tablet only. On phones the hero is display:none, so skip it there (no eager poster download) and fill it if the window widens. */
-    (function(){var hf=$('#heroFeature'),mq=window.matchMedia&&matchMedia('(max-width:719px)');if(!hf)return;
-      function fill(){if(hf.dataset.filled||(mq&&mq.matches))return;hf.dataset.filled='1';hf.innerHTML='<a class="hero-card'+(gated(feat)?' gated':'')+'" href="'+itemHref(feat)+'" data-item="'+feat.id+'">'+poster(feat,{big:1,eager:1})+'<div class="hero-card-b"><span class="meta">'+esc(feat.label)+' · Now streaming</span><h3 aria-level="2">'+esc(feat.title)+'</h3><p>'+esc(feat.desc)+'</p></div></a>';}
-      fill();if(mq&&mq.addEventListener)mq.addEventListener('change',fill)})();
+    heroShow();
     $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','From SMU Athletics on YouTube')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
