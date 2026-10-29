@@ -88,7 +88,7 @@ insert into public.posts (id,thread_id,author_handle,body,quote_post_id,created_
   (703,7,'cox','Breakfast tacos for the early kickoffs. Trust me.',null,now()-interval '720 minutes'),
   (801,8,'staff','Spent the morning on deck. The distance group is ahead of last year''s splits. The diving coach thinks a fictional sophomore has a real shot at the podium.',null,now()-interval '1440 minutes'),
   (802,8,'grace','Didn''t know I cared about swim until SMU+. Now I''m hooked.',null,now()-interval '960 minutes'),
-  (901,9,'staff','Pinned. How the proposed model works: 40% of membership revenue would go to SMU Athletics’ official NIL and revenue-sharing programs, with athlete deals disclosed through the NIL Go clearinghouse. SMU+ would not pick or pay individual athletes or teams. (Sample post for this concept.)',null,now()-interval '2880 minutes'),
+  (901,9,'staff','Pinned. 14% of net membership revenue will fund paid content deals with SMU athletes, and we’ll publish what we spend each year. No athlete is promised a payment. (Sample post for this concept.)',null,now()-interval '2880 minutes'),
   (902,9,'cox','Clear rules like this are why I joined.',null,now()-interval '2160 minutes'),
   (903,9,'hank','Good that it runs through SMU’s official programs.',null,now()-interval '1440 minutes'),
   (1001,10,'staff','Updated tracker. All prospects referenced on this demo board are fictional.',null,now()-interval '2880 minutes'),

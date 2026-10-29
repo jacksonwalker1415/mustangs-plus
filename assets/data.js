@@ -113,7 +113,7 @@ MP.THREADS = [
    ]},
   {id:9,f:'hilltop',sport:null,title:'Where would the NIL money go? How the proposed model works',by:'staff',ago:'2d',pin:true,
    posts:[
-     ['staff','Pinned. How the proposed model works: a share of membership revenue would support SMU Athletics\u2019 official NIL and revenue-sharing programs, with exact terms still to be decided and athlete deals disclosed through the NIL Go clearinghouse. SMU+ would not pick or pay individual athletes or teams. (Sample post for this concept.)'],
+     ['staff','Pinned. 14% of net membership revenue will fund paid content deals with SMU athletes, and we\u2019ll publish what we spend each year. No athlete is promised a payment. (Sample post for this concept.)'],
      ['cox','Clear rules like this are why I joined.'],
      ['hank','Good that it runs through SMU\u2019s official programs.']
    ]},
