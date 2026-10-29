@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-28T11:10:09Z",
+ "generated": "2026-10-29T11:00:56Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "cb37716c50",
+     "title": "SMU at Syracuse game preview, predictions for Week 9 | Mustangs aim to stay hot",
+     "published": "2026-10-29T07:00:00Z",
+     "dur": "45 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/7e181dcc-3b80-44fc-85c6-5d2dbdc2351e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=7e181dcc-3b80-44fc-85c6-5d2dbdc2351e&feed=eSeVNxtA"
+    },
     {
      "id": "258a48713c",
      "title": "Final thoughts on SMU win over Cal, can dominance continue for Mustangs? | SMU Football Podcast",
@@ -58,7 +65,7 @@
     },
     {
      "id": "fbfaaccfda",
-     "title": "SMU vs. Cal game preview, predictions for Week 7 | Mustangs look to get bowl eligible",
+     "title": "SMU vs. Cal game preview, predictions for Week 8 | Mustangs look to get bowl eligible",
      "published": "2026-10-22T09:00:00Z",
      "dur": "54 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/72fdd26a-07b1-468e-ace8-af185a9de0b2/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=72fdd26a-07b1-468e-ace8-af185a9de0b2&feed=eSeVNxtA",
@@ -95,14 +102,6 @@
      "dur": "18 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/a18c17a2-9318-45fb-95db-2d6583611198/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=a18c17a2-9318-45fb-95db-2d6583611198&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/pat-go-smu-vs-virginia-game-preview-predictions-qb/id1604025463?i=1000796674976"
-    },
-    {
-     "id": "733d88ceba",
-     "title": "SMU vs. Virginia game preview, predictions | Mustangs aim to knock off UVA",
-     "published": "2026-10-15T09:00:00Z",
-     "dur": "45 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/1f447cd2-2cf6-490f-a16b-9eaeda9c27d9/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=1f447cd2-2cf6-490f-a16b-9eaeda9c27d9&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-game-preview-predictions-mustangs-aim/id1604025463?i=1000796459040"
     }
    ]
   },
@@ -113,6 +112,13 @@
    "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
+    {
+     "id": "690a7d9316",
+     "title": "MATCHUP: Kevin Jennings Faces FEISTY Syracuse Pass Defense as SMU Mustangs Seek Three Straight Wins",
+     "published": "2026-10-28T13:00:00Z",
+     "dur": "28 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/fd588c37-fdc0-49cd-92e1-3aa44b0da3df/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=fd588c37-fdc0-49cd-92e1-3aa44b0da3df&feed=MciFpBoA"
+    },
     {
      "id": "19fe35e70f",
      "title": "Kendrick Raphael POWERS SMU and Makes Himself a DRAFTABLE PLAYER – Who's SMU's Most UNDERRATED Guy?",
@@ -200,14 +206,6 @@
      "dur": "44 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/01f18973-28c1-4f72-9c7d-62baf540c7ac/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=01f18973-28c1-4f72-9c7d-62baf540c7ac&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/acc-squad-its-miami-everyone-else-where-smu-sits/id1824252582?i=1000796550978"
-    },
-    {
-     "id": "977d670705",
-     "title": "QUESTIONS: Will SMU's Explosive Plays Return Vs. Virginia, Is Mustangs' Defense Really Better?",
-     "published": "2026-10-15T13:00:00Z",
-     "dur": "26 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/6706add2-4ec3-4c35-ada5-2db8f9a475ba/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=6706add2-4ec3-4c35-ada5-2db8f9a475ba&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/questions-will-smus-explosive-plays-return-vs-virginia/id1824252582?i=1000796492879"
     }
    ]
   },
@@ -684,15 +682,19 @@
  "new": [
   {
    "key": "on-the-pony-express",
+   "id": "cb37716c50"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "690a7d9316"
+  },
+  {
+   "key": "on-the-pony-express",
    "id": "258a48713c"
   },
   {
    "key": "mustang-studios",
    "id": "9f0914c2f7"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "e17e9ad3d1"
   },
   {
    "key": "locked-on-smu",
@@ -701,10 +703,6 @@
   {
    "key": "dmn",
    "id": "60dbcf8849"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "2dc9334ed9"
   },
   {
    "key": "mustang-mood",
