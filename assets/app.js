@@ -903,6 +903,7 @@
      Ranked by YouTube's own public view count ("views" in data/videos-feed.json; tools/fetch_youtube.py reads it from each
      channel's RSS feed on the daily refresh). Videos posted in the last 7 days come first, by views; if fewer than 4, the next
      most-viewed from the last 30 days fill in. Nothing is estimated: a video without a count is never shown here.
+     Each slide is just the centred 16:9 thumbnail (Jackson, Oct 29 9:11); its title, channel, date and views are in the link's aria-label.
      Height is reserved in index.html and site.css (every slide sits in one grid cell), so filling it never moves the page.
      Auto-advances every 7 s; pauses on hover, on keyboard focus, off screen, in a background tab, and with the pause button;
      never auto-advances with prefers-reduced-motion. Swipe on touch screens. */
@@ -921,7 +922,7 @@
       var m=x.v?esc(x.ch.name)+' \u00b7 '+esc(day(x.v.published)):esc(c.label);
       var line=x.v?x.v.views.toLocaleString('en-US')+(x.v.views===1?' view':' views')+' on YouTube'+(asOf?' as of '+esc(asOf):''):esc(c.desc);
       return '<div class="hs-slide'+(i?'':' on')+'" role="group" aria-roledescription="slide" aria-label="'+(i+1)+' of '+n+'"'+(i?' aria-hidden="true" inert':'')+'>'+
-        '<a class="hero-card hs-card" href="'+itemHref(c)+'" data-item="'+c.id+'">'+p+'<div class="hero-card-b"><span class="meta">'+m+'</span><h3 aria-level="2">'+esc(x.v?tcase(c.title):c.title)+'</h3><p>'+line+'</p></div></a></div>'}
+        '<a class="hero-card hs-card" href="'+itemHref(c)+'" data-item="'+c.id+'" aria-label="'+esc(x.v?tcase(c.title):c.title)+'. '+m+'. '+line+'.">'+p+'</a></div>'}
     function day(iso){var d=new Date(iso);return isNaN(d)?'':d.toLocaleDateString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric'})}
     function render(F){var R=hsRank(F),asOf=F&&F.updated?day(F.updated):'',X;
       if(R.length){X=R.map(function(x){x.c=feedItem(x.ch,x.v);return x})}

@@ -3239,10 +3239,10 @@ a.sx-xav:focus-visible{outline:3px solid #354CA1;outline-offset:-2px;border-radi
 /* Counsel, Oct 27: no sticky sample ad while the From Socials Following panel shows (always on screen beside the feed at 1024px+).
    On phones the panel is a sheet; ads.js hides the bar while it is open (ad-quiet). Ad-free hides everything as before. */
 @media(min-width:1024px){body[data-page="socials"] .ad-sticky{display:none!important}html.ad-sticky-on:not(.adfree) body[data-page="socials"]{padding-bottom:0}}
-/* ---- Home hero slideshow (Jackson, Oct 29): no headline; the week's most watched SMU videos, every screen size. app.js heroShow().
-   Every slide sits in the same grid cell, so the stage is as tall as one card and never changes height. Official colors only. ---- */
+/* ---- Home hero slideshow (Jackson, Oct 29): no headline, no text panel; the week's most watched SMU videos as centred 16:9
+   thumbnails, every screen size. app.js heroShow(). Every slide sits in the same grid cell, so the stage never changes height. ---- */
 .hero.hero-ss{padding:var(--s6) 0 var(--s7)}
-.hs{position:relative;max-width:1040px;margin:0 auto}
+.hs{position:relative;max-width:780px;margin:0 auto}
 .hs-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:var(--s4);min-height:44px}
 .hs-t{font:700 20px/1.2 var(--sans);color:#fff;letter-spacing:0}
 .hs-ctl{display:flex;align-items:center;gap:4px;visibility:hidden}
@@ -3260,32 +3260,19 @@ a.sx-xav:focus-visible{outline:3px solid #354CA1;outline-offset:-2px;border-radi
 .hs-stage{display:grid}
 .hs-slide{grid-area:1/1;min-width:0;opacity:0;visibility:hidden;transition:opacity .45s,visibility 0s .45s}
 .hs-slide.on{opacity:1;visibility:visible;transition:opacity .45s}
-.hs-card{height:100%}
-.hs-card .poster{aspect-ratio:16/9;margin:0}
-.hs-card .hero-card-b{display:flex;flex-direction:column;justify-content:center;min-width:0}
-.hs-card .hero-card-b h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
-.hs-card .hero-card-b p{color:#fff;font-size:15px}
-.hs-card .meta{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs-card{display:block;aspect-ratio:16/9;overflow:hidden}
+.hs-card .poster{aspect-ratio:16/9;margin:0;height:100%}
 .hs-sk .poster .sk{display:block;width:100%;height:100%;border-radius:0}
-.hs-sk .hero-card-b .sk{display:block;height:14px;border-radius:4px;margin:4px 0}
-.hs-sk .hs-sk-1{width:40%}.hs-sk .hs-sk-2{height:24px!important;width:90%}.hs-sk .hs-sk-3{width:55%}
-@media(min-width:720px){
-  .hs-card{display:grid;grid-template-columns:62fr 38fr;align-items:stretch}
-  .hs-card .hero-card-b{padding:var(--s5) var(--s6)}
-}
-@media(min-width:720px) and (max-width:959px){.hs-card .hero-card-b{padding:var(--s4)}.hs-card .hero-card-b h3{font-size:20px}}
+/* desktop and tablet: arrows sit on the thumbnail's edges too, so the bar is just the label, dots and pause */
+.hs-prev,.hs-next{position:absolute;z-index:6;top:calc(44px + var(--s4) + min(780px,100vw - var(--gut)*2)*9/32 - 22px)}
+.hs-prev{left:12px}.hs-next{right:12px}
 @media(max-width:719px){
   .hero.hero-ss{padding:var(--s4) 0 var(--s5)}
-  /* fixed two rows (title 24px + controls 44px), so the bar never grows when the dots arrive and the arrows below can be placed exactly */
+  /* fixed two rows (title 24px + controls 44px), so the bar never grows when the dots arrive and the arrows can be placed exactly */
   .hs-bar{display:grid;grid-template-rows:24px 44px;row-gap:4px;justify-content:stretch;margin-bottom:12px}
   .hs-t{font-size:18px;line-height:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .hs-ctl{justify-content:space-between}
-  /* fixed body height: one meta line, two title lines, one views line */
-  .hs-card .hero-card-b{height:120px;justify-content:flex-start;padding:var(--s3) var(--s4)}
-  .hs-card .hero-card-b h3{-webkit-line-clamp:2;font-size:18px;line-height:1.25;margin:4px 0}
-  .hs-card .hero-card-b p{font-size:14px}
-  /* prev/next sit on the thumbnail's edges so the bar has room for the dots and the pause button */
-  .hs-prev,.hs-next{position:absolute;z-index:6;top:calc(72px + 12px + (100vw - var(--gut)*2)*9/32 - 22px)}
+  .hs-prev,.hs-next{top:calc(72px + 12px + (100vw - var(--gut)*2)*9/32 - 22px)}
   .hs-prev{left:8px}.hs-next{right:8px}
 }
 @media(prefers-reduced-motion:reduce){.hs-slide,.hs-slide.on,.hs-dot i{transition:none}}
