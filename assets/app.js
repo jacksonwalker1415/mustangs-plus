@@ -15,7 +15,7 @@
       if(a.body)a.body=a.body.filter(function(p){return !REC_RE.test(p)});if(a.related)a.related=a.related.filter(function(r){return LIVEIDS[r]})})}
   /* ---------- Expiring cards: an MP.LIB item with expires (ISO time, e.g. a preview's kickoff) leaves every list, rail, search result and Up next
      once that time passes. Direct links (#article=id) still open it. ?now=<ISO time> overrides the clock for testing. ---------- */
-  var NOW=(function(){var m=/[?&]now=([^&#]+)/.exec(location.search),t=m&&Date.parse(decodeURIComponent(m[1]));return t||Date.now()})();
+  var NOW=(function(){var m=/[?&]now=([^&#]+)/.exec(location.search),t;try{t=m&&Date.parse(decodeURIComponent(m[1]))}catch(e){}return t||Date.now()})();
   function expired(c){var t=c&&c.expires&&Date.parse(c.expires);return !!t&&t<=NOW}MP.expired=expired;
   var LIB_ALL=MP.LIB;MP.LIB=MP.LIB.filter(function(c){return !expired(c)});
   function $$(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s))}
@@ -1612,7 +1612,7 @@
     $('#fxListSearch').addEventListener('submit',function(e){e.preventDefault()});
     document.addEventListener('click',function(e){var b=e.target.closest('[data-mark-all]');if(!b)return;markAll();toast('Everything is marked as read.');renderIndex();if(!listView.hidden)renderList()});
     /* ================= Thread view ================= */
-    var likes={},quoteIdx=null;
+    var likes={},quoteIdx=null,quoteThread=null;
     function likeLine(o){if(!o||!o.names.length)return '';var n=o.names.slice();if(o.mine)n[0]='You';var s=n.length===1?n[0]:n.length===2?n[0]+' and '+n[1]:n.length===3?n[0]+', '+n[1]+' and '+n[2]:n[0]+', '+n[1]+' and '+(n.length-2)+' others';
       return '<span class="fx-likes-ic">'+HEART+'</span><span>'+esc(s)+'</span>'}
     function paintLikes(t){var m=likes[t.id]||{};$$('.fx-msg',threadView).forEach(function(el){var i=+el.dataset.i,o=m[i],bar=$('.fx-likes',el),b=$('[data-like]',el);
@@ -1660,7 +1660,7 @@
     function quotePreview(t){var rq=$('#replyQ');if(!rq)return;var p=quoteIdx!=null&&t.posts[quoteIdx];
       if(!p){rq.hidden=true;rq.innerHTML='';return}
       rq.hidden=false;rq.innerHTML='<blockquote class="fx-quote"><span class="fx-quote-h">'+esc(U(p[0]).n)+' said:</span><div class="fx-quote-b">'+fmt(p[1].length>240?p[1].slice(0,240)+'\u2026':p[1])+'</div><button type="button" class="fx-unquote" id="unquote" aria-label="Remove quote">Remove</button></blockquote>'}
-    function renderThread(h){var t=findT(h.id);if(!t){threadView.innerHTML=crumbs([['Boards','./'],['Thread not found']])+emptyState('chat','That thread isn\u2019t here','It may have been removed, or the link is wrong.','<a class="btn btn-navy btn-sm" href="./">Back to the boards</a>');return}
+    function renderThread(h){if(quoteThread!==h.id){quoteIdx=null;quoteThread=h.id}var t=findT(h.id);if(!t){threadView.innerHTML=crumbs([['Boards','./'],['Thread not found']])+emptyState('chat','That thread isn\u2019t here','It may have been removed, or the link is wrong.','<a class="btn btn-navy btn-sm" href="./">Back to the boards</a>');return}
       var f=forumBy(t.f)||{id:t.f,name:'Board'},n=t.posts.length,pages=Math.max(1,Math.ceil(n/PPER)),sn=seen(t),un=unread(t);
       var target=null,page=1;if(tsort.id!==t.id)tsort={id:t.id,v:'old'};if(tsort.v==='top'&&!hasTop(t))tsort.v='old';
       var ord=order(t),pos=function(k){return ord.indexOf(k-1)+1};
@@ -1724,7 +1724,7 @@
     function paintFollow(t){var on=!!SMU.user&&!!SMU.isFollowing&&SMU.isFollowing(t.id);$$('[data-follow]',threadView).forEach(function(b){b.setAttribute('aria-pressed',String(on));b.textContent=on?'Following':'Follow'})}
     SMU.on('follows',function(){var h=hashT(),t=h&&findT(h.id);if(t&&!threadView.hidden)paintFollow(t)});
     SMU.on('threads',function(){if(!indexView.hidden)renderIndex();if(!listView.hidden)renderList()});
-    document.addEventListener('smu:post',function(ev){var h=hashT();if(!h||h.id!==ev.detail)return;renderThread({id:h.id,x:''})});
+    document.addEventListener('smu:post',function(ev){var h=hashT();if(!h||h.id!==ev.detail)return;renderThread(h)});
     /* Thread pages on phones (quick win 3): the reply bar takes the bottom edge, so the sample ad bar leaves it and sits in the page
        right after the thread (same ad, so the 3-per-page cap is unchanged). Back to the bottom bar on the index, lists and wider screens. */
     var adMq=matchMedia('(max-width:767px)');
@@ -1750,8 +1750,12 @@
         return SMU.gameThread(gid).then(function(id){if(!id){fail('This game does not have a thread yet.');return}
           return SMU.loadThread(id).then(function(){history.replaceState(null,'','#t'+id);route()})})}).catch(function(){fail('Could not reach the boards right now. Try again in a minute.')});
       return true}
-    function route(){if(gameRoute())return;var h=hashT();
-      if(h){show('thread');var anchor=renderThread(h);
+    function route(missing){var h=hashT();if(quoteThread!==(h?h.id:null)){quoteIdx=null;quoteThread=h?h.id:null}if(gameRoute())return;
+      if(h){show('thread');if(!findT(h.id)&&missing!==h.id){
+          threadView.innerHTML='<p class="fx-wait" role="status">Opening the thread…</p>';
+          function loaded(){var cur=hashT();if(cur&&cur.id===h.id)route(h.id)}
+          (SMU.ready||Promise.resolve()).then(function(){return SMU.loadThread(h.id)}).then(loaded,loaded);return}
+        var anchor=renderThread(h);
         if(anchor){var el=document.getElementById(anchor);if(el)el.scrollIntoView({block:'start'})}else window.scrollTo(0,0);return}
       if(state.f||state.team||state.sport||state.q){show('list');renderList()}else{show('index');renderIndex()}}
     window.addEventListener('hashchange',function(){if(/^#(article|watch)=/.test(location.hash))return;route()});

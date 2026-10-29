@@ -3013,13 +3013,10 @@ nav.jump{--card-line:var(--line)}
 /* photo credits: 9-10px .85 white on a .55 navy wash measured 3.16-4.06. Now a flat .7 navy label with white 500 text: 6.46:1 even over a pure white photo. Position and corner unchanged */
 .credit,.ap-photo.has-photo .credit,.pc-pic.has-photo .credit,.tpl-card .tpl-ph .credit{font-size:12px;font-weight:500;line-height:1;color:#fff;background:rgba(53,76,161,.88);padding:2px 6px;border-radius:var(--r-ctl)}
 body[data-page="games"] main .credit{background:rgba(53,76,161,.88)}
-/* template posters: the photo is 40% of the card (109px on a 390 phone, 119px at 1440), too narrow for 'Photo: SMU Athletics' at 11px+ (it needs 124-131px).
-   Tighter inset and padding there, and the size steps up as soon as the photo is wide enough */
+/* template posters: keep photo credits readable and wrap within the narrow photo */
 .tpl-card .tpl-ph{container-type:inline-size}
-.tpl-card .tpl-ph .credit{font-size:9px;left:var(--s1);bottom:var(--s1);padding:2px 4px}
-@container (min-width:114px){.tpl-card .tpl-ph .credit{font-size:10px}}
-@container (min-width:126px){.tpl-card .tpl-ph .credit{font-size:11px}}
-@container (min-width:134px){.tpl-card .tpl-ph .credit{font-size:12px;left:var(--s2);bottom:var(--s2)}}
+.tpl-card .tpl-ph .credit{font-size:12px;left:var(--s1);right:var(--s1);bottom:var(--s1);padding:2px 4px;white-space:normal;overflow-wrap:anywhere}
+@container (min-width:134px){.tpl-card .tpl-ph .credit{left:var(--s2);right:var(--s2);bottom:var(--s2)}}
 /* Roster (quick win 2, Oct 27): no real photo means a blue circle with the white jersey number (initials for staff), not an empty tile */
 .roster-card.has-num .rnum{background:none;box-shadow:none}
 .rn-c{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:#354CA1;color:#fff;font-family:var(--display);font-weight:400;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}

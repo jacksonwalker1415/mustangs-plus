@@ -137,9 +137,12 @@ function interstitial(){var I=ADS.interstitial;if(!I)return;var n=(+ss('mp_ad_pv
     document.body.insertAdjacentHTML('beforeend','<div class="ad-ist" data-ad-slot="interstitial" role="dialog" aria-modal="true" aria-label="'+esc(ADS.label)+'">'+
       '<div class="ad-ist-in"><div class="ad-ist-top"><span class="ad-lbl">'+esc(ADS.label)+'</span><button type="button" class="ad-x" aria-label="Close this sample ad">Close<span aria-hidden="true"> \u00d7</span></button></div>'+creative('interstitial',b)+
       '<button type="button" class="ad-ist-go">Continue to SMU+</button></div></div>');
-    var el=document.querySelector('.ad-ist');
-    function close(){document.removeEventListener('keydown',key);el.remove();if(last&&last.focus)last.focus()}
-    function key(e){if(e.key==='Escape')close()}
+    var el=document.querySelector('.ad-ist'),inert=[];
+    Array.prototype.forEach.call(el.parentNode.children,function(n){if(n!==el&&!n.hasAttribute('inert')){n.setAttribute('inert','');inert.push(n)}});
+    function close(){document.removeEventListener('keydown',key);inert.forEach(function(n){n.removeAttribute('inert')});el.remove();if(last&&last.focus)last.focus()}
+    function key(e){if(e.key==='Escape')close();else if(e.key==='Tab'){
+      var a=Array.prototype.filter.call(el.querySelectorAll('a[href],button,input,select,textarea,[tabindex]'),function(n){return !n.disabled&&n.tabIndex>=0&&n.getClientRects().length}),i=a.indexOf(document.activeElement);
+      if(i<0||(!e.shiftKey&&i===a.length-1)||(e.shiftKey&&i===0)){e.preventDefault();if(a.length)a[e.shiftKey?a.length-1:0].focus()}}}
     el.addEventListener('click',function(e){if(e.target===el||e.target.closest('.ad-x,.ad-ist-go'))close()});document.addEventListener('keydown',key);
     el.querySelector('.ad-x').focus()},I.delay||1500)}
 /* Game pages render in app.js from ?id= (preview, live or final). Mount their slots in the same task as that render (a
