@@ -2963,7 +2963,7 @@ header.site,#site-header:empty{background:var(--blue);border-bottom-color:rgba(2
 
 /* ---- Phones (Jackson, Oct 26): compact Upcoming games ribbon (it sits under Watch, index.html moves it) and the
    class-project bar as a dismissible pop-up. Desktop and tablet keep the full ribbon and the red bar. ---- */
-.rb-src,.disc-x{display:none}
+.rb-src{display:none}
 @media(max-width:719px){
   .sec.ribbon{padding-top:var(--s4);padding-bottom:var(--s4)}
   .ribbon .rb-hd{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;margin-bottom:var(--s2)}
@@ -2992,16 +2992,12 @@ header.site,#site-header:empty{background:var(--blue);border-bottom-color:rgba(2
 /* Disclaimer strip (Mobbin quick win 1, Jackson Oct 27): a slim red strip right under the header, every page and every width.
    In the page flow, so it scrolls away with the page (never fixed or sticky) and cannot cover the home hero buttons, the sign-in
    form, the phone menu or the sample ad. Own stacking context (z 1), so the sticky header (z 50) slides over it on scroll.
-   The X is 44px and stores mp_disc_x (build_pages.py DISC_X), so it stays closed on later pages and visits. */
-html body .disclaimer{position:relative;z-index:1;display:block;margin:0;padding:6px max(52px,var(--sar,0px)) 6px max(var(--gut),var(--sal,0px));font-size:13px;line-height:1.4;text-align:left;background:#CC0035;color:#fff;border-radius:0;box-shadow:none;transform:none;transition:none}
-@media(min-width:640px){html body .disclaimer{text-align:center;padding-left:52px}}
+   Permanent since Oct 29 (Jackson): no dismiss X; first-time visitors also get the full-screen notice (.discm below). */
+html body .disclaimer{position:relative;z-index:1;display:block;margin:0;padding:6px max(var(--gut),var(--sar,0px)) 6px max(var(--gut),var(--sal,0px));font-size:13px;line-height:1.4;text-align:left;background:#CC0035;color:#fff;border-radius:0;box-shadow:none;transform:none;transition:none}
+@media(min-width:640px){html body .disclaimer{text-align:center}}
 html body .disclaimer a{z-index:auto}
 html:has(#reader:not([hidden])) body .disclaimer{position:relative;top:auto;left:auto;right:auto}
 @media(max-width:639px){.reader:not([hidden]){top:var(--sat,0px)}}
-.disc-x{display:grid;place-items:center;position:absolute;top:50%;right:4px;margin-top:-22px;width:44px;height:44px;padding:0;border:0;border-radius:var(--r1);background:none;color:#fff;cursor:pointer}
-.disc-x svg{fill:currentColor}
-.disc-x:focus-visible{outline:3px solid #fff;outline-offset:-6px}
-html.disc-off .disclaimer{display:none}
 
 /* ---------- Boards #3: thread follow button + header notification bell (bell injected by app.js into .hdr-act) ---------- */
 .fx-follow[aria-pressed="true"],.fx-follow[aria-pressed="true"]:hover{background:var(--blue);border-color:var(--blue);color:#fff}
@@ -3263,6 +3259,19 @@ a.sx-xav:focus-visible{outline:3px solid #354CA1;outline-offset:-2px;border-radi
 /* Counsel, Oct 27: no sticky sample ad while the From Socials Following panel shows (always on screen beside the feed at 1024px+).
    On phones the panel is a sheet; ads.js hides the bar while it is open (ad-quiet). Ad-free hides everything as before. */
 @media(min-width:1024px){body[data-page="socials"] .ad-sticky{display:none!important}html.ad-sticky-on:not(.adfree) body[data-page="socials"]{padding-bottom:0}}
+/* ---- First-visit class-project notice (Jackson, Oct 29). Built by the inline script in the disclaimer strip (tools/build_pages.py
+   DISC_JS) for visitors without mp_disc_ok. A fixed overlay over the whole screen, so it never moves the page. Same wording as the strip. ---- */
+html.discm-open{overflow:hidden}
+.discm{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:max(20px,var(--sat,0px)) max(20px,var(--sar,0px)) max(20px,var(--sab,0px)) max(20px,var(--sal,0px));background:#CC0035;color:#fff;overflow-y:auto;overscroll-behavior:contain}
+.discm-in{max-width:620px;width:100%;text-align:center}
+.discm h2{font:400 clamp(36px,7vw,64px)/1 var(--display,'Anton',Impact,sans-serif);color:#fff;margin:0 0 20px}
+.discm p{font-size:18px;line-height:1.5;color:#fff;margin:0}
+.discm .discm-l{margin-top:16px}
+.discm a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
+.discm-ok{margin-top:24px;min-height:52px;min-width:220px;padding:0 28px;border:2px solid #fff;border-radius:var(--r-round,999px);background:#fff;color:#CC0035;font:700 17px/1 var(--sans,sans-serif);cursor:pointer}
+.discm-ok:hover{background:#354CA1;color:#fff;border-color:#fff}
+.discm :focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(max-width:639px){.discm p{font-size:16px}.discm-ok{width:100%}}
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */

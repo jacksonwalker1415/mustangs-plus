@@ -132,7 +132,7 @@ function sticky(){var S=ADS.sticky;if(!S||S.noPages.indexOf(page())>=0||ss('mp_a
 function interstitial(){var I=ADS.interstitial;if(!I)return;var n=(+ss('mp_ad_pv')||0)+1;ss('mp_ad_pv',String(n));
   if(n<I.fromPage||ss('mp_ad_ist')||I.noPages.indexOf(page())>=0)return;
   setTimeout(function(){var h=document.documentElement;
-    if(h.classList.contains('adfree')||h.classList.contains('noscroll')||!(window.matchMedia&&matchMedia('(max-width:719px)').matches)||ss('mp_ad_ist'))return;
+    if(h.classList.contains('adfree')||h.classList.contains('noscroll')||h.classList.contains('discm-open')||!(window.matchMedia&&matchMedia('(max-width:719px)').matches)||ss('mp_ad_ist'))return;
     ss('mp_ad_ist','1');var b=brandOf(I.brand,{}),last=document.activeElement;
     document.body.insertAdjacentHTML('beforeend','<div class="ad-ist" data-ad-slot="interstitial" role="dialog" aria-modal="true" aria-label="'+esc(ADS.label)+'">'+
       '<div class="ad-ist-in"><div class="ad-ist-top"><span class="ad-lbl">'+esc(ADS.label)+'</span><button type="button" class="ad-x" aria-label="Close this sample ad">Close<span aria-hidden="true"> \u00d7</span></button></div>'+creative('interstitial',b)+
