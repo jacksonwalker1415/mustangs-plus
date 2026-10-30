@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-29T11:00:56Z",
+ "generated": "2026-10-30T11:06:47Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -13,7 +13,8 @@
      "title": "SMU at Syracuse game preview, predictions for Week 9 | Mustangs aim to stay hot",
      "published": "2026-10-29T07:00:00Z",
      "dur": "45 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/7e181dcc-3b80-44fc-85c6-5d2dbdc2351e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=7e181dcc-3b80-44fc-85c6-5d2dbdc2351e&feed=eSeVNxtA"
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/7e181dcc-3b80-44fc-85c6-5d2dbdc2351e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=7e181dcc-3b80-44fc-85c6-5d2dbdc2351e&feed=eSeVNxtA",
+     "apple": "https://podcasts.apple.com/us/podcast/smu-at-syracuse-game-preview-predictions-for-week-9/id1604025463?i=1000798660540"
     },
     {
      "id": "258a48713c",
@@ -69,7 +70,7 @@
      "published": "2026-10-22T09:00:00Z",
      "dur": "54 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/72fdd26a-07b1-468e-ace8-af185a9de0b2/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=72fdd26a-07b1-468e-ace8-af185a9de0b2&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-game-preview-predictions-for-week-7-mustangs/id1604025463?i=1000797587527"
+     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-game-preview-predictions-for-week-8-mustangs/id1604025463?i=1000797587527"
     },
     {
      "id": "7e63a0d289",
@@ -113,11 +114,28 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "d0dbe4d3f0",
+     "title": "ACC SQUAD - NC State has FIRED Dave Doeren | How this impacts SMU",
+     "published": "2026-10-29T21:00:00Z",
+     "dur": "36 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/a259f348-8783-4761-b2db-d1f10f7bdca3/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=a259f348-8783-4761-b2db-d1f10f7bdca3&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/acc-squad-nc-state-has-fired-dave-doeren-how-this-impacts-smu/id1824252582?i=1000798778940"
+    },
+    {
+     "id": "e4f9193cd0",
+     "title": "CROSSOVER: SMU Faces MUST WIN Scenario at Syracuse — Is There a SHOOTOUT Brewing?",
+     "published": "2026-10-29T04:00:00Z",
+     "dur": "31 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/c9cbcdc6-2fb9-4ed2-a210-912182ec0807/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=c9cbcdc6-2fb9-4ed2-a210-912182ec0807&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/crossover-smu-faces-must-win-scenario-at-syracuse-is/id1824252582?i=1000798715722"
+    },
+    {
      "id": "690a7d9316",
      "title": "MATCHUP: Kevin Jennings Faces FEISTY Syracuse Pass Defense as SMU Mustangs Seek Three Straight Wins",
      "published": "2026-10-28T13:00:00Z",
      "dur": "28 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/fd588c37-fdc0-49cd-92e1-3aa44b0da3df/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=fd588c37-fdc0-49cd-92e1-3aa44b0da3df&feed=MciFpBoA"
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/fd588c37-fdc0-49cd-92e1-3aa44b0da3df/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=fd588c37-fdc0-49cd-92e1-3aa44b0da3df&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/matchup-kevin-jennings-faces-feisty-syracuse-pass-defense/id1824252582?i=1000798525667"
     },
     {
      "id": "19fe35e70f",
@@ -190,22 +208,6 @@
      "dur": "21 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/a2f31d77-ba7f-402c-846f-df77f628a9db/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=a2f31d77-ba7f-402c-846f-df77f628a9db&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/statement-smu-outlasts-virginia-as-kendrick-raphael/id1824252582?i=1000796944917"
-    },
-    {
-     "id": "1e2a422c55",
-     "title": "PROVE IT: SMU Mustangs Must DOMINATE Virginia to Stay Top 25—Can Kevin Jennings and Squad Deliver?",
-     "published": "2026-10-16T16:00:00Z",
-     "dur": "29 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/bb699235-c656-4593-8a7e-f39ef2868b20/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=bb699235-c656-4593-8a7e-f39ef2868b20&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/prove-it-smu-mustangs-must-dominate-virginia-to-stay/id1824252582?i=1000796687862"
-    },
-    {
-     "id": "d66999a0ad",
-     "title": "ACC SQUAD - It's Miami & EVERYONE ELSE | Where SMU sits",
-     "published": "2026-10-15T21:00:00Z",
-     "dur": "44 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/01f18973-28c1-4f72-9c7d-62baf540c7ac/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=01f18973-28c1-4f72-9c7d-62baf540c7ac&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/acc-squad-its-miami-everyone-else-where-smu-sits/id1824252582?i=1000796550978"
     }
    ]
   },
@@ -322,6 +324,14 @@
    "art": "assets/img/pods/mustang-studios.webp",
    "episodes": [
     {
+     "id": "daa090a954",
+     "title": "Rowan Brumbaugh, Nic Codie & Teammates Preview SMU Basketball's New Era | The Five",
+     "published": "2026-10-30T00:46:53Z",
+     "dur": "27 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/128388122/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-30%2F435379205-44100-2-b566651d2da94.mp3",
+     "apple": "https://podcasts.apple.com/us/podcast/rowan-brumbaugh-nic-codie-teammates-preview-smu-basketballs/id1896902919?i=1000798808923"
+    },
+    {
      "id": "9f0914c2f7",
      "title": "Kevin Jennings Makes History | Derrick McFall and Daylon Singleton Exclusive Interview | The 214",
      "published": "2026-10-28T00:00:00Z",
@@ -408,14 +418,6 @@
      "dur": "6 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/126592704/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-1%2F433039568-44100-2-b09c425309916.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/jonathan-jefferson-treats-offensive-linemen-like-defenders/id1896902919?i=1000792483033"
-    },
-    {
-     "id": "473340932c",
-     "title": "Kevin Jennings Makes History Rolling Past Missouri State, Sweeping Stanford, and More | The 214",
-     "published": "2026-09-30T21:19:07Z",
-     "dur": "42 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/126583473/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-30%2F433027573-44100-2-f6c1af236c519.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/kevin-jennings-makes-history-rolling-past-missouri/id1896902919?i=1000792461137"
     }
    ]
   },
@@ -426,6 +428,14 @@
    "spotify": "https://open.spotify.com/show/3T8zaBlk1yDnsfmfRdj401",
    "art": "assets/img/pods/all-access-am.webp",
    "episodes": [
+    {
+     "id": "172a0817ec",
+     "title": "No. 1 Miami on Upset Alert at UNC? | New SMU look | Week 9 College Football ACC Game Previews, Picks",
+     "published": "2026-10-29T14:58:49Z",
+     "dur": "33 min",
+     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/f89d0382-bd1a-4285-bc1d-afd7b0a809c8/group-item/a83ba498-c7e7-4dde-9c5a-b29acf6268e2/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
+     "apple": "https://podcasts.apple.com/us/podcast/no-1-miami-on-upset-alert-at-unc-new-smu-look-week/id1846140556?i=1000798728465"
+    },
     {
      "id": "b2ac697563",
      "title": "FSU at Miami Spotlight, Wake Forest at Cal Preview, Virginia at SMU Storylines | ACC Week 7",
@@ -681,12 +691,24 @@
  ],
  "new": [
   {
+   "key": "mustang-studios",
+   "id": "daa090a954"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "d0dbe4d3f0"
+  },
+  {
+   "key": "all-access-am",
+   "id": "172a0817ec"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "cb37716c50"
   },
   {
    "key": "locked-on-smu",
-   "id": "690a7d9316"
+   "id": "e4f9193cd0"
   },
   {
    "key": "on-the-pony-express",
@@ -695,10 +717,6 @@
   {
    "key": "mustang-studios",
    "id": "9f0914c2f7"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "19fe35e70f"
   },
   {
    "key": "dmn",
@@ -719,14 +737,6 @@
   {
    "key": "mustang-mood",
    "id": "79a0a2fb65"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "696a111ff7"
-  },
-  {
-   "key": "locked-on-acc",
-   "id": "ce0c95f60c"
   }
  ]
 }
