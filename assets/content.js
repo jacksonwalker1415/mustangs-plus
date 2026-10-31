@@ -954,6 +954,20 @@ MP.PHOTOS={
   A2("mb2-equestrian-smu-starts-season-with-three","equestrian","Equestrian · SMU Athletics","SMU Starts Season With Three Consecutive Meets","SMU Athletics","2026-09-30","SMU opened the season with three meets on back-to-back days.","https://smumustangs.com/news/2026/9/30/equestrian-smu-starts-season-with-three-back-to-back-meets","",[]),
   A2("mb2-volleyball-picked-6th-in-ncaa-d1-committ","volleyball","Volleyball · SMU Athletics","Volleyball Picked 6th in NCAA D1 Committee Top 16 Rankings","SMU Athletics","2026-10-18","The NCAA selection committee's in-season top 16 put SMU sixth.","https://smumustangs.com/news/2026/10/18/volleyball-picked-6th-in-ncaa-d1-committee-top-16-rankings","",[]),
   A2("mb2-mens-soccer-three-mustangs-named-in-the","mens-soccer","Men's Soccer · SMU Athletics","Three Mustangs Named In The MAC Hermann Trophy Mid-Season Watch List","SMU Athletics","2026-10-05","Jonathan Evans, Noah Holmstrøm and Jaylinn Mitchell made the Hermann Trophy midseason watch list.","https://smumustangs.com/news/2026/10/5/mens-soccer-three-mustangs-named-in-the-mac-hermann-trophy-mid-season-watch-list","",[])]);
+ /* ---------- Postgame batch (Oct. 31, 2026): men's soccer vs. Louisville, Oct. 30 ----------
+    Curated by SMU+ Media Curator (/workspace/smu-media/postgame_2026-10-31.json). No. 1 SMU 1, No. 10 Louisville 1; SMU won the outright
+    ACC regular-season title. Same rules as batches 1 and 2: official embeds or credited link-outs, all free, our own one-line summaries.
+    The press conference is listed only (library, Videos, the men's soccer Media rail). It is never featured: it has not been reviewed
+    end to end for discipline questions (60th-minute red card), so the home hero slideshow skips it too (HS_SKIP in app.js).
+    Left out: the post naming the red-carded player, a sponsor-tagged post (and the @SMUMustangs quote of it), two unofficial YouTube highlight uploads, and @theACC's duplicate
+    title post. No official highlights video was up as of Oct. 31, 10 AM CT. */
+ vids=vids.concat([
+  V2('mb3-msoc-lou-presser','mens-soccer','kgT36hNlyi8',"Men's Soccer · Press conference","SMU Men's Soccer: Postgame press conference vs. Louisville",'Coach and player voices after the 1-1 draw with No. 10 Louisville that won SMU the outright ACC regular-season title. Oct. 30.','2026-10-30',0)]);
+ vids[vids.length-1].nofeat=true;
+ news=news.concat([
+  A2("mb3-msoc-smu-outright-acc-title","mens-soccer","Men's Soccer · SMU Athletics","SMU Becomes The Undisputed 2026 ACC Men's Soccer Regular Season Champion","SMU Athletics","2026-10-30","Down 1-0 and a man short from the 60th minute, No. 1 SMU tied No. 10 Louisville 1-1 on Landon Hickam's 87th-minute goal to win the outright ACC regular-season title and finish the regular season unbeaten at 12-0-3.","https://smumustangs.com/news/2026/10/30/mens-soccer-no-1-smu-wins-outright-acc-mens-soccer-regular-season-title","",[]),
+  A2("mb3-msoc-dmn-acc-title","mens-soccer","Men's Soccer · Dallas Morning News","No. 1 SMU men's soccer captures ACC regular-season title with dramatic draw vs. Louisville","The Dallas Morning News","2026-10-30","A recap of the late equalizer and the celebration. It was the first time all season SMU had trailed, and SMU hosts its first ACC tournament match on Nov. 8.","https://www.dallasnews.com/sports/smu-mustangs/article/smu-mens-soccer-acc-regular-season-title-22501938.php","May need a subscription",[]),
+  A2("mb3-msoc-louisville-recap","mens-soccer","Men's Soccer · Louisville Athletics","No. 10 Louisville Earns 1-1 Draw at No. 1 SMU in Regular-Season Finale","Louisville Athletics","2026-10-30","Louisville's view of the draw: its defense held the nation's top-scoring offense to one goal, while SMU outshot Louisville 15-10 and had 10 corners to 3.","https://gocards.com/news/2026/10/30/mens-soccer-no-10-louisville-earns-1-1-draw-at-no-1-smu-in-regular-season-finale","",[])]);
  /* batch 1 sort dates */
  var ISO={'mb-fb-cal-presser':'2026-10-24','mb-fb-lashlee-jennings':'2026-10-20','mb-fb-kilgore-hale':'2026-10-21','mb-msoc-uca-highlights':'2026-10-21','mb-msoc-uca-presser':'2026-10-21','mb-vb-fsu-highlights':'2026-10-18','mb-vb-fsu-presser':'2026-10-18',
   'mb-pod-on3-reaction':'2026-10-24','mb-pod-on3-mood':'2026-10-25','mb-pod-on3-qb':'2026-10-23','mb-pod-lockedon':'2026-10-25','mb-fb-ap-19':'2026-10-25','mb-fb-espn-record':'2026-10-24','mb-msoc-acc-title':'2026-10-25',
@@ -1005,6 +1019,13 @@ MP.PHOTOS={
   'track-field':[[X('SMUTrackAndXC','2112281454814417327'),'SMUTrackAndXC','SMU Track & Field/XC','Oct. 19, 2026']],
   home:[[X('SMUMustangs','2112936960008552902'),'SMUMustangs','SMU Athletics','Oct. 21, 2026'],[X('SMUFB','2114064058836300191'),'SMUFB','SMU Football','Oct. 24, 2026'],[X('SMUBasketball','2114462560967971248'),'SMUBasketball','SMU Basketball','Oct. 25, 2026'],[X('SMUSoccerW','2113382944081629536'),'SMUSoccerW',"SMU Women's Soccer",'Oct. 22, 2026']]};
  Object.keys(POSTS2).forEach(function(k){posts[k]=(posts[k]||[]).concat(POSTS2[k])});
+ /* Postgame batch (Oct. 31): official X posts from the title night, newest batch first on the men's soccer page. Held back: @SMUMustangs
+    2116347816843088094 ("NO. ONE. GETS. OUT. OF. WASHBURNE. ALIVE."), because X's embed shows the post it quotes, the sponsor-tagged @laMadeleine post. */
+ var D30='Oct. 30, 2026',MS="SMU Men's Soccer";
+ posts['mens-soccer']=[[X('SMUSoccerM','2116347617214906411'),'SMUSoccerM',MS,D30],[X('SMUSoccerM','2116345691584991414'),'SMUSoccerM',MS,D30],
+  [X('theACC','2116349962921681042'),'theACC','The ACC',D30],
+  [X('SMUSoccerM','2116356947910001136'),'SMUSoccerM',MS,D30],[X('SMUSoccerM','2116367463134970211'),'SMUSoccerM',MS,D30],
+  [X('theACC','2116375037645054462'),'theACC','The ACC',D30]].concat(posts['mens-soccer']||[]);
  function ac(name,h,ig,more,note){var o={x:'https://x.com/'+h};if(ig)o.instagram='https://www.instagram.com/'+ig+'/';for(var k in more||{})o[k]=more[k];return [name,h,o,note||'']}
  var A0={
   dept:ac('SMU Athletics','SMUMustangs','smu.mustangs',{youtube:'https://www.youtube.com/@SMUMustangs'}),

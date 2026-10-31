@@ -719,7 +719,8 @@
     [].forEach.call(L,function(b){io.observe(b)})}
   document.addEventListener('click',function(e){var a=e.target.closest('[data-xdir]');if(a){var box=document.getElementById(a.getAttribute('aria-controls'));if(!box)return;var c=box.firstElementChild,st=c?c.getBoundingClientRect().width+16:box.clientWidth*.8;
       box.scrollBy({left:st*(+a.dataset.xdir),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}});
-  function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&(c.sport===slug||(c.also||[]).indexOf(slug)>=0)}).sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')})}
+  /* nofeat items (not cleared to feature) sort after same-day items, so they never lead the rail */
+  function thirdFor(slug){return MP.LIB.filter(function(c){return c.third&&(c.sport===slug||(c.also||[]).indexOf(slug)>=0)}).sort(function(a,b){return (b.iso||'').localeCompare(a.iso||'')||(a.nofeat?1:0)-(b.nofeat?1:0)})}
   function mediaSection(slug,name){var L=thirdFor(slug);if(!L.length)return '';
     return '<section class="sec alt" id="media"><div class="wrap">'+secHead('Video, podcasts &amp; coverage',libUrl('all'),'Library','SMU Athletics on YouTube and the press')+
       '<p class="lede">Real '+esc(name.toLowerCase())+' media from SMU Athletics and outside outlets, credited to each source. Videos and podcasts play through YouTube and Apple Podcasts; articles open on the outlet\u2019s own site.</p>'+rail(L)+'</div></section>'}
@@ -908,8 +909,11 @@
      Auto-advances every 7 s; pauses on hover, on keyboard focus, off screen, in a background tab, and with the pause button;
      never auto-advances with prefers-reduced-motion. Swipe on touch screens. */
   var HS_N=6,HS_MIN=4,HS_MS=7000;
+  /* Never in the slideshow: videos not cleared to feature. kgT36hNlyi8 = men's soccer press conference vs. Louisville, Oct. 30 (not reviewed
+     end to end for discipline questions; listed in the library only). */
+  var HS_SKIP={kgT36hNlyi8:1};
   function hsRank(F){var all=[],seen={};
-    (F&&F.channels||[]).forEach(function(ch){(ch.videos||[]).forEach(function(v){if(typeof v.views!=='number'||!/^[A-Za-z0-9_-]{11}$/.test(v.id||''))return;
+    (F&&F.channels||[]).forEach(function(ch){(ch.videos||[]).forEach(function(v){if(typeof v.views!=='number'||!/^[A-Za-z0-9_-]{11}$/.test(v.id||'')||HS_SKIP[v.id])return;
       var t=Date.parse(v.published),k=String(v.title||'').toLowerCase().replace(/\W+/g,' ').trim();if(isNaN(t)||!k||seen[v.id]||seen[k])return;seen[v.id]=seen[k]=1;all.push({ch:ch,v:v,t:t})})});
     var now=Date.now(),by=function(a,b){return b.v.views-a.v.views};
     var wk=all.filter(function(x){return x.t>=now-7*864e5}).sort(by).slice(0,HS_N);wk.forEach(function(x){x.wk=1});
