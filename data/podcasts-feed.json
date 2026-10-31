@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30T11:06:47Z",
+ "generated": "2026-10-31T11:04:18Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -114,6 +114,14 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "cc64c2cf8e",
+     "title": "PREVIEW: SMU's Keys vs Syracuse, June Jones' LEGACY, Mustangs' Corners MUST PLAY WELL This Week",
+     "published": "2026-10-30T15:30:00Z",
+     "dur": "29 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/b21607ca-fc33-4079-a7f3-c515859eb796/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=b21607ca-fc33-4079-a7f3-c515859eb796&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/preview-smus-keys-vs-syracuse-june-jones-legacy-mustangs/id1824252582?i=1000798917571"
+    },
+    {
      "id": "d0dbe4d3f0",
      "title": "ACC SQUAD - NC State has FIRED Dave Doeren | How this impacts SMU",
      "published": "2026-10-29T21:00:00Z",
@@ -200,14 +208,6 @@
      "dur": "28 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/b6fe31a4-2c94-4f08-9f3f-d345824ce8d5/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=b6fe31a4-2c94-4f08-9f3f-d345824ce8d5&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/breakthrough-smu-mustangs-find-ways-to-win-jennings/id1824252582?i=1000797105131"
-    },
-    {
-     "id": "16825fa1c9",
-     "title": "STATEMENT: SMU Outlasts Virginia as Kendrick Raphael and Kevin Jennings DELIVER Efficient Victory",
-     "published": "2026-10-18T17:00:00Z",
-     "dur": "21 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/a2f31d77-ba7f-402c-846f-df77f628a9db/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=a2f31d77-ba7f-402c-846f-df77f628a9db&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/statement-smu-outlasts-virginia-as-kendrick-raphael/id1824252582?i=1000796944917"
     }
    ]
   },
@@ -218,6 +218,14 @@
    "spotify": "https://open.spotify.com/show/7nMjtANtm8wKhWspJdykWW",
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
+    {
+     "id": "7992755189",
+     "title": "SMU vs Syracuse Preview: Can the Mustangs Keep Rolling in the ACC?",
+     "published": "2026-10-30T11:00:00Z",
+     "dur": "32 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128398042/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-30%2F435392225-44100-2-845032373ab9f.mp3",
+     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-syracuse-preview-can-the-mustangs-keep-rolling/id1734256145?i=1000798883555"
+    },
     {
      "id": "4b447fd8e1",
      "title": "SMU vs. Cal Postgame: Mustangs Dominate 2nd Half in 59-20 Win!",
@@ -305,14 +313,6 @@
      "dur": "29 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/125859096/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-17%2F432063870-44100-2-05dd971c1f0ef.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-mustangs-vs-louisville-cardinals-preview-the/id1734256145?i=1000790301285"
-    },
-    {
-     "id": "8f4e3617d6",
-     "title": "SMU Beats Florida State 27-24: Postgame Reaction, Takeaways & What’s Next",
-     "published": "2026-09-09T12:30:56Z",
-     "dur": "31 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/125459037/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-9%2F431521716-44100-2-aad3ddac881b9.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-beats-florida-state-27-24-postgame-reaction-takeaways/id1734256145?i=1000788676961"
     }
    ]
   },
@@ -639,8 +639,7 @@
      "title": "TNR on Sport & State 9/8/26 - Hour 1 | SMU BEATS Florida State? Is Mike Norvell BEYOND SAVING?",
      "published": "2026-09-08T21:54:00Z",
      "dur": "58 min",
-     "audio": "https://traffic.megaphone.fm/DBLM2408280443.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/tnr-on-sport-state-9-8-26-hour-1-smu-beats-florida/id1797862560?i=1000788503935"
+     "audio": "https://traffic.megaphone.fm/DBLM2408280443.mp3"
     },
     {
      "id": "80c14981fa",
@@ -691,6 +690,14 @@
  ],
  "new": [
   {
+   "key": "locked-on-smu",
+   "id": "cc64c2cf8e"
+  },
+  {
+   "key": "mustang-mood",
+   "id": "7992755189"
+  },
+  {
    "key": "mustang-studios",
    "id": "daa090a954"
   },
@@ -705,10 +712,6 @@
   {
    "key": "on-the-pony-express",
    "id": "cb37716c50"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "e4f9193cd0"
   },
   {
    "key": "on-the-pony-express",
@@ -733,10 +736,6 @@
   {
    "key": "locked-on-acc",
    "id": "3eb240a126"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "79a0a2fb65"
   }
  ]
 }
