@@ -1166,5 +1166,139 @@ MP.PHOTOS={
  cards.forEach(function(c){var a=MP.ARTICLES[c.id];a.related=a.related.filter(function(r){return MP.LIB.some(function(x){return x.id===r})})});
 })();
 /* PREVIEWS-WEEK:END */
+/* PREVIEWS-WEEK:BEGIN 2026-11-02 */
+/* ===== Weekly matchup previews (Sunday run). One short, sourced preview per SMU event on the home "Upcoming games" ribbon for
+   Mon. Nov. 2 to Sun. Nov. 8, 2026. Every fact comes from the pages in that article's sources list (SMU Athletics first, then the
+   opponent's official site, then ESPN), checked Nov. 1, 2026. No quotes, no injuries, no recruits. Byline SMU+ Staff.
+   expires = start time (ISO, Central). Equestrian and rowing start times are TBA on every official schedule, so those cards expire at
+   9 a.m. CT (equestrian) and 8 a.m. CT (rowing) on the day. Women's swimming expires at FGCU's first listed session (10 a.m. ET).
+   real:true + sport + the opponent's name in the title or summary put football and basketball previews in the game page's Preview card,
+   so each summary names only its own opponent. Tennis tournaments (no single opponent) are skipped, as in the Oct. 26 run.
+   Last week's block above stays; its cards have all expired. ===== */
+(function(){var MP=window.MP;if(!MP||!MP.LIB||!MP.ARTICLES)return;
+ var S='https://smumustangs.com/sports/',N='https://smumustangs.com/news/2026/',IDS=[];
+ function P(sport,id,label,title,desc,big,tone,expires,art){IDS.push(id);
+  MP.ARTICLES[id]=Object.assign({by:'SMU+ Staff',date:'Nov. 1, 2026',sourced:true},art);
+  return {id:id,t:'article',cat:'insider',sport:sport,label:label,title:title,desc:desc,dur:'1 min read',lock:false,tone:tone,big:big,isNew:true,real:true,expires:expires}}
+ var MBBS=['SMU Athletics 2026-27 men\'s basketball schedule',S+'mens-basketball/schedule/2026-27'],
+     MBBN=['SMU Athletics game notes: season opens at Moody vs. Southern (Oct. 30)',N+'10/30/mens-basketball-season-opens-at-moody-coliseum-monday-7pm'],
+     WBBS=['SMU Athletics 2026-27 women\'s basketball schedule',S+'womens-basketball/schedule/2026-27'],
+     WBBN=['SMU Athletics game notes: season opener vs. Le Moyne (Nov. 1)',N+'11/1/womens-basketball-mustangs-open-season-at-home-against-le-moyne-tuesday-6-30-pm'],
+     VBS=['SMU Athletics 2026 volleyball schedule',S+'womens-volleyball/schedule/2026'],
+     VBN=['SMU Athletics: No. 5 SMU wins at NC State (Oct. 30)',N+'10/30/volleyball-15-team-blocks-boost-no-5-mustangs-to-win-at-nc-state'],
+     EQS=['SMU Athletics 2026-27 equestrian schedule',S+'equestrian/schedule/2026-27'],
+     EQN=['SMU Athletics: No. 5 SMU beats No. 3 Texas A&M (Oct. 29)',N+'10/29/equestrian-no-5-smu-clinches-close-victory-against-no-3-texas-am'];
+ var cards=[
+ P('mens-basketball','preview-mbb-southern',"Men's Basketball · Preview","Men's basketball vs. Southern: the opener at Moody",
+  'Six Mustangs scored in double figures in the exhibition win over Texas A&M. Southern visits to open a six-game homestand. Mon., 7 p.m. CT, ACCNX.','94-88','blue','2026-11-02T19:00:00-06:00',
+  {sources:[MBBN,MBBS,['Southern University 2026-27 men\'s basketball schedule','https://gojagsports.com/sports/mens-basketball/schedule'],['Southern University 2025-26 men\'s basketball schedule','https://gojagsports.com/sports/mens-basketball/schedule/2025-26']],
+   dek:'Mon., Nov. 2 · 7 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Radio: SMU App, The Varsity Network, SiriusXM.',related:['smu-mbb-enfield-tipoff','smu-mbb-tipoff-players','preview-mbb-vmi'],body:[
+   "Andy Enfield's third SMU team starts the regular season on Monday at Moody, the first of six straight home games. The Mustangs are coming off their first NCAA Tournament trip since 2017, and On3 ranked this year's transfer class No. 22 in the country.",
+   "The tune-up went well. SMU beat Texas A&M 94-88 in an exhibition on Oct. 26, and six players scored in double figures: freshman Cameron Lomax had 22, Oziyah Sellers 15, Jakub Szumert and Jermaine O'Neal Jr. 11 each, and Rowan Brumbaugh and Jaden Toombs 10 each. Brumbaugh averaged 19.1 points at Tulane last season and is a captain with David Terrell Jr. Toombs was named to the Kareem Abdul-Jabbar Award watch list on Oct. 30.",
+   "SMU Athletics counts 14 straight season openers without a loss and 15 straight home-opener wins. The Mustangs went 15-3 at Moody last season.",
+   "Southern went 17-17 last season and 11-7 in the SWAC. The Jaguars lost an exhibition at McNeese 90-76 on Oct. 25, and Monday starts a long road stretch for them: TCU on Friday, then Drake, Iowa State and Minnesota."]}),
+ P('womens-basketball','preview-wbb-le-moyne',"Women's Basketball · Preview","Women's basketball vs. Le Moyne: year two starts at home",
+  'SMU scored 143 points in its final exhibition. Le Moyne opens its season at Moody. Tue., 6:30 p.m. CT, ACCNX.','143-41','red','2026-11-03T18:30:00-06:00',
+  {sources:[WBBN,WBBS,['Le Moyne Athletics 2026-27 women\'s basketball schedule','https://lemoynedolphins.com/sports/womens-basketball/schedule'],['Le Moyne Athletics 2025-26 women\'s basketball schedule','https://lemoynedolphins.com/sports/womens-basketball/schedule/2025-26']],
+   dek:'Tue., Nov. 3 · 6:30 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Radio: SMU App, The Varsity Network, SiriusXM.',related:['smu-wbb-tipoff','preview-wbb-hampton','preview-mbb-southern'],body:[
+   "Adia Barnes's second season starts Tuesday with the first of five straight home games. SMU went 2-0 in exhibitions, beating West Texas A&M 83-60 and then UNT Dallas 143-41. That second game doesn't count, but it was the highest-scoring game and the biggest margin in program history.",
+   "The backcourt is Theresa Hagans Jr., an ACC All-Freshman pick at Pitt who averaged 12.5 points and 3.7 assists, and Zahra King, who led SMU with 14.4 points a game last season and scored 40 in a win at Pitt. SMU Athletics says the two have known each other since they were about seven. Grace Ezebilo, the CAA Defensive Player of the Year at Charleston, averaged 12.0 rebounds, sixth in the country.",
+   "SMU has won its last five season openers and was picked 15th in the ACC preseason coaches poll. This is the first meeting with Le Moyne.",
+   "Le Moyne went 12-21 last season and 9-9 in the Northeast Conference. Tuesday is its opener, and the Dolphins stay in the area to play at TCU on Thursday."]}),
+ P('swimming-diving','preview-mswim-tcu','Swimming & Diving · Preview','Men\u2019s swimming and diving vs. TCU: Luke Sitz and the rivals at home',
+  'No. 21 SMU won nine of 14 events at Arizona. TCU\u2019s men come to the Robson and Lindley Aquatics Center. Wed., 4 p.m. CT.','155-144','blue','2026-11-04T16:00:00-06:00',
+  {sources:[['SMU Athletics 2026-27 men\'s swimming and diving schedule',S+'mens-swimming-and-diving/schedule/2026-27'],['SMU Athletics: No. 21 SMU beats Arizona (Oct. 23)',N+'10/23/mens-swimming-diving-no-21-mustangs-defeat-arizona-sitz-and-brennan-earn-multiple-solo-wins'],['SMU Athletics: SMU at No. 6 Arizona State (Oct. 22)',N+'10/22/mens-swimming-diving-snyder-clinched-ncaa-zone-cut-no-21-smu-completes-meet-at-no-6-arizona-state'],['SMU Athletics: Sitz sets ACC record with 14th weekly honor (Oct. 27)',N+'10/27/mens-swimming-diving-luke-sitz-earns-acc-mens-diver-of-the-week-career-record-honored-as-acc-co-diver-of-the-week'],['SMU Athletics: SMU women beat TCU (Oct. 30)',N+'10/31/womens-swimming-diving-mustangs-downs-tcu-in-fort-worth'],['TCU Athletics 2026-27 swimming and diving schedule','https://gofrogs.com/sports/swimming-and-diving/schedule/2026-27']],
+   dek:'Wed., Nov. 4 · 4 p.m. CT · Robson and Lindley Aquatics Center, Dallas · Men\u2019s dual meet.',related:['smu-swim-classic','preview-wswim-fgcu','preview-wbb-le-moyne'],body:[
+   "No. 21 SMU split its trip to Arizona. The Mustangs lost 210-90 at No. 6 Arizona State in a short-course meters meet on Oct. 22, then beat Arizona 155-144 the next day, winning nine of 14 events. Francis Brennan won the 200 and 500 free in Tucson, and Jack Berube, Thad Austin and Andy Baklanov went 1-2-3 in the 100 back.",
+   "Diver Luke Sitz has swept the 1-meter and 3-meter boards in four straight meets. Last week he was named ACC co-diver of the week for the third time this season, his 14th weekly honor, a conference record. He won the NCAA title on 1-meter last season.",
+   "TCU's schedule lists Wednesday as a men-only meet; SMU calls the Frogs a rival. TCU's swimming and diving schedule shows earlier meets at Texas A&M, Incarnate Word, Arkansas (with Drury) and the USC Invite. Five days earlier, SMU's women won 155-145 in Fort Worth. TCU's next stop is the Texas Diving Invitational on Nov. 12."]}),
+ P('womens-basketball','preview-wbb-hampton',"Women's Basketball · Preview","Women's basketball vs. Hampton: an 11 a.m. Education Day tip",
+  'Hampton comes to Moody from Houston for a late-morning game with free admission for K-12 groups. Thu., 11 a.m. CT, ACCNX.','11 a.m.','red','2026-11-05T11:00:00-06:00',
+  {sources:[['SMU Athletics: Education Day game vs. Hampton',N+'8/18/womens-basketball-mustangs-announce-education-day-game'],WBBN,WBBS,['Hampton Athletics 2026-27 women\'s basketball schedule','https://hamptonpirates.com/sports/womens-basketball/schedule'],['Hampton Athletics 2025-26 women\'s basketball schedule','https://hamptonpirates.com/sports/womens-basketball/schedule/2025-26']],
+   dek:'Thu., Nov. 5 · 11 a.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Education Day.',related:['smu-wbb-tipoff','preview-wbb-east-texas-am','preview-wsoc-pitt'],body:[
+   "Thursday is SMU's Education Day game. Admission is free for K-12 students, teachers and chaperones who RSVP, and schools can bring their own lunches. It's the second game of SMU's five-game homestand to open the season.",
+   "Hampton went 10-21 last season and plays in the CAA, the league where SMU's Grace Ezebilo was Defensive Player of the Year at Charleston. Ezebilo led the CAA in rebounds, offensive rebounds and defensive rebounds. The Pirates open their season Monday at Houston, then come to Dallas.",
+   "SMU's guards will set the pace. Theresa Hagans Jr. and Zahra King combined for 26.9 points a game last season, and SMU Athletics also points to two freshmen: guard Shania James, a four-star recruit, and 6-3 forward Adja Kane from France, a WNBA draft pick in 2025."]}),
+ P('womens-soccer','preview-wsoc-pitt',"Women's Soccer · Preview","Women's soccer vs. Pitt: the regular-season finale",
+  'SMU plays its last regular-season match at Washburne against a Pitt team that has lost three straight. Thu., 6 p.m. CT, ACCNX.','1-6-2','blue','2026-11-05T18:00:00-06:00',
+  {sources:[['SMU Athletics: SMU falls at No. 2 North Carolina (Oct. 29)',N+'10/29/womens-soccer-mustangs-fall-on-the-road-at-no-2-north-carolina'],['SMU Athletics: SMU 3, Cal 1 (Oct. 22)',N+'10/22/womens-soccer-mustangs-second-half-rally-leads-to-a-3-1-win-over-cal'],['SMU Athletics 2026 women\'s soccer schedule',S+'womens-soccer/schedule/2026'],['Pitt Athletics 2026 women\'s soccer schedule','https://pittsburghpanthers.com/sports/womens-soccer/schedule/2026']],
+   dek:'Thu., Nov. 5 · 6 p.m. CT · Washburne Soccer and Track Stadium, Dallas · ACCNX.',related:['smu-wsoc-uva-presser','preview-vb-unc','preview-mswim-tcu'],body:[
+   "SMU lost 2-0 at No. 2 North Carolina last Thursday. The Tar Heels scored once in each half, and goalkeeper Aubrey Brown made seven saves. Nicole Nelson's team is 6-7-4 and 1-6-2 in the ACC. Its ACC win came a week earlier at Cal, where Brooke Bunton scored twice in a 3-1 comeback to reach nine goals for the season.",
+   "Pitt is 7-8-2 and 1-7-1 in the ACC, and it has lost three in a row: 4-1 at No. 17 Notre Dame, then 2-1 at home to No. 24 Florida State and No. 4 Wake Forest. The Panthers' ACC win was 1-0 at NC State on Oct. 8, and they also tied No. 4 Duke 0-0 in September. They are 4-3-1 on the road.",
+   "Thursday is the last match of the regular season for both teams."]}),
+ P('mens-basketball','preview-mbb-vmi',"Men's Basketball · Preview","Men's basketball vs. VMI: game two of six at Moody",
+  'The Keydets (Virginia Military Institute) come to Dallas in the middle of a Texas trip. Thu., 7 p.m. CT, ACCNX.','15-3','blue','2026-11-05T19:00:00-06:00',
+  {sources:[MBBN,MBBS,['VMI Athletics 2026-27 men\'s basketball schedule','https://vmikeydets.com/sports/mens-basketball/schedule'],['VMI Athletics 2025-26 men\'s basketball schedule','https://vmikeydets.com/sports/mens-basketball/schedule/2025-26']],
+   dek:'Thu., Nov. 5 · 7 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Radio: SMU App, The Varsity Network, SiriusXM.',related:['preview-mbb-southern','smu-mbb-enfield-tipoff','smu-mbb-tipoff-players'],body:[
+   "Thursday is the second of six straight home games to open SMU's season. The Mustangs went 15-3 at Moody last season and 11-2 in non-conference play.",
+   "Last season the Mustangs finished in the top 30 nationally in scoring, assists, field-goal percentage and three-point percentage, and they averaged 36.8 points in the paint. SMU Athletics also notes that five players averaged double figures in each of Enfield's first two seasons, and that the Mustangs are 21-2 under him when at least five players score 10 or more.",
+   "VMI went 6-26 last season and 1-17 in its league. The Keydets open at home Monday against VU Lynchburg, then play at SMU and at UTSA on Saturday. This is the first of two ACC road games on VMI's schedule; the other is at Virginia Tech on Dec. 21."]}),
+ P('football','preview-virginia-tech','Football · Preview','SMU vs. Virginia Tech: back home after a last-minute loss',
+  'SMU lost at Syracuse on a touchdown with 17 seconds left. Virginia Tech is 6-2 and coming off a bye and a win at Clemson. Fri., 6 p.m. CT, ESPN.','6-2','blue','2026-11-06T18:00:00-06:00',
+  {sources:[['SMU Athletics: Syracuse 30, SMU 27, with postgame notes (Oct. 31)',N+'10/31/football-smu-falls-at-syracuse-30-27'],['SMU Athletics 2026 football schedule',S+'football/schedule/2026'],['Virginia Tech Athletics 2026 football schedule','https://hokiesports.com/sports/football/schedule'],['Virginia Tech Athletics: Virginia Tech 20, Clemson 16 (Oct. 24)','https://hokiesports.com/news/2026/10/24/hokies-earn-comeback-victory-at-clemson-20-16-saturday-night'],['AP: Virginia Tech beats Clemson 20-16','https://apnews.com/article/virginia-tech-clemson-score-1a7b662101ee8105804cb266bd03c3fd'],['ESPN game preview: Virginia Tech at SMU','https://www.espn.com/college-football/game/_/gameId/401858288']],
+   dek:'Fri., Nov. 6 · 6 p.m. CT · Gerald J. Ford Stadium, Dallas · ESPN · Radio: KTCK 96.7 FM/1310 AM & SiriusXM · Club Takeaway, wear blue.',related:['smu-fb-cal-highlights','recap-cal','feature-jennings-record'],body:[
+   "SMU's four-game winning streak ended Saturday in Syracuse. The Mustangs led 27-20 after Kendrick Raphael's 13-yard touchdown run and a two-point conversion in the fourth quarter, but Syracuse kicked a field goal and then went 68 yards in 11 plays, scoring with 17 seconds left to win 30-27. SMU is 6-2 and 4-2 in the ACC, and 5-0 at home.",
+   "Kevin Jennings went 29 of 36 for 351 yards and two touchdowns. He passed 10,000 career passing yards on a 14-yard touchdown to Yamir Knight and extended SMU's career records for passing yards, touchdown passes and total offense. SMU has scored on 18 straight red-zone trips. The defense held Syracuse to 4 of 16 on third down.",
+   "Virginia Tech is 6-2 and 3-2 in the ACC under James Franklin, and 3-1 on the road. The Hokies had last week off after winning 20-16 at Clemson on Oct. 24, their first win over the Tigers since 2007. Ethan Grunkemeyer threw the winning touchdown to tight end Luke Reynolds on fourth-and-1 with 1:44 left, and the defense had 13 tackles for loss. Per ESPN, Grunkemeyer has 2,140 passing yards, 17 touchdowns and two interceptions, and Que'Sean Brown has 685 receiving yards.",
+   "Virginia Tech Athletics says this is the first time the two programs will play on a campus. SMU's postgame notes list the Hokies as receiving votes in both polls."]}),
+ P('volleyball','preview-vb-unc','Volleyball · Preview','Volleyball vs. North Carolina: home again, against a 10-1 ACC team',
+  'SMU is 9-2 in the ACC. North Carolina is 10-1 and unbeaten at home, but Friday is in Dallas. Fri., noon CT, ACCNX.','10-1','red','2026-11-06T12:00:00-06:00',
+  {sources:[VBN,VBS,['North Carolina Athletics 2026 volleyball schedule','https://goheels.com/sports/womens-volleyball/schedule/2026']],
+   dek:'Fri., Nov. 6 · 12 p.m. CT · Moody Coliseum, Dallas · ACCNX · Discounted football tickets day.',related:['vb-road-sweep','smu-vb-gt-highlights','preview-vb-duke'],body:[
+   "No. 5 SMU comes home after a four-match ACC road trip. The Mustangs beat NC State 3-1 last Friday, losing the first set and then winning the next three, with 15 blocks, tied for their season high. Freshman middle Elle Vandeweghe had a career-high eight blocks, Favor Anyanwu had seven, and Suli Davis had 17 kills for her eighth double-double. Going into Sunday's match at Wake Forest, SMU was 17-4, 9-2 in the ACC and 8-1 on the road.",
+   "North Carolina is 15-4 overall and 10-1 in the ACC. The Tar Heels are 8-0 at home and 6-3 away. Their ACC loss was 3-0 at Louisville on Oct. 18, and they've won three straight since. They host Boston College on Sunday.",
+   "SMU Athletics lists Friday as a discounted football tickets day. The Mustangs stay at Moody for Duke on Sunday."]}),
+ P('equestrian','preview-equestrian-georgia','Equestrian · Preview','Equestrian vs. No. 4 Georgia: the first home meet',
+  'SMU is coming off a 9-8 win at Texas A&M, its first in College Station since 2016. Georgia is 2-1. Fri., Dallas Equestrian Center.','9-8','blue','2026-11-06T09:00:00-06:00',
+  {sources:[EQN,EQS,['Georgia Athletics 2026-27 equestrian schedule','https://georgiadogs.com/sports/equestrian/schedule/2026-27']],
+   dek:'Fri., Nov. 6 · Dallas Equestrian Center, Dallas. Start time TBA on both schedules.',related:['preview-equestrian-okstate','preview-vb-unc','preview-virginia-tech'],body:[
+   "No. 5 SMU beat No. 3 Texas A&M 9-8 in College Station on Oct. 29, its first win there since 2016. Jayna Lagace, Shaelyn Boutelle and Violet Shetler won the first three horsemanship points, and Shetler earned her second Most Outstanding Performer award of the season. Reining and flat were split 2-2. Captains Schuyler Dayner and Aedan Mooney each scored 78 for points on fences, and Dayner has dropped only one point all season. SMU is 2-2.",
+   "Friday is SMU's first home meet of the season. Georgia, No. 4 in SMU Athletics' recap, is 2-1. The Bulldogs beat Texas A&M 12-8 and Fresno State 14-6 at home, and lost 12-6 at South Carolina.",
+   "Georgia stays in Dallas to face Oklahoma State on Saturday, the same day SMU's schedule lists the Cowgirls at the Dallas Equestrian Center."]}),
+ P('equestrian','preview-equestrian-okstate','Equestrian · Preview','Equestrian vs. No. 7 Oklahoma State: day two in Dallas',
+  'Oklahoma State is 1-1 after beating No. 6 TCU. SMU rides at home for the second day in a row. Sat., Dallas Equestrian Center.','1-1','blue','2026-11-07T09:00:00-06:00',
+  {sources:[EQS,EQN,['Oklahoma State Athletics 2026-27 equestrian schedule','https://okstate.com/sports/equestrian/schedule/2026-27']],
+   dek:'Sat., Nov. 7 · Dallas Equestrian Center, Dallas. Start time TBA. SMU lists Oklahoma State on Saturday; Oklahoma State\u2019s schedule lists the SMU meet on Friday.',related:['preview-equestrian-georgia','preview-vb-duke','preview-wswim-fgcu'],body:[
+   "SMU's second home meet in two days is against Oklahoma State, No. 7 in SMU Athletics' Texas A&M recap. The Cowgirls are 1-1. They lost 11-8 at Fresno State on Oct. 17, then beat No. 6 TCU 11-8 in Stillwater on Oct. 30. SMU beat TCU 12-7 on Oct. 2.",
+   "The schedules don't fully agree. SMU's has Georgia on Friday and Oklahoma State on Saturday. Oklahoma State's has SMU on Friday and Georgia on Saturday, both in Dallas.",
+   "The teams meet again Feb. 20 in Stillwater. SMU's next meet after this weekend is at Fresno State on Nov. 14."]}),
+ P('swimming-diving','preview-wswim-fgcu','Swimming & Diving · Preview','Women\u2019s swimming and diving at FGCU: the last dual meet before the SMU Invite',
+  'SMU beat TCU 155-145 with eight event wins. FGCU beat No. 9 Tennessee last month. Sat., Fort Myers, Fla.','3-2','blue','2026-11-07T09:00:00-06:00',
+  {sources:[['SMU Athletics: SMU beats TCU in Fort Worth (Oct. 30)',N+'10/31/womens-swimming-diving-mustangs-downs-tcu-in-fort-worth'],['SMU Athletics 2026-27 women\'s swimming and diving schedule',S+'womens-swimming-and-diving/schedule/2026-27'],['FGCU Athletics 2026-27 swimming and diving schedule','https://fgcuathletics.com/sports/womens-swimming-and-diving/schedule']],
+   dek:'Sat., Nov. 7 · FGCU Aquatics Complex, Fort Myers, Fla. SMU lists 6 p.m. CT; FGCU lists sessions at 10 a.m. and 6 p.m.',related:['preview-mswim-tcu','smu-swim-classic','preview-equestrian-okstate'],body:[
+   "SMU's women won 155-145 at TCU on Oct. 30 and are 3-2 in dual meets. The Mustangs won eight events. Maddy Parker took the 50 and 100 free, and senior Dori Hathazi won the 200 fly for the fourth time this season and added the 100 fly. Parker also swam on both winning relays. Chloe Douglas-Byrne won the 200 free.",
+   "FGCU is 4-2 in duals. At a quad meet in Charlotte on Oct. 23, the Eagles beat No. 9 Tennessee 156-107 and Queens 145-129, and lost to No. 25 Virginia Tech 190-90. They split the next day, beating Wingate and losing 119-113 to Queens.",
+   "SMU calls Saturday its final dual meet before the SMU Invite."]}),
+ P('volleyball','preview-vb-duke','Volleyball · Preview','Volleyball vs. Duke: Salute to Service at Moody',
+  'Duke is 15-6 and 7-2 on the road. SMU closes a two-match homestand. Sun., noon CT, ACCNX.','15-6','red','2026-11-08T12:00:00-06:00',
+  {sources:[VBS,VBN,['Duke Athletics 2026 volleyball schedule','https://goduke.com/sports/womens-volleyball/schedule/2026']],
+   dek:'Sun., Nov. 8 · 12 p.m. CT · Moody Coliseum, Dallas · ACCNX · Salute to Service.',related:['preview-vb-unc','vb-road-sweep','smu-vb-gt-highlights'],body:[
+   "Sunday is SMU's Salute to Service match and the second half of a two-match homestand that starts Friday against North Carolina. Suli Davis has 17 matches with 10 or more kills this season, and libero Victoria Harris has reached 10 digs in five straight.",
+   "Duke is 15-6 and 7-4 in the ACC going into Sunday's home match with Syracuse, and it plays at Pitt on Friday. The Blue Devils are 7-2 on the road. They beat Cal 3-0 and Boston College 3-1 last week. Their ACC losses include 3-0 at Louisville and 3-1 to No. 15 Stanford.",
+   "After Duke, SMU hosts Louisville on Nov. 12 and Notre Dame on Nov. 15."]}),
+ P('womens-basketball','preview-wbb-east-texas-am',"Women's Basketball · Preview","Women's basketball vs. East Texas A&M: third game of the homestand",
+  'The Lions play their third game in seven days. SMU won the last meeting 86-57 in 2022. Sun., 6 p.m. CT, ACCNX.','86-57','red','2026-11-08T18:00:00-06:00',
+  {sources:[WBBN,WBBS,['SMU Athletics 2022-23 women\'s basketball schedule (last meeting)',S+'womens-basketball/schedule/2022-23'],['East Texas A&M Athletics 2026-27 women\'s basketball schedule','https://lionathletics.com/sports/womens-basketball/schedule'],['East Texas A&M Athletics 2025-26 women\'s basketball schedule','https://lionathletics.com/sports/womens-basketball/schedule/2025-26']],
+   dek:'Sun., Nov. 8 · 6 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Radio: SMU App, The Varsity Network, SiriusXM.',related:['preview-wbb-hampton','preview-wbb-le-moyne','smu-wbb-tipoff'],body:[
+   "Sunday is SMU's third game in six days and the third of five straight at Moody to open the season. The teams last met on Nov. 18, 2022, when the school was Texas A&M-Commerce, and SMU won 86-57 at home.",
+   "East Texas A&M went 13-17 last season and 9-13 in the Southland. The Lions open Monday at home against Oklahoma Christian, play at Cincinnati on Wednesday and then come to Dallas. Later in November they play Baylor and Texas A&M on the road.",
+   "SMU's offense is built around Theresa Hagans Jr. at the point and Zahra King at shooting guard. Last season at Charleston, Grace Ezebilo had nine double-doubles and 25 games with 10 or more rebounds."]}),
+ P('rowing','preview-rowing-texas','Rowing · Preview','Rowing vs. Texas: an exhibition on White Rock Lake',
+  'After a bronze medal at the Head of the Charles, SMU hosts Texas for an exhibition, the only fall race on Texas\u2019s schedule. Sun., Dallas.','3rd','blue','2026-11-08T08:00:00-06:00',
+  {sources:[['SMU Athletics 2026-27 rowing schedule',S+'rowing/schedule/2026-27'],['SMU Athletics: bronze medal at the Head of the Charles (Oct. 22)',N+'10/22/bronze-medal-highlights-strong-showing-for-smu-rowing-at-head-of-the-charles'],['SMU Athletics: SMU rowing takes on the Head of the Charles (Oct. 16)',N+'10/16/smu-rowing-takes-on-head-of-the-charles'],['Texas Athletics 2026-27 rowing schedule','https://texassports.com/sports/womens-rowing/schedule/2026-27']],
+   dek:'Sun., Nov. 8 · White Rock Lake & Boathouse, Dallas · Exhibition. Start time TBA.',related:['smu-rowing-charles','preview-vb-duke','preview-wbb-east-texas-am'],body:[
+   "SMU opened its fall at the Head of the Charles in Cambridge, Mass., on Oct. 17. The club four of Izie Murray, Britt Potman, Freya Weiser and Jesse Pulford, coxed by Sophie Swords, won bronze in 19:18.001. The club eight started 32nd and finished 14th in 17:35.367.",
+   "Chase Graham's team finished eighth at the ACC Championships last spring for the second year in a row, and Kate Kulig made third-team All-ACC.",
+   "Sunday is the only fall race on Texas's schedule. The Longhorns start their spring at UCF in February. It's an exhibition, and it's the second and last event on SMU's fall schedule."]})];
+ /* replace any earlier copy of these ids, then put the week's previews where the timely stories sit */
+ MP.LIB=MP.LIB.filter(function(c){return IDS.indexOf(c.id)<0});
+ var at=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id==='vb-road-sweep'){at=i;break}
+ Array.prototype.splice.apply(MP.LIB,[at,0].concat(cards));
+ /* each sport page's All Access row leads with its preview(s), soonest first */
+ var A=MP.ACCESS=MP.ACCESS||{};cards.slice().reverse().forEach(function(c){var L=(A[c.sport]||[]).filter(function(x){return x!==c.id});A[c.sport]=[c.id].concat(L)});
+ /* drop related links that point at items the site doesn't have */
+ cards.forEach(function(c){var a=MP.ARTICLES[c.id];a.related=a.related.filter(function(r){return MP.LIB.some(function(x){return x.id===r})})});
+})();
+/* PREVIEWS-WEEK:END */
 /* Legal cleanup (Oct 26, 2026): the made-up practice report is unpublished (closed-practice framing). Item kept out of every list. */
 if(window.MP&&MP.LIB)MP.LIB=MP.LIB.filter(function(c){return c.id!=='thursday-notes'});
