@@ -936,11 +936,12 @@ window.MP=window.MP||{};MP.GAMES={
 "time": "6:30 p.m. CT",
 "ko": "2026-11-03T18:30:00-06:00",
 "tv": "ACCNX",
-"radio": "SMU App/The Varsity/SiriusXM",
+"radio": "SMU App/The Varsity/SiriusXM 273",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"watch": "https://www.espn.com/watch/player/_/id/0034b782-c019-450a-9abb-d83d2905c7ed",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
+"preview": "https://smumustangs.com/news/2026/11/1/womens-basketball-mustangs-open-season-at-home-against-le-moyne-tuesday-6-30-pm",
 "gamecenter": "https://smumustangs.com/game-center/14726"
 }
 },
@@ -957,7 +958,7 @@ window.MP=window.MP||{};MP.GAMES={
 "time": "11 a.m. CT",
 "ko": "2026-11-05T11:00:00-06:00",
 "tv": "ACCNX",
-"radio": "SMU App/The Varsity/SiriusXM",
+"radio": "SMU App/The Varsity/SiriusXM 258",
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
