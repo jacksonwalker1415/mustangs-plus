@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-01T01:16:49Z",
+ "generated": "2026-11-01T02:21:39Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -218,6 +218,13 @@
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
     {
+     "id": "f8995b39c7",
+     "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
+     "published": "2026-10-31T21:30:19Z",
+     "dur": "28 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128520381/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-31%2F435542807-44100-2-8a59ac4f4f902.mp3"
+    },
+    {
      "id": "7992755189",
      "title": "SMU vs Syracuse Preview: Can the Mustangs Keep Rolling in the ACC?",
      "published": "2026-10-30T11:00:00Z",
@@ -304,14 +311,6 @@
      "dur": "21 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126010657/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-20%2F432265183-44100-2-c627d3fd6513f.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-football-vs-louisville-week-3-postgame-reaction/id1734256145?i=1000790728322"
-    },
-    {
-     "id": "ace3815dee",
-     "title": "SMU Mustangs vs Louisville Cardinals preview - The Midweek Mood",
-     "published": "2026-09-17T04:37:54Z",
-     "dur": "29 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/125859096/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-17%2F432063870-44100-2-05dd971c1f0ef.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-mustangs-vs-louisville-cardinals-preview-the/id1734256145?i=1000790301285"
     }
    ]
   },
@@ -689,6 +688,10 @@
  ],
  "new": [
   {
+   "key": "mustang-mood",
+   "id": "f8995b39c7"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "c8b4e4771c"
   },
@@ -723,10 +726,6 @@
   {
    "key": "dmn",
    "id": "60dbcf8849"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "4b447fd8e1"
   },
   {
    "key": "jim-rome",
