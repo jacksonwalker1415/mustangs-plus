@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-31T11:04:18Z",
+ "generated": "2026-11-01T01:16:49Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "c8b4e4771c",
+     "title": "REACTION: SMU at Syracuse postgame show, takeaways from SMU Week 9 game | After 'Stangs Show",
+     "published": "2026-10-31T20:50:18Z",
+     "dur": "34 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/fa86021d-2889-40f6-8a9c-1f03cfba1f29/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=fa86021d-2889-40f6-8a9c-1f03cfba1f29&feed=eSeVNxtA"
+    },
     {
      "id": "cb37716c50",
      "title": "SMU at Syracuse game preview, predictions for Week 9 | Mustangs aim to stay hot",
@@ -95,14 +102,6 @@
      "dur": "22 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/90c164fe-93df-48ba-8c1a-73fd603e23b1/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=90c164fe-93df-48ba-8c1a-73fd603e23b1&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/reaction-smu-vs-virginia-postgame-show-takeaways-from/id1604025463?i=1000796839180"
-    },
-    {
-     "id": "6087ae79bd",
-     "title": "Pat & Go: SMU vs. Virginia Game Preview, Predictions | QB Chronicles Podcast",
-     "published": "2026-10-16T14:00:00Z",
-     "dur": "18 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/a18c17a2-9318-45fb-95db-2d6583611198/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=a18c17a2-9318-45fb-95db-2d6583611198&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/pat-go-smu-vs-virginia-game-preview-predictions-qb/id1604025463?i=1000796674976"
     }
    ]
   },
@@ -690,6 +689,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "c8b4e4771c"
+  },
+  {
    "key": "locked-on-smu",
    "id": "cc64c2cf8e"
   },
@@ -712,10 +715,6 @@
   {
    "key": "on-the-pony-express",
    "id": "cb37716c50"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "258a48713c"
   },
   {
    "key": "mustang-studios",
