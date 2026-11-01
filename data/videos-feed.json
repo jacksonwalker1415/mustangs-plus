@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T00:15:35Z",
+ "updated": "2026-11-01T05:20:05Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -608,7 +608,7 @@
      "id": "339Y1WCJuEA",
      "title": "Pony Up Productions Ep. 17: SMU vs. Syracuse Preview, October Honor Roll and more",
      "published": "2026-10-29T22:36:32+00:00",
-     "views": 26,
+     "views": 27,
      "dur": "42:37"
     },
     {
@@ -767,6 +767,13 @@
    "broad": true,
    "videos": [
     {
+     "id": "NGliuPQEVBo",
+     "title": "SMU community celebrates lives of young couple killed in Dallas crash",
+     "published": "2026-11-01T03:59:28+00:00",
+     "views": 76,
+     "nomax": true
+    },
+    {
      "id": "ODYynUVm5-U",
      "title": "Former SMU coach June Jones dies at 73",
      "published": "2026-10-30T04:27:10+00:00",
@@ -779,7 +786,15 @@
    "name": "FOX 4 Dallas-Fort Worth",
    "url": "https://www.youtube.com/@fox4news",
    "broad": true,
-   "videos": []
+   "videos": [
+    {
+     "id": "ykBdCxqGpY0",
+     "title": "Friends, family remember recent SMU grads killed in crash",
+     "published": "2026-11-01T03:21:32+00:00",
+     "views": 292,
+     "dur": "2:26"
+    }
+   ]
   },
   {
    "key": "nbcdfw",
@@ -811,6 +826,14 @@
   }
  ],
  "new": [
+  {
+   "key": "wfaa",
+   "id": "NGliuPQEVBo"
+  },
+  {
+   "key": "fox4",
+   "id": "ykBdCxqGpY0"
+  },
   {
    "key": "mustang-mood",
    "id": "boM9J6icbX4"
@@ -850,14 +873,6 @@
   {
    "key": "mustang-studios",
    "id": "1cN9e7AfNT0"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "eEBGEapeN7o"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "rY17en9sGHc"
   }
  ]
 }
