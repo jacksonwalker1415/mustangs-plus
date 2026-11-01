@@ -968,6 +968,30 @@ MP.PHOTOS={
   A2("mb3-msoc-smu-outright-acc-title","mens-soccer","Men's Soccer · SMU Athletics","SMU Becomes The Undisputed 2026 ACC Men's Soccer Regular Season Champion","SMU Athletics","2026-10-30","Down 1-0 and a man short from the 60th minute, No. 1 SMU tied No. 10 Louisville 1-1 on Landon Hickam's 87th-minute goal to win the outright ACC regular-season title and finish the regular season unbeaten at 12-0-3.","https://smumustangs.com/news/2026/10/30/mens-soccer-no-1-smu-wins-outright-acc-mens-soccer-regular-season-title","",[]),
   A2("mb3-msoc-dmn-acc-title","mens-soccer","Men's Soccer · Dallas Morning News","No. 1 SMU men's soccer captures ACC regular-season title with dramatic draw vs. Louisville","The Dallas Morning News","2026-10-30","A recap of the late equalizer and the celebration. It was the first time all season SMU had trailed, and SMU hosts its first ACC tournament match on Nov. 8.","https://www.dallasnews.com/sports/smu-mustangs/article/smu-mens-soccer-acc-regular-season-title-22501938.php","May need a subscription",[]),
   A2("mb3-msoc-louisville-recap","mens-soccer","Men's Soccer · Louisville Athletics","No. 10 Louisville Earns 1-1 Draw at No. 1 SMU in Regular-Season Finale","Louisville Athletics","2026-10-30","Louisville's view of the draw: its defense held the nation's top-scoring offense to one goal, while SMU outshot Louisville 15-10 and had 10 corners to 3.","https://gocards.com/news/2026/10/30/mens-soccer-no-10-louisville-earns-1-1-draw-at-no-1-smu-in-regular-season-finale","",[])]);
+ /* ---------- Postgame batch (Nov. 1, 2026): football at Syracuse, Oct. 31 (L 27-30), plus men's soccer highlights vs. Louisville ----------
+    Curated by SMU+ Media Curator (/workspace/smu-media/postgame_2026-11-01.json). Same rules: official embeds or credited link-outs, all free,
+    our own one-line summaries. The two SMU press-conference uploads share one title but run 11:35 and 21:53, so both are listed; neither
+    has been reviewed end to end, so both are nofeat and the home hero skips them (HS_SKIP in app.js). The On3 shows play through
+    On The Pony Express's own YouTube channel. ESPN link checked in a real browser Nov. 1 (resolves to the AP story).
+    Left out: the sponsor-tagged @SMUFB final-score graphic, ESPN video pages (not confirmed free), the Yahoo syndication of a DMN story,
+    The Mustang Mood's duplicate upload (boM9J6icbX4) and unofficial fan-channel uploads. */
+ function ON3V(id,yt,title,desc,iso){var c=V2(id,'football',yt,"Podcast · On The Pony Express (On3)",title,desc,iso);c.credit='Video: On The Pony Express (On3)';
+  c.channel=['On The Pony Express on YouTube','https://www.youtube.com/@smumustangson3'];return c}
+ vids=vids.concat([
+  V2('mb4-fb-syr-highlights','football','oUzTHVJEDiE','Football · ACC Digital Network','SMU vs. Syracuse: Game highlights','The ACC\u2019s official highlights of the 30-27 loss at Syracuse. Oct. 31.','2026-10-31',1),
+  V2('mb4-fb-syr-condensed','football','c_y7Jdx6GQ0','Football · ACC Digital Network','SMU vs. Syracuse: Condensed game','The full game at Syracuse, cut down by the ACC Digital Network. Oct. 31.','2026-10-31',1),
+  V2('mb4-fb-syr-presser-1','football','l9ULMl6PWXE','Football · Press conference','SMU Football: Postgame press conference at Syracuse (11:35 upload)','SMU\u2019s first postgame press-conference upload after the 30-27 loss at Syracuse. Oct. 31.','2026-10-31',0),
+  V2('mb4-fb-syr-presser-2','football','_wHP-RPvWhk','Football · Press conference','SMU Football: Postgame press conference at Syracuse (21:53 upload)','SMU\u2019s second, longer postgame press-conference upload from Syracuse. Posted Nov. 1.','2026-10-31',0),
+  ON3V('mb4-fb-syr-on3-reaction','2t6VHpCOOYI','After \u2019Stangs Show: SMU at Syracuse postgame reaction','The On3 SMU beat\u2019s postgame show on what went wrong at Syracuse. Nov. 1.','2026-11-01'),
+  ON3V('mb4-fb-syr-on3-late-lead','i6lIL9X5f0U','SMU Drops a Late Lead Against Syracuse','A quick-turnaround reaction to the 30-27 loss. Oct. 31.','2026-10-31'),
+  V2('mb4-msoc-lou-highlights','mens-soccer','_ipmdtkEDdo',"Men's Soccer · From SMU Athletics on YouTube","SMU Men's Soccer: Highlights vs. Louisville",'Official highlights of the 1-1 draw that won SMU the outright ACC regular-season title. Oct. 30.','2026-10-30',0)]);
+ vids.forEach(function(c){if(c.id==='mb4-fb-syr-presser-1'||c.id==='mb4-fb-syr-presser-2')c.nofeat=true});
+ news=news.concat([
+  A2("mb4-fb-smu-falls-syracuse","football","Football · SMU Athletics","SMU Falls At Syracuse, 30-27","SMU Athletics","2026-10-31","Syracuse scored with 17 seconds left after SMU had rallied from 20-10 down to lead 27-20. SMU (6-2, 4-2 ACC) hosts Virginia Tech on Nov. 6.","https://smumustangs.com/news/2026/10/31/football-smu-falls-at-syracuse-30-27","",[]),
+  A2("mb4-fb-dmn-five-thoughts","football","Football · Dallas Morning News","5 thoughts from SMU's loss to Syracuse: Mustangs fall into trap in costly ACC defeat","The Dallas Morning News","2026-10-31","Five takeaways: slow starts on opening drives, second-half defensive adjustments that produced a safety, and sacks and penalties that stalled the passing game.","https://www.dallasnews.com/sports/smu-mustangs/article/smu-syracuse-five-thoughts-score-angeli-jennings-22501940.php","May need a subscription",[]),
+  A2("mb4-fb-espn-ap-syracuse","football","Football · ESPN","Steve Angeli, Syracuse strike with 17 seconds left, upset SMU","ESPN","2026-10-31","The AP recap of Syracuse\u2019s game-winning drive and SMU\u2019s go-ahead score earlier in the fourth quarter, with Rhett Lashlee on what cost SMU the game.","https://www.espn.com/college-football/story/_/id/50339601/steve-angeli-syracuse-strike-17-seconds-left-upset-smu","",[]),
+  A2("mb4-fb-on3-lashlee-syracuse","football","Football · On3","Everything Rhett Lashlee said about SMU's 30-27 loss at Syracuse","On3","2026-10-31","The head coach\u2019s postgame remarks after the loss at Syracuse, collected by On3\u2019s SMU writer.","https://www.on3.com/teams/smu-mustangs/news/everything-rhett-lashlee-said-about-smus-30-27-loss-at-syracuse/","May need a subscription",[]),
+  A2("mb4-fb-daily-campus-syracuse","football","Football · The Daily Campus","Sacks, penalties pile up against Syracuse for SMU's second loss of the season","The Daily Campus","2026-10-31","The student paper ties the upset to sacks, a stalled running game and penalty yards, and notes SMU\u2019s ACC title path got harder.","https://smudailycampus.com/1070934/sports/football/sacks-penalties-pile-up-as-smu-is-upset-30-27-by-syracuse/","",[])]);
  /* batch 1 sort dates */
  var ISO={'mb-fb-cal-presser':'2026-10-24','mb-fb-lashlee-jennings':'2026-10-20','mb-fb-kilgore-hale':'2026-10-21','mb-msoc-uca-highlights':'2026-10-21','mb-msoc-uca-presser':'2026-10-21','mb-vb-fsu-highlights':'2026-10-18','mb-vb-fsu-presser':'2026-10-18',
   'mb-pod-on3-reaction':'2026-10-24','mb-pod-on3-mood':'2026-10-25','mb-pod-on3-qb':'2026-10-23','mb-pod-lockedon':'2026-10-25','mb-fb-ap-19':'2026-10-25','mb-fb-espn-record':'2026-10-24','mb-msoc-acc-title':'2026-10-25',
@@ -1026,6 +1050,12 @@ MP.PHOTOS={
   [X('theACC','2116349962921681042'),'theACC','The ACC',D30],
   [X('SMUSoccerM','2116356947910001136'),'SMUSoccerM',MS,D30],[X('SMUSoccerM','2116367463134970211'),'SMUSoccerM',MS,D30],
   [X('theACC','2116375037645054462'),'theACC','The ACC',D30]].concat(posts['mens-soccer']||[]);
+ /* Postgame batch (Nov. 1): official @SMUFB posts from Syracuse, newest batch first on the football page. Held back: the sponsor-tagged
+    'Final.' score graphic (2116615607793910070). */
+ var D31='Oct. 31, 2026',FBN='SMU Football';
+ posts['football']=[[X('SMUFB','2116606700824187331'),'SMUFB',FBN,D31],[X('SMUFB','2116598962090324164'),'SMUFB',FBN,D31],
+  [X('SMUFB','2116596353878925578'),'SMUFB',FBN,D31],[X('SMUFB','2116573742260531575'),'SMUFB',FBN,D31],
+  [X('SMUFB','2116571345547051409'),'SMUFB',FBN,D31]].concat(posts['football']||[]);
  function ac(name,h,ig,more,note){var o={x:'https://x.com/'+h};if(ig)o.instagram='https://www.instagram.com/'+ig+'/';for(var k in more||{})o[k]=more[k];return [name,h,o,note||'']}
  var A0={
   dept:ac('SMU Athletics','SMUMustangs','smu.mustangs',{youtube:'https://www.youtube.com/@SMUMustangs'}),

@@ -937,7 +937,9 @@
   var HS_N=6,HS_MIN=4,HS_MS=7000;
   /* Never in the slideshow: videos not cleared to feature. kgT36hNlyi8 = men's soccer press conference vs. Louisville, Oct. 30 (not reviewed
      end to end for discipline questions; listed in the library only). */
-  var HS_SKIP={kgT36hNlyi8:1};
+  /* Also never: l9ULMl6PWXE and _wHP-RPvWhk (football pressers at Syracuse, Oct. 31, unreviewed) and ykBdCxqGpY0 / NGliuPQEVBo (local news
+     about a crash that killed recent SMU grads; not sports, removed at Jackson's request Nov. 1 and blocked in tools/fetch_youtube.py). */
+  var HS_SKIP={'kgT36hNlyi8':1,'l9ULMl6PWXE':1,'_wHP-RPvWhk':1,'ykBdCxqGpY0':1,'NGliuPQEVBo':1};
   /* Games that ended in the last two days with an official result (newest first): sport, opponent and start time, so the slideshow can
      lead with the videos posted about them. Same sources as the home ribbon's Final cards. */
   function recentFinals(){var now=nowMs(),out=[],seen={};

@@ -30,6 +30,24 @@ FILTERS = {
 }
 KEEP_DAYS = 120       # a video found earlier stays in its row this long, even after it drops out of the 15-entry RSS
 ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
+# Never list these, even if a channel posts them again (Jackson, Nov 1, 2026: news about a crash that killed recent SMU
+# grads is not sports). Add an ID here to keep a video off the site for good.
+BLOCKED_IDS = {
+    "ykBdCxqGpY0",  # FOX 4: Friends, family remember recent SMU grads killed in crash
+    "NGliuPQEVBo",  # WFAA: SMU community celebrates lives of young couple killed in Dallas crash
+}
+# Non-sports news: a death, crash or crime headline is skipped unless the title is also about athletics
+# (e.g. "Former SMU coach June Jones dies at 73" stays).
+TRAGEDY = re.compile(r"\b(killed|kills?|dies|died|death|deaths|dead|crash(?:es|ed)?|obituar\w*|memorial|funeral|vigil|"
+                     r"mourn\w*|remember(?:s|ed)?|shooting|murder\w*|homicide|stabb\w*|arrest\w*|charged|wreck)\b", re.I)
+SPORTS = re.compile(r"\b(coach\w*|football|basketball|soccer|volleyball|baseball|softball|golf|tennis|swim\w*|rowing|"
+                    r"track|equestrian|athlet\w*|players?|quarterback|QB|game|season|team|ACC|NCAA|bowl|stadium|"
+                    r"recruit\w*|NIL)\b", re.I)
+
+
+def blocked(v):
+    t = v.get("title", "")
+    return v.get("id") in BLOCKED_IDS or bool(TRAGEDY.search(t) and not SPORTS.search(t))
 
 
 def get(url, tries=3):
@@ -122,6 +140,8 @@ def main():
     else:
         old = {}
     known = {v["id"]: v for c in prev.values() for v in c.get("videos", [])}
+    for c in prev.values():  # blocked videos never carry forward
+        c["videos"] = [v for v in c.get("videos", []) if not blocked(v)]
 
     cutoff = time.time() - KEEP_DAYS * 86400
     channels, failed = [], []
@@ -146,6 +166,9 @@ def main():
                 continue
             if v["short"] or re.search(r"#shorts?\b", v["title"] + " " + v["desc"], re.I):
                 skipped["short"] += 1
+                continue
+            if blocked(v):
+                skipped["off-topic"] += 1
                 continue
             if rx and not rx.search(v["title"]):
                 skipped["off-topic"] += 1
