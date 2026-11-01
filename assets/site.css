@@ -3288,6 +3288,13 @@ html.discm-open{overflow:hidden}
 .discm-ok:hover{background:#354CA1;color:#fff;border-color:#fff}
 .discm :focus-visible{outline:3px solid #fff;outline-offset:3px}
 @media(max-width:639px){.discm p{font-size:16px}.discm-ok{width:100%}}
+/* ---- Home ribbon Final card (a game that ended yesterday or today, with its official result; app.js ribbonCard) ---- */
+.rb-final{border-color:var(--blue)}
+.rb-fw .rb-fin{color:#354CA1}
+.rb-fw .rb-fin-l,.rb-fw .rb-fin-t{color:#262626}
+.rb-fw .rb-sc{font-weight:700;color:#262626}
+@media(max-width:719px){.rb-fw .rb-fd{display:none}.rb-fw{overflow:hidden;text-overflow:ellipsis}}
+
 /* ---- 6.12 Phone tap-target guard: keep last. Re-asserts 44px targets for anything Round 6 restyled ---- */
 @media(max-width:639px){
   .btn:not(.hdr-join),.btn-sm:not(.hdr-join){min-height:44px}  /* the header Join size is main's (36px visual, 94ef9e5) */

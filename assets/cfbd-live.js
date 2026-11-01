@@ -89,7 +89,8 @@
   /* calendar ribbon cards (home) */
   function ribbon(){Array.prototype.forEach.call(document.querySelectorAll('.rb-card a.rb-main[href*="games/?id=fb-"]'),function(a){
     var m=/id=(fb-[\w-]+)/.exec(a.getAttribute('href')),g=m&&BY[m[1]],r=rowFor(g),o=a.querySelector('.rb-live');
-    if(!show(r,g)){if(o)o.remove();return}var p=pts(r),txt=(r.status==='final'?'Final':'Live')+': SMU '+p.us+', '+g.opp+' '+p.them+(r.status==='in_progress'&&status(r)!=='Live'?' \u00b7 '+status(r).replace('Live \u00b7 ',''):'');
+    /* a Final card (app.js) already shows the official result */
+    if(!show(r,g)||a.closest('.rb-final')){if(o)o.remove();return}var p=pts(r),txt=(r.status==='final'?'Final':'Live')+': SMU '+p.us+', '+g.opp+' '+p.them+(r.status==='in_progress'&&status(r)!=='Live'?' \u00b7 '+status(r).replace('Live \u00b7 ',''):'');
     if(o&&o.textContent===txt)return;if(o)o.remove();
     var s=document.createElement('span');s.className='rb-live'+(r.status==='in_progress'?' on':'');
     s.textContent=txt;var go=a.querySelector('.rb-go');a.insertBefore(s,go||null);
@@ -98,10 +99,16 @@
   var page=null,timer=null,obs=null;
   function liveSoon(){var now=Date.now();for(var k in ROWS){var r=ROWS[k];if(r.status==='in_progress')return true;
     if(r.status==='scheduled'&&!r.start_time_tbd){var t=Date.parse(r.start_date);if(t-now<15*6e4&&now-t<6*36e5)return true}}return false}
-  function paint(){css();if(page)page();thread();ribbon()}
+  /* finals go to app.js (home Game day block, ribbon and slideshow), which redraws as soon as a game is over */
+  function finals(){if(typeof MP.liveFinals!=='function')return;var L=[];FB.forEach(function(g){var r=rowFor(g);if(!r||r.status!=='final'||!hasScore(r))return;
+    var p=pts(r);L.push({sport:'football',d:g.d,res:(p.us>p.them?'W':p.us<p.them?'L':'T')+' '+p.us+'-'+p.them})});MP.liveFinals(L)}
+  function paint(){css();finals();if(page)page();thread();ribbon()}
+  /* next check: every minute while a game is on (or about to start); otherwise at 15 minutes before the next kickoff in the next day */
+  function nextCheck(){var now=Date.now(),best=null;for(var k in ROWS){var r=ROWS[k];if(r.status!=='scheduled'||r.start_time_tbd)continue;
+    var t=Date.parse(r.start_date)-15*6e4;if(t>now&&t-now<864e5&&(best==null||t<best))best=t}return best==null?null:best-now}
   function load(){return get('live_games?select=game_id,start_date,start_time_tbd,home_team,away_team,home_points,away_points,status,period,clock,possession,situation&order=start_date')
     .then(function(L){if(!Array.isArray(L)||!L.length)return;index(L);paint();
-      clearTimeout(timer);if(liveSoon())timer=setTimeout(load,60000)}).catch(function(){})}
+      clearTimeout(timer);if(liveSoon())timer=setTimeout(load,60000);else{var w=nextCheck();if(w!=null)timer=setTimeout(load,w)}}).catch(function(){})}
   function start(){page=gamePage();var want=page||document.getElementById('ribbon')||document.querySelector('.gameday')||/game=fb-/.test(location.hash)||/\/boards\//.test(location.pathname);
     if(!want)return;
     /* the page renders after app.js runs; repaint when the ribbon or a thread box appears */

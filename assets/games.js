@@ -44,14 +44,13 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-10-31T11:00:00-05:00",
 "tv": "ESPN2",
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
-"res": null,
+"res": "L 27-30",
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
-"listen": "https://smumustangs.com/showcase?Live=5382",
-"stats": "https://stats.statbroadcast.com/broadcast/?id=673199&vislive=smu",
+"box": "https://smumustangs.com/sports/football/stats/2026/syracuse/boxscore/14454",
+"recap": "https://smumustangs.com/news/2026/10/31/football-smu-falls-at-syracuse-30-27",
+"program": "https://digitalprograms.learfield.com/smuni/football/22000/",
 "gamecenter": "https://smumustangs.com/game-center/14454"
-},
-"sb": 673199
+}
 },
 {
 "id": "fb-14455",

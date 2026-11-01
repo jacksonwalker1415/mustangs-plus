@@ -5,11 +5,14 @@ parsed from the official SMU Athletics schedule pages on smumustangs.com.
 Each entry keeps only what the schedule card lists: date (and end date for multi-day events), time (CT), opponent or
 event name, home/away/neutral, venue/city, TV, radio and the card's official Watch / Listen / Game Center links.
 A missing field stays empty and the ribbon shows TBA. Nothing is guessed.
+Games played yesterday or today also stay in the file with the card's official result ("res": "W 3-1", as SMU Athletics
+lists it, SMU's score first) and its Recap / Box Score links, so the ribbon can show the final until the next day ends.
+Re-run after a game ends (the post-game refresh) to pick the result up.
 
 Usage: python3 tools/build_upcoming.py
 """
 import html, json, os, re, sys, urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,7 +79,8 @@ def parse(slug, path, start, team):
         if not m:
             continue
         pre, post = st[:m.start()].strip(), st[m.end():].strip()
-        if re.match(r"^[WLT],", pre):          # already played
+        rm = re.match(r"^([WLT]),\s*(\d+-\d+)", pre)   # already played: keep the official result
+        if re.match(r"^[WLT],", pre) and not rm:
             continue
         d = ymd(m.group(1), m.group(2), start, slug == "football")
         d2 = ymd(m.group(4), m.group(5), start, slug == "football") if m.group(4) else None
@@ -106,6 +110,10 @@ def parse(slug, path, start, team):
                 links["watch"] = absu(h)
             elif t == "Listen" and "listen" not in links:
                 links["listen"] = absu(h)
+            elif t == "Recap" and "recap" not in links:
+                links["recap"] = absu(h)
+            elif t == "Box Score" and "box" not in links:
+                links["box"] = absu(h)
             elif "/game-center/" in h and "gc" not in links:
                 links["gc"] = absu(h)
             m = re.search(r"statbroadcast\.com/broadcast/\?id=(\d+)", html.unescape(h))
@@ -125,6 +133,11 @@ def parse(slug, path, start, team):
         for k, v in (("team", team), ("tv", tv), ("radio", radio), ("tour", tour), ("ex", ex or None)):
             if v:
                 e[k] = v
+        if rm:
+            e["res"] = f"{rm.group(1)} {rm.group(2)}"
+        else:   # recap and box score links only matter once a game has a result
+            links.pop("recap", None)
+            links.pop("box", None)
         e.update(links)
         pre_id = GAME_PAGES.get(slug)
         if pre_id and "gc" in links:
@@ -135,6 +148,7 @@ def parse(slug, path, start, team):
 
 def main():
     today = datetime.now().strftime("%Y-%m-%d")
+    yday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
     allv, src, seen = [], [], set()
     for slug, path, start, team in SPORTS:
         try:
@@ -143,13 +157,14 @@ def main():
             print(f"! {path}: {ex}", file=sys.stderr)
             continue
         src.append(f"{BASE}/sports/{path}")
-        ev = [e for e in ev if (e.get("d2") or e["d"]) >= today]
+        # upcoming, plus results from yesterday and today (the ribbon shows a final until the end of the next day)
+        ev = [e for e in ev if (e["d"] >= yday if e.get("res") else (e.get("d2") or e["d"]) >= today)]
         for e in ev:
             k = (e["sport"], e["d"], e["name"], e.get("team"))
             if k not in seen:
                 seen.add(k)
                 allv.append(e)
-        print(f"{slug} {team or ''}: {len(ev)} upcoming")
+        print(f"{slug} {team or ''}: {len(ev)} events ({sum(1 for e in ev if e.get('res'))} recent results)")
     if len(allv) < 10:
         print("! too few events parsed; keeping the old file", file=sys.stderr)
         return 1

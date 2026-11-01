@@ -16,6 +16,8 @@
   /* ---------- Expiring cards: an MP.LIB item with expires (ISO time, e.g. a preview's kickoff) leaves every list, rail, search result and Up next
      once that time passes. Direct links (#article=id) still open it. ?now=<ISO time> overrides the clock for testing. ---------- */
   var NOW=(function(){var m=/[?&]now=([^&#]+)/.exec(location.search),t;try{t=m&&Date.parse(decodeURIComponent(m[1]))}catch(e){}return t||Date.now()})();
+  /* nowMs(): the current time, shifted by ?now= when it is set (so a test can jump to just after a game ends) */
+  var CLK=NOW-Date.now();function nowMs(){return Date.now()+CLK}
   function expired(c){var t=c&&c.expires&&Date.parse(c.expires);return !!t&&t<=NOW}MP.expired=expired;
   var LIB_ALL=MP.LIB;MP.LIB=MP.LIB.filter(function(c){return !expired(c)});
   function $$(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s))}
@@ -562,18 +564,29 @@
   /* '7 p.m. CT' / '11 am CT' -> ISO kickoff in Central time (CDT until Nov. 1, 2026, CST after); null when TBA/TBD */
   function ctISO(d,t){var m=String(t||'').match(/^(\d{1,2})(?::(\d\d))?\s*(a\.?m\.?|p\.?m\.?)/i);if(!m)return null;var h=+m[1]%12+(/^p/i.test(m[3])?12:0);
     var dst=d>='2026-03-08'&&d<'2026-11-01'||d>='2027-03-14'&&d<'2027-11-07';return d+'T'+(h<10?'0':'')+h+':'+(m[2]||'00')+':00'+(dst?'-05:00':'-06:00')}
-  function gameFeed(slug){var R=slug!=='football'&&MP.REAL&&MP.REAL[slug];
-    if(slug==='football')return SCH?SCH.games:null;if(!R||!R.events)return null;
-    return R.events.map(function(e){return {d:e.d,day:DOW[new Date(e.d+'T12:00:00Z').getUTCDay()],opp:e.name,home:e.ha!=='away',neutral:e.ha==='neutral',
-      site:e.where||'TBA',ko:ctISO(e.d,e.time),tv:e.tv||'',res:e.res||'',ex:!!e.ex}})}
-  function nextGame(G){G=G||(SCH&&SCH.games)||[];var now=Date.now();return G.filter(function(x){return !x.res&&gWhen(x)+4*3600e3>now})[0]||null}
+  /* Official result for a sport's game on a date, from the freshest source that has it: MP.GAMES (games.js) and MP.UPCOMING
+     (upcoming.js), both rebuilt from the SMU Athletics schedule cards on every refresh, then the CollegeFootballData final that
+     cfbd-live.js reports (LIVE_RES). Format 'W 27-24' (SMU first). Empty when no source has a final yet: nothing is guessed. */
+  var LIVE_RES={};
+  function freshRes(slug,d,team){var g=gameFor(slug,d);if(g&&g.res)return g.res;
+    var U=(MP.UPCOMING&&MP.UPCOMING.events)||[];for(var i=0;i<U.length;i++){var e=U[i];if(e.sport===slug&&e.d===d&&e.res&&(!team||e.team===team))return e.res}
+    return LIVE_RES[slug+'|'+d]||''}
+  function gameFeed(slug){var R=slug!=='football'&&MP.REAL&&MP.REAL[slug],fill=function(x){var r=x.res?'':freshRes(slug,x.d);return r?Object.assign({},x,{res:r}):x};
+    if(slug==='football')return SCH?SCH.games.map(fill):null;if(!R||!R.events)return null;
+    return R.events.map(function(e){return fill({d:e.d,day:DOW[new Date(e.d+'T12:00:00Z').getUTCDay()],opp:e.name,home:e.ha!=='away',neutral:e.ha==='neutral',
+      site:e.where||'TBA',ko:ctISO(e.d,e.time),tv:e.tv||'',res:e.res||'',ex:!!e.ex})})}
+  /* How long a game usually runs, start to final (generous, so a game in overtime is not treated as over). A game with no result
+     drops out of "next game" and the home ribbon once this has passed; the final then shows as soon as a refresh brings the result in. */
+  var G_DUR={football:4.5,'mens-basketball':2.75,'womens-basketball':2.75,volleyball:3,'mens-soccer':2.75,'womens-soccer':2.75};
+  function gDur(slug){return (slug&&G_DUR[slug]||4)*36e5}
+  function nextGame(G,slug){G=G||(SCH&&SCH.games)||[];var now=nowMs(),dur=gDur(slug);return G.filter(function(x){return !x.res&&gWhen(x)+dur>now})[0]||null}
   function lastGame(G){G=G||(SCH&&SCH.games)||[];var r=null;G.forEach(function(x){if(x.res)r=x});return r}
   function matchup(x){return 'SMU '+(x.home?'vs.':'at')+' '+x.opp}
   /* Game-day photo: about 372px square on phones, a 3:2 photo cropped to cover it needs ~1.4x the viewport width (was 170vw, which sent 2000w files to phones).
      Home and football preload this same srcset/sizes in their <head> (keep GD_SIZES and those <link rel=preload> tags in step). */
   var GD_SIZES='(min-width:960px) 50vw, (min-width:640px) 100vw, 150vw';
   function gameStrip(slug){slug=slug||'football';var G=gameFeed(slug),C=GD_SPORTS[slug];if(!G||!C)return '';
-    var sp=sportBy(slug),name=sp?sp.name:'Football',n=nextGame(G),l=lastGame(G),H=slug==='football'?MP.HURRYUP:null,
+    var sp=sportBy(slug),name=sp?sp.name:'Football',n=nextGame(G,slug),l=lastGame(G),H=slug==='football'?MP.HURRYUP:null,
       sched=sportUrl(slug)+'#schedule',thr=n&&gameFor(slug,n.d)?gameThreadUrl(gameFor(slug,n.d)):C.thread?threadUrl(C.thread):sportUrl(slug)+'#board';
     var sc=l?l.res.match(/^([WL]) (\d+)-(\d+)/):null,us=sc?+sc[2]:0,them=sc?+sc[3]:0,exh=function(x){return x.ex?' (exh.)':''};
     return '<div class="gd-grid">'+
@@ -588,13 +601,13 @@
         (gameFor(slug,l.d)?'<a class="btn btn-red gd-glink" href="'+gameUrl(gameFor(slug,l.d))+'" aria-label="View game details: '+esc(matchup(l))+'">View Game Details</a>':'')+
         '</div></article>':'')+
       '</div>'}
-  function tickCountdowns(){$$('.cd[data-ko]').forEach(function(el){var t=+el.dataset.ko,d=Math.max(0,t-Date.now()),b=$$('b',el);
+  function tickCountdowns(){$$('.cd[data-ko]').forEach(function(el){var t=+el.dataset.ko,d=Math.max(0,t-nowMs()),b=$$('b',el);
     var v=[Math.floor(d/864e5),Math.floor(d/36e5)%24,Math.floor(d/6e4)%60,Math.floor(d/1e3)%60];
     if(el.dataset.tba){b[0].textContent=v[0];b[1].textContent=b[2].textContent=b[3].textContent='\u2013'}else v.forEach(function(x,i){b[i].textContent=(i&&x<10?'0':'')+x})})}
-  function startCountdowns(){tickCountdowns();if($('.cd[data-ko]'))setInterval(tickCountdowns,1000)}
+  var CD_ON=0;function startCountdowns(){tickCountdowns();if($('.cd[data-ko]')&&!CD_ON){CD_ON=1;setInterval(tickCountdowns,1000)}}
   /* Game-day hub (games/?id=...): MP.GAMES from assets/games.js, built by tools/build_gameday.py from the official SMU
      Athletics schedule pages. One page per game for football and both basketball teams (latest result + every upcoming game). */
-  var GAMES=(MP.GAMES&&MP.GAMES.games)||[],GBY={};GAMES.forEach(function(g){GBY[g.id]=g});
+  var GAMES,GBY;function indexGames(){GAMES=(MP.GAMES&&MP.GAMES.games)||[];GBY={};GAMES.forEach(function(g){GBY[g.id]=g})}indexGames();
   function gameFor(slug,d){for(var i=0;i<GAMES.length;i++)if(GAMES[i].sport===slug&&GAMES[i].d===d)return GAMES[i];return null}
   function gameUrl(g){return ROOT+'games/?id='+g.id}
   /* Game threads: boards/#game=<id> finds the game's thread (created on first visit, supabase RUN_ME_24) and opens it */
@@ -765,27 +778,40 @@
      schedule pages). Next three weeks for every sport, plus each sport's next event if it is further out. TBA = not listed yet. ---------- */
   var RB_MON=['Jan.','Feb.','March','April','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'],RB_DOW=['Sun.','Mon.','Tue.','Wed.','Thu.','Fri.','Sat.'];
   function rbDate(d){var x=new Date(d+'T12:00:00Z');return RB_DOW[x.getUTCDay()]+' '+RB_MON[x.getUTCMonth()]+' '+x.getUTCDate()}
-  function rbToday(){try{return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}}
-  function ribbonEvents(){var U=(MP.UPCOMING&&MP.UPCOMING.events)||[],t=rbToday(),lim=new Date(Date.parse(t+'T12:00:00Z')+21*864e5).toISOString().slice(0,10),first={},near=[],far=[];
-    U.forEach(function(e){if((e.d2||e.d)<t)return;var k=e.sport+'|'+(e.team||'');if(e.d<=lim)near.push(e);else if(!first[k])far.push(e);first[k]=1});
-    return near.slice(0,36).concat(far).sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:0})}
+  function rbToday(ms){var d=new Date(ms==null?nowMs():ms);try{return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(d)}catch(e){return d.toISOString().slice(0,10)}}
+  /* A game that has finished: with its official result it stays as a Final card (first in the list) until the end of the next day;
+     without one yet it leaves the list once its usual length has passed, so the ribbon moves on to the next games. */
+  function rbStart(e){var k=!e.d2&&e.time&&ctISO(e.d,e.time);return k?Date.parse(k):null}
+  function rbFin(e){return e.res||(e.game&&GBY[e.game]&&GBY[e.game].res)||(!e.team?LIVE_RES[e.sport+'|'+e.d]:'')||''}
+  function ribbonEvents(){var U=(MP.UPCOMING&&MP.UPCOMING.events)||[],now=nowMs(),t=rbToday(now),y=rbToday(now-864e5),lim=new Date(Date.parse(t+'T12:00:00Z')+21*864e5).toISOString().slice(0,10),first={},near=[],far=[],fins=[];
+    U.forEach(function(e){var r=rbFin(e),st=rbStart(e);
+      if(r&&/^[WLT] \d+-\d+$/.test(r)){if(e.d>=y&&(st==null||st<=now))fins.push(Object.assign({},e,{fin:r}));return}
+      if((e.d2||e.d)<t)return;if(st!=null&&st+gDur(e.sport)<now)return;
+      var k=e.sport+'|'+(e.team||'');if(e.d<=lim)near.push(e);else if(!first[k])far.push(e);first[k]=1});
+    var by=function(a,b){return a.d<b.d?-1:a.d>b.d?1:0};
+    return fins.sort(by).concat(near.slice(0,36).concat(far).sort(by))}
   function ribbonCard(e,i,n){var sp=sportBy(e.sport),nm=(e.team&&e.team.indexOf('Cross')<0&&e.team.indexOf('Track')<0?e.team+' ':'')+(sp?sp.name:e.sport),
       g=e.game&&GBY[e.game],href=g?gameUrl(g):sportUrl(e.sport)+'#schedule',
       vs=e.vs==='vs'?'vs. ':e.vs==='at'?'at ':'',ha=e.ha==='home'?'Home':e.ha==='away'?'Away':'Neutral site',
-      when=rbDate(e.d)+(e.d2?' \u2013 '+rbDate(e.d2):''),tm=e.time||(e.d2?'':'TBA');
+      when=rbDate(e.d)+(e.d2?' \u2013 '+rbDate(e.d2):''),tm=e.time||(e.d2?'':'TBA'),
+      fm=e.fin&&e.fin.match(/^([WLT]) (\d+)-(\d+)$/),opp=String(e.name||'').replace(/^(?:No\.\s*\d+|#\d+|\[[^\]]*\])\s+/,''),
+      rec=!g&&fm&&/^https:\/\/smumustangs\.com\//.test(e.recap||'')?e.recap:'';
+    if(rec)href=rec;
     function row(k,v,a){return '<div><dt>'+k+'</dt><dd>'+(a?'<a href="'+esc(a)+'" target="_blank" rel="noopener" aria-label="'+esc(v)+' ('+k+', official link, opens in a new tab)">'+esc(v)+'</a>':esc(v))+'</dd></div>'}
-    return '<li class="rb-card" aria-label="'+(i+1)+' of '+n+'"><a class="rb-main" href="'+href+'"><span class="rb-sp">'+esc(nm)+'</span>'+
+    return '<li class="rb-card'+(fm?' rb-final':'')+'" aria-label="'+(i+1)+' of '+n+(fm?', final':'')+'"><a class="rb-main" href="'+esc(href)+'"'+(rec?' target="_blank" rel="noopener"':'')+'><span class="rb-sp">'+esc(nm)+'</span>'+
       '<span class="rb-m">'+vs+esc(e.name)+(e.ex?' (exh.)':'')+'</span><span class="rb-ha rb-'+e.ha+'">'+ha+'</span>'+
-      '<span class="rb-w"><b>'+when+'</b>'+(tm?'<span>'+esc(tm)+'</span>':'')+'</span>'+(e.where?'<span class="rb-pl">'+esc(e.where)+'</span>':'')+
-      '<span class="rb-go">'+(g?'Game page':'Schedule')+'<span aria-hidden="true"> \u2192</span></span></a>'+
+      (fm?'<span class="rb-w rb-fw"><b class="rb-fin rb-fin-'+fm[1].toLowerCase()+'">Final'+(fm[1]==='W'?', win':fm[1]==='L'?', loss':', tie')+'</b><span class="rb-sc">SMU '+fm[2]+', '+esc(opp)+' '+fm[3]+'</span><span class="rb-fd">'+when+'</span></span>':
+        '<span class="rb-w"><b>'+when+'</b>'+(tm?'<span>'+esc(tm)+'</span>':'')+'</span>')+(e.where?'<span class="rb-pl">'+esc(e.where)+'</span>':'')+
+      '<span class="rb-go">'+(g?'Game page':rec?'Recap<span class="sr"> on SMU Athletics, opens in a new tab</span>':'Schedule')+'<span aria-hidden="true"> \u2192</span></span></a>'+
       '<dl class="rb-tv">'+((e.tv?row('TV',e.tv):'')+(e.watch?row('Stream','Watch',e.watch):'')+(e.radio||e.listen?row('Radio',e.radio||'Listen',e.listen):'')||row('TV','TBA'))+'</dl>'+
       (sbUrl(e.sb)?'<a class="rb-stats" href="'+sbUrl(e.sb)+'" target="_blank" rel="noopener" aria-label="Live stats for SMU '+esc(vs+e.name)+' (official StatBroadcast box score, opens in a new tab)">Live stats</a>':'')+'</li>'}
   /* Fills the slot index.html reserves (#ribbon: static header + presented-by ad hold + a list placeholder sized to the rendered list),
      so the page below never jumps. No events: the section is hidden. */
-  function ribbon(){var sec=$('#ribbon'),sk=sec&&$('.rb-skel',sec),id='rb-track';if(!sk)return;var L=ribbonEvents(),ld=$('.rb-loading',sec);if(ld)ld.remove();
-    if(!L.length){sec.hidden=true;sk.remove();return}
+  function ribbon(){var sec=$('#ribbon'),sk=sec&&($('.rb-skel',sec)||$('.rb-wrap',sec)),id='rb-track';if(!sk)return;var L=ribbonEvents(),ld=$('.rb-loading',sec);if(ld)ld.remove();
+    var nf=L.filter(function(e){return e.fin}).length;
+    if(!L.length){sec.hidden=true;sk.remove();return}sec.hidden=false;
     sk.outerHTML='<div class="xwrap rb-wrap" data-xnav="'+id+'"><button type="button" class="xarr xside xprev" data-xdir="-1" aria-label="Earlier games" aria-controls="'+id+'" disabled>'+XARR+'</button>'+
-      '<ul class="rb-l" id="'+id+'" data-slider aria-label="Upcoming SMU games, scrolls sideways" tabindex="0">'+L.map(function(e,i){return ribbonCard(e,i,L.length)}).join('')+'</ul>'+
+      '<ul class="rb-l" id="'+id+'" data-slider aria-label="'+(nf?'Latest SMU results and upcoming games':'Upcoming SMU games')+', scrolls sideways" tabindex="0">'+L.map(function(e,i){return ribbonCard(e,i,L.length)}).join('')+'</ul>'+
       '<button type="button" class="xarr xside xnext" data-xdir="1" aria-label="Later games" aria-controls="'+id+'">'+XARR+'</button></div>';
     slSyncAll()}
   /* ---------- Search results page (search/?q=...). Static content comes from data/search-index.json (tools/build_search.js);
@@ -912,14 +938,31 @@
   /* Never in the slideshow: videos not cleared to feature. kgT36hNlyi8 = men's soccer press conference vs. Louisville, Oct. 30 (not reviewed
      end to end for discipline questions; listed in the library only). */
   var HS_SKIP={kgT36hNlyi8:1};
+  /* Games that ended in the last two days with an official result (newest first): sport, opponent and start time, so the slideshow can
+     lead with the videos posted about them. Same sources as the home ribbon's Final cards. */
+  function recentFinals(){var now=nowMs(),out=[],seen={};
+    function add(slug,d,opp,start,res){if(!start||!res||isNaN(start)||start>now||now-start>2*864e5)return;opp=String(opp||'').replace(/^(?:No\.\s*\d+|#\d+|\[[^\]]*\])\s+/,'').replace(/\s*\((?:exh|Exh)\.?\)/,'').trim();
+      var k=slug+'|'+d;if(!opp||seen[k])return;seen[k]=1;out.push({sport:slug,d:d,opp:opp,start:start})}
+    GAMES.forEach(function(g){add(g.sport,g.d,g.opp,g.ko?Date.parse(g.ko):null,g.res||LIVE_RES[g.sport+'|'+g.d])});
+    ((MP.UPCOMING&&MP.UPCOMING.events)||[]).forEach(function(e){add(e.sport,e.d,e.name,rbStart(e),rbFin(e))});
+    return out.sort(function(a,b){return b.start-a.start})}
+  /* a video is about a finished game when it was posted after the start (up to three days on) and its title names the opponent */
+  function aboutGame(x,G){var t=String(x.v.title||'').toLowerCase(),o=G.opp.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    return x.t>=G.start&&x.t<=G.start+3*864e5&&new RegExp('(^|[^a-z])'+o+'($|[^a-z])').test(t)}
+  var HS_LEAD=4,HS_PER_GAME=2;
   function hsRank(F){var all=[],seen={};
     (F&&F.channels||[]).forEach(function(ch){(ch.videos||[]).forEach(function(v){if(typeof v.views!=='number'||!/^[A-Za-z0-9_-]{11}$/.test(v.id||'')||HS_SKIP[v.id])return;
       var t=Date.parse(v.published),k=String(v.title||'').toLowerCase().replace(/\W+/g,' ').trim();if(isNaN(t)||!k||seen[v.id]||seen[k])return;seen[v.id]=seen[k]=1;all.push({ch:ch,v:v,t:t})})});
-    var now=Date.now(),by=function(a,b){return b.v.views-a.v.views};
-    var wk=all.filter(function(x){return x.t>=now-7*864e5}).sort(by).slice(0,HS_N);wk.forEach(function(x){x.wk=1});
-    if(wk.length<HS_MIN)wk=wk.concat(all.filter(function(x){return x.t<now-7*864e5&&x.t>=now-30*864e5}).sort(by).slice(0,HS_MIN-wk.length));
+    var now=nowMs(),by=function(a,b){return b.v.views-a.v.views};
+    /* Latest games first: after a game ends, the videos about it (most viewed first, two per game, newest game first) lead the slideshow.
+       The rest is the week's most watched, as before. */
+    var lead=[],used={};recentFinals().forEach(function(G){if(lead.length>=HS_LEAD)return;
+      all.filter(function(x){return !used[x.v.id]&&aboutGame(x,G)}).sort(by).slice(0,Math.min(HS_PER_GAME,HS_LEAD-lead.length)).forEach(function(x){x.lead=x.wk=1;used[x.v.id]=1;lead.push(x)})});
+    var wk=all.filter(function(x){return !used[x.v.id]&&x.t>=now-7*864e5}).sort(by).slice(0,HS_N-lead.length);wk.forEach(function(x){x.wk=1});wk=lead.concat(wk);
+    if(wk.length<HS_MIN)wk=wk.concat(all.filter(function(x){return !used[x.v.id]&&x.t<now-7*864e5&&x.t>=now-30*864e5}).sort(by).slice(0,HS_MIN-wk.length));
     return wk}
-  function heroShow(){var box=$('#heroShow');if(!box)return;
+  var HS_TPL=null,HS_KEY='';
+  function heroShow(F0){var box=$('#heroShow');if(!box)return;if(HS_TPL==null)HS_TPL=box.outerHTML;
     var stage=$('.hs-stage',box),dotsEl=$('.hs-dots',box),bar=$('.hs-bar',box),pauseB=$('.hs-pause',box),prevB=$('.hs-prev',box),nextB=$('.hs-next',box);
     var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
     function slide(x,i,n,asOf){var c=x.c,eager=i===0,p=poster(c,{eager:1});if(!eager)p=p.replace('loading="eager"','loading="lazy"');
@@ -928,13 +971,13 @@
       return '<div class="hs-slide'+(i?'':' on')+'" role="group" aria-roledescription="slide" aria-label="'+(i+1)+' of '+n+'"'+(i?' aria-hidden="true" inert':'')+'>'+
         '<a class="hero-card hs-card" href="'+itemHref(c)+'" data-item="'+c.id+'" aria-label="'+esc(x.v?tcase(c.title):c.title)+'. '+m+'. '+line+'.">'+p+'</a></div>'}
     function day(iso){var d=new Date(iso);return isNaN(d)?'':d.toLocaleDateString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric'})}
-    function render(F){var R=hsRank(F),asOf=F&&F.updated?day(F.updated):'',X;
+    function render(F){var R=hsRank(F),asOf=F&&F.updated?day(F.updated):'',X;HS_KEY=R.map(function(x){return x.v.id}).join();
       if(R.length){X=R.map(function(x){x.c=feedItem(x.ch,x.v);return x})}
       else{var f=LIBBY[MP.FEATURED]||MP.LIB.filter(function(c){return c.t==='video'})[0];if(!f){box.hidden=true;return}X=[{c:f}]}
       var n=X.length,i=0,timer=0,user=false,hov=false,foc=false,vis=true;
       stage.innerHTML=X.map(function(x,k){return slide(x,k,n,asOf)}).join('');
       var S=[].slice.call(stage.children);
-      var bk=R.length&&!R.every(function(x){return x.wk}),t=$('.hs-t',box);if(t&&R.length)t.textContent=bk?'Most watched recently':'Most watched this week';
+      var bk=R.length&&!R.every(function(x){return x.wk}),t=$('.hs-t',box);if(t&&R.length)t.textContent=R.some(function(x){return x.lead})?'Latest games and most watched':bk?'Most watched recently':'Most watched this week';
       if(n<2){bar.classList.add('hs-one');box.classList.add('ready');return}
       dotsEl.innerHTML=X.map(function(x,k){return '<button type="button" class="hs-dot" aria-label="Show video '+(k+1)+' of '+n+': '+esc(x.v?tcase(x.c.title):x.c.title)+'"'+(k?'':' aria-current="true"')+'><i></i></button>'}).join('');
       var D=[].slice.call(dotsEl.children);
@@ -943,7 +986,7 @@
         var nx=S[(i+1)%n].querySelector('img[loading="lazy"]');if(nx)nx.loading='eager';  /* warm the next thumbnail */
         if(fromUser)arm()}
       function playing(){return !calm&&!user&&!hov&&!foc&&vis&&!document.hidden}
-      function arm(){clearTimeout(timer);timer=0;if(playing())timer=setTimeout(function(){go(i+1);arm()},HS_MS);
+      function arm(){clearTimeout(timer);timer=0;if(!box.isConnected)return;if(playing())timer=setTimeout(function(){go(i+1);arm()},HS_MS);
         stage.setAttribute('aria-live',playing()?'off':'polite');
         pauseB.setAttribute('aria-label',(user||calm)?'Play slideshow':'Pause slideshow');pauseB.classList.toggle('paused',user||calm)}
       prevB.addEventListener('click',function(){go(i-1,1)});nextB.addEventListener('click',function(){go(i+1,1)});
@@ -961,14 +1004,42 @@
         if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.2){swiped=Date.now();go(i+(dx<0?1:-1),1)}},{passive:true});
       stage.addEventListener('click',function(e){if(Date.now()-swiped<500){e.preventDefault();e.stopPropagation()}},true);
       box.classList.add('ready');arm()}
+    if(F0){render(F0);return}
     if(!window.fetch){render(null);return}
-    fetch(ROOT+'data/videos-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(render,function(){render(null)})}
+    fetch(ROOT+'data/videos-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){HS_FEED=F;render(F)},function(){render(null)})}
+  /* Swap in a new set of slides (after a game ends or the video feed refreshes) only when the set changed and nobody is using the
+     slideshow: a fresh copy of the reserved markup replaces the old one, so nothing moves and no old handler is left behind. */
+  var HS_FEED=null;
+  function heroRefresh(F){var box=$('#heroShow');if(!box||HS_TPL==null||!box.classList.contains('ready'))return;F=F||HS_FEED;if(!F)return;HS_FEED=F;
+    if(hsRank(F).map(function(x){return x.v.id}).join()===HS_KEY)return;
+    if(box.matches(':hover')||box.contains(document.activeElement))return;
+    var w=document.createElement('div');w.innerHTML=HS_TPL;box.replaceWith(w.firstElementChild);heroShow(F)}
+  /* ---------- Home after a game ends ----------
+     The Game day block, the ribbon and the slideshow re-check once a minute (and when the tab comes back) and redraw only when
+     something changed: a game passed its usual length, a final came in, or the day turned over. Every 10 minutes while the tab is
+     visible they also re-read games.js, upcoming.js and data/videos-feed.json (a cheap revalidation; GitHub Pages answers 304 when
+     nothing changed), so a refresh pushed after the game shows up without a reload. Football finals from CollegeFootballData arrive
+     through MP.liveFinals (cfbd-live.js) within about a minute. Results are only ever the official ones in that data. */
+  var HG_SIG=null,HG_LOAD=0;
+  function homeSig(){var G=gameFeed('football')||[],n=nextGame(G,'football'),l=lastGame(G);
+    return JSON.stringify([n&&n.d,l&&l.d+l.res,ribbonEvents().map(function(e){return e.sport+e.d+e.name+(e.team||'')+(e.fin||'')+(e.time||'')+(e.tv||'')})])}
+  function homeGames(){if(!$('#gameday'))return;var sig=homeSig();if(HG_SIG===null){HG_SIG=sig;return}if(sig===HG_SIG)return;HG_SIG=sig;
+    $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();heroRefresh()}
+  function reloadData(){if(!window.fetch)return Promise.resolve();
+    var js=['games.js','upcoming.js'].map(function(f){var el=document.querySelector('script[src*="assets/'+f+'"]');if(!el)return null;
+      return fetch(el.src,{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.text()}).then(function(t){if(/^\s*\/\*[\s\S]*?window\.MP=window\.MP\|\|\{\};MP\.(GAMES|UPCOMING)=/.test(t))(new Function(t))()}).catch(function(){})});
+    var vf=fetch(ROOT+'data/videos-feed.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(F){HS_FEED=F}).catch(function(){});
+    return Promise.all(js.concat([vf])).then(function(){indexGames()})}
+  function homeLive(){if(!$('#gameday'))return;HG_LOAD=Date.now();homeGames();
+    MP.liveFinals=function(L){var ch=0;(L||[]).forEach(function(f){if(!f||!/^[WLT] \d+-\d+$/.test(f.res||''))return;var k=f.sport+'|'+f.d;if(LIVE_RES[k]!==f.res){LIVE_RES[k]=f.res;ch=1}});if(ch)homeGames()};
+    function tick(){if(document.hidden)return;if(Date.now()-HG_LOAD>=6e5){HG_LOAD=Date.now();reloadData().then(function(){homeGames();heroRefresh()})}else homeGames()}
+    setInterval(tick,6e4);document.addEventListener('visibilitychange',tick)}
   function home(){
     var mem=$('#membership');if(mem){var old=$('.note.center',mem),w=$('.wrap',mem);if(old)old.outerHTML=conceptNotice('plans-cn');else if(w)w.insertAdjacentHTML('beforeend',conceptNotice('plans-cn'));
       /* Home waitlist section removed (Oct 26, Jackson); Join CTAs open the join pop-up. */
       var tiers=$('.tiers',mem);if(tiers)tiers.insertAdjacentHTML('beforebegin',freeBands('home'))}
     heroShow();
-    $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();
+    $('#gameday').innerHTML=gameStrip();startCountdowns();ribbon();homeLive();
     $('#railWatch').innerHTML=secHead('Watch',libUrl('watch'),'See all','From SMU Athletics on YouTube')+rail(byCat('watch'));
     homeTabs([['insider','Insider',libUrl('insider'),'Features & practice reports',byCat('insider')],['podcasts','Podcasts',libUrl('podcasts'),'Listen',MP.LIB.filter(function(c){return c.t==='podcast'})]]);
     var news=byCat('news',8),rd=$('#read');if(news.length&&rd&&!$('#news'))rd.insertAdjacentHTML('afterend','<section class="sec tight" id="news"><div class="wrap">'+secHead('In the news',libUrl('news'),'See all','Real coverage · opens at the source')+rail(news)+'</div></section>');
