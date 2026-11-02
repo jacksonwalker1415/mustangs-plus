@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-02T19:19:10Z",
+ "generated": "2026-11-02T20:25:21Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -217,6 +217,14 @@
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
     {
+     "id": "7977fd1894",
+     "title": "SMU Basketball Season Preview: Can the Mustangs Make the NCAA Tournament?",
+     "published": "2026-11-02T15:00:00Z",
+     "dur": "14 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128619159/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-2%2F435668928-44100-2-87c2c3c17e5fb.mp3",
+     "apple": "https://podcasts.apple.com/us/podcast/smu-basketball-season-preview-can-the-mustangs-make/id1734256145?i=1000799424904"
+    },
+    {
      "id": "f8995b39c7",
      "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
      "published": "2026-10-31T21:30:19Z",
@@ -303,14 +311,6 @@
      "dur": "15 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126104216/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-21%2F432389551-44100-2-5b30b5ce4d664.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-football-vs-uc-davis-aggies-week-2-postgame-reaction/id1734256145?i=1000791000771"
-    },
-    {
-     "id": "6b6726fec3",
-     "title": "SMU Football vs Louisville - Week 3 Postgame Reaction",
-     "published": "2026-09-20T00:34:31Z",
-     "dur": "21 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126010657/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-20%2F432265183-44100-2-c627d3fd6513f.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-football-vs-louisville-week-3-postgame-reaction/id1734256145?i=1000790728322"
     }
    ]
   },
@@ -692,6 +692,10 @@
    "id": "12f0090f0e"
   },
   {
+   "key": "mustang-mood",
+   "id": "7977fd1894"
+  },
+  {
    "key": "locked-on-smu",
    "id": "80c1151cfb"
   },
@@ -706,10 +710,6 @@
   {
    "key": "locked-on-smu",
    "id": "cc64c2cf8e"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "7992755189"
   },
   {
    "key": "mustang-studios",
