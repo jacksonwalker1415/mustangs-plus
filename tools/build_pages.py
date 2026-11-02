@@ -109,6 +109,7 @@ BOOT_HEAD='''<!--boot--><link rel="preload" href="{PRE}assets/fonts/dm-sans-var-
 <link rel="preload" href="{PRE}assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>@view-transition{navigation:auto}
 ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.18s;animation-timing-function:ease}
+::view-transition{pointer-events:none}
 #pgbar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10000;height:3px;background:#fff;box-shadow:0 1px 0 rgba(38,38,38,.2);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
 html.pg-wait #pgbar{opacity:1;animation:pgGrow 12s cubic-bezier(.08,.7,.2,1) forwards}
 html.pg-done #pgbar{transform:scaleX(1);opacity:0;transition:transform .15s ease,opacity .2s ease .12s}
@@ -129,7 +130,7 @@ var u=new URL(a.href,location.href);if(u.origin!==location.origin||(u.pathname==
 w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!(f.getAttribute('target')&&f.getAttribute('target')!=='_self')){leaving=1;tap=performance.now();soon()}});
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
-w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',quiet)})(document,window)</script><!--/boot-->
+w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',function(e){quiet(e);var v=e.viewTransition;if(!v)return;function k(){v.skipTransition()}function off(){d.removeEventListener('pointerdown',k,true);d.removeEventListener('keydown',k,true)}d.addEventListener('pointerdown',k,true);d.addEventListener('keydown',k,true);v.finished.then(off,off)})})(document,window)</script><!--/boot-->
 '''
 def boot_body(pre):
     return '<!--bootui--><div id="pgbar" aria-hidden="true"></div><!--/bootui-->\n'

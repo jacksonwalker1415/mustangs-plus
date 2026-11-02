@@ -1869,10 +1869,10 @@ main[tabindex="-1"]:focus{outline:none}
 .htab[aria-selected="false"]:hover{color:var(--ink)}
 /* form-field focus rings are main's (94ef9e5: SMU blue for keyboard, none after a tap) */
 
-/* ---- Page transitions (bot/page-transitions): the cross-document fade itself lives in the inline boot block of every page.
-   The header keeps its own snapshot, so it holds still while the page under it fades (no double header on narrow or wide screens).
-   Not while the phone menu, the sports drop-down or an overlay is open: then the whole page, open panel included, simply fades. ---- */
-html:not(.menu-open):not(.noscroll) header.site:not(:has(#sportsMenu:not([hidden]),#mmenu:not([hidden]))){view-transition-name:site-header}
+/* ---- Page transitions: the cross-document fade lives in the inline boot block of every page. The header gets no view-transition-name
+   of its own. A named element skips hit-testing while it is captured, and on iPhone Safari the header (menu button, Join, search)
+   could stay untappable on the page reached by an in-site link (Nov 2, 2026 report: phone menu would not open off the home page).
+   The header is identical on both pages, so the whole-page fade keeps it visually still. ---- */
 
 /* Schedules on phones: Date, Opponent and Result fit; site/time/TV columns drop (Result sits right after Opponent at every width) */
 .sched td:nth-child(3),.sched th:nth-child(3){font-weight:700}
