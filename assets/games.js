@@ -64,15 +64,18 @@ window.MP=window.MP||{};MP.GAMES={
 "ex": false,
 "venue": "Gerald J. Ford Stadium",
 "city": "Dallas, Texas",
-"time": null,
-"ko": null,
-"tv": null,
+"time": "11 a.m. CT",
+"ko": "2026-11-14T11:00:00-06:00",
+"tv": "ESPN/ESPN2",
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
 "res": null,
 "links": {
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "listen": "https://smumustangs.com/showcase?Live=5384",
+"stats": "https://stats.statbroadcast.com/broadcast/?id=673172",
 "gamecenter": "https://smumustangs.com/game-center/14456"
 },
+"sb": 673172,
 "note": "Homecoming · Senior Day · Wear Blue"
 },
 {
