@@ -976,7 +976,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/watch/player/_/id/0034b782-c019-450a-9abb-d83d2905c7ed",
-"preview": "https://smumustangs.com/news/2026/11/1/womens-basketball-mustangs-open-season-at-home-against-le-moyne-tuesday-6-30-pm",
+"listen": "https://smumustangs.com/showcase/?Live=5442",
+"stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14726"
 }
 },
