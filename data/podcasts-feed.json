@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-03T12:10:14Z",
+ "generated": "2026-11-03T19:23:30Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,20 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "74c7645d92",
+     "title": "Final thoughts on SMU loss at Syracuse, can Mustangs bounce back in Week 10? | SMU Football Podcast",
+     "published": "2026-11-03T13:08:50Z",
+     "dur": "1 hr 9 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/89b0af52-0d7e-4425-9858-3fe5009f458e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=89b0af52-0d7e-4425-9858-3fe5009f458e&feed=eSeVNxtA"
+    },
+    {
+     "id": "4bd010669a",
+     "title": "After 'Stangs Show: SMU beats Southern 85-72 in season opener",
+     "published": "2026-11-03T12:31:25Z",
+     "dur": "9 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/b2a2a95d-be2c-48d4-baa9-58ae20fb6d56/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=b2a2a95d-be2c-48d4-baa9-58ae20fb6d56&feed=eSeVNxtA"
+    },
     {
      "id": "12f0090f0e",
      "title": "SMU at Syracuse Game Recap, Breakdown | QB Chronicles Podcast",
@@ -87,22 +101,6 @@
      "dur": "54 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/72fdd26a-07b1-468e-ace8-af185a9de0b2/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=72fdd26a-07b1-468e-ace8-af185a9de0b2&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-game-preview-predictions-for-week-8-mustangs/id1604025463?i=1000797587527"
-    },
-    {
-     "id": "7e63a0d289",
-     "title": "Final thoughts on SMU win over Virginia, what's next for Mustangs after Week 7 win | SMU Football Podcast",
-     "published": "2026-10-20T09:00:00Z",
-     "dur": "1 hr 10 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/327f818b-dbbc-4325-8fce-ae2cf057b892/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=327f818b-dbbc-4325-8fce-ae2cf057b892&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-on-smu-win-over-virginia-whats-next/id1604025463?i=1000797230365"
-    },
-    {
-     "id": "f5e4c0d583",
-     "title": "SMU vs. Virginia Game Recap, Breakdown | QB Chronicles Podcast",
-     "published": "2026-10-20T03:26:00Z",
-     "dur": "27 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/21bab6e1-5bab-4a3a-b73a-55f788efa84e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=21bab6e1-5bab-4a3a-b73a-55f788efa84e&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-game-recap-breakdown-qb-chronicles-podcast/id1604025463?i=1000797191798"
     }
    ]
   },
@@ -113,6 +111,13 @@
    "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
+    {
+     "id": "f52a415b09",
+     "title": "KRYPTONITE: SMU''s VAUNTED Offense EXPOSED Without Consistent Running Game at Syracuse",
+     "published": "2026-11-03T16:00:00Z",
+     "dur": "29 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/993a5e21-6591-4f2d-bf11-d9fa4d91ceee/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=993a5e21-6591-4f2d-bf11-d9fa4d91ceee&feed=MciFpBoA"
+    },
     {
      "id": "80c1151cfb",
      "title": "DEVASTATING: SMU Mustangs STUNNED by Syracuse in CRUSHING Repeat Loss! Is Rhett Lashlee to BLAME?",
@@ -200,14 +205,6 @@
      "dur": "29 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/bd55f497-2442-431a-bd50-1620cad3e900/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=bd55f497-2442-431a-bd50-1620cad3e900&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/breaking-smu-mustangs-face-safety-issue-after-tyren/id1824252582?i=1000797465885"
-    },
-    {
-     "id": "e4c408da18",
-     "title": "DISCIPLINE: SMU Mustangs Prove Growth as Rhett Lashlee LEADS Win—Can Offensive Line Improve",
-     "published": "2026-10-20T15:00:00Z",
-     "dur": "28 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/6c2f96f9-7eae-49ec-9e39-0f5f739b79b0/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=6c2f96f9-7eae-49ec-9e39-0f5f739b79b0&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/discipline-smu-mustangs-prove-growth-as-rhett-lashlee/id1824252582?i=1000797276353"
     }
    ]
   },
@@ -690,8 +687,16 @@
  ],
  "new": [
   {
+   "key": "locked-on-smu",
+   "id": "f52a415b09"
+  },
+  {
    "key": "on-the-pony-express",
-   "id": "12f0090f0e"
+   "id": "74c7645d92"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "4bd010669a"
   },
   {
    "key": "mustang-mood",
@@ -704,14 +709,6 @@
   {
    "key": "mustang-mood",
    "id": "f8995b39c7"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "c8b4e4771c"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "cc64c2cf8e"
   },
   {
    "key": "mustang-studios",
