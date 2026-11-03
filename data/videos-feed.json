@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T20:18:05Z",
+ "updated": "2026-11-03T21:19:44Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,21 +99,21 @@
      "id": "WCuyD_63amA",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-03-26",
      "published": "2026-11-03T20:06:05+00:00",
-     "views": 2,
+     "views": 8,
      "dur": "18:55"
     },
     {
      "id": "t8Tv5XiLpbw",
      "title": "SMU Basketball: Postgame Press Conference vs Southern 11-2-26",
      "published": "2026-11-03T03:57:34+00:00",
-     "views": 101,
+     "views": 104,
      "dur": "8:47"
     },
     {
      "id": "Dpkrhr9Ckbw",
      "title": "SMU Men's Basketball: Game Highlights vs. Southern 11-2-26",
      "published": "2026-11-03T03:27:35+00:00",
-     "views": 157,
+     "views": 179,
      "dur": "5:45"
     },
     {
@@ -134,7 +134,7 @@
      "id": "l9ULMl6PWXE",
      "title": "SMU Football: Postgame Press Conference at Syracuse 10-31-2026",
      "published": "2026-10-31T20:36:44+00:00",
-     "views": 1332,
+     "views": 1333,
      "dur": "11:35"
     },
     {
@@ -190,7 +190,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3650,
+     "views": 3653,
      "dur": "12:01"
     },
     {
@@ -318,24 +318,31 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "V_j8snJTQNY",
+     "title": "SMU QB Kevin Jennings on bouncing back after Syracuse loss, preparing for Virginia Tech",
+     "published": "2026-11-03T21:00:13+00:00",
+     "views": 4,
+     "dur": "2:54"
+    },
+    {
      "id": "jVCkNM1SHiI",
      "title": "SMU HC Rhett Lashlee previews game vs. Virginia Tech, addresses FSU head coach opening rumors",
      "published": "2026-11-03T18:39:02+00:00",
-     "views": 108,
+     "views": 162,
      "dur": "15:53"
     },
     {
      "id": "-f5w33Vq2uM",
      "title": "Final thoughts on SMU loss at Syracuse, can Mustangs bounce back in Week 10? | SMU Football Podcast",
      "published": "2026-11-03T13:09:14+00:00",
-     "views": 219,
+     "views": 252,
      "dur": "1:09:00"
     },
     {
      "id": "XDDJT5AKB9w",
      "title": "After 'Stangs Show: SMU beats Southern 85-72 in season opener",
      "published": "2026-11-03T04:53:14+00:00",
-     "views": 153,
+     "views": 160,
      "dur": "9:29"
     },
     {
@@ -377,14 +384,13 @@
      "id": "i6lIL9X5f0U",
      "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
      "published": "2026-10-31T22:00:01+00:00",
-     "views": 407,
+     "views": 412,
      "dur": "28:28"
     },
     {
      "id": "Uq8MRiqqz0Q",
      "title": "Rhett Lashlee talks SMU loss at Syracuse | SMU Football Press Conference",
      "published": "2026-10-31T20:48:58+00:00",
-     "views": 3256,
      "dur": "8:04"
     },
     {
@@ -392,12 +398,6 @@
      "title": "SMU vs Syracuse Preview: Can the Mustangs Keep Rolling in the ACC?",
      "published": "2026-10-30T11:00:06+00:00",
      "dur": "31:37"
-    },
-    {
-     "id": "rY17en9sGHc",
-     "title": "Jim Mitchell, Damon Evans talk SMU Lacrosse first steps, recruiting transfer portal + more",
-     "published": "2026-10-29T19:54:39+00:00",
-     "dur": "6:47"
     }
    ]
   },
@@ -410,7 +410,7 @@
      "id": "IBCbVOAAuLg",
      "title": "KRYPTONITE: SMU''s VAUNTED Offense EXPOSED Without Consistent Running Game at Syracuse",
      "published": "2026-11-03T16:00:09+00:00",
-     "views": 65,
+     "views": 80,
      "dur": "29:00"
     },
     {
@@ -499,7 +499,7 @@
      "id": "IFIJVH53cdQ",
      "title": "SMU Basketball Season Preview: Can the Mustangs Make the NCAA Tournament?",
      "published": "2026-11-02T14:17:10+00:00",
-     "views": 24,
+     "views": 26,
      "dur": "13:38"
     },
     {
@@ -610,7 +610,7 @@
      "id": "ZZFInWJuDAI",
      "title": "SMU vs Southern",
      "published": "2026-11-03T18:01:48+00:00",
-     "views": 93,
+     "views": 92,
      "dur": "2:12:52",
      "nomax": true
     },
@@ -618,7 +618,7 @@
      "id": "BlVW2Sm_6_A",
      "title": "Pony Up Productions Ep. 18: SMU vs. Syracuse Recap, Path to the ACC Championship and more",
      "published": "2026-11-02T16:21:07+00:00",
-     "views": 24,
+     "views": 31,
      "dur": "32:44"
     },
     {
@@ -702,7 +702,7 @@
      "id": "qlQHkPoCSNc",
      "title": "SMU vs. Syracuse Full Game Replay | 2026 ACC Football",
      "published": "2026-11-03T17:00:10+00:00",
-     "views": 192,
+     "views": 284,
      "dur": "2:13:38"
     },
     {
@@ -828,6 +828,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "V_j8snJTQNY"
+  },
+  {
    "key": "smu-mustangs",
    "id": "WCuyD_63amA"
   },
@@ -850,10 +854,6 @@
   {
    "key": "on-the-pony-express",
    "id": "-f5w33Vq2uM"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "XDDJT5AKB9w"
   },
   {
    "key": "smu-mustangs",
