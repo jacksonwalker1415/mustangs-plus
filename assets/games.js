@@ -153,11 +153,10 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-02T19:00:00-06:00",
 "tv": "ACCNX",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "W 85-72",
 "links": {
-"watch": "https://www.espn.com/watch/player/_/id/816c806f-1621-498a-aebe-7a353bc41763",
-"stats": "https://smumustangs.com/sidearmstats/mbball/summary",
-"preview": "https://smumustangs.com/news/2026/10/30/mens-basketball-season-opens-at-moody-coliseum-monday-7pm",
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2026-27/southern/boxscore/14738",
+"recap": "https://smumustangs.com/news/2026/11/2/mens-basketball-mustangs-win-season-opener-over-southern-85-72",
 "gamecenter": "https://smumustangs.com/game-center/14738"
 }
 },
@@ -178,8 +177,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/watch/player/_/id/22388c39-f9c1-4167-afea-f92f7e0e9a6e",
+"listen": "https://smumustangs.com/showcase/?Live=5401",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
-"program": "https://digitalprograms.learfield.com/smuni/mbball/22079",
 "gamecenter": "https://smumustangs.com/game-center/14740"
 }
 },
@@ -200,8 +199,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/watch/player/_/id/5d6fcfd4-b1ee-444b-a9b1-977bb5aae5e1",
+"listen": "https://smumustangs.com/showcase/?Live=5402",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
-"program": "https://digitalprograms.learfield.com/smuni/mbball/22079",
 "gamecenter": "https://smumustangs.com/game-center/14741"
 }
 },
@@ -222,8 +221,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/watch/player/_/id/ac907403-b2a2-4851-9074-dd7f460f3577",
+"listen": "https://smumustangs.com/showcase/?Live=5403",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
-"program": "https://digitalprograms.learfield.com/smuni/mbball/22079",
 "gamecenter": "https://smumustangs.com/game-center/14744"
 }
 },
@@ -244,8 +243,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/watch/player/_/id/18ac9477-02b5-43ef-9559-6daa941f1d51",
+"listen": "https://smumustangs.com/showcase/?Live=5404",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
-"program": "https://digitalprograms.learfield.com/smuni/mbball/22079/",
 "gamecenter": "https://smumustangs.com/game-center/14742"
 }
 },
@@ -265,7 +264,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5405",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14748"
 }
@@ -286,6 +286,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
+"watch": "https://www.cbssports.com/watch/cbs-sports-network",
+"listen": "https://smumustangs.com/showcase/?Live=5406",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14698"
 },
@@ -307,6 +309,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
+"watch": "https://www.cbssports.com/watch/cbs-sports-network",
+"listen": "https://smumustangs.com/showcase/?Live=5407",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14700"
 },
@@ -328,7 +332,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5408",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14739"
 }
@@ -349,7 +354,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5410",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14743"
 }
@@ -366,10 +372,12 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Frisco, Texas (Comerica Center)",
 "time": "12:30 p.m. CT",
 "ko": "2026-12-12T12:30:00-06:00",
-"tv": "The CW & ESPN App",
+"tv": "CW & ESPN App",
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
+"watch": "https://www.cwtv.com/sports/",
+"listen": "https://smumustangs.com/showcase/?Live=5411",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14737"
 },
@@ -387,11 +395,12 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Phoenix, AZ (Mortgage Matchup Center)",
 "time": "2:30 p.m. CT",
 "ko": "2026-12-19T14:30:00-06:00",
-"tv": "The CW",
+"tv": "CW & ESPN App",
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
 "watch": "https://www.cwtv.com/sports/",
+"listen": "https://smumustangs.com/showcase/?Live=5412",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14588"
 },
@@ -413,7 +422,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5413",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14590"
 }
@@ -434,7 +444,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5414",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14774"
 }
@@ -455,7 +466,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5415",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14775"
 }
@@ -472,11 +484,12 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Dallas, Texas",
 "time": "1:15 p.m. CT",
 "ko": "2027-01-09T13:15:00-06:00",
-"tv": "The CW",
+"tv": "CW & ESPN App",
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.cwtv.com/sports/",
+"listen": "https://smumustangs.com/showcase/?Live=5416",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14776"
 }
@@ -497,7 +510,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5417",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14777"
 }
@@ -514,11 +528,12 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Blacksburg, VA",
 "time": "11 a.m. CT",
 "ko": "2027-01-16T11:00:00-06:00",
-"tv": "The CW",
+"tv": "CW & ESPN App",
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.cwtv.com/sports/",
+"listen": "https://smumustangs.com/showcase/?Live=5418",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14778"
 }
@@ -539,7 +554,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5419",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14779"
 }
@@ -560,7 +576,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5420",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14780"
 }
@@ -581,7 +598,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5421",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14781"
 }
@@ -598,11 +616,12 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Dallas, Texas",
 "time": "7 p.m. CT",
 "ko": "2027-02-03T19:00:00-06:00",
-"tv": "The CW",
+"tv": "CW & ESPN App",
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.cwtv.com/sports/",
+"listen": "https://smumustangs.com/showcase/?Live=5422",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14782"
 }
@@ -623,7 +642,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5423",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14783"
 }
@@ -644,7 +664,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5424",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14784"
 }
@@ -665,7 +686,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5425",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14785"
 }
@@ -686,7 +708,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5426",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14786"
 }
@@ -703,11 +726,12 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Dallas, Texas",
 "time": "1:15 p.m. CT",
 "ko": "2027-02-20T13:15:00-06:00",
-"tv": "The CW",
+"tv": "CW & ESPN App",
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.cwtv.com/sports/",
+"listen": "https://smumustangs.com/showcase/?Live=5427",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14787"
 }
@@ -728,7 +752,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5428",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14788"
 }
@@ -745,11 +770,12 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Atlanta, Ga.",
 "time": "11 a.m. CT",
 "ko": "2027-02-27T11:00:00-06:00",
-"tv": "The CW",
+"tv": "CW & ESPN App",
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.cwtv.com/sports/",
+"listen": "https://smumustangs.com/showcase/?Live=5429",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14789"
 }
@@ -770,7 +796,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5430",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14790"
 }
@@ -791,7 +818,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5431",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14791"
 }
@@ -812,7 +840,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5432",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14582"
 },
@@ -834,7 +863,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5433",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14583"
 },
@@ -856,7 +886,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5434",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14584"
 },
@@ -878,7 +909,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5435",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14585"
 },
@@ -900,7 +932,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/watch/",
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5436",
 "stats": "http://smumustangs.com/stats",
 "gamecenter": "https://smumustangs.com/game-center/14586"
 },
@@ -943,7 +976,6 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/watch/player/_/id/0034b782-c019-450a-9abb-d83d2905c7ed",
-"stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "preview": "https://smumustangs.com/news/2026/11/1/womens-basketball-mustangs-open-season-at-home-against-le-moyne-tuesday-6-30-pm",
 "gamecenter": "https://smumustangs.com/game-center/14726"
 }
