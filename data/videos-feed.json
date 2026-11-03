@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T19:23:30Z",
+ "updated": "2026-11-03T20:18:05Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,10 +96,17 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "WCuyD_63amA",
+     "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-03-26",
+     "published": "2026-11-03T20:06:05+00:00",
+     "views": 2,
+     "dur": "18:55"
+    },
+    {
      "id": "t8Tv5XiLpbw",
      "title": "SMU Basketball: Postgame Press Conference vs Southern 11-2-26",
      "published": "2026-11-03T03:57:34+00:00",
-     "views": 92,
+     "views": 101,
      "dur": "8:47"
     },
     {
@@ -113,7 +120,7 @@
      "id": "FRHri3bu8mE",
      "title": "SMU Volleyball Match Highlights at Wake Forest 11/1/26",
      "published": "2026-11-02T15:45:17+00:00",
-     "views": 161,
+     "views": 171,
      "dur": "6:34"
     },
     {
@@ -127,7 +134,7 @@
      "id": "l9ULMl6PWXE",
      "title": "SMU Football: Postgame Press Conference at Syracuse 10-31-2026",
      "published": "2026-10-31T20:36:44+00:00",
-     "views": 1326,
+     "views": 1332,
      "dur": "11:35"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-10-28T16:59:14+00:00",
      "views": 112,
      "dur": "9:09"
-    },
-    {
-     "id": "Ugwz58AnNN4",
-     "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 10-27-26",
-     "published": "2026-10-27T16:39:53+00:00",
-     "views": 371,
-     "dur": "16:33"
     }
    ]
   },
@@ -197,7 +197,7 @@
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2693,
+     "views": 2694,
      "dur": "14:09"
     },
     {
@@ -282,7 +282,7 @@
      "id": "1cN9e7AfNT0",
      "title": "Rowan Brumbaugh, Nic Codie & Teammates Preview SMU Basketball's New Era | The Five",
      "published": "2026-10-29T21:00:09+00:00",
-     "views": 151,
+     "views": 152,
      "dur": "26:32"
     },
     {
@@ -321,21 +321,21 @@
      "id": "jVCkNM1SHiI",
      "title": "SMU HC Rhett Lashlee previews game vs. Virginia Tech, addresses FSU head coach opening rumors",
      "published": "2026-11-03T18:39:02+00:00",
-     "views": 46,
+     "views": 108,
      "dur": "15:53"
     },
     {
      "id": "-f5w33Vq2uM",
      "title": "Final thoughts on SMU loss at Syracuse, can Mustangs bounce back in Week 10? | SMU Football Podcast",
      "published": "2026-11-03T13:09:14+00:00",
-     "views": 184,
+     "views": 219,
      "dur": "1:09:00"
     },
     {
      "id": "XDDJT5AKB9w",
      "title": "After 'Stangs Show: SMU beats Southern 85-72 in season opener",
      "published": "2026-11-03T04:53:14+00:00",
-     "views": 116,
+     "views": 153,
      "dur": "9:29"
     },
     {
@@ -349,7 +349,7 @@
      "id": "cOABtCRrddA",
      "title": "Jakub Szumert and Jermaine O'Neal Jr. give their thoughts on SMU's 85-72 win over Southern",
      "published": "2026-11-03T04:41:29+00:00",
-     "views": 338,
+     "views": 365,
      "dur": "5:03"
     },
     {
@@ -370,7 +370,7 @@
      "id": "2t6VHpCOOYI",
      "title": "REACTION: SMU at Syracuse postgame show, takeaways from SMU Week 9 game | After 'Stangs Show",
      "published": "2026-11-01T08:26:20+00:00",
-     "views": 2278,
+     "views": 2284,
      "dur": "33:50"
     },
     {
@@ -384,7 +384,7 @@
      "id": "Uq8MRiqqz0Q",
      "title": "Rhett Lashlee talks SMU loss at Syracuse | SMU Football Press Conference",
      "published": "2026-10-31T20:48:58+00:00",
-     "views": 3224,
+     "views": 3256,
      "dur": "8:04"
     },
     {
@@ -410,14 +410,14 @@
      "id": "IBCbVOAAuLg",
      "title": "KRYPTONITE: SMU''s VAUNTED Offense EXPOSED Without Consistent Running Game at Syracuse",
      "published": "2026-11-03T16:00:09+00:00",
-     "views": 45,
+     "views": 65,
      "dur": "29:00"
     },
     {
      "id": "cLQjJsinEtc",
      "title": "DEVASTATING: SMU Mustangs STUNNED by Syracuse in CRUSHING Repeat Loss | Is Rhett Lashlee to BLAME?",
      "published": "2026-11-02T15:00:09+00:00",
-     "views": 709,
+     "views": 727,
      "dur": "31:53"
     },
     {
@@ -610,7 +610,7 @@
      "id": "ZZFInWJuDAI",
      "title": "SMU vs Southern",
      "published": "2026-11-03T18:01:48+00:00",
-     "views": 92,
+     "views": 93,
      "dur": "2:12:52",
      "nomax": true
     },
@@ -702,7 +702,7 @@
      "id": "qlQHkPoCSNc",
      "title": "SMU vs. Syracuse Full Game Replay | 2026 ACC Football",
      "published": "2026-11-03T17:00:10+00:00",
-     "views": 91,
+     "views": 192,
      "dur": "2:13:38"
     },
     {
@@ -828,6 +828,10 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "WCuyD_63amA"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "jVCkNM1SHiI"
   },
@@ -862,10 +866,6 @@
   {
    "key": "pony-up-productions",
    "id": "BlVW2Sm_6_A"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "FRHri3bu8mE"
   },
   {
    "key": "locked-on-smu",
