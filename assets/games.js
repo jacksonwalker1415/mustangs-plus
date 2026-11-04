@@ -957,7 +957,6 @@ window.MP=window.MP||{};MP.GAMES={
 "links": {
 "box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/le-moyne/boxscore/14726",
 "recap": "https://smumustangs.com/news/2026/11/3/womens-basketball-mustangs-defense-leads-smu-to-a-72-36-win-over-le-moyne",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22080/",
 "gamecenter": "https://smumustangs.com/game-center/14726"
 }
 },
