@@ -953,11 +953,11 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-03T18:30:00-06:00",
 "tv": "ACCNX",
 "radio": "SMU App/The Varsity/SiriusXM 273",
-"res": null,
+"res": "W 72-36",
 "links": {
-"watch": "https://www.espn.com/watch/player/_/id/0034b782-c019-450a-9abb-d83d2905c7ed",
-"listen": "https://smumustangs.com/showcase/?Live=5442",
-"stats": "https://smumustangs.com/sidearmstats/wbball/summary",
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/le-moyne/boxscore/14726",
+"recap": "https://smumustangs.com/news/2026/11/3/womens-basketball-mustangs-defense-leads-smu-to-a-72-36-win-over-le-moyne",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22080/",
 "gamecenter": "https://smumustangs.com/game-center/14726"
 }
 },
