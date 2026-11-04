@@ -977,6 +977,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "http://showcase/?Live=5398",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14722"
 }
