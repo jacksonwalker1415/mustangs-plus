@@ -956,7 +956,7 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM 258",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"watch": "https://www.espn.com/watch/player/_/eventCalendarId/401915961?gameId=401915961&sourceLang=en&om-navmethod=espn:globalsearch:results",
 "listen": "http://showcase/?Live=5398",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14722"
