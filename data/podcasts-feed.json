@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-03T23:22:51Z",
+ "generated": "2026-11-04T19:25:13Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -9,18 +9,27 @@
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
     {
+     "id": "c968c62eb5",
+     "title": "Walking 'Strong with Bill Armstrong: SMU's FAFO loss at Syracuse, Virginia Tech game preview",
+     "published": "2026-11-04T17:00:00Z",
+     "dur": "42 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/27e9273b-d6fc-4443-8bd2-0ee8904385e1/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=27e9273b-d6fc-4443-8bd2-0ee8904385e1&feed=eSeVNxtA"
+    },
+    {
      "id": "74c7645d92",
      "title": "Final thoughts on SMU loss at Syracuse, can Mustangs bounce back in Week 10? | SMU Football Podcast",
      "published": "2026-11-03T13:08:50Z",
      "dur": "1 hr 9 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/89b0af52-0d7e-4425-9858-3fe5009f458e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=89b0af52-0d7e-4425-9858-3fe5009f458e&feed=eSeVNxtA"
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/89b0af52-0d7e-4425-9858-3fe5009f458e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=89b0af52-0d7e-4425-9858-3fe5009f458e&feed=eSeVNxtA",
+     "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-on-smu-loss-at-syracuse-can-mustangs/id1604025463?i=1000799606140"
     },
     {
      "id": "4bd010669a",
      "title": "After 'Stangs Show: SMU beats Southern 85-72 in season opener",
      "published": "2026-11-03T12:31:25Z",
      "dur": "9 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/b2a2a95d-be2c-48d4-baa9-58ae20fb6d56/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=b2a2a95d-be2c-48d4-baa9-58ae20fb6d56&feed=eSeVNxtA"
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/b2a2a95d-be2c-48d4-baa9-58ae20fb6d56/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=b2a2a95d-be2c-48d4-baa9-58ae20fb6d56&feed=eSeVNxtA",
+     "apple": "https://podcasts.apple.com/us/podcast/after-stangs-show-smu-beats-southern-85-72-in-season-opener/id1604025463?i=1000799602346"
     },
     {
      "id": "12f0090f0e",
@@ -93,14 +102,6 @@
      "dur": "28 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/4341491a-a3b8-4b1c-aa69-88013eecd5c6/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=4341491a-a3b8-4b1c-aa69-88013eecd5c6&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smu-beats-virginia/id1604025463?i=1000797639827"
-    },
-    {
-     "id": "fbfaaccfda",
-     "title": "SMU vs. Cal game preview, predictions for Week 8 | Mustangs look to get bowl eligible",
-     "published": "2026-10-22T09:00:00Z",
-     "dur": "54 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/72fdd26a-07b1-468e-ace8-af185a9de0b2/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=72fdd26a-07b1-468e-ace8-af185a9de0b2&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-game-preview-predictions-for-week-8-mustangs/id1604025463?i=1000797587527"
     }
    ]
   },
@@ -112,11 +113,19 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "c087a1dc35",
+     "title": "PREVIEW: Will SMU PROTECT Kevin Jennings From Elite Sack Threat? PLUS, College Football Playoff Ranking Reaction",
+     "published": "2026-11-04T16:00:00Z",
+     "dur": "30 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/864e0286-38ee-4f3e-af44-8ad245a0ede0/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=864e0286-38ee-4f3e-af44-8ad245a0ede0&feed=MciFpBoA"
+    },
+    {
      "id": "f52a415b09",
      "title": "KRYPTONITE: SMU''s VAUNTED Offense EXPOSED Without Consistent Running Game at Syracuse",
      "published": "2026-11-03T16:00:00Z",
      "dur": "29 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/993a5e21-6591-4f2d-bf11-d9fa4d91ceee/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=993a5e21-6591-4f2d-bf11-d9fa4d91ceee&feed=MciFpBoA"
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/993a5e21-6591-4f2d-bf11-d9fa4d91ceee/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=993a5e21-6591-4f2d-bf11-d9fa4d91ceee&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/kryptonite-smus-vaunted-offense-exposed-without-consistent/id1824252582?i=1000799626822"
     },
     {
      "id": "80c1151cfb",
@@ -197,14 +206,6 @@
      "dur": "27 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/bebd23a0-d3fd-4302-a746-80a6cacbadaa/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=bebd23a0-d3fd-4302-a746-80a6cacbadaa&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/why-smu-must-make-up-for-last-seasons-horrendous-pass/id1824252582?i=1000797616766"
-    },
-    {
-     "id": "401931ff18",
-     "title": "BREAKING: SMU Mustangs FACE Safety ISSUE After Tyren Polley’s Season-Ending Injury—Who Steps UP?",
-     "published": "2026-10-21T16:00:00Z",
-     "dur": "29 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/bd55f497-2442-431a-bd50-1620cad3e900/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=bd55f497-2442-431a-bd50-1620cad3e900&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/breaking-smu-mustangs-face-safety-issue-after-tyren/id1824252582?i=1000797465885"
     }
    ]
   },
@@ -687,6 +688,14 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "c968c62eb5"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "c087a1dc35"
+  },
+  {
    "key": "locked-on-smu",
    "id": "f52a415b09"
   },
@@ -695,16 +704,8 @@
    "id": "74c7645d92"
   },
   {
-   "key": "on-the-pony-express",
-   "id": "4bd010669a"
-  },
-  {
    "key": "mustang-mood",
    "id": "7977fd1894"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "80c1151cfb"
   },
   {
    "key": "mustang-mood",

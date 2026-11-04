@@ -52,7 +52,7 @@ window.MP=window.MP||{};MP.GAMES={
 "gamecenter": "https://smumustangs.com/game-center/14455"
 },
 "sb": 673166,
-"note": "Club Takeaway · Wear Blue"
+"note": "Club Takeaway · Wear Black"
 },
 {
 "id": "fb-14456",
@@ -960,7 +960,8 @@ window.MP=window.MP||{};MP.GAMES={
 "listen": "http://showcase/?Live=5398",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14722"
-}
+},
+"note": "Education Day"
 },
 {
 "id": "wbb-14727",
@@ -982,7 +983,8 @@ window.MP=window.MP||{};MP.GAMES={
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22080/",
 "gamecenter": "https://smumustangs.com/game-center/14727"
-}
+},
+"note": "Kid’s Home Opener"
 },
 {
 "id": "wbb-14728",
@@ -1004,7 +1006,8 @@ window.MP=window.MP||{};MP.GAMES={
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22080",
 "gamecenter": "https://smumustangs.com/game-center/14728"
-}
+},
+"note": "Salute to Service"
 },
 {
 "id": "wbb-14729",
@@ -1025,7 +1028,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14729"
-}
+},
+"note": "Homecoming Weekend"
 },
 {
 "id": "wbb-14730",
@@ -1067,7 +1071,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14731"
-}
+},
+"note": "University Park Night"
 },
 {
 "id": "wbb-14685",
@@ -1132,7 +1137,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14756"
-}
+},
+"note": "ACC Home Opener"
 },
 {
 "id": "wbb-14589",
@@ -1155,7 +1161,7 @@ window.MP=window.MP||{};MP.GAMES={
 "preview": "https://smumustangs.com/news/2026/6/5/womens-basketball-mustangs-to-host-georgia-in-sec-acc-challenge-game-on-dec-2",
 "gamecenter": "https://smumustangs.com/game-center/14589"
 },
-"note": "SEC/ACC Tournament Challenge"
+"note": "SEC/ACC Tournament Challenge SEC/ACC Challenge · Wear White"
 },
 {
 "id": "wbb-14757",
@@ -1218,7 +1224,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14733"
-}
+},
+"note": "NPHC Night"
 },
 {
 "id": "wbb-14734",
@@ -1239,7 +1246,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14734"
-}
+},
+"note": "Holiday Hoops"
 },
 {
 "id": "wbb-14735",
@@ -1260,7 +1268,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14735"
-}
+},
+"note": "Holiday Hoops"
 },
 {
 "id": "wbb-14758",
@@ -1302,7 +1311,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14759"
-}
+},
+"note": "Holiday Hoops · Wear Blue"
 },
 {
 "id": "wbb-14760",
@@ -1365,7 +1375,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14762"
-}
+},
+"note": "SMU Faculty & Staff Appreciation Night"
 },
 {
 "id": "wbb-14763",
@@ -1407,7 +1418,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14764"
-}
+},
+"note": "Spring Term Welcome Back"
 },
 {
 "id": "wbb-14765",
@@ -1428,7 +1440,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14765"
-}
+},
+"note": "Student Appreciation Night"
 },
 {
 "id": "wbb-14770",
@@ -1491,7 +1504,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14766"
-}
+},
+"note": "National Girls & Women in Sports Day"
 },
 {
 "id": "wbb-14772",
@@ -1533,7 +1547,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14767"
-}
+},
+"note": "Play 4 Kay · Wear Pink"
 },
 {
 "id": "wbb-14768",
@@ -1554,7 +1569,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14768"
-}
+},
+"note": "Senior Day"
 },
 {
 "id": "wbb-14769",
@@ -1575,7 +1591,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14769"
-}
+},
+"note": "Fan Appreciation · Game Wear Red"
 },
 {
 "id": "wbb-14773",
