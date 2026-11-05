@@ -35,8 +35,14 @@ def clean(x):
 
 
 def absu(h):
-    h = html.unescape(h)
-    return BASE + h if h.startswith("/") else h
+    h = html.unescape(h).strip()
+    if h.startswith("/"):
+        return BASE + h
+    # SMU schedule cards sometimes emit hostless showcase links (http://showcase/?Live=…).
+    m = re.match(r"https?://showcase(/.*|\?.*)?$", h, re.I)
+    if m:
+        return BASE + "/showcase" + (m.group(1) or "")
+    return h
 
 
 def ct_iso(d, t):

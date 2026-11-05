@@ -53,8 +53,14 @@ def txt(e):
 
 
 def absu(h):
-    h = html.unescape(h or "")
-    return BASE + h if h.startswith("/") else h
+    h = html.unescape(h or "").strip()
+    if h.startswith("/"):
+        return BASE + h
+    # SMU schedule cards sometimes emit hostless showcase links (http://showcase/?Live=…).
+    m = re.match(r"https?://showcase(/.*|\?.*)?$", h, re.I)
+    if m:
+        return BASE + "/showcase" + (m.group(1) or "")
+    return h
 
 
 def ymd(mon, day, start, football):
