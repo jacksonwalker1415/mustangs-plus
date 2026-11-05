@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-05T19:25:14Z",
+ "generated": "2026-11-05T20:21:58Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -216,6 +216,14 @@
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
     {
+     "id": "53a0e91169",
+     "title": "SMU vs. Virginia Tech Preview: Can the Mustangs Bounce Back at Home?",
+     "published": "2026-11-05T12:52:16Z",
+     "dur": "25 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128844694/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-5%2F435958863-44100-2-ce48fe2899604.mp3",
+     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-tech-preview-can-the-mustangs-bounce/id1734256145?i=1000800043438"
+    },
+    {
      "id": "7977fd1894",
      "title": "SMU Basketball Season Preview: Can the Mustangs Make the NCAA Tournament?",
      "published": "2026-11-02T15:00:00Z",
@@ -302,14 +310,6 @@
      "dur": "28 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126174457/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-23%2F432483543-44100-2-85fd0e4e2f718.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-volleyball-non-conference-recap-acc-preview-texas/id1734256145?i=1000791273678"
-    },
-    {
-     "id": "26893eedd3",
-     "title": "SMU Football vs UC Davis Aggies - Week 2 Postgame Reaction",
-     "published": "2026-09-21T21:26:29Z",
-     "dur": "15 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126104216/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-21%2F432389551-44100-2-5b30b5ce4d664.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-football-vs-uc-davis-aggies-week-2-postgame-reaction/id1734256145?i=1000791000771"
     }
    ]
   },
@@ -695,6 +695,10 @@
    "id": "dc408803f6"
   },
   {
+   "key": "mustang-mood",
+   "id": "53a0e91169"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "bfe374c955"
   },
@@ -709,10 +713,6 @@
   {
    "key": "mustang-mood",
    "id": "7977fd1894"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "f8995b39c7"
   },
   {
    "key": "mustang-studios",
