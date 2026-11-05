@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-04T19:25:13Z",
+ "generated": "2026-11-05T01:19:19Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -322,6 +322,13 @@
    "art": "assets/img/pods/mustang-studios.webp",
    "episodes": [
     {
+     "id": "ab1cc1767f",
+     "title": "SMU vs Virginia Tech Preview, Soccer & Volleyball DOMINATE, Plus Special Guests! | The 214",
+     "published": "2026-11-05T00:00:01Z",
+     "dur": "41 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/128804596/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-4%2F435909073-44100-2-989a30cd985c7.mp3"
+    },
+    {
      "id": "daa090a954",
      "title": "Rowan Brumbaugh, Nic Codie & Teammates Preview SMU Basketball's New Era | The Five",
      "published": "2026-10-30T00:46:53Z",
@@ -408,14 +415,6 @@
      "dur": "6 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/126653821/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-1%2F433119906-44100-2-4d8a04d313b49.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/marcellus-barnes-jr-is-always-around-the-ball/id1896902919?i=1000792668287"
-    },
-    {
-     "id": "c51fc1bce9",
-     "title": "Jonathan Jefferson Treats Offensive Linemen Like Defenders on the Basketball Court",
-     "published": "2026-10-01T00:03:03Z",
-     "dur": "6 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/126592704/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-1%2F433039568-44100-2-b09c425309916.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/jonathan-jefferson-treats-offensive-linemen-like-defenders/id1896902919?i=1000792483033"
     }
    ]
   },
@@ -688,6 +687,10 @@
  ],
  "new": [
   {
+   "key": "mustang-studios",
+   "id": "ab1cc1767f"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "c968c62eb5"
   },
@@ -718,10 +721,6 @@
   {
    "key": "all-access-am",
    "id": "172a0817ec"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "9f0914c2f7"
   },
   {
    "key": "dmn",
