@@ -957,10 +957,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": "W 66-54",
 "links": {
 "box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/hampton/boxscore/14722",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22080",
 "gamecenter": "https://smumustangs.com/game-center/14722"
-},
-"note": "Education Day"
+}
 },
 {
 "id": "wbb-14727",
@@ -979,8 +977,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5443",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22080/",
 "gamecenter": "https://smumustangs.com/game-center/14727"
 },
 "note": "Kid’s Home Opener"
@@ -1002,8 +1000,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5444",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22080",
 "gamecenter": "https://smumustangs.com/game-center/14728"
 },
 "note": "Salute to Service"
@@ -1025,6 +1023,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5445",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14729"
 },
@@ -1047,6 +1046,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5446",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14730"
 }
@@ -1068,6 +1068,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5447",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14731"
 },
@@ -1090,6 +1091,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5448",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14685"
 },
@@ -1112,6 +1114,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5449",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14686"
 },
@@ -1134,6 +1137,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5450",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14756"
 },
@@ -1156,8 +1160,8 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5399",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
-"preview": "https://smumustangs.com/news/2026/6/5/womens-basketball-mustangs-to-host-georgia-in-sec-acc-challenge-game-on-dec-2",
 "gamecenter": "https://smumustangs.com/game-center/14589"
 },
 "note": "SEC/ACC Tournament Challenge SEC/ACC Challenge · Wear White"
@@ -1179,6 +1183,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5451",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14757"
 }
@@ -1222,6 +1227,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5453",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14733"
 },
@@ -1244,6 +1250,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5454",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14734"
 },
@@ -1266,6 +1273,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5455",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14735"
 },
@@ -1288,6 +1296,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5456",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14758"
 }
@@ -1309,6 +1318,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5457",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14759"
 },
@@ -1331,6 +1341,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5458",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14760"
 }
@@ -1352,6 +1363,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5459",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14761"
 }
@@ -1373,6 +1385,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5460",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14762"
 },
@@ -1395,6 +1408,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5461",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14763"
 }
@@ -1416,6 +1430,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5462",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14764"
 },
@@ -1438,6 +1453,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5463",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14765"
 },
@@ -1460,6 +1476,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5464",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14770"
 }
@@ -1481,6 +1498,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5465",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14771"
 }
@@ -1502,6 +1520,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5466",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14766"
 },
@@ -1524,6 +1543,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5467",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14772"
 }
@@ -1545,6 +1565,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5468",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14767"
 },
@@ -1567,6 +1588,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5469",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14768"
 },
@@ -1589,6 +1611,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5470",
 "stats": "https://smumustangs.com/sidearmstats/wbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14769"
 },
@@ -1611,6 +1634,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase/?Live=5471",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14773"
 }
