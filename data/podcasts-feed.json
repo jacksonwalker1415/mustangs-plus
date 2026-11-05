@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-05T20:21:58Z",
+ "generated": "2026-11-05T23:23:57Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -321,6 +321,13 @@
    "art": "assets/img/pods/mustang-studios.webp",
    "episodes": [
     {
+     "id": "4b15a02d8c",
+     "title": "SMU Basketball 2026–27 Preview: What Makes These Mustang Hoopers Different | The Five",
+     "published": "2026-11-05T22:00:01Z",
+     "dur": "22 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/128881031/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-5%2F436005385-44100-2-923a924554e79.mp3"
+    },
+    {
      "id": "ab1cc1767f",
      "title": "SMU vs Virginia Tech Preview, Soccer & Volleyball DOMINATE, Plus Special Guests! | The 214",
      "published": "2026-11-05T00:00:01Z",
@@ -407,14 +414,6 @@
      "dur": "2 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/126908541/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-6%2F433440216-44100-2-e602a914d22e2.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/ty-hawkins-wants-the-ball-when-it-matters/id1896902919?i=1000793348062"
-    },
-    {
-     "id": "e82f74f4bb",
-     "title": "Marcellus Barnes Jr. Is ALWAYS Around the Ball",
-     "published": "2026-10-02T00:00:01Z",
-     "dur": "6 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/126653821/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-1%2F433119906-44100-2-4d8a04d313b49.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/marcellus-barnes-jr-is-always-around-the-ball/id1896902919?i=1000792668287"
     }
    ]
   },
@@ -475,6 +474,13 @@
    "spotify": "https://open.spotify.com/show/645eP4x6J0G3tpazJSYpPN",
    "art": "assets/img/pods/locked-on-acc.webp",
    "episodes": [
+    {
+     "id": "441a8fea0f",
+     "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
+     "published": "2026-11-05T23:17:22Z",
+     "dur": "33 min",
+     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/73e81162-39ab-42e5-b987-faf849715949/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=73e81162-39ab-42e5-b987-faf849715949&feed=30WG0faH"
+    },
     {
      "id": "3eb240a126",
      "title": "WEEK 8 ACC PREVIEW: Miami Hurricanes Look to DOMINATE Pitt, SMU-Cal, GT-BC, UNC-Cuse",
@@ -577,13 +583,6 @@
      "published": "2026-09-01T17:00:00Z",
      "dur": "16 min",
      "audio": "https://serve.castfire.com/audio/8632179/8632179_2026-09-01-141419.128.mp3?rssID=3125"
-    },
-    {
-     "id": "f3061f908d",
-     "title": "SMU's Sam Erger Previews Historic Volleyball Tournament at AT&T Stadium",
-     "published": "2026-08-19T14:01:08Z",
-     "dur": "9 min",
-     "audio": "https://serve.castfire.com/audio/8601446/8601446_2026-08-19-140146.128.mp3?rssID=3125"
     }
    ],
    "broad": true
@@ -687,6 +686,14 @@
  ],
  "new": [
   {
+   "key": "locked-on-acc",
+   "id": "441a8fea0f"
+  },
+  {
+   "key": "mustang-studios",
+   "id": "4b15a02d8c"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "3b02e17096"
   },
@@ -715,10 +722,6 @@
    "id": "7977fd1894"
   },
   {
-   "key": "mustang-studios",
-   "id": "daa090a954"
-  },
-  {
    "key": "all-access-am",
    "id": "172a0817ec"
   },
@@ -729,10 +732,6 @@
   {
    "key": "jim-rome",
    "id": "ca43a09bf0"
-  },
-  {
-   "key": "locked-on-acc",
-   "id": "3eb240a126"
   }
  ]
 }
