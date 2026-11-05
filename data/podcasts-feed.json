@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-05T01:19:19Z",
+ "generated": "2026-11-05T12:08:07Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -9,11 +9,19 @@
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
     {
+     "id": "bfe374c955",
+     "title": "SMU vs. Virginia Tech game preview, predictions for Week 10 | James Franklin vs. Rhett Lashlee Part II",
+     "published": "2026-11-05T12:03:07Z",
+     "dur": "1 hr 6 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/143fee14-b252-40f1-a7bb-69ac6b906c05/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=143fee14-b252-40f1-a7bb-69ac6b906c05&feed=eSeVNxtA"
+    },
+    {
      "id": "c968c62eb5",
      "title": "Walking 'Strong with Bill Armstrong: SMU's FAFO loss at Syracuse, Virginia Tech game preview",
      "published": "2026-11-04T17:00:00Z",
      "dur": "42 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/27e9273b-d6fc-4443-8bd2-0ee8904385e1/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=27e9273b-d6fc-4443-8bd2-0ee8904385e1&feed=eSeVNxtA"
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/27e9273b-d6fc-4443-8bd2-0ee8904385e1/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=27e9273b-d6fc-4443-8bd2-0ee8904385e1&feed=eSeVNxtA",
+     "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-fafo-loss-at/id1604025463?i=1000799838231"
     },
     {
      "id": "74c7645d92",
@@ -94,14 +102,6 @@
      "dur": "15 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/03fd6c12-e31d-4592-9327-2493089afcbd/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=03fd6c12-e31d-4592-9327-2493089afcbd&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/pat-go-smu-vs-cal-game-preview-predictions-qb-chronicles/id1604025463?i=1000797726389"
-    },
-    {
-     "id": "f5d1ae752c",
-     "title": "Walking 'Strong with Bill Armstrong: SMU beats Virginia over WILD weekend, faces Cal in Week 8",
-     "published": "2026-10-22T16:00:21Z",
-     "dur": "28 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/4341491a-a3b8-4b1c-aa69-88013eecd5c6/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=4341491a-a3b8-4b1c-aa69-88013eecd5c6&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smu-beats-virginia/id1604025463?i=1000797639827"
     }
    ]
   },
@@ -117,7 +117,8 @@
      "title": "PREVIEW: Will SMU PROTECT Kevin Jennings From Elite Sack Threat? PLUS, College Football Playoff Ranking Reaction",
      "published": "2026-11-04T16:00:00Z",
      "dur": "30 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/864e0286-38ee-4f3e-af44-8ad245a0ede0/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=864e0286-38ee-4f3e-af44-8ad245a0ede0&feed=MciFpBoA"
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/864e0286-38ee-4f3e-af44-8ad245a0ede0/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=864e0286-38ee-4f3e-af44-8ad245a0ede0&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/preview-will-smu-protect-kevin-jennings-from-elite/id1824252582?i=1000799827689"
     },
     {
      "id": "f52a415b09",
@@ -687,6 +688,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "bfe374c955"
+  },
+  {
    "key": "mustang-studios",
    "id": "ab1cc1767f"
   },
@@ -701,10 +706,6 @@
   {
    "key": "locked-on-smu",
    "id": "f52a415b09"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "74c7645d92"
   },
   {
    "key": "mustang-mood",
