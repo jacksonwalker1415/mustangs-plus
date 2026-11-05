@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T12:08:07Z",
+ "updated": "2026-11-05T19:25:14Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,6 +96,13 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "dqVeXzuizJ0",
+     "title": "SMU Women's Basketball: Game Highlights vs. Hampton 11-5-26",
+     "published": "2026-11-05T19:08:44+00:00",
+     "views": 1,
+     "dur": "5:55"
+    },
+    {
      "id": "DRaeEf49u7E",
      "title": "SMU Women's Basketball: Postgame Press Conference vs Le Moyne 11-3-26",
      "published": "2026-11-04T02:53:45+00:00",
@@ -106,14 +113,14 @@
      "id": "O_Fn_UyHwG4",
      "title": "SMU Women's Basketball: Game Highlights vs. Le Moyne 11-3-26",
      "published": "2026-11-04T02:52:01+00:00",
-     "views": 58,
+     "views": 62,
      "dur": "5:59"
     },
     {
      "id": "WCuyD_63amA",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-03-26",
      "published": "2026-11-03T20:06:05+00:00",
-     "views": 424,
+     "views": 454,
      "dur": "18:55"
     },
     {
@@ -127,57 +134,50 @@
      "id": "Dpkrhr9Ckbw",
      "title": "SMU Men's Basketball: Game Highlights vs. Southern 11-2-26",
      "published": "2026-11-03T03:27:35+00:00",
-     "views": 265,
+     "views": 274,
      "dur": "5:45"
     },
     {
      "id": "FRHri3bu8mE",
      "title": "SMU Volleyball Match Highlights at Wake Forest 11/1/26",
      "published": "2026-11-02T15:45:17+00:00",
-     "views": 316,
+     "views": 320,
      "dur": "6:34"
     },
     {
      "id": "_wHP-RPvWhk",
      "title": "SMU Football: Postgame Press Conference at Syracuse 10-31-2026",
      "published": "2026-11-01T08:08:47+00:00",
-     "views": 179,
+     "views": 180,
      "dur": "21:53"
     },
     {
      "id": "l9ULMl6PWXE",
      "title": "SMU Football: Postgame Press Conference at Syracuse 10-31-2026",
      "published": "2026-10-31T20:36:44+00:00",
-     "views": 1363,
+     "views": 1364,
      "dur": "11:35"
     },
     {
      "id": "_ipmdtkEDdo",
      "title": "SMU Men's Soccer Game Highlights vs Louisville 10-30-2026",
      "published": "2026-10-31T16:21:37+00:00",
-     "views": 130,
+     "views": 131,
      "dur": "2:53"
     },
     {
      "id": "kgT36hNlyi8",
      "title": "SMU Men's Soccer Post Game Press Conference vs Louisville 10-30-2026",
      "published": "2026-10-31T04:00:21+00:00",
-     "views": 190,
+     "views": 192,
      "dur": "14:39"
     },
     {
      "id": "vV96rKQ1_7Y",
      "title": "SMU Volleyball Match Highlights at NC State 10-30-26",
      "published": "2026-10-31T01:35:38+00:00",
-     "views": 816,
+     "views": 817,
      "dur": "7:06"
-    },
-    {
-     "id": "8sAyphkDD_c",
-     "title": "SMU Lacrosse: Jim Mitchell Introductory Press Conference 10-29-26",
-     "published": "2026-10-29T19:49:29+00:00",
-     "views": 834,
-     "dur": "19:28"
     }
    ]
   },
@@ -190,42 +190,42 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3679,
+     "views": 3680,
      "dur": "12:01"
     },
     {
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2713,
+     "views": 2714,
      "dur": "14:09"
     },
     {
      "id": "uArmMAjtgLI",
      "title": "The Boston College Mini-Movie | SMU Football",
      "published": "2026-10-05T23:50:08+00:00",
-     "views": 1958,
+     "views": 1959,
      "dur": "9:35"
     },
     {
      "id": "6Ccxu_bdZSk",
      "title": "The Missouri State Mini-Movie | SMU Football",
      "published": "2026-09-28T23:55:53+00:00",
-     "views": 2099,
+     "views": 2100,
      "dur": "10:11"
     },
     {
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3735,
+     "views": 3736,
      "dur": "10:30"
     },
     {
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15461,
+     "views": 15462,
      "dur": "19:34"
     },
     {
@@ -260,7 +260,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3132,
+     "views": 3133,
      "dur": "1:21:59"
     },
     {
@@ -282,7 +282,7 @@
      "id": "gw9zxZwvGKs",
      "title": "SMU vs Virginia Tech Preview, Soccer & Volleyball DOMINATE, Plus Special Guests! | The 214",
      "published": "2026-11-05T00:00:08+00:00",
-     "views": 45,
+     "views": 49,
      "dur": "40:35"
     },
     {
@@ -324,86 +324,88 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "PBaCwstg8eY",
+     "title": "Pat & Go: SMU vs. Virginia Tech Game Preview, Predictions | QB Chronicles Podcast",
+     "published": "2026-11-05T18:00:14+00:00",
+     "views": 8,
+     "dur": "12:35"
+    },
+    {
+     "id": "b8FHp_3l4b0",
+     "title": "The Mustang Mood: SMU vs. Virginia Tech Preview - Can the Mustangs Bounce Back at Home?",
+     "published": "2026-11-05T13:06:02+00:00",
+     "views": 98,
+     "dur": "24:38"
+    },
+    {
+     "id": "a0gh2OEs5gU",
+     "title": "SMU vs. Virginia Tech game preview, predictions for Week 10 | James Franklin - Rhett Lashlee Part II",
+     "published": "2026-11-05T12:06:22+00:00",
+     "views": 205,
+     "dur": "1:06:09"
+    },
+    {
      "id": "Qd-Yl3CsvbY",
      "title": "Walking 'Strong with Bill Armstrong: SMU's FAFO loss at Syracuse, Virginia Tech game preview",
      "published": "2026-11-04T17:05:02+00:00",
-     "views": 1127,
+     "views": 1390,
      "dur": "41:52"
     },
     {
      "id": "V_j8snJTQNY",
      "title": "SMU QB Kevin Jennings on bouncing back after Syracuse loss, preparing for Virginia Tech",
      "published": "2026-11-03T21:00:13+00:00",
-     "views": 100,
+     "views": 115,
      "dur": "2:54"
     },
     {
      "id": "jVCkNM1SHiI",
      "title": "SMU HC Rhett Lashlee previews game vs. Virginia Tech, addresses FSU head coach opening rumors",
      "published": "2026-11-03T18:39:02+00:00",
-     "views": 2603,
+     "views": 3021,
      "dur": "15:53"
     },
     {
      "id": "-f5w33Vq2uM",
      "title": "Final thoughts on SMU loss at Syracuse, can Mustangs bounce back in Week 10? | SMU Football Podcast",
      "published": "2026-11-03T13:09:14+00:00",
-     "views": 622,
+     "views": 630,
      "dur": "1:09:00"
     },
     {
      "id": "XDDJT5AKB9w",
      "title": "After 'Stangs Show: SMU beats Southern 85-72 in season opener",
      "published": "2026-11-03T04:53:14+00:00",
-     "views": 236,
+     "views": 238,
      "dur": "9:29"
     },
     {
      "id": "nlMgu1CsVKA",
      "title": "SMU HC Andy Enfield on SMU's 85-72 win, new faces on the roster",
      "published": "2026-11-03T04:51:43+00:00",
-     "views": 226,
+     "views": 231,
      "dur": "3:52"
     },
     {
      "id": "cOABtCRrddA",
      "title": "Jakub Szumert and Jermaine O'Neal Jr. give their thoughts on SMU's 85-72 win over Southern",
      "published": "2026-11-03T04:41:29+00:00",
-     "views": 664,
+     "views": 670,
      "dur": "5:03"
     },
     {
      "id": "_UpZ6gH26Dw",
      "title": "SMU at Syracuse Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-02T15:24:52+00:00",
-     "views": 265,
+     "views": 269,
      "dur": "30:23"
     },
     {
      "id": "deXpjFT6y9w",
      "title": "SMU Basketball Season Preview: Can the Mustangs Make the NCAA Tournament?",
      "published": "2026-11-02T15:00:22+00:00",
-     "views": 111,
+     "views": 112,
      "dur": "13:38"
-    },
-    {
-     "id": "2t6VHpCOOYI",
-     "title": "REACTION: SMU at Syracuse postgame show, takeaways from SMU Week 9 game | After 'Stangs Show",
-     "published": "2026-11-01T08:26:20+00:00",
-     "views": 2301,
-     "dur": "33:50"
-    },
-    {
-     "id": "i6lIL9X5f0U",
-     "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
-     "published": "2026-10-31T22:00:01+00:00",
-     "dur": "28:28"
-    },
-    {
-     "id": "Uq8MRiqqz0Q",
-     "title": "Rhett Lashlee talks SMU loss at Syracuse | SMU Football Press Conference",
-     "published": "2026-10-31T20:48:58+00:00",
-     "dur": "8:04"
     }
    ]
   },
@@ -413,24 +415,31 @@
    "url": "https://www.youtube.com/@LockedOnSMU",
    "videos": [
     {
+     "id": "9rSKxUDPFcQ",
+     "title": "The TRUTH Behind Rhett Lashlee's FASCINATING Matchup With James Franklin",
+     "published": "2026-11-05T17:00:06+00:00",
+     "views": 27,
+     "dur": "30:54"
+    },
+    {
      "id": "UWZWVjJnd1Y",
      "title": "Will SMU Protect Kevin Jennings From ELITE Sack Threat? PLUS, College Football Playoff Reaction",
      "published": "2026-11-04T16:00:07+00:00",
-     "views": 256,
+     "views": 290,
      "dur": "29:51"
     },
     {
      "id": "IBCbVOAAuLg",
      "title": "KRYPTONITE: SMU''s VAUNTED Offense EXPOSED Without Consistent Running Game at Syracuse",
      "published": "2026-11-03T16:00:09+00:00",
-     "views": 307,
+     "views": 315,
      "dur": "29:00"
     },
     {
      "id": "cLQjJsinEtc",
      "title": "DEVASTATING: SMU Mustangs STUNNED by Syracuse in CRUSHING Repeat Loss | Is Rhett Lashlee to BLAME?",
      "published": "2026-11-02T15:00:09+00:00",
-     "views": 801,
+     "views": 803,
      "dur": "31:53"
     },
     {
@@ -458,21 +467,21 @@
      "id": "S-I4gvuBLNc",
      "title": "MATCHUP: Kevin Jennings Faces FEISTY Syracuse Pass Defense as SMU Mustangs Seek Three Straight Wins",
      "published": "2026-10-28T13:00:06+00:00",
-     "views": 427,
+     "views": 428,
      "dur": "27:52"
     },
     {
      "id": "qLoiHdOVFEI",
      "title": "Kendrick Raphael POWERS SMU and Makes Himself a DRAFTABLE PLAYER – Who's SMU's Most UNDERRATED Guy?",
      "published": "2026-10-27T15:00:07+00:00",
-     "views": 356,
+     "views": 357,
      "dur": "28:38"
     },
     {
      "id": "eg_o9HOmGcA",
      "title": "SMU Mustangs Coach Rhett Lashlee FIRES BACK at Critics Is Kevin Jennings Underrated?",
      "published": "2026-10-26T13:00:09+00:00",
-     "views": 596,
+     "views": 597,
      "dur": "27:32"
     },
     {
@@ -487,12 +496,6 @@
      "title": "Can SMU Mustangs PROVE CONSISTENCY vs Cal to Avoid Trap Game UPSET?",
      "published": "2026-10-23T13:00:08+00:00",
      "dur": "27:52"
-    },
-    {
-     "id": "2vmYkzTiVmk",
-     "title": "Why SMU MUST Make Up for Last Season's HORRENDOUS Pass Defense Performance vs Cal",
-     "published": "2026-10-22T13:00:09+00:00",
-     "dur": "26:34"
     }
    ]
   },
@@ -501,6 +504,13 @@
    "name": "The Mustang Mood",
    "url": "https://www.youtube.com/@TheMustangMood",
    "videos": [
+    {
+     "id": "tAc9WHjDrKo",
+     "title": "SMU vs. Virginia Tech Preview: Can the Mustangs Bounce Back at Home?",
+     "published": "2026-11-05T12:54:24+00:00",
+     "views": 9,
+     "dur": "24:38"
+    },
     {
      "id": "IFIJVH53cdQ",
      "title": "SMU Basketball Season Preview: Can the Mustangs Make the NCAA Tournament?",
@@ -577,12 +587,6 @@
      "published": "2026-09-28T11:00:36+00:00",
      "views": 47,
      "dur": "24:10"
-    },
-    {
-     "id": "Z3G2yL65j1Q",
-     "title": "SMU Volleyball Non-Conference Recap & ACC Preview | Texas, Kentucky Wins + Stanford Up Next",
-     "published": "2026-09-23T11:00:18+00:00",
-     "dur": "28:07"
     }
    ]
   },
@@ -613,10 +617,17 @@
    "url": "https://www.youtube.com/@PonyUpProductions",
    "videos": [
     {
+     "id": "ZNVTCJmqhyA",
+     "title": "Pony Up Productions Ep. 19: SMU Uniform Rankings, Game Preview vs. Virginia Tech and more",
+     "published": "2026-11-05T16:17:47+00:00",
+     "views": 3,
+     "dur": "46:04"
+    },
+    {
      "id": "ZZFInWJuDAI",
      "title": "SMU vs Southern",
      "published": "2026-11-03T18:01:48+00:00",
-     "views": 104,
+     "views": 106,
      "dur": "2:12:52",
      "nomax": true
     },
@@ -681,7 +692,6 @@
      "id": "lGjf44q9cs0",
      "title": "Pony Up Productions Ep. 11: Recapping Football, Men's Soccer and Volleyball's terrific weekend",
      "published": "2026-10-05T16:49:31+00:00",
-     "views": 64,
      "dur": "27:23"
     },
     {
@@ -689,12 +699,6 @@
      "title": "Pony Up Productions Ep. 10: SMU vs. BC preview, Men's Soccer Analysis",
      "published": "2026-10-01T14:40:46+00:00",
      "dur": "16:46"
-    },
-    {
-     "id": "xjHjGpWDCeI",
-     "title": "Pony Up Productions Ep. 9: SMU vs MO STATE Recap, September Honor Roll and mroe",
-     "published": "2026-09-28T15:40:42+00:00",
-     "dur": "41:17"
     }
    ]
   },
@@ -844,12 +848,36 @@
  ],
  "new": [
   {
-   "key": "mustang-studios",
-   "id": "gw9zxZwvGKs"
+   "key": "smu-mustangs",
+   "id": "dqVeXzuizJ0"
   },
   {
    "key": "on-the-pony-express",
-   "id": "Qd-Yl3CsvbY"
+   "id": "PBaCwstg8eY"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "9rSKxUDPFcQ"
+  },
+  {
+   "key": "pony-up-productions",
+   "id": "ZNVTCJmqhyA"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "b8FHp_3l4b0"
+  },
+  {
+   "key": "mustang-mood",
+   "id": "tAc9WHjDrKo"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "a0gh2OEs5gU"
+  },
+  {
+   "key": "mustang-studios",
+   "id": "gw9zxZwvGKs"
   },
   {
    "key": "locked-on-smu",
@@ -866,30 +894,6 @@
   {
    "key": "smu-mustangs",
    "id": "DRaeEf49u7E"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "O_Fn_UyHwG4"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "V_j8snJTQNY"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "WCuyD_63amA"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "jVCkNM1SHiI"
-  },
-  {
-   "key": "pony-up-productions",
-   "id": "ZZFInWJuDAI"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "qlQHkPoCSNc"
   }
  ]
 }

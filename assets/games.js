@@ -954,11 +954,10 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-05T11:00:00-06:00",
 "tv": "ACCNX",
 "radio": "SMU App/The Varsity/SiriusXM 258",
-"res": null,
+"res": "W 66-54",
 "links": {
-"watch": "https://www.espn.com/watch/player/_/eventCalendarId/401915961?gameId=401915961&sourceLang=en&om-navmethod=espn:globalsearch:results",
-"listen": "https://smumustangs.com/showcase/?Live=5398",
-"stats": "https://smumustangs.com/sidearmstats/wbball/summary",
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/hampton/boxscore/14722",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22080",
 "gamecenter": "https://smumustangs.com/game-center/14722"
 },
 "note": "Education Day"
@@ -1201,6 +1200,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"listen": "https://smumustangs.com/showcase?Live=5452",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14732"
 }
