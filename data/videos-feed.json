@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T19:23:42Z",
+ "updated": "2026-11-06T20:24:01Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,6 +96,13 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "B_RMbhMt4IM",
+     "title": "SMU Volleyball Match Highlights vs. North Carolina 11-6-26",
+     "published": "2026-11-06T19:58:36+00:00",
+     "views": 9,
+     "dur": "5:18"
+    },
+    {
      "id": "GIeRBpb7tfk",
      "title": "SMU Women's Soccer Post Game Press Conference vs Pitt 11-5-2026",
      "published": "2026-11-06T15:22:01+00:00",
@@ -113,28 +120,28 @@
      "id": "Ke-iHfwnubk",
      "title": "SMU Men's Basketball: Game Highlights vs. VMI 11-5-26",
      "published": "2026-11-06T03:49:41+00:00",
-     "views": 54,
+     "views": 75,
      "dur": "5:58"
     },
     {
      "id": "r3lwh9tDCl8",
      "title": "SMU Women's Basketball: Postgame Press Conference vs Hampton 11-5-26",
      "published": "2026-11-05T19:29:23+00:00",
-     "views": 97,
+     "views": 103,
      "dur": "5:42"
     },
     {
      "id": "dqVeXzuizJ0",
      "title": "SMU Women's Basketball: Game Highlights vs. Hampton 11-5-26",
      "published": "2026-11-05T19:08:44+00:00",
-     "views": 77,
+     "views": 88,
      "dur": "5:55"
     },
     {
      "id": "DRaeEf49u7E",
      "title": "SMU Women's Basketball: Postgame Press Conference vs Le Moyne 11-3-26",
      "published": "2026-11-04T02:53:45+00:00",
-     "views": 59,
+     "views": 60,
      "dur": "5:13"
     },
     {
@@ -155,7 +162,7 @@
      "id": "t8Tv5XiLpbw",
      "title": "SMU Basketball: Postgame Press Conference vs Southern 11-2-26",
      "published": "2026-11-03T03:57:34+00:00",
-     "views": 151,
+     "views": 152,
      "dur": "8:47"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-02T15:45:17+00:00",
      "views": 344,
      "dur": "6:34"
-    },
-    {
-     "id": "_wHP-RPvWhk",
-     "title": "SMU Football: Postgame Press Conference at Syracuse 10-31-2026",
-     "published": "2026-11-01T08:08:47+00:00",
-     "views": 180,
-     "dur": "21:53"
     }
    ]
   },
@@ -190,7 +190,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3689,
+     "views": 3691,
      "dur": "12:01"
     },
     {
@@ -289,7 +289,7 @@
      "id": "gw9zxZwvGKs",
      "title": "SMU vs Virginia Tech Preview, Soccer & Volleyball DOMINATE, Plus Special Guests! | The 214",
      "published": "2026-11-05T00:00:08+00:00",
-     "views": 52,
+     "views": 55,
      "dur": "40:35"
     },
     {
@@ -331,24 +331,31 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "zAw6ZELqKjM",
+     "title": "Virginia Tech defensive playmakers to know | How SMU can attack the Hokies' defense",
+     "published": "2026-11-06T20:00:34+00:00",
+     "views": 1,
+     "dur": "10:19"
+    },
+    {
      "id": "dMDniw6K5ls",
      "title": "Early look at SMU - Virginia Tech | What's at stake for SMU against the Hokies",
      "published": "2026-11-06T18:15:09+00:00",
-     "views": 4,
+     "views": 25,
      "dur": "13:45"
     },
     {
      "id": "uh6cuxB32zE",
      "title": "Ahmaad Moses TRO DENIED | SMU Recruiting Scoop on 4-stars | Jim Mitchell HOT in lacrosse recruiting",
      "published": "2026-11-06T17:02:43+00:00",
-     "views": 61,
+     "views": 100,
      "dur": "32:34"
     },
     {
      "id": "Vmm_T5l8D-A",
      "title": "Virginia Tech offensive playmakers to know | Why SMU defense needs to get off to fast start",
      "published": "2026-11-06T16:32:11+00:00",
-     "views": 8,
+     "views": 36,
      "dur": "11:53"
     },
     {
@@ -369,7 +376,7 @@
      "id": "WspTlkC2Cg4",
      "title": "After 'Stangs Show: SMU hoops moves to 2-0 on the season after 95-70 win against VMI",
      "published": "2026-11-06T05:29:21+00:00",
-     "views": 72,
+     "views": 129,
      "dur": "8:35"
     },
     {
@@ -406,13 +413,6 @@
      "published": "2026-11-05T12:06:22+00:00",
      "views": 598,
      "dur": "1:06:09"
-    },
-    {
-     "id": "Qd-Yl3CsvbY",
-     "title": "Walking 'Strong with Bill Armstrong: SMU's FAFO loss at Syracuse, Virginia Tech game preview",
-     "published": "2026-11-04T17:05:02+00:00",
-     "views": 1831,
-     "dur": "41:52"
     }
    ]
   },
@@ -425,7 +425,7 @@
      "id": "MjbcW8pvKg4",
      "title": "MUST-WIN: SMU Mustangs and Rhett Lashlee on the BRINK—Can They SURVIVE Virginia Tech’s Challenge?",
      "published": "2026-11-06T16:00:10+00:00",
-     "views": 46,
+     "views": 77,
      "dur": "29:54"
     },
     {
@@ -439,7 +439,7 @@
      "id": "UWZWVjJnd1Y",
      "title": "Will SMU Protect Kevin Jennings From ELITE Sack Threat? PLUS, College Football Playoff Reaction",
      "published": "2026-11-04T16:00:07+00:00",
-     "views": 324,
+     "views": 332,
      "dur": "29:51"
     },
     {
@@ -453,7 +453,7 @@
      "id": "cLQjJsinEtc",
      "title": "DEVASTATING: SMU Mustangs STUNNED by Syracuse in CRUSHING Repeat Loss | Is Rhett Lashlee to BLAME?",
      "published": "2026-11-02T15:00:09+00:00",
-     "views": 817,
+     "views": 826,
      "dur": "31:53"
     },
     {
@@ -643,7 +643,7 @@
      "id": "BlVW2Sm_6_A",
      "title": "Pony Up Productions Ep. 18: SMU vs. Syracuse Recap, Path to the ACC Championship and more",
      "published": "2026-11-02T16:21:07+00:00",
-     "views": 66,
+     "views": 67,
      "dur": "32:44"
     },
     {
@@ -657,7 +657,7 @@
      "id": "4MTb7DQmxgs",
      "title": "Pony Up Productions Ep. 16: SMU vs. Cal Recap, Men’s Soccer and Volleyball dominate",
      "published": "2026-10-26T15:39:29+00:00",
-     "views": 31,
+     "views": 32,
      "dur": "27:37"
     },
     {
@@ -801,7 +801,7 @@
      "id": "qa99l4IcFfQ",
      "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
      "published": "2026-11-06T00:00:10+00:00",
-     "views": 2017,
+     "views": 2220,
      "dur": "33:25"
     },
     {
@@ -871,6 +871,14 @@
  "new": [
   {
    "key": "on-the-pony-express",
+   "id": "zAw6ZELqKjM"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "B_RMbhMt4IM"
+  },
+  {
+   "key": "on-the-pony-express",
    "id": "dMDniw6K5ls"
   },
   {
@@ -880,10 +888,6 @@
   {
    "key": "acc-digital-network",
    "id": "_4DiwJG8D7Y"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "Vmm_T5l8D-A"
   },
   {
    "key": "locked-on-smu",
@@ -904,10 +908,6 @@
   {
    "key": "smu-mustangs",
    "id": "3m0eU2nYBV4"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "Ke-iHfwnubk"
   },
   {
    "key": "locked-on-acc",
