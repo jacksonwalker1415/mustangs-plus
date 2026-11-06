@@ -154,11 +154,9 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-05T19:00:00-06:00",
 "tv": "ACCNX",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "W 95-70",
 "links": {
-"watch": "https://www.espn.com/watch/player/_/id/22388c39-f9c1-4167-afea-f92f7e0e9a6e",
-"listen": "https://smumustangs.com/showcase/?Live=5401",
-"stats": "https://smumustangs.com/sidearmstats/mbball/summary",
+"recap": "https://smumustangs.com/news/2026/11/5/mens-basketball-mustangs-down-vmi-95-70",
 "gamecenter": "https://smumustangs.com/game-center/14740"
 }
 },
@@ -182,7 +180,8 @@ window.MP=window.MP||{};MP.GAMES={
 "listen": "https://smumustangs.com/showcase/?Live=5402",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14741"
-}
+},
+"note": "Salute to Service"
 },
 {
 "id": "mbb-14744",
