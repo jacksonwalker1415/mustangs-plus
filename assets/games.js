@@ -915,6 +915,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": "W 66-54",
 "links": {
 "box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/hampton/boxscore/14722",
+"recap": "https://smumustangs.com/news/2026/11/5/womens-basketball-ezebilos-18-point-19-rebound-game-leads-smu-to-a-66-54-win-over-hampton",
 "gamecenter": "https://smumustangs.com/game-center/14722"
 }
 },
