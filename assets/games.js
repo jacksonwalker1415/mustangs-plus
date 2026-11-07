@@ -44,15 +44,12 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-06T18:00:00-06:00",
 "tv": "ESPN",
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
-"res": null,
+"res": "W 51-28",
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
-"listen": "https://smumustangs.com/showcase?Live=5383",
-"stats": "https://stats.statbroadcast.com/broadcast/?id=673166",
+"box": "https://smumustangs.com/sports/football/stats/2026/virginia-tech/boxscore/14455",
+"recap": "https://smumustangs.com/news/2026/11/6/football-mustangs-roll-in-friday-night-win-over-virginia-tech-51-28",
 "gamecenter": "https://smumustangs.com/game-center/14455"
-},
-"sb": 673166,
-"note": "Club Takeaway · Wear Black"
+}
 },
 {
 "id": "fb-14456",
