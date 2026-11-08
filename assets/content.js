@@ -1330,5 +1330,97 @@ MP.PHOTOS={
  cards.forEach(function(c){var a=MP.ARTICLES[c.id];a.related=a.related.filter(function(r){return MP.LIB.some(function(x){return x.id===r})})});
 })();
 /* PREVIEWS-WEEK:END */
+/* PREVIEWS-WEEK:BEGIN 2026-11-09 */
+/* ===== Weekly matchup previews (Sunday run). One short, sourced preview per SMU event on the home "Upcoming games" ribbon for
+   Mon. Nov. 9 to Sun. Nov. 15, 2026. Every fact comes from the pages in that article's sources list (SMU Athletics first, then the
+   opponent's official site), checked Nov. 8, 2026, before Sunday's volleyball, women's basketball and men's soccer games, so records
+   are as of Saturday night. No quotes, no injuries, no recruits. Byline SMU+ Staff.
+   expires = start time (ISO, Central). Equestrian at Fresno State is TBA on both schedules, so that card expires at 9 a.m. CT on the day.
+   real:true + sport + the opponent's name in the title or summary put each preview in its game page's Preview card, so each summary
+   names only its own opponent. Skipped: the NCAA South Central cross country regional (multi-team championship, no single opponent,
+   as with tennis tournaments) and any men's soccer ACC semifinal (not on the official schedule until Sunday's quarterfinal is played).
+   Earlier weeks' blocks above stay; their cards have all expired. ===== */
+(function(){var MP=window.MP;if(!MP||!MP.LIB||!MP.ARTICLES)return;
+ var S='https://smumustangs.com/sports/',N='https://smumustangs.com/news/2026/',IDS=[];
+ function P(sport,id,label,title,desc,big,tone,expires,art){IDS.push(id);
+  MP.ARTICLES[id]=Object.assign({by:'SMU+ Staff',date:'Nov. 8, 2026',sourced:true},art);
+  return {id:id,t:'article',cat:'insider',sport:sport,label:label,title:title,desc:desc,dur:'1 min read',lock:false,tone:tone,big:big,isNew:true,real:true,expires:expires}}
+ var MBBS=["SMU Athletics 2026-27 men's basketball schedule",S+'mens-basketball/schedule/2026-27'],
+     MBBV=["SMU Athletics: SMU 95, VMI 70, with postgame notes (Nov. 5)",N+'11/5/mens-basketball-mustangs-down-vmi-95-70'],
+     MBBO=["SMU Athletics: SMU 85, Southern 72 (Nov. 2)",N+'11/2/mens-basketball-mustangs-win-season-opener-over-southern-85-72'],
+     WBBS=["SMU Athletics 2026-27 women's basketball schedule",S+'womens-basketball/schedule/2026-27'],
+     WBBN=["SMU Athletics game notes: East Texas A&M (Nov. 7)",N+'11/7/womens-basketball-mustangs-continue-homestand-by-hosting-east-texas-am-sunday-6-pm'],
+     WBBL=["SMU Athletics: SMU 72, Le Moyne 36 (Nov. 3)",N+'11/3/womens-basketball-mustangs-defense-leads-smu-to-a-72-36-win-over-le-moyne'],
+     WBBH=["SMU Athletics: SMU 66, Hampton 54 (Nov. 5)",N+'11/5/womens-basketball-ezebilos-18-point-19-rebound-game-leads-smu-to-a-66-54-win-over-hampton'],
+     VBS=['SMU Athletics 2026 volleyball schedule',S+'womens-volleyball/schedule/2026'],
+     VBN=['SMU Athletics: No. 5 SMU sweeps No. 20 North Carolina (Nov. 6)',N+'11/6/volleyball-no-5-mustangs-thrash-no-20-tar-heels-win-sixth-straight-match'];
+ var cards=[
+ P('mens-basketball','preview-mbb-prairie-view',"Men's Basketball · Preview","Men's basketball vs. Prairie View A&M: Salute to Service at Moody",
+  "SMU is 2-0 after making 14 threes against VMI. Prairie View A&M is 2-1 and plays at SMU in the middle of a road run. Tue., 7 p.m. CT, ACCNX.",'2-0','blue','2026-11-10T19:00:00-06:00',
+  {sources:[MBBV,MBBO,MBBS,["Prairie View A&M Athletics 2026-27 men's basketball schedule",'https://pvpanthers.com/sports/mens-basketball/schedule'],["Prairie View A&M Athletics 2025-26 men's basketball schedule",'https://pvpanthers.com/sports/mens-basketball/schedule/2025-26']],
+   dek:'Tue., Nov. 10 · 7 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Radio: SMU App, The Varsity Network, SiriusXM · Salute to Service.',related:['preview-mbb-ball-state','preview-mbb-vmi','preview-mbb-southern'],body:[
+   "Tuesday is the third of six straight home games to open SMU's season. The Mustangs are 2-0. Freshman Jakub Szumert scored 24 in the 85-72 opener against Southern, going 13 of 14 from the line, and SMU beat VMI 95-70 on Thursday.",
+   "Against VMI, Oziyah Sellers scored 21 and made five threes, Jacob Patrick added 15 off the bench and Jermaine O'Neal Jr. had 14. SMU shot 53% with 26 assists, and its 14 three-pointers tied for 10th in program history. Andy Enfield is 46-25 at SMU and 30-9 at Moody.",
+   "Prairie View A&M is 2-1. The Panthers beat Paul Quinn 86-65 and College of Biblical Studies 103-90 at home, then lost 68-63 at UTRGV on Saturday. They went 19-18 last season and 9-9 in the SWAC. After Dallas, they play at Vanderbilt on Friday and at Ohio State on Nov. 16."]}),
+ P('womens-basketball','preview-wbb-liu',"Women's Basketball · Preview","Women's basketball vs. LIU: Salute to Service, game four at home",
+  "SMU has allowed 45.0 points a game. LIU is 0-3, all on the road, and won 14 league games last season. Wed., 6 p.m. CT, ACCNX.",'45.0','red','2026-11-11T18:00:00-06:00',
+  {sources:[WBBN,WBBH,WBBL,WBBS,["LIU Athletics 2026-27 women's basketball schedule",'https://liuathletics.com/sports/womens-basketball/schedule'],["LIU Athletics 2025-26 women's basketball schedule",'https://liuathletics.com/sports/womens-basketball/schedule/2025-26']],
+   dek:'Wed., Nov. 11 · 6 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Radio: SMU App, The Varsity Network, SiriusXM · Salute to Service.',related:['preview-wbb-nicholls','preview-wbb-east-texas-am','smu-wbb-tipoff'],body:[
+   "Wednesday is the fourth of five straight home games to open Adia Barnes's second season. SMU won its first two, 72-36 over Le Moyne and 66-54 over Hampton, and hosted East Texas A&M on Sunday going for its first 3-0 start since 2023-24.",
+   "The defense has led the way. SMU forced 28 turnovers against Le Moyne, the most under Barnes, and held the Dolphins to the fewest points by an SMU opponent since 2018. Against Hampton, Grace Ezebilo had 18 points and 19 rebounds, tied for ninth-most rebounds in a game in school history, and SMU's 54 rebounds were its most since 2019. Adja Kane has seven blocks in two games.",
+   "LIU is 0-3, with all three games on the road: 83-52 at Rutgers, 69-51 at Texas State and 92-42 at Pitt on Saturday. The Sharks went 21-11 last season and 14-4 in the Northeast Conference. They go from Dallas to George Washington on Saturday."]}),
+ P('volleyball','preview-vb-louisville','Volleyball · Preview','Volleyball vs. Louisville: 13-0 in the ACC and headed to Moody',
+  "Louisville is 23-2, 13-0 in the ACC and has won 13 straight. SMU has won six in a row. Thu., 7 p.m. CT, ESPNU, Alumni Match.",'13-0','blue','2026-11-12T19:00:00-06:00',
+  {sources:[VBN,VBS,['Louisville Athletics 2026 volleyball schedule','https://gocards.com/sports/womens-volleyball/schedule/2026']],
+   dek:'Thu., Nov. 12 · 7 p.m. CT · Moody Coliseum, Dallas · ESPNU · Alumni Match.',related:['preview-vb-notre-dame','preview-vb-duke','vb-road-sweep'],body:[
+   "No. 5 SMU swept No. 20 North Carolina 25-15, 25-15, 25-15 on Friday for its sixth straight win and its sixth win over a ranked team this season. The Tar Heels hit -.073, the third-lowest opponent hitting percentage in program history. Favor Anyanwu had six blocks and Suli Davis 13 kills. Going into Sunday's match with Duke, SMU was 19-4 and 11-2 in the ACC.",
+   "SMU Athletics notes the Mustangs are 58-0 under coach Erger when they hit .300 or better, and 33-4 in November under Erger.",
+   "Louisville is 23-2 and 13-0 in the ACC, with 13 straight wins. The Cardinals are 11-0 at home and 8-1 on the road. Their losses were 3-0 to No. 6 Wisconsin in Milwaukee and 3-1 at No. 4 Kentucky. They beat No. 8 Texas A&M, No. 9 Texas, No. 14 Stanford and No. 18 TCU along the way. Louisville plays at Virginia Tech on Sunday and at Pitt on Nov. 15."]}),
+ P('mens-basketball','preview-mbb-ball-state',"Men's Basketball · Preview","Men's basketball vs. Ball State: Friday night on ACC Network",
+  "Ball State is 0-2 and comes to Dallas from the MAC. SMU plays its fourth straight home game. Fri., 8 p.m. CT, ACCN.",'0-2','red','2026-11-13T20:00:00-06:00',
+  {sources:[MBBV,MBBS,["Ball State Athletics 2026-27 men's basketball schedule",'https://ballstatesports.com/sports/mens-basketball/schedule'],["Ball State Athletics 2025-26 men's basketball schedule",'https://ballstatesports.com/sports/mens-basketball/schedule/2025-26']],
+   dek:'Fri., Nov. 13 · 8 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCN · Radio: SMU App, The Varsity Network.',related:['preview-mbb-prairie-view','preview-mbb-vmi','smu-mbb-enfield-tipoff'],body:[
+   "Friday is SMU's second game of the week and the fourth of its six-game homestand, and it's on ACC Network. Oral Roberts comes to Moody next, on Nov. 17.",
+   "SMU's scoring has come from all over. Jakub Szumert led the opener with 24, Oziyah Sellers led the VMI win with 21, and Jermaine O'Neal Jr. has scored 15 and 14. Jaden Toombs had eight rebounds, seven assists and three blocks against Southern and 10 points and three blocks against VMI.",
+   "Ball State is 0-2. The Cardinals lost 67-55 at Georgia Southern in the MAC-SBC Challenge and 69-66 at home to Indiana State, after exhibition losses to Purdue and Purdue Fort Wayne. They host Brescia on Monday before the trip. Ball State went 12-19 last season and 7-11 in the MAC."]}),
+ P('football','preview-wake-forest','Football · Preview','SMU vs. Wake Forest: Homecoming, Senior Day and a big ACC game',
+  "SMU scored on its first eight drives in a 51-28 win over Virginia Tech. No. 14 Wake Forest is 8-1 and 5-1 in the ACC. Sat., 11 a.m. CT, ESPN.",'8-1','blue','2026-11-14T11:00:00-06:00',
+  {sources:[['SMU Athletics: SMU 51, Virginia Tech 28, with postgame notes (Nov. 6)',N+'11/6/football-mustangs-roll-in-friday-night-win-over-virginia-tech-51-28'],['SMU Athletics 2026 football schedule',S+'football/schedule/2026'],['Wake Forest Athletics 2026 football schedule','https://godeacs.com/sports/football/schedule/2026']],
+   dek:'Sat., Nov. 14 · 11 a.m. CT · Gerald J. Ford Stadium, Dallas · ESPN (SMU notes: ESPN or ESPN2) · Radio: KTCK 96.7 FM/1310 AM & SiriusXM · Homecoming, Senior Day, wear blue.',related:['preview-virginia-tech','feature-jennings-record','smu-fb-cal-highlights'],body:[
+   "SMU bounced back from the loss at Syracuse by scoring on its first eight drives, five touchdowns and three Brendan Baird field goals, in a 51-28 win over Virginia Tech on Friday. Kevin Jennings went 24 of 32 for 350 yards and four touchdowns, three of them to Yamir Knight, who had six catches for 103 yards. SMU's 569 yards were a season high. Marques White had two of SMU's four sacks.",
+   "Saturday is the home finale, with Homecoming and Senior Day. SMU is 7-2, 5-2 in the ACC and 6-0 at home, and it is 12-0 in ACC home games since joining the league. SMU's postgame notes have the Mustangs at No. 24 in the coaches poll and receiving votes in the AP poll. Jennings has 10,473 career passing yards and 80 touchdown passes, both program records.",
+   "Wake Forest is 8-1 and 5-1 in the ACC. SMU's postgame notes list the Demon Deacons at No. 14 in the AP and coaches polls and No. 16 in the CFP rankings. They have won six straight and are 4-0 on the road, including 30-27 at Louisville, where SMU lost 41-31, and 38-36 in double overtime at Purdue. Their only loss was 33-20 at home to Miami on Sept. 18. They beat Merrimack 77-0 on Saturday.",
+   "The AP recap on SMU Athletics' site called Friday's win part of SMU's push for its second ACC title game in three seasons, with Miami and Wake Forest the only teams ahead of the Mustangs in the league standings."]}),
+ P('equestrian','preview-equestrian-fresno-state','Equestrian · Preview','Equestrian at Fresno State: the last meet of 2026',
+  "No. 4 SMU swept MOP honors in both home meets last week. Fresno State is 1-5 but beat Oklahoma State at home. Sat., Fresno, Calif.",'4-2','blue','2026-11-14T09:00:00-06:00',
+  {sources:[['SMU Athletics: No. 4 SMU 10, No. 3 Georgia 8 (Nov. 6)',N+'11/6/equestrian-no-4-smu-sees-triumph-against-no-3-georgia'],['SMU Athletics: No. 4 SMU 13, No. 6 Oklahoma State 7 (Nov. 7)',N+'11/7/equestrian-no-4-smu-dominates-no-6-osu-sweeps-mop-honors'],['SMU Athletics 2026-27 equestrian schedule',S+'equestrian/schedule/2026-27'],['Fresno State Athletics 2026-27 equestrian schedule','https://gobulldogs.com/sports/equestrian/schedule']],
+   dek:'Sat., Nov. 14 · Student Horse Center, Fresno, Calif. Start time TBA on both schedules.',related:['preview-equestrian-georgia','preview-equestrian-okstate','preview-wake-forest'],body:[
+   "No. 4 SMU swept its home weekend. The Mustangs beat No. 3 Georgia 10-8 on Friday and No. 6 Oklahoma State 13-7 on Saturday, and they won Most Outstanding Performer in all four events at both meets. Schuyler Dayner took fences and flat against Georgia, and Madison Rafacz won reining both days. SMU is 4-2.",
+   "Fresno State is 1-5. Its win was 11-8 at home over No. 7 Oklahoma State on Oct. 17. The Bulldogs have lost five road meets, most recently a three-day trip to No. 2 South Carolina, No. 4 Georgia and No. 1 Auburn.",
+   "SMU Athletics calls this the last meet of the 2026 part of the season. SMU's next meet is at home against Minnesota Crookston on Jan. 29."]}),
+ P('volleyball','preview-vb-notre-dame','Volleyball · Preview','Volleyball vs. Notre Dame: Fan Appreciation Day closes the homestand',
+  "Notre Dame is 5-17 and 2-10 in the ACC and plays at SMU at the end of a three-match road trip. Sun., noon CT, ACCNX.",'5-17','red','2026-11-15T12:00:00-06:00',
+  {sources:[VBS,VBN,['Notre Dame Athletics 2026 volleyball schedule','https://fightingirish.com/sports/wvball/schedule/'],['Louisville Athletics 2026 volleyball schedule (Louisville vs. Notre Dame results)','https://gocards.com/sports/womens-volleyball/schedule/2026']],
+   dek:'Sun., Nov. 15 · 12 p.m. CT · Moody Coliseum, Dallas · ACCNX · Fan Appreciation Day.',related:['preview-vb-louisville','preview-vb-duke','vb-road-sweep'],body:[
+   "Sunday is Fan Appreciation Day and the last of four straight matches at Moody. SMU's next two are on the road, at Virginia Tech on Nov. 20 and at Virginia on Nov. 22.",
+   "Victoria Harris has 10 or more digs in seven straight matches, and Suli Davis has 19 matches this season with 10 or more kills. SMU had 11 blocks against North Carolina, the 15th time this season it has reached double figures, and it is 13-1 when it does.",
+   "Notre Dame is 5-17, 2-10 in the ACC and 3-7 on the road. Its last three matches were a 3-2 loss at Virginia Tech, a 3-2 win over Clemson and a 3-2 loss to Georgia Tech. Louisville swept the Irish twice this season. Notre Dame plays at Virginia on Sunday and at No. 2 Pitt on Wednesday before coming to Dallas."]}),
+ P('womens-basketball','preview-wbb-nicholls',"Women's Basketball · Preview","Women's basketball vs. Nicholls: Homecoming weekend, last of five at home",
+  "SMU closes its opening homestand before its first road game. Nicholls is 1-1 and went 15-16 last season. Sun., 6 p.m. CT, ACCNX.",'5','red','2026-11-15T18:00:00-06:00',
+  {sources:[WBBN,WBBH,WBBS,["Nicholls Athletics 2026-27 women's basketball schedule",'https://geauxcolonels.com/sports/womens-basketball/schedule'],["Nicholls Athletics 2025-26 women's basketball schedule",'https://geauxcolonels.com/sports/womens-basketball/schedule/2025-26']],
+   dek:'Sun., Nov. 15 · 6 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCNX · Radio: SMU App, The Varsity Network, SiriusXM · Homecoming Weekend.',related:['preview-wbb-liu','preview-wbb-east-texas-am','preview-wake-forest'],body:[
+   "Sunday wraps up Homecoming weekend and the last of SMU's five home games to start the season. The Mustangs' first road game is at Kansas State on Nov. 17.",
+   "Through two games, Theresa Hagans Jr. was averaging 12.5 points and Grace Ezebilo 11.0, and freshman Shania James was scoring 9.0 a game off the bench. Hagans and freshman Camille Nesmith each have a four-steal game. SMU has had three scoring runs of 10-0 or better, including a 19-0 run against Le Moyne.",
+   "Nicholls is 1-1. The Colonels beat Dillard 83-54 at home and lost 68-44 at Iowa State. They play at Georgia on Sunday and host LSUA on Tuesday before coming to Dallas. Nicholls went 15-16 last season and 10-12 in the Southland."]})];
+ /* replace any earlier copy of these ids, then put the week's previews where the timely stories sit */
+ MP.LIB=MP.LIB.filter(function(c){return IDS.indexOf(c.id)<0});
+ var at=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id==='vb-road-sweep'){at=i;break}
+ Array.prototype.splice.apply(MP.LIB,[at,0].concat(cards));
+ /* each sport page's All Access row leads with its preview(s), soonest first */
+ var A=MP.ACCESS=MP.ACCESS||{};cards.slice().reverse().forEach(function(c){var L=(A[c.sport]||[]).filter(function(x){return x!==c.id});A[c.sport]=[c.id].concat(L)});
+ /* drop related links that point at items the site doesn't have */
+ cards.forEach(function(c){var a=MP.ARTICLES[c.id];a.related=a.related.filter(function(r){return MP.LIB.some(function(x){return x.id===r})})});
+})();
+/* PREVIEWS-WEEK:END */
 /* Legal cleanup (Oct 26, 2026): the made-up practice report is unpublished (closed-practice framing). Item kept out of every list. */
 if(window.MP&&MP.LIB)MP.LIB=MP.LIB.filter(function(c){return c.id!=='thursday-notes'});
