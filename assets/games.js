@@ -41,7 +41,7 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Dallas, Texas",
 "time": "11 a.m. CT",
 "ko": "2026-11-14T11:00:00-06:00",
-"tv": "ESPN/ESPN2",
+"tv": "ESPN",
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
 "res": null,
 "links": {
