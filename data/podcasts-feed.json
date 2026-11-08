@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-08T19:16:33Z",
+ "generated": "2026-11-08T20:21:00Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -219,6 +219,13 @@
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
     {
+     "id": "8114fbc3f6",
+     "title": "SMU Dominates Virginia Tech 51-28! Kevin Jennings Shines",
+     "published": "2026-11-08T14:22:34Z",
+     "dur": "19 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129049862/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-8%2F436217368-44100-2-d45b4b11144fe8.mp3"
+    },
+    {
      "id": "53a0e91169",
      "title": "SMU vs. Virginia Tech Preview: Can the Mustangs Bounce Back at Home?",
      "published": "2026-11-05T12:52:16Z",
@@ -305,14 +312,6 @@
      "dur": "24 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126397382/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-28%2F432787579-44100-2-e5fc975771b7.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-survives-missouri-state-34-24-kevin-jennings-turnovers/id1734256145?i=1000792012585"
-    },
-    {
-     "id": "e69efaf51e",
-     "title": "SMU Volleyball Non-Conference Recap & ACC Preview | Texas, Kentucky Wins + Stanford Up Next",
-     "published": "2026-09-23T11:00:00Z",
-     "dur": "28 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126174457/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-23%2F432483543-44100-2-85fd0e4e2f718.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-volleyball-non-conference-recap-acc-preview-texas/id1734256145?i=1000791273678"
     }
    ]
   },
@@ -691,6 +690,10 @@
  ],
  "new": [
   {
+   "key": "mustang-mood",
+   "id": "8114fbc3f6"
+  },
+  {
    "key": "locked-on-smu",
    "id": "6ae59e132a"
   },
@@ -721,10 +724,6 @@
   {
    "key": "mustang-studios",
    "id": "ab1cc1767f"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "7977fd1894"
   },
   {
    "key": "all-access-am",
