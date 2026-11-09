@@ -910,6 +910,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": "W 78-65",
 "links": {
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/east-texas-am/boxscore/14727",
+"recap": "https://smumustangs.com/news/2026/11/8/womens-basketball-hagans-jr-jamess-combine-for-54-points-in-smus-78-65-victory-over-east-texas-am",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22080/",
 "gamecenter": "https://smumustangs.com/game-center/14727"
 },
