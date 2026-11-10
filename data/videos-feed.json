@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T21:23:27Z",
+ "updated": "2026-11-10T22:18:34Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,7 +99,7 @@
      "id": "03nBx3HEm4M",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-10-26",
      "published": "2026-11-10T17:16:56+00:00",
-     "views": 69,
+     "views": 89,
      "dur": "19:25"
     },
     {
@@ -141,7 +141,7 @@
      "id": "i2UhZEBpl68",
      "title": "SMU Volleyball Match Highlights vs. Duke 11-8-26",
      "published": "2026-11-08T20:44:33+00:00",
-     "views": 280,
+     "views": 287,
      "dur": "4:44"
     },
     {
@@ -169,7 +169,7 @@
      "id": "B_RMbhMt4IM",
      "title": "SMU Volleyball Match Highlights vs. North Carolina 11-6-26",
      "published": "2026-11-06T19:58:36+00:00",
-     "views": 304,
+     "views": 305,
      "dur": "5:18"
     },
     {
@@ -190,14 +190,14 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 1147,
+     "views": 1207,
      "dur": "10:24"
     },
     {
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3776,
+     "views": 3781,
      "dur": "12:01"
     },
     {
@@ -218,7 +218,7 @@
      "id": "6Ccxu_bdZSk",
      "title": "The Missouri State Mini-Movie | SMU Football",
      "published": "2026-09-28T23:55:53+00:00",
-     "views": 2110,
+     "views": 2111,
      "dur": "10:11"
     },
     {
@@ -232,14 +232,14 @@
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15493,
+     "views": 15495,
      "dur": "19:34"
     },
     {
      "id": "8GSDjGx6S88",
      "title": "UNTOLD: Aakil Washington & Jarvis Lee Jr - Episode 4 | SMU Football",
      "published": "2026-08-25T00:19:30+00:00",
-     "views": 1621,
+     "views": 1622,
      "dur": "28:28"
     },
     {
@@ -253,14 +253,14 @@
      "id": "QyNyJTuz_sA",
      "title": "UNTOLD: Brandon Booker & La'Modrick Spencer - Episode 2 | SMU Football",
      "published": "2026-08-11T00:39:38+00:00",
-     "views": 3329,
+     "views": 3330,
      "dur": "21:39"
     },
     {
      "id": "sKntLM77nJE",
      "title": "UNTOLD: Brandon Miyazono & Yamir Knight - Episode 1 | SMU Football",
      "published": "2026-08-03T23:08:26+00:00",
-     "views": 3125,
+     "views": 3126,
      "dur": "13:53"
     },
     {
@@ -329,6 +329,13 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "nZcdvAzvvpk",
+     "title": "SMU Football recruiting approaches key 4-star decisions with TK Gaines, Kamieon Compton-Nero",
+     "published": "2026-11-10T21:52:03+00:00",
+     "views": 10,
+     "dur": "36:01"
+    },
+    {
      "id": "8WGftwS8zPg",
      "title": "SMU QB Kevin Jennings on Senior Day, taking on a talented Wake Forest team",
      "published": "2026-11-10T20:00:29+00:00",
@@ -339,21 +346,21 @@
      "id": "Hhh3_exMHXY",
      "title": "SMU HC Rhett Lashlee previews game vs. Wake Forest, gives thoughts on 24-team CFP",
      "published": "2026-11-10T17:53:56+00:00",
-     "views": 233,
+     "views": 291,
      "dur": "15:51"
     },
     {
      "id": "KN0ujowoFew",
      "title": "Final thoughts on SMU beating Virginia Tech, dominant win over Hokies | SMU Football Podcast",
      "published": "2026-11-10T05:01:09+00:00",
-     "views": 299,
+     "views": 336,
      "dur": "48:44"
     },
     {
      "id": "FujXgS_pE-4",
      "title": "SMU vs. Virginia Tech Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-09T13:58:27+00:00",
-     "views": 267,
+     "views": 276,
      "dur": "17:17"
     },
     {
@@ -374,7 +381,7 @@
      "id": "obqJWk3z33w",
      "title": "SMU K Brendan Baird on his 3-3 performance in win vs. VT, getting put on scholarship last week",
      "published": "2026-11-07T06:21:25+00:00",
-     "views": 196,
+     "views": 199,
      "dur": "2:15"
     },
     {
@@ -404,13 +411,6 @@
      "published": "2026-11-07T05:00:28+00:00",
      "views": 1150,
      "dur": "13:04"
-    },
-    {
-     "id": "zAw6ZELqKjM",
-     "title": "Virginia Tech defensive playmakers to know | How SMU can attack the Hokies' defense",
-     "published": "2026-11-06T20:00:34+00:00",
-     "views": 224,
-     "dur": "10:19"
     }
    ]
   },
@@ -430,7 +430,7 @@
      "id": "5wLk0sx7Gwg",
      "title": "STATEMENT: SMU and Kevin Jennings DOMINATE Virginia Tech, Why THAT TEAM Can Beat Wake Forest!",
      "published": "2026-11-09T14:00:09+00:00",
-     "views": 569,
+     "views": 573,
      "dur": "26:53"
     },
     {
@@ -465,7 +465,7 @@
      "id": "IBCbVOAAuLg",
      "title": "KRYPTONITE: SMU''s VAUNTED Offense EXPOSED Without Consistent Running Game at Syracuse",
      "published": "2026-11-03T16:00:09+00:00",
-     "views": 341,
+     "views": 342,
      "dur": "29:00"
     },
     {
@@ -799,7 +799,7 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1191,
+     "views": 1219,
      "dur": "32:33"
     },
     {
@@ -876,6 +876,10 @@
  "new": [
   {
    "key": "on-the-pony-express",
+   "id": "nZcdvAzvvpk"
+  },
+  {
+   "key": "on-the-pony-express",
    "id": "8WGftwS8zPg"
   },
   {
@@ -889,10 +893,6 @@
   {
    "key": "locked-on-smu",
    "id": "u8SXJO_D838"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "KN0ujowoFew"
   },
   {
    "key": "smu-football",
