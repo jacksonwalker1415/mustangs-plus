@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T05:25:10Z",
+ "generated": "2026-11-10T19:18:22Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -113,6 +113,13 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "71ea5efcdd",
+     "title": "DYNAMIC: SMU Mustangs BACKFIELD SURGES as Kendrick Raphael, Christian Rhodes, Dramekco Green IMPRESS Fans",
+     "published": "2026-11-10T14:00:00Z",
+     "dur": "30 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/8fe2f579-872f-49a4-99ae-7df148f5da99/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=8fe2f579-872f-49a4-99ae-7df148f5da99&feed=MciFpBoA"
+    },
+    {
      "id": "39aae72a7c",
      "title": "STATEMENT: SMU and Kevin Jennings DOMINATE Virginia Tech, Why THAT TEAM Can Beat Wake Forest!",
      "published": "2026-11-09T14:00:00Z",
@@ -199,14 +206,6 @@
      "dur": "28 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/fd588c37-fdc0-49cd-92e1-3aa44b0da3df/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=fd588c37-fdc0-49cd-92e1-3aa44b0da3df&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/matchup-kevin-jennings-faces-feisty-syracuse-pass-defense/id1824252582?i=1000798525667"
-    },
-    {
-     "id": "19fe35e70f",
-     "title": "Kendrick Raphael POWERS SMU and Makes Himself a DRAFTABLE PLAYER – Who's SMU's Most UNDERRATED Guy?",
-     "published": "2026-10-27T15:00:00Z",
-     "dur": "29 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/b37efefc-f3fe-4bdf-84da-c00f36a8b880/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=b37efefc-f3fe-4bdf-84da-c00f36a8b880&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/kendrick-raphael-powers-smu-and-makes-himself/id1824252582?i=1000798371997"
     }
    ]
   },
@@ -698,6 +697,10 @@
  ],
  "new": [
   {
+   "key": "locked-on-smu",
+   "id": "71ea5efcdd"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "495c3e6563"
   },
@@ -716,10 +719,6 @@
   {
    "key": "mustang-mood",
    "id": "8114fbc3f6"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "6ae59e132a"
   },
   {
    "key": "locked-on-acc",
