@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T03:20:20Z",
+ "generated": "2026-11-10T05:25:10Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "495c3e6563",
+     "title": "Final thoughts on SMU beating Virginia Tech, dominant win over Hokies | SMU Football Podcast",
+     "published": "2026-11-10T05:03:25Z",
+     "dur": "49 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/de2939ee-8177-4a1e-8b47-ae030bce1831/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=de2939ee-8177-4a1e-8b47-ae030bce1831&feed=eSeVNxtA"
+    },
     {
      "id": "4fceae85b5",
      "title": "SMU vs. Virginia Tech Game Recap, Breakdown | QB Chronicles Podcast",
@@ -95,14 +102,6 @@
      "dur": "30 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/33d8144a-2c1b-46d2-9380-76f5b873eafb/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=33d8144a-2c1b-46d2-9380-76f5b873eafb&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/smu-at-syracuse-game-recap-breakdown-qb-chronicles-podcast/id1604025463?i=1000799427373"
-    },
-    {
-     "id": "c8b4e4771c",
-     "title": "REACTION: SMU at Syracuse postgame show, takeaways from SMU Week 9 game | After 'Stangs Show",
-     "published": "2026-10-31T20:50:18Z",
-     "dur": "34 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/fa86021d-2889-40f6-8a9c-1f03cfba1f29/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=fa86021d-2889-40f6-8a9c-1f03cfba1f29&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/reaction-smu-at-syracuse-postgame-show-takeaways-from/id1604025463?i=1000799119129"
     }
    ]
   },
@@ -699,6 +698,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "495c3e6563"
+  },
+  {
    "key": "locked-on-acc",
    "id": "c2ff5cb798"
   },
@@ -709,10 +712,6 @@
   {
    "key": "on-the-pony-express",
    "id": "4fceae85b5"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "1c287665c7"
   },
   {
    "key": "mustang-mood",
