@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-09T19:22:26Z",
+ "generated": "2026-11-10T00:23:57Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -478,6 +478,13 @@
    "art": "assets/img/pods/locked-on-acc.webp",
    "episodes": [
     {
+     "id": "c2ff5cb798",
+     "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
+     "published": "2026-11-09T23:20:24Z",
+     "dur": "32 min",
+     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/9f1b137f-5770-4165-b948-04402aa6934d/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=9f1b137f-5770-4165-b948-04402aa6934d&feed=30WG0faH"
+    },
+    {
      "id": "441a8fea0f",
      "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
      "published": "2026-11-05T23:17:22Z",
@@ -690,6 +697,10 @@
  ],
  "new": [
   {
+   "key": "locked-on-acc",
+   "id": "c2ff5cb798"
+  },
+  {
    "key": "locked-on-smu",
    "id": "39aae72a7c"
   },
@@ -732,10 +743,6 @@
   {
    "key": "dmn",
    "id": "60dbcf8849"
-  },
-  {
-   "key": "jim-rome",
-   "id": "ca43a09bf0"
   }
  ]
 }
