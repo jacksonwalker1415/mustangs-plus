@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T22:15:30Z",
+ "updated": "2026-11-11T23:13:50Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,7 +106,7 @@
      "id": "aPHkPI_O9ig",
      "title": "SMU Men's Basketball: Game Highlights vs. Prairie View A&M 11-10-26",
      "published": "2026-11-11T03:19:31+00:00",
-     "views": 99,
+     "views": 109,
      "dur": "6:00"
     },
     {
@@ -120,14 +120,14 @@
      "id": "uCmma3XJv6k",
      "title": "SMU Men's Soccer Game Highlights vs Virginia 11-8-2026",
      "published": "2026-11-09T20:38:08+00:00",
-     "views": 172,
+     "views": 188,
      "dur": "8:38"
     },
     {
      "id": "ebDKOpp3ymM",
      "title": "SMU Women's Basketball: Postgame Press Conference vs ETAMU 11-8-26",
      "published": "2026-11-09T02:50:18+00:00",
-     "views": 111,
+     "views": 114,
      "dur": "8:53"
     },
     {
@@ -190,14 +190,14 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 1741,
+     "views": 1784,
      "dur": "10:24"
     },
     {
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3798,
+     "views": 3800,
      "dur": "12:01"
     },
     {
@@ -331,14 +331,14 @@
      "id": "E-5SVGtI-6Q",
      "title": "Walking 'Strong with Bill Armstrong: SMU's dominant win vs. Virginia Tech, look ahead to Wake Forest",
      "published": "2026-11-11T19:36:40+00:00",
-     "views": 180,
+     "views": 291,
      "dur": "40:26"
     },
     {
      "id": "2S4wQEnyEpM",
      "title": "The Mustang Mood: SMU Volleyball vs. Louisville - Can the Mustangs Take Down the No. 3 Cardinals?",
      "published": "2026-11-11T13:45:07+00:00",
-     "views": 40,
+     "views": 41,
      "dur": "23:57"
     },
     {
@@ -352,7 +352,7 @@
      "id": "AyiYHYYioSU",
      "title": "SMU G David Terrell and C Johan Munch on the team's progression after 98-63 win vs. PVAMU",
      "published": "2026-11-11T03:39:26+00:00",
-     "views": 40,
+     "views": 41,
      "dur": "4:20"
     },
     {
@@ -373,14 +373,14 @@
      "id": "Hhh3_exMHXY",
      "title": "SMU HC Rhett Lashlee previews game vs. Wake Forest, gives thoughts on 24-team CFP",
      "published": "2026-11-10T17:53:56+00:00",
-     "views": 1122,
+     "views": 1150,
      "dur": "15:51"
     },
     {
      "id": "KN0ujowoFew",
      "title": "Final thoughts on SMU beating Virginia Tech, dominant win over Hokies | SMU Football Podcast",
      "published": "2026-11-10T05:01:09+00:00",
-     "views": 452,
+     "views": 469,
      "dur": "48:44"
     },
     {
@@ -394,7 +394,7 @@
      "id": "V9H7Gmwwv00",
      "title": "The Mustang Mood: SMU Dominates Virginia Tech 51-28! Kevin Jennings Shines",
      "published": "2026-11-08T14:23:09+00:00",
-     "views": 327,
+     "views": 338,
      "dur": "19:17"
     },
     {
@@ -421,7 +421,7 @@
      "id": "SVjF_N8drT4",
      "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
      "published": "2026-11-11T15:00:09+00:00",
-     "views": 199,
+     "views": 217,
      "dur": "24:47"
     },
     {
@@ -646,7 +646,7 @@
      "id": "ZZFInWJuDAI",
      "title": "SMU vs Southern",
      "published": "2026-11-03T18:01:48+00:00",
-     "views": 126,
+     "views": 127,
      "dur": "2:12:52",
      "nomax": true
     },
@@ -661,7 +661,7 @@
      "id": "339Y1WCJuEA",
      "title": "Pony Up Productions Ep. 17: SMU vs. Syracuse Preview, October Honor Roll and more",
      "published": "2026-10-29T22:36:32+00:00",
-     "views": 40,
+     "views": 41,
      "dur": "42:37"
     },
     {
@@ -717,7 +717,7 @@
      "id": "oBVkAwmpmJw",
      "title": "East Texas A&M vs. SMU Full Game Replay | 2026-27 ACC Women’s Basketball",
      "published": "2026-11-11T17:00:09+00:00",
-     "views": 40,
+     "views": 162,
      "dur": "1:09:44"
     },
     {
@@ -798,7 +798,7 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1449,
+     "views": 1447,
      "dur": "32:33"
     },
     {
@@ -860,7 +860,7 @@
      "id": "u7o4jEtewio",
      "title": "SMU invites North Texans to join homecoming celebrations as university strengthens community ties",
      "published": "2026-11-11T21:48:49+00:00",
-     "views": 4,
+     "views": 6,
      "dur": "2:56",
      "nomax": true
     }
