@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-11T19:19:57Z",
+ "generated": "2026-11-11T20:21:59Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,20 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "cdaa8ddc37",
+     "title": "Walking 'Strong with Bill Armstrong: SMU's dominant win vs. Virginia Tech, look ahead to Wake Forest",
+     "published": "2026-11-11T19:22:52Z",
+     "dur": "40 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/459f0630-d77f-4551-9c2d-7b6b3c8ce387/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=459f0630-d77f-4551-9c2d-7b6b3c8ce387&feed=eSeVNxtA"
+    },
+    {
+     "id": "d22d7f32c8",
+     "title": "The Mustang Mood: SMU Volleyball vs. Louisville - Can the Mustangs Take Down the No. 3 Cardinals?",
+     "published": "2026-11-11T15:00:00Z",
+     "dur": "24 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/198ebe24-154a-4a6c-b926-3d543cca5bdb/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=198ebe24-154a-4a6c-b926-3d543cca5bdb&feed=eSeVNxtA"
+    },
     {
      "id": "495c3e6563",
      "title": "Final thoughts on SMU beating Virginia Tech, dominant win over Hokies | SMU Football Podcast",
@@ -87,22 +101,6 @@
      "dur": "1 hr 9 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/89b0af52-0d7e-4425-9858-3fe5009f458e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=89b0af52-0d7e-4425-9858-3fe5009f458e&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-on-smu-loss-at-syracuse-can-mustangs/id1604025463?i=1000799606140"
-    },
-    {
-     "id": "4bd010669a",
-     "title": "After 'Stangs Show: SMU beats Southern 85-72 in season opener",
-     "published": "2026-11-03T12:31:25Z",
-     "dur": "9 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/b2a2a95d-be2c-48d4-baa9-58ae20fb6d56/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=b2a2a95d-be2c-48d4-baa9-58ae20fb6d56&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/after-stangs-show-smu-beats-southern-85-72-in-season-opener/id1604025463?i=1000799602346"
-    },
-    {
-     "id": "12f0090f0e",
-     "title": "SMU at Syracuse Game Recap, Breakdown | QB Chronicles Podcast",
-     "published": "2026-11-02T15:25:02Z",
-     "dur": "30 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/33d8144a-2c1b-46d2-9380-76f5b873eafb/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=33d8144a-2c1b-46d2-9380-76f5b873eafb&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-at-syracuse-game-recap-breakdown-qb-chronicles-podcast/id1604025463?i=1000799427373"
     }
    ]
   },
@@ -711,12 +709,20 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "cdaa8ddc37"
+  },
+  {
    "key": "kc-masterpiece",
    "id": "9d8cab9375"
   },
   {
    "key": "kc-masterpiece",
    "id": "ce5f382ba7"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "d22d7f32c8"
   },
   {
    "key": "locked-on-smu",
@@ -731,16 +737,8 @@
    "id": "71ea5efcdd"
   },
   {
-   "key": "on-the-pony-express",
-   "id": "495c3e6563"
-  },
-  {
    "key": "locked-on-acc",
    "id": "c2ff5cb798"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "4fceae85b5"
   },
   {
    "key": "mustang-mood",
