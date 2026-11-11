@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T19:18:22Z",
+ "generated": "2026-11-11T19:19:57Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -13,7 +13,8 @@
      "title": "Final thoughts on SMU beating Virginia Tech, dominant win over Hokies | SMU Football Podcast",
      "published": "2026-11-10T05:03:25Z",
      "dur": "49 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/de2939ee-8177-4a1e-8b47-ae030bce1831/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=de2939ee-8177-4a1e-8b47-ae030bce1831&feed=eSeVNxtA"
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/de2939ee-8177-4a1e-8b47-ae030bce1831/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=de2939ee-8177-4a1e-8b47-ae030bce1831&feed=eSeVNxtA",
+     "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-on-smu-beating-virginia-tech-dominant/id1604025463?i=1000800931139"
     },
     {
      "id": "4fceae85b5",
@@ -113,11 +114,19 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "75c8b87ae3",
+     "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
+     "published": "2026-11-11T14:00:00Z",
+     "dur": "25 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/2c00035b-ff7e-41e5-84dd-e4ad7e27274c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=2c00035b-ff7e-41e5-84dd-e4ad7e27274c&feed=MciFpBoA"
+    },
+    {
      "id": "71ea5efcdd",
      "title": "DYNAMIC: SMU Mustangs BACKFIELD SURGES as Kendrick Raphael, Christian Rhodes, Dramekco Green IMPRESS Fans",
      "published": "2026-11-10T14:00:00Z",
      "dur": "30 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/8fe2f579-872f-49a4-99ae-7df148f5da99/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=8fe2f579-872f-49a4-99ae-7df148f5da99&feed=MciFpBoA"
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/8fe2f579-872f-49a4-99ae-7df148f5da99/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=8fe2f579-872f-49a4-99ae-7df148f5da99&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/dynamic-smu-mustangs-backfield-surges-as-kendrick-raphael/id1824252582?i=1000801008413"
     },
     {
      "id": "39aae72a7c",
@@ -198,14 +207,6 @@
      "dur": "31 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/c9cbcdc6-2fb9-4ed2-a210-912182ec0807/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=c9cbcdc6-2fb9-4ed2-a210-912182ec0807&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/crossover-smu-faces-must-win-scenario-at-syracuse-is/id1824252582?i=1000798715722"
-    },
-    {
-     "id": "690a7d9316",
-     "title": "MATCHUP: Kevin Jennings Faces FEISTY Syracuse Pass Defense as SMU Mustangs Seek Three Straight Wins",
-     "published": "2026-10-28T13:00:00Z",
-     "dur": "28 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/fd588c37-fdc0-49cd-92e1-3aa44b0da3df/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=fd588c37-fdc0-49cd-92e1-3aa44b0da3df&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/matchup-kevin-jennings-faces-feisty-syracuse-pass-defense/id1824252582?i=1000798525667"
     }
    ]
   },
@@ -216,6 +217,13 @@
    "spotify": "https://open.spotify.com/show/7nMjtANtm8wKhWspJdykWW",
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
+    {
+     "id": "82726897a7",
+     "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
+     "published": "2026-11-11T13:26:13Z",
+     "dur": "24 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129256412/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-11%2F436485879-44100-2-cb77d86c9a1048.mp3"
+    },
     {
      "id": "8114fbc3f6",
      "title": "SMU Dominates Virginia Tech 51-28! Kevin Jennings Shines",
@@ -303,14 +311,6 @@
      "dur": "19 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126764717/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-3%2F433262685-44100-2-8cebfb15827bc.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-defeats-boston-college-25-16-marques-white-kevin/id1734256145?i=1000793033080"
-    },
-    {
-     "id": "a50ff0c038",
-     "title": "SMU Survives Missouri State 34-24 | Kevin Jennings, Turnovers & What’s Next",
-     "published": "2026-09-28T11:00:00Z",
-     "dur": "24 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126397382/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-28%2F432787579-44100-2-e5fc975771b7.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-survives-missouri-state-34-24-kevin-jennings-turnovers/id1734256145?i=1000792012585"
     }
    ]
   },
@@ -575,6 +575,20 @@
    "art": "assets/img/pods/kc-masterpiece.webp",
    "episodes": [
     {
+     "id": "9d8cab9375",
+     "title": "11:00 - SMU Men's basketball HC Andy Enfield in studio! - Signing day names, Homecoming preview, and season preview",
+     "published": "2026-11-11T19:12:21Z",
+     "dur": "18 min",
+     "audio": "https://serve.castfire.com/audio/8990057/8990057_2026-11-11-193257.128.mp3?rssID=3125"
+    },
+    {
+     "id": "ce5f382ba7",
+     "title": "Hour 2: SMU Men's BBall HC Andy Enfield, Gridiron Gravy, and Mickey Spagnola",
+     "published": "2026-11-11T19:09:50Z",
+     "dur": "42 min",
+     "audio": "https://serve.castfire.com/audio/8990022/8990022_2026-11-11-190322.128.mp3?rssID=3125"
+    },
+    {
      "id": "dc0af8c8ec",
      "title": "SMU’s Gritty FSU Win and Dabo Swinney’s Growing Clemson Crisis",
      "published": "2026-09-08T18:00:00Z",
@@ -697,6 +711,22 @@
  ],
  "new": [
   {
+   "key": "kc-masterpiece",
+   "id": "9d8cab9375"
+  },
+  {
+   "key": "kc-masterpiece",
+   "id": "ce5f382ba7"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "75c8b87ae3"
+  },
+  {
+   "key": "mustang-mood",
+   "id": "82726897a7"
+  },
+  {
    "key": "locked-on-smu",
    "id": "71ea5efcdd"
   },
@@ -707,10 +737,6 @@
   {
    "key": "locked-on-acc",
    "id": "c2ff5cb798"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "39aae72a7c"
   },
   {
    "key": "on-the-pony-express",
@@ -729,20 +755,8 @@
    "id": "4b15a02d8c"
   },
   {
-   "key": "mustang-mood",
-   "id": "53a0e91169"
-  },
-  {
    "key": "mustang-studios",
    "id": "ab1cc1767f"
-  },
-  {
-   "key": "all-access-am",
-   "id": "172a0817ec"
-  },
-  {
-   "key": "dmn",
-   "id": "60dbcf8849"
   }
  ]
 }
