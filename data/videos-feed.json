@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T21:23:17Z",
+ "updated": "2026-11-11T22:15:30Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,7 +99,7 @@
      "id": "MN3q0q8j8Is",
      "title": "SMU Men's Basketball: Postgame Press Conference vs PVAMU 11-10-26",
      "published": "2026-11-11T03:58:32+00:00",
-     "views": 60,
+     "views": 79,
      "dur": "12:48"
     },
     {
@@ -169,7 +169,7 @@
      "id": "dMa89F1qHmw",
      "title": "SMU Football: Game Highlights vs. Virginia Tech 11-6-26",
      "published": "2026-11-07T04:11:32+00:00",
-     "views": 615,
+     "views": 617,
      "dur": "7:57"
     },
     {
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 1731,
+     "views": 1741,
      "dur": "10:24"
     },
     {
@@ -204,7 +204,7 @@
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2789,
+     "views": 2790,
      "dur": "14:09"
     },
     {
@@ -232,7 +232,7 @@
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15499,
+     "views": 15500,
      "dur": "19:34"
     },
     {
@@ -246,14 +246,14 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3874,
+     "views": 3876,
      "dur": "34:46"
     },
     {
      "id": "QyNyJTuz_sA",
      "title": "UNTOLD: Brandon Booker & La'Modrick Spencer - Episode 2 | SMU Football",
      "published": "2026-08-11T00:39:38+00:00",
-     "views": 3330,
+     "views": 3331,
      "dur": "21:39"
     },
     {
@@ -267,7 +267,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3162,
+     "views": 3164,
      "dur": "1:21:59"
     }
    ]
@@ -288,7 +288,6 @@
      "id": "gw9zxZwvGKs",
      "title": "SMU vs Virginia Tech Preview, Soccer & Volleyball DOMINATE, Plus Special Guests! | The 214",
      "published": "2026-11-05T00:00:08+00:00",
-     "views": 75,
      "dur": "40:35"
     },
     {
@@ -332,7 +331,7 @@
      "id": "E-5SVGtI-6Q",
      "title": "Walking 'Strong with Bill Armstrong: SMU's dominant win vs. Virginia Tech, look ahead to Wake Forest",
      "published": "2026-11-11T19:36:40+00:00",
-     "views": 122,
+     "views": 180,
      "dur": "40:26"
     },
     {
@@ -353,7 +352,7 @@
      "id": "AyiYHYYioSU",
      "title": "SMU G David Terrell and C Johan Munch on the team's progression after 98-63 win vs. PVAMU",
      "published": "2026-11-11T03:39:26+00:00",
-     "views": 34,
+     "views": 40,
      "dur": "4:20"
     },
     {
@@ -422,7 +421,7 @@
      "id": "SVjF_N8drT4",
      "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
      "published": "2026-11-11T15:00:09+00:00",
-     "views": 193,
+     "views": 199,
      "dur": "24:47"
     },
     {
@@ -450,7 +449,7 @@
      "id": "MjbcW8pvKg4",
      "title": "MUST-WIN: SMU Mustangs and Rhett Lashlee on the BRINK—Can They SURVIVE Virginia Tech’s Challenge?",
      "published": "2026-11-06T16:00:10+00:00",
-     "views": 297,
+     "views": 298,
      "dur": "29:54"
     },
     {
@@ -541,7 +540,7 @@
      "id": "boM9J6icbX4",
      "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
      "published": "2026-10-31T21:30:40+00:00",
-     "views": 852,
+     "views": 854,
      "dur": "28:28"
     },
     {
@@ -799,7 +798,7 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1413,
+     "views": 1449,
      "dur": "32:33"
     },
     {
@@ -833,7 +832,6 @@
      "id": "c5ak-NnMNHc",
      "title": "SMU Men's Basketball Starts 3-0 🔥 Coach Andy Enfield Joins | Ultimate Dallas Sports Show",
      "published": "2026-11-11T19:00:26+00:00",
-     "views": 15,
      "dur": "16:03",
      "nomax": true
     },
@@ -857,7 +855,16 @@
    "name": "NBC DFW",
    "url": "https://www.youtube.com/@nbcdfw",
    "broad": true,
-   "videos": []
+   "videos": [
+    {
+     "id": "u7o4jEtewio",
+     "title": "SMU invites North Texans to join homecoming celebrations as university strengthens community ties",
+     "published": "2026-11-11T21:48:49+00:00",
+     "views": 4,
+     "dur": "2:56",
+     "nomax": true
+    }
+   ]
   },
   {
    "key": "cbstexas",
@@ -882,6 +889,10 @@
   }
  ],
  "new": [
+  {
+   "key": "nbcdfw",
+   "id": "u7o4jEtewio"
+  },
   {
    "key": "on-the-pony-express",
    "id": "E-5SVGtI-6Q"
@@ -925,10 +936,6 @@
   {
    "key": "smu-mustangs",
    "id": "aPHkPI_O9ig"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "03nBx3HEm4M"
   }
  ]
 }

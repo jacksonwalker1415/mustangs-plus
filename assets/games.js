@@ -71,8 +71,10 @@ window.MP=window.MP||{};MP.GAMES={
 "links": {
 "watch": "https://www.nbcsports.com/watch/schedule",
 "listen": "https://smumustangs.com/showcase?Live=5385",
+"stats": "https://stats.statbroadcast.com/broadcast/?id=672925&vislive=smu",
 "gamecenter": "https://smumustangs.com/game-center/14446"
-}
+},
+"sb": 672925
 },
 {
 "id": "fb-14457",
