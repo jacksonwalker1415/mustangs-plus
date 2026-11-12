@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12T04:14:56Z",
+ "generated": "2026-11-12T06:15:05Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "1c0deb7b7f",
+     "title": "SMU vs. Wake Forest game preview, predictions for Week 11 | Revenge game on Senior Day, Homecoming",
+     "published": "2026-11-12T06:14:31Z",
+     "dur": "1 hr 26 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/49cdacd7-b774-441a-8b39-d28822db12d4/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=49cdacd7-b774-441a-8b39-d28822db12d4&feed=eSeVNxtA"
+    },
     {
      "id": "cdaa8ddc37",
      "title": "Walking 'Strong with Bill Armstrong: SMU's dominant win vs. Virginia Tech, look ahead to Wake Forest",
@@ -95,14 +102,6 @@
      "dur": "42 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/27e9273b-d6fc-4443-8bd2-0ee8904385e1/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=27e9273b-d6fc-4443-8bd2-0ee8904385e1&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-fafo-loss-at/id1604025463?i=1000799838231"
-    },
-    {
-     "id": "74c7645d92",
-     "title": "Final thoughts on SMU loss at Syracuse, can Mustangs bounce back in Week 10? | SMU Football Podcast",
-     "published": "2026-11-03T13:08:50Z",
-     "dur": "1 hr 9 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/89b0af52-0d7e-4425-9858-3fe5009f458e/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=89b0af52-0d7e-4425-9858-3fe5009f458e&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-on-smu-loss-at-syracuse-can-mustangs/id1604025463?i=1000799606140"
     }
    ]
   },
@@ -714,6 +713,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "1c0deb7b7f"
+  },
+  {
    "key": "mustang-studios",
    "id": "a1c491148e"
   },
@@ -728,10 +731,6 @@
   {
    "key": "kc-masterpiece",
    "id": "ce5f382ba7"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "d22d7f32c8"
   },
   {
    "key": "locked-on-smu",
