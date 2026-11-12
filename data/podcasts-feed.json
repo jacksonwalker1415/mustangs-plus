@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12T06:15:05Z",
+ "generated": "2026-11-12T19:15:34Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "057448e81b",
+     "title": "The Mustang Mood: SMU vs Wake Forest Preview - an ACC Showdown",
+     "published": "2026-11-12T14:25:07Z",
+     "dur": "27 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/21af6efb-1b63-4ad9-9e06-318dd1075683/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=21af6efb-1b63-4ad9-9e06-318dd1075683&feed=eSeVNxtA"
+    },
     {
      "id": "1c0deb7b7f",
      "title": "SMU vs. Wake Forest game preview, predictions for Week 11 | Revenge game on Senior Day, Homecoming",
@@ -94,14 +101,6 @@
      "dur": "1 hr 6 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/143fee14-b252-40f1-a7bb-69ac6b906c05/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=143fee14-b252-40f1-a7bb-69ac6b906c05&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-tech-game-preview-predictions-for-week/id1604025463?i=1000800036728"
-    },
-    {
-     "id": "c968c62eb5",
-     "title": "Walking 'Strong with Bill Armstrong: SMU's FAFO loss at Syracuse, Virginia Tech game preview",
-     "published": "2026-11-04T17:00:00Z",
-     "dur": "42 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/27e9273b-d6fc-4443-8bd2-0ee8904385e1/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=27e9273b-d6fc-4443-8bd2-0ee8904385e1&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-fafo-loss-at/id1604025463?i=1000799838231"
     }
    ]
   },
@@ -112,6 +111,13 @@
    "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
+    {
+     "id": "9b619733e0",
+     "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
+     "published": "2026-11-12T17:00:00Z",
+     "dur": "27 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/e426b6de-5c3d-46a3-a912-02372c46e846/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=e426b6de-5c3d-46a3-a912-02372c46e846&feed=MciFpBoA"
+    },
     {
      "id": "75c8b87ae3",
      "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
@@ -199,14 +205,6 @@
      "dur": "36 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/a259f348-8783-4761-b2db-d1f10f7bdca3/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=a259f348-8783-4761-b2db-d1f10f7bdca3&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/acc-squad-nc-state-has-fired-dave-doeren-how-this-impacts-smu/id1824252582?i=1000798778940"
-    },
-    {
-     "id": "e4f9193cd0",
-     "title": "CROSSOVER: SMU Faces MUST WIN Scenario at Syracuse — Is There a SHOOTOUT Brewing?",
-     "published": "2026-10-29T04:00:00Z",
-     "dur": "31 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/c9cbcdc6-2fb9-4ed2-a210-912182ec0807/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=c9cbcdc6-2fb9-4ed2-a210-912182ec0807&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/crossover-smu-faces-must-win-scenario-at-syracuse-is/id1824252582?i=1000798715722"
     }
    ]
   },
@@ -426,6 +424,13 @@
    "spotify": "https://open.spotify.com/show/3T8zaBlk1yDnsfmfRdj401",
    "art": "assets/img/pods/all-access-am.webp",
    "episodes": [
+    {
+     "id": "b485157f12",
+     "title": "Darian Mensah Bowl for Miami vs. Duke | SMU hosts Wake Forest in CFP battle | Week 11 ACC Preview",
+     "published": "2026-11-12T15:17:21Z",
+     "dur": "40 min",
+     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/f55516de-5b96-4721-ae78-27c13afd970d/group-item/61491937-e27f-4c42-8de4-acd6079a88e5/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol"
+    },
     {
      "id": "172a0817ec",
      "title": "No. 1 Miami on Upset Alert at UNC? | New SMU look | Week 9 College Football ACC Game Previews, Picks",
@@ -700,6 +705,13 @@
    "art": "assets/img/pods/dmn.webp",
    "episodes": [
     {
+     "id": "ac3cd49548",
+     "title": "DMN Morning Debrief: Family and community members continue to honor and search for SMU professor Charles Hosch, who disappeared while hiking the Appalachian Trail.",
+     "published": "2026-11-12T19:00:00Z",
+     "dur": "7 min",
+     "audio": "https://mgln.ai/e/211/traffic.megaphone.fm/SFO9889546070.mp3"
+    },
+    {
      "id": "60dbcf8849",
      "title": "DMN Morning Debrief: SMU's win over Cal showed Mustangs' depth at running back, for now and years to come",
      "published": "2026-10-26T17:00:00Z",
@@ -713,16 +725,28 @@
  ],
  "new": [
   {
+   "key": "dmn",
+   "id": "ac3cd49548"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "9b619733e0"
+  },
+  {
+   "key": "all-access-am",
+   "id": "b485157f12"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "057448e81b"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "1c0deb7b7f"
   },
   {
    "key": "mustang-studios",
    "id": "a1c491148e"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "cdaa8ddc37"
   },
   {
    "key": "kc-masterpiece",
@@ -741,24 +765,12 @@
    "id": "82726897a7"
   },
   {
-   "key": "locked-on-smu",
-   "id": "71ea5efcdd"
-  },
-  {
    "key": "locked-on-acc",
    "id": "c2ff5cb798"
   },
   {
    "key": "mustang-mood",
    "id": "8114fbc3f6"
-  },
-  {
-   "key": "locked-on-acc",
-   "id": "441a8fea0f"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "4b15a02d8c"
   }
  ]
 }
