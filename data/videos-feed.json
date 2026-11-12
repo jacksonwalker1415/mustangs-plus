@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T19:15:34Z",
+ "updated": "2026-11-12T20:17:21Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,7 +106,7 @@
      "id": "jL_VHPkfmSg",
      "title": "SMU Women's Basketball: Game Highlights vs. LIU 11-11-26",
      "published": "2026-11-12T02:19:14+00:00",
-     "views": 46,
+     "views": 47,
      "dur": "5:56"
     },
     {
@@ -134,7 +134,7 @@
      "id": "uCmma3XJv6k",
      "title": "SMU Men's Soccer Game Highlights vs Virginia 11-8-2026",
      "published": "2026-11-09T20:38:08+00:00",
-     "views": 207,
+     "views": 208,
      "dur": "8:38"
     },
     {
@@ -148,7 +148,7 @@
      "id": "6QDDmbBqN8s",
      "title": "SMU Women's Basketball: Game Highlights vs. East Texas A&M 11-8-26",
      "published": "2026-11-09T02:28:00+00:00",
-     "views": 156,
+     "views": 158,
      "dur": "5:59"
     },
     {
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 1988,
+     "views": 1993,
      "dur": "10:24"
     },
     {
@@ -337,21 +337,21 @@
      "id": "3WLdSvNW4hI",
      "title": "The Mustang Mood: SMU vs Wake Forest Preview - an ACC Showdown",
      "published": "2026-11-12T14:11:48+00:00",
-     "views": 46,
+     "views": 99,
      "dur": "26:37"
     },
     {
      "id": "hrZypRWPQ1M",
      "title": "SMU vs. Wake Forest game preview, predictions for Week 11 | Revenge game on Senior Day, Homecoming",
      "published": "2026-11-12T06:13:36+00:00",
-     "views": 287,
+     "views": 327,
      "dur": "1:26:21"
     },
     {
      "id": "E-5SVGtI-6Q",
      "title": "Walking 'Strong with Bill Armstrong: SMU's dominant win vs. Virginia Tech, look ahead to Wake Forest",
      "published": "2026-11-11T19:36:40+00:00",
-     "views": 1229,
+     "views": 1238,
      "dur": "40:26"
     },
     {
@@ -427,7 +427,7 @@
      "id": "GDkzeBDRFyw",
      "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
      "published": "2026-11-12T17:00:10+00:00",
-     "views": 29,
+     "views": 63,
      "dur": "27:22"
     },
     {
@@ -476,7 +476,7 @@
      "id": "UWZWVjJnd1Y",
      "title": "Will SMU Protect Kevin Jennings From ELITE Sack Threat? PLUS, College Football Playoff Reaction",
      "published": "2026-11-04T16:00:07+00:00",
-     "views": 363,
+     "views": 364,
      "dur": "29:51"
     },
     {
@@ -524,7 +524,7 @@
      "id": "mbsnelZEcOg",
      "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
      "published": "2026-11-11T13:26:45+00:00",
-     "views": 37,
+     "views": 38,
      "dur": "23:57"
     },
     {
@@ -643,7 +643,7 @@
      "id": "Wv8bvkIVj10",
      "title": "SMU vs. Virginia Tech",
      "published": "2026-11-07T16:24:36+00:00",
-     "views": 97,
+     "views": 98,
      "dur": "3:25:06",
      "nomax": true
     },
@@ -809,14 +809,14 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1502,
+     "views": 1506,
      "dur": "32:33"
     },
     {
      "id": "qa99l4IcFfQ",
      "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
      "published": "2026-11-06T00:00:10+00:00",
-     "views": 3019,
+     "views": 3020,
      "dur": "33:25"
     },
     {
@@ -843,7 +843,7 @@
      "id": "5TJdkbI-_44",
      "title": "SMU Homecoming Weekend - the university is inviting all of Dallas to show off some hometown pride!",
      "published": "2026-11-12T18:08:59+00:00",
-     "views": 24,
+     "views": 75,
      "dur": "3:53",
      "nomax": true
     },
@@ -872,7 +872,7 @@
      "id": "Occ81EzTcVE",
      "title": "Ranked SMU Mustangs gear up for ACC homecoming game",
      "published": "2026-11-12T17:02:03+00:00",
-     "views": 13,
+     "views": 156,
      "dur": "3:31"
     }
    ]

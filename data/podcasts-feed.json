@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12T19:15:34Z",
+ "generated": "2026-11-12T20:17:21Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -216,6 +216,13 @@
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
     {
+     "id": "d31108f4b5",
+     "title": "SMU vs Wake Forest Preview: an ACC Showdown",
+     "published": "2026-11-12T13:59:18Z",
+     "dur": "27 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129322580/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-12%2F436574135-44100-2-695a2088cb159.mp3"
+    },
+    {
      "id": "82726897a7",
      "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
      "published": "2026-11-11T13:26:13Z",
@@ -302,14 +309,6 @@
      "dur": "17 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126914832/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-6%2F433449244-44100-2-d42b9aa01986d.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-volleyball-vs-no-2-pitt-biggest-test-of-the/id1734256145?i=1000794056617"
-    },
-    {
-     "id": "381aeeb947",
-     "title": "SMU defeats Boston College 25-16 | Marques White, Kevin Jennings & Becoming Hard to Beat",
-     "published": "2026-10-03T23:50:37Z",
-     "dur": "19 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126764717/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-3%2F433262685-44100-2-8cebfb15827bc.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-defeats-boston-college-25-16-marques-white-kevin/id1734256145?i=1000793033080"
     }
    ]
   },
@@ -741,6 +740,10 @@
    "id": "057448e81b"
   },
   {
+   "key": "mustang-mood",
+   "id": "d31108f4b5"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "1c0deb7b7f"
   },
@@ -767,10 +770,6 @@
   {
    "key": "locked-on-acc",
    "id": "c2ff5cb798"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "8114fbc3f6"
   }
  ]
 }
