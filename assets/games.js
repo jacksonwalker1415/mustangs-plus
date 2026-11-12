@@ -892,6 +892,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": "W 69-50",
 "links": {
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/liu/boxscore/14728",
+"recap": "https://smumustangs.com/news/2026/11/11/womens-basketball-mustangs-cruise-to-a-69-50-win-over-liu",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22080",
 "gamecenter": "https://smumustangs.com/game-center/14728"
 },
