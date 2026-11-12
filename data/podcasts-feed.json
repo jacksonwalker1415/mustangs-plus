@@ -704,13 +704,6 @@
    "art": "assets/img/pods/dmn.webp",
    "episodes": [
     {
-     "id": "ac3cd49548",
-     "title": "DMN Morning Debrief: Family and community members continue to honor and search for SMU professor Charles Hosch, who disappeared while hiking the Appalachian Trail.",
-     "published": "2026-11-12T19:00:00Z",
-     "dur": "7 min",
-     "audio": "https://mgln.ai/e/211/traffic.megaphone.fm/SFO9889546070.mp3"
-    },
-    {
      "id": "60dbcf8849",
      "title": "DMN Morning Debrief: SMU's win over Cal showed Mustangs' depth at running back, for now and years to come",
      "published": "2026-10-26T17:00:00Z",
@@ -723,10 +716,6 @@
   }
  ],
  "new": [
-  {
-   "key": "dmn",
-   "id": "ac3cd49548"
-  },
   {
    "key": "locked-on-smu",
    "id": "9b619733e0"

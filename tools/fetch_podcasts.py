@@ -28,6 +28,15 @@ IT = "{http://www.itunes.com/dtds/podcast-1.0.dtd}"
 FILTERS = {"smu": re.compile(r"\bSMU\b|Mustangs|Lashlee|Kevin Jennings", re.I)}
 # Episodes titled around recruits (often high-school players) stay off the page, in every show.
 RECRUIT = re.compile(r"\brecruit|\bcommits?\b|\bcommitment|\b[345]-star\b|\bofficial visit", re.I)
+# Broader news shows (filter "smu") also post non-sports SMU news. Jackson wants only sports media on the site
+# (Nov 1, 2026), so a news headline (a death, crash, crime, missing person, campus story) is skipped unless the
+# title is also about athletics.
+NEWS = re.compile(r"\b(killed|kills?|dies|died|death|deaths|dead|crash(?:es|ed)?|obituar\w*|memorial|funeral|vigil|"
+                  r"mourn\w*|shooting|murder\w*|homicide|stabb\w*|arrest\w*|charged|wreck|missing|disappear\w*|"
+                  r"search(?:es|ed|ing)? for|professor|faculty|police|lawsuit|hiking|trail)\b", re.I)
+SPORTS = re.compile(r"\b(coach\w*|football|basketball|soccer|volleyball|baseball|softball|golf|tennis|swim\w*|rowing|"
+                    r"track|equestrian|athlet\w*|players?|quarterback|QB|running back|game|season|team|ACC|NCAA|bowl|"
+                    r"stadium|win|wins|loss|beat\w*|NIL|Lashlee|Jennings)\b", re.I)
 
 
 def get(url, tries=3, binary=False):
@@ -187,6 +196,8 @@ def main():
             if drop and t.startswith(drop):
                 continue
             if RECRUIT.search(t):
+                continue
+            if f and NEWS.search(t) and not SPORTS.search(t):
                 continue
             n = norm(t)
             if base(t) in other or (other_tag and other_tag.search(t)) or n in seen:
