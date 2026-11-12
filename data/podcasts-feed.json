@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-11T23:13:50Z",
+ "generated": "2026-11-12T01:21:53Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -324,6 +324,13 @@
    "art": "assets/img/pods/mustang-studios.webp",
    "episodes": [
     {
+     "id": "a1c491148e",
+     "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
+     "published": "2026-11-12T00:00:01Z",
+     "dur": "42 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/129287568/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-11%2F436528292-44100-2-3ad1be9c9bb4c.mp3"
+    },
+    {
      "id": "4b15a02d8c",
      "title": "SMU Basketball 2026–27 Preview: What Makes These Mustang Hoopers Different | The Five",
      "published": "2026-11-05T22:00:01Z",
@@ -410,14 +417,6 @@
      "dur": "3 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/126974972/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-6%2F433524961-44100-2-c07bc008e745d.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/dallas-born-mustang-made-the-william-nettles-story/id1896902919?i=1000793547148"
-    },
-    {
-     "id": "9311c8a834",
-     "title": "Ty Hawkins Wants the Ball When It Matters",
-     "published": "2026-10-06T01:00:41Z",
-     "dur": "2 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/126908541/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-6%2F433440216-44100-2-e602a914d22e2.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/ty-hawkins-wants-the-ball-when-it-matters/id1896902919?i=1000793348062"
     }
    ]
   },
@@ -713,6 +712,10 @@
  ],
  "new": [
   {
+   "key": "mustang-studios",
+   "id": "a1c491148e"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "cdaa8ddc37"
   },
@@ -755,10 +758,6 @@
   {
    "key": "mustang-studios",
    "id": "4b15a02d8c"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "ab1cc1767f"
   }
  ]
 }
