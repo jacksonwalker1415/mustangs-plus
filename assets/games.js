@@ -284,7 +284,7 @@ window.MP=window.MP||{};MP.GAMES={
 "opp": "Minnesota",
 "ex": false,
 "venue": "",
-"city": "Frisco, Texas (Comerica Center)",
+"city": "Frisco, Texas (Fifth Third Arena)",
 "time": "12:30 p.m. CT",
 "ko": "2026-12-12T12:30:00-06:00",
 "tv": "CW & ESPN App",

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T02:25:11Z",
+ "updated": "2026-11-12T05:20:30Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,24 +96,38 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "2zHMHmo92-g",
+     "title": "SMU Women's Basketball: Postgame Press Conference vs LIU 11-11-26",
+     "published": "2026-11-12T03:48:50+00:00",
+     "views": 9,
+     "dur": "8:32"
+    },
+    {
+     "id": "jL_VHPkfmSg",
+     "title": "SMU Women's Basketball: Game Highlights vs. LIU 11-11-26",
+     "published": "2026-11-12T02:19:14+00:00",
+     "views": 17,
+     "dur": "5:56"
+    },
+    {
      "id": "MN3q0q8j8Is",
      "title": "SMU Men's Basketball: Postgame Press Conference vs PVAMU 11-10-26",
      "published": "2026-11-11T03:58:32+00:00",
-     "views": 90,
+     "views": 101,
      "dur": "12:48"
     },
     {
      "id": "aPHkPI_O9ig",
      "title": "SMU Men's Basketball: Game Highlights vs. Prairie View A&M 11-10-26",
      "published": "2026-11-11T03:19:31+00:00",
-     "views": 117,
+     "views": 118,
      "dur": "6:00"
     },
     {
      "id": "03nBx3HEm4M",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-10-26",
      "published": "2026-11-10T17:16:56+00:00",
-     "views": 235,
+     "views": 244,
      "dur": "19:25"
     },
     {
@@ -127,7 +141,7 @@
      "id": "ebDKOpp3ymM",
      "title": "SMU Women's Basketball: Postgame Press Conference vs ETAMU 11-8-26",
      "published": "2026-11-09T02:50:18+00:00",
-     "views": 114,
+     "views": 115,
      "dur": "8:53"
     },
     {
@@ -148,7 +162,7 @@
      "id": "nW3Sis0dSQM",
      "title": "SMU Volleyball Post Match Press Conference vs. Duke 11-8-26",
      "published": "2026-11-08T21:47:49+00:00",
-     "views": 61,
+     "views": 62,
      "dur": "8:37"
     },
     {
@@ -162,22 +176,8 @@
      "id": "Axb9_Q1tigM",
      "title": "SMU Football: Postgame Press Conference vs Virginia Tech 11-6-26",
      "published": "2026-11-07T04:49:39+00:00",
-     "views": 550,
+     "views": 551,
      "dur": "30:37"
-    },
-    {
-     "id": "dMa89F1qHmw",
-     "title": "SMU Football: Game Highlights vs. Virginia Tech 11-6-26",
-     "published": "2026-11-07T04:11:32+00:00",
-     "views": 619,
-     "dur": "7:57"
-    },
-    {
-     "id": "bJe2x4knGPU",
-     "title": "SMU Volleyball Post Match Press Conference vs. North Carolina 11-6-26",
-     "published": "2026-11-06T21:09:14+00:00",
-     "views": 105,
-     "dur": "8:43"
     }
    ]
   },
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 1836,
+     "views": 1844,
      "dur": "10:24"
     },
     {
@@ -204,7 +204,7 @@
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2793,
+     "views": 2795,
      "dur": "14:09"
     },
     {
@@ -232,7 +232,7 @@
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15500,
+     "views": 15501,
      "dur": "19:34"
     },
     {
@@ -246,7 +246,7 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3876,
+     "views": 3877,
      "dur": "34:46"
     },
     {
@@ -281,14 +281,13 @@
      "id": "3psTH9Ey25c",
      "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
      "published": "2026-11-12T00:00:09+00:00",
-     "views": 9,
+     "views": 27,
      "dur": "42:18"
     },
     {
      "id": "RU9nBkdqdjA",
      "title": "SMU Basketball 2026–27 Preview: What Makes These Mustang Hoopers Different | The Five",
      "published": "2026-11-05T22:00:09+00:00",
-     "views": 77,
      "dur": "21:51"
     },
     {
@@ -428,21 +427,21 @@
      "id": "SVjF_N8drT4",
      "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
      "published": "2026-11-11T15:00:09+00:00",
-     "views": 273,
+     "views": 281,
      "dur": "24:47"
     },
     {
      "id": "u8SXJO_D838",
      "title": "DYNAMIC: SMU Mustangs BACKFIELD SURGES as Kendrick Raphael, Christian Rhodes, Dramekco Green IMPRESS",
      "published": "2026-11-10T14:00:08+00:00",
-     "views": 320,
+     "views": 323,
      "dur": "29:48"
     },
     {
      "id": "5wLk0sx7Gwg",
      "title": "STATEMENT: SMU and Kevin Jennings DOMINATE Virginia Tech, Why THAT TEAM Can Beat Wake Forest!",
      "published": "2026-11-09T14:00:09+00:00",
-     "views": 623,
+     "views": 631,
      "dur": "26:53"
     },
     {
@@ -456,7 +455,7 @@
      "id": "MjbcW8pvKg4",
      "title": "MUST-WIN: SMU Mustangs and Rhett Lashlee on the BRINK—Can They SURVIVE Virginia Tech’s Challenge?",
      "published": "2026-11-06T16:00:10+00:00",
-     "views": 299,
+     "views": 300,
      "dur": "29:54"
     },
     {
@@ -519,7 +518,7 @@
      "id": "mbsnelZEcOg",
      "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
      "published": "2026-11-11T13:26:45+00:00",
-     "views": 16,
+     "views": 25,
      "dur": "23:57"
     },
     {
@@ -804,14 +803,14 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1471,
+     "views": 1481,
      "dur": "32:33"
     },
     {
      "id": "qa99l4IcFfQ",
      "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
      "published": "2026-11-06T00:00:10+00:00",
-     "views": 2998,
+     "views": 3002,
      "dur": "33:25"
     },
     {
@@ -895,6 +894,14 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "2zHMHmo92-g"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "jL_VHPkfmSg"
+  },
+  {
    "key": "mustang-studios",
    "id": "3psTH9Ey25c"
   },
@@ -933,14 +940,6 @@
   {
    "key": "acc-digital-network",
    "id": "zygcFNqbevE"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "hc0H_at_qJ0"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "4UqH31A_md8"
   }
  ]
 }
