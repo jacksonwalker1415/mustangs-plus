@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T12:17:11Z",
+ "updated": "2026-11-13T19:20:32Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,31 +96,45 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "cwmmrQzx0is",
+     "title": "SMU Men's Soccer Post Game Press Conference vs Syracuse 11-12-2026",
+     "published": "2026-11-13T18:49:43+00:00",
+     "views": 4,
+     "dur": "14:47"
+    },
+    {
+     "id": "-kKyiEoPT2M",
+     "title": "SMU Men's Soccer Game Highlights vs Syracuse 11-12-2026",
+     "published": "2026-11-13T15:43:07+00:00",
+     "views": 11,
+     "dur": "4:52"
+    },
+    {
      "id": "SaO61GtkYUk",
      "title": "SMU Volleyball Match Highlights vs. Louisville 11-12-26",
      "published": "2026-11-13T05:46:04+00:00",
-     "views": 14,
+     "views": 151,
      "dur": "6:30"
     },
     {
      "id": "XdVzgVaFCQ4",
      "title": "SMU Volleyball Post-Match Press Conference vs. Louisville 11-12-26",
      "published": "2026-11-13T05:29:01+00:00",
-     "views": 32,
+     "views": 113,
      "dur": "12:48"
     },
     {
      "id": "2zHMHmo92-g",
      "title": "SMU Women's Basketball: Postgame Press Conference vs LIU 11-11-26",
      "published": "2026-11-12T03:48:50+00:00",
-     "views": 69,
+     "views": 74,
      "dur": "8:32"
     },
     {
      "id": "jL_VHPkfmSg",
      "title": "SMU Women's Basketball: Game Highlights vs. LIU 11-11-26",
      "published": "2026-11-12T02:19:14+00:00",
-     "views": 52,
+     "views": 56,
      "dur": "5:56"
     },
     {
@@ -148,7 +162,7 @@
      "id": "uCmma3XJv6k",
      "title": "SMU Men's Soccer Game Highlights vs Virginia 11-8-2026",
      "published": "2026-11-09T20:38:08+00:00",
-     "views": 222,
+     "views": 226,
      "dur": "8:38"
     },
     {
@@ -162,22 +176,8 @@
      "id": "6QDDmbBqN8s",
      "title": "SMU Women's Basketball: Game Highlights vs. East Texas A&M 11-8-26",
      "published": "2026-11-09T02:28:00+00:00",
-     "views": 161,
+     "views": 162,
      "dur": "5:59"
-    },
-    {
-     "id": "6QRfvB9CloE",
-     "title": "SMU Men's Soccer Post Game Press Conference vs Virginia 11-08-2026",
-     "published": "2026-11-09T01:10:14+00:00",
-     "views": 208,
-     "dur": "23:04"
-    },
-    {
-     "id": "nW3Sis0dSQM",
-     "title": "SMU Volleyball Post Match Press Conference vs. Duke 11-8-26",
-     "published": "2026-11-08T21:47:49+00:00",
-     "views": 65,
-     "dur": "8:37"
     }
    ]
   },
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2144,
+     "views": 2164,
      "dur": "10:24"
     },
     {
@@ -204,14 +204,14 @@
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2804,
+     "views": 2805,
      "dur": "14:09"
     },
     {
      "id": "uArmMAjtgLI",
      "title": "The Boston College Mini-Movie | SMU Football",
      "published": "2026-10-05T23:50:08+00:00",
-     "views": 1987,
+     "views": 1990,
      "dur": "9:35"
     },
     {
@@ -225,14 +225,14 @@
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3755,
+     "views": 3756,
      "dur": "10:30"
     },
     {
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15512,
+     "views": 15515,
      "dur": "19:34"
     },
     {
@@ -246,7 +246,7 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3883,
+     "views": 3884,
      "dur": "34:46"
     },
     {
@@ -267,7 +267,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3165,
+     "views": 3166,
      "dur": "1:21:59"
     }
    ]
@@ -278,10 +278,17 @@
    "url": "https://www.youtube.com/@MustangStudiosCo",
    "videos": [
     {
+     "id": "FBhZkBqWbu4",
+     "title": "Jermaine O'Neal Jr. & Jaden Toombs: Brothers Before SMU | The Five",
+     "published": "2026-11-13T17:00:10+00:00",
+     "views": 6,
+     "dur": "22:52"
+    },
+    {
      "id": "3psTH9Ey25c",
      "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
      "published": "2026-11-12T00:00:09+00:00",
-     "views": 84,
+     "views": 85,
      "dur": "42:18"
     },
     {
@@ -337,35 +344,35 @@
      "id": "sBezP1Hcq4c",
      "title": "Pat & Go: SMU vs. Wake Forest Game Preview, Predictions | QB Chronicles Podcast",
      "published": "2026-11-13T06:00:00+00:00",
-     "views": 34,
+     "views": 176,
      "dur": "17:40"
     },
     {
      "id": "3WLdSvNW4hI",
      "title": "The Mustang Mood: SMU vs Wake Forest Preview - an ACC Showdown",
      "published": "2026-11-12T14:11:48+00:00",
-     "views": 211,
+     "views": 214,
      "dur": "26:37"
     },
     {
      "id": "hrZypRWPQ1M",
      "title": "SMU vs. Wake Forest game preview, predictions for Week 11 | Revenge game on Senior Day, Homecoming",
      "published": "2026-11-12T06:13:36+00:00",
-     "views": 622,
+     "views": 666,
      "dur": "1:26:21"
     },
     {
      "id": "E-5SVGtI-6Q",
      "title": "Walking 'Strong with Bill Armstrong: SMU's dominant win vs. Virginia Tech, look ahead to Wake Forest",
      "published": "2026-11-11T19:36:40+00:00",
-     "views": 1524,
+     "views": 1580,
      "dur": "40:26"
     },
     {
      "id": "2S4wQEnyEpM",
      "title": "The Mustang Mood: SMU Volleyball vs. Louisville - Can the Mustangs Take Down the No. 3 Cardinals?",
      "published": "2026-11-11T13:45:07+00:00",
-     "views": 83,
+     "views": 87,
      "dur": "23:57"
     },
     {
@@ -379,42 +386,42 @@
      "id": "AyiYHYYioSU",
      "title": "SMU G David Terrell and C Johan Munch on the team's progression after 98-63 win vs. PVAMU",
      "published": "2026-11-11T03:39:26+00:00",
-     "views": 49,
+     "views": 50,
      "dur": "4:20"
     },
     {
      "id": "nZcdvAzvvpk",
      "title": "SMU Football recruiting approaches key 4-star decisions with TK Gaines, Kamieon Compton-Nero",
      "published": "2026-11-10T21:52:03+00:00",
-     "views": 485,
+     "views": 488,
      "dur": "36:01"
     },
     {
      "id": "8WGftwS8zPg",
      "title": "SMU QB Kevin Jennings on Senior Day, taking on a talented Wake Forest team",
      "published": "2026-11-10T20:00:29+00:00",
-     "views": 145,
+     "views": 149,
      "dur": "3:40"
     },
     {
      "id": "Hhh3_exMHXY",
      "title": "SMU HC Rhett Lashlee previews game vs. Wake Forest, gives thoughts on 24-team CFP",
      "published": "2026-11-10T17:53:56+00:00",
-     "views": 1310,
+     "views": 1322,
      "dur": "15:51"
     },
     {
      "id": "KN0ujowoFew",
      "title": "Final thoughts on SMU beating Virginia Tech, dominant win over Hokies | SMU Football Podcast",
      "published": "2026-11-10T05:01:09+00:00",
-     "views": 493,
+     "views": 494,
      "dur": "48:44"
     },
     {
      "id": "FujXgS_pE-4",
      "title": "SMU vs. Virginia Tech Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-09T13:58:27+00:00",
-     "views": 310,
+     "views": 311,
      "dur": "17:17"
     }
    ]
@@ -425,24 +432,31 @@
    "url": "https://www.youtube.com/@LockedOnSMU",
    "videos": [
     {
+     "id": "t-r1tbHc3fw",
+     "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
+     "published": "2026-11-13T16:00:06+00:00",
+     "views": 69,
+     "dur": "28:49"
+    },
+    {
      "id": "BTTQ5YO3gMA",
      "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
      "published": "2026-11-12T22:00:08+00:00",
-     "views": 108,
+     "views": 129,
      "dur": "34:02"
     },
     {
      "id": "GDkzeBDRFyw",
      "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
      "published": "2026-11-12T17:00:10+00:00",
-     "views": 264,
+     "views": 286,
      "dur": "27:22"
     },
     {
      "id": "SVjF_N8drT4",
      "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
      "published": "2026-11-11T15:00:09+00:00",
-     "views": 483,
+     "views": 487,
      "dur": "24:47"
     },
     {
@@ -470,7 +484,7 @@
      "id": "MjbcW8pvKg4",
      "title": "MUST-WIN: SMU Mustangs and Rhett Lashlee on the BRINK—Can They SURVIVE Virginia Tech’s Challenge?",
      "published": "2026-11-06T16:00:10+00:00",
-     "views": 300,
+     "views": 301,
      "dur": "29:54"
     },
     {
@@ -500,13 +514,6 @@
      "published": "2026-11-02T15:00:09+00:00",
      "views": 839,
      "dur": "31:53"
-    },
-    {
-     "id": "B0qPXlKXAsw",
-     "title": "PREVIEW: SMU's Keys vs Syracuse, June Jones' LEGACY, Mustangs' Corners MUST PLAY WELL This Week",
-     "published": "2026-10-30T15:30:08+00:00",
-     "views": 583,
-     "dur": "28:38"
     }
    ]
   },
@@ -519,21 +526,21 @@
      "id": "2ji9X4lHkYc",
      "title": "SMU vs Wake Forest Preview: an ACC Showdown",
      "published": "2026-11-12T13:59:06+00:00",
-     "views": 33,
+     "views": 34,
      "dur": "26:37"
     },
     {
      "id": "mbsnelZEcOg",
      "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
      "published": "2026-11-11T13:26:45+00:00",
-     "views": 79,
+     "views": 82,
      "dur": "23:57"
     },
     {
      "id": "-_sPsY-0eJw",
      "title": "SMU Dominates Virginia Tech 51-28! Kevin Jennings Shines",
      "published": "2026-11-08T14:22:32+00:00",
-     "views": 74,
+     "views": 75,
      "dur": "19:17"
     },
     {
@@ -554,7 +561,7 @@
      "id": "boM9J6icbX4",
      "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
      "published": "2026-10-31T21:30:40+00:00",
-     "views": 855,
+     "views": 856,
      "dur": "28:28"
     },
     {
@@ -611,7 +618,7 @@
      "id": "2Yt_riWxyU4",
      "title": "Darian Mensah Bowl for Miami vs. Duke | SMU hosts Wake Forest in CFP battle | Week 11 ACC Preview",
      "published": "2026-11-13T03:09:46+00:00",
-     "views": 105,
+     "views": 117,
      "dur": "39:51"
     },
     {
@@ -638,7 +645,7 @@
      "id": "9KGVJoZrLHU",
      "title": "Pony Up Productions Ep. 21: SMU vs Wake Forest Preview, ACC Pick'Em",
      "published": "2026-11-12T23:48:04+00:00",
-     "views": 9,
+     "views": 11,
      "dur": "45:26"
     },
     {
@@ -675,7 +682,7 @@
      "id": "BlVW2Sm_6_A",
      "title": "Pony Up Productions Ep. 18: SMU vs. Syracuse Recap, Path to the ACC Championship and more",
      "published": "2026-11-02T16:21:07+00:00",
-     "views": 68,
+     "views": 69,
      "dur": "32:44"
     },
     {
@@ -689,21 +696,21 @@
      "id": "4MTb7DQmxgs",
      "title": "Pony Up Productions Ep. 16: SMU vs. Cal Recap, Men’s Soccer and Volleyball dominate",
      "published": "2026-10-26T15:39:29+00:00",
-     "views": 33,
+     "views": 34,
      "dur": "27:37"
     },
     {
      "id": "FuD_nktt8xw",
      "title": "Pony Up Productions Ep. 15: SMU vs. Cal Preview, Week 8 Pick’em and more",
      "published": "2026-10-22T15:19:45+00:00",
-     "views": 63,
+     "views": 64,
      "dur": "33:41"
     },
     {
      "id": "k2okH-pzOtI",
      "title": "Pony Up Productions Ep. 14: SMU vs. UVA + CFB Recap and more",
      "published": "2026-10-20T14:37:52+00:00",
-     "views": 46,
+     "views": 47,
      "dur": "31:06"
     },
     {
@@ -728,10 +735,24 @@
    "broad": true,
    "videos": [
     {
+     "id": "E_PKldUB6vI",
+     "title": "Prairie View vs. SMU Full Game Replay | 2026-27 ACC Men's Basketball",
+     "published": "2026-11-13T17:00:06+00:00",
+     "views": 4,
+     "dur": "1:11:24"
+    },
+    {
+     "id": "Ccz0NYR_aLs",
+     "title": "Off the Clock with Victoria Harris | SMU Volleyball",
+     "published": "2026-11-13T14:00:04+00:00",
+     "views": 147,
+     "dur": "21:49"
+    },
+    {
      "id": "Ah9phXLWhkQ",
      "title": "SMU vs. Syracuse Match Highlights | 2026 ACC Men’s Soccer",
      "published": "2026-11-13T03:57:48+00:00",
-     "views": 814,
+     "views": 1562,
      "dur": "12:29"
     },
     {
@@ -787,18 +808,6 @@
      "title": "Virginia Tech vs. SMU Condensed Game | 2026 ACC Football",
      "published": "2026-11-07T03:58:45+00:00",
      "dur": "25:01"
-    },
-    {
-     "id": "GZpWWG-wzAc",
-     "title": "SMU WR Yamir Knight Highlights vs. SMU",
-     "published": "2026-11-07T03:57:54+00:00",
-     "dur": "2:22"
-    },
-    {
-     "id": "vAQ_rohsl2g",
-     "title": "Virginia Tech vs. SMU Game Highlights | 2026 ACC Football",
-     "published": "2026-11-07T03:55:24+00:00",
-     "dur": "12:04"
     }
    ]
   },
@@ -812,14 +821,14 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1524,
+     "views": 1526,
      "dur": "32:33"
     },
     {
      "id": "qa99l4IcFfQ",
      "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
      "published": "2026-11-06T00:00:10+00:00",
-     "views": 3034,
+     "views": 3037,
      "dur": "33:25"
     },
     {
@@ -867,7 +876,7 @@
      "id": "Occ81EzTcVE",
      "title": "Ranked SMU Mustangs gear up for ACC homecoming game",
      "published": "2026-11-12T17:02:03+00:00",
-     "views": 485,
+     "views": 522,
      "dur": "3:31"
     }
    ]
@@ -903,16 +912,36 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "cwmmrQzx0is"
+  },
+  {
+   "key": "mustang-studios",
+   "id": "FBhZkBqWbu4"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "E_PKldUB6vI"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "t-r1tbHc3fw"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "-kKyiEoPT2M"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "Ccz0NYR_aLs"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "sBezP1Hcq4c"
   },
   {
    "key": "smu-mustangs",
    "id": "SaO61GtkYUk"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "XdVzgVaFCQ4"
   },
   {
    "key": "acc-digital-network",
@@ -929,26 +958,6 @@
   {
    "key": "locked-on-smu",
    "id": "BTTQ5YO3gMA"
-  },
-  {
-   "key": "fox4",
-   "id": "Occ81EzTcVE"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "GDkzeBDRFyw"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "3WLdSvNW4hI"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "2ji9X4lHkYc"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "hrZypRWPQ1M"
   }
  ]
 }
