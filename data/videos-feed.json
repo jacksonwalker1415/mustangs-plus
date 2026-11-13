@@ -841,13 +841,6 @@
    "broad": true,
    "videos": [
     {
-     "id": "dy_IiEOsv0I",
-     "title": "Nvidia names SMU graduate as interim CEO following resignation of Jensen Huang - School reaction",
-     "published": "2026-11-12T22:29:00+00:00",
-     "dur": "2:35",
-     "nomax": true
-    },
-    {
      "id": "5TJdkbI-_44",
      "title": "SMU Homecoming Weekend - the university is inviting all of Dallas to show off some hometown pride!",
      "published": "2026-11-12T18:08:59+00:00",
@@ -904,15 +897,7 @@
    "name": "CBS Texas",
    "url": "https://www.youtube.com/@CBSTexas",
    "broad": true,
-   "videos": [
-    {
-     "id": "kXkibcdButU",
-     "title": "Nvidia CEO Jensen Huang resigns amid scandal, SMU alum takes over",
-     "published": "2026-11-12T22:46:12+00:00",
-     "views": 229,
-     "dur": "0:34"
-    }
-   ]
+   "videos": []
   },
   {
    "key": "dallasnews",
@@ -933,14 +918,6 @@
   {
    "key": "pony-up-productions",
    "id": "9KGVJoZrLHU"
-  },
-  {
-   "key": "cbstexas",
-   "id": "kXkibcdButU"
-  },
-  {
-   "key": "wfaa",
-   "id": "dy_IiEOsv0I"
   },
   {
    "key": "locked-on-smu",

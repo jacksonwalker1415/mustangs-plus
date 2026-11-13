@@ -35,6 +35,8 @@ ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
 BLOCKED_IDS = {
     "ykBdCxqGpY0",  # FOX 4: Friends, family remember recent SMU grads killed in crash
     "NGliuPQEVBo",  # WFAA: SMU community celebrates lives of young couple killed in Dallas crash
+    "dy_IiEOsv0I",  # WFAA: Nvidia names SMU graduate as interim CEO (business news, not sports)
+    "kXkibcdButU",  # CBS Texas: Nvidia CEO Jensen Huang resigns, SMU alum takes over (business news, not sports)
 }
 # Non-sports news: a death, crash or crime headline is skipped unless the title is also about athletics
 # (e.g. "Former SMU coach June Jones dies at 73" stays).
