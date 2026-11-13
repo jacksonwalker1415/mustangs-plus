@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12T23:19:06Z",
+ "generated": "2026-11-13T06:16:37Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "4f0f176877",
+     "title": "Pat & Go: SMU vs. Wake Forest Game Preview, Predictions | QB Chronicles Podcast",
+     "published": "2026-11-13T06:00:00Z",
+     "dur": "18 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/a0680b6d-9140-4113-828a-4c72d873df9d/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=a0680b6d-9140-4113-828a-4c72d873df9d&feed=eSeVNxtA"
+    },
     {
      "id": "057448e81b",
      "title": "The Mustang Mood: SMU vs Wake Forest Preview - an ACC Showdown",
@@ -95,14 +102,6 @@
      "dur": "13 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/56ddb701-5b51-4fe3-8b8a-c9e4bb01cbb4/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=56ddb701-5b51-4fe3-8b8a-c9e4bb01cbb4&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/pat-go-smu-vs-virginia-tech-game-preview-predictions/id1604025463?i=1000800083812"
-    },
-    {
-     "id": "bfe374c955",
-     "title": "SMU vs. Virginia Tech game preview, predictions for Week 10 | James Franklin vs. Rhett Lashlee Part II",
-     "published": "2026-11-05T12:03:07Z",
-     "dur": "1 hr 6 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/143fee14-b252-40f1-a7bb-69ac6b906c05/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=143fee14-b252-40f1-a7bb-69ac6b906c05&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-tech-game-preview-predictions-for-week/id1604025463?i=1000800036728"
     }
    ]
   },
@@ -730,6 +729,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "4f0f176877"
+  },
+  {
    "key": "inside-access",
    "id": "abb1d00978"
   },
@@ -752,10 +755,6 @@
   {
    "key": "mustang-mood",
    "id": "d31108f4b5"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "1c0deb7b7f"
   },
   {
    "key": "mustang-studios",
