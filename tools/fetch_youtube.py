@@ -2,7 +2,8 @@
 """Refresh data/videos-feed.json from the public YouTube RSS feed of each channel in data/channels.json.
 
 No API key. For each channel it reads https://www.youtube.com/feeds/videos.xml?channel_id=ID, drops Shorts,
-keeps only videos whose title names SMU for broader channels (see "filter" in channels.json), checks each video is embeddable (YouTube
+keeps only videos whose title names SMU for broader channels (see "filter" in channels.json) and that are about athletics
+(tools/media_filter.py), checks each video is embeddable (YouTube
 oEmbed returns 200) and records the length when the watch page gives it. It also records each video's public view count from
 the same RSS entry (<media:statistics views="...">, YouTube's own number, as of the refresh); the site's "Most watched this week"
 module ranks by it. View counts change every day, so the file is rewritten on most runs.
@@ -10,6 +11,7 @@ module ranks by it. View counts change every day, so the file is rewritten on mo
 Usage: python3 tools/fetch_youtube.py [--check]   (--check: print the result, write nothing)
 """
 import json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
+from media_filter import reject as reject_media
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
@@ -38,18 +40,15 @@ BLOCKED_IDS = {
     "dy_IiEOsv0I",  # WFAA: Nvidia names SMU graduate as interim CEO (business news, not sports)
     "kXkibcdButU",  # CBS Texas: Nvidia CEO Jensen Huang resigns, SMU alum takes over (business news, not sports)
 }
-# Non-sports news: a death, crash or crime headline is skipped unless the title is also about athletics
-# (e.g. "Former SMU coach June Jones dies at 73" stays).
-TRAGEDY = re.compile(r"\b(killed|kills?|dies|died|death|deaths|dead|crash(?:es|ed)?|obituar\w*|memorial|funeral|vigil|"
-                     r"mourn\w*|remember(?:s|ed)?|shooting|murder\w*|homicide|stabb\w*|arrest\w*|charged|wreck)\b", re.I)
-SPORTS = re.compile(r"\b(coach\w*|football|basketball|soccer|volleyball|baseball|softball|golf|tennis|swim\w*|rowing|"
-                    r"track|equestrian|athlet\w*|players?|quarterback|QB|game|season|team|ACC|NCAA|bowl|stadium|"
-                    r"recruit\w*|NIL)\b", re.I)
+# Title filter is in tools/media_filter.py: broader channels need an athletics signal, and
+# business, alumni or general news is dropped unless the title is clearly about athletics.
+# BLOCKED_IDS still wins even if a blocked video is re-posted under a sports-sounding title.
 
 
-def blocked(v):
-    t = v.get("title", "")
-    return v.get("id") in BLOCKED_IDS or bool(TRAGEDY.search(t) and not SPORTS.search(t))
+def blocked(v, broad=False):
+    if v.get("id") in BLOCKED_IDS:
+        return True
+    return reject_media(v.get("title", ""), require_sports=broad)
 
 
 def get(url, tries=3):
@@ -143,7 +142,7 @@ def main():
         old = {}
     known = {v["id"]: v for c in prev.values() for v in c.get("videos", [])}
     for c in prev.values():  # blocked videos never carry forward
-        c["videos"] = [v for v in c.get("videos", []) if not blocked(v)]
+        c["videos"] = [v for v in c.get("videos", []) if not blocked(v, broad=bool(c.get("broad")))]
 
     cutoff = time.time() - KEEP_DAYS * 86400
     channels, failed = [], []
@@ -160,6 +159,7 @@ def main():
             channels.append({**meta, "videos": before})
             continue
         rx = FILTERS.get(ch.get("filter", "none"))
+        broad = ch.get("filter", "none") != "none"
         vids, skipped = [], {"short": 0, "off-topic": 0, "not embeddable": 0, "upcoming": 0}
         for v in entries:
             if len(vids) >= PER_CHANNEL:
@@ -169,7 +169,7 @@ def main():
             if v["short"] or re.search(r"#shorts?\b", v["title"] + " " + v["desc"], re.I):
                 skipped["short"] += 1
                 continue
-            if blocked(v):
+            if blocked(v, broad=broad):
                 skipped["off-topic"] += 1
                 continue
             if rx and not rx.search(v["title"]):

@@ -11,6 +11,7 @@ The file is rewritten only when the episode lists change.
 Usage: python3 tools/fetch_podcasts.py [--check]   (--check: print the result, write nothing)
 """
 import hashlib, io, json, os, re, sys, time, urllib.error, urllib.request
+from media_filter import reject as reject_media
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
@@ -28,15 +29,9 @@ IT = "{http://www.itunes.com/dtds/podcast-1.0.dtd}"
 FILTERS = {"smu": re.compile(r"\bSMU\b|Mustangs|Lashlee|Kevin Jennings", re.I)}
 # Episodes titled around recruits (often high-school players) stay off the page, in every show.
 RECRUIT = re.compile(r"\brecruit|\bcommits?\b|\bcommitment|\b[345]-star\b|\bofficial visit", re.I)
-# Broader news shows (filter "smu") also post non-sports SMU news. Jackson wants only sports media on the site
-# (Nov 1, 2026), so a news headline (a death, crash, crime, missing person, campus story) is skipped unless the
-# title is also about athletics.
-NEWS = re.compile(r"\b(killed|kills?|dies|died|death|deaths|dead|crash(?:es|ed)?|obituar\w*|memorial|funeral|vigil|"
-                  r"mourn\w*|shooting|murder\w*|homicide|stabb\w*|arrest\w*|charged|wreck|missing|disappear\w*|"
-                  r"search(?:es|ed|ing)? for|professor|faculty|police|lawsuit|hiking|trail)\b", re.I)
-SPORTS = re.compile(r"\b(coach\w*|football|basketball|soccer|volleyball|baseball|softball|golf|tennis|swim\w*|rowing|"
-                    r"track|equestrian|athlet\w*|players?|quarterback|QB|running back|game|season|team|ACC|NCAA|bowl|"
-                    r"stadium|win|wins|loss|beat\w*|NIL|Lashlee|Jennings)\b", re.I)
+# Title filter is in tools/media_filter.py: broader shows need an athletics signal, and business,
+# alumni or general news (a death, crash, crime, missing person, campus or corporate story) is
+# dropped unless the title is clearly about athletics (Jackson, Nov 1 and Nov 13, 2026).
 
 
 def get(url, tries=3, binary=False):
@@ -197,7 +192,7 @@ def main():
                 continue
             if RECRUIT.search(t):
                 continue
-            if f and NEWS.search(t) and not SPORTS.search(t):
+            if reject_media(t, require_sports=bool(f)):
                 continue
             n = norm(t)
             if base(t) in other or (other_tag and other_tag.search(t)) or n in seen:

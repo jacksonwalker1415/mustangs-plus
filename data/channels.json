@@ -1,5 +1,5 @@
 {
-  "about": "YouTube channels on the Watch page (library/). IDs resolved from each channel page on Oct. 26, 2026 and cross-checked against the Media Curator list. filter: none = every full video; title = title must say SMU, Mustangs or Ponies; smu = title must say SMU (local TV and radio, where Mustangs or Ponies can be a high school). Channels sharing a row are shown together, each video credited to its own outlet. Read by tools/fetch_youtube.py.",
+  "about": "YouTube channels on the Watch page (library/). IDs resolved from each channel page on Oct. 26, 2026 and cross-checked against the Media Curator list. filter: none = every full video from that sports channel (still dropped if the title is business or general news without an athletics signal); title = title must say SMU, Mustangs or Ponies and be about athletics; smu = title must say SMU and be about athletics (local TV and radio, where Mustangs or Ponies can be a high school). tools/media_filter.py applies the athletics rule. Channels sharing a row are shown together, each video credited to its own outlet. Read by tools/fetch_youtube.py.",
   "rows": [
     {"key": "smu-mustangs", "name": "SMU Mustangs"},
     {"key": "smu-football", "name": "SMU Football"},

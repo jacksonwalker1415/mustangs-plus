@@ -843,13 +843,6 @@
    "broad": true,
    "videos": [
     {
-     "id": "5TJdkbI-_44",
-     "title": "SMU Homecoming Weekend - the university is inviting all of Dallas to show off some hometown pride!",
-     "published": "2026-11-12T18:08:59+00:00",
-     "dur": "3:53",
-     "nomax": true
-    },
-    {
      "id": "c5ak-NnMNHc",
      "title": "SMU Men's Basketball Starts 3-0 🔥 Coach Andy Enfield Joins | Ultimate Dallas Sports Show",
      "published": "2026-11-11T19:00:26+00:00",
@@ -884,15 +877,7 @@
    "name": "NBC DFW",
    "url": "https://www.youtube.com/@nbcdfw",
    "broad": true,
-   "videos": [
-    {
-     "id": "u7o4jEtewio",
-     "title": "SMU invites North Texans to join homecoming celebrations as university strengthens community ties",
-     "published": "2026-11-11T21:48:49+00:00",
-     "dur": "2:56",
-     "nomax": true
-    }
-   ]
+   "videos": []
   },
   {
    "key": "cbstexas",
@@ -946,10 +931,6 @@
    "id": "BTTQ5YO3gMA"
   },
   {
-   "key": "wfaa",
-   "id": "5TJdkbI-_44"
-  },
-  {
    "key": "fox4",
    "id": "Occ81EzTcVE"
   },
@@ -960,6 +941,14 @@
   {
    "key": "on-the-pony-express",
    "id": "3WLdSvNW4hI"
+  },
+  {
+   "key": "mustang-mood",
+   "id": "2ji9X4lHkYc"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "hrZypRWPQ1M"
   }
  ]
 }
