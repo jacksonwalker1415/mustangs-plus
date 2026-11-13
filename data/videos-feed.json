@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T21:22:27Z",
+ "updated": "2026-11-13T22:14:38Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -120,7 +120,7 @@
      "id": "XdVzgVaFCQ4",
      "title": "SMU Volleyball Post-Match Press Conference vs. Louisville 11-12-26",
      "published": "2026-11-13T05:29:01+00:00",
-     "views": 143,
+     "views": 150,
      "dur": "12:48"
     },
     {
@@ -162,7 +162,7 @@
      "id": "uCmma3XJv6k",
      "title": "SMU Men's Soccer Game Highlights vs Virginia 11-8-2026",
      "published": "2026-11-09T20:38:08+00:00",
-     "views": 226,
+     "views": 230,
      "dur": "8:38"
     },
     {
@@ -176,7 +176,7 @@
      "id": "6QDDmbBqN8s",
      "title": "SMU Women's Basketball: Game Highlights vs. East Texas A&M 11-8-26",
      "published": "2026-11-09T02:28:00+00:00",
-     "views": 162,
+     "views": 163,
      "dur": "5:59"
     }
    ]
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2164,
+     "views": 2191,
      "dur": "10:24"
     },
     {
@@ -267,7 +267,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3166,
+     "views": 3168,
      "dur": "1:21:59"
     }
    ]
@@ -288,7 +288,7 @@
      "id": "3psTH9Ey25c",
      "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
      "published": "2026-11-12T00:00:09+00:00",
-     "views": 85,
+     "views": 87,
      "dur": "42:18"
     },
     {
@@ -344,7 +344,8 @@
      "id": "NQ3sv3Nbzwg",
      "title": "Latest on pair of key SMU targets with decisions approachng",
      "published": "2026-11-13T20:50:12+00:00",
-     "views": 6
+     "views": 8,
+     "dur": "8:31"
     },
     {
      "id": "sBezP1Hcq4c",
@@ -392,7 +393,7 @@
      "id": "AyiYHYYioSU",
      "title": "SMU G David Terrell and C Johan Munch on the team's progression after 98-63 win vs. PVAMU",
      "published": "2026-11-11T03:39:26+00:00",
-     "views": 50,
+     "views": 51,
      "dur": "4:20"
     },
     {
@@ -413,7 +414,7 @@
      "id": "Hhh3_exMHXY",
      "title": "SMU HC Rhett Lashlee previews game vs. Wake Forest, gives thoughts on 24-team CFP",
      "published": "2026-11-10T17:53:56+00:00",
-     "views": 1322,
+     "views": 1327,
      "dur": "15:51"
     },
     {
@@ -433,7 +434,7 @@
      "id": "t-r1tbHc3fw",
      "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
      "published": "2026-11-13T16:00:06+00:00",
-     "views": 129,
+     "views": 137,
      "dur": "28:49"
     },
     {
@@ -531,7 +532,7 @@
      "id": "mbsnelZEcOg",
      "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
      "published": "2026-11-11T13:26:45+00:00",
-     "views": 82,
+     "views": 84,
      "dur": "23:57"
     },
     {
@@ -657,7 +658,7 @@
      "id": "Wv8bvkIVj10",
      "title": "SMU vs. Virginia Tech",
      "published": "2026-11-07T16:24:36+00:00",
-     "views": 100,
+     "views": 101,
      "dur": "3:25:06",
      "nomax": true
     },
@@ -743,14 +744,14 @@
      "id": "Ccz0NYR_aLs",
      "title": "Off the Clock with Victoria Harris | SMU Volleyball",
      "published": "2026-11-13T14:00:04+00:00",
-     "views": 147,
+     "views": 180,
      "dur": "21:49"
     },
     {
      "id": "Ah9phXLWhkQ",
      "title": "SMU vs. Syracuse Match Highlights | 2026 ACC Men’s Soccer",
      "published": "2026-11-13T03:57:48+00:00",
-     "views": 1732,
+     "views": 1824,
      "dur": "12:29"
     },
     {
@@ -874,7 +875,6 @@
      "id": "Occ81EzTcVE",
      "title": "Ranked SMU Mustangs gear up for ACC homecoming game",
      "published": "2026-11-12T17:02:03+00:00",
-     "views": 543,
      "dur": "3:31"
     }
    ]
