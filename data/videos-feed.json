@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T23:19:05Z",
+ "updated": "2026-11-13T00:16:27Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -134,7 +134,7 @@
      "id": "uCmma3XJv6k",
      "title": "SMU Men's Soccer Game Highlights vs Virginia 11-8-2026",
      "published": "2026-11-09T20:38:08+00:00",
-     "views": 208,
+     "views": 209,
      "dur": "8:38"
     },
     {
@@ -155,7 +155,7 @@
      "id": "6QRfvB9CloE",
      "title": "SMU Men's Soccer Post Game Press Conference vs Virginia 11-08-2026",
      "published": "2026-11-09T01:10:14+00:00",
-     "views": 199,
+     "views": 200,
      "dur": "23:04"
     },
     {
@@ -225,7 +225,7 @@
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3753,
+     "views": 3754,
      "dur": "10:30"
     },
     {
@@ -281,7 +281,7 @@
      "id": "3psTH9Ey25c",
      "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
      "published": "2026-11-12T00:00:09+00:00",
-     "views": 77,
+     "views": 76,
      "dur": "42:18"
     },
     {
@@ -337,14 +337,14 @@
      "id": "3WLdSvNW4hI",
      "title": "The Mustang Mood: SMU vs Wake Forest Preview - an ACC Showdown",
      "published": "2026-11-12T14:11:48+00:00",
-     "views": 131,
+     "views": 164,
      "dur": "26:37"
     },
     {
      "id": "hrZypRWPQ1M",
      "title": "SMU vs. Wake Forest game preview, predictions for Week 11 | Revenge game on Senior Day, Homecoming",
      "published": "2026-11-12T06:13:36+00:00",
-     "views": 420,
+     "views": 451,
      "dur": "1:26:21"
     },
     {
@@ -386,14 +386,14 @@
      "id": "8WGftwS8zPg",
      "title": "SMU QB Kevin Jennings on Senior Day, taking on a talented Wake Forest team",
      "published": "2026-11-10T20:00:29+00:00",
-     "views": 139,
+     "views": 141,
      "dur": "3:40"
     },
     {
      "id": "Hhh3_exMHXY",
      "title": "SMU HC Rhett Lashlee previews game vs. Wake Forest, gives thoughts on 24-team CFP",
      "published": "2026-11-10T17:53:56+00:00",
-     "views": 1294,
+     "views": 1299,
      "dur": "15:51"
     },
     {
@@ -427,7 +427,7 @@
      "id": "BTTQ5YO3gMA",
      "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
      "published": "2026-11-12T22:00:08+00:00",
-     "views": 14,
+     "views": 28,
      "dur": "34:02"
     },
     {
@@ -518,7 +518,7 @@
      "id": "2ji9X4lHkYc",
      "title": "SMU vs Wake Forest Preview: an ACC Showdown",
      "published": "2026-11-12T13:59:06+00:00",
-     "views": 24,
+     "views": 28,
      "dur": "26:37"
     },
     {
@@ -634,6 +634,13 @@
    "url": "https://www.youtube.com/@PonyUpProductions",
    "videos": [
     {
+     "id": "9KGVJoZrLHU",
+     "title": "Pony Up Productions Ep. 21: SMU vs Wake Forest Preview, ACC Pick'Em",
+     "published": "2026-11-12T23:48:04+00:00",
+     "views": 1,
+     "dur": "45:26"
+    },
+    {
      "id": "PY5_mPP3eC8",
      "title": "Pony Up Productions Ep. 20: SMU vs. VT recap, Week 10 CFB analysis and more",
      "published": "2026-11-09T16:53:24+00:00",
@@ -644,7 +651,7 @@
      "id": "Wv8bvkIVj10",
      "title": "SMU vs. Virginia Tech",
      "published": "2026-11-07T16:24:36+00:00",
-     "views": 98,
+     "views": 99,
      "dur": "3:25:06",
      "nomax": true
     },
@@ -702,7 +709,6 @@
      "id": "YY3p1X8dUAc",
      "title": "SMU Volleyball vs FSU: Student Radio Broadcast",
      "published": "2026-10-19T07:58:47+00:00",
-     "views": 171,
      "dur": "1:42:10",
      "nomax": true
     },
@@ -711,12 +717,6 @@
      "title": "Pony Up Productions Ep. 13: SMU vs. Virginia preview, Volleyball recap vs. Pitt and more",
      "published": "2026-10-16T06:15:19+00:00",
      "dur": "33:01"
-    },
-    {
-     "id": "X-BaipczYeA",
-     "title": "Pony Up Productions Ep. 12: SMU Volleyball's big win over Pitt, Men's and Women's Soccer recap",
-     "published": "2026-10-08T21:58:27+00:00",
-     "dur": "25:27"
     }
    ]
   },
@@ -844,7 +844,6 @@
      "id": "dy_IiEOsv0I",
      "title": "Nvidia names SMU graduate as interim CEO following resignation of Jensen Huang - School reaction",
      "published": "2026-11-12T22:29:00+00:00",
-     "views": 62,
      "dur": "2:35",
      "nomax": true
     },
@@ -910,7 +909,7 @@
      "id": "kXkibcdButU",
      "title": "Nvidia CEO Jensen Huang resigns amid scandal, SMU alum takes over",
      "published": "2026-11-12T22:46:12+00:00",
-     "views": 67,
+     "views": 229,
      "dur": "0:34"
     }
    ]
@@ -931,6 +930,10 @@
   }
  ],
  "new": [
+  {
+   "key": "pony-up-productions",
+   "id": "9KGVJoZrLHU"
+  },
   {
    "key": "cbstexas",
    "id": "kXkibcdButU"
@@ -974,10 +977,6 @@
   {
    "key": "smu-mustangs",
    "id": "2zHMHmo92-g"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "b2DJLeB0Sn0"
   }
  ]
 }
