@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-13T23:22:16Z",
+ "generated": "2026-11-14T00:17:20Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -324,6 +324,13 @@
    "art": "assets/img/pods/mustang-studios.webp",
    "episodes": [
     {
+     "id": "4952cf2708",
+     "title": "Jermaine O'Neal Jr. & Jaden Toombs: Brothers Before SMU | The Five",
+     "published": "2026-11-13T22:15:24Z",
+     "dur": "23 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/129404089/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-13%2F436684790-44100-2-dedafd52eb1cc.mp3"
+    },
+    {
      "id": "a1c491148e",
      "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
      "published": "2026-11-12T00:00:01Z",
@@ -410,14 +417,6 @@
      "dur": "38 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/127138060/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-8%2F433726216-44100-2-e908099b1448.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-handles-boston-college-exclusive-sit-down-with/id1896902919?i=1000793926607"
-    },
-    {
-     "id": "85c5a5a937",
-     "title": "Dallas Born, Mustang Made: The William Nettles Story",
-     "published": "2026-10-07T00:00:01Z",
-     "dur": "3 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/126974972/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-6%2F433524961-44100-2-c07bc008e745d.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/dallas-born-mustang-made-the-william-nettles-story/id1896902919?i=1000793547148"
     }
    ]
   },
@@ -731,6 +730,10 @@
  ],
  "new": [
   {
+   "key": "mustang-studios",
+   "id": "4952cf2708"
+  },
+  {
    "key": "locked-on-smu",
    "id": "522bb5e2d0"
   },
@@ -773,10 +776,6 @@
   {
    "key": "mustang-mood",
    "id": "82726897a7"
-  },
-  {
-   "key": "locked-on-acc",
-   "id": "c2ff5cb798"
   }
  ]
 }
