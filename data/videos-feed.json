@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T20:21:23Z",
+ "updated": "2026-11-14T23:31:14Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -431,10 +431,17 @@
    "url": "https://www.youtube.com/@LockedOnSMU",
    "videos": [
     {
+     "id": "IcmAbeKH2nU",
+     "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
+     "published": "2026-11-14T21:02:56+00:00",
+     "views": 185,
+     "dur": "20:23"
+    },
+    {
      "id": "t-r1tbHc3fw",
      "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
      "published": "2026-11-13T16:00:06+00:00",
-     "views": 292,
+     "views": 299,
      "dur": "28:49"
     },
     {
@@ -448,7 +455,7 @@
      "id": "GDkzeBDRFyw",
      "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
      "published": "2026-11-12T17:00:10+00:00",
-     "views": 331,
+     "views": 333,
      "dur": "27:22"
     },
     {
@@ -469,7 +476,7 @@
      "id": "5wLk0sx7Gwg",
      "title": "STATEMENT: SMU and Kevin Jennings DOMINATE Virginia Tech, Why THAT TEAM Can Beat Wake Forest!",
      "published": "2026-11-09T14:00:09+00:00",
-     "views": 677,
+     "views": 678,
      "dur": "26:53"
     },
     {
@@ -504,15 +511,8 @@
      "id": "IBCbVOAAuLg",
      "title": "KRYPTONITE: SMU''s VAUNTED Offense EXPOSED Without Consistent Running Game at Syracuse",
      "published": "2026-11-03T16:00:09+00:00",
-     "views": 344,
+     "views": 345,
      "dur": "29:00"
-    },
-    {
-     "id": "cLQjJsinEtc",
-     "title": "DEVASTATING: SMU Mustangs STUNNED by Syracuse in CRUSHING Repeat Loss | Is Rhett Lashlee to BLAME?",
-     "published": "2026-11-02T15:00:09+00:00",
-     "views": 839,
-     "dur": "31:53"
     }
    ]
   },
@@ -909,6 +909,10 @@
  ],
  "new": [
   {
+   "key": "locked-on-smu",
+   "id": "IcmAbeKH2nU"
+  },
+  {
    "key": "acc-digital-network",
    "id": "b1eb6_k2BFM"
   },
@@ -951,10 +955,6 @@
   {
    "key": "locked-on-smu",
    "id": "t-r1tbHc3fw"
-  },
-  {
-   "key": "all-access-am",
-   "id": "2Yt_riWxyU4"
   }
  ]
 }
