@@ -43,15 +43,12 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-14T11:00:00-06:00",
 "tv": "ESPN",
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
-"res": null,
+"res": "L 7-49",
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
-"listen": "https://smumustangs.com/showcase?Live=5384",
-"stats": "https://stats.statbroadcast.com/broadcast/?id=673172",
+"box": "https://smumustangs.com/sports/football/stats/2026/wake-forest/boxscore/14456",
+"recap": "https://smumustangs.com/news/2026/11/14/football-mustangs-fall-to-wake-forest",
 "gamecenter": "https://smumustangs.com/game-center/14456"
-},
-"sb": 673172,
-"note": "Homecoming · Senior Day · Wear Blue"
+}
 },
 {
 "id": "fb-14446",
