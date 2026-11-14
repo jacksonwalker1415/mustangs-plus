@@ -132,14 +132,13 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-13T20:00:00-06:00",
 "tv": "ACCN",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "W 90-65",
 "links": {
-"watch": "https://www.espn.com/watch/player/_/id/ac907403-b2a2-4851-9074-dd7f460f3577",
-"listen": "https://smumustangs.com/showcase/?Live=5403",
-"stats": "https://smumustangs.com/sidearmstats/mbball/summary",
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2026-27/ball-state/boxscore/14744",
+"recap": "https://smumustangs.com/news/2026/11/13/mens-basketball-smu-takes-down-ball-state-90-65",
+"program": "https://digitalprograms.learfield.com/smuni/mbball/22079",
 "gamecenter": "https://smumustangs.com/game-center/14744"
-},
-"note": "Peruna's Pals #1"
+}
 },
 {
 "id": "mbb-14742",
