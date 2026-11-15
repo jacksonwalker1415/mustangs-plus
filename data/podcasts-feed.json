@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T21:17:57Z",
+ "generated": "2026-11-15T19:31:06Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -118,7 +118,8 @@
      "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
      "published": "2026-11-14T21:03:06Z",
      "dur": "20 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/7d08710c-06c2-4915-920d-6cb68366fc16/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=7d08710c-06c2-4915-920d-6cb68366fc16&feed=MciFpBoA"
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/7d08710c-06c2-4915-920d-6cb68366fc16/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=7d08710c-06c2-4915-920d-6cb68366fc16&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/humiliated-smu-and-kevin-jennings-suffer-crushing/id1824252582?i=1000801968301"
     },
     {
      "id": "522bb5e2d0",
@@ -218,6 +219,13 @@
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
     {
+     "id": "7729ba27e1",
+     "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
+     "published": "2026-11-15T12:00:00Z",
+     "dur": "17 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129455733/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-14%2F436752601-44100-2-d4c0732880e3b.mp3"
+    },
+    {
      "id": "d31108f4b5",
      "title": "SMU vs Wake Forest Preview: an ACC Showdown",
      "published": "2026-11-12T13:59:18Z",
@@ -304,14 +312,6 @@
      "dur": "24 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/127552836/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-16%2F434276963-44100-2-920cea9cd3316.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-preview-can-the-mustangs-turn-the-corner/id1734256145?i=1000796648902"
-    },
-    {
-     "id": "ba1f79c241",
-     "title": "SMU Volleyball vs. No. 2 Pitt: Biggest Test of the Season | Pitt Preview",
-     "published": "2026-10-09T13:16:17Z",
-     "dur": "17 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/126914832/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-6%2F433449244-44100-2-d42b9aa01986d.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-volleyball-vs-no-2-pitt-biggest-test-of-the/id1734256145?i=1000794056617"
     }
    ]
   },
@@ -730,6 +730,10 @@
  ],
  "new": [
   {
+   "key": "mustang-mood",
+   "id": "7729ba27e1"
+  },
+  {
    "key": "locked-on-smu",
    "id": "10c6d7c133"
   },
@@ -772,10 +776,6 @@
   {
    "key": "kc-masterpiece",
    "id": "ce5f382ba7"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "82726897a7"
   }
  ]
 }
