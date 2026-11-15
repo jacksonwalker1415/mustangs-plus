@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T20:34:40Z",
+ "updated": "2026-11-15T21:31:58Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,6 +96,12 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "OZhOpxkZGhQ",
+     "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
+     "published": "2026-11-15T21:17:52+00:00",
+     "views": 0
+    },
+    {
      "id": "VW41mZc_cY0",
      "title": "SMU Football: Postgame Press Conference vs Wake Forest 11-14-26",
      "published": "2026-11-14T21:11:01+00:00",
@@ -171,13 +177,6 @@
      "published": "2026-11-11T03:19:31+00:00",
      "views": 145,
      "dur": "6:00"
-    },
-    {
-     "id": "03nBx3HEm4M",
-     "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-10-26",
-     "published": "2026-11-10T17:16:56+00:00",
-     "views": 311,
-     "dur": "19:25"
     }
    ]
   },
@@ -344,21 +343,21 @@
      "id": "EIuVSsLZODI",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:08+00:00",
-     "views": 668,
+     "views": 769,
      "dur": "16:36"
     },
     {
      "id": "J5siZPDEyKU",
      "title": "SMU QB Kevin Jennings on Wake Forest defeat, what he hopes his legacy will be at SMU",
      "published": "2026-11-15T01:38:23+00:00",
-     "views": 255,
+     "views": 256,
      "dur": "1:58"
     },
     {
      "id": "1k6ZOiFKINA",
      "title": "SMU HC Rhett Lashlee reacts to Wake Forest's 49-7 drumming of SMU",
      "published": "2026-11-14T21:36:35+00:00",
-     "views": 2019,
+     "views": 2065,
      "dur": "8:25"
     },
     {
@@ -372,7 +371,7 @@
      "id": "QWQOrG-T2Zw",
      "title": "SMU gearing up for major recruiting weekend against Wake Forest",
      "published": "2026-11-14T11:00:32+00:00",
-     "views": 89,
+     "views": 90,
      "dur": "7:21"
     },
     {
@@ -435,7 +434,7 @@
      "id": "IcmAbeKH2nU",
      "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
      "published": "2026-11-14T21:02:56+00:00",
-     "views": 1981,
+     "views": 2003,
      "dur": "20:23"
     },
     {
@@ -908,6 +907,10 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "OZhOpxkZGhQ"
+  },
+  {
    "key": "mustang-mood",
    "id": "Idu0cPVthY4"
   },
@@ -946,10 +949,6 @@
   {
    "key": "acc-digital-network",
    "id": "bKo63BgUj-A"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "pnWJJffI590"
   },
   {
    "key": "mustang-studios",
