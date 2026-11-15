@@ -75,7 +75,7 @@ w.addEventListener('submit',function(e){var f=e.target;if(!e.defaultPrevented&&!
 w.addEventListener('pagehide',reset);w.addEventListener('pageshow',function(e){if(e.persisted)reset()});
 function quiet(e){var v=e.viewTransition;if(v)[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){if(p)p.catch(function(){})})}
 w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&&performance.now()-tap>1000)e.viewTransition.skipTransition()});w.addEventListener('pagereveal',function(e){quiet(e);var v=e.viewTransition;if(!v)return;function k(){v.skipTransition()}function off(){d.removeEventListener('pointerdown',k,true);d.removeEventListener('keydown',k,true)}d.addEventListener('pointerdown',k,true);d.addEventListener('keydown',k,true);v.finished.then(off,off)})})(document,window)</script><!--/boot-->
-<link rel="stylesheet" href="assets/site.css?v=202610290710">
+<link rel="stylesheet" href="assets/site.css?v=202610290720">
 <!-- Speed: the game-day photo is this page's phone LCP but app.js draws it; preload it (same srcset/sizes as GD_SIZES in app.js). -->
 <link rel="preload" as="image" href="assets/photos/lib/football-tunnel-crowd-louisville-night-1200.webp" imagesrcset="assets/photos/lib/football-tunnel-crowd-louisville-night-800.webp 800w, assets/photos/lib/football-tunnel-crowd-louisville-night-1200.webp 1200w, assets/photos/lib/football-tunnel-crowd-louisville-night-2000.webp 2000w" imagesizes="(min-width:960px) 50vw, (min-width:640px) 100vw, 150vw" media="(max-width:719px)" fetchpriority="high">
 </head>
@@ -135,8 +135,40 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
   <div class="wrap">
     <div class="sec-hd"><div><h2 class="sec-t" id="tiers-h">Pick your seat.</h2></div></div>
     <p class="lede">Fans and SMU students can join free today.</p>
-    <p class="ctas"><a class="btn btn-red" href="#waitlist">Join the waitlist</a></p>
-    <p class="note center">Paid plans are not available. No payments are collected.</p>
+    <p class="plans-sample">Sample pricing. Student concept. No payments are taken.</p>
+    <div class="tiers">
+      <article class="tier">
+        <h3>Mustang</h3><p class="for">For every fan, everywhere</p>
+        <div class="price"><b>$9.99</b><span>/mo</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Original articles &amp; features</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>SMU+ original podcasts</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Original video series &amp; film breakdowns</li>
+        </ul>
+        <button type="button" class="btn btn-wl" data-join="mustang">Join the waitlist<span class="sr"> for Mustang</span></button>
+      </article>
+      <article class="tier">
+        <h3>All-Access</h3><p class="for">For the die-hards</p>
+        <div class="price"><b>$24.99</b><span>/mo</span></div>
+        <ul>
+          <li class="inc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Mustang</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Live monthly Q&amp;As with athletes &amp; coaches</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Early access to merch drops</li>
+        </ul>
+        <button type="button" class="btn btn-wl" data-join="pony">Join the waitlist<span class="sr"> for All-Access</span></button>
+      </article>
+      <article class="tier">
+        <h3>Red &amp; Blue</h3><p class="for">The inner circle</p>
+        <div class="price"><b>$99</b><span>/mo</span></div>
+        <ul>
+          <li class="inc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in All-Access</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Select open-practice access</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Tailgate invites</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(204,0,53,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#CC0035" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Signed gear each season</li>
+        </ul>
+        <button type="button" class="btn btn-wl" data-join="club">Join the waitlist<span class="sr"> for Red &amp; Blue</span></button>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -151,18 +183,18 @@ w.addEventListener('pageswap',function(e){quiet(e);if(e.viewTransition&&leaving&
 
 </main>
 <div id="site-footer"></div>
-<script src="assets/config.js?v=202610290710" defer></script>
-<script src="assets/data.js?v=202610290710" defer></script>
-<script src="assets/content.js?v=202610290710" defer></script>
-<script src="assets/real.js?v=202610290710" defer></script>
-<script src="assets/athletes.js?v=202610290710" defer></script>
-<script src="assets/socials.js?v=202610290710" defer></script>
-<script src="assets/sport-icons.js?v=202610290710" defer></script>
-<script src="assets/games.js?v=202610290710" defer></script>
-<script src="assets/upcoming.js?v=202610290710" defer></script>
-<script src="assets/sb.js?v=202610290710" defer></script>
-<script src="assets/ads.js?v=202610290710" defer></script>
-<script src="assets/app.js?v=202610290710" defer></script>
-<script src="assets/cfbd-live.js?v=202610290710" defer></script>
+<script src="assets/config.js?v=202610290720" defer></script>
+<script src="assets/data.js?v=202610290720" defer></script>
+<script src="assets/content.js?v=202610290720" defer></script>
+<script src="assets/real.js?v=202610290720" defer></script>
+<script src="assets/athletes.js?v=202610290720" defer></script>
+<script src="assets/socials.js?v=202610290720" defer></script>
+<script src="assets/sport-icons.js?v=202610290720" defer></script>
+<script src="assets/games.js?v=202610290720" defer></script>
+<script src="assets/upcoming.js?v=202610290720" defer></script>
+<script src="assets/sb.js?v=202610290720" defer></script>
+<script src="assets/ads.js?v=202610290720" defer></script>
+<script src="assets/app.js?v=202610290720" defer></script>
+<script src="assets/cfbd-live.js?v=202610290720" defer></script>
 </body>
 </html>

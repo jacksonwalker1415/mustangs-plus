@@ -26,9 +26,9 @@
   var SVG_SEARCH='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.1l4.8 4.8-1.4 1.4-4.8-4.8A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/></svg>';
   var HEART='<svg class="ic-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.4 2.6.8-1.5 2.3-2.6 4.4-2.6 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>';
   var PLUS='<svg viewBox="0 0 20 20"><path d="M8 2h4v6h6v4h-6v6H8v-6H2V8h6z" fill="#fff"/></svg>';
-  var PAID_OPEN=false;  /* paid plans are coming soon: see checkout() */
+  var PAID_OPEN=false;  /* checkout stays off: plan buttons open the waitlist, no card is collected */
   var SHOW_HOME_PLAYERS=false;  /* Jackson, Oct 26: 'Meet the Mustangs' rail hidden on home (only 6 profiles). Flip to true and remove hidden from section#athletes in index.html to bring it back; profile data and /athletes/ are unchanged */
-  var SHOW_PAID_PLANS=false;  /* Jackson, Oct 26: hidden for now, flip to true to bring the paid plans back (cards, Membership nav, Plans links, waitlist plan choices) */
+  var SHOW_PAID_PLANS=true;  /* Jackson, Nov 15: show sample paid plans for the class project (cards, Membership nav, Plans links, waitlist plan choices). PAID_OPEN stays false: no checkout or cards. */
   if(SHOW_PAID_PLANS)$$('[data-paid-plans]').forEach(function(el){el.hidden=false});
   var LOCK='<svg viewBox="0 0 24 24"><path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9zM9 7a3 3 0 0 1 6 0v2H9z"/></svg>';
   var CHAT='<svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/></svg>';
@@ -1946,7 +1946,7 @@
         '<div class="box">'+(threads.length?threads.map(function(t){return threadRow(t,true)}).join(''):emptyState('chat','No '+esc(s.name)+' threads yet','Be the first to start the conversation on this board.','<button type="button" class="btn btn-red btn-sm" data-compose data-sport="'+s.slug+'">Start a thread</button><a class="btn btn-outline btn-sm" href="'+ROOT+'boards/">Browse all boards</a>'))+'</div></div></section>'})+
       lz('more',240,function(){return '<section class="sec" id="more"><div class="wrap">'+secHead('More Mustang sports',ROOT+'#sports','All sports')+
         '<div class="chips">'+others.map(function(o){return '<a class="chip" href="'+sportUrl(o.slug)+'">'+o.name+'</a>'}).join('')+'</div>'+
-        (SHOW_PAID_PLANS?'<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Paid plans are coming later.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div>':'')+'</div></section>'});
+        (SHOW_PAID_PLANS?'<div class="band"><div><h2 class="sec-t">Never miss '+s.name+'.</h2><p>Sample pricing. No payments are taken.</p></div><a href="'+ROOT+'#membership" class="btn btn-white">See plans</a></div>':'')+'</div></section>'});
     function decorateRes(root){$$('.sched td:last-child',root).forEach(function(td){var v=td.textContent;td.innerHTML='<span class="res '+(/^W|^1st|^2nd/.test(v)?'w':/^L/.test(v)?'l':/^T|^\d/.test(v)&&!/PM|TBA/.test(v)?'t':'up')+'">'+esc(v)+'</span>'})}
     decorateRes(document);
     if(GD)startCountdowns();
@@ -2199,7 +2199,7 @@
   /* Paid gate: while SHOW_PAID_PLANS is false, any signed-in account can turn Ad-free on. Once paid plans are back, Ad-free comes with a
      paid plan only: a free account that flips the switch gets the plans pop-up instead, the switch stays off and the ads stay, and the
      choice is kept so ads go away as soon as the account has a paid plan (SMU.on('tier') re-syncs). */
-  function adfreeAllowed(){return !SHOW_PAID_PLANS||!!(SMU.user&&paidT(SMU.tier()))}
+  function adfreeAllowed(){return !PAID_OPEN||!!(SMU.user&&paidT(SMU.tier()))}  /* sample prices can show without locking Ad-free behind a paid checkout */
   function adfreeUpsell(){var k=afKey();if(k)store(k,'1');syncAdfree();
     openJoin(null,'Ad-free comes with a paid plan. Pick one below and ads go away as soon as your plan starts.')}
   function adfreeOn(){var k=afKey();if(!k||!adfreeAllowed())return false;var v=store(k);if(v==null&&SMU.user.adfree!=null)return !!SMU.user.adfree;return v==='1'}
@@ -2253,9 +2253,9 @@
     return fetch((ROOT||'./')+'index.html',{credentials:'same-origin'}).then(function(r){return r.ok?r.text():''}).then(function(t){joinTiers=t?readTiers(new DOMParser().parseFromString(t,'text/html')):null;return joinTiers})
       .catch(function(){return null}).then(function(t){return t||JOIN_ORDER.map(function(k){return {k:k,name:TIER_NAME[k],for:'',p:'Coming soon',per:'',pop:k==='pony'?'Most Popular':'',perks:[]}})})}
   var JCHK='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(53,76,161,.12)"/><path d="m7 12.5 3 3 7-7" stroke="#354CA1" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  function joinCard(t){return '<article class="jm-card soon" aria-labelledby="jm-'+t.k+'"><span class="jm-pill jm-soon">'+LOCK+'Coming soon</span>'+
+  function joinCard(t){return '<article class="jm-card" aria-labelledby="jm-'+t.k+'">'+
     '<h4 id="jm-'+t.k+'">'+esc(t.name)+'</h4>'+(t.for?'<p class="jm-for">'+esc(t.for)+'</p>':'')+
-    '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Nothing is charged.</p>'+
+    '<p class="jm-price"><b>'+esc(t.p)+'</b><span>'+esc(t.per)+'</span></p><p class="jm-fine">Sample pricing. No payments are taken.</p>'+
     '<button type="button" class="btn btn-wl jm-go" data-join-pick="'+t.k+'">Join the waitlist<span class="sr"> for '+esc(t.name)+'</span></button>'+
     (t.perks.length?'<ul>'+t.perks.map(function(x){return '<li class="'+(x.inc?'inc':'')+'">'+JCHK+'<span>'+esc(x.t)+'</span></li>'}).join('')+'</ul>':'')+'</article>'}
   /* While paid plans are hidden, the Join pop-up still offers the free waitlist (with the price survey): no plan cards, no prices. */
@@ -2265,8 +2265,8 @@
     if(joinDlg===false)return;joinDlg=false;loadTiers().then(function(T){joinDlg=null;buildJoin(T,tier,note)})}
   function buildJoin(T,tier,note){
     var logo=BRAND_LOGO?'<picture><source type="image/webp" srcset="'+ROOT+BRAND_LOGO.replace(/\.png$/,'.webp')+'"><img src="'+ROOT+BRAND_LOGO+'" alt="SMU+" width="360" height="128" decoding="async"></picture>':'<span class="jm-wm">SMU+</span>';
-    var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div>'+(SHOW_PAID_PLANS?'<p class="jm-eb">Membership</p>':'')+'<h3 id="joinDlg-h">Pick your seat.</h3>'+(note?'<p class="jm-lede jm-note">'+esc(note)+'</p>':'')+
-      '<p class="jm-lede">Join free today with a free account, or a Student plan if you have an @smu.edu email.'+(SHOW_PAID_PLANS?' Paid plans are coming soon, and you can join the free waitlist for the one you want.':'')+' There is nothing to buy.</p></div>'+
+    var d=joinDlg=dialog('joinDlg','<div class="jm-hd"><div class="jm-logo">'+logo+'</div><h3 id="joinDlg-h">Pick your seat.</h3>'+(note?'<p class="jm-lede jm-note">'+esc(note)+'</p>':'')+
+      '<p class="jm-lede">Join free today with a free account, or a Student plan if you have an @smu.edu email.'+(SHOW_PAID_PLANS?' Sample pricing is shown below. Student concept. No payments are taken. You can join the free waitlist for the plan you want.':' There is nothing to buy.')+'</p></div>'+
       '<div class="jm-body"><div class="jm-plans">'+freeBands('jm')+(SHOW_PAID_PLANS?'<div class="jm-tiers">'+T.map(joinCard).join('')+'</div>':WL_BAND)+'</div>'+
       '<div class="jm-wl" hidden><button type="button" class="jm-back" data-join-back><span aria-hidden="true">\u2190</span> '+(SHOW_PAID_PLANS?'All plans':'Back')+'</button>'+
         '<p class="jm-pick">Waitlist for <b class="jm-pick-n"></b> <span class="jm-pick-p"></span></p>'+waitlistHTML('wlJoin')+'</div>'+
@@ -2467,7 +2467,7 @@
             (fmtD(started)?'<p>Started '+fmtD(started)+'</p>':'')+'</div>'+
             (paidT(tier)?'<button type="button" class="linkish" id="cancelPlan">Cancel demo membership</button>':'')+'</div>'+
           (PAID_OPEN?'<div class="acct-plans">'+['mustang','pony','club'].map(function(t){return '<button type="button" class="btn btn-sm '+(t===tier?'btn-navy':'btn-outline')+'" data-plan="'+t+'"'+(t===tier?' aria-current="true" disabled':'')+'>'+TIER_NAME[t]+'</button>'}).join('')+'</div>':
-            (!SHOW_PAID_PLANS?'':'<h3 class="set-h3">Other plans</h3><ul class="set-soon">'+['mustang','pony','club'].filter(function(t){return t!==tier}).map(function(t){return '<li><b>'+esc(TIER_NAME[t])+'</b><span>Coming soon</span></li>'}).join('')+'</ul>'+
+            (!SHOW_PAID_PLANS?'':'<h3 class="set-h3">Other plans</h3><ul class="set-soon">'+['mustang','pony','club'].filter(function(t){return t!==tier}).map(function(t){return '<li><b>'+esc(TIER_NAME[t])+'</b><button type="button" class="btn btn-wl" data-join="'+t+'">Join the waitlist<span class="sr"> for '+esc(TIER_NAME[t])+'</span></button></li>'}).join('')+'</ul>'+
             '<button type="button" class="btn btn-sm btn-outline" data-join>Join the waitlist</button>'))+'</div>'+
         studentCard(u,tier)+
         '<div class="set-sec"><h2 class="set-h">SMU+ Weekly</h2><p class="set-sub">One email on Friday mornings in season.</p>'+briefHTML('briefAcct')+'</div>';
