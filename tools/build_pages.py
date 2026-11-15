@@ -11,10 +11,11 @@ VER=sys.argv[1] if len(sys.argv)>1 else time.strftime('%Y%m%d%H%M')
 # Order matters: config -> data -> app. supabase-js is loaded lazily by sb.js only when config has keys.
 # Every script is `defer`: they still run in this order, after the HTML is parsed and before DOMContentLoaded,
 # but no longer hold up first paint. No inline script may call into these files at parse time.
-SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js','sport-icons.js','games.js','upcoming.js','boxscores.js','gamestats.js','sb.js','ads.js','app.js','cfbd-live.js']
-# Data files only one page reads. upcoming.js (MP.UPCOMING) feeds the home calendar ribbon only; boxscores.js (MP.BOX) and
-# gamestats.js (MP.gameStats) are read only by the game page (app.js gamePage). Every other script loads on every page.
-ONLY_ON={'upcoming.js':('index.html',),'boxscores.js':('games/index.html',),'gamestats.js':('games/index.html',)}
+SCRIPTS=['config.js','data.js','content.js','real.js','athletes.js','socials.js','sport-icons.js','games.js','upcoming.js','boxscores.js','gamestats.js','sb.js','ads.js','app.js','socials-feed.js','cfbd-live.js']
+# Data/page files only some pages read. upcoming.js (MP.UPCOMING) feeds the home calendar ribbon and the From Socials desktop rail;
+# boxscores.js (MP.BOX) and gamestats.js (MP.gameStats) are read only by the game page (app.js gamePage);
+# socials-feed.js fills the From Socials feed (must load after app.js). Every other script loads on every page.
+ONLY_ON={'upcoming.js':('index.html','socials/index.html'),'boxscores.js':('games/index.html',),'gamestats.js':('games/index.html',),'socials-feed.js':('socials/index.html',)}
 # Every width: a slim strip right under the header, in the page flow (scrolls away). Permanent since Oct 29 (Jackson): no dismiss X,
 # and the old dismissed flag (mp_disc_x) is cleared. A new visitor (no mp_disc_ok in localStorage) also gets a full-screen notice
 # with the same wording and one "I understand" button (Esc also closes it); it is built by this inline script while the page is
