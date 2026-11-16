@@ -847,7 +847,7 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
+"watch": "https://www.espn.com/watch/player/_/id/ffdb6e9b-be8d-4502-9e13-f1272a9a2107",
 "listen": "https://smumustangs.com/showcase/?Live=5446",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
 "gamecenter": "https://smumustangs.com/game-center/14730"
