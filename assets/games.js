@@ -845,6 +845,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": "W 77-65",
 "links": {
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/nicholls/boxscore/14729",
+"recap": "https://smumustangs.com/news/2026/11/15/womens-basketball-mustangs-improve-to-5-0-with-77-65-win-over-nicholls",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
 "gamecenter": "https://smumustangs.com/game-center/14729"
 },
