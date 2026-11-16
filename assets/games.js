@@ -850,6 +850,7 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/watch/player/_/id/ffdb6e9b-be8d-4502-9e13-f1272a9a2107",
 "listen": "https://smumustangs.com/showcase/?Live=5446",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
+"preview": "https://smumustangs.com/news/2026/11/16/womens-basketball-mustangs-hit-the-road-to-face-kansas-state-tuesday-6-30-pm",
 "gamecenter": "https://smumustangs.com/game-center/14730"
 }
 },
