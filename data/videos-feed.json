@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T23:30:16Z",
+ "updated": "2026-11-16T02:27:41Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -735,6 +735,13 @@
    "broad": true,
    "videos": [
     {
+     "id": "DQyfm0GqkjQ",
+     "title": "North Carolina vs. SMU Match Highlights | 2026 ACC Men’s Soccer",
+     "published": "2026-11-15T23:32:16+00:00",
+     "views": 875,
+     "dur": "13:05"
+    },
+    {
      "id": "b1eb6_k2BFM",
      "title": "LIU vs SMU Full Game Replay | 2026-27 ACC Women's Basketball",
      "published": "2026-11-14T17:00:33+00:00",
@@ -799,12 +806,6 @@
      "title": "Prairie View vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
      "published": "2026-11-11T03:49:33+00:00",
      "dur": "10:45"
-    },
-    {
-     "id": "hc0H_at_qJ0",
-     "title": "Prairie View vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
-     "published": "2026-11-11T03:47:41+00:00",
-     "dur": "7:02"
     }
    ]
   },
@@ -908,6 +909,10 @@
  ],
  "new": [
   {
+   "key": "acc-digital-network",
+   "id": "DQyfm0GqkjQ"
+  },
+  {
    "key": "smu-mustangs",
    "id": "OZhOpxkZGhQ"
   },
@@ -946,10 +951,6 @@
   {
    "key": "smu-mustangs",
    "id": "mnl3wwR0kgE"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "bKo63BgUj-A"
   },
   {
    "key": "mustang-studios",

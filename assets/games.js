@@ -843,11 +843,9 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-15T18:00:00-06:00",
 "tv": "ACCNX",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "W 77-65",
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
-"listen": "https://smumustangs.com/showcase/?Live=5445",
-"stats": "https://smumustangs.com/sidearmstats/wbball/summary",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
 "gamecenter": "https://smumustangs.com/game-center/14729"
 },
 "note": "Homecoming Weekend"
