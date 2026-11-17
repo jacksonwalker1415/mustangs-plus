@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T22:29:28Z",
+ "updated": "2026-11-17T23:29:48Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,21 +99,21 @@
      "id": "28Lu5ed9TMY",
      "title": "SMU Athletics Press Conference: Visit Dallas Helmet Sticker Announcement 11-17-26",
      "published": "2026-11-17T18:16:45+00:00",
-     "views": 11,
+     "views": 33,
      "dur": "4:23"
     },
     {
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 87,
+     "views": 113,
      "dur": "14:34"
     },
     {
      "id": "NPzrvTBttRA",
      "title": "SMU Women's Basketball: Game Highlights vs Nicholls - 11/15/2026",
      "published": "2026-11-16T04:02:34+00:00",
-     "views": 66,
+     "views": 68,
      "dur": "8:00"
     },
     {
@@ -341,24 +341,30 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "IWtCCm1IYFo",
+     "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
+     "published": "2026-11-17T23:12:29+00:00",
+     "views": 11
+    },
+    {
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 168,
+     "views": 227,
      "dur": "56:59"
     },
     {
      "id": "kfLjO4JTMfU",
      "title": "SMU QB Kevin Jennings on the team turning its attention to Notre Dame",
      "published": "2026-11-17T19:30:14+00:00",
-     "views": 3,
+     "views": 20,
      "dur": "2:25"
     },
     {
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 533,
+     "views": 656,
      "dur": "12:15"
     },
     {
@@ -372,7 +378,7 @@
      "id": "EIuVSsLZODI",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:08+00:00",
-     "views": 1921,
+     "views": 1927,
      "dur": "16:36"
     },
     {
@@ -386,21 +392,21 @@
      "id": "1k6ZOiFKINA",
      "title": "SMU HC Rhett Lashlee reacts to Wake Forest's 49-7 drumming of SMU",
      "published": "2026-11-14T21:36:35+00:00",
-     "views": 3021,
+     "views": 3023,
      "dur": "8:25"
     },
     {
      "id": "PXB6pgZmbOc",
      "title": "REACTION: SMU vs. Wake Forest postgame show, takeaways from SMU Senior Day | After 'Stangs Show",
      "published": "2026-11-14T21:25:18+00:00",
-     "views": 1539,
+     "views": 1542,
      "dur": "13:15"
     },
     {
      "id": "QWQOrG-T2Zw",
      "title": "SMU gearing up for major recruiting weekend against Wake Forest",
      "published": "2026-11-14T11:00:32+00:00",
-     "views": 103,
+     "views": 104,
      "dur": "7:21"
     },
     {
@@ -416,13 +422,6 @@
      "published": "2026-11-14T02:00:32+00:00",
      "views": 125,
      "dur": "4:32"
-    },
-    {
-     "id": "NQ3sv3Nbzwg",
-     "title": "Latest on pair of key SMU targets with decisions approachng",
-     "published": "2026-11-13T20:50:12+00:00",
-     "views": 150,
-     "dur": "8:31"
     }
    ]
   },
@@ -435,14 +434,14 @@
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 190,
+     "views": 206,
      "dur": "30:36"
     },
     {
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1193,
+     "views": 1235,
      "dur": "31:52"
     },
     {
@@ -526,7 +525,7 @@
      "id": "Idu0cPVthY4",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:18+00:00",
-     "views": 94,
+     "views": 95,
      "dur": "16:36"
     },
     {
@@ -645,7 +644,7 @@
      "id": "C0_t6BL1D6o",
      "title": "Pony Up Productions Ep. 22: SMU vs. Wake Forest Recap",
      "published": "2026-11-17T06:43:43+00:00",
-     "views": 28,
+     "views": 44,
      "dur": "31:16"
     },
     {
@@ -739,14 +738,14 @@
      "id": "JlyMYHrVoGc",
      "title": "Nicholls vs. SMU Full Game Replay | 2026-27 ACC Women’s Basketball",
      "published": "2026-11-17T17:00:22+00:00",
-     "views": 26,
+     "views": 60,
      "dur": "1:03:28"
     },
     {
      "id": "gBjsVRTvps0",
      "title": "Wake Forest vs. SMU Full Game Replay | 2026 ACC Football",
      "published": "2026-11-17T17:00:14+00:00",
-     "views": 162,
+     "views": 260,
      "dur": "1:59:22"
     },
     {
@@ -829,8 +828,8 @@
      "id": "qa99l4IcFfQ",
      "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
      "published": "2026-11-06T00:00:10+00:00",
-     "views": 3064,
-     "dur": "33:25"
+     "dur": "33:25",
+     "views": 3064
     },
     {
      "id": "2WjiqbydpwI",
@@ -913,6 +912,10 @@
  "new": [
   {
    "key": "on-the-pony-express",
+   "id": "IWtCCm1IYFo"
+  },
+  {
+   "key": "on-the-pony-express",
    "id": "-eXsvxZExEc"
   },
   {
@@ -926,10 +929,6 @@
   {
    "key": "smu-mustangs",
    "id": "YHieeMJWnvg"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "Raoo6QkwXKg"
   },
   {
    "key": "acc-digital-network",
