@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T23:27:42Z",
+ "updated": "2026-11-17T00:28:32Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,7 +106,7 @@
      "id": "vmJo-M2dHG0",
      "title": "SMU Volleyball Match Highlights vs. Notre Dame 11-15-26",
      "published": "2026-11-16T03:20:18+00:00",
-     "views": 101,
+     "views": 131,
      "dur": "8:24"
     },
     {
@@ -120,14 +120,14 @@
      "id": "OZhOpxkZGhQ",
      "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
      "published": "2026-11-15T21:17:52+00:00",
-     "views": 100,
+     "views": 108,
      "dur": "9:14"
     },
     {
      "id": "VW41mZc_cY0",
      "title": "SMU Football: Postgame Press Conference vs Wake Forest 11-14-26",
      "published": "2026-11-14T21:11:01+00:00",
-     "views": 1976,
+     "views": 1995,
      "dur": "10:11"
     },
     {
@@ -162,7 +162,7 @@
      "id": "SaO61GtkYUk",
      "title": "SMU Volleyball Match Highlights vs. Louisville 11-12-26",
      "published": "2026-11-13T05:46:04+00:00",
-     "views": 267,
+     "views": 270,
      "dur": "6:30"
     },
     {
@@ -232,7 +232,7 @@
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15536,
+     "views": 15540,
      "dur": "19:34"
     },
     {
@@ -267,7 +267,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3185,
+     "views": 3187,
      "dur": "1:21:59"
     }
    ]
@@ -344,7 +344,7 @@
      "id": "xDsOnBUFl5g",
      "title": "SMU vs. Wake Forest Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-16T14:45:18+00:00",
-     "views": 203,
+     "views": 234,
      "dur": "24:09"
     },
     {
@@ -365,7 +365,7 @@
      "id": "1k6ZOiFKINA",
      "title": "SMU HC Rhett Lashlee reacts to Wake Forest's 49-7 drumming of SMU",
      "published": "2026-11-14T21:36:35+00:00",
-     "views": 2625,
+     "views": 2762,
      "dur": "8:25"
     },
     {
@@ -400,14 +400,14 @@
      "id": "NQ3sv3Nbzwg",
      "title": "Latest on pair of key SMU targets with decisions approachng",
      "published": "2026-11-13T20:50:12+00:00",
-     "views": 146,
+     "views": 148,
      "dur": "8:31"
     },
     {
      "id": "sBezP1Hcq4c",
      "title": "Pat & Go: SMU vs. Wake Forest Game Preview, Predictions | QB Chronicles Podcast",
      "published": "2026-11-13T06:00:00+00:00",
-     "views": 341,
+     "views": 342,
      "dur": "17:40"
     },
     {
@@ -421,7 +421,7 @@
      "id": "hrZypRWPQ1M",
      "title": "SMU vs. Wake Forest game preview, predictions for Week 11 | Revenge game on Senior Day, Homecoming",
      "published": "2026-11-12T06:13:36+00:00",
-     "views": 810,
+     "views": 811,
      "dur": "1:26:21"
     }
    ]
@@ -435,7 +435,7 @@
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 592,
+     "views": 667,
      "dur": "31:52"
     },
     {
@@ -456,7 +456,7 @@
      "id": "BTTQ5YO3gMA",
      "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
      "published": "2026-11-12T22:00:08+00:00",
-     "views": 173,
+     "views": 175,
      "dur": "34:02"
     },
     {
@@ -484,7 +484,7 @@
      "id": "5wLk0sx7Gwg",
      "title": "STATEMENT: SMU and Kevin Jennings DOMINATE Virginia Tech, Why THAT TEAM Can Beat Wake Forest!",
      "published": "2026-11-09T14:00:09+00:00",
-     "views": 710,
+     "views": 716,
      "dur": "26:53"
     },
     {
@@ -651,7 +651,7 @@
      "id": "PY5_mPP3eC8",
      "title": "Pony Up Productions Ep. 20: SMU vs. VT recap, Week 10 CFB analysis and more",
      "published": "2026-11-09T16:53:24+00:00",
-     "views": 37,
+     "views": 40,
      "dur": "35:11"
     },
     {
@@ -737,7 +737,7 @@
      "id": "PNz21nvbVNk",
      "title": "Ball State vs. SMU Full Game Replay | 2026-27 ACC Men's Basketball",
      "published": "2026-11-16T17:00:37+00:00",
-     "views": 330,
+     "views": 405,
      "dur": "1:26:44"
     },
     {
@@ -818,7 +818,7 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1574,
+     "views": 1575,
      "dur": "32:33"
     },
     {
