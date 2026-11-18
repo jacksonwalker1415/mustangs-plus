@@ -108,11 +108,10 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-17T19:00:00-06:00",
 "tv": "ACCNX",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "W 76-72",
 "links": {
-"watch": "https://www.espn.com/watch/player/_/id/18ac9477-02b5-43ef-9559-6daa941f1d51",
-"listen": "https://smumustangs.com/showcase/?Live=5404",
-"stats": "https://smumustangs.com/sidearmstats/mbball/summary",
+"recap": "https://smumustangs.com/news/2026/11/17/mens-basketball-white-scores-23-to-lead-smu-in-win-over-oral-roberts",
+"program": "https://digitalprograms.learfield.com/smuni/mbball/22079/",
 "gamecenter": "https://smumustangs.com/game-center/14742"
 },
 "note": "Fight for Literacy"
@@ -137,7 +136,8 @@ window.MP=window.MP||{};MP.GAMES={
 "listen": "https://smumustangs.com/showcase/?Live=5405",
 "stats": "https://smumustangs.com/sidearmstats/mbball/summary",
 "gamecenter": "https://smumustangs.com/game-center/14748"
-}
+},
+"note": "Food Drive"
 },
 {
 "id": "mbb-14698",
@@ -845,12 +845,10 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-17T18:30:00-06:00",
 "tv": "ESPN+",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "L 51-61",
 "links": {
-"watch": "https://www.espn.com/watch/player/_/id/ffdb6e9b-be8d-4502-9e13-f1272a9a2107",
-"listen": "https://smumustangs.com/showcase/?Live=5446",
-"stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
-"preview": "https://smumustangs.com/news/2026/11/16/womens-basketball-mustangs-hit-the-road-to-face-kansas-state-tuesday-6-30-pm",
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/kansas-state/boxscore/14730",
+"recap": "https://smumustangs.com/news/2026/11/17/womens-basketball-mustangs-fall-in-defensive-battle-at-kansas-state",
 "gamecenter": "https://smumustangs.com/game-center/14730"
 }
 },

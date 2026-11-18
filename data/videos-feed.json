@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T02:34:39Z",
+ "updated": "2026-11-18T03:28:47Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,7 +106,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 208,
+     "views": 259,
      "dur": "14:34"
     },
     {
@@ -120,7 +120,7 @@
      "id": "vmJo-M2dHG0",
      "title": "SMU Volleyball Match Highlights vs. Notre Dame 11-15-26",
      "published": "2026-11-16T03:20:18+00:00",
-     "views": 261,
+     "views": 264,
      "dur": "8:24"
     },
     {
@@ -344,14 +344,14 @@
      "id": "IWtCCm1IYFo",
      "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
      "published": "2026-11-17T23:12:29+00:00",
-     "views": 152,
+     "views": 196,
      "dur": "41:05"
     },
     {
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 418,
+     "views": 470,
      "dur": "56:59"
     },
     {
@@ -365,7 +365,7 @@
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 1337,
+     "views": 1501,
      "dur": "12:15"
     },
     {
@@ -736,18 +736,32 @@
    "broad": true,
    "videos": [
     {
+     "id": "3JSZbxKMhUg",
+     "title": "Oral Roberts vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
+     "published": "2026-11-18T03:26:44+00:00",
+     "views": 0,
+     "dur": "7:00"
+    },
+    {
+     "id": "peAGcdIkdNI",
+     "title": "SMU vs. Kansas St. Game Highlights | 2026-27 ACC Women's Basketball",
+     "published": "2026-11-18T03:26:03+00:00",
+     "views": 1,
+     "dur": "3:04"
+    },
+    {
      "id": "JlyMYHrVoGc",
      "title": "Nicholls vs. SMU Full Game Replay | 2026-27 ACC Women’s Basketball",
      "published": "2026-11-17T17:00:22+00:00",
-     "views": 60,
-     "dur": "1:03:28"
+     "dur": "1:03:28",
+     "views": 60
     },
     {
      "id": "gBjsVRTvps0",
      "title": "Wake Forest vs. SMU Full Game Replay | 2026 ACC Football",
      "published": "2026-11-17T17:00:14+00:00",
-     "views": 410,
-     "dur": "1:59:22"
+     "dur": "1:59:22",
+     "views": 410
     },
     {
      "id": "PNz21nvbVNk",
@@ -797,18 +811,6 @@
      "title": "Ball State vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
      "published": "2026-11-14T04:50:59+00:00",
      "dur": "7:05"
-    },
-    {
-     "id": "E_PKldUB6vI",
-     "title": "Prairie View vs. SMU Full Game Replay | 2026-27 ACC Men's Basketball",
-     "published": "2026-11-13T17:00:06+00:00",
-     "dur": "1:11:24"
-    },
-    {
-     "id": "Ccz0NYR_aLs",
-     "title": "Off the Clock with Victoria Harris | SMU Volleyball",
-     "published": "2026-11-13T14:00:04+00:00",
-     "dur": "21:49"
     }
    ]
   },
@@ -912,6 +914,14 @@
  ],
  "new": [
   {
+   "key": "acc-digital-network",
+   "id": "3JSZbxKMhUg"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "peAGcdIkdNI"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "IWtCCm1IYFo"
   },
@@ -936,20 +946,12 @@
    "id": "JlyMYHrVoGc"
   },
   {
-   "key": "acc-digital-network",
-   "id": "gBjsVRTvps0"
-  },
-  {
    "key": "locked-on-smu",
    "id": "5rubqiFcsB0"
   },
   {
    "key": "pony-up-productions",
    "id": "C0_t6BL1D6o"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "PNz21nvbVNk"
   },
   {
    "key": "locked-on-smu",
