@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T03:28:47Z",
+ "updated": "2026-11-18T04:35:06Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,6 +96,13 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "ZYXfi4Ny7rU",
+     "title": "SMU Men's Basketball: Postgame Press Conference vs ORU 11-17-26",
+     "published": "2026-11-18T03:41:41+00:00",
+     "views": 16,
+     "dur": "11:51"
+    },
+    {
      "id": "28Lu5ed9TMY",
      "title": "SMU Athletics Press Conference: Visit Dallas Helmet Sticker Announcement 11-17-26",
      "published": "2026-11-17T18:16:45+00:00",
@@ -106,7 +113,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 259,
+     "views": 264,
      "dur": "14:34"
     },
     {
@@ -127,35 +134,35 @@
      "id": "oUZXZxjIGB0",
      "title": "SMU Women's Basketball: Postgame Press Conference vs NICH 11-15-26",
      "published": "2026-11-16T02:49:54+00:00",
-     "views": 244,
+     "views": 245,
      "dur": "10:01"
     },
     {
      "id": "OZhOpxkZGhQ",
      "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
      "published": "2026-11-15T21:17:52+00:00",
-     "views": 135,
+     "views": 137,
      "dur": "9:14"
     },
     {
      "id": "VW41mZc_cY0",
      "title": "SMU Football: Postgame Press Conference vs Wake Forest 11-14-26",
      "published": "2026-11-14T21:11:01+00:00",
-     "views": 2128,
+     "views": 2145,
      "dur": "10:11"
     },
     {
      "id": "mnl3wwR0kgE",
      "title": "SMU Men's Basketball: Postgame Press Conference vs Ball State 11-13-26",
      "published": "2026-11-14T05:23:14+00:00",
-     "views": 137,
+     "views": 139,
      "dur": "10:16"
     },
     {
      "id": "pnWJJffI590",
      "title": "SMU Men's Basketball: Game Highlights vs. Ball State 11-13-26",
      "published": "2026-11-14T04:37:08+00:00",
-     "views": 123,
+     "views": 129,
      "dur": "5:22"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-13T15:43:07+00:00",
      "views": 99,
      "dur": "4:52"
-    },
-    {
-     "id": "SaO61GtkYUk",
-     "title": "SMU Volleyball Match Highlights vs. Louisville 11-12-26",
-     "published": "2026-11-13T05:46:04+00:00",
-     "views": 273,
-     "dur": "6:30"
     }
    ]
   },
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2359,
+     "views": 2361,
      "dur": "10:24"
     },
     {
@@ -341,17 +341,31 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "AFV9IJUNxGY",
+     "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
+     "published": "2026-11-18T04:14:36+00:00",
+     "views": 7,
+     "dur": "4:21"
+    },
+    {
+     "id": "oAubNmvvHBQ",
+     "title": "SMU HC Andy Enfield on how his team snuck past Oral Roberts 76-72",
+     "published": "2026-11-18T04:08:18+00:00",
+     "views": 15,
+     "dur": "7:40"
+    },
+    {
      "id": "IWtCCm1IYFo",
      "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
      "published": "2026-11-17T23:12:29+00:00",
-     "views": 196,
+     "views": 250,
      "dur": "41:05"
     },
     {
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 470,
+     "views": 519,
      "dur": "56:59"
     },
     {
@@ -365,42 +379,42 @@
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 1501,
+     "views": 1652,
      "dur": "12:15"
     },
     {
      "id": "xDsOnBUFl5g",
      "title": "SMU vs. Wake Forest Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-16T14:45:18+00:00",
-     "views": 441,
+     "views": 442,
      "dur": "24:09"
     },
     {
      "id": "EIuVSsLZODI",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:08+00:00",
-     "views": 1979,
+     "views": 2012,
      "dur": "16:36"
     },
     {
      "id": "J5siZPDEyKU",
      "title": "SMU QB Kevin Jennings on Wake Forest defeat, what he hopes his legacy will be at SMU",
      "published": "2026-11-15T01:38:23+00:00",
-     "views": 376,
+     "views": 377,
      "dur": "1:58"
     },
     {
      "id": "1k6ZOiFKINA",
      "title": "SMU HC Rhett Lashlee reacts to Wake Forest's 49-7 drumming of SMU",
      "published": "2026-11-14T21:36:35+00:00",
-     "views": 3067,
+     "views": 3081,
      "dur": "8:25"
     },
     {
      "id": "PXB6pgZmbOc",
      "title": "REACTION: SMU vs. Wake Forest postgame show, takeaways from SMU Senior Day | After 'Stangs Show",
      "published": "2026-11-14T21:25:18+00:00",
-     "views": 1546,
+     "views": 1563,
      "dur": "13:15"
     },
     {
@@ -409,20 +423,6 @@
      "published": "2026-11-14T11:00:32+00:00",
      "views": 106,
      "dur": "7:21"
-    },
-    {
-     "id": "1NGLOYnTevc",
-     "title": "Inside SMU commit's decision to reclasify | Previewing big recruiting weekend on Hilltop",
-     "published": "2026-11-14T06:00:06+00:00",
-     "views": 107,
-     "dur": "8:46"
-    },
-    {
-     "id": "lafvd-tqFR4",
-     "title": "Sip Cooper reclassifies to 2028 class: Impact on SMU recruiting👀",
-     "published": "2026-11-14T02:00:32+00:00",
-     "views": 125,
-     "dur": "4:32"
     }
    ]
   },
@@ -449,14 +449,14 @@
      "id": "IcmAbeKH2nU",
      "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
      "published": "2026-11-14T21:02:56+00:00",
-     "views": 2717,
+     "views": 2736,
      "dur": "20:23"
     },
     {
      "id": "t-r1tbHc3fw",
      "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
      "published": "2026-11-13T16:00:06+00:00",
-     "views": 365,
+     "views": 366,
      "dur": "28:49"
     },
     {
@@ -533,7 +533,7 @@
      "id": "2ji9X4lHkYc",
      "title": "SMU vs Wake Forest Preview: an ACC Showdown",
      "published": "2026-11-12T13:59:06+00:00",
-     "views": 54,
+     "views": 55,
      "dur": "26:37"
     },
     {
@@ -547,7 +547,7 @@
      "id": "-_sPsY-0eJw",
      "title": "SMU Dominates Virginia Tech 51-28! Kevin Jennings Shines",
      "published": "2026-11-08T14:22:32+00:00",
-     "views": 85,
+     "views": 87,
      "dur": "19:17"
     },
     {
@@ -618,7 +618,7 @@
      "id": "2Yt_riWxyU4",
      "title": "Darian Mensah Bowl for Miami vs. Duke | SMU hosts Wake Forest in CFP battle | Week 11 ACC Preview",
      "published": "2026-11-13T03:09:46+00:00",
-     "views": 183,
+     "views": 184,
      "dur": "39:51"
     },
     {
@@ -736,17 +736,31 @@
    "broad": true,
    "videos": [
     {
+     "id": "E1pJkUGVcQk",
+     "title": "SMU Guard Billy White III Highlights vs. Oral Roberts",
+     "published": "2026-11-18T03:47:14+00:00",
+     "views": 9,
+     "dur": "1:51"
+    },
+    {
+     "id": "BT3RZNh3DrM",
+     "title": "Oral Roberts vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
+     "published": "2026-11-18T03:33:06+00:00",
+     "views": 22,
+     "dur": "11:47"
+    },
+    {
      "id": "3JSZbxKMhUg",
      "title": "Oral Roberts vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
      "published": "2026-11-18T03:26:44+00:00",
-     "views": 0,
+     "views": 81,
      "dur": "7:00"
     },
     {
      "id": "peAGcdIkdNI",
      "title": "SMU vs. Kansas St. Game Highlights | 2026-27 ACC Women's Basketball",
      "published": "2026-11-18T03:26:03+00:00",
-     "views": 1,
+     "views": 24,
      "dur": "3:04"
     },
     {
@@ -799,18 +813,6 @@
      "title": "SMU vs. Syracuse Full Match Replay | 2026 ACC Men’s Soccer",
      "published": "2026-11-14T17:00:16+00:00",
      "dur": "1:51:06"
-    },
-    {
-     "id": "bKo63BgUj-A",
-     "title": "Ball State vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
-     "published": "2026-11-14T04:58:22+00:00",
-     "dur": "10:14"
-    },
-    {
-     "id": "IS9-MoqzLg0",
-     "title": "Ball State vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
-     "published": "2026-11-14T04:50:59+00:00",
-     "dur": "7:05"
     }
    ]
   },
@@ -914,24 +916,32 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "AFV9IJUNxGY"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "oAubNmvvHBQ"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "E1pJkUGVcQk"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "ZYXfi4Ny7rU"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "BT3RZNh3DrM"
+  },
+  {
    "key": "acc-digital-network",
    "id": "3JSZbxKMhUg"
   },
   {
-   "key": "acc-digital-network",
-   "id": "peAGcdIkdNI"
-  },
-  {
    "key": "on-the-pony-express",
    "id": "IWtCCm1IYFo"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "-eXsvxZExEc"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "kfLjO4JTMfU"
   },
   {
    "key": "smu-mustangs",
@@ -940,10 +950,6 @@
   {
    "key": "smu-mustangs",
    "id": "YHieeMJWnvg"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "JlyMYHrVoGc"
   },
   {
    "key": "locked-on-smu",
@@ -956,10 +962,6 @@
   {
    "key": "locked-on-smu",
    "id": "wg9ivJ7pwDI"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "NPzrvTBttRA"
   }
  ]
 }

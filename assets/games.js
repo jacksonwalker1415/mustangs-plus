@@ -110,6 +110,7 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": "W 76-72",
 "links": {
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2026-27/oral-roberts/boxscore/14742",
 "recap": "https://smumustangs.com/news/2026/11/17/mens-basketball-white-scores-23-to-lead-smu-in-win-over-oral-roberts",
 "program": "https://digitalprograms.learfield.com/smuni/mbball/22079/",
 "gamecenter": "https://smumustangs.com/game-center/14742"
