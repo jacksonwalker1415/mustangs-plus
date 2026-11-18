@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T23:29:48Z",
+ "updated": "2026-11-18T00:34:50Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,7 +106,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 113,
+     "views": 144,
      "dur": "14:34"
     },
     {
@@ -120,7 +120,7 @@
      "id": "vmJo-M2dHG0",
      "title": "SMU Volleyball Match Highlights vs. Notre Dame 11-15-26",
      "published": "2026-11-16T03:20:18+00:00",
-     "views": 254,
+     "views": 261,
      "dur": "8:24"
     },
     {
@@ -134,7 +134,7 @@
      "id": "OZhOpxkZGhQ",
      "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
      "published": "2026-11-15T21:17:52+00:00",
-     "views": 134,
+     "views": 135,
      "dur": "9:14"
     },
     {
@@ -169,7 +169,7 @@
      "id": "-kKyiEoPT2M",
      "title": "SMU Men's Soccer Game Highlights vs Syracuse 11-12-2026",
      "published": "2026-11-13T15:43:07+00:00",
-     "views": 98,
+     "views": 99,
      "dur": "4:52"
     },
     {
@@ -197,7 +197,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3861,
+     "views": 3862,
      "dur": "12:01"
     },
     {
@@ -344,27 +344,28 @@
      "id": "IWtCCm1IYFo",
      "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
      "published": "2026-11-17T23:12:29+00:00",
-     "views": 11
+     "views": 48,
+     "dur": "41:05"
     },
     {
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 227,
+     "views": 287,
      "dur": "56:59"
     },
     {
      "id": "kfLjO4JTMfU",
      "title": "SMU QB Kevin Jennings on the team turning its attention to Notre Dame",
      "published": "2026-11-17T19:30:14+00:00",
-     "views": 20,
+     "views": 30,
      "dur": "2:25"
     },
     {
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 656,
+     "views": 837,
      "dur": "12:15"
     },
     {
@@ -378,7 +379,7 @@
      "id": "EIuVSsLZODI",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:08+00:00",
-     "views": 1927,
+     "views": 1979,
      "dur": "16:36"
     },
     {
@@ -392,21 +393,21 @@
      "id": "1k6ZOiFKINA",
      "title": "SMU HC Rhett Lashlee reacts to Wake Forest's 49-7 drumming of SMU",
      "published": "2026-11-14T21:36:35+00:00",
-     "views": 3023,
+     "views": 3055,
      "dur": "8:25"
     },
     {
      "id": "PXB6pgZmbOc",
      "title": "REACTION: SMU vs. Wake Forest postgame show, takeaways from SMU Senior Day | After 'Stangs Show",
      "published": "2026-11-14T21:25:18+00:00",
-     "views": 1542,
+     "views": 1546,
      "dur": "13:15"
     },
     {
      "id": "QWQOrG-T2Zw",
      "title": "SMU gearing up for major recruiting weekend against Wake Forest",
      "published": "2026-11-14T11:00:32+00:00",
-     "views": 104,
+     "views": 105,
      "dur": "7:21"
     },
     {
@@ -455,7 +456,7 @@
      "id": "t-r1tbHc3fw",
      "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
      "published": "2026-11-13T16:00:06+00:00",
-     "views": 364,
+     "views": 365,
      "dur": "28:49"
     },
     {
@@ -532,7 +533,7 @@
      "id": "2ji9X4lHkYc",
      "title": "SMU vs Wake Forest Preview: an ACC Showdown",
      "published": "2026-11-12T13:59:06+00:00",
-     "views": 53,
+     "views": 54,
      "dur": "26:37"
     },
     {
@@ -745,7 +746,7 @@
      "id": "gBjsVRTvps0",
      "title": "Wake Forest vs. SMU Full Game Replay | 2026 ACC Football",
      "published": "2026-11-17T17:00:14+00:00",
-     "views": 260,
+     "views": 410,
      "dur": "1:59:22"
     },
     {
