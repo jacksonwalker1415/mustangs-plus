@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T21:35:08Z",
+ "updated": "2026-11-18T22:36:00Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,14 +106,14 @@
      "id": "D6eptkGBqn8",
      "title": "SMU Men's Basketball: Game Highlights vs. Oral Roberts 11-17-26",
      "published": "2026-11-18T15:42:10+00:00",
-     "views": 24,
+     "views": 47,
      "dur": "5:53"
     },
     {
      "id": "ZYXfi4Ny7rU",
      "title": "SMU Men's Basketball: Postgame Press Conference vs ORU 11-17-26",
      "published": "2026-11-18T03:41:41+00:00",
-     "views": 138,
+     "views": 151,
      "dur": "11:51"
     },
     {
@@ -127,7 +127,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 390,
+     "views": 421,
      "dur": "14:34"
     },
     {
@@ -155,7 +155,7 @@
      "id": "OZhOpxkZGhQ",
      "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
      "published": "2026-11-15T21:17:52+00:00",
-     "views": 142,
+     "views": 144,
      "dur": "9:14"
     },
     {
@@ -225,7 +225,7 @@
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3772,
+     "views": 3773,
      "dur": "10:30"
     },
     {
@@ -288,8 +288,8 @@
      "id": "3psTH9Ey25c",
      "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
      "published": "2026-11-12T00:00:09+00:00",
-     "views": 92,
-     "dur": "42:18"
+     "dur": "42:18",
+     "views": 92
     },
     {
      "id": "RU9nBkdqdjA",
@@ -351,7 +351,7 @@
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 360,
+     "views": 484,
      "dur": "28:11"
     },
     {
@@ -365,14 +365,14 @@
      "id": "AFV9IJUNxGY",
      "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
      "published": "2026-11-18T04:14:36+00:00",
-     "views": 83,
+     "views": 85,
      "dur": "4:21"
     },
     {
      "id": "oAubNmvvHBQ",
      "title": "SMU HC Andy Enfield on how his team snuck past Oral Roberts 76-72",
      "published": "2026-11-18T04:08:18+00:00",
-     "views": 159,
+     "views": 160,
      "dur": "7:40"
     },
     {
@@ -386,7 +386,7 @@
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 804,
+     "views": 866,
      "dur": "56:59"
     },
     {
@@ -421,7 +421,7 @@
      "id": "J5siZPDEyKU",
      "title": "SMU QB Kevin Jennings on Wake Forest defeat, what he hopes his legacy will be at SMU",
      "published": "2026-11-15T01:38:23+00:00",
-     "views": 380,
+     "views": 381,
      "dur": "1:58"
     }
    ]
@@ -435,7 +435,7 @@
      "id": "TZe_YGSgd1w",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:06+00:00",
-     "views": 92,
+     "views": 107,
      "dur": "30:06"
     },
     {
@@ -449,7 +449,7 @@
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1310,
+     "views": 1312,
      "dur": "31:52"
     },
     {
@@ -618,7 +618,7 @@
      "id": "8ltqO4NDHvA",
      "title": "Clemson at Duke Spotlight | SMU's opportunity at Notre Dame | College Football Playoff Reaction",
      "published": "2026-11-18T14:14:52+00:00",
-     "views": 36,
+     "views": 37,
      "dur": "38:01"
     },
     {
@@ -652,7 +652,7 @@
      "id": "C0_t6BL1D6o",
      "title": "Pony Up Productions Ep. 22: SMU vs. Wake Forest Recap",
      "published": "2026-11-17T06:43:43+00:00",
-     "views": 71,
+     "views": 72,
      "dur": "31:16"
     },
     {
@@ -833,7 +833,7 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1584,
+     "views": 1586,
      "dur": "32:33"
     },
     {
