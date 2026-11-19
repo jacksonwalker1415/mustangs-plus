@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T04:31:28Z",
+ "updated": "2026-11-19T05:29:47Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,14 +99,14 @@
      "id": "LuE3ZJcTY1s",
      "title": "SMU Football: Media Availability - Brandon Booker and Theo Ohrstrom 11-18-26",
      "published": "2026-11-18T17:30:31+00:00",
-     "views": 44,
+     "views": 46,
      "dur": "6:53"
     },
     {
      "id": "D6eptkGBqn8",
      "title": "SMU Men's Basketball: Game Highlights vs. Oral Roberts 11-17-26",
      "published": "2026-11-18T15:42:10+00:00",
-     "views": 66,
+     "views": 67,
      "dur": "5:53"
     },
     {
@@ -120,7 +120,7 @@
      "id": "28Lu5ed9TMY",
      "title": "SMU Athletics Press Conference: Visit Dallas Helmet Sticker Announcement 11-17-26",
      "published": "2026-11-17T18:16:45+00:00",
-     "views": 110,
+     "views": 112,
      "dur": "4:23"
     },
     {
@@ -141,7 +141,7 @@
      "id": "vmJo-M2dHG0",
      "title": "SMU Volleyball Match Highlights vs. Notre Dame 11-15-26",
      "published": "2026-11-16T03:20:18+00:00",
-     "views": 274,
+     "views": 275,
      "dur": "8:24"
     },
     {
@@ -176,7 +176,7 @@
      "id": "pnWJJffI590",
      "title": "SMU Men's Basketball: Game Highlights vs. Ball State 11-13-26",
      "published": "2026-11-14T04:37:08+00:00",
-     "views": 131,
+     "views": 132,
      "dur": "5:22"
     }
    ]
@@ -239,7 +239,7 @@
      "id": "8GSDjGx6S88",
      "title": "UNTOLD: Aakil Washington & Jarvis Lee Jr - Episode 4 | SMU Football",
      "published": "2026-08-25T00:19:30+00:00",
-     "views": 1628,
+     "views": 1629,
      "dur": "28:28"
     },
     {
@@ -348,17 +348,24 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "rb9sCMqp-HE",
+     "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Can Mustangs spoil Playoff push?",
+     "published": "2026-11-19T04:37:38+00:00",
+     "views": 21,
+     "dur": "1:21:49"
+    },
+    {
      "id": "3bNxlS9yIn8",
      "title": "SMU TE Theo Melin Ohrstrom reviews offensive performance vs. Wake Forest, Notre Dame atmosphere",
      "published": "2026-11-18T19:45:08+00:00",
-     "views": 40,
+     "views": 42,
      "dur": "2:52"
     },
     {
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 1144,
+     "views": 1229,
      "dur": "28:11"
     },
     {
@@ -372,7 +379,7 @@
      "id": "AFV9IJUNxGY",
      "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
      "published": "2026-11-18T04:14:36+00:00",
-     "views": 104,
+     "views": 105,
      "dur": "4:21"
     },
     {
@@ -393,7 +400,7 @@
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 901,
+     "views": 943,
      "dur": "56:59"
     },
     {
@@ -407,7 +414,7 @@
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 2322,
+     "views": 2333,
      "dur": "12:15"
     },
     {
@@ -423,13 +430,6 @@
      "published": "2026-11-15T12:00:08+00:00",
      "views": 2073,
      "dur": "16:36"
-    },
-    {
-     "id": "J5siZPDEyKU",
-     "title": "SMU QB Kevin Jennings on Wake Forest defeat, what he hopes his legacy will be at SMU",
-     "published": "2026-11-15T01:38:23+00:00",
-     "views": 381,
-     "dur": "1:58"
     }
    ]
   },
@@ -449,7 +449,7 @@
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 432,
+     "views": 445,
      "dur": "30:36"
     },
     {
@@ -625,7 +625,7 @@
      "id": "8ltqO4NDHvA",
      "title": "Clemson at Duke Spotlight | SMU's opportunity at Notre Dame | College Football Playoff Reaction",
      "published": "2026-11-19T03:25:53+00:00",
-     "views": 47,
+     "views": 48,
      "dur": "38:01"
     },
     {
@@ -659,7 +659,7 @@
      "id": "C0_t6BL1D6o",
      "title": "Pony Up Productions Ep. 22: SMU vs. Wake Forest Recap",
      "published": "2026-11-17T06:43:43+00:00",
-     "views": 74,
+     "views": 75,
      "dur": "31:16"
     },
     {
@@ -930,6 +930,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "rb9sCMqp-HE"
+  },
+  {
    "key": "all-access-am",
    "id": "8ltqO4NDHvA"
   },
@@ -948,10 +952,6 @@
   {
    "key": "smu-mustangs",
    "id": "LuE3ZJcTY1s"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "9Na8R3PVrvg"
   },
   {
    "key": "locked-on-smu",
