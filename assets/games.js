@@ -805,6 +805,7 @@ window.MP=window.MP||{};MP.GAMES={
 "links": {
 "box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/kansas-state/boxscore/14730",
 "recap": "https://smumustangs.com/news/2026/11/17/womens-basketball-mustangs-fall-in-defensive-battle-at-kansas-state",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
 "gamecenter": "https://smumustangs.com/game-center/14730"
 }
 },
@@ -850,6 +851,7 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "listen": "https://smumustangs.com/showcase/?Live=5448",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
 "gamecenter": "https://smumustangs.com/game-center/14685"
 },
 "note": "Hoopfest Basketball Women's Challenge"
@@ -873,6 +875,7 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "listen": "https://smumustangs.com/showcase/?Live=5449",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
 "gamecenter": "https://smumustangs.com/game-center/14686"
 },
 "note": "Hoopfest Basketball Women's Challenge"
