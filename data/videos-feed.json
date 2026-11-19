@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T02:35:20Z",
+ "updated": "2026-11-19T03:30:33Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,14 +99,14 @@
      "id": "LuE3ZJcTY1s",
      "title": "SMU Football: Media Availability - Brandon Booker and Theo Ohrstrom 11-18-26",
      "published": "2026-11-18T17:30:31+00:00",
-     "views": 28,
+     "views": 44,
      "dur": "6:53"
     },
     {
      "id": "D6eptkGBqn8",
      "title": "SMU Men's Basketball: Game Highlights vs. Oral Roberts 11-17-26",
      "published": "2026-11-18T15:42:10+00:00",
-     "views": 58,
+     "views": 66,
      "dur": "5:53"
     },
     {
@@ -120,14 +120,14 @@
      "id": "28Lu5ed9TMY",
      "title": "SMU Athletics Press Conference: Visit Dallas Helmet Sticker Announcement 11-17-26",
      "published": "2026-11-17T18:16:45+00:00",
-     "views": 107,
+     "views": 110,
      "dur": "4:23"
     },
     {
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 429,
+     "views": 480,
      "dur": "14:34"
     },
     {
@@ -204,14 +204,14 @@
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2837,
+     "views": 2840,
      "dur": "14:09"
     },
     {
      "id": "uArmMAjtgLI",
      "title": "The Boston College Mini-Movie | SMU Football",
      "published": "2026-10-05T23:50:08+00:00",
-     "views": 2001,
+     "views": 2003,
      "dur": "9:35"
     },
     {
@@ -246,7 +246,7 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3902,
+     "views": 3903,
      "dur": "34:46"
     },
     {
@@ -351,21 +351,21 @@
      "id": "3bNxlS9yIn8",
      "title": "SMU TE Theo Melin Ohrstrom reviews offensive performance vs. Wake Forest, Notre Dame atmosphere",
      "published": "2026-11-18T19:45:08+00:00",
-     "views": 17,
+     "views": 40,
      "dur": "2:52"
     },
     {
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 879,
+     "views": 1041,
      "dur": "28:11"
     },
     {
      "id": "9Na8R3PVrvg",
      "title": "Brandon Booker assesses SMU's response to embarrassing loss to Wake Forest, challenge at Notre Dame",
      "published": "2026-11-18T17:01:08+00:00",
-     "views": 112,
+     "views": 113,
      "dur": "3:53"
     },
     {
@@ -386,7 +386,7 @@
      "id": "IWtCCm1IYFo",
      "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
      "published": "2026-11-17T23:12:29+00:00",
-     "views": 574,
+     "views": 605,
      "dur": "41:05"
     },
     {
@@ -407,7 +407,7 @@
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 2250,
+     "views": 2322,
      "dur": "12:15"
     },
     {
@@ -442,7 +442,7 @@
      "id": "TZe_YGSgd1w",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:06+00:00",
-     "views": 146,
+     "views": 197,
      "dur": "30:06"
     },
     {
@@ -624,8 +624,8 @@
     {
      "id": "8ltqO4NDHvA",
      "title": "Clemson at Duke Spotlight | SMU's opportunity at Notre Dame | College Football Playoff Reaction",
-     "published": "2026-11-18T14:14:52+00:00",
-     "views": 38,
+     "published": "2026-11-19T03:25:53+00:00",
+     "views": 43,
      "dur": "38:01"
     },
     {
@@ -659,7 +659,7 @@
      "id": "C0_t6BL1D6o",
      "title": "Pony Up Productions Ep. 22: SMU vs. Wake Forest Recap",
      "published": "2026-11-17T06:43:43+00:00",
-     "views": 73,
+     "views": 74,
      "dur": "31:16"
     },
     {
@@ -930,6 +930,10 @@
  ],
  "new": [
   {
+   "key": "all-access-am",
+   "id": "8ltqO4NDHvA"
+  },
+  {
    "key": "mustang-studios",
    "id": "rQnS_4Gpv98"
   },
@@ -956,10 +960,6 @@
   {
    "key": "smu-mustangs",
    "id": "D6eptkGBqn8"
-  },
-  {
-   "key": "all-access-am",
-   "id": "8ltqO4NDHvA"
   },
   {
    "key": "acc-digital-network",
