@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T00:26:25Z",
+ "updated": "2026-11-19T01:34:24Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,7 +99,7 @@
      "id": "LuE3ZJcTY1s",
      "title": "SMU Football: Media Availability - Brandon Booker and Theo Ohrstrom 11-18-26",
      "published": "2026-11-18T17:30:31+00:00",
-     "views": 27,
+     "views": 28,
      "dur": "6:53"
     },
     {
@@ -113,7 +113,7 @@
      "id": "ZYXfi4Ny7rU",
      "title": "SMU Men's Basketball: Postgame Press Conference vs ORU 11-17-26",
      "published": "2026-11-18T03:41:41+00:00",
-     "views": 157,
+     "views": 158,
      "dur": "11:51"
     },
     {
@@ -155,7 +155,7 @@
      "id": "OZhOpxkZGhQ",
      "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
      "published": "2026-11-15T21:17:52+00:00",
-     "views": 144,
+     "views": 145,
      "dur": "9:14"
     },
     {
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 4,
+     "views": 7,
      "dur": "20:56"
     },
     {
@@ -358,7 +358,7 @@
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 700,
+     "views": 816,
      "dur": "28:11"
     },
     {
@@ -372,14 +372,14 @@
      "id": "AFV9IJUNxGY",
      "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
      "published": "2026-11-18T04:14:36+00:00",
-     "views": 85,
+     "views": 95,
      "dur": "4:21"
     },
     {
      "id": "oAubNmvvHBQ",
      "title": "SMU HC Andy Enfield on how his team snuck past Oral Roberts 76-72",
      "published": "2026-11-18T04:08:18+00:00",
-     "views": 160,
+     "views": 180,
      "dur": "7:40"
     },
     {
@@ -400,7 +400,7 @@
      "id": "kfLjO4JTMfU",
      "title": "SMU QB Kevin Jennings on the team turning its attention to Notre Dame",
      "published": "2026-11-17T19:30:14+00:00",
-     "views": 80,
+     "views": 85,
      "dur": "2:25"
     },
     {
@@ -456,7 +456,7 @@
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1312,
+     "views": 1316,
      "dur": "31:52"
     },
     {
@@ -625,7 +625,7 @@
      "id": "8ltqO4NDHvA",
      "title": "Clemson at Duke Spotlight | SMU's opportunity at Notre Dame | College Football Playoff Reaction",
      "published": "2026-11-18T14:14:52+00:00",
-     "views": 37,
+     "views": 38,
      "dur": "38:01"
     },
     {
@@ -840,8 +840,8 @@
      "id": "1LlnMaR_kD4",
      "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
      "published": "2026-11-10T00:00:09+00:00",
-     "views": 1586,
-     "dur": "32:33"
+     "dur": "32:33",
+     "views": 1586
     },
     {
      "id": "qa99l4IcFfQ",

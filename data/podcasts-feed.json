@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-18T19:29:38Z",
+ "generated": "2026-11-19T01:34:24Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -324,6 +324,13 @@
    "art": "assets/img/pods/mustang-studios.webp",
    "episodes": [
     {
+     "id": "459c66f7da",
+     "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
+     "published": "2026-11-19T00:00:00Z",
+     "dur": "21 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/129713919/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-18%2F437092500-44100-2-3999245c7ad948.mp3"
+    },
+    {
      "id": "4952cf2708",
      "title": "Jermaine O'Neal Jr. & Jaden Toombs: Brothers Before SMU | The Five",
      "published": "2026-11-13T22:15:24Z",
@@ -410,14 +417,6 @@
      "dur": "16 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/127427470/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-13%2F434104337-44100-2-16eb9957e6f1a.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/a-different-kind-of-college-cheer-team-nostalgia-episode-3/id1896902919?i=1000796208985"
-    },
-    {
-     "id": "04b2e1d9bd",
-     "title": "SMU Handles Boston College + Exclusive Sit-Down With Three Mustangs | The 214",
-     "published": "2026-10-08T20:05:41Z",
-     "dur": "38 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/127138060/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-8%2F433726216-44100-2-e908099b1448.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-handles-boston-college-exclusive-sit-down-with/id1896902919?i=1000793926607"
     }
    ]
   },
@@ -739,6 +738,10 @@
  ],
  "new": [
   {
+   "key": "mustang-studios",
+   "id": "459c66f7da"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "89c98bf05f"
   },
@@ -781,10 +784,6 @@
   {
    "key": "mustang-mood",
    "id": "d31108f4b5"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "a1c491148e"
   }
  ]
 }
