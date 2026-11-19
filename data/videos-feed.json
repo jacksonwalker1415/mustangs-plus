@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T12:19:15Z",
+ "updated": "2026-11-19T19:32:36Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,24 +96,31 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "sWW-_AhI7nE",
+     "title": "Mustangs Mic'd Up S2E8: Brandon Booker, Kevin Jennings & Rhett Lashlee",
+     "published": "2026-11-19T18:56:41+00:00",
+     "views": 1,
+     "dur": "32:21"
+    },
+    {
      "id": "LuE3ZJcTY1s",
      "title": "SMU Football: Media Availability - Brandon Booker and Theo Ohrstrom 11-18-26",
      "published": "2026-11-18T17:30:31+00:00",
-     "views": 67,
+     "views": 71,
      "dur": "6:53"
     },
     {
      "id": "D6eptkGBqn8",
      "title": "SMU Men's Basketball: Game Highlights vs. Oral Roberts 11-17-26",
      "published": "2026-11-18T15:42:10+00:00",
-     "views": 98,
+     "views": 108,
      "dur": "5:53"
     },
     {
      "id": "ZYXfi4Ny7rU",
      "title": "SMU Men's Basketball: Postgame Press Conference vs ORU 11-17-26",
      "published": "2026-11-18T03:41:41+00:00",
-     "views": 171,
+     "views": 172,
      "dur": "11:51"
     },
     {
@@ -127,7 +134,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 535,
+     "views": 550,
      "dur": "14:34"
     },
     {
@@ -141,21 +148,21 @@
      "id": "vmJo-M2dHG0",
      "title": "SMU Volleyball Match Highlights vs. Notre Dame 11-15-26",
      "published": "2026-11-16T03:20:18+00:00",
-     "views": 275,
+     "views": 276,
      "dur": "8:24"
     },
     {
      "id": "oUZXZxjIGB0",
      "title": "SMU Women's Basketball: Postgame Press Conference vs NICH 11-15-26",
      "published": "2026-11-16T02:49:54+00:00",
-     "views": 270,
+     "views": 272,
      "dur": "10:01"
     },
     {
      "id": "OZhOpxkZGhQ",
      "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
      "published": "2026-11-15T21:17:52+00:00",
-     "views": 157,
+     "views": 158,
      "dur": "9:14"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-14T05:23:14+00:00",
      "views": 145,
      "dur": "10:16"
-    },
-    {
-     "id": "pnWJJffI590",
-     "title": "SMU Men's Basketball: Game Highlights vs. Ball State 11-13-26",
-     "published": "2026-11-14T04:37:08+00:00",
-     "views": 132,
-     "dur": "5:22"
     }
    ]
   },
@@ -190,14 +190,14 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2392,
+     "views": 2393,
      "dur": "10:24"
     },
     {
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3871,
+     "views": 3873,
      "dur": "12:01"
     },
     {
@@ -225,14 +225,14 @@
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3777,
+     "views": 3778,
      "dur": "10:30"
     },
     {
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15555,
+     "views": 15556,
      "dur": "19:34"
     },
     {
@@ -267,7 +267,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3193,
+     "views": 3195,
      "dur": "1:21:59"
     }
    ]
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 33,
+     "views": 35,
      "dur": "20:56"
     },
     {
@@ -351,70 +351,70 @@
      "id": "rb9sCMqp-HE",
      "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Can Mustangs spoil Playoff push?",
      "published": "2026-11-19T04:37:38+00:00",
-     "views": 119,
+     "views": 402,
      "dur": "1:21:49"
     },
     {
      "id": "3bNxlS9yIn8",
      "title": "SMU TE Theo Melin Ohrstrom reviews offensive performance vs. Wake Forest, Notre Dame atmosphere",
      "published": "2026-11-18T19:45:08+00:00",
-     "views": 60,
+     "views": 67,
      "dur": "2:52"
     },
     {
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 1375,
+     "views": 1526,
      "dur": "28:11"
     },
     {
      "id": "9Na8R3PVrvg",
      "title": "Brandon Booker assesses SMU's response to embarrassing loss to Wake Forest, challenge at Notre Dame",
      "published": "2026-11-18T17:01:08+00:00",
-     "views": 160,
+     "views": 167,
      "dur": "3:53"
     },
     {
      "id": "AFV9IJUNxGY",
      "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
      "published": "2026-11-18T04:14:36+00:00",
-     "views": 110,
+     "views": 111,
      "dur": "4:21"
     },
     {
      "id": "oAubNmvvHBQ",
      "title": "SMU HC Andy Enfield on how his team snuck past Oral Roberts 76-72",
      "published": "2026-11-18T04:08:18+00:00",
-     "views": 205,
+     "views": 207,
      "dur": "7:40"
     },
     {
      "id": "IWtCCm1IYFo",
      "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
      "published": "2026-11-17T23:12:29+00:00",
-     "views": 632,
+     "views": 654,
      "dur": "41:05"
     },
     {
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 969,
+     "views": 986,
      "dur": "56:59"
     },
     {
      "id": "kfLjO4JTMfU",
      "title": "SMU QB Kevin Jennings on the team turning its attention to Notre Dame",
      "published": "2026-11-17T19:30:14+00:00",
-     "views": 88,
+     "views": 89,
      "dur": "2:25"
     },
     {
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 2433,
+     "views": 2593,
      "dur": "12:15"
     },
     {
@@ -439,24 +439,31 @@
    "url": "https://www.youtube.com/@LockedOnSMU",
    "videos": [
     {
+     "id": "J0MR1p_TLx0",
+     "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
+     "published": "2026-11-19T17:00:07+00:00",
+     "views": 55,
+     "dur": "33:43"
+    },
+    {
      "id": "TZe_YGSgd1w",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:06+00:00",
-     "views": 308,
+     "views": 363,
      "dur": "30:06"
     },
     {
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 449,
+     "views": 457,
      "dur": "30:36"
     },
     {
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1326,
+     "views": 1328,
      "dur": "31:52"
     },
     {
@@ -514,13 +521,6 @@
      "published": "2026-11-07T19:00:06+00:00",
      "dur": "31:22",
      "views": 515
-    },
-    {
-     "id": "MjbcW8pvKg4",
-     "title": "MUST-WIN: SMU Mustangs and Rhett Lashlee on the BRINK—Can They SURVIVE Virginia Tech’s Challenge?",
-     "published": "2026-11-06T16:00:10+00:00",
-     "dur": "29:54",
-     "views": 303
     }
    ]
   },
@@ -625,7 +625,7 @@
      "id": "8ltqO4NDHvA",
      "title": "Clemson at Duke Spotlight | SMU's opportunity at Notre Dame | College Football Playoff Reaction",
      "published": "2026-11-19T03:25:53+00:00",
-     "views": 53,
+     "views": 56,
      "dur": "38:01"
     },
     {
@@ -659,14 +659,14 @@
      "id": "C0_t6BL1D6o",
      "title": "Pony Up Productions Ep. 22: SMU vs. Wake Forest Recap",
      "published": "2026-11-17T06:43:43+00:00",
-     "views": 75,
+     "views": 76,
      "dur": "31:16"
     },
     {
      "id": "9KGVJoZrLHU",
      "title": "Pony Up Productions Ep. 21: SMU vs Wake Forest Preview, ACC Pick'Em",
      "published": "2026-11-12T23:48:04+00:00",
-     "views": 46,
+     "views": 47,
      "dur": "45:26"
     },
     {
@@ -930,6 +930,14 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "sWW-_AhI7nE"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "J0MR1p_TLx0"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "rb9sCMqp-HE"
   },
@@ -966,16 +974,8 @@
    "id": "E1pJkUGVcQk"
   },
   {
-   "key": "smu-mustangs",
-   "id": "ZYXfi4Ny7rU"
-  },
-  {
    "key": "acc-digital-network",
    "id": "BT3RZNh3DrM"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "3JSZbxKMhUg"
   }
  ]
 }

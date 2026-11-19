@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-19T04:31:28Z",
+ "generated": "2026-11-19T19:32:36Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -113,6 +113,13 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "bf0ecb1330",
+     "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
+     "published": "2026-11-19T17:00:00Z",
+     "dur": "34 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/eb2fca90-3fad-4b9c-ad6c-51d21aa94693/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=eb2fca90-3fad-4b9c-ad6c-51d21aa94693&feed=MciFpBoA"
+    },
+    {
      "id": "79c8fdee36",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:00Z",
@@ -199,14 +206,6 @@
      "dur": "31 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/6e961926-f67b-466d-b00b-fd8395093453/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=6e961926-f67b-466d-b00b-fd8395093453&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/bounce-back-smu-mustangs-obliterate-virginia-tech-kevin/id1824252582?i=1000800444093"
-    },
-    {
-     "id": "3ee6e65720",
-     "title": "MUST-WIN: SMU Mustangs and Rhett Lashlee on the BRINK—Can They SURVIVE Virginia Tech’s Challenge?",
-     "published": "2026-11-06T16:00:00Z",
-     "dur": "30 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/878ce0d8-962f-47fb-b2f6-2ba39f2601ba/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=878ce0d8-962f-47fb-b2f6-2ba39f2601ba&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/must-win-smu-mustangs-and-rhett-lashlee-on-the-brink/id1824252582?i=1000800269612"
     }
    ]
   },
@@ -386,6 +385,13 @@
      "apple": "https://podcasts.apple.com/us/podcast/lebron-jordan-and-unfiltered-smu-basketball-team-talk/id1896902919?i=1000797681928"
     },
     {
+     "id": "291d5d8447",
+     "title": "Talent Isn't Enough to Make This Team | Nostalgia Episode 4",
+     "published": "2026-10-21T00:00:01Z",
+     "dur": "18 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/127804415/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-20%2F434615573-44100-2-9ec3035b41af.mp3"
+    },
+    {
      "id": "2464e7b3ef",
      "title": "EXCLUSIVE: Damon Evans Reveals SMU's Next BIG Move After Virginia Win | The 214",
      "published": "2026-10-20T22:36:20Z",
@@ -408,14 +414,6 @@
      "dur": "31 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/127482936/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-14%2F434180529-44100-2-163e5929d2f22.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-footballs-bye-week-reset-what-must-change-vs-virginia/id1896902919?i=1000796389890"
-    },
-    {
-     "id": "f26d2b2f37",
-     "title": "A Different Kind of College Cheer Team | Nostalgia Episode 3",
-     "published": "2026-10-13T21:12:05Z",
-     "dur": "16 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/127427470/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-13%2F434104337-44100-2-16eb9957e6f1a.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/a-different-kind-of-college-cheer-team-nostalgia-episode-3/id1896902919?i=1000796208985"
     }
    ]
   },
@@ -737,6 +735,10 @@
  ],
  "new": [
   {
+   "key": "locked-on-smu",
+   "id": "bf0ecb1330"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "41ced4dcb5"
   },
@@ -759,10 +761,6 @@
   {
    "key": "kc-masterpiece",
    "id": "744adb6b3b"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "a989552879"
   },
   {
    "key": "mustang-mood",
