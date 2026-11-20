@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20T19:33:35Z",
+ "generated": "2026-11-20T20:27:46Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -219,6 +219,14 @@
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
     {
+     "id": "00bf3ad7f4",
+     "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
+     "published": "2026-11-20T14:24:10Z",
+     "dur": "23 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129808496/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-20%2F437223855-44100-2-d141ab6842785.mp3",
+     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-notre-dame-preview-can-the-mustangs-bounce/id1734256145?i=1000803140146"
+    },
+    {
      "id": "7729ba27e1",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:00Z",
@@ -305,14 +313,6 @@
      "dur": "19 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/127645256/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-18%2F434400546-44100-2-54f9a66785ace.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-takes-care-of-virginia-wins-23-13-the-mustang-mood/id1734256145?i=1000796916270"
-    },
-    {
-     "id": "89992c40da",
-     "title": "SMU vs Virginia Preview: Can the Mustangs Turn the Corner?",
-     "published": "2026-10-16T11:00:00Z",
-     "dur": "24 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/127552836/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-16%2F434276963-44100-2-920cea9cd3316.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-preview-can-the-mustangs-turn-the-corner/id1734256145?i=1000796648902"
     }
    ]
   },
@@ -747,6 +747,10 @@
    "id": "c50bd9d4bf"
   },
   {
+   "key": "mustang-mood",
+   "id": "00bf3ad7f4"
+  },
+  {
    "key": "locked-on-smu",
    "id": "bf0ecb1330"
   },
@@ -781,10 +785,6 @@
   {
    "key": "all-access-am",
    "id": "b485157f12"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "d31108f4b5"
   }
  ]
 }
