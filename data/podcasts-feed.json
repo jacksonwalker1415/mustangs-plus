@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-19T20:30:28Z",
+ "generated": "2026-11-20T19:33:35Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,14 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "c50bd9d4bf",
+     "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
+     "published": "2026-11-20T14:36:38Z",
+     "dur": "23 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/4dc44040-620d-4f50-b1be-53cb7b64ae8a/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=4dc44040-620d-4f50-b1be-53cb7b64ae8a&feed=eSeVNxtA",
+     "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-vs-notre-dame-preview-can/id1604025463?i=1000803138454"
+    },
     {
      "id": "41ced4dcb5",
      "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Bounce back opportunity for Rhett Lashlee's Mustangs",
@@ -95,14 +103,6 @@
      "dur": "24 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/198ebe24-154a-4a6c-b926-3d543cca5bdb/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=198ebe24-154a-4a6c-b926-3d543cca5bdb&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-volleyball-vs-louisville-can/id1604025463?i=1000801279486"
-    },
-    {
-     "id": "495c3e6563",
-     "title": "Final thoughts on SMU beating Virginia Tech, dominant win over Hokies | SMU Football Podcast",
-     "published": "2026-11-10T05:03:25Z",
-     "dur": "49 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/de2939ee-8177-4a1e-8b47-ae030bce1831/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=de2939ee-8177-4a1e-8b47-ae030bce1831&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-on-smu-beating-virginia-tech-dominant/id1604025463?i=1000800931139"
     }
    ]
   },
@@ -113,6 +113,14 @@
    "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
+    {
+     "id": "4a69562839",
+     "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
+     "published": "2026-11-20T17:00:00Z",
+     "dur": "31 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/97151826-77a5-41b6-b8a6-19cef0b00534/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=97151826-77a5-41b6-b8a6-19cef0b00534&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/will-kevin-jennings-deliver-for-smu-against-heavily/id1824252582?i=1000803161885"
+    },
     {
      "id": "bf0ecb1330",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
@@ -200,14 +208,6 @@
      "dur": "27 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/5ba701a2-4d27-4d78-8b5a-428ac164c8ca/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=5ba701a2-4d27-4d78-8b5a-428ac164c8ca&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/statement-smu-and-kevin-jennings-dominate-virginia/id1824252582?i=1000800774626"
-    },
-    {
-     "id": "6ae59e132a",
-     "title": "BOUNCE BACK: SMU Mustangs OBLITERATE Virginia Tech, Kevin Jennings and Yamir Knight STAR",
-     "published": "2026-11-07T19:00:00Z",
-     "dur": "31 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/6e961926-f67b-466d-b00b-fd8395093453/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=6e961926-f67b-466d-b00b-fd8395093453&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/bounce-back-smu-mustangs-obliterate-virginia-tech-kevin/id1824252582?i=1000800444093"
     }
    ]
   },
@@ -740,6 +740,14 @@
  "new": [
   {
    "key": "locked-on-smu",
+   "id": "4a69562839"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "c50bd9d4bf"
+  },
+  {
+   "key": "locked-on-smu",
    "id": "bf0ecb1330"
   },
   {
@@ -749,14 +757,6 @@
   {
    "key": "mustang-studios",
    "id": "459c66f7da"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "89c98bf05f"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "79c8fdee36"
   },
   {
    "key": "kc-masterpiece",
