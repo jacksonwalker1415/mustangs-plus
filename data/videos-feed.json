@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T21:29:46Z",
+ "updated": "2026-11-20T22:32:30Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -197,7 +197,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3889,
+     "views": 3891,
      "dur": "12:01"
     },
     {
@@ -211,14 +211,14 @@
      "id": "uArmMAjtgLI",
      "title": "The Boston College Mini-Movie | SMU Football",
      "published": "2026-10-05T23:50:08+00:00",
-     "views": 2005,
+     "views": 2007,
      "dur": "9:35"
     },
     {
      "id": "6Ccxu_bdZSk",
      "title": "The Missouri State Mini-Movie | SMU Football",
      "published": "2026-09-28T23:55:53+00:00",
-     "views": 2140,
+     "views": 2141,
      "dur": "10:11"
     },
     {
@@ -239,7 +239,7 @@
      "id": "8GSDjGx6S88",
      "title": "UNTOLD: Aakil Washington & Jarvis Lee Jr - Episode 4 | SMU Football",
      "published": "2026-08-25T00:19:30+00:00",
-     "views": 1632,
+     "views": 1633,
      "dur": "28:28"
     },
     {
@@ -351,14 +351,14 @@
      "id": "6FKJ-ufqJ9s",
      "title": "SMU keys to victory at Notre Dame | Can the Mustangs pull off the major upset?",
      "published": "2026-11-20T17:36:13+00:00",
-     "views": 53,
+     "views": 92,
      "dur": "15:33"
     },
     {
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 424,
+     "views": 532,
      "dur": "22:57"
     },
     {
@@ -379,7 +379,7 @@
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 2110,
+     "views": 2144,
      "dur": "28:11"
     },
     {
@@ -393,7 +393,7 @@
      "id": "AFV9IJUNxGY",
      "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
      "published": "2026-11-18T04:14:36+00:00",
-     "views": 135,
+     "views": 138,
      "dur": "4:21"
     },
     {
@@ -414,7 +414,7 @@
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 1054,
+     "views": 1057,
      "dur": "56:59"
     },
     {
@@ -442,14 +442,14 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 72,
+     "views": 106,
      "dur": "31:19"
     },
     {
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1003,
+     "views": 1059,
      "dur": "33:43"
     },
     {
@@ -470,7 +470,7 @@
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1378,
+     "views": 1385,
      "dur": "31:52"
     },
     {
@@ -540,14 +540,14 @@
      "id": "Idu0cPVthY4",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:18+00:00",
-     "views": 207,
+     "views": 208,
      "dur": "16:36"
     },
     {
      "id": "2ji9X4lHkYc",
      "title": "SMU vs Wake Forest Preview: an ACC Showdown",
      "published": "2026-11-12T13:59:06+00:00",
-     "views": 57,
+     "views": 58,
      "dur": "26:37"
     },
     {
@@ -753,8 +753,8 @@
      "id": "cEe14KpuOW8",
      "title": "Oral Roberts vs. SMU Full Game Replay | 2026-27 ACC Men's Basketball",
      "published": "2026-11-20T17:00:20+00:00",
-     "views": 32,
-     "dur": "1:09:44"
+     "dur": "1:09:44",
+     "views": 32
     },
     {
      "id": "E1pJkUGVcQk",
