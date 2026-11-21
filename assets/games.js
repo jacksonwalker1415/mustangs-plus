@@ -113,7 +113,8 @@ window.MP=window.MP||{};MP.GAMES={
 "links": {
 "box": "https://smumustangs.com/sports/mens-basketball/stats/2026-27/south-alabama/boxscore/14748",
 "program": "https://digitalprograms.learfield.com/smuni/mbball/23105/",
-"gamecenter": "https://smumustangs.com/game-center/14748"
+"gamecenter": "https://smumustangs.com/game-center/14748",
+"recap": "https://smumustangs.com/news/2026/11/20/mens-basketball-mustangs-set-3-point-record-in-101-55-win-over-south-alabama"
 },
 "note": "Food Drive"
 },
