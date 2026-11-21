@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T02:28:13Z",
+ "updated": "2026-11-21T03:33:12Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,10 +96,17 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "TBKjA2qtUF8",
+     "title": "SMU Sets Record for Most Three-Pointers in a Game 🔥 | Highlights vs. South Alabama",
+     "published": "2026-11-21T03:00:49+00:00",
+     "views": 4,
+     "dur": "7:59"
+    },
+    {
      "id": "BRL2X2RiSCw",
      "title": "SMU Volleyball Match Highlights vs. Virginia Tech 11-20-26",
      "published": "2026-11-21T01:01:43+00:00",
-     "views": 7,
+     "views": 13,
      "dur": "5:07"
     },
     {
@@ -141,7 +148,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 619,
+     "views": 630,
      "dur": "14:34"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-15T21:17:52+00:00",
      "views": 162,
      "dur": "9:14"
-    },
-    {
-     "id": "VW41mZc_cY0",
-     "title": "SMU Football: Postgame Press Conference vs Wake Forest 11-14-26",
-     "published": "2026-11-14T21:11:01+00:00",
-     "views": 2192,
-     "dur": "10:11"
     }
    ]
   },
@@ -351,21 +351,21 @@
      "id": "6FKJ-ufqJ9s",
      "title": "SMU keys to victory at Notre Dame | Can the Mustangs pull off the major upset?",
      "published": "2026-11-20T17:36:13+00:00",
-     "views": 196,
+     "views": 206,
      "dur": "15:33"
     },
     {
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 832,
+     "views": 871,
      "dur": "22:57"
     },
     {
      "id": "rb9sCMqp-HE",
      "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Can Mustangs spoil Playoff push?",
      "published": "2026-11-19T04:37:38+00:00",
-     "views": 933,
+     "views": 973,
      "dur": "1:21:49"
     },
     {
@@ -421,14 +421,14 @@
      "id": "kfLjO4JTMfU",
      "title": "SMU QB Kevin Jennings on the team turning its attention to Notre Dame",
      "published": "2026-11-17T19:30:14+00:00",
-     "views": 97,
+     "views": 98,
      "dur": "2:25"
     },
     {
      "id": "Raoo6QkwXKg",
      "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
      "published": "2026-11-17T17:05:06+00:00",
-     "views": 3063,
+     "views": 3073,
      "dur": "12:15"
     }
    ]
@@ -442,7 +442,7 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 200,
+     "views": 223,
      "dur": "31:19"
     },
     {
@@ -456,7 +456,7 @@
      "id": "TZe_YGSgd1w",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:06+00:00",
-     "views": 412,
+     "views": 419,
      "dur": "30:06"
     },
     {
@@ -477,7 +477,7 @@
      "id": "IcmAbeKH2nU",
      "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
      "published": "2026-11-14T21:02:56+00:00",
-     "views": 2762,
+     "views": 2764,
      "dur": "20:23"
     },
     {
@@ -750,6 +750,20 @@
    "broad": true,
    "videos": [
     {
+     "id": "9Hyd1jpZOT0",
+     "title": "South Alabama vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
+     "published": "2026-11-21T03:04:46+00:00",
+     "views": 20,
+     "dur": "14:40"
+    },
+    {
+     "id": "3GO2hpTdm0I",
+     "title": "South Alabama vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
+     "published": "2026-11-21T03:04:32+00:00",
+     "views": 36,
+     "dur": "7:01"
+    },
+    {
      "id": "cEe14KpuOW8",
      "title": "Oral Roberts vs. SMU Full Game Replay | 2026-27 ACC Men's Basketball",
      "published": "2026-11-20T17:00:20+00:00",
@@ -816,18 +830,6 @@
      "title": "Nicholls vs. SMU Game Highlights | 2026-27 ACC Women’s Basketball",
      "published": "2026-11-16T02:13:12+00:00",
      "dur": "9:03"
-    },
-    {
-     "id": "DQyfm0GqkjQ",
-     "title": "North Carolina vs. SMU Match Highlights | 2026 ACC Men’s Soccer",
-     "published": "2026-11-15T23:32:16+00:00",
-     "dur": "13:05"
-    },
-    {
-     "id": "b1eb6_k2BFM",
-     "title": "LIU vs SMU Full Game Replay | 2026-27 ACC Women's Basketball",
-     "published": "2026-11-14T17:00:33+00:00",
-     "dur": "1:17:16"
     }
    ]
   },
@@ -931,6 +933,18 @@
  ],
  "new": [
   {
+   "key": "acc-digital-network",
+   "id": "9Hyd1jpZOT0"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "3GO2hpTdm0I"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "TBKjA2qtUF8"
+  },
+  {
    "key": "smu-mustangs",
    "id": "BRL2X2RiSCw"
   },
@@ -965,18 +979,6 @@
   {
    "key": "locked-on-smu",
    "id": "J0MR1p_TLx0"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "rb9sCMqp-HE"
-  },
-  {
-   "key": "all-access-am",
-   "id": "8ltqO4NDHvA"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "rQnS_4Gpv98"
   }
  ]
 }

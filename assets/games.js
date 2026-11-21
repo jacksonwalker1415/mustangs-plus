@@ -109,11 +109,10 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-20T19:00:00-06:00",
 "tv": "ACCNX",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "W 101-55",
 "links": {
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
-"listen": "https://smumustangs.com/showcase/?Live=5405",
-"stats": "https://smumustangs.com/sidearmstats/mbball/summary",
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2026-27/south-alabama/boxscore/14748",
+"program": "https://digitalprograms.learfield.com/smuni/mbball/23105/",
 "gamecenter": "https://smumustangs.com/game-center/14748"
 },
 "note": "Food Drive"
