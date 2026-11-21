@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T03:33:12Z",
+ "updated": "2026-11-21T04:33:24Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,10 +96,17 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "c5pKrYnvcwQ",
+     "title": "SMU Men's Basketball: Post Game Press Conference vs South Alabama 11-20-26",
+     "published": "2026-11-21T04:05:13+00:00",
+     "views": 8,
+     "dur": "10:50"
+    },
+    {
      "id": "TBKjA2qtUF8",
      "title": "SMU Sets Record for Most Three-Pointers in a Game 🔥 | Highlights vs. South Alabama",
      "published": "2026-11-21T03:00:49+00:00",
-     "views": 4,
+     "views": 12,
      "dur": "7:59"
     },
     {
@@ -134,14 +141,14 @@
      "id": "ZYXfi4Ny7rU",
      "title": "SMU Men's Basketball: Postgame Press Conference vs ORU 11-17-26",
      "published": "2026-11-18T03:41:41+00:00",
-     "views": 181,
+     "views": 182,
      "dur": "11:51"
     },
     {
      "id": "28Lu5ed9TMY",
      "title": "SMU Athletics Press Conference: Visit Dallas Helmet Sticker Announcement 11-17-26",
      "published": "2026-11-17T18:16:45+00:00",
-     "views": 122,
+     "views": 125,
      "dur": "4:23"
     },
     {
@@ -155,7 +162,7 @@
      "id": "NPzrvTBttRA",
      "title": "SMU Women's Basketball: Game Highlights vs Nicholls - 11/15/2026",
      "published": "2026-11-16T04:02:34+00:00",
-     "views": 82,
+     "views": 83,
      "dur": "8:00"
     },
     {
@@ -169,15 +176,8 @@
      "id": "oUZXZxjIGB0",
      "title": "SMU Women's Basketball: Postgame Press Conference vs NICH 11-15-26",
      "published": "2026-11-16T02:49:54+00:00",
-     "views": 278,
+     "views": 279,
      "dur": "10:01"
-    },
-    {
-     "id": "OZhOpxkZGhQ",
-     "title": "SMU Volleyball Post-Match Press Conference vs. Notre Dame 11-15-26",
-     "published": "2026-11-15T21:17:52+00:00",
-     "views": 162,
-     "dur": "9:14"
     }
    ]
   },
@@ -351,7 +351,7 @@
      "id": "6FKJ-ufqJ9s",
      "title": "SMU keys to victory at Notre Dame | Can the Mustangs pull off the major upset?",
      "published": "2026-11-20T17:36:13+00:00",
-     "views": 206,
+     "views": 242,
      "dur": "15:33"
     },
     {
@@ -393,7 +393,7 @@
      "id": "AFV9IJUNxGY",
      "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
      "published": "2026-11-18T04:14:36+00:00",
-     "views": 142,
+     "views": 143,
      "dur": "4:21"
     },
     {
@@ -414,7 +414,7 @@
      "id": "-eXsvxZExEc",
      "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
      "published": "2026-11-17T19:38:02+00:00",
-     "views": 1065,
+     "views": 1068,
      "dur": "56:59"
     },
     {
@@ -442,14 +442,14 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 223,
+     "views": 238,
      "dur": "31:19"
     },
     {
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1097,
+     "views": 1105,
      "dur": "33:43"
     },
     {
@@ -463,14 +463,14 @@
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 482,
+     "views": 487,
      "dur": "30:36"
     },
     {
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1395,
+     "views": 1396,
      "dur": "31:52"
     },
     {
@@ -484,7 +484,7 @@
      "id": "t-r1tbHc3fw",
      "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
      "published": "2026-11-13T16:00:06+00:00",
-     "views": 367,
+     "views": 368,
      "dur": "28:49"
     },
     {
@@ -533,7 +533,7 @@
      "id": "NiXLaltL6b8",
      "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:18:15+00:00",
-     "views": 16,
+     "views": 21,
      "dur": "22:57"
     },
     {
@@ -702,7 +702,7 @@
      "id": "ZZFInWJuDAI",
      "title": "SMU vs Southern",
      "published": "2026-11-03T18:01:48+00:00",
-     "views": 129,
+     "views": 130,
      "dur": "2:12:52",
      "nomax": true
     },
@@ -750,18 +750,25 @@
    "broad": true,
    "videos": [
     {
+     "id": "kkspkP8pSx4",
+     "title": "South Alabama vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
+     "published": "2026-11-21T03:53:51+00:00",
+     "views": 28,
+     "dur": "11:46"
+    },
+    {
      "id": "9Hyd1jpZOT0",
      "title": "South Alabama vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
      "published": "2026-11-21T03:04:46+00:00",
-     "views": 20,
-     "dur": "14:40"
+     "dur": "14:40",
+     "views": 20
     },
     {
      "id": "3GO2hpTdm0I",
      "title": "South Alabama vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
      "published": "2026-11-21T03:04:32+00:00",
-     "views": 36,
-     "dur": "7:01"
+     "dur": "7:01",
+     "views": 36
     },
     {
      "id": "cEe14KpuOW8",
@@ -824,12 +831,6 @@
      "title": "Nicholls vs. SMU Condensed Game | 2026-27 ACC Women’s Basketball",
      "published": "2026-11-16T02:28:48+00:00",
      "dur": "16:32"
-    },
-    {
-     "id": "171IVN5vuYA",
-     "title": "Nicholls vs. SMU Game Highlights | 2026-27 ACC Women’s Basketball",
-     "published": "2026-11-16T02:13:12+00:00",
-     "dur": "9:03"
     }
    ]
   },
@@ -933,8 +934,12 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "c5pKrYnvcwQ"
+  },
+  {
    "key": "acc-digital-network",
-   "id": "9Hyd1jpZOT0"
+   "id": "kkspkP8pSx4"
   },
   {
    "key": "acc-digital-network",
@@ -971,10 +976,6 @@
   {
    "key": "pony-up-productions",
    "id": "Rt4QqILdTO0"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "sWW-_AhI7nE"
   },
   {
    "key": "locked-on-smu",
