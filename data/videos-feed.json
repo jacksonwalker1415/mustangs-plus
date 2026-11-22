@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T21:30:33Z",
+ "updated": "2026-11-22T23:27:02Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,21 +99,21 @@
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 7,
+     "views": 8,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 4,
+     "views": 6,
      "dur": "5:03"
     },
     {
      "id": "WTZOIccWfUI",
      "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
      "published": "2026-11-22T04:41:45+00:00",
-     "views": 1943,
+     "views": 1956,
      "dur": "13:40"
     },
     {
@@ -127,7 +127,7 @@
      "id": "c5pKrYnvcwQ",
      "title": "SMU Men's Basketball: Post Game Press Conference vs South Alabama 11-20-26",
      "published": "2026-11-21T04:05:13+00:00",
-     "views": 102,
+     "views": 110,
      "dur": "10:50"
     },
     {
@@ -141,7 +141,7 @@
      "id": "BRL2X2RiSCw",
      "title": "SMU Volleyball Match Highlights vs. Virginia Tech 11-20-26",
      "published": "2026-11-21T01:01:43+00:00",
-     "views": 125,
+     "views": 126,
      "dur": "5:07"
     },
     {
@@ -176,7 +176,7 @@
      "id": "28Lu5ed9TMY",
      "title": "SMU Athletics Press Conference: Visit Dallas Helmet Sticker Announcement 11-17-26",
      "published": "2026-11-17T18:16:45+00:00",
-     "views": 130,
+     "views": 131,
      "dur": "4:23"
     }
    ]
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2438,
+     "views": 2439,
      "dur": "10:24"
     },
     {
@@ -204,7 +204,7 @@
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2852,
+     "views": 2854,
      "dur": "14:09"
     },
     {
@@ -246,7 +246,7 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3929,
+     "views": 3930,
      "dur": "34:46"
     },
     {
@@ -260,14 +260,14 @@
      "id": "sKntLM77nJE",
      "title": "UNTOLD: Brandon Miyazono & Yamir Knight - Episode 1 | SMU Football",
      "published": "2026-08-03T23:08:26+00:00",
-     "views": 3164,
+     "views": 3166,
      "dur": "13:53"
     },
     {
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3201,
+     "views": 3204,
      "dur": "1:21:59"
     }
    ]
@@ -351,21 +351,21 @@
      "id": "FupLAdqSS5g",
      "title": "SMU QB Kevin Jennings and WR Yamir Knight Analyze 24-3 loss vs. Notre Dame",
      "published": "2026-11-22T04:45:14+00:00",
-     "views": 179,
+     "views": 222,
      "dur": "3:24"
     },
     {
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 6148,
+     "views": 6961,
      "dur": "9:14"
     },
     {
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 2164,
+     "views": 2283,
      "dur": "25:19"
     },
     {
@@ -393,7 +393,7 @@
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 1793,
+     "views": 1804,
      "dur": "22:57"
     },
     {
@@ -449,7 +449,7 @@
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1352,
+     "views": 1353,
      "dur": "33:43"
     },
     {
@@ -505,7 +505,7 @@
      "id": "SVjF_N8drT4",
      "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
      "published": "2026-11-11T15:00:09+00:00",
-     "views": 526,
+     "views": 527,
      "dur": "24:47"
     },
     {
@@ -753,7 +753,7 @@
      "id": "KKHjXzLU1Zo",
      "title": "South Alabama vs. SMU Full Game Replay | 2026-27 ACC Men’s Basketball",
      "published": "2026-11-22T17:00:36+00:00",
-     "views": 192,
+     "views": 236,
      "dur": "59:36"
     },
     {
