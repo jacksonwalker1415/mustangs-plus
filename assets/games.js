@@ -805,6 +805,7 @@ window.MP=window.MP||{};MP.GAMES={
 "res": "W 69-59",
 "links": {
 "box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/grand-canyon/boxscore/14731",
+"recap": "https://smumustangs.com/news/2026/11/21/womens-basketball-mustangs-remain-perfect-at-home-with-a-69-59-win-over-grand-canyon",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
 "gamecenter": "https://smumustangs.com/game-center/14731"
 },

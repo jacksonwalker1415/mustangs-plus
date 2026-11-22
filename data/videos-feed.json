@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T01:26:26Z",
+ "updated": "2026-11-22T02:27:16Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,6 +96,13 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "cQfFCWYm65g",
+     "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
+     "published": "2026-11-22T02:02:55+00:00",
+     "views": 6,
+     "dur": "11:22"
+    },
+    {
      "id": "c5pKrYnvcwQ",
      "title": "SMU Men's Basketball: Post Game Press Conference vs South Alabama 11-20-26",
      "published": "2026-11-21T04:05:13+00:00",
@@ -162,7 +169,7 @@
      "id": "NPzrvTBttRA",
      "title": "SMU Women's Basketball: Game Highlights vs Nicholls - 11/15/2026",
      "published": "2026-11-16T04:02:34+00:00",
-     "views": 84,
+     "views": 86,
      "dur": "8:00"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-16T03:20:18+00:00",
      "views": 278,
      "dur": "8:24"
-    },
-    {
-     "id": "oUZXZxjIGB0",
-     "title": "SMU Women's Basketball: Postgame Press Conference vs NICH 11-15-26",
-     "published": "2026-11-16T02:49:54+00:00",
-     "views": 282,
-     "dur": "10:01"
     }
    ]
   },
@@ -232,7 +232,7 @@
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15569,
+     "views": 15570,
      "dur": "19:34"
     },
     {
@@ -246,7 +246,7 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3913,
+     "views": 3915,
      "dur": "34:46"
     },
     {
@@ -351,35 +351,35 @@
      "id": "_bjSiwOOonQ",
      "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 0,
+     "views": 1,
      "dur": "12:18"
     },
     {
      "id": "itdU3dQnGjM",
      "title": "How SMU defense matches up with Notre Dame | Irish impact offensive players to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 0,
+     "views": 1,
      "dur": "13:43"
     },
     {
      "id": "6FKJ-ufqJ9s",
      "title": "SMU keys to victory at Notre Dame | Can the Mustangs pull off the major upset?",
      "published": "2026-11-20T17:36:13+00:00",
-     "views": 485,
+     "views": 508,
      "dur": "15:33"
     },
     {
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 1689,
+     "views": 1702,
      "dur": "22:57"
     },
     {
      "id": "rb9sCMqp-HE",
      "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Can Mustangs spoil Playoff push?",
      "published": "2026-11-19T04:37:38+00:00",
-     "views": 1028,
+     "views": 1045,
      "dur": "1:21:49"
     },
     {
@@ -393,14 +393,14 @@
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 2288,
+     "views": 2293,
      "dur": "28:11"
     },
     {
      "id": "9Na8R3PVrvg",
      "title": "Brandon Booker assesses SMU's response to embarrassing loss to Wake Forest, challenge at Notre Dame",
      "published": "2026-11-18T17:01:08+00:00",
-     "views": 223,
+     "views": 229,
      "dur": "3:53"
     },
     {
@@ -449,7 +449,7 @@
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1187,
+     "views": 1207,
      "dur": "33:43"
     },
     {
@@ -470,7 +470,7 @@
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1404,
+     "views": 1407,
      "dur": "31:52"
     },
     {
@@ -750,6 +750,20 @@
    "broad": true,
    "videos": [
     {
+     "id": "hjvtksmmoHc",
+     "title": "Grand Canyon vs. SMU Condensed Game | 2026-27 ACC Women's Basketball",
+     "published": "2026-11-22T01:36:16+00:00",
+     "views": 43,
+     "dur": "10:37"
+    },
+    {
+     "id": "40TCB6-_Zdc",
+     "title": "Grand Canyon vs. SMU Game Highlights | 2026-27 ACC Women's Basketball",
+     "published": "2026-11-22T01:33:46+00:00",
+     "views": 24,
+     "dur": "9:02"
+    },
+    {
      "id": "kkspkP8pSx4",
      "title": "South Alabama vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
      "published": "2026-11-21T03:53:51+00:00",
@@ -818,19 +832,6 @@
      "published": "2026-11-17T17:00:14+00:00",
      "dur": "1:59:22",
      "views": 410
-    },
-    {
-     "id": "PNz21nvbVNk",
-     "title": "Ball State vs. SMU Full Game Replay | 2026-27 ACC Men's Basketball",
-     "published": "2026-11-16T17:00:37+00:00",
-     "dur": "1:26:44",
-     "views": 725
-    },
-    {
-     "id": "_jf5qbMU03o",
-     "title": "Nicholls vs. SMU Condensed Game | 2026-27 ACC Women’s Basketball",
-     "published": "2026-11-16T02:28:48+00:00",
-     "dur": "16:32"
     }
    ]
   },
@@ -934,6 +935,18 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "cQfFCWYm65g"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "hjvtksmmoHc"
+  },
+  {
+   "key": "acc-digital-network",
+   "id": "40TCB6-_Zdc"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "itdU3dQnGjM"
   },
@@ -950,24 +963,12 @@
    "id": "kkspkP8pSx4"
   },
   {
-   "key": "acc-digital-network",
-   "id": "3GO2hpTdm0I"
-  },
-  {
    "key": "smu-mustangs",
    "id": "TBKjA2qtUF8"
   },
   {
-   "key": "smu-mustangs",
-   "id": "BRL2X2RiSCw"
-  },
-  {
    "key": "on-the-pony-express",
    "id": "6FKJ-ufqJ9s"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "cEe14KpuOW8"
   },
   {
    "key": "locked-on-smu",
