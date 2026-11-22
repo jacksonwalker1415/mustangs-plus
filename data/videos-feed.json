@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T03:25:57Z",
+ "updated": "2026-11-22T04:31:53Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -120,21 +120,21 @@
      "id": "BRL2X2RiSCw",
      "title": "SMU Volleyball Match Highlights vs. Virginia Tech 11-20-26",
      "published": "2026-11-21T01:01:43+00:00",
-     "views": 114,
+     "views": 115,
      "dur": "5:07"
     },
     {
      "id": "sWW-_AhI7nE",
      "title": "Mustangs Mic'd Up S2E8: Brandon Booker, Kevin Jennings & Rhett Lashlee",
      "published": "2026-11-19T18:56:41+00:00",
-     "views": 197,
+     "views": 200,
      "dur": "32:21"
     },
     {
      "id": "LuE3ZJcTY1s",
      "title": "SMU Football: Media Availability - Brandon Booker and Theo Ohrstrom 11-18-26",
      "published": "2026-11-18T17:30:31+00:00",
-     "views": 138,
+     "views": 145,
      "dur": "6:53"
     },
     {
@@ -162,7 +162,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 649,
+     "views": 658,
      "dur": "14:34"
     },
     {
@@ -176,7 +176,7 @@
      "id": "vmJo-M2dHG0",
      "title": "SMU Volleyball Match Highlights vs. Notre Dame 11-15-26",
      "published": "2026-11-16T03:20:18+00:00",
-     "views": 278,
+     "views": 279,
      "dur": "8:24"
     }
    ]
@@ -190,14 +190,14 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2432,
+     "views": 2434,
      "dur": "10:24"
     },
     {
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3897,
+     "views": 3899,
      "dur": "12:01"
     },
     {
@@ -253,14 +253,14 @@
      "id": "QyNyJTuz_sA",
      "title": "UNTOLD: Brandon Booker & La'Modrick Spencer - Episode 2 | SMU Football",
      "published": "2026-08-11T00:39:38+00:00",
-     "views": 3361,
+     "views": 3366,
      "dur": "21:39"
     },
     {
      "id": "sKntLM77nJE",
      "title": "UNTOLD: Brandon Miyazono & Yamir Knight - Episode 1 | SMU Football",
      "published": "2026-08-03T23:08:26+00:00",
-     "views": 3158,
+     "views": 3159,
      "dur": "13:53"
     },
     {
@@ -386,7 +386,7 @@
      "id": "3bNxlS9yIn8",
      "title": "SMU TE Theo Melin Ohrstrom reviews offensive performance vs. Wake Forest, Notre Dame atmosphere",
      "published": "2026-11-18T19:45:08+00:00",
-     "views": 105,
+     "views": 106,
      "dur": "2:52"
     },
     {
@@ -407,7 +407,7 @@
      "id": "AFV9IJUNxGY",
      "title": "Billy White and Jermaine O'Neal Jr. break down their big nights in SMU's 76-72 win over Oral Roberts",
      "published": "2026-11-18T04:14:36+00:00",
-     "views": 146,
+     "views": 147,
      "dur": "4:21"
     },
     {
@@ -421,7 +421,7 @@
      "id": "IWtCCm1IYFo",
      "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
      "published": "2026-11-17T23:12:29+00:00",
-     "views": 700,
+     "views": 701,
      "dur": "41:05"
     },
     {
@@ -442,21 +442,21 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 366,
+     "views": 378,
      "dur": "31:19"
     },
     {
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1207,
+     "views": 1249,
      "dur": "33:43"
     },
     {
      "id": "TZe_YGSgd1w",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:06+00:00",
-     "views": 426,
+     "views": 428,
      "dur": "30:06"
     },
     {
@@ -533,7 +533,7 @@
      "id": "NiXLaltL6b8",
      "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:18:15+00:00",
-     "views": 27,
+     "views": 36,
      "dur": "22:57"
     },
     {
@@ -750,6 +750,13 @@
    "broad": true,
    "videos": [
     {
+     "id": "wS1um04Xgm0",
+     "title": "SMU vs. Notre Dame Game Highlights | 2026 ACC Football",
+     "published": "2026-11-22T04:13:09+00:00",
+     "views": 98,
+     "dur": "2:57"
+    },
+    {
      "id": "hjvtksmmoHc",
      "title": "Grand Canyon vs. SMU Condensed Game | 2026-27 ACC Women's Basketball",
      "published": "2026-11-22T01:36:16+00:00",
@@ -825,13 +832,6 @@
      "published": "2026-11-17T17:00:22+00:00",
      "dur": "1:03:28",
      "views": 60
-    },
-    {
-     "id": "gBjsVRTvps0",
-     "title": "Wake Forest vs. SMU Full Game Replay | 2026 ACC Football",
-     "published": "2026-11-17T17:00:14+00:00",
-     "dur": "1:59:22",
-     "views": 410
     }
    ]
   },
@@ -935,6 +935,10 @@
  ],
  "new": [
   {
+   "key": "acc-digital-network",
+   "id": "wS1um04Xgm0"
+  },
+  {
    "key": "smu-mustangs",
    "id": "cQfFCWYm65g"
   },
@@ -957,10 +961,6 @@
   {
    "key": "smu-mustangs",
    "id": "c5pKrYnvcwQ"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "kkspkP8pSx4"
   },
   {
    "key": "smu-mustangs",

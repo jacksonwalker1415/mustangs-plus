@@ -43,14 +43,11 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-21T18:30:00-06:00",
 "tv": "NBC and Peacock",
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
-"res": null,
+"res": "L 3-24",
 "links": {
-"watch": "https://www.nbcsports.com/watch/schedule",
-"listen": "https://smumustangs.com/showcase?Live=5385",
-"stats": "https://stats.statbroadcast.com/broadcast/?id=672925&vislive=smu",
+"recap": "https://smumustangs.com/news/2026/11/21/football-smu-falls-to-no-5-notre-dame",
 "gamecenter": "https://smumustangs.com/game-center/14446"
-},
-"sb": 672925
+}
 },
 {
 "id": "fb-14457",
@@ -64,13 +61,16 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Stanford, Calif.",
 "time": null,
 "ko": null,
-"tv": null,
+"tv": "TBD",
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
 "res": null,
 "links": {
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "listen": "https://smumustangs.com/showcase?Live=5386",
+"stats": "https://stats.statbroadcast.com/broadcast/?id=673178&vislive=smu",
 "gamecenter": "https://smumustangs.com/game-center/14457"
-}
+},
+"sb": 673178
 },
 {
 "id": "mbb-14748",
@@ -829,11 +829,12 @@ window.MP=window.MP||{};MP.GAMES={
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "listen": "https://smumustangs.com/showcase/?Live=5448",
-"stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
+"stats": "https://stats.statbroadcast.com/broadcast/?id=688119&vislive=smu",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
 "gamecenter": "https://smumustangs.com/game-center/14685"
 },
-"note": "Hoopfest Basketball Women's Challenge"
+"note": "Hoopfest Basketball Women's Challenge",
+"sb": 688119
 },
 {
 "id": "wbb-14686",
