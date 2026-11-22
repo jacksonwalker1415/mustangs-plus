@@ -72,8 +72,7 @@ window.MP=window.MP||{};MP.GAMES={
 "recap": "https://smumustangs.com/news/2026/11/20/mens-basketball-mustangs-set-3-point-record-in-101-55-win-over-south-alabama",
 "program": "https://digitalprograms.learfield.com/smuni/mbball/23105/",
 "gamecenter": "https://smumustangs.com/game-center/14748"
-},
-"note": "Food Drive"
+}
 },
 {
 "id": "mbb-14698",
@@ -764,10 +763,8 @@ window.MP=window.MP||{};MP.GAMES={
 "links": {
 "box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/grand-canyon/boxscore/14731",
 "recap": "https://smumustangs.com/news/2026/11/21/womens-basketball-mustangs-remain-perfect-at-home-with-a-69-59-win-over-grand-canyon",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
 "gamecenter": "https://smumustangs.com/game-center/14731"
-},
-"note": "University Park Night"
+}
 },
 {
 "id": "wbb-14685",
@@ -781,15 +778,14 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Frisco, Texas / Fifth Third Arena",
 "time": "6 p.m. CT",
 "ko": "2026-11-23T18:00:00-06:00",
-"tv": "TBD",
+"tv": null,
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "listen": "https://smumustangs.com/showcase/?Live=5448",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=688119&vislive=smu",
-"gamecenter": "https://smumustangs.com/game-center/14685",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22903"
+"gamecenter": "https://smumustangs.com/game-center/14685"
 },
 "sb": 688119,
 "note": "Hoopfest Basketball Women's Challenge"
@@ -806,14 +802,13 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Frisco, Texas / Frisco, Texas / Fifth Third Arena",
 "time": "3 p.m. CT",
 "ko": "2026-11-25T15:00:00-06:00",
-"tv": "TBD",
+"tv": null,
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": null,
 "links": {
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
 "listen": "https://smumustangs.com/showcase/?Live=5449",
 "stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
 "gamecenter": "https://smumustangs.com/game-center/14686"
 },
 "note": "Hoopfest Basketball Women's Challenge"
