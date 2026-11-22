@@ -1508,5 +1508,100 @@ MP.PHOTOS={
  cards.forEach(function(c){var a=MP.ARTICLES[c.id];a.related=a.related.filter(function(r){return MP.LIB.some(function(x){return x.id===r})})});
 })();
 /* PREVIEWS-WEEK:END */
+/* PREVIEWS-WEEK:BEGIN 2026-11-23 */
+/* ===== Weekly matchup previews (Sunday run). One short, sourced preview per SMU event on the home "Upcoming games" ribbon for
+   Mon. Nov. 23 to Sun. Nov. 29, 2026. Every fact comes from the pages in that article's sources list (SMU Athletics first, then the
+   opponent's official site), checked Nov. 22, 2026, before Sunday's volleyball match at Virginia, so SMU's volleyball record is as of
+   Friday night. Virginia women's basketball plays twice in Jacksonville before Nov. 29, so that card gives the Cavaliers' record before
+   those games. No quotes, no injuries, no recruits. Byline SMU+ Staff.
+   expires = start time (ISO, Central), from SMU's schedules. SMU's football schedule still lists the Stanford kickoff as TBD; the time
+   and TV (2:30 p.m. CT, ACC Network) come from SMU's Nov. 21 postgame notes and match Stanford's schedule (12:30 p.m. PT).
+   real:true + sport + the opponent's name in the title or summary put each preview in its game page's Preview card, so each summary
+   names only its own opponent. Nothing multi-team was on the ribbon this week (men's soccer's next NCAA round depends on Sunday's
+   second-round game, so it has no preview). The Louisville volleyball card uses a new id so the Nov. 12 preview stays as it was.
+   Earlier weeks' blocks above stay; their cards have all expired. ===== */
+(function(){var MP=window.MP;if(!MP||!MP.LIB||!MP.ARTICLES)return;
+ var S='https://smumustangs.com/sports/',N='https://smumustangs.com/news/2026/',IDS=[];
+ function P(sport,id,label,title,desc,big,tone,expires,art){IDS.push(id);
+  MP.ARTICLES[id]=Object.assign({by:'SMU+ Staff',date:'Nov. 22, 2026',sourced:true},art);
+  return {id:id,t:'article',cat:'insider',sport:sport,label:label,title:title,desc:desc,dur:'1 min read',lock:false,tone:tone,big:big,isNew:true,real:true,expires:expires}}
+ var WBBS=["SMU Athletics 2026-27 women's basketball schedule",S+'womens-basketball/schedule/2026-27'],
+     WBBG=["SMU Athletics: SMU 69, Grand Canyon 59, with team and player notes (Nov. 21)",N+'11/21/womens-basketball-mustangs-remain-perfect-at-home-with-a-69-59-win-over-grand-canyon'],
+     WBBK=["SMU Athletics: Kansas State 61, SMU 51 (Nov. 17)",N+'11/17/womens-basketball-mustangs-fall-in-defensive-battle-at-kansas-state'],
+     WBBN=["SMU Athletics game notes: Grand Canyon (Nov. 20)",N+'11/20/womens-basketball-mustangs-host-grand-canyon-on-saturday-5-pm'],
+     MBBS=["SMU Athletics 2026-27 men's basketball schedule",S+'mens-basketball/schedule/2026-27'],
+     MBBA=["SMU Athletics: SMU 101, South Alabama 55, with postgame notes (Nov. 20)",N+'11/20/mens-basketball-mustangs-set-3-point-record-in-101-55-win-over-south-alabama'],
+     MBBN=["SMU Athletics game notes: South Alabama (Nov. 18)",N+'11/18/mens-basketball-mustangs-5-0-host-south-alabama-to-conclude-season-opening-homestand-friday-7pm'],
+     VBS=['SMU Athletics 2026 volleyball schedule',S+'womens-volleyball/schedule/2026'],
+     VBT=['SMU Athletics: No. 4 SMU sweeps Virginia Tech (Nov. 20)',N+'11/20/volleyball-davis-erupts-for-17-kills-as-no-4-smu-sweeps-virginia-tech'],
+     VBN=['SMU Athletics match notes: Virginia Tech and Virginia (Nov. 19)',N+'11/19/volleyball-no-4-smu-travels-to-virginia-tech-virginia'],
+     VBL=['SMU Athletics: No. 5 SMU downs No. 3 Louisville (Nov. 12)',N+'11/12/volleyball-no-5-smu-downs-no-3-louisville-ends-cardinals-14-match-winning-streak'];
+ var cards=[
+ P('womens-basketball','preview-wbb-saint-marys',"Women's Basketball · Preview","Women's basketball vs. Saint Mary's: HoopFest opens in Frisco",
+  "Saint Mary's is 2-3 and lost 93-89 in triple overtime to Hawaii. Mon., 6 p.m. CT, Fifth Third Arena, Frisco.",'2-3','blue','2026-11-23T18:00:00-06:00',
+  {sources:[WBBG,WBBK,WBBN,WBBS,["Saint Mary's Athletics 2026-27 women's basketball schedule",'https://smcgaels.com/sports/womens-basketball/schedule']],
+   dek:"Mon., Nov. 23 · 6 p.m. CT · Fifth Third Arena, Frisco, Texas · HoopFest Basketball Women's Challenge · Radio: SMU App, The Varsity Network, SiriusXM.",related:['preview-wbb-memphis','preview-wbb-virginia','preview-wbb-grand-canyon'],body:[
+   "Monday opens the HoopFest Basketball Women's Challenge in Frisco, the first of SMU's two games there during Thanksgiving week. SMU is 6-1 and 6-0 at home after beating Grand Canyon 69-59 on Saturday. Its only loss was 61-51 at Kansas State on Nov. 17.",
+   "Against Grand Canyon, Theresa Hagans Jr. scored 21, her fourth 20-point game this season. Zahra King had a season-high 17 and Grace Ezebilo pulled down 18 rebounds. SMU forced 22 turnovers, its fourth straight game with 20 or more, and outrebounded the Lopes 41-22. SMU's notes before Saturday had Adja Kane leading the ACC with 15 blocks.",
+   "Saint Mary's is 2-3. The Gaels lost 87-54 at Stanford and 61-37 at Air Force, beat Chico State 81-44 at home, then split two games at the Bank of Hawaii Classic in Honolulu: a 93-89 triple-overtime loss to Hawaii and a 59-55 win over Alabama A&M. They play Old Dominion in Frisco on Wednesday, then host San Jose State on Nov. 28."]}),
+ P('volleyball','preview-vb-georgia-tech','Volleyball · Preview','Volleyball vs. Georgia Tech: a Thanksgiving match at Moody',
+  "Georgia Tech is 18-11 and 10-8 in the ACC and has won two straight. SMU swept it in Atlanta on Oct. 25. Wed., 1 p.m. CT, ACCNX.",'18-11','red','2026-11-25T13:00:00-06:00',
+  {sources:[VBT,VBN,VBS,['Georgia Tech Athletics 2026 volleyball schedule','https://ramblinwreck.com/sports/w-volley/schedule/']],
+   dek:'Wed., Nov. 25 · 1 p.m. CT · Moody Coliseum, Dallas · ACCNX · Thanksgiving Match.',related:['preview-vb-louisville-road','preview-vb-virginia','preview-vb-virginia-tech'],body:[
+   "SMU comes home from Virginia for its last home match of the regular season. Going into Sunday's match at Virginia, No. 4 SMU, the highest ranking in program history, was 23-4 and 15-2 in the ACC with 10 straight wins.",
+   "On Friday, SMU swept Virginia Tech 25-15, 25-20, 25-23 and held the Hokies to .080 hitting, the 10th time this season it has held an opponent under .100, a program record. Suli Davis had 17 kills, Hannah Beauford reached 1,000 career assists and Favor Anyanwu had five blocks. Under coach Erger, SMU is 37-4 in November.",
+   "Georgia Tech is 18-11, 10-8 in the ACC, 10-3 at home and 5-7 on the road. The Yellow Jackets beat Clemson 3-0 at home on Wednesday and 3-1 at Clemson on Friday. SMU swept them 3-0 at McCamish Pavilion on Oct. 25. After Dallas, Georgia Tech hosts Stanford on Nov. 28."]}),
+ P('womens-basketball','preview-wbb-memphis',"Women's Basketball · Preview","Women's basketball vs. Memphis: second game at HoopFest",
+  "Memphis is 5-0, all at home, including a 75-70 win over Alabama. Wed., 3 p.m. CT, Fifth Third Arena, Frisco.",'5-0','blue','2026-11-25T15:00:00-06:00',
+  {sources:[WBBG,WBBN,WBBS,["SMU Athletics 2023-24 women's basketball schedule",S+'womens-basketball/schedule/2023-24'],["Memphis Athletics 2026-27 women's basketball schedule",'https://gotigersgo.com/sports/womens-basketball/schedule']],
+   dek:"Wed., Nov. 25 · 3 p.m. CT · Fifth Third Arena, Frisco, Texas · HoopFest Basketball Women's Challenge · Radio: SMU App, The Varsity Network, SiriusXM.",related:['preview-wbb-saint-marys','preview-wbb-virginia','preview-wbb-grand-canyon'],body:[
+   "Wednesday is SMU's second game at the HoopFest Basketball Women's Challenge in Frisco. SMU's 2023-24 schedule shows two wins over Memphis that season, 91-86 in Memphis on Jan. 11 and 81-73 at Moody on Feb. 3.",
+   "SMU's defense has set the tone. Its notes before Saturday had the Mustangs allowing 55.2 points a game and forcing 22.5 turnovers a game, fourth in the ACC, and Grand Canyon scored 59 with 22 turnovers. Grace Ezebilo was second in the ACC with 72 rebounds going into Saturday, then had 18, her fifth game this season with 10 or more. SMU went 14 of 15 from the line against the Lopes.",
+   "Memphis is 5-0, all at Elma Roane Fieldhouse. The Tigers beat LeMoyne-Owen 78-42, Middle Tennessee 47-38, Little Rock 62-48, Alabama 75-70 and South Alabama 71-56 on Thursday. They play Old Dominion in Frisco on Monday and visit Ole Miss on Nov. 29."]}),
+ P('mens-basketball','preview-mbb-utah-state',"Men's Basketball · Preview","Men's basketball vs. Utah State: the Acrisure Series opens",
+  "Utah State is 5-0 and has scored 100 or more three times. Wed., 6 p.m. CT, Palm Desert, Calif., CBSSN.",'5-0','red','2026-11-25T18:00:00-06:00',
+  {sources:[MBBA,MBBN,MBBS,["SMU Athletics 2022-23 men's basketball schedule",S+'mens-basketball/schedule/2022-23'],["Utah State Athletics 2026-27 men's basketball schedule",'https://utahstateaggies.com/sports/mens-basketball/schedule']],
+   dek:"Wed., Nov. 25 · 6 p.m. CT · Acrisure Arena, Palm Desert, Calif. · CBSSN · Radio: SMU App, The Varsity Network, SiriusXM · Acrisure Series Thanksgiving Event.",related:['preview-mbb-lsu','preview-mbb-south-alabama','preview-mbb-oral-roberts'],body:[
+   "SMU opens the Acrisure Series Thanksgiving Event after a 6-0 start, all at Moody. The Mustangs beat South Alabama 101-55 on Friday, their season high and the 10th 100-point game under Andy Enfield, and made a program-record 20 threes on 45 attempts.",
+   "Oziyah Sellers scored 17 against South Alabama and five Mustangs reached double figures. Jaden Toombs had 12 points, 11 rebounds and five assists for his first double-double this season. SMU had 31 assists on 38 field goals, and its notes had it first in the nation in assist percentage going in. Enfield is 50-25 at SMU.",
+   "Utah State is 5-0, all at home in Logan: 94-58 over Idaho State, 90-56 over Omaha, 118-86 over Utah Tech, 120-82 over UC San Diego and 101-71 over Weber State. SMU's notes list the Aggies as receiving votes in both polls. SMU's 2022-23 schedule shows a 77-74 win over Utah State in the Diamond Head Classic semifinals in Honolulu on Dec. 23, 2022. Utah State plays USC on Thursday and visits New Mexico on Nov. 29."]}),
+ P('mens-basketball','preview-mbb-lsu',"Men's Basketball · Preview","Men's basketball vs. LSU: Thanksgiving in Palm Desert",
+  "No. 25 LSU is 6-0 and won 81-80 at Gonzaga. LSU beat SMU 89-77 last season. Thu., 6 p.m. CT, Palm Desert, Calif., CBSSN.",'6-0','blue','2026-11-26T18:00:00-06:00',
+  {sources:[MBBA,MBBN,MBBS,["SMU Athletics 2025-26 men's basketball schedule",S+'mens-basketball/schedule/2025-26'],["LSU Athletics 2026-27 men's basketball schedule",'https://lsusports.net/sports/mb/schedule/']],
+   dek:"Thu., Nov. 26 · 6 p.m. CT · Acrisure Arena, Palm Desert, Calif. · CBSSN · Radio: SMU App, The Varsity Network, SiriusXM · Acrisure Series Thanksgiving Event.",related:['preview-mbb-utah-state','preview-mbb-south-alabama','preview-mbb-oral-roberts'],body:[
+   "Thursday's Thanksgiving game closes SMU's trip to the Acrisure Series. SMU's notes list LSU at No. 25 in both polls. The Tigers beat SMU 89-77 in the Compete 4 Cause Classic at the Smoothie King Center in New Orleans on Dec. 13, 2025.",
+   "SMU's notes going into Friday had the Mustangs second in the ACC in three-point shooting at 42.7%, second in field-goal defense at 35.0% and second in blocks at 7.0 a game. David Terrell Jr. was averaging 7.4 assists, second in the ACC, after a career-high 14 against Oral Roberts on Nov. 17. Against South Alabama, SMU had eight blocks and outrebounded the Jaguars 46-30.",
+   "LSU is 6-0: 100-57 over LSU New Orleans, 92-51 over Texas Southern, 90-50 over Louisiana Tech, 81-80 at No. 14 Gonzaga in Spokane, Wash., 79-67 over ULM and 106-75 over Queens on Saturday. The Tigers face Arizona State in Palm Desert on Wednesday and host Wake Forest on Dec. 1."]}),
+ P('volleyball','preview-vb-louisville-road','Volleyball · Preview','Volleyball at Louisville: the regular-season finale',
+  "Louisville is 25-4, 15-2 in the ACC and 12-0 at home. SMU beat the Cardinals in four sets on Nov. 12. Sat., noon CT, ACCNX.",'12-0','red','2026-11-28T12:00:00-06:00',
+  {sources:[VBT,VBN,VBL,VBS,['Louisville Athletics 2026 volleyball schedule','https://gocards.com/sports/womens-volleyball/schedule/2026']],
+   dek:'Sat., Nov. 28 · 12 p.m. CT · KFC Yum! Center, Louisville, Ky. · ACCNX.',related:['preview-vb-georgia-tech','preview-vb-virginia','preview-vb-louisville'],body:[
+   "Saturday is the last match on SMU's regular-season schedule, the day before Selection Sunday on Nov. 29. SMU and Louisville were both 15-2 in ACC play going into their Sunday matches.",
+   "SMU beat then-No. 3 Louisville 25-21, 23-25, 25-19, 25-23 at Moody on Nov. 12, ending the Cardinals' 14-match winning streak. After Friday's sweep at Virginia Tech, SMU had won eight straight road matches and 12 straight conference road matches dating to last season. Victoria Harris has 10 or more digs in 11 straight matches, and Suli Davis is 19 kills from 1,000 for her career.",
+   "Louisville is 25-4, 15-2 in the ACC and 12-0 at home. After the loss at SMU, the Cardinals lost 3-0 at No. 2 Pittsburgh on Nov. 15, then swept Wake Forest on Friday. They host NC State on Sunday and play at North Carolina on Wednesday before hosting SMU at the KFC Yum! Center on Derby Day."]}),
+ P('football','preview-stanford','Football · Preview','SMU at Stanford: the regular-season finale',
+  "Stanford is 6-5 and 4-4 in the ACC and has won two straight, including 44-28 at Cal. Sat., 2:30 p.m. CT, ACC Network.",'6-5','blue','2026-11-28T14:30:00-06:00',
+  {sources:[['SMU Athletics: Notre Dame 24, SMU 3, with postgame notes (Nov. 21)',N+'11/21/football-smu-falls-to-notre-dame'],['SMU Athletics 2026 football schedule',S+'football/schedule/2026'],['SMU Athletics 2025 football schedule',S+'football/schedule/2025'],['Stanford Athletics 2026 football schedule','https://gostanford.com/sports/football/schedule']],
+   dek:'Sat., Nov. 28 · 2:30 p.m. CT · Stanford Stadium, Stanford, Calif. · ACC Network · Radio: KTCK 96.7 FM/1310 AM & SiriusXM.',related:['preview-notre-dame','preview-wake-forest','feature-jennings-record'],body:[
+   "Notre Dame beat SMU 24-3 on Saturday in South Bend, SMU's lowest point total since a 33-3 loss to TCU in 2016. The Irish stopped six SMU drives in their territory, three of them on downs. SMU is 7-4 and 5-3 in the ACC after back-to-back losses, and Stanford is the last game on its regular-season schedule.",
+   "Kendrick Raphael ran for 100 yards, including a career-long 70-yard run, and passed 1,000 all-purpose yards for the season. Yamir Knight caught nine passes for 115 yards, his third 100-yard game this season. Kevin Jennings threw for 216 yards and extended his SMU career records for total offense (11,578 yards) and completions (880). SMU's two takeaways were a fumble forced by Ahmaad Moses and recovered by Sael Reyes, and a Jayvon Thomas interception.",
+   "Stanford is 6-5, 4-4 in the ACC and 4-1 at home. The Cardinal won 40-22 at Virginia Tech on Nov. 14 and 44-28 at Cal in the Big Game on Saturday. Their losses include 57-3 at Wake Forest and 58-7 at Notre Dame. SMU won the last meeting 34-10 at Ford Stadium on Oct. 11, 2025."]}),
+ P('womens-basketball','preview-wbb-virginia',"Women's Basketball · Preview","Women's basketball vs. Virginia: the ACC home opener",
+  "Virginia is 6-0 going into the Jacksonville Classic and beat SMU 76-52 last season. Sun., 5 p.m. CT, ACCN.",'6-0','red','2026-11-29T17:00:00-06:00',
+  {sources:[WBBG,WBBN,WBBS,["SMU Athletics 2025-26 women's basketball schedule",S+'womens-basketball/schedule/2025-26'],["Virginia Athletics 2026-27 women's basketball schedule",'https://virginiasports.com/sports/wbball/schedule/']],
+   dek:'Sun., Nov. 29 · 5 p.m. CT · David B. Miller Court at Moody Coliseum, Dallas · ACCN · Radio: SMU App, The Varsity Network, SiriusXM · ACC Home Opener.',related:['preview-wbb-saint-marys','preview-wbb-memphis','preview-wbb-grand-canyon'],body:[
+   "Sunday is SMU's ACC home opener, after two games in Frisco. SMU is 6-0 at Moody this season. Virginia won the last meeting 76-52 in Charlottesville on Dec. 29, 2025.",
+   "Theresa Hagans Jr. has led SMU's scoring, with 21 against Grand Canyon and 22 at Kansas State, where she went 9 of 9 from the line. SMU's notes before Saturday had Shania James shooting 56.5% from three and leading the team in assists, and the Mustangs fourth in the ACC in free-throw percentage at 75.0%. Adia Barnes is 184-136 in her career.",
+   "Virginia is 6-0, 4-0 at home and 2-0 on the road: 87-45 over Maryland Eastern Shore, 72-57 at Davidson, 99-58 over William & Mary, 81-39 over Drexel, 80-61 at Old Dominion and 60-51 over JMU on Thursday. The Cavaliers play Oklahoma and UAB at the Jacksonville Classic in Florida on Monday and Tuesday, and they visit Mississippi State on Dec. 3."]})];
+ /* replace any earlier copy of these ids, then put the week's previews where the timely stories sit */
+ MP.LIB=MP.LIB.filter(function(c){return IDS.indexOf(c.id)<0});
+ var at=0;for(var i=0;i<MP.LIB.length;i++)if(MP.LIB[i].id==='vb-road-sweep'){at=i;break}
+ Array.prototype.splice.apply(MP.LIB,[at,0].concat(cards));
+ /* each sport page's All Access row leads with its preview(s), soonest first */
+ var A=MP.ACCESS=MP.ACCESS||{};cards.slice().reverse().forEach(function(c){var L=(A[c.sport]||[]).filter(function(x){return x!==c.id});A[c.sport]=[c.id].concat(L)});
+ /* drop related links that point at items the site doesn't have */
+ cards.forEach(function(c){var a=MP.ARTICLES[c.id];a.related=a.related.filter(function(r){return MP.LIB.some(function(x){return x.id===r})})});
+})();
+/* PREVIEWS-WEEK:END */
 /* Legal cleanup (Oct 26, 2026): the made-up practice report is unpublished (closed-practice framing). Item kept out of every list. */
 if(window.MP&&MP.LIB)MP.LIB=MP.LIB.filter(function(c){return c.id!=='thursday-notes'});
