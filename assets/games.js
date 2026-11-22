@@ -45,7 +45,8 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "KTCK 96.7 FM/1310 AM & SiriusXM",
 "res": "L 3-24",
 "links": {
-"recap": "https://smumustangs.com/news/2026/11/21/football-smu-falls-to-no-5-notre-dame",
+"box": "https://smumustangs.com/sports/football/stats/2026/notre-dame/boxscore/14446",
+"recap": "https://smumustangs.com/news/2026/11/21/football-smu-falls-to-notre-dame",
 "gamecenter": "https://smumustangs.com/game-center/14446"
 }
 },

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20T20:27:46Z",
+ "generated": "2026-11-22T05:28:27Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "e3ec2735be",
+     "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
+     "published": "2026-11-22T05:22:56Z",
+     "dur": "25 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/23e85d12-6770-45e8-95af-ad773046e8ec/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=23e85d12-6770-45e8-95af-ad773046e8ec&feed=eSeVNxtA"
+    },
     {
      "id": "c50bd9d4bf",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
@@ -95,14 +102,6 @@
      "dur": "40 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/459f0630-d77f-4551-9c2d-7b6b3c8ce387/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=459f0630-d77f-4551-9c2d-7b6b3c8ce387&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-dominant-win/id1604025463?i=1000801279510"
-    },
-    {
-     "id": "d22d7f32c8",
-     "title": "The Mustang Mood: SMU Volleyball vs. Louisville - Can the Mustangs Take Down the No. 3 Cardinals?",
-     "published": "2026-11-11T15:00:00Z",
-     "dur": "24 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/198ebe24-154a-4a6c-b926-3d543cca5bdb/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=198ebe24-154a-4a6c-b926-3d543cca5bdb&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-volleyball-vs-louisville-can/id1604025463?i=1000801279486"
     }
    ]
   },
@@ -739,6 +738,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "e3ec2735be"
+  },
+  {
    "key": "locked-on-smu",
    "id": "4a69562839"
   },
@@ -753,10 +756,6 @@
   {
    "key": "locked-on-smu",
    "id": "bf0ecb1330"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "41ced4dcb5"
   },
   {
    "key": "mustang-studios",

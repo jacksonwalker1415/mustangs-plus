@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T04:31:53Z",
+ "updated": "2026-11-22T05:28:27Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,6 +96,13 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "WTZOIccWfUI",
+     "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
+     "published": "2026-11-22T04:41:45+00:00",
+     "views": 98,
+     "dur": "13:40"
+    },
+    {
      "id": "cQfFCWYm65g",
      "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
      "published": "2026-11-22T02:02:55+00:00",
@@ -171,13 +178,6 @@
      "published": "2026-11-16T04:02:34+00:00",
      "views": 86,
      "dur": "8:00"
-    },
-    {
-     "id": "vmJo-M2dHG0",
-     "title": "SMU Volleyball Match Highlights vs. Notre Dame 11-15-26",
-     "published": "2026-11-16T03:20:18+00:00",
-     "views": 279,
-     "dur": "8:24"
     }
    ]
   },
@@ -225,14 +225,14 @@
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3782,
+     "views": 3783,
      "dur": "10:30"
     },
     {
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15570,
+     "views": 15571,
      "dur": "19:34"
     },
     {
@@ -246,7 +246,7 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3915,
+     "views": 3917,
      "dur": "34:46"
     },
     {
@@ -348,10 +348,31 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "FupLAdqSS5g",
+     "title": "SMU QB Kevin Jennings and WR Yamir Knight Analyze 24-3 loss vs. Notre Dame",
+     "published": "2026-11-22T04:45:14+00:00",
+     "views": 12,
+     "dur": "3:24"
+    },
+    {
+     "id": "iQRWJdQeLrs",
+     "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
+     "published": "2026-11-22T04:33:15+00:00",
+     "views": 243,
+     "dur": "9:14"
+    },
+    {
+     "id": "TvbVkXOA1X0",
+     "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
+     "published": "2026-11-22T02:57:00+00:00",
+     "views": 93,
+     "dur": "25:19"
+    },
+    {
      "id": "_bjSiwOOonQ",
      "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 1,
+     "views": 6,
      "dur": "12:18"
     },
     {
@@ -372,7 +393,7 @@
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 1717,
+     "views": 1721,
      "dur": "22:57"
     },
     {
@@ -393,14 +414,14 @@
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 2293,
+     "views": 2302,
      "dur": "28:11"
     },
     {
      "id": "9Na8R3PVrvg",
      "title": "Brandon Booker assesses SMU's response to embarrassing loss to Wake Forest, challenge at Notre Dame",
      "published": "2026-11-18T17:01:08+00:00",
-     "views": 229,
+     "views": 236,
      "dur": "3:53"
     },
     {
@@ -409,27 +430,6 @@
      "published": "2026-11-18T04:14:36+00:00",
      "views": 147,
      "dur": "4:21"
-    },
-    {
-     "id": "oAubNmvvHBQ",
-     "title": "SMU HC Andy Enfield on how his team snuck past Oral Roberts 76-72",
-     "published": "2026-11-18T04:08:18+00:00",
-     "views": 262,
-     "dur": "7:40"
-    },
-    {
-     "id": "IWtCCm1IYFo",
-     "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
-     "published": "2026-11-17T23:12:29+00:00",
-     "views": 701,
-     "dur": "41:05"
-    },
-    {
-     "id": "-eXsvxZExEc",
-     "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
-     "published": "2026-11-17T19:38:02+00:00",
-     "views": 1086,
-     "dur": "56:59"
     }
    ]
   },
@@ -477,7 +477,7 @@
      "id": "IcmAbeKH2nU",
      "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
      "published": "2026-11-14T21:02:56+00:00",
-     "views": 2788,
+     "views": 2789,
      "dur": "20:23"
     },
     {
@@ -695,7 +695,7 @@
      "id": "ZNVTCJmqhyA",
      "title": "Pony Up Productions Ep. 19: SMU Uniform Rankings, Game Preview vs. Virginia Tech and more",
      "published": "2026-11-05T16:17:47+00:00",
-     "views": 30,
+     "views": 31,
      "dur": "46:04"
     },
     {
@@ -753,22 +753,22 @@
      "id": "wS1um04Xgm0",
      "title": "SMU vs. Notre Dame Game Highlights | 2026 ACC Football",
      "published": "2026-11-22T04:13:09+00:00",
-     "views": 98,
-     "dur": "2:57"
+     "dur": "2:57",
+     "views": 98
     },
     {
      "id": "hjvtksmmoHc",
      "title": "Grand Canyon vs. SMU Condensed Game | 2026-27 ACC Women's Basketball",
      "published": "2026-11-22T01:36:16+00:00",
-     "views": 76,
-     "dur": "10:37"
+     "dur": "10:37",
+     "views": 76
     },
     {
      "id": "40TCB6-_Zdc",
      "title": "Grand Canyon vs. SMU Game Highlights | 2026-27 ACC Women's Basketball",
      "published": "2026-11-22T01:33:46+00:00",
-     "views": 47,
-     "dur": "9:02"
+     "dur": "9:02",
+     "views": 47
     },
     {
      "id": "kkspkP8pSx4",
@@ -935,8 +935,24 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "FupLAdqSS5g"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "WTZOIccWfUI"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "iQRWJdQeLrs"
+  },
+  {
    "key": "acc-digital-network",
    "id": "wS1um04Xgm0"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "TvbVkXOA1X0"
   },
   {
    "key": "smu-mustangs",
@@ -951,24 +967,8 @@
    "id": "40TCB6-_Zdc"
   },
   {
-   "key": "on-the-pony-express",
-   "id": "itdU3dQnGjM"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "_bjSiwOOonQ"
-  },
-  {
    "key": "smu-mustangs",
    "id": "c5pKrYnvcwQ"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "TBKjA2qtUF8"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "6FKJ-ufqJ9s"
   },
   {
    "key": "locked-on-smu",
