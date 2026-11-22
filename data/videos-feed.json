@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T19:28:44Z",
+ "updated": "2026-11-22T20:25:51Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,38 +96,45 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "lh0Xu9Oh0L4",
+     "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
+     "published": "2026-11-22T19:37:44+00:00",
+     "views": 4,
+     "dur": "5:55"
+    },
+    {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 0,
+     "views": 4,
      "dur": "5:03"
     },
     {
      "id": "WTZOIccWfUI",
      "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
      "published": "2026-11-22T04:41:45+00:00",
-     "views": 1719,
+     "views": 1886,
      "dur": "13:40"
     },
     {
      "id": "cQfFCWYm65g",
      "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
      "published": "2026-11-22T02:02:55+00:00",
-     "views": 95,
+     "views": 100,
      "dur": "11:22"
     },
     {
      "id": "c5pKrYnvcwQ",
      "title": "SMU Men's Basketball: Post Game Press Conference vs South Alabama 11-20-26",
      "published": "2026-11-21T04:05:13+00:00",
-     "views": 98,
+     "views": 102,
      "dur": "10:50"
     },
     {
      "id": "TBKjA2qtUF8",
      "title": "SMU Sets Record for Most Three-Pointers in a Game 🔥 | Highlights vs. South Alabama",
      "published": "2026-11-21T03:00:49+00:00",
-     "views": 138,
+     "views": 139,
      "dur": "7:59"
     },
     {
@@ -141,7 +148,7 @@
      "id": "sWW-_AhI7nE",
      "title": "Mustangs Mic'd Up S2E8: Brandon Booker, Kevin Jennings & Rhett Lashlee",
      "published": "2026-11-19T18:56:41+00:00",
-     "views": 202,
+     "views": 204,
      "dur": "32:21"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-17T18:16:45+00:00",
      "views": 130,
      "dur": "4:23"
-    },
-    {
-     "id": "YHieeMJWnvg",
-     "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
-     "published": "2026-11-17T17:21:08+00:00",
-     "views": 701,
-     "dur": "14:34"
     }
    ]
   },
@@ -351,21 +351,21 @@
      "id": "FupLAdqSS5g",
      "title": "SMU QB Kevin Jennings and WR Yamir Knight Analyze 24-3 loss vs. Notre Dame",
      "published": "2026-11-22T04:45:14+00:00",
-     "views": 147,
+     "views": 174,
      "dur": "3:24"
     },
     {
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 4743,
+     "views": 5607,
      "dur": "9:14"
     },
     {
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 1778,
+     "views": 2083,
      "dur": "25:19"
     },
     {
@@ -442,14 +442,14 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 399,
+     "views": 409,
      "dur": "31:19"
     },
     {
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1344,
+     "views": 1352,
      "dur": "33:43"
     },
     {
@@ -753,7 +753,7 @@
      "id": "KKHjXzLU1Zo",
      "title": "South Alabama vs. SMU Full Game Replay | 2026-27 ACC Men’s Basketball",
      "published": "2026-11-22T17:00:36+00:00",
-     "views": 41,
+     "views": 137,
      "dur": "59:36"
     },
     {
@@ -936,6 +936,10 @@
  "new": [
   {
    "key": "smu-mustangs",
+   "id": "lh0Xu9Oh0L4"
+  },
+  {
+   "key": "smu-mustangs",
    "id": "YYhRpeZl55Q"
   },
   {
@@ -977,10 +981,6 @@
   {
    "key": "mustang-mood",
    "id": "NiXLaltL6b8"
-  },
-  {
-   "key": "pony-up-productions",
-   "id": "Rt4QqILdTO0"
   }
  ]
 }
