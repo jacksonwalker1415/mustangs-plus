@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T00:25:43Z",
+ "updated": "2026-11-22T01:26:26Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -127,7 +127,7 @@
      "id": "LuE3ZJcTY1s",
      "title": "SMU Football: Media Availability - Brandon Booker and Theo Ohrstrom 11-18-26",
      "published": "2026-11-18T17:30:31+00:00",
-     "views": 134,
+     "views": 138,
      "dur": "6:53"
     },
     {
@@ -155,7 +155,7 @@
      "id": "YHieeMJWnvg",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-17-26",
      "published": "2026-11-17T17:21:08+00:00",
-     "views": 646,
+     "views": 648,
      "dur": "14:34"
     },
     {
@@ -197,7 +197,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3896,
+     "views": 3897,
      "dur": "12:01"
     },
     {
@@ -253,14 +253,14 @@
      "id": "QyNyJTuz_sA",
      "title": "UNTOLD: Brandon Booker & La'Modrick Spencer - Episode 2 | SMU Football",
      "published": "2026-08-11T00:39:38+00:00",
-     "views": 3359,
+     "views": 3361,
      "dur": "21:39"
     },
     {
      "id": "sKntLM77nJE",
      "title": "UNTOLD: Brandon Miyazono & Yamir Knight - Episode 1 | SMU Football",
      "published": "2026-08-03T23:08:26+00:00",
-     "views": 3157,
+     "views": 3158,
      "dur": "13:53"
     },
     {
@@ -348,6 +348,20 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "_bjSiwOOonQ",
+     "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
+     "published": "2026-11-22T00:24:20+00:00",
+     "views": 0,
+     "dur": "12:18"
+    },
+    {
+     "id": "itdU3dQnGjM",
+     "title": "How SMU defense matches up with Notre Dame | Irish impact offensive players to know",
+     "published": "2026-11-22T00:24:20+00:00",
+     "views": 0,
+     "dur": "13:43"
+    },
+    {
      "id": "6FKJ-ufqJ9s",
      "title": "SMU keys to victory at Notre Dame | Can the Mustangs pull off the major upset?",
      "published": "2026-11-20T17:36:13+00:00",
@@ -358,7 +372,7 @@
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 1658,
+     "views": 1689,
      "dur": "22:57"
     },
     {
@@ -372,7 +386,7 @@
      "id": "3bNxlS9yIn8",
      "title": "SMU TE Theo Melin Ohrstrom reviews offensive performance vs. Wake Forest, Notre Dame atmosphere",
      "published": "2026-11-18T19:45:08+00:00",
-     "views": 103,
+     "views": 105,
      "dur": "2:52"
     },
     {
@@ -416,20 +430,6 @@
      "published": "2026-11-17T19:38:02+00:00",
      "views": 1086,
      "dur": "56:59"
-    },
-    {
-     "id": "kfLjO4JTMfU",
-     "title": "SMU QB Kevin Jennings on the team turning its attention to Notre Dame",
-     "published": "2026-11-17T19:30:14+00:00",
-     "views": 104,
-     "dur": "2:25"
-    },
-    {
-     "id": "Raoo6QkwXKg",
-     "title": "SMU HC Rhett Lashlee on bouncing back from Wake Forest, preparing for Notre Dame",
-     "published": "2026-11-17T17:05:06+00:00",
-     "views": 3112,
-     "dur": "12:15"
     }
    ]
   },
@@ -442,7 +442,7 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 352,
+     "views": 366,
      "dur": "31:19"
     },
     {
@@ -470,7 +470,7 @@
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1402,
+     "views": 1404,
      "dur": "31:52"
     },
     {
@@ -533,7 +533,7 @@
      "id": "NiXLaltL6b8",
      "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:18:15+00:00",
-     "views": 26,
+     "views": 27,
      "dur": "22:57"
     },
     {
@@ -625,7 +625,7 @@
      "id": "8ltqO4NDHvA",
      "title": "Clemson at Duke Spotlight | SMU's opportunity at Notre Dame | College Football Playoff Reaction",
      "published": "2026-11-19T03:25:53+00:00",
-     "views": 62,
+     "views": 63,
      "dur": "38:01"
     },
     {
@@ -934,6 +934,14 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "itdU3dQnGjM"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "_bjSiwOOonQ"
+  },
+  {
    "key": "smu-mustangs",
    "id": "c5pKrYnvcwQ"
   },
@@ -966,20 +974,12 @@
    "id": "43fJ6JFP9k4"
   },
   {
-   "key": "on-the-pony-express",
-   "id": "duWrJIgpezc"
-  },
-  {
    "key": "mustang-mood",
    "id": "NiXLaltL6b8"
   },
   {
    "key": "pony-up-productions",
    "id": "Rt4QqILdTO0"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "J0MR1p_TLx0"
   }
  ]
 }
