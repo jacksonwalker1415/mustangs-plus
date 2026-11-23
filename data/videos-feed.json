@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T03:34:48Z",
+ "updated": "2026-11-23T04:32:55Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,10 +96,17 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "QtN2OvjTgzA",
+     "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
+     "published": "2026-11-23T04:24:04+00:00",
+     "views": 0,
+     "dur": "21:46"
+    },
+    {
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 40,
+     "views": 47,
      "dur": "5:55"
     },
     {
@@ -113,7 +120,7 @@
      "id": "WTZOIccWfUI",
      "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
      "published": "2026-11-22T04:41:45+00:00",
-     "views": 2092,
+     "views": 2106,
      "dur": "13:40"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-18T03:41:41+00:00",
      "views": 191,
      "dur": "11:51"
-    },
-    {
-     "id": "28Lu5ed9TMY",
-     "title": "SMU Athletics Press Conference: Visit Dallas Helmet Sticker Announcement 11-17-26",
-     "published": "2026-11-17T18:16:45+00:00",
-     "views": 131,
-     "dur": "4:23"
     }
    ]
   },
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2439,
+     "views": 2441,
      "dur": "10:24"
     },
     {
@@ -246,14 +246,14 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3930,
+     "views": 3933,
      "dur": "34:46"
     },
     {
      "id": "QyNyJTuz_sA",
      "title": "UNTOLD: Brandon Booker & La'Modrick Spencer - Episode 2 | SMU Football",
      "published": "2026-08-11T00:39:38+00:00",
-     "views": 3370,
+     "views": 3374,
      "dur": "21:39"
     },
     {
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 75,
+     "views": 77,
      "dur": "20:56"
     },
     {
@@ -348,6 +348,13 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "TvbVkXOA1X0",
+     "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
+     "published": "2026-11-22T02:57:00+00:00",
+     "views": 2509,
+     "dur": "25:19"
+    },
+    {
      "id": "FupLAdqSS5g",
      "title": "SMU QB Kevin Jennings and WR Yamir Knight Analyze 24-3 loss vs. Notre Dame",
      "published": "2026-11-22T04:45:14+00:00",
@@ -358,28 +365,21 @@
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 8636,
+     "views": 8805,
      "dur": "9:14"
-    },
-    {
-     "id": "TvbVkXOA1X0",
-     "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
-     "published": "2026-11-22T02:57:00+00:00",
-     "views": 2481,
-     "dur": "25:19"
     },
     {
      "id": "_bjSiwOOonQ",
      "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 63,
+     "views": 72,
      "dur": "12:18"
     },
     {
      "id": "itdU3dQnGjM",
      "title": "How SMU defense matches up with Notre Dame | Irish impact offensive players to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 55,
+     "views": 63,
      "dur": "13:43"
     },
     {
@@ -393,7 +393,7 @@
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 1817,
+     "views": 1819,
      "dur": "22:57"
     },
     {
@@ -414,7 +414,7 @@
      "id": "MxWVXxZPovE",
      "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
      "published": "2026-11-18T17:51:53+00:00",
-     "views": 2341,
+     "views": 2357,
      "dur": "28:11"
     },
     {
@@ -442,7 +442,7 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 417,
+     "views": 425,
      "dur": "31:19"
     },
     {
@@ -470,7 +470,7 @@
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1415,
+     "views": 1418,
      "dur": "31:52"
     },
     {
@@ -753,8 +753,8 @@
      "id": "KKHjXzLU1Zo",
      "title": "South Alabama vs. SMU Full Game Replay | 2026-27 ACC Men’s Basketball",
      "published": "2026-11-22T17:00:36+00:00",
-     "views": 318,
-     "dur": "59:36"
+     "dur": "59:36",
+     "views": 318
     },
     {
      "id": "wS1um04Xgm0",
@@ -936,11 +936,19 @@
  "new": [
   {
    "key": "smu-mustangs",
+   "id": "QtN2OvjTgzA"
+  },
+  {
+   "key": "smu-mustangs",
    "id": "lh0Xu9Oh0L4"
   },
   {
    "key": "smu-mustangs",
    "id": "YYhRpeZl55Q"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "TvbVkXOA1X0"
   },
   {
    "key": "acc-digital-network",
@@ -951,24 +959,12 @@
    "id": "FupLAdqSS5g"
   },
   {
-   "key": "smu-mustangs",
-   "id": "WTZOIccWfUI"
-  },
-  {
    "key": "on-the-pony-express",
    "id": "iQRWJdQeLrs"
   },
   {
    "key": "acc-digital-network",
    "id": "wS1um04Xgm0"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "TvbVkXOA1X0"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "cQfFCWYm65g"
   },
   {
    "key": "acc-digital-network",
@@ -981,6 +977,10 @@
   {
    "key": "mustang-mood",
    "id": "NiXLaltL6b8"
+  },
+  {
+   "key": "pony-up-productions",
+   "id": "Rt4QqILdTO0"
   }
  ]
 }
