@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T00:27:07Z",
+ "updated": "2026-11-23T01:26:27Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,14 +99,14 @@
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 20,
+     "views": 23,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 6,
+     "views": 7,
      "dur": "5:03"
     },
     {
@@ -127,7 +127,7 @@
      "id": "c5pKrYnvcwQ",
      "title": "SMU Men's Basketball: Post Game Press Conference vs South Alabama 11-20-26",
      "published": "2026-11-21T04:05:13+00:00",
-     "views": 110,
+     "views": 112,
      "dur": "10:50"
     },
     {
@@ -141,7 +141,7 @@
      "id": "BRL2X2RiSCw",
      "title": "SMU Volleyball Match Highlights vs. Virginia Tech 11-20-26",
      "published": "2026-11-21T01:01:43+00:00",
-     "views": 126,
+     "views": 127,
      "dur": "5:07"
     },
     {
@@ -169,7 +169,7 @@
      "id": "ZYXfi4Ny7rU",
      "title": "SMU Men's Basketball: Postgame Press Conference vs ORU 11-17-26",
      "published": "2026-11-18T03:41:41+00:00",
-     "views": 190,
+     "views": 191,
      "dur": "11:51"
     },
     {
@@ -260,7 +260,7 @@
      "id": "sKntLM77nJE",
      "title": "UNTOLD: Brandon Miyazono & Yamir Knight - Episode 1 | SMU Football",
      "published": "2026-08-03T23:08:26+00:00",
-     "views": 3166,
+     "views": 3167,
      "dur": "13:53"
     },
     {
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 67,
+     "views": 75,
      "dur": "20:56"
     },
     {
@@ -351,21 +351,21 @@
      "id": "FupLAdqSS5g",
      "title": "SMU QB Kevin Jennings and WR Yamir Knight Analyze 24-3 loss vs. Notre Dame",
      "published": "2026-11-22T04:45:14+00:00",
-     "views": 242,
+     "views": 266,
      "dur": "3:24"
     },
     {
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 7518,
+     "views": 7956,
      "dur": "9:14"
     },
     {
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 2345,
+     "views": 2399,
      "dur": "25:19"
     },
     {
@@ -379,7 +379,7 @@
      "id": "itdU3dQnGjM",
      "title": "How SMU defense matches up with Notre Dame | Irish impact offensive players to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 40,
+     "views": 43,
      "dur": "13:43"
     },
     {
@@ -393,7 +393,7 @@
      "id": "duWrJIgpezc",
      "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:24:18+00:00",
-     "views": 1805,
+     "views": 1816,
      "dur": "22:57"
     },
     {
@@ -421,7 +421,7 @@
      "id": "9Na8R3PVrvg",
      "title": "Brandon Booker assesses SMU's response to embarrassing loss to Wake Forest, challenge at Notre Dame",
      "published": "2026-11-18T17:01:08+00:00",
-     "views": 239,
+     "views": 245,
      "dur": "3:53"
     },
     {
@@ -442,7 +442,7 @@
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 413,
+     "views": 417,
      "dur": "31:19"
     },
     {
@@ -463,14 +463,14 @@
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 521,
+     "views": 524,
      "dur": "30:36"
     },
     {
      "id": "wg9ivJ7pwDI",
      "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
      "published": "2026-11-16T14:00:10+00:00",
-     "views": 1413,
+     "views": 1415,
      "dur": "31:52"
     },
     {
@@ -498,7 +498,7 @@
      "id": "GDkzeBDRFyw",
      "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
      "published": "2026-11-12T17:00:10+00:00",
-     "views": 361,
+     "views": 363,
      "dur": "27:22"
     },
     {
@@ -533,14 +533,14 @@
      "id": "NiXLaltL6b8",
      "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:18:15+00:00",
-     "views": 48,
+     "views": 51,
      "dur": "22:57"
     },
     {
      "id": "Idu0cPVthY4",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:18+00:00",
-     "views": 209,
+     "views": 211,
      "dur": "16:36"
     },
     {
