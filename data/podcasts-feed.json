@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22T23:27:02Z",
+ "generated": "2026-11-23T19:29:54Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,20 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "b862a1b721",
+     "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
+     "published": "2026-11-23T16:00:00Z",
+     "dur": "26 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/ecac4075-d50b-4944-9f7f-5486a8bef74c/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=ecac4075-d50b-4944-9f7f-5486a8bef74c&feed=eSeVNxtA"
+    },
+    {
+     "id": "fa1230c5c5",
+     "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
+     "published": "2026-11-23T14:11:21Z",
+     "dur": "38 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/7a12ef81-a8ea-4c27-b4ae-f218b47bb59d/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=7a12ef81-a8ea-4c27-b4ae-f218b47bb59d&feed=eSeVNxtA"
+    },
     {
      "id": "e3ec2735be",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
@@ -87,22 +101,6 @@
      "dur": "27 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/21af6efb-1b63-4ad9-9e06-318dd1075683/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=21af6efb-1b63-4ad9-9e06-318dd1075683&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-vs-wake-forest-preview-an-acc-showdown/id1604025463?i=1000801526801"
-    },
-    {
-     "id": "1c0deb7b7f",
-     "title": "SMU vs. Wake Forest game preview, predictions for Week 11 | Revenge game on Senior Day, Homecoming",
-     "published": "2026-11-12T06:14:31Z",
-     "dur": "1 hr 26 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/49cdacd7-b774-441a-8b39-d28822db12d4/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=49cdacd7-b774-441a-8b39-d28822db12d4&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-wake-forest-game-preview-predictions-for-week/id1604025463?i=1000801383232"
-    },
-    {
-     "id": "cdaa8ddc37",
-     "title": "Walking 'Strong with Bill Armstrong: SMU's dominant win vs. Virginia Tech, look ahead to Wake Forest",
-     "published": "2026-11-11T19:22:52Z",
-     "dur": "40 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/459f0630-d77f-4551-9c2d-7b6b3c8ce387/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=459f0630-d77f-4551-9c2d-7b6b3c8ce387&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-dominant-win/id1604025463?i=1000801279510"
     }
    ]
   },
@@ -113,6 +111,14 @@
    "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
+    {
+     "id": "5ab3f5e0d5",
+     "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
+     "published": "2026-11-23T14:00:00Z",
+     "dur": "30 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/b7364839-0b71-4537-af94-13ddfffe1c84/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=b7364839-0b71-4537-af94-13ddfffe1c84&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/execution-kevin-jenningss-smus-squandered-red-zone/id1824252582?i=1000803601097"
+    },
     {
      "id": "4a69562839",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
@@ -200,14 +206,6 @@
      "dur": "30 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/8fe2f579-872f-49a4-99ae-7df148f5da99/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=8fe2f579-872f-49a4-99ae-7df148f5da99&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/dynamic-smu-mustangs-backfield-surges-as-kendrick-raphael/id1824252582?i=1000801008413"
-    },
-    {
-     "id": "39aae72a7c",
-     "title": "STATEMENT: SMU and Kevin Jennings DOMINATE Virginia Tech, Why THAT TEAM Can Beat Wake Forest!",
-     "published": "2026-11-09T14:00:00Z",
-     "dur": "27 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/5ba701a2-4d27-4d78-8b5a-428ac164c8ca/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=5ba701a2-4d27-4d78-8b5a-428ac164c8ca&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/statement-smu-and-kevin-jennings-dominate-virginia/id1824252582?i=1000800774626"
     }
    ]
   },
@@ -218,6 +216,14 @@
    "spotify": "https://open.spotify.com/show/7nMjtANtm8wKhWspJdykWW",
    "art": "assets/img/pods/mustang-mood.webp",
    "episodes": [
+    {
+     "id": "7f68d6c57f",
+     "title": "SMU Football: Notre Dame Recap & The Road Ahead",
+     "published": "2026-11-23T12:00:00Z",
+     "dur": "38 min",
+     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129925834/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-23%2F437382730-44100-2-a8041a9c2e88b.mp3",
+     "apple": "https://podcasts.apple.com/us/podcast/smu-football-notre-dame-recap-the-road-ahead/id1734256145?i=1000803589093"
+    },
     {
      "id": "00bf3ad7f4",
      "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
@@ -305,14 +311,6 @@
      "dur": "23 min",
      "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/127932765/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-23%2F434792630-44100-2-e8e46c9688d81.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-preview-can-the-mustangs-finally-pull-away/id1734256145?i=1000797771417"
-    },
-    {
-     "id": "b924290a73",
-     "title": "SMU Takes Care of Virginia, Wins 23-13 | The Mustang Mood",
-     "published": "2026-10-18T11:00:00Z",
-     "dur": "19 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/127645256/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-18%2F434400546-44100-2-54f9a66785ace.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-takes-care-of-virginia-wins-23-13-the-mustang-mood/id1734256145?i=1000796916270"
     }
    ]
   },
@@ -740,23 +738,27 @@
  "new": [
   {
    "key": "on-the-pony-express",
-   "id": "e3ec2735be"
+   "id": "b862a1b721"
+  },
+  {
+   "key": "on-the-pony-express",
+   "id": "fa1230c5c5"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "5ab3f5e0d5"
+  },
+  {
+   "key": "mustang-mood",
+   "id": "7f68d6c57f"
   },
   {
    "key": "locked-on-smu",
    "id": "4a69562839"
   },
   {
-   "key": "on-the-pony-express",
-   "id": "c50bd9d4bf"
-  },
-  {
    "key": "mustang-mood",
    "id": "00bf3ad7f4"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "bf0ecb1330"
   },
   {
    "key": "mustang-studios",
@@ -769,10 +771,6 @@
   {
    "key": "kc-masterpiece",
    "id": "744adb6b3b"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "7729ba27e1"
   },
   {
    "key": "mustang-studios",
