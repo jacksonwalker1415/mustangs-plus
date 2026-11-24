@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T03:30:46Z",
+ "updated": "2026-11-24T04:32:07Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,21 +106,21 @@
      "id": "QtN2OvjTgzA",
      "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
      "published": "2026-11-23T04:24:04+00:00",
-     "views": 128,
+     "views": 136,
      "dur": "21:46"
     },
     {
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 119,
+     "views": 124,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 31,
+     "views": 33,
      "dur": "5:03"
     },
     {
@@ -134,7 +134,7 @@
      "id": "cQfFCWYm65g",
      "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
      "published": "2026-11-22T02:02:55+00:00",
-     "views": 118,
+     "views": 120,
      "dur": "11:22"
     },
     {
@@ -162,7 +162,7 @@
      "id": "sWW-_AhI7nE",
      "title": "Mustangs Mic'd Up S2E8: Brandon Booker, Kevin Jennings & Rhett Lashlee",
      "published": "2026-11-19T18:56:41+00:00",
-     "views": 208,
+     "views": 209,
      "dur": "32:21"
     },
     {
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2454,
+     "views": 2456,
      "dur": "10:24"
     },
     {
@@ -267,7 +267,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3205,
+     "views": 3207,
      "dur": "1:21:59"
     }
    ]
@@ -348,10 +348,17 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "TUpHTDiRm2s",
+     "title": "Sam Erger talks SMU Volleyball ahead of postseason, transfer portal opening",
+     "published": "2026-11-24T04:00:30+00:00",
+     "views": 1,
+     "dur": "14:24"
+    },
+    {
      "id": "tiPMAQpRaI4",
      "title": "SMU Football Recruiting, Transfer Portal Update | Sam Erger talks SMU Volleyball, Postseason Goals",
      "published": "2026-11-24T01:29:03+00:00",
-     "views": 74,
+     "views": 152,
      "dur": "45:18"
     },
     {
@@ -386,7 +393,7 @@
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 11270,
+     "views": 11339,
      "dur": "9:14"
     },
     {
@@ -423,13 +430,6 @@
      "published": "2026-11-19T04:37:38+00:00",
      "views": 1089,
      "dur": "1:21:49"
-    },
-    {
-     "id": "3bNxlS9yIn8",
-     "title": "SMU TE Theo Melin Ohrstrom reviews offensive performance vs. Wake Forest, Notre Dame atmosphere",
-     "published": "2026-11-18T19:45:08+00:00",
-     "views": 110,
-     "dur": "2:52"
     }
    ]
   },
@@ -470,7 +470,7 @@
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 536,
+     "views": 538,
      "dur": "30:36"
     },
     {
@@ -540,7 +540,7 @@
      "id": "NiXLaltL6b8",
      "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:18:15+00:00",
-     "views": 58,
+     "views": 60,
      "dur": "22:57"
     },
     {
@@ -687,7 +687,7 @@
      "id": "Wv8bvkIVj10",
      "title": "SMU vs. Virginia Tech",
      "published": "2026-11-07T16:24:36+00:00",
-     "views": 106,
+     "views": 107,
      "dur": "3:25:06",
      "nomax": true
     },
@@ -936,6 +936,10 @@
  "new": [
   {
    "key": "on-the-pony-express",
+   "id": "TUpHTDiRm2s"
+  },
+  {
+   "key": "on-the-pony-express",
    "id": "tiPMAQpRaI4"
   },
   {
@@ -949,10 +953,6 @@
   {
    "key": "locked-on-smu",
    "id": "fTdP8r_otSw"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "u-4w6j6Zs5U"
   },
   {
    "key": "mustang-mood",
