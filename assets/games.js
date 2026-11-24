@@ -785,10 +785,10 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": "W 67-49",
 "links": {
-"preview": "https://smumustangs.com/news/2026/11/22/womens-basketball-smu-heads-to-firsco-to-face-saint-marys-and-memphis-in-hoopfest-basketball-womens-challenge",
 "gamecenter": "https://smumustangs.com/game-center/14685",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
-"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/saint-mary-s/boxscore/14685"
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/saint-mary-s/boxscore/14685",
+"recap": "https://smumustangs.com/news/2026/11/23/womens-basketball-mustangs-use-dominant-first-half-to-cruise-to-a-67-49-win-over-saint-mary-s"
 },
 "note": "Hoopfest Basketball Women's Challenge"
 },
