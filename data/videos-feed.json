@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T12:17:12Z",
+ "updated": "2026-11-24T19:32:48Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,7 +99,7 @@
      "id": "lBZ-Nf4wEZo",
      "title": "SMU Men's Soccer Game Highlights vs Bryant 11-22-2026",
      "published": "2026-11-23T18:18:36+00:00",
-     "views": 80,
+     "views": 109,
      "dur": "4:57"
     },
     {
@@ -113,28 +113,28 @@
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 130,
+     "views": 131,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 46,
+     "views": 48,
      "dur": "5:03"
     },
     {
      "id": "WTZOIccWfUI",
      "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
      "published": "2026-11-22T04:41:45+00:00",
-     "views": 2364,
+     "views": 2372,
      "dur": "13:40"
     },
     {
      "id": "cQfFCWYm65g",
      "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
      "published": "2026-11-22T02:02:55+00:00",
-     "views": 131,
+     "views": 135,
      "dur": "11:22"
     },
     {
@@ -197,7 +197,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3915,
+     "views": 3916,
      "dur": "12:01"
     },
     {
@@ -225,7 +225,7 @@
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3793,
+     "views": 3794,
      "dur": "10:30"
     },
     {
@@ -267,7 +267,7 @@
      "id": "2p2wYUVLATc",
      "title": "Every 2025 Mini-Movie | SMU Football",
      "published": "2026-02-04T01:12:00+00:00",
-     "views": 3207,
+     "views": 3208,
      "dur": "1:21:59"
     }
    ]
@@ -351,56 +351,56 @@
      "id": "U5iNJy5dEGI",
      "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions for SMU | Grading the Mustangs",
      "published": "2026-11-24T09:00:32+00:00",
-     "views": 8,
+     "views": 245,
      "dur": "1:07:10"
     },
     {
      "id": "TUpHTDiRm2s",
      "title": "Sam Erger talks SMU Volleyball ahead of postseason, transfer portal opening",
      "published": "2026-11-24T04:00:30+00:00",
-     "views": 17,
+     "views": 43,
      "dur": "14:24"
     },
     {
      "id": "tiPMAQpRaI4",
      "title": "SMU Football Recruiting, Transfer Portal Update | Sam Erger talks SMU Volleyball, Postseason Goals",
      "published": "2026-11-24T01:29:03+00:00",
-     "views": 372,
+     "views": 473,
      "dur": "45:18"
     },
     {
      "id": "yDhf2elu4No",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-23T17:00:29+00:00",
-     "views": 221,
+     "views": 230,
      "dur": "25:50"
     },
     {
      "id": "u-4w6j6Zs5U",
      "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:21+00:00",
-     "views": 697,
+     "views": 749,
      "dur": "37:58"
     },
     {
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 2959,
+     "views": 2989,
      "dur": "25:19"
     },
     {
      "id": "FupLAdqSS5g",
      "title": "SMU QB Kevin Jennings and WR Yamir Knight Analyze 24-3 loss vs. Notre Dame",
      "published": "2026-11-22T04:45:14+00:00",
-     "views": 595,
+     "views": 600,
      "dur": "3:24"
     },
     {
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 11477,
+     "views": 11640,
      "dur": "9:14"
     },
     {
@@ -414,7 +414,7 @@
      "id": "itdU3dQnGjM",
      "title": "How SMU defense matches up with Notre Dame | Irish impact offensive players to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 99,
+     "views": 102,
      "dur": "13:43"
     },
     {
@@ -439,24 +439,31 @@
    "url": "https://www.youtube.com/@LockedOnSMU",
    "videos": [
     {
+     "id": "zC9COACVreU",
+     "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
+     "published": "2026-11-24T14:00:07+00:00",
+     "views": 94,
+     "dur": "27:57"
+    },
+    {
      "id": "fTdP8r_otSw",
      "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
      "published": "2026-11-23T14:00:08+00:00",
-     "views": 369,
+     "views": 387,
      "dur": "29:41"
     },
     {
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 446,
+     "views": 449,
      "dur": "31:19"
     },
     {
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1368,
+     "views": 1374,
      "dur": "33:43"
     },
     {
@@ -470,7 +477,7 @@
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 543,
+     "views": 545,
      "dur": "30:36"
     },
     {
@@ -498,8 +505,8 @@
      "id": "BTTQ5YO3gMA",
      "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
      "published": "2026-11-12T22:00:08+00:00",
-     "views": 184,
-     "dur": "34:02"
+     "dur": "34:02",
+     "views": 184
     },
     {
      "id": "GDkzeBDRFyw",
@@ -514,13 +521,6 @@
      "published": "2026-11-11T15:00:09+00:00",
      "dur": "24:47",
      "views": 528
-    },
-    {
-     "id": "u8SXJO_D838",
-     "title": "DYNAMIC: SMU Mustangs BACKFIELD SURGES as Kendrick Raphael, Christian Rhodes, Dramekco Green IMPRESS",
-     "published": "2026-11-10T14:00:08+00:00",
-     "dur": "29:48",
-     "views": 368
     }
    ]
   },
@@ -533,14 +533,14 @@
      "id": "vLSb9xOCOLk",
      "title": "SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:09+00:00",
-     "views": 46,
+     "views": 48,
      "dur": "37:58"
     },
     {
      "id": "NiXLaltL6b8",
      "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
      "published": "2026-11-20T14:18:15+00:00",
-     "views": 60,
+     "views": 61,
      "dur": "22:57"
     },
     {
@@ -750,6 +750,13 @@
    "broad": true,
    "videos": [
     {
+     "id": "gRw69KQk-Mg",
+     "title": "Grand Canyon vs. SMU Full Game Replay | 2026-27 ACC Women's Basketball",
+     "published": "2026-11-24T17:00:31+00:00",
+     "views": 131,
+     "dur": "1:19:12"
+    },
+    {
      "id": "KKHjXzLU1Zo",
      "title": "South Alabama vs. SMU Full Game Replay | 2026-27 ACC Men’s Basketball",
      "published": "2026-11-22T17:00:36+00:00",
@@ -825,13 +832,6 @@
      "published": "2026-11-18T03:26:44+00:00",
      "dur": "7:00",
      "views": 298
-    },
-    {
-     "id": "peAGcdIkdNI",
-     "title": "SMU vs. Kansas St. Game Highlights | 2026-27 ACC Women's Basketball",
-     "published": "2026-11-18T03:26:03+00:00",
-     "dur": "3:04",
-     "views": 188
     }
    ]
   },
@@ -935,6 +935,14 @@
  ],
  "new": [
   {
+   "key": "acc-digital-network",
+   "id": "gRw69KQk-Mg"
+  },
+  {
+   "key": "locked-on-smu",
+   "id": "zC9COACVreU"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "U5iNJy5dEGI"
   },
@@ -973,14 +981,6 @@
   {
    "key": "acc-digital-network",
    "id": "wS1um04Xgm0"
-  },
-  {
-   "key": "acc-digital-network",
-   "id": "hjvtksmmoHc"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "43fJ6JFP9k4"
   }
  ]
 }

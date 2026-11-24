@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T05:34:17Z",
+ "generated": "2026-11-24T19:32:48Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -113,6 +113,14 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "423d086b3d",
+     "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
+     "published": "2026-11-24T14:00:00Z",
+     "dur": "28 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/78b047c4-cfa5-4df3-a195-721a661e8838/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=78b047c4-cfa5-4df3-a195-721a661e8838&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/change-should-smu-bench-kevin-jennings-for-ty-hawkins/id1824252582?i=1000803797376"
+    },
+    {
      "id": "5ab3f5e0d5",
      "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
      "published": "2026-11-23T14:00:00Z",
@@ -199,14 +207,6 @@
      "dur": "25 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/2c00035b-ff7e-41e5-84dd-e4ad7e27274c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=2c00035b-ff7e-41e5-84dd-e4ad7e27274c&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/alert-rhett-lashlee-must-figure-out-how-smu-can-run/id1824252582?i=1000801219448"
-    },
-    {
-     "id": "71ea5efcdd",
-     "title": "DYNAMIC: SMU Mustangs BACKFIELD SURGES as Kendrick Raphael, Christian Rhodes, Dramekco Green IMPRESS Fans",
-     "published": "2026-11-10T14:00:00Z",
-     "dur": "30 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/8fe2f579-872f-49a4-99ae-7df148f5da99/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=8fe2f579-872f-49a4-99ae-7df148f5da99&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/dynamic-smu-mustangs-backfield-surges-as-kendrick-raphael/id1824252582?i=1000801008413"
     }
    ]
   },
@@ -738,6 +738,10 @@
  ],
  "new": [
   {
+   "key": "locked-on-smu",
+   "id": "423d086b3d"
+  },
+  {
    "key": "on-the-pony-express",
    "id": "b862a1b721"
   },
@@ -780,10 +784,6 @@
   {
    "key": "mustang-studios",
    "id": "4952cf2708"
-  },
-  {
-   "key": "inside-access",
-   "id": "abb1d00978"
   }
  ]
 }
