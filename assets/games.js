@@ -94,6 +94,7 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.cbssports.com/watch/cbs-sports-network",
 "listen": "https://smumustangs.com/showcase/?Live=5406",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=684156&vislive=smu",
+"preview": "https://smumustangs.com/news/2026/11/23/mens-basketball-smu-5-0-faces-utah-state-5-0-wednesday-and-no-20-lsu-6-0-thursday-in-acrisure-series-thanksgiving-event",
 "gamecenter": "https://smumustangs.com/game-center/14698"
 },
 "sb": 684156,
@@ -118,6 +119,7 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.cbssports.com/watch/cbs-sports-network",
 "listen": "https://smumustangs.com/showcase/?Live=5407",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=689796&vislive=smu",
+"preview": "https://smumustangs.com/news/2026/11/23/mens-basketball-smu-5-0-faces-utah-state-5-0-wednesday-and-no-20-lsu-6-0-thursday-in-acrisure-series-thanksgiving-event",
 "gamecenter": "https://smumustangs.com/game-center/14700"
 },
 "sb": 689796,

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T06:26:57Z",
+ "updated": "2026-11-24T12:17:12Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,56 +99,56 @@
      "id": "lBZ-Nf4wEZo",
      "title": "SMU Men's Soccer Game Highlights vs Bryant 11-22-2026",
      "published": "2026-11-23T18:18:36+00:00",
-     "views": 60,
+     "views": 80,
      "dur": "4:57"
     },
     {
      "id": "QtN2OvjTgzA",
      "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
      "published": "2026-11-23T04:24:04+00:00",
-     "views": 136,
+     "views": 142,
      "dur": "21:46"
     },
     {
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 124,
+     "views": 130,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 33,
+     "views": 46,
      "dur": "5:03"
     },
     {
      "id": "WTZOIccWfUI",
      "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
      "published": "2026-11-22T04:41:45+00:00",
-     "views": 2334,
+     "views": 2364,
      "dur": "13:40"
     },
     {
      "id": "cQfFCWYm65g",
      "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
      "published": "2026-11-22T02:02:55+00:00",
-     "views": 120,
+     "views": 131,
      "dur": "11:22"
     },
     {
      "id": "c5pKrYnvcwQ",
      "title": "SMU Men's Basketball: Post Game Press Conference vs South Alabama 11-20-26",
      "published": "2026-11-21T04:05:13+00:00",
-     "views": 116,
+     "views": 118,
      "dur": "10:50"
     },
     {
      "id": "TBKjA2qtUF8",
      "title": "SMU Sets Record for Most Three-Pointers in a Game 🔥 | Highlights vs. South Alabama",
      "published": "2026-11-21T03:00:49+00:00",
-     "views": 147,
+     "views": 150,
      "dur": "7:59"
     },
     {
@@ -162,7 +162,7 @@
      "id": "sWW-_AhI7nE",
      "title": "Mustangs Mic'd Up S2E8: Brandon Booker, Kevin Jennings & Rhett Lashlee",
      "published": "2026-11-19T18:56:41+00:00",
-     "views": 211,
+     "views": 212,
      "dur": "32:21"
     },
     {
@@ -197,14 +197,14 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3914,
+     "views": 3915,
      "dur": "12:01"
     },
     {
      "id": "n6hrPe-QoLs",
      "title": "The Virginia Mini-Movie | SMU Football",
      "published": "2026-10-19T23:45:06+00:00",
-     "views": 2856,
+     "views": 2857,
      "dur": "14:09"
     },
     {
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 87,
+     "views": 88,
      "dur": "20:56"
     },
     {
@@ -348,59 +348,66 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "U5iNJy5dEGI",
+     "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions for SMU | Grading the Mustangs",
+     "published": "2026-11-24T09:00:32+00:00",
+     "views": 8,
+     "dur": "1:07:10"
+    },
+    {
      "id": "TUpHTDiRm2s",
      "title": "Sam Erger talks SMU Volleyball ahead of postseason, transfer portal opening",
      "published": "2026-11-24T04:00:30+00:00",
-     "views": 2,
+     "views": 17,
      "dur": "14:24"
     },
     {
      "id": "tiPMAQpRaI4",
      "title": "SMU Football Recruiting, Transfer Portal Update | Sam Erger talks SMU Volleyball, Postseason Goals",
      "published": "2026-11-24T01:29:03+00:00",
-     "views": 219,
+     "views": 372,
      "dur": "45:18"
     },
     {
      "id": "yDhf2elu4No",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-23T17:00:29+00:00",
-     "views": 206,
+     "views": 221,
      "dur": "25:50"
     },
     {
      "id": "u-4w6j6Zs5U",
      "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:21+00:00",
-     "views": 608,
+     "views": 697,
      "dur": "37:58"
     },
     {
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 2924,
+     "views": 2959,
      "dur": "25:19"
     },
     {
      "id": "FupLAdqSS5g",
      "title": "SMU QB Kevin Jennings and WR Yamir Knight Analyze 24-3 loss vs. Notre Dame",
      "published": "2026-11-22T04:45:14+00:00",
-     "views": 592,
+     "views": 595,
      "dur": "3:24"
     },
     {
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 11411,
+     "views": 11477,
      "dur": "9:14"
     },
     {
      "id": "_bjSiwOOonQ",
      "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 81,
+     "views": 87,
      "dur": "12:18"
     },
     {
@@ -423,13 +430,6 @@
      "published": "2026-11-20T14:24:18+00:00",
      "views": 1832,
      "dur": "22:57"
-    },
-    {
-     "id": "rb9sCMqp-HE",
-     "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Can Mustangs spoil Playoff push?",
-     "published": "2026-11-19T04:37:38+00:00",
-     "views": 1089,
-     "dur": "1:21:49"
     }
    ]
   },
@@ -442,35 +442,35 @@
      "id": "fTdP8r_otSw",
      "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
      "published": "2026-11-23T14:00:08+00:00",
-     "views": 334,
+     "views": 369,
      "dur": "29:41"
     },
     {
      "id": "43fJ6JFP9k4",
      "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
      "published": "2026-11-20T17:00:07+00:00",
-     "views": 445,
+     "views": 446,
      "dur": "31:19"
     },
     {
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1366,
+     "views": 1368,
      "dur": "33:43"
     },
     {
      "id": "TZe_YGSgd1w",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:06+00:00",
-     "views": 441,
+     "views": 442,
      "dur": "30:06"
     },
     {
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 538,
+     "views": 543,
      "dur": "30:36"
     },
     {
@@ -484,7 +484,7 @@
      "id": "IcmAbeKH2nU",
      "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
      "published": "2026-11-14T21:02:56+00:00",
-     "views": 2813,
+     "views": 2815,
      "dur": "20:23"
     },
     {
@@ -498,15 +498,15 @@
      "id": "BTTQ5YO3gMA",
      "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
      "published": "2026-11-12T22:00:08+00:00",
-     "views": 183,
+     "views": 184,
      "dur": "34:02"
     },
     {
      "id": "GDkzeBDRFyw",
      "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
      "published": "2026-11-12T17:00:10+00:00",
-     "views": 363,
-     "dur": "27:22"
+     "dur": "27:22",
+     "views": 363
     },
     {
      "id": "SVjF_N8drT4",
@@ -533,7 +533,7 @@
      "id": "vLSb9xOCOLk",
      "title": "SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:09+00:00",
-     "views": 36,
+     "views": 46,
      "dur": "37:58"
     },
     {
@@ -936,6 +936,10 @@
  "new": [
   {
    "key": "on-the-pony-express",
+   "id": "U5iNJy5dEGI"
+  },
+  {
+   "key": "on-the-pony-express",
    "id": "TUpHTDiRm2s"
   },
   {
@@ -945,10 +949,6 @@
   {
    "key": "smu-mustangs",
    "id": "lBZ-Nf4wEZo"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "yDhf2elu4No"
   },
   {
    "key": "locked-on-smu",
