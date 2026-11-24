@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T19:32:48Z",
+ "updated": "2026-11-24T20:30:45Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,6 +96,13 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "SOlov2iwjWQ",
+     "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-24-26",
+     "published": "2026-11-24T19:57:15+00:00",
+     "views": 10,
+     "dur": "10:22"
+    },
+    {
      "id": "lBZ-Nf4wEZo",
      "title": "SMU Men's Soccer Game Highlights vs Bryant 11-22-2026",
      "published": "2026-11-23T18:18:36+00:00",
@@ -106,21 +113,21 @@
      "id": "QtN2OvjTgzA",
      "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
      "published": "2026-11-23T04:24:04+00:00",
-     "views": 142,
+     "views": 145,
      "dur": "21:46"
     },
     {
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 131,
+     "views": 133,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 48,
+     "views": 49,
      "dur": "5:03"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-18T17:30:31+00:00",
      "views": 150,
      "dur": "6:53"
-    },
-    {
-     "id": "D6eptkGBqn8",
-     "title": "SMU Men's Basketball: Game Highlights vs. Oral Roberts 11-17-26",
-     "published": "2026-11-18T15:42:10+00:00",
-     "views": 148,
-     "dur": "5:53"
     }
    ]
   },
@@ -225,14 +225,14 @@
      "id": "Ry_Z_n8biCU",
      "title": "The UC Davis Mini-Movie | SMU Football",
      "published": "2026-09-14T23:55:51+00:00",
-     "views": 3794,
+     "views": 3795,
      "dur": "10:30"
     },
     {
      "id": "d5NzYNQRgPE",
      "title": "The Florida State Mini-Movie | SMU Football",
      "published": "2026-09-10T00:51:17+00:00",
-     "views": 15577,
+     "views": 15578,
      "dur": "19:34"
     },
     {
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 88,
+     "views": 92,
      "dur": "20:56"
     },
     {
@@ -351,7 +351,7 @@
      "id": "U5iNJy5dEGI",
      "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions for SMU | Grading the Mustangs",
      "published": "2026-11-24T09:00:32+00:00",
-     "views": 245,
+     "views": 288,
      "dur": "1:07:10"
     },
     {
@@ -372,7 +372,7 @@
      "id": "yDhf2elu4No",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-23T17:00:29+00:00",
-     "views": 230,
+     "views": 246,
      "dur": "25:50"
     },
     {
@@ -386,7 +386,7 @@
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 2989,
+     "views": 3005,
      "dur": "25:19"
     },
     {
@@ -407,7 +407,7 @@
      "id": "_bjSiwOOonQ",
      "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 87,
+     "views": 93,
      "dur": "12:18"
     },
     {
@@ -449,7 +449,7 @@
      "id": "fTdP8r_otSw",
      "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
      "published": "2026-11-23T14:00:08+00:00",
-     "views": 387,
+     "views": 400,
      "dur": "29:41"
     },
     {
@@ -533,7 +533,7 @@
      "id": "vLSb9xOCOLk",
      "title": "SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:09+00:00",
-     "views": 48,
+     "views": 49,
      "dur": "37:58"
     },
     {
@@ -753,7 +753,7 @@
      "id": "gRw69KQk-Mg",
      "title": "Grand Canyon vs. SMU Full Game Replay | 2026-27 ACC Women's Basketball",
      "published": "2026-11-24T17:00:31+00:00",
-     "views": 131,
+     "views": 273,
      "dur": "1:19:12"
     },
     {
@@ -935,6 +935,10 @@
  ],
  "new": [
   {
+   "key": "smu-mustangs",
+   "id": "SOlov2iwjWQ"
+  },
+  {
    "key": "acc-digital-network",
    "id": "gRw69KQk-Mg"
   },
@@ -969,10 +973,6 @@
   {
    "key": "smu-mustangs",
    "id": "QtN2OvjTgzA"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "lh0Xu9Oh0L4"
   },
   {
    "key": "acc-digital-network",
