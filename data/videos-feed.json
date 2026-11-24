@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T22:33:15Z",
+ "updated": "2026-11-24T23:30:25Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,7 +99,7 @@
      "id": "SOlov2iwjWQ",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-24-26",
      "published": "2026-11-24T19:57:15+00:00",
-     "views": 34,
+     "views": 36,
      "dur": "10:22"
     },
     {
@@ -113,21 +113,21 @@
      "id": "QtN2OvjTgzA",
      "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
      "published": "2026-11-23T04:24:04+00:00",
-     "views": 145,
+     "views": 148,
      "dur": "21:46"
     },
     {
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 133,
+     "views": 134,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 49,
+     "views": 50,
      "dur": "5:03"
     },
     {
@@ -197,7 +197,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3916,
+     "views": 3917,
      "dur": "12:01"
     },
     {
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 92,
+     "views": 96,
      "dur": "20:56"
     },
     {
@@ -348,17 +348,24 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "-Eoyo_JFAZo",
+     "title": "Kevin Jennings talks SMU loss at Notre Dame, preparing for Stanford game after injury",
+     "published": "2026-11-24T22:49:31+00:00",
+     "views": 12,
+     "dur": "2:21"
+    },
+    {
      "id": "U5iNJy5dEGI",
      "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions for SMU | Grading the Mustangs",
      "published": "2026-11-24T09:00:32+00:00",
-     "views": 343,
+     "views": 373,
      "dur": "1:07:10"
     },
     {
      "id": "TUpHTDiRm2s",
      "title": "Sam Erger talks SMU Volleyball ahead of postseason, transfer portal opening",
      "published": "2026-11-24T04:00:30+00:00",
-     "views": 54,
+     "views": 58,
      "dur": "14:24"
     },
     {
@@ -372,21 +379,21 @@
      "id": "yDhf2elu4No",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-23T17:00:29+00:00",
-     "views": 246,
+     "views": 254,
      "dur": "25:50"
     },
     {
      "id": "u-4w6j6Zs5U",
      "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:21+00:00",
-     "views": 776,
+     "views": 792,
      "dur": "37:58"
     },
     {
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 3006,
+     "views": 3029,
      "dur": "25:19"
     },
     {
@@ -400,7 +407,7 @@
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 11715,
+     "views": 11739,
      "dur": "9:14"
     },
     {
@@ -423,13 +430,6 @@
      "published": "2026-11-20T17:36:13+00:00",
      "views": 623,
      "dur": "15:33"
-    },
-    {
-     "id": "duWrJIgpezc",
-     "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
-     "published": "2026-11-20T14:24:18+00:00",
-     "views": 1832,
-     "dur": "22:57"
     }
    ]
   },
@@ -442,7 +442,7 @@
      "id": "zC9COACVreU",
      "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
      "published": "2026-11-24T14:00:07+00:00",
-     "views": 161,
+     "views": 187,
      "dur": "27:57"
     },
     {
@@ -533,7 +533,7 @@
      "id": "vLSb9xOCOLk",
      "title": "SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:09+00:00",
-     "views": 49,
+     "views": 54,
      "dur": "37:58"
     },
     {
@@ -547,7 +547,7 @@
      "id": "Idu0cPVthY4",
      "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
      "published": "2026-11-15T12:00:18+00:00",
-     "views": 215,
+     "views": 216,
      "dur": "16:36"
     },
     {
@@ -753,7 +753,7 @@
      "id": "gRw69KQk-Mg",
      "title": "Grand Canyon vs. SMU Full Game Replay | 2026-27 ACC Women's Basketball",
      "published": "2026-11-24T17:00:31+00:00",
-     "views": 561,
+     "views": 701,
      "dur": "1:19:12"
     },
     {
@@ -935,6 +935,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "-Eoyo_JFAZo"
+  },
+  {
    "key": "smu-mustangs",
    "id": "SOlov2iwjWQ"
   },
@@ -953,10 +957,6 @@
   {
    "key": "on-the-pony-express",
    "id": "TUpHTDiRm2s"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "tiPMAQpRaI4"
   },
   {
    "key": "smu-mustangs",
