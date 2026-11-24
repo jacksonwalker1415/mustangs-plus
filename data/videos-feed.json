@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T00:26:44Z",
+ "updated": "2026-11-24T01:38:44Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -106,35 +106,35 @@
      "id": "QtN2OvjTgzA",
      "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
      "published": "2026-11-23T04:24:04+00:00",
-     "views": 122,
+     "views": 128,
      "dur": "21:46"
     },
     {
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 111,
+     "views": 119,
      "dur": "5:55"
     },
     {
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 30,
+     "views": 31,
      "dur": "5:03"
     },
     {
      "id": "WTZOIccWfUI",
      "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
      "published": "2026-11-22T04:41:45+00:00",
-     "views": 2270,
+     "views": 2309,
      "dur": "13:40"
     },
     {
      "id": "cQfFCWYm65g",
      "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
      "published": "2026-11-22T02:02:55+00:00",
-     "views": 116,
+     "views": 118,
      "dur": "11:22"
     },
     {
@@ -281,7 +281,7 @@
      "id": "rQnS_4Gpv98",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:06+00:00",
-     "views": 79,
+     "views": 81,
      "dur": "20:56"
     },
     {
@@ -348,10 +348,17 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "tiPMAQpRaI4",
+     "title": "SMU Football Recruiting, Transfer Portal Update | Sam Erger talks SMU Volleyball, Postseason Goals",
+     "published": "2026-11-24T01:29:03+00:00",
+     "views": 4,
+     "dur": "45:18"
+    },
+    {
      "id": "yDhf2elu4No",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-23T17:00:29+00:00",
-     "views": 123,
+     "views": 171,
      "dur": "25:50"
     },
     {
@@ -365,7 +372,7 @@
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 2868,
+     "views": 2883,
      "dur": "25:19"
     },
     {
@@ -379,14 +386,14 @@
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 11048,
+     "views": 11151,
      "dur": "9:14"
     },
     {
      "id": "_bjSiwOOonQ",
      "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 78,
+     "views": 80,
      "dur": "12:18"
     },
     {
@@ -414,7 +421,7 @@
      "id": "rb9sCMqp-HE",
      "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Can Mustangs spoil Playoff push?",
      "published": "2026-11-19T04:37:38+00:00",
-     "views": 1084,
+     "views": 1087,
      "dur": "1:21:49"
     },
     {
@@ -423,13 +430,6 @@
      "published": "2026-11-18T19:45:08+00:00",
      "views": 110,
      "dur": "2:52"
-    },
-    {
-     "id": "MxWVXxZPovE",
-     "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, Notre Dame expectations",
-     "published": "2026-11-18T17:51:53+00:00",
-     "views": 2394,
-     "dur": "28:11"
     }
    ]
   },
@@ -442,7 +442,7 @@
      "id": "fTdP8r_otSw",
      "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
      "published": "2026-11-23T14:00:08+00:00",
-     "views": 241,
+     "views": 272,
      "dur": "29:41"
     },
     {
@@ -456,7 +456,7 @@
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1356,
+     "views": 1360,
      "dur": "33:43"
     },
     {
@@ -470,7 +470,7 @@
      "id": "5rubqiFcsB0",
      "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
      "published": "2026-11-17T14:00:06+00:00",
-     "views": 535,
+     "views": 536,
      "dur": "30:36"
     },
     {
@@ -498,7 +498,7 @@
      "id": "BTTQ5YO3gMA",
      "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
      "published": "2026-11-12T22:00:08+00:00",
-     "views": 182,
+     "views": 183,
      "dur": "34:02"
     },
     {
@@ -625,7 +625,7 @@
      "id": "8ltqO4NDHvA",
      "title": "Clemson at Duke Spotlight | SMU's opportunity at Notre Dame | College Football Playoff Reaction",
      "published": "2026-11-19T03:25:53+00:00",
-     "views": 70,
+     "views": 71,
      "dur": "38:01"
     },
     {
@@ -935,6 +935,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "tiPMAQpRaI4"
+  },
+  {
    "key": "smu-mustangs",
    "id": "lBZ-Nf4wEZo"
   },
@@ -961,10 +965,6 @@
   {
    "key": "smu-mustangs",
    "id": "lh0Xu9Oh0L4"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "TvbVkXOA1X0"
   },
   {
    "key": "acc-digital-network",
