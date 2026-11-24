@@ -781,18 +781,15 @@ window.MP=window.MP||{};MP.GAMES={
 "city": "Frisco, Texas / Fifth Third Arena",
 "time": "6 p.m. CT",
 "ko": "2026-11-23T18:00:00-06:00",
-"tv": "TBD",
+"tv": null,
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "W 67-49",
 "links": {
-"listen": "https://smumustangs.com/showcase/?Live=5448",
-"stats": "https://stats.statbroadcast.com/broadcast/?id=688119&vislive=smu",
 "preview": "https://smumustangs.com/news/2026/11/22/womens-basketball-smu-heads-to-firsco-to-face-saint-marys-and-memphis-in-hoopfest-basketball-womens-challenge",
 "gamecenter": "https://smumustangs.com/game-center/14685",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark"
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/saint-mary-s/boxscore/14685"
 },
-"sb": 688119,
 "note": "Hoopfest Basketball Women's Challenge"
 },
 {
@@ -812,13 +809,14 @@ window.MP=window.MP||{};MP.GAMES={
 "res": null,
 "links": {
 "listen": "https://smumustangs.com/showcase/?Live=5449",
-"stats": "https://www.statbroadcast.com/events/statmonitr.php?gid=smu",
+"stats": "https://stats.statbroadcast.com/broadcast/?id=686687&vislive=smu",
 "preview": "https://smumustangs.com/news/2026/11/22/womens-basketball-smu-heads-to-firsco-to-face-saint-marys-and-memphis-in-hoopfest-basketball-womens-challenge",
 "gamecenter": "https://smumustangs.com/game-center/14686",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark"
 },
-"note": "Hoopfest Basketball Women's Challenge"
+"note": "Hoopfest Basketball Women's Challenge",
+"sb": 686687
 },
 {
 "id": "wbb-14756",
