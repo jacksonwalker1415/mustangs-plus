@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T21:34:46Z",
+ "updated": "2026-11-25T22:34:42Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,10 +96,17 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "mL1CvySpnys",
+     "title": "SMU Volleyball Match Highlights vs. Georgia Tech 11-25-26",
+     "published": "2026-11-25T21:48:52+00:00",
+     "views": 4,
+     "dur": "6:14"
+    },
+    {
      "id": "SOlov2iwjWQ",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-24-26",
      "published": "2026-11-24T19:57:15+00:00",
-     "views": 231,
+     "views": 243,
      "dur": "10:22"
     },
     {
@@ -127,7 +134,7 @@
      "id": "YYhRpeZl55Q",
      "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
      "published": "2026-11-22T18:14:48+00:00",
-     "views": 54,
+     "views": 55,
      "dur": "5:03"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-19T18:56:41+00:00",
      "views": 214,
      "dur": "32:21"
-    },
-    {
-     "id": "LuE3ZJcTY1s",
-     "title": "SMU Football: Media Availability - Brandon Booker and Theo Ohrstrom 11-18-26",
-     "published": "2026-11-18T17:30:31+00:00",
-     "views": 151,
-     "dur": "6:53"
     }
    ]
   },
@@ -197,7 +197,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3923,
+     "views": 3924,
      "dur": "12:01"
     },
     {
@@ -277,6 +277,13 @@
    "name": "Mustang Studios",
    "url": "https://www.youtube.com/@MustangStudiosCo",
    "videos": [
+    {
+     "id": "YvdVvQBrDEg",
+     "title": "Oziyah Sellers on Chasing Steph Curry, His Sweet 16 Run & Choosing SMU | The Five",
+     "published": "2026-11-25T22:00:06+00:00",
+     "views": 4,
+     "dur": "17:19"
+    },
     {
      "id": "CfpqHRxrv2U",
      "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
@@ -358,14 +365,14 @@
      "id": "jRKcvRaWpHw",
      "title": "Rhett Lashlee assesses SMU play at Notre Dame, previews Stanford and talks injury report",
      "published": "2026-11-25T00:00:10+00:00",
-     "views": 351,
+     "views": 409,
      "dur": "8:01"
     },
     {
      "id": "-Eoyo_JFAZo",
      "title": "Kevin Jennings talks SMU loss at Notre Dame, preparing for Stanford game after injury",
      "published": "2026-11-24T22:49:31+00:00",
-     "views": 125,
+     "views": 137,
      "dur": "2:21"
     },
     {
@@ -421,7 +428,7 @@
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 11947,
+     "views": 11963,
      "dur": "9:14"
     },
     {
@@ -449,7 +456,7 @@
      "id": "TJycGZlHScU",
      "title": "FINISH: Notre Dame LOSS Leaves SMU FACING TOUGH TRUTHS—Can Mustangs Finish STRONG?",
      "published": "2026-11-25T15:00:06+00:00",
-     "views": 60,
+     "views": 115,
      "dur": "34:47"
     },
     {
@@ -540,7 +547,7 @@
      "id": "vLSb9xOCOLk",
      "title": "SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:09+00:00",
-     "views": 57,
+     "views": 58,
      "dur": "37:58"
     },
     {
@@ -942,6 +949,14 @@
  ],
  "new": [
   {
+   "key": "mustang-studios",
+   "id": "YvdVvQBrDEg"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "mL1CvySpnys"
+  },
+  {
    "key": "locked-on-smu",
    "id": "TJycGZlHScU"
   },
@@ -980,14 +995,6 @@
   {
    "key": "locked-on-smu",
    "id": "fTdP8r_otSw"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "vLSb9xOCOLk"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "QtN2OvjTgzA"
   }
  ]
 }
