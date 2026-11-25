@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T01:29:46Z",
+ "generated": "2026-11-25T19:35:42Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -114,6 +114,13 @@
    "art": "assets/img/pods/locked-on-smu.webp",
    "episodes": [
     {
+     "id": "d5505e83af",
+     "title": "FINISH: Notre Dame LOSS Leaves SMU FACING TOUGH TRUTHS—Can Mustangs Finish STRONG?",
+     "published": "2026-11-25T15:00:00Z",
+     "dur": "35 min",
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/9e5f2638-c796-46c4-b8b5-3fdd33643b6c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=9e5f2638-c796-46c4-b8b5-3fdd33643b6c&feed=MciFpBoA"
+    },
+    {
      "id": "423d086b3d",
      "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
      "published": "2026-11-24T14:00:00Z",
@@ -200,14 +207,6 @@
      "dur": "27 min",
      "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/e426b6de-5c3d-46a3-a912-02372c46e846/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=e426b6de-5c3d-46a3-a912-02372c46e846&feed=MciFpBoA",
      "apple": "https://podcasts.apple.com/us/podcast/fireworks-smu-mustangs-must-stop-gio-lopez-wake-forests/id1824252582?i=1000801551635"
-    },
-    {
-     "id": "75c8b87ae3",
-     "title": "ALERT: Rhett Lashlee MUST Figure Out How SMU Can RUN THE BALL Against EXCELLENT Wake Forest Defense",
-     "published": "2026-11-11T14:00:00Z",
-     "dur": "25 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/2c00035b-ff7e-41e5-84dd-e4ad7e27274c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=2c00035b-ff7e-41e5-84dd-e4ad7e27274c&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/alert-rhett-lashlee-must-figure-out-how-smu-can-run/id1824252582?i=1000801219448"
     }
    ]
   },
@@ -328,7 +327,8 @@
      "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
      "published": "2026-11-25T00:00:01Z",
      "dur": "33 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/130054383/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-24%2F437555619-44100-2-63077bc92a359.mp3"
+     "audio": "https://anchor.fm/s/113681870/podcast/play/130054383/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-24%2F437555619-44100-2-63077bc92a359.mp3",
+     "apple": "https://podcasts.apple.com/us/podcast/nba-dreams-transfer-portal-journeys-smus-march-madness/id1896902919?i=1000803881909"
     },
     {
      "id": "459c66f7da",
@@ -738,6 +738,10 @@
  ],
  "new": [
   {
+   "key": "locked-on-smu",
+   "id": "d5505e83af"
+  },
+  {
    "key": "mustang-studios",
    "id": "ddc8c2a78f"
   },
@@ -780,10 +784,6 @@
   {
    "key": "kc-masterpiece",
    "id": "4ea7cd2d50"
-  },
-  {
-   "key": "kc-masterpiece",
-   "id": "744adb6b3b"
   }
  ]
 }
