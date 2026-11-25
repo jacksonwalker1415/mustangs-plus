@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T04:26:55Z",
+ "updated": "2026-11-25T05:38:16Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,21 +99,21 @@
      "id": "SOlov2iwjWQ",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-24-26",
      "published": "2026-11-24T19:57:15+00:00",
-     "views": 89,
+     "views": 142,
      "dur": "10:22"
     },
     {
      "id": "lBZ-Nf4wEZo",
      "title": "SMU Men's Soccer Game Highlights vs Bryant 11-22-2026",
      "published": "2026-11-23T18:18:36+00:00",
-     "views": 132,
+     "views": 137,
      "dur": "4:57"
     },
     {
      "id": "QtN2OvjTgzA",
      "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
      "published": "2026-11-23T04:24:04+00:00",
-     "views": 149,
+     "views": 151,
      "dur": "21:46"
     },
     {
@@ -197,7 +197,7 @@
      "id": "sSnTjD7Oz0Q",
      "title": "The Cal Mini-Movie | SMU Football",
      "published": "2026-10-26T23:45:09+00:00",
-     "views": 3919,
+     "views": 3920,
      "dur": "12:01"
     },
     {
@@ -358,7 +358,7 @@
      "id": "jRKcvRaWpHw",
      "title": "Rhett Lashlee assesses SMU play at Notre Dame, previews Stanford and talks injury report",
      "published": "2026-11-25T00:00:10+00:00",
-     "views": 88,
+     "views": 173,
      "dur": "8:01"
     },
     {
@@ -372,14 +372,14 @@
      "id": "U5iNJy5dEGI",
      "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions for SMU | Grading the Mustangs",
      "published": "2026-11-24T09:00:32+00:00",
-     "views": 561,
+     "views": 574,
      "dur": "1:07:10"
     },
     {
      "id": "TUpHTDiRm2s",
      "title": "Sam Erger talks SMU Volleyball ahead of postseason, transfer portal opening",
      "published": "2026-11-24T04:00:30+00:00",
-     "views": 68,
+     "views": 80,
      "dur": "14:24"
     },
     {
@@ -400,14 +400,14 @@
      "id": "u-4w6j6Zs5U",
      "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:21+00:00",
-     "views": 813,
+     "views": 815,
      "dur": "37:58"
     },
     {
      "id": "TvbVkXOA1X0",
      "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
      "published": "2026-11-22T02:57:00+00:00",
-     "views": 3065,
+     "views": 3101,
      "dur": "25:19"
     },
     {
@@ -428,7 +428,7 @@
      "id": "_bjSiwOOonQ",
      "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
      "published": "2026-11-22T00:24:20+00:00",
-     "views": 98,
+     "views": 101,
      "dur": "12:18"
     },
     {
@@ -477,7 +477,7 @@
      "id": "TZe_YGSgd1w",
      "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
      "published": "2026-11-18T16:00:06+00:00",
-     "views": 443,
+     "views": 446,
      "dur": "30:06"
     },
     {
@@ -540,7 +540,7 @@
      "id": "vLSb9xOCOLk",
      "title": "SMU Football: Notre Dame Recap & The Road Ahead",
      "published": "2026-11-23T12:00:09+00:00",
-     "views": 54,
+     "views": 55,
      "dur": "37:58"
     },
     {
@@ -760,8 +760,8 @@
      "id": "gRw69KQk-Mg",
      "title": "Grand Canyon vs. SMU Full Game Replay | 2026-27 ACC Women's Basketball",
      "published": "2026-11-24T17:00:31+00:00",
-     "views": 828,
-     "dur": "1:19:12"
+     "dur": "1:19:12",
+     "views": 828
     },
     {
      "id": "KKHjXzLU1Zo",
