@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T22:34:42Z",
+ "updated": "2026-11-25T23:25:58Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -96,24 +96,31 @@
    "url": "https://www.youtube.com/@SMUMustangs",
    "videos": [
     {
+     "id": "kwEsN7-xQG8",
+     "title": "SMU Volleyball Post-Match Press Conference vs. Georgia Tech 11-25-26",
+     "published": "2026-11-25T22:43:20+00:00",
+     "views": 1,
+     "dur": "13:46"
+    },
+    {
      "id": "mL1CvySpnys",
      "title": "SMU Volleyball Match Highlights vs. Georgia Tech 11-25-26",
      "published": "2026-11-25T21:48:52+00:00",
-     "views": 4,
+     "views": 5,
      "dur": "6:14"
     },
     {
      "id": "SOlov2iwjWQ",
      "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-24-26",
      "published": "2026-11-24T19:57:15+00:00",
-     "views": 243,
+     "views": 246,
      "dur": "10:22"
     },
     {
      "id": "lBZ-Nf4wEZo",
      "title": "SMU Men's Soccer Game Highlights vs Bryant 11-22-2026",
      "published": "2026-11-23T18:18:36+00:00",
-     "views": 160,
+     "views": 165,
      "dur": "4:57"
     },
     {
@@ -127,7 +134,7 @@
      "id": "lh0Xu9Oh0L4",
      "title": "SMU Volleyball Match Highlights vs. Virginia 11-22-26",
      "published": "2026-11-22T19:37:44+00:00",
-     "views": 141,
+     "views": 143,
      "dur": "5:55"
     },
     {
@@ -171,13 +178,6 @@
      "published": "2026-11-21T01:01:43+00:00",
      "views": 134,
      "dur": "5:07"
-    },
-    {
-     "id": "sWW-_AhI7nE",
-     "title": "Mustangs Mic'd Up S2E8: Brandon Booker, Kevin Jennings & Rhett Lashlee",
-     "published": "2026-11-19T18:56:41+00:00",
-     "views": 214,
-     "dur": "32:21"
     }
    ]
   },
@@ -190,7 +190,7 @@
      "id": "9BzaQQ7QHIE",
      "title": "The Virginia Tech Mini-Movie | SMU Football",
      "published": "2026-11-10T00:45:09+00:00",
-     "views": 2466,
+     "views": 2469,
      "dur": "10:24"
     },
     {
@@ -246,7 +246,7 @@
      "id": "hm7glDX8m9Q",
      "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
      "published": "2026-08-18T00:00:06+00:00",
-     "views": 3940,
+     "views": 3942,
      "dur": "34:46"
     },
     {
@@ -288,7 +288,7 @@
      "id": "CfpqHRxrv2U",
      "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
      "published": "2026-11-25T00:00:10+00:00",
-     "views": 56,
+     "views": 70,
      "dur": "32:35"
     },
     {
@@ -362,6 +362,13 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "3ByQY1P8exU",
+     "title": "Walking 'Strong with Bill Armstrong: SMU's loss to Notre Dame, 'Walking Sonny Dykes' out the door",
+     "published": "2026-11-25T22:53:15+00:00",
+     "views": 40,
+     "dur": "30:11"
+    },
+    {
      "id": "jRKcvRaWpHw",
      "title": "Rhett Lashlee assesses SMU play at Notre Dame, previews Stanford and talks injury report",
      "published": "2026-11-25T00:00:10+00:00",
@@ -379,7 +386,7 @@
      "id": "U5iNJy5dEGI",
      "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions for SMU | Grading the Mustangs",
      "published": "2026-11-24T09:00:32+00:00",
-     "views": 651,
+     "views": 659,
      "dur": "1:07:10"
     },
     {
@@ -393,14 +400,14 @@
      "id": "tiPMAQpRaI4",
      "title": "SMU Football Recruiting, Transfer Portal Update | Sam Erger talks SMU Volleyball, Postseason Goals",
      "published": "2026-11-24T01:29:03+00:00",
-     "views": 727,
+     "views": 746,
      "dur": "45:18"
     },
     {
      "id": "yDhf2elu4No",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-23T17:00:29+00:00",
-     "views": 301,
+     "views": 310,
      "dur": "25:50"
     },
     {
@@ -437,13 +444,6 @@
      "published": "2026-11-22T00:24:20+00:00",
      "views": 101,
      "dur": "12:18"
-    },
-    {
-     "id": "itdU3dQnGjM",
-     "title": "How SMU defense matches up with Notre Dame | Irish impact offensive players to know",
-     "published": "2026-11-22T00:24:20+00:00",
-     "views": 115,
-     "dur": "13:43"
     }
    ]
   },
@@ -463,14 +463,14 @@
      "id": "zC9COACVreU",
      "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
      "published": "2026-11-24T14:00:07+00:00",
-     "views": 322,
+     "views": 325,
      "dur": "27:57"
     },
     {
      "id": "fTdP8r_otSw",
      "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
      "published": "2026-11-23T14:00:08+00:00",
-     "views": 427,
+     "views": 428,
      "dur": "29:41"
     },
     {
@@ -484,7 +484,7 @@
      "id": "J0MR1p_TLx0",
      "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
      "published": "2026-11-19T17:00:07+00:00",
-     "views": 1394,
+     "views": 1396,
      "dur": "33:43"
     },
     {
@@ -949,6 +949,14 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "3ByQY1P8exU"
+  },
+  {
+   "key": "smu-mustangs",
+   "id": "kwEsN7-xQG8"
+  },
+  {
    "key": "mustang-studios",
    "id": "YvdVvQBrDEg"
   },
@@ -983,14 +991,6 @@
   {
    "key": "locked-on-smu",
    "id": "zC9COACVreU"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "U5iNJy5dEGI"
-  },
-  {
-   "key": "smu-mustangs",
-   "id": "lBZ-Nf4wEZo"
   },
   {
    "key": "locked-on-smu",

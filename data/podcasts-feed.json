@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T19:35:42Z",
+ "generated": "2026-11-25T23:25:58Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -8,6 +8,13 @@
    "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
    "art": "assets/img/pods/on-the-pony-express.webp",
    "episodes": [
+    {
+     "id": "7317bcf472",
+     "title": "Walking 'Strong with Bill Armstrong: SMU's loss to Notre Dame, 'Walking Sonny Dykes' out the door, SMU-Stanford preview",
+     "published": "2026-11-25T22:53:53Z",
+     "dur": "30 min",
+     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/47f716fd-44e7-471b-a1b1-09ad49cc27bf/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=47f716fd-44e7-471b-a1b1-09ad49cc27bf&feed=eSeVNxtA"
+    },
     {
      "id": "b862a1b721",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
@@ -95,14 +102,6 @@
      "dur": "13 min",
      "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/57193cae-ca50-40a6-a334-bb22015a67b0/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=57193cae-ca50-40a6-a334-bb22015a67b0&feed=eSeVNxtA",
      "apple": "https://podcasts.apple.com/us/podcast/reaction-smu-vs-wake-forest-postgame-show-takeaways/id1604025463?i=1000802160466"
-    },
-    {
-     "id": "4f0f176877",
-     "title": "Pat & Go: SMU vs. Wake Forest Game Preview, Predictions | QB Chronicles Podcast",
-     "published": "2026-11-13T06:00:00Z",
-     "dur": "18 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/a0680b6d-9140-4113-828a-4c72d873df9d/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=a0680b6d-9140-4113-828a-4c72d873df9d&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/pat-go-smu-vs-wake-forest-game-preview-predictions/id1604025463?i=1000801672073"
     }
    ]
   },
@@ -118,7 +117,8 @@
      "title": "FINISH: Notre Dame LOSS Leaves SMU FACING TOUGH TRUTHS—Can Mustangs Finish STRONG?",
      "published": "2026-11-25T15:00:00Z",
      "dur": "35 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/9e5f2638-c796-46c4-b8b5-3fdd33643b6c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=9e5f2638-c796-46c4-b8b5-3fdd33643b6c&feed=MciFpBoA"
+     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/9e5f2638-c796-46c4-b8b5-3fdd33643b6c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=9e5f2638-c796-46c4-b8b5-3fdd33643b6c&feed=MciFpBoA",
+     "apple": "https://podcasts.apple.com/us/podcast/finish-notre-dame-loss-leaves-smu-facing-tough-truths/id1824252582?i=1000804010264"
     },
     {
      "id": "423d086b3d",
@@ -738,6 +738,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "7317bcf472"
+  },
+  {
    "key": "locked-on-smu",
    "id": "d5505e83af"
   },
@@ -780,10 +784,6 @@
   {
    "key": "mustang-studios",
    "id": "459c66f7da"
-  },
-  {
-   "key": "kc-masterpiece",
-   "id": "4ea7cd2d50"
   }
  ]
 }
