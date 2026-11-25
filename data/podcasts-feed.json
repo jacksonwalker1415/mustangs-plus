@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T20:30:45Z",
+ "generated": "2026-11-25T01:29:46Z",
  "shows": [
   {
    "key": "on-the-pony-express",
@@ -324,6 +324,13 @@
    "art": "assets/img/pods/mustang-studios.webp",
    "episodes": [
     {
+     "id": "ddc8c2a78f",
+     "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
+     "published": "2026-11-25T00:00:01Z",
+     "dur": "33 min",
+     "audio": "https://anchor.fm/s/113681870/podcast/play/130054383/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-24%2F437555619-44100-2-63077bc92a359.mp3"
+    },
+    {
      "id": "459c66f7da",
      "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
      "published": "2026-11-19T00:00:00Z",
@@ -410,14 +417,6 @@
      "dur": "35 min",
      "audio": "https://anchor.fm/s/113681870/podcast/play/127541124/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-15%2F434260709-44100-2-b7a54a90c46d1.mp3",
      "apple": "https://podcasts.apple.com/us/podcast/inside-smu-basketball-new-faces-big-expectations-nba/id1896902919?i=1000796553549"
-    },
-    {
-     "id": "86e1f0e55b",
-     "title": "SMU Football’s Bye-Week Reset: What Must Change vs. Virginia? | The 214",
-     "published": "2026-10-14T22:00:00Z",
-     "dur": "31 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/127482936/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-14%2F434180529-44100-2-163e5929d2f22.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-footballs-bye-week-reset-what-must-change-vs-virginia/id1896902919?i=1000796389890"
     }
    ]
   },
@@ -739,6 +738,10 @@
  ],
  "new": [
   {
+   "key": "mustang-studios",
+   "id": "ddc8c2a78f"
+  },
+  {
    "key": "locked-on-smu",
    "id": "423d086b3d"
   },
@@ -781,10 +784,6 @@
   {
    "key": "kc-masterpiece",
    "id": "744adb6b3b"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "4952cf2708"
   }
  ]
 }
