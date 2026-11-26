@@ -793,7 +793,8 @@ window.MP=window.MP||{};MP.GAMES={
 "gamecenter": "https://smumustangs.com/game-center/14686",
 "program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
 "watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
-"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/memphis/boxscore/14686"
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/memphis/boxscore/14686",
+"recap": "https://smumustangs.com/news/2026/11/25/womens-basketball-hagans-jr-scores-27-as-mustangs-fall-to-memphis-in-frisco"
 },
 "note": "Hoopfest Basketball Women's Challenge",
 "sb": 686687
