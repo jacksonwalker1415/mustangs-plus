@@ -1,788 +1,790 @@
 {
- "generated": "2026-11-26T06:30:51Z",
- "shows": [
-  {
-   "key": "on-the-pony-express",
-   "name": "On The Pony Express",
-   "apple": "https://podcasts.apple.com/us/podcast/on-the-pony-express-smu-mustangs-podcast/id1604025463",
-   "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
-   "art": "assets/img/pods/on-the-pony-express.webp",
-   "episodes": [
+  "generated": "2026-11-26T21:33:09Z",
+  "shows": [
     {
-     "id": "dd2bfa5c4a",
-     "title": "SMU at Stanford game preview, predictions for Week 13 | Must-win for Rhett Lashlee?",
-     "published": "2026-11-26T06:00:00Z",
-     "dur": "1 hr 13 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/d8cfcc0f-5c2c-479e-87aa-260de95bd3e3/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=d8cfcc0f-5c2c-479e-87aa-260de95bd3e3&feed=eSeVNxtA"
+      "key": "on-the-pony-express",
+      "name": "On The Pony Express",
+      "apple": "https://podcasts.apple.com/us/podcast/on-the-pony-express-smu-mustangs-podcast/id1604025463",
+      "spotify": "https://open.spotify.com/show/4PTqW4LsmnoN7rOn2QAgU3",
+      "art": "assets/img/pods/on-the-pony-express.webp",
+      "episodes": [
+        {
+          "id": "dd2bfa5c4a",
+          "title": "SMU at Stanford game preview, predictions for Week 13 | Must-win for Rhett Lashlee?",
+          "published": "2026-11-26T06:00:00Z",
+          "dur": "1 hr 13 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/d8cfcc0f-5c2c-479e-87aa-260de95bd3e3/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=d8cfcc0f-5c2c-479e-87aa-260de95bd3e3&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-at-stanford-game-preview-predictions-for-week-13/id1604025463?i=1000804132664"
+        },
+        {
+          "id": "7317bcf472",
+          "title": "Walking 'Strong with Bill Armstrong: SMU's loss to Notre Dame, 'Walking Sonny Dykes' out the door, SMU-Stanford preview",
+          "published": "2026-11-25T22:53:53Z",
+          "dur": "30 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/47f716fd-44e7-471b-a1b1-09ad49cc27bf/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=47f716fd-44e7-471b-a1b1-09ad49cc27bf&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-loss-to-notre/id1604025463?i=1000804082124"
+        },
+        {
+          "id": "1303e81c70",
+          "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions from South Bend | Grading the Mustangs",
+          "published": "2026-11-23T09:00:00Z",
+          "dur": "1 hr 7 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/303388b1-7a73-4ffe-ac0f-7bb1439f9302/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=303388b1-7a73-4ffe-ac0f-7bb1439f9302&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-from-smu-loss-at-notre-dame-offensive/id1604025463?i=1000803722213"
+        },
+        {
+          "id": "b862a1b721",
+          "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
+          "published": "2026-11-23T16:00:00Z",
+          "dur": "26 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/ecac4075-d50b-4944-9f7f-5486a8bef74c/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=ecac4075-d50b-4944-9f7f-5486a8bef74c&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-at-notre-dame-game-recap-breakdown-qb-chronicles/id1604025463?i=1000803617290"
+        },
+        {
+          "id": "fa1230c5c5",
+          "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
+          "published": "2026-11-23T14:11:21Z",
+          "dur": "38 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/7a12ef81-a8ea-4c27-b4ae-f218b47bb59d/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=7a12ef81-a8ea-4c27-b4ae-f218b47bb59d&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-football-notre-dame-recap-the/id1604025463?i=1000803602924"
+        },
+        {
+          "id": "e3ec2735be",
+          "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
+          "published": "2026-11-22T05:22:56Z",
+          "dur": "25 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/23e85d12-6770-45e8-95af-ad773046e8ec/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=23e85d12-6770-45e8-95af-ad773046e8ec&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/reaction-smu-at-notre-dame-postgame-show-takeaways/id1604025463?i=1000803378373"
+        },
+        {
+          "id": "c50bd9d4bf",
+          "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
+          "published": "2026-11-20T14:36:38Z",
+          "dur": "23 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/4dc44040-620d-4f50-b1be-53cb7b64ae8a/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=4dc44040-620d-4f50-b1be-53cb7b64ae8a&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-vs-notre-dame-preview-can/id1604025463?i=1000803138454"
+        },
+        {
+          "id": "41ced4dcb5",
+          "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Bounce back opportunity for Rhett Lashlee's Mustangs",
+          "published": "2026-11-19T04:24:21Z",
+          "dur": "1 hr 22 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/dfc48295-f08e-4e89-a188-7b367d3d83c3/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=dfc48295-f08e-4e89-a188-7b367d3d83c3&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-at-no-6-notre-dame-game-preview-predictions-for/id1604025463?i=1000802855857"
+        },
+        {
+          "id": "89c98bf05f",
+          "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, expectations at Notre Dame",
+          "published": "2026-11-18T17:48:20Z",
+          "dur": "28 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/b0f0238a-5ed7-4ad5-b4fe-8178c49cfa32/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=b0f0238a-5ed7-4ad5-b4fe-8178c49cfa32&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-embarrassing/id1604025463?i=1000802758617"
+        },
+        {
+          "id": "e0da6c0bf4",
+          "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
+          "published": "2026-11-17T23:12:06Z",
+          "dur": "41 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/82b805fc-bbae-42b1-abff-53a34b9998af/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=82b805fc-bbae-42b1-abff-53a34b9998af&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/hayden-howertons-final-thoughts-on-smu-loss-to-wake/id1604025463?i=1000802568257"
+        },
+        {
+          "id": "82558509f3",
+          "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
+          "published": "2026-11-17T19:27:58Z",
+          "dur": "57 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/1f8eac1e-3c56-4631-bc60-3931f97bc982/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=1f8eac1e-3c56-4631-bc60-3931f97bc982&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-wake-forest-takeaways-where-rhett-lashlee-mustangs/id1604025463?i=1000802537327"
+        },
+        {
+          "id": "dd95ae2fe4",
+          "title": "SMU vs. Wake Forest Game Recap, Breakdown | QB Chronicles Podcast",
+          "published": "2026-11-16T14:46:04Z",
+          "dur": "24 min",
+          "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/55ee4abb-a02b-43d3-9645-5b474bbf77cd/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=55ee4abb-a02b-43d3-9645-5b474bbf77cd&feed=eSeVNxtA",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-wake-forest-game-recap-breakdown-qb-chronicles/id1604025463?i=1000802287579"
+        }
+      ]
     },
     {
-     "id": "7317bcf472",
-     "title": "Walking 'Strong with Bill Armstrong: SMU's loss to Notre Dame, 'Walking Sonny Dykes' out the door, SMU-Stanford preview",
-     "published": "2026-11-25T22:53:53Z",
-     "dur": "30 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/47f716fd-44e7-471b-a1b1-09ad49cc27bf/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=47f716fd-44e7-471b-a1b1-09ad49cc27bf&feed=eSeVNxtA"
+      "key": "locked-on-smu",
+      "name": "Locked On SMU",
+      "apple": "https://podcasts.apple.com/us/podcast/locked-on-smu-daily-podcast-on-smu-mustangs-football/id1824252582",
+      "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
+      "art": "assets/img/pods/locked-on-smu.webp",
+      "episodes": [
+        {
+          "id": "d5505e83af",
+          "title": "FINISH: Notre Dame LOSS Leaves SMU FACING TOUGH TRUTHS—Can Mustangs Finish STRONG?",
+          "published": "2026-11-25T15:00:00Z",
+          "dur": "35 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/9e5f2638-c796-46c4-b8b5-3fdd33643b6c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=9e5f2638-c796-46c4-b8b5-3fdd33643b6c&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/finish-notre-dame-loss-leaves-smu-facing-tough-truths/id1824252582?i=1000804010264"
+        },
+        {
+          "id": "423d086b3d",
+          "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
+          "published": "2026-11-24T14:00:00Z",
+          "dur": "28 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/78b047c4-cfa5-4df3-a195-721a661e8838/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=78b047c4-cfa5-4df3-a195-721a661e8838&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/change-should-smu-bench-kevin-jennings-for-ty-hawkins/id1824252582?i=1000803797376"
+        },
+        {
+          "id": "5ab3f5e0d5",
+          "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
+          "published": "2026-11-23T14:00:00Z",
+          "dur": "30 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/b7364839-0b71-4537-af94-13ddfffe1c84/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=b7364839-0b71-4537-af94-13ddfffe1c84&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/execution-kevin-jenningss-smus-squandered-red-zone/id1824252582?i=1000803601097"
+        },
+        {
+          "id": "4a69562839",
+          "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
+          "published": "2026-11-20T17:00:00Z",
+          "dur": "31 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/97151826-77a5-41b6-b8a6-19cef0b00534/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=97151826-77a5-41b6-b8a6-19cef0b00534&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/will-kevin-jennings-deliver-for-smu-against-heavily/id1824252582?i=1000803161885"
+        },
+        {
+          "id": "bf0ecb1330",
+          "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
+          "published": "2026-11-19T17:00:00Z",
+          "dur": "34 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/eb2fca90-3fad-4b9c-ad6c-51d21aa94693/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=eb2fca90-3fad-4b9c-ad6c-51d21aa94693&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/is-there-a-path-for-smu-to-upset-notre-dame-experts/id1824252582?i=1000802966412"
+        },
+        {
+          "id": "79c8fdee36",
+          "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
+          "published": "2026-11-18T16:00:00Z",
+          "dur": "30 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/a9740505-a7e6-47fb-808f-24de734b46d6/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=a9740505-a7e6-47fb-808f-24de734b46d6&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/pressure-can-smu-and-kevin-jennings-overcome-road/id1824252582?i=1000802736557"
+        },
+        {
+          "id": "a989552879",
+          "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
+          "published": "2026-11-17T14:00:00Z",
+          "dur": "31 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/aa05ca2b-3932-481e-9e32-365b0bb52f0a/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=aa05ca2b-3932-481e-9e32-365b0bb52f0a&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/problem-is-it-time-to-question-rhett-lashlees-coordinator/id1824252582?i=1000802486684"
+        },
+        {
+          "id": "8371a3bda4",
+          "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
+          "published": "2026-11-16T14:00:00Z",
+          "dur": "32 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/bf62e5ec-e4eb-4762-a189-e1e5d2a7aeac/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=bf62e5ec-e4eb-4762-a189-e1e5d2a7aeac&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-and-kevin-jennings-get-dominated-by-wake-forest/id1824252582?i=1000802279290"
+        },
+        {
+          "id": "10c6d7c133",
+          "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
+          "published": "2026-11-14T21:03:06Z",
+          "dur": "20 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/7d08710c-06c2-4915-920d-6cb68366fc16/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=7d08710c-06c2-4915-920d-6cb68366fc16&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/humiliated-smu-and-kevin-jennings-suffer-crushing/id1824252582?i=1000801968301"
+        },
+        {
+          "id": "522bb5e2d0",
+          "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
+          "published": "2026-11-13T16:00:00Z",
+          "dur": "29 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/3a862b1d-6136-40d5-ada9-9d58e61036d0/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=3a862b1d-6136-40d5-ada9-9d58e61036d0&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/is-kevin-jennings-smus-greatest-qb-why-his-legacy-sets/id1824252582?i=1000801756577"
+        },
+        {
+          "id": "28d261f4b3",
+          "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
+          "published": "2026-11-12T22:00:00Z",
+          "dur": "34 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/5a211655-3fa1-4513-a535-a509c9c83ca7/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=5a211655-3fa1-4513-a535-a509c9c83ca7&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/acc-squad-the-acc-championship-has-been-eliminated/id1824252582?i=1000801590664"
+        },
+        {
+          "id": "9b619733e0",
+          "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
+          "published": "2026-11-12T17:00:00Z",
+          "dur": "27 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/e426b6de-5c3d-46a3-a912-02372c46e846/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=e426b6de-5c3d-46a3-a912-02372c46e846&feed=MciFpBoA",
+          "apple": "https://podcasts.apple.com/us/podcast/fireworks-smu-mustangs-must-stop-gio-lopez-wake-forests/id1824252582?i=1000801551635"
+        }
+      ]
     },
     {
-     "id": "1303e81c70",
-     "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions from South Bend | Grading the Mustangs",
-     "published": "2026-11-23T09:00:00Z",
-     "dur": "1 hr 7 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/303388b1-7a73-4ffe-ac0f-7bb1439f9302/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=303388b1-7a73-4ffe-ac0f-7bb1439f9302&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/final-thoughts-from-smu-loss-at-notre-dame-offensive/id1604025463?i=1000803722213"
+      "key": "mustang-mood",
+      "name": "The Mustang Mood",
+      "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-sports-podcast/id1734256145",
+      "spotify": "https://open.spotify.com/show/7nMjtANtm8wKhWspJdykWW",
+      "art": "assets/img/pods/mustang-mood.webp",
+      "episodes": [
+        {
+          "id": "7f68d6c57f",
+          "title": "SMU Football: Notre Dame Recap & The Road Ahead",
+          "published": "2026-11-23T12:00:00Z",
+          "dur": "38 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129925834/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-23%2F437382730-44100-2-a8041a9c2e88b.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-football-notre-dame-recap-the-road-ahead/id1734256145?i=1000803589093"
+        },
+        {
+          "id": "00bf3ad7f4",
+          "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
+          "published": "2026-11-20T14:24:10Z",
+          "dur": "23 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129808496/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-20%2F437223855-44100-2-d141ab6842785.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-notre-dame-preview-can-the-mustangs-bounce/id1734256145?i=1000803140146"
+        },
+        {
+          "id": "7729ba27e1",
+          "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
+          "published": "2026-11-15T12:00:00Z",
+          "dur": "17 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129455733/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-14%2F436752601-44100-2-d4c0732880e3b.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-gets-blown-out-by-wake-forest-49-7-notre-dame-game-up-next/id1734256145?i=1000802069842"
+        },
+        {
+          "id": "d31108f4b5",
+          "title": "SMU vs Wake Forest Preview: an ACC Showdown",
+          "published": "2026-11-12T13:59:18Z",
+          "dur": "27 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129322580/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-12%2F436574135-44100-2-695a2088cb159.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-wake-forest-preview-an-acc-showdown/id1734256145?i=1000801525019"
+        },
+        {
+          "id": "82726897a7",
+          "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
+          "published": "2026-11-11T13:26:13Z",
+          "dur": "24 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129256412/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-11%2F436485879-44100-2-cb77d86c9a1048.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-volleyball-vs-louisville-can-the-mustangs-take/id1734256145?i=1000801217100"
+        },
+        {
+          "id": "8114fbc3f6",
+          "title": "SMU Dominates Virginia Tech 51-28! Kevin Jennings Shines",
+          "published": "2026-11-08T14:22:34Z",
+          "dur": "19 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129049862/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-8%2F436217368-44100-2-d45b4b11144fe8.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-dominates-virginia-tech-51-28-kevin-jennings-shines/id1734256145?i=1000800571068"
+        },
+        {
+          "id": "53a0e91169",
+          "title": "SMU vs. Virginia Tech Preview: Can the Mustangs Bounce Back at Home?",
+          "published": "2026-11-05T12:52:16Z",
+          "dur": "25 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128844694/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-5%2F435958863-44100-2-ce48fe2899604.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-tech-preview-can-the-mustangs-bounce/id1734256145?i=1000800043438"
+        },
+        {
+          "id": "7977fd1894",
+          "title": "SMU Basketball Season Preview: Can the Mustangs Make the NCAA Tournament?",
+          "published": "2026-11-02T15:00:00Z",
+          "dur": "14 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128619159/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-2%2F435668928-44100-2-87c2c3c17e5fb.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-basketball-season-preview-can-the-mustangs-make/id1734256145?i=1000799424904"
+        },
+        {
+          "id": "f8995b39c7",
+          "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
+          "published": "2026-10-31T21:30:19Z",
+          "dur": "28 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128520381/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-31%2F435542807-44100-2-8a59ac4f4f902.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-drops-a-late-lead-against-syracuse-mustangs-fall-to-6-2/id1734256145?i=1000799123585"
+        },
+        {
+          "id": "7992755189",
+          "title": "SMU vs Syracuse Preview: Can the Mustangs Keep Rolling in the ACC?",
+          "published": "2026-10-30T11:00:00Z",
+          "dur": "32 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128398042/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-30%2F435392225-44100-2-845032373ab9f.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-syracuse-preview-can-the-mustangs-keep-rolling/id1734256145?i=1000798883555"
+        },
+        {
+          "id": "4b447fd8e1",
+          "title": "SMU vs. Cal Postgame: Mustangs Dominate 2nd Half in 59-20 Win!",
+          "published": "2026-10-25T11:00:00Z",
+          "dur": "23 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128029351/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-25%2F434918812-44100-2-23302f65539c7.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-postgame-mustangs-dominate-2nd-half-in-59-20-win/id1734256145?i=1000798012420"
+        },
+        {
+          "id": "79a0a2fb65",
+          "title": "SMU vs. Cal Preview: Can the Mustangs Finally Pull Away?",
+          "published": "2026-10-23T11:00:00Z",
+          "dur": "23 min",
+          "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/127932765/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-23%2F434792630-44100-2-e8e46c9688d81.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-preview-can-the-mustangs-finally-pull-away/id1734256145?i=1000797771417"
+        }
+      ]
     },
     {
-     "id": "b862a1b721",
-     "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
-     "published": "2026-11-23T16:00:00Z",
-     "dur": "26 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/ecac4075-d50b-4944-9f7f-5486a8bef74c/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=ecac4075-d50b-4944-9f7f-5486a8bef74c&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-at-notre-dame-game-recap-breakdown-qb-chronicles/id1604025463?i=1000803617290"
+      "key": "mustang-studios",
+      "name": "Mustang Studios",
+      "apple": "https://podcasts.apple.com/us/podcast/mustang-studios/id1896902919",
+      "spotify": "https://open.spotify.com/show/033tbiq7DqdWcVjIc4QYCz",
+      "art": "assets/img/pods/mustang-studios.webp",
+      "episodes": [
+        {
+          "id": "ddc8c2a78f",
+          "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
+          "published": "2026-11-25T00:00:01Z",
+          "dur": "33 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/130054383/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-24%2F437555619-44100-2-63077bc92a359.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/nba-dreams-transfer-portal-journeys-smus-march-madness/id1896902919?i=1000803881909"
+        },
+        {
+          "id": "459c66f7da",
+          "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
+          "published": "2026-11-19T00:00:00Z",
+          "dur": "21 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/129713919/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-18%2F437092500-44100-2-3999245c7ad948.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smus-wake-forest-fallout-notre-dame-showdown-volleyballs/id1896902919?i=1000802832046"
+        },
+        {
+          "id": "4952cf2708",
+          "title": "Jermaine O'Neal Jr. & Jaden Toombs: Brothers Before SMU | The Five",
+          "published": "2026-11-13T22:15:24Z",
+          "dur": "23 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/129404089/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-13%2F436684790-44100-2-dedafd52eb1cc.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/jermaine-oneal-jr-jaden-toombs-brothers-before-smu-the-five/id1896902919?i=1000801812869"
+        },
+        {
+          "id": "a1c491148e",
+          "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
+          "published": "2026-11-12T00:00:01Z",
+          "dur": "42 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/129287568/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-11%2F436528292-44100-2-3ad1be9c9bb4c.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smus-acc-title-hopes-are-alive-wake-forest-preview/id1896902919?i=1000801334105"
+        },
+        {
+          "id": "4b15a02d8c",
+          "title": "SMU Basketball 2026–27 Preview: What Makes These Mustang Hoopers Different | The Five",
+          "published": "2026-11-05T22:00:01Z",
+          "dur": "22 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/128881031/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-5%2F436005385-44100-2-923a924554e79.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-basketball-2026-27-preview-what-makes-these-mustang/id1896902919?i=1000800120288"
+        },
+        {
+          "id": "ab1cc1767f",
+          "title": "SMU vs Virginia Tech Preview, Soccer & Volleyball DOMINATE, Plus Special Guests! | The 214",
+          "published": "2026-11-05T00:00:01Z",
+          "dur": "41 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/128804596/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-4%2F435909073-44100-2-989a30cd985c7.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-tech-preview-soccer-volleyball-dominate/id1896902919?i=1000799916742"
+        },
+        {
+          "id": "daa090a954",
+          "title": "Rowan Brumbaugh, Nic Codie & Teammates Preview SMU Basketball's New Era | The Five",
+          "published": "2026-10-30T00:46:53Z",
+          "dur": "27 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/128388122/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-30%2F435379205-44100-2-b566651d2da94.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/rowan-brumbaugh-nic-codie-teammates-preview-smu-basketballs/id1896902919?i=1000798808923"
+        },
+        {
+          "id": "9f0914c2f7",
+          "title": "Kevin Jennings Makes History | Derrick McFall and Daylon Singleton Exclusive Interview | The 214",
+          "published": "2026-10-28T00:00:00Z",
+          "dur": "37 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/128214087/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-27%2F435156773-44100-2-c076de052caf6.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/kevin-jennings-makes-history-derrick-mcfall-and/id1896902919?i=1000798442501"
+        },
+        {
+          "id": "696a111ff7",
+          "title": "LeBron, Jordan, and Unfiltered SMU Basketball Team Talk | The Five",
+          "published": "2026-10-22T21:32:12Z",
+          "dur": "16 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/127916571/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-22%2F434770495-44100-2-468a86df4e571.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/lebron-jordan-and-unfiltered-smu-basketball-team-talk/id1896902919?i=1000797681928"
+        },
+        {
+          "id": "291d5d8447",
+          "title": "Talent Isn't Enough to Make This Team | Nostalgia Episode 4",
+          "published": "2026-10-21T00:00:01Z",
+          "dur": "18 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/127804415/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-20%2F434615573-44100-2-9ec3035b41af.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/talent-isnt-enough-to-make-this-team-nostalgia-episode-4/id1896902919?i=1000802880406"
+        },
+        {
+          "id": "2464e7b3ef",
+          "title": "EXCLUSIVE: Damon Evans Reveals SMU's Next BIG Move After Virginia Win | The 214",
+          "published": "2026-10-20T22:36:20Z",
+          "dur": "58 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/127804268/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-20%2F434615400-44100-2-ed19c3d42e7da.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/exclusive-damon-evans-reveals-smus-next-big-move-after/id1896902919?i=1000797340862"
+        },
+        {
+          "id": "bdbe5df5a4",
+          "title": "Inside SMU Basketball: New Faces, Big Expectations & NBA Debates | The Five",
+          "published": "2026-10-15T21:14:43Z",
+          "dur": "35 min",
+          "audio": "https://anchor.fm/s/113681870/podcast/play/127541124/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-15%2F434260709-44100-2-b7a54a90c46d1.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/inside-smu-basketball-new-faces-big-expectations-nba/id1896902919?i=1000796553549"
+        }
+      ]
     },
     {
-     "id": "fa1230c5c5",
-     "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
-     "published": "2026-11-23T14:11:21Z",
-     "dur": "38 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/7a12ef81-a8ea-4c27-b4ae-f218b47bb59d/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=7a12ef81-a8ea-4c27-b4ae-f218b47bb59d&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-football-notre-dame-recap-the/id1604025463?i=1000803602924"
+      "key": "all-access-am",
+      "name": "All-Access AM",
+      "apple": "https://podcasts.apple.com/us/podcast/all-access-am-with-billy-embody/id1846140556",
+      "spotify": "https://open.spotify.com/show/3T8zaBlk1yDnsfmfRdj401",
+      "art": "assets/img/pods/all-access-am.webp",
+      "episodes": [
+        {
+          "id": "b485157f12",
+          "title": "Darian Mensah Bowl for Miami vs. Duke | SMU hosts Wake Forest in CFP battle | Week 11 ACC Preview",
+          "published": "2026-11-12T15:17:21Z",
+          "dur": "40 min",
+          "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/f55516de-5b96-4721-ae78-27c13afd970d/group-item/61491937-e27f-4c42-8de4-acd6079a88e5/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
+          "apple": "https://podcasts.apple.com/us/podcast/darian-mensah-bowl-for-miami-vs-duke-smu-hosts-wake/id1846140556?i=1000801535668"
+        },
+        {
+          "id": "172a0817ec",
+          "title": "No. 1 Miami on Upset Alert at UNC? | New SMU look | Week 9 College Football ACC Game Previews, Picks",
+          "published": "2026-10-29T14:58:49Z",
+          "dur": "33 min",
+          "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/f89d0382-bd1a-4285-bc1d-afd7b0a809c8/group-item/a83ba498-c7e7-4dde-9c5a-b29acf6268e2/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
+          "apple": "https://podcasts.apple.com/us/podcast/no-1-miami-on-upset-alert-at-unc-new-smu-look-week/id1846140556?i=1000798728465"
+        },
+        {
+          "id": "b2ac697563",
+          "title": "FSU at Miami Spotlight, Wake Forest at Cal Preview, Virginia at SMU Storylines | ACC Week 7",
+          "published": "2026-10-14T14:08:12Z",
+          "dur": "36 min",
+          "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/1a931c20-45e2-4e84-8f59-194733a33fe8/group-item/3e6c49ba-4129-47d4-8831-45348be8e240/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
+          "apple": "https://podcasts.apple.com/us/podcast/fsu-at-miami-spotlight-wake-forest-at-cal-preview-virginia/id1846140556?i=1000796321415"
+        },
+        {
+          "id": "ca17eb64af",
+          "title": "HUGE Miami, Louisville wins in Week 3 | SMU, Virginia facing big regroup | ACC Football Takeaways",
+          "published": "2026-09-21T15:00:00Z",
+          "dur": "51 min",
+          "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/73a49646-01d8-4ba3-b723-c924a8ba01c1/group-item/1b1b1142-81e3-45c8-a8bd-c84fcb6a4f5a/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
+          "apple": "https://podcasts.apple.com/us/podcast/huge-miami-louisville-wins-in-week-3-smu-virginia-facing/id1846140556?i=1000791295380"
+        },
+        {
+          "id": "95592b4c95",
+          "title": "Top 25 Matchup for SMU-Louisville | ACC Week 3 Football Predictions, Storylines | College Football",
+          "published": "2026-09-17T16:11:33Z",
+          "dur": "43 min",
+          "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/4799b62c-2c20-461d-b78d-2d400f6127ac/group-item/7716a23c-2ed9-499e-90ec-c8689223fd74/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
+          "apple": "https://podcasts.apple.com/us/podcast/top-25-matchup-for-smu-louisville-acc-week-3-football/id1846140556?i=1000790377252"
+        },
+        {
+          "id": "5d9f439f4e",
+          "title": "Clemson, Louisville, SMU aim for STATEMENT wins in Week 1 | Tosh Lupoi, James Franklin eras begin",
+          "published": "2026-09-03T14:52:26Z",
+          "dur": "42 min",
+          "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/1e07be53-2cbf-42e4-925c-a4892966fd73/group-item/b4a2a926-915a-4756-9b29-0c03f9c79f04/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
+          "apple": "https://podcasts.apple.com/us/podcast/clemson-louisville-smu-aim-for-statement-wins-in-week/id1846140556?i=1000787670673"
+        }
+      ],
+      "broad": true
     },
     {
-     "id": "e3ec2735be",
-     "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
-     "published": "2026-11-22T05:22:56Z",
-     "dur": "25 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/23e85d12-6770-45e8-95af-ad773046e8ec/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=23e85d12-6770-45e8-95af-ad773046e8ec&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/reaction-smu-at-notre-dame-postgame-show-takeaways/id1604025463?i=1000803378373"
+      "key": "locked-on-acc",
+      "name": "Locked On ACC",
+      "apple": "https://podcasts.apple.com/us/podcast/locked-on-acc-daily-college-football-basketball-podcast/id1496630229",
+      "spotify": "https://open.spotify.com/show/645eP4x6J0G3tpazJSYpPN",
+      "art": "assets/img/pods/locked-on-acc.webp",
+      "episodes": [
+        {
+          "id": "c2ff5cb798",
+          "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
+          "published": "2026-11-09T23:20:24Z",
+          "dur": "32 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/9f1b137f-5770-4165-b948-04402aa6934d/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=9f1b137f-5770-4165-b948-04402aa6934d&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/week-10-acc-recap-miami-comes-up-short-in-south-bend/id1496630229?i=1000800872310"
+        },
+        {
+          "id": "441a8fea0f",
+          "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
+          "published": "2026-11-05T23:17:22Z",
+          "dur": "33 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/73e81162-39ab-42e5-b987-faf849715949/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=73e81162-39ab-42e5-b987-faf849715949&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/acc-week-10-preview-smu-virginia-tech-clash-as-miami/id1496630229?i=1000800125025"
+        },
+        {
+          "id": "3eb240a126",
+          "title": "WEEK 8 ACC PREVIEW: Miami Hurricanes Look to DOMINATE Pitt, SMU-Cal, GT-BC, UNC-Cuse",
+          "published": "2026-10-23T14:58:23Z",
+          "dur": "29 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/1f944632-3622-4894-bdce-6b7901ba035b/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=1f944632-3622-4894-bdce-6b7901ba035b&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/week-8-acc-preview-miami-hurricanes-look-to-dominate/id1496630229?i=1000797795955"
+        },
+        {
+          "id": "ce0c95f60c",
+          "title": "MIDSEASON TIERS: Miami, Wake Forest, SMU CLIMB ACC Football Rankings as Clemson, Louisville FALL",
+          "published": "2026-10-21T01:23:59Z",
+          "dur": "34 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/f37ff16a-ae32-437e-b37a-89d02b1ed874/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=f37ff16a-ae32-437e-b37a-89d02b1ed874&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/midseason-tiers-miami-wake-forest-smu-climb-acc-football/id1496630229?i=1000797358914"
+        },
+        {
+          "id": "2d9c7b6fef",
+          "title": "WEEK 6 ACC PREVIEW: Duke Battles North Carolina, SMU Clashes with Virginia, & Wake Heads West to Cal",
+          "published": "2026-10-15T22:12:03Z",
+          "dur": "28 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/9a9741fb-4ca4-4242-ba55-642f0a3feacf/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=9a9741fb-4ca4-4242-ba55-642f0a3feacf&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/week-6-acc-preview-duke-battles-north-carolina-smu/id1496630229?i=1000796558439"
+        },
+        {
+          "id": "2a5b963630",
+          "title": "DANGER SIGNS: SMU and Kevin Jennings STRUGGLE as NC State SURVIVES major App State rally",
+          "published": "2026-09-28T22:12:07Z",
+          "dur": "31 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/769e70ec-aa0e-4e52-8519-cfdac56af0d6/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=769e70ec-aa0e-4e52-8519-cfdac56af0d6&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/danger-signs-smu-and-kevin-jennings-struggle-as-nc/id1496630229?i=1000792096007"
+        },
+        {
+          "id": "2e983b31f1",
+          "title": "STATEMENT WIN: Louisville’s Explosive Run Game DOMINATES SMU—Is Charlotte Now INEVITABLE?",
+          "published": "2026-09-21T22:19:15Z",
+          "dur": "35 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/d88fd9dc-f3f4-4526-89d7-d6c5bf5c9698/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=d88fd9dc-f3f4-4526-89d7-d6c5bf5c9698&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/statement-win-louisvilles-explosive-run-game-dominates/id1496630229?i=1000791007757"
+        },
+        {
+          "id": "c30b6ec7ec",
+          "title": "SHOWDOWN: Louisville vs SMU – Kevin Jennings and Lincoln Kienholz FACE OFF in Pivotal ACC Clash",
+          "published": "2026-09-16T22:47:52Z",
+          "dur": "31 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/c3abaedf-6d4e-417f-8140-df1f56ad5ca1/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=c3abaedf-6d4e-417f-8140-df1f56ad5ca1&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/showdown-louisville-vs-smu-kevin-jennings-and-lincoln/id1496630229?i=1000790224808"
+        },
+        {
+          "id": "d65d4203d4",
+          "title": "TITLE CHASERS: Miami, SMU & Louisville SEASON PREVIEW—Who Can CONTROL the ACC?",
+          "published": "2026-08-19T07:00:00Z",
+          "dur": "37 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/f206e359-f6c4-478c-960e-1bed567f7bfa/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=f206e359-f6c4-478c-960e-1bed567f7bfa&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/title-chasers-miami-smu-louisville-season-preview-who/id1496630229?i=1000784248674"
+        },
+        {
+          "id": "26e00103bc",
+          "title": "PLAYOFF PUSH: Can Miami, SMU, and Louisville EARN Two CFP Bids for the ACC This Year?",
+          "published": "2026-08-13T16:01:56Z",
+          "dur": "37 min",
+          "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/4aec1a6f-0752-4267-a274-9ed1b525caea/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=4aec1a6f-0752-4267-a274-9ed1b525caea&feed=30WG0faH",
+          "apple": "https://podcasts.apple.com/us/podcast/playoff-push-can-miami-smu-and-louisville-earn-two/id1496630229?i=1000783168039"
+        }
+      ],
+      "broad": true
     },
     {
-     "id": "c50bd9d4bf",
-     "title": "The Mustang Mood: SMU vs. Notre Dame Preview - Can the Mustangs Bounce Back in South Bend?",
-     "published": "2026-11-20T14:36:38Z",
-     "dur": "23 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/4dc44040-620d-4f50-b1be-53cb7b64ae8a/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=4dc44040-620d-4f50-b1be-53cb7b64ae8a&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-vs-notre-dame-preview-can/id1604025463?i=1000803138454"
+      "key": "kc-masterpiece",
+      "name": "The K&C Masterpiece",
+      "apple": "https://podcasts.apple.com/us/podcast/the-k-c-masterpiece/id772390971",
+      "spotify": "https://open.spotify.com/show/14ggDlF9fxpbYGCZWMHokQ",
+      "art": "assets/img/pods/kc-masterpiece.webp",
+      "episodes": [
+        {
+          "id": "4ea7cd2d50",
+          "title": "Garrett Gilbert on the Cowboys' defensive struggles, SMU's homecoming loss",
+          "published": "2026-11-17T18:33:43Z",
+          "dur": "16 min",
+          "audio": "https://serve.castfire.com/audio/9030579/9030579_2026-11-17-180719.128.mp3?rssID=3125",
+          "apple": "https://podcasts.apple.com/us/podcast/garrett-gilbert-on-the-cowboys-defensive-struggles/id772390971?i=1000802541010"
+        },
+        {
+          "id": "744adb6b3b",
+          "title": "Hour 2: DC insider Mickey Spagnola, Former SMU, Texas Longhorns, Dallas Cowboys QB Garrett Gilbert, and Gridiron Gravy",
+          "published": "2026-11-17T18:31:22Z",
+          "dur": "43 min",
+          "audio": "https://serve.castfire.com/audio/9030556/9030556_2026-11-17-182256.128.mp3?rssID=3125",
+          "apple": "https://podcasts.apple.com/us/podcast/hour-2-dc-insider-mickey-spagnola-former-smu-texas/id772390971?i=1000802540894"
+        },
+        {
+          "id": "9d8cab9375",
+          "title": "11:00 - SMU Men's basketball HC Andy Enfield in studio! - Signing day names, Homecoming preview, and season preview",
+          "published": "2026-11-11T19:12:21Z",
+          "dur": "18 min",
+          "audio": "https://serve.castfire.com/audio/8990057/8990057_2026-11-11-193257.128.mp3?rssID=3125",
+          "apple": "https://podcasts.apple.com/us/podcast/11-00-smu-mens-basketball-hc-andy-enfield-in-studio/id772390971?i=1000801278460"
+        },
+        {
+          "id": "ce5f382ba7",
+          "title": "Hour 2: SMU Men's BBall HC Andy Enfield, Gridiron Gravy, and Mickey Spagnola",
+          "published": "2026-11-11T19:09:50Z",
+          "dur": "42 min",
+          "audio": "https://serve.castfire.com/audio/8990022/8990022_2026-11-11-190322.128.mp3?rssID=3125",
+          "apple": "https://podcasts.apple.com/us/podcast/hour-2-smu-mens-bball-hc-andy-enfield-gridiron-gravy/id772390971?i=1000801277757"
+        },
+        {
+          "id": "dc0af8c8ec",
+          "title": "SMU’s Gritty FSU Win and Dabo Swinney’s Growing Clemson Crisis",
+          "published": "2026-09-08T18:00:00Z",
+          "dur": "20 min",
+          "audio": "https://serve.castfire.com/audio/8645464/8645464_2026-09-08-182804.128.mp3?rssID=3125"
+        },
+        {
+          "id": "452ed1d67d",
+          "title": "Hour 3 - Rhet Lashlee, Tuesday Tailgate, Baseball Nuggets",
+          "published": "2026-09-01T18:03:00Z",
+          "dur": "45 min",
+          "audio": "https://serve.castfire.com/audio/8632925/8632925_2026-09-01-183125.128.mp3?rssID=3125"
+        },
+        {
+          "id": "d971ff7aa2",
+          "title": "Rhet Lashlee on SMU's ACC Goals and Quarterback Kevin Jennings",
+          "published": "2026-09-01T17:00:00Z",
+          "dur": "16 min",
+          "audio": "https://serve.castfire.com/audio/8632179/8632179_2026-09-01-141419.128.mp3?rssID=3125"
+        }
+      ],
+      "broad": true
     },
     {
-     "id": "41ced4dcb5",
-     "title": "SMU at No. 6 Notre Dame game preview, predictions for Week 12 | Bounce back opportunity for Rhett Lashlee's Mustangs",
-     "published": "2026-11-19T04:24:21Z",
-     "dur": "1 hr 22 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/dfc48295-f08e-4e89-a188-7b367d3d83c3/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=dfc48295-f08e-4e89-a188-7b367d3d83c3&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-at-no-6-notre-dame-game-preview-predictions-for/id1604025463?i=1000802855857"
+      "key": "inside-access",
+      "name": "Inside ACCess",
+      "apple": "https://podcasts.apple.com/us/podcast/inside-access/id1833079426",
+      "spotify": "https://open.spotify.com/show/4Mhj9unLtxFFu4V794KjY1",
+      "art": "assets/img/pods/inside-access.webp",
+      "episodes": [
+        {
+          "id": "abb1d00978",
+          "title": "Manny Diaz and Rhett Lashlee join the show, plus Philip Rivers is hired at NC State!",
+          "published": "2026-11-13T02:53:00Z",
+          "dur": "56 min",
+          "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/ESP4016680136.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/manny-diaz-and-rhett-lashlee-join-the-show-plus/id1833079426?i=1000801581388"
+        },
+        {
+          "id": "762e273512",
+          "title": "SMU Head Coach Rhett Lashlee and Joe Ovies join the show",
+          "published": "2026-09-18T01:04:00Z",
+          "dur": "56 min",
+          "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/ESP8552756443.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-head-coach-rhett-lashlee-and-joe-ovies-join-the-show/id1833079426?i=1000790400714"
+        }
+      ],
+      "broad": true
     },
     {
-     "id": "89c98bf05f",
-     "title": "Walking 'Strong with Bill Armstrong: SMU's embarrassing loss to Wake Forest, expectations at Notre Dame",
-     "published": "2026-11-18T17:48:20Z",
-     "dur": "28 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/b0f0238a-5ed7-4ad5-b4fe-8178c49cfa32/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=b0f0238a-5ed7-4ad5-b4fe-8178c49cfa32&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/walking-strong-with-bill-armstrong-smus-embarrassing/id1604025463?i=1000802758617"
+      "key": "accn-football",
+      "name": "ACC Network Football Podcast",
+      "apple": "https://podcasts.apple.com/us/podcast/acc-network-football-podcast/id1833078177",
+      "spotify": "https://open.spotify.com/show/2dGiVf0yHXhdrIPvetIjBY",
+      "art": "assets/img/pods/accn-football.webp",
+      "episodes": [
+        {
+          "id": "bb41402465",
+          "title": "Gio Lopez joins the show, SMU outlasts FSU, Miami makes a statement, plus a Week 2 preview",
+          "published": "2026-09-09T22:44:00Z",
+          "dur": "56 min",
+          "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/ESP7838923192.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/gio-lopez-joins-the-show-smu-outlasts-fsu-miami-makes/id1833078177?i=1000788723586"
+        }
+      ],
+      "broad": true
     },
     {
-     "id": "e0da6c0bf4",
-     "title": "Hayden Howerton's final thoughts on SMU loss to Wake Forest, takeaways from home finale",
-     "published": "2026-11-17T23:12:06Z",
-     "dur": "41 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/82b805fc-bbae-42b1-abff-53a34b9998af/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=82b805fc-bbae-42b1-abff-53a34b9998af&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/hayden-howertons-final-thoughts-on-smu-loss-to-wake/id1604025463?i=1000802568257"
+      "key": "next-round",
+      "name": "The Next Round",
+      "apple": "https://podcasts.apple.com/us/podcast/the-next-round/id1797862560",
+      "spotify": "https://open.spotify.com/show/7zlofzLZht7dYxjNcBNpWN",
+      "art": "assets/img/pods/next-round.webp",
+      "episodes": [
+        {
+          "id": "d682e9ba16",
+          "title": "TNR on Sport & State 9/8/26 - Hour 1 | SMU BEATS Florida State? Is Mike Norvell BEYOND SAVING?",
+          "published": "2026-09-08T21:54:00Z",
+          "dur": "58 min",
+          "audio": "https://traffic.megaphone.fm/DBLM2408280443.mp3"
+        },
+        {
+          "id": "80c14981fa",
+          "title": "Is SMU Ready to Take the Next Step? | Rhett Lashlee Joins The Next Round",
+          "published": "2026-08-06T18:48:00Z",
+          "dur": "17 min",
+          "audio": "https://traffic.megaphone.fm/DBLM9195463069.mp3"
+        }
+      ],
+      "broad": true
     },
     {
-     "id": "82558509f3",
-     "title": "SMU - Wake Forest takeaways: Where Rhett Lashlee, Mustangs fix issues? Offseason Questions for SMU",
-     "published": "2026-11-17T19:27:58Z",
-     "dur": "57 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/1f8eac1e-3c56-4631-bc60-3931f97bc982/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=1f8eac1e-3c56-4631-bc60-3931f97bc982&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-wake-forest-takeaways-where-rhett-lashlee-mustangs/id1604025463?i=1000802537327"
+      "key": "jim-rome",
+      "name": "The Jim Rome Show",
+      "apple": "https://podcasts.apple.com/us/podcast/the-jim-rome-show/id1435335050",
+      "spotify": "https://open.spotify.com/show/5BPPijSmlIvjYFIb96deix",
+      "art": "assets/img/pods/jim-rome.webp",
+      "episodes": [
+        {
+          "id": "ca43a09bf0",
+          "title": "SMU Football, Dolan LT Hammer, Packers Football",
+          "published": "2026-10-24T01:59:00Z",
+          "dur": "43 min",
+          "audio": "https://pscrb.fm/rss/p/traffic.megaphone.fm/WWO4322032733.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/smu-football-dolan-lt-hammer-packers-football/id1435335050?i=1000797844323"
+        }
+      ],
+      "broad": true
     },
     {
-     "id": "dd95ae2fe4",
-     "title": "SMU vs. Wake Forest Game Recap, Breakdown | QB Chronicles Podcast",
-     "published": "2026-11-16T14:46:04Z",
-     "dur": "24 min",
-     "audio": "https://pscrb.fm/rss/p/mgln.ai/e/256/injector.simplecastaudio.com/7bb037fe-f0f6-42f9-a1cd-13ce78b172c8/episodes/55ee4abb-a02b-43d3-9645-5b474bbf77cd/audio/128/default.mp3?aid=rss_feed&awCollectionId=7bb037fe-f0f6-42f9-a1cd-13ce78b172c8&awEpisodeId=55ee4abb-a02b-43d3-9645-5b474bbf77cd&feed=eSeVNxtA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-wake-forest-game-recap-breakdown-qb-chronicles/id1604025463?i=1000802287579"
+      "key": "dmn",
+      "name": "DMN Morning Debrief",
+      "apple": "https://podcasts.apple.com/us/podcast/the-dallas-morning-news/id1379040585",
+      "spotify": "https://open.spotify.com/show/033Q4qKFrnaZseWfRrqNGa",
+      "art": "assets/img/pods/dmn.webp",
+      "episodes": [
+        {
+          "id": "60dbcf8849",
+          "title": "DMN Morning Debrief: SMU's win over Cal showed Mustangs' depth at running back, for now and years to come",
+          "published": "2026-10-26T17:00:00Z",
+          "dur": "6 min",
+          "audio": "https://mgln.ai/e/211/traffic.megaphone.fm/SFO2083529503.mp3",
+          "apple": "https://podcasts.apple.com/us/podcast/dmn-morning-debrief-smus-win-over-cal-showed-mustangs/id1379040585?i=1000798169511"
+        }
+      ],
+      "broad": true
     }
-   ]
-  },
-  {
-   "key": "locked-on-smu",
-   "name": "Locked On SMU",
-   "apple": "https://podcasts.apple.com/us/podcast/locked-on-smu-daily-podcast-on-smu-mustangs-football/id1824252582",
-   "spotify": "https://open.spotify.com/show/6dFQAd3OoWaCBM5x3HicWY",
-   "art": "assets/img/pods/locked-on-smu.webp",
-   "episodes": [
+  ],
+  "new": [
     {
-     "id": "d5505e83af",
-     "title": "FINISH: Notre Dame LOSS Leaves SMU FACING TOUGH TRUTHS—Can Mustangs Finish STRONG?",
-     "published": "2026-11-25T15:00:00Z",
-     "dur": "35 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/9e5f2638-c796-46c4-b8b5-3fdd33643b6c/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=9e5f2638-c796-46c4-b8b5-3fdd33643b6c&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/finish-notre-dame-loss-leaves-smu-facing-tough-truths/id1824252582?i=1000804010264"
+      "key": "on-the-pony-express",
+      "id": "dd2bfa5c4a"
     },
     {
-     "id": "423d086b3d",
-     "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
-     "published": "2026-11-24T14:00:00Z",
-     "dur": "28 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/78b047c4-cfa5-4df3-a195-721a661e8838/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=78b047c4-cfa5-4df3-a195-721a661e8838&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/change-should-smu-bench-kevin-jennings-for-ty-hawkins/id1824252582?i=1000803797376"
+      "key": "on-the-pony-express",
+      "id": "7317bcf472"
     },
     {
-     "id": "5ab3f5e0d5",
-     "title": "EXECUTION: Kevin Jennings's, SMU's SQUANDERED Red Zone Chances Against Notre Dame DOOM The Mustangs",
-     "published": "2026-11-23T14:00:00Z",
-     "dur": "30 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/b7364839-0b71-4537-af94-13ddfffe1c84/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=b7364839-0b71-4537-af94-13ddfffe1c84&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/execution-kevin-jenningss-smus-squandered-red-zone/id1824252582?i=1000803601097"
+      "key": "locked-on-smu",
+      "id": "d5505e83af"
     },
     {
-     "id": "4a69562839",
-     "title": "Will Kevin Jennings DELIVER for SMU Against Heavily Favored Notre Dame and Can Team Help Him?",
-     "published": "2026-11-20T17:00:00Z",
-     "dur": "31 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/97151826-77a5-41b6-b8a6-19cef0b00534/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=97151826-77a5-41b6-b8a6-19cef0b00534&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/will-kevin-jennings-deliver-for-smu-against-heavily/id1824252582?i=1000803161885"
+      "key": "mustang-studios",
+      "id": "ddc8c2a78f"
     },
     {
-     "id": "bf0ecb1330",
-     "title": "Is There a PATH for SMU to Upset Notre Dame? Experts Talk Matchups and PREDICTIONS For Mustangs",
-     "published": "2026-11-19T17:00:00Z",
-     "dur": "34 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/eb2fca90-3fad-4b9c-ad6c-51d21aa94693/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=eb2fca90-3fad-4b9c-ad6c-51d21aa94693&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/is-there-a-path-for-smu-to-upset-notre-dame-experts/id1824252582?i=1000802966412"
+      "key": "locked-on-smu",
+      "id": "423d086b3d"
     },
     {
-     "id": "79c8fdee36",
-     "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
-     "published": "2026-11-18T16:00:00Z",
-     "dur": "30 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/a9740505-a7e6-47fb-808f-24de734b46d6/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=a9740505-a7e6-47fb-808f-24de734b46d6&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/pressure-can-smu-and-kevin-jennings-overcome-road/id1824252582?i=1000802736557"
+      "key": "on-the-pony-express",
+      "id": "b862a1b721"
     },
     {
-     "id": "a989552879",
-     "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
-     "published": "2026-11-17T14:00:00Z",
-     "dur": "31 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/aa05ca2b-3932-481e-9e32-365b0bb52f0a/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=aa05ca2b-3932-481e-9e32-365b0bb52f0a&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/problem-is-it-time-to-question-rhett-lashlees-coordinator/id1824252582?i=1000802486684"
+      "key": "on-the-pony-express",
+      "id": "fa1230c5c5"
     },
     {
-     "id": "8371a3bda4",
-     "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
-     "published": "2026-11-16T14:00:00Z",
-     "dur": "32 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/bf62e5ec-e4eb-4762-a189-e1e5d2a7aeac/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=bf62e5ec-e4eb-4762-a189-e1e5d2a7aeac&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-and-kevin-jennings-get-dominated-by-wake-forest/id1824252582?i=1000802279290"
+      "key": "on-the-pony-express",
+      "id": "1303e81c70"
     },
     {
-     "id": "10c6d7c133",
-     "title": "HUMILIATED: SMU and Kevin Jennings Suffer CRUSHING Defeat to Wake Forest in EMBARRASSING Fashion",
-     "published": "2026-11-14T21:03:06Z",
-     "dur": "20 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/7d08710c-06c2-4915-920d-6cb68366fc16/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=7d08710c-06c2-4915-920d-6cb68366fc16&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/humiliated-smu-and-kevin-jennings-suffer-crushing/id1824252582?i=1000801968301"
+      "key": "locked-on-smu",
+      "id": "5ab3f5e0d5"
     },
     {
-     "id": "522bb5e2d0",
-     "title": "Is Kevin Jennings SMU's Greatest QB?—Why His Legacy SETS a New Standard Ahead of Wake Forest Tilt?",
-     "published": "2026-11-13T16:00:00Z",
-     "dur": "29 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/3a862b1d-6136-40d5-ada9-9d58e61036d0/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=3a862b1d-6136-40d5-ada9-9d58e61036d0&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/is-kevin-jennings-smus-greatest-qb-why-his-legacy-sets/id1824252582?i=1000801756577"
+      "key": "mustang-mood",
+      "id": "7f68d6c57f"
     },
     {
-     "id": "28d261f4b3",
-     "title": "ACC SQUAD - The ACC Championship has been ELIMINATED | What this means for SMU",
-     "published": "2026-11-12T22:00:00Z",
-     "dur": "34 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/5a211655-3fa1-4513-a535-a509c9c83ca7/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=5a211655-3fa1-4513-a535-a509c9c83ca7&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/acc-squad-the-acc-championship-has-been-eliminated/id1824252582?i=1000801590664"
+      "key": "locked-on-smu",
+      "id": "4a69562839"
     },
     {
-     "id": "9b619733e0",
-     "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
-     "published": "2026-11-12T17:00:00Z",
-     "dur": "27 min",
-     "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/e426b6de-5c3d-46a3-a912-02372c46e846/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=e426b6de-5c3d-46a3-a912-02372c46e846&feed=MciFpBoA",
-     "apple": "https://podcasts.apple.com/us/podcast/fireworks-smu-mustangs-must-stop-gio-lopez-wake-forests/id1824252582?i=1000801551635"
+      "key": "mustang-mood",
+      "id": "00bf3ad7f4"
     }
-   ]
-  },
-  {
-   "key": "mustang-mood",
-   "name": "The Mustang Mood",
-   "apple": "https://podcasts.apple.com/us/podcast/the-mustang-mood-smu-sports-podcast/id1734256145",
-   "spotify": "https://open.spotify.com/show/7nMjtANtm8wKhWspJdykWW",
-   "art": "assets/img/pods/mustang-mood.webp",
-   "episodes": [
-    {
-     "id": "7f68d6c57f",
-     "title": "SMU Football: Notre Dame Recap & The Road Ahead",
-     "published": "2026-11-23T12:00:00Z",
-     "dur": "38 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129925834/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-23%2F437382730-44100-2-a8041a9c2e88b.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-football-notre-dame-recap-the-road-ahead/id1734256145?i=1000803589093"
-    },
-    {
-     "id": "00bf3ad7f4",
-     "title": "SMU vs. Notre Dame Preview: Can the Mustangs Bounce Back in South Bend?",
-     "published": "2026-11-20T14:24:10Z",
-     "dur": "23 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129808496/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-20%2F437223855-44100-2-d141ab6842785.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-notre-dame-preview-can-the-mustangs-bounce/id1734256145?i=1000803140146"
-    },
-    {
-     "id": "7729ba27e1",
-     "title": "SMU Gets Blown Out by Wake Forest 49-7 | Notre Dame Game Up Next",
-     "published": "2026-11-15T12:00:00Z",
-     "dur": "17 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129455733/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-14%2F436752601-44100-2-d4c0732880e3b.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-gets-blown-out-by-wake-forest-49-7-notre-dame-game-up-next/id1734256145?i=1000802069842"
-    },
-    {
-     "id": "d31108f4b5",
-     "title": "SMU vs Wake Forest Preview: an ACC Showdown",
-     "published": "2026-11-12T13:59:18Z",
-     "dur": "27 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129322580/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-12%2F436574135-44100-2-695a2088cb159.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-wake-forest-preview-an-acc-showdown/id1734256145?i=1000801525019"
-    },
-    {
-     "id": "82726897a7",
-     "title": "SMU Volleyball vs. Louisville: Can the Mustangs Take Down the No. 3 Cardinals?",
-     "published": "2026-11-11T13:26:13Z",
-     "dur": "24 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129256412/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-11%2F436485879-44100-2-cb77d86c9a1048.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-volleyball-vs-louisville-can-the-mustangs-take/id1734256145?i=1000801217100"
-    },
-    {
-     "id": "8114fbc3f6",
-     "title": "SMU Dominates Virginia Tech 51-28! Kevin Jennings Shines",
-     "published": "2026-11-08T14:22:34Z",
-     "dur": "19 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/129049862/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-8%2F436217368-44100-2-d45b4b11144fe8.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-dominates-virginia-tech-51-28-kevin-jennings-shines/id1734256145?i=1000800571068"
-    },
-    {
-     "id": "53a0e91169",
-     "title": "SMU vs. Virginia Tech Preview: Can the Mustangs Bounce Back at Home?",
-     "published": "2026-11-05T12:52:16Z",
-     "dur": "25 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128844694/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-5%2F435958863-44100-2-ce48fe2899604.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-tech-preview-can-the-mustangs-bounce/id1734256145?i=1000800043438"
-    },
-    {
-     "id": "7977fd1894",
-     "title": "SMU Basketball Season Preview: Can the Mustangs Make the NCAA Tournament?",
-     "published": "2026-11-02T15:00:00Z",
-     "dur": "14 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128619159/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-2%2F435668928-44100-2-87c2c3c17e5fb.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-basketball-season-preview-can-the-mustangs-make/id1734256145?i=1000799424904"
-    },
-    {
-     "id": "f8995b39c7",
-     "title": "SMU Drops a Late Lead Against Syracuse | Mustangs Fall to 6-2",
-     "published": "2026-10-31T21:30:19Z",
-     "dur": "28 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128520381/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-31%2F435542807-44100-2-8a59ac4f4f902.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-drops-a-late-lead-against-syracuse-mustangs-fall-to-6-2/id1734256145?i=1000799123585"
-    },
-    {
-     "id": "7992755189",
-     "title": "SMU vs Syracuse Preview: Can the Mustangs Keep Rolling in the ACC?",
-     "published": "2026-10-30T11:00:00Z",
-     "dur": "32 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128398042/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-30%2F435392225-44100-2-845032373ab9f.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-syracuse-preview-can-the-mustangs-keep-rolling/id1734256145?i=1000798883555"
-    },
-    {
-     "id": "4b447fd8e1",
-     "title": "SMU vs. Cal Postgame: Mustangs Dominate 2nd Half in 59-20 Win!",
-     "published": "2026-10-25T11:00:00Z",
-     "dur": "23 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/128029351/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-25%2F434918812-44100-2-23302f65539c7.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-postgame-mustangs-dominate-2nd-half-in-59-20-win/id1734256145?i=1000798012420"
-    },
-    {
-     "id": "79a0a2fb65",
-     "title": "SMU vs. Cal Preview: Can the Mustangs Finally Pull Away?",
-     "published": "2026-10-23T11:00:00Z",
-     "dur": "23 min",
-     "audio": "https://anchor.fm/s/f30ae8a0/podcast/play/127932765/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-23%2F434792630-44100-2-e8e46c9688d81.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-cal-preview-can-the-mustangs-finally-pull-away/id1734256145?i=1000797771417"
-    }
-   ]
-  },
-  {
-   "key": "mustang-studios",
-   "name": "Mustang Studios",
-   "apple": "https://podcasts.apple.com/us/podcast/mustang-studios/id1896902919",
-   "spotify": "https://open.spotify.com/show/033tbiq7DqdWcVjIc4QYCz",
-   "art": "assets/img/pods/mustang-studios.webp",
-   "episodes": [
-    {
-     "id": "ddc8c2a78f",
-     "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
-     "published": "2026-11-25T00:00:01Z",
-     "dur": "33 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/130054383/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-24%2F437555619-44100-2-63077bc92a359.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/nba-dreams-transfer-portal-journeys-smus-march-madness/id1896902919?i=1000803881909"
-    },
-    {
-     "id": "459c66f7da",
-     "title": "SMU's Wake Forest Fallout, Notre Dame Showdown & Volleyball's Historic Rise | The 214",
-     "published": "2026-11-19T00:00:00Z",
-     "dur": "21 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/129713919/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-18%2F437092500-44100-2-3999245c7ad948.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smus-wake-forest-fallout-notre-dame-showdown-volleyballs/id1896902919?i=1000802832046"
-    },
-    {
-     "id": "4952cf2708",
-     "title": "Jermaine O'Neal Jr. & Jaden Toombs: Brothers Before SMU | The Five",
-     "published": "2026-11-13T22:15:24Z",
-     "dur": "23 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/129404089/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-13%2F436684790-44100-2-dedafd52eb1cc.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/jermaine-oneal-jr-jaden-toombs-brothers-before-smu-the-five/id1896902919?i=1000801812869"
-    },
-    {
-     "id": "a1c491148e",
-     "title": "SMU's ACC Title Hopes Are ALIVE | Wake Forest Preview | Grant Chen Exclusive | The 214",
-     "published": "2026-11-12T00:00:01Z",
-     "dur": "42 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/129287568/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-11%2F436528292-44100-2-3ad1be9c9bb4c.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smus-acc-title-hopes-are-alive-wake-forest-preview/id1896902919?i=1000801334105"
-    },
-    {
-     "id": "4b15a02d8c",
-     "title": "SMU Basketball 2026–27 Preview: What Makes These Mustang Hoopers Different | The Five",
-     "published": "2026-11-05T22:00:01Z",
-     "dur": "22 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/128881031/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-5%2F436005385-44100-2-923a924554e79.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-basketball-2026-27-preview-what-makes-these-mustang/id1896902919?i=1000800120288"
-    },
-    {
-     "id": "ab1cc1767f",
-     "title": "SMU vs Virginia Tech Preview, Soccer & Volleyball DOMINATE, Plus Special Guests! | The 214",
-     "published": "2026-11-05T00:00:01Z",
-     "dur": "41 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/128804596/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-10-4%2F435909073-44100-2-989a30cd985c7.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-vs-virginia-tech-preview-soccer-volleyball-dominate/id1896902919?i=1000799916742"
-    },
-    {
-     "id": "daa090a954",
-     "title": "Rowan Brumbaugh, Nic Codie & Teammates Preview SMU Basketball's New Era | The Five",
-     "published": "2026-10-30T00:46:53Z",
-     "dur": "27 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/128388122/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-30%2F435379205-44100-2-b566651d2da94.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/rowan-brumbaugh-nic-codie-teammates-preview-smu-basketballs/id1896902919?i=1000798808923"
-    },
-    {
-     "id": "9f0914c2f7",
-     "title": "Kevin Jennings Makes History | Derrick McFall and Daylon Singleton Exclusive Interview | The 214",
-     "published": "2026-10-28T00:00:00Z",
-     "dur": "37 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/128214087/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-27%2F435156773-44100-2-c076de052caf6.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/kevin-jennings-makes-history-derrick-mcfall-and/id1896902919?i=1000798442501"
-    },
-    {
-     "id": "696a111ff7",
-     "title": "LeBron, Jordan, and Unfiltered SMU Basketball Team Talk | The Five",
-     "published": "2026-10-22T21:32:12Z",
-     "dur": "16 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/127916571/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-22%2F434770495-44100-2-468a86df4e571.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/lebron-jordan-and-unfiltered-smu-basketball-team-talk/id1896902919?i=1000797681928"
-    },
-    {
-     "id": "291d5d8447",
-     "title": "Talent Isn't Enough to Make This Team | Nostalgia Episode 4",
-     "published": "2026-10-21T00:00:01Z",
-     "dur": "18 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/127804415/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-20%2F434615573-44100-2-9ec3035b41af.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/talent-isnt-enough-to-make-this-team-nostalgia-episode-4/id1896902919?i=1000802880406"
-    },
-    {
-     "id": "2464e7b3ef",
-     "title": "EXCLUSIVE: Damon Evans Reveals SMU's Next BIG Move After Virginia Win | The 214",
-     "published": "2026-10-20T22:36:20Z",
-     "dur": "58 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/127804268/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-20%2F434615400-44100-2-ed19c3d42e7da.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/exclusive-damon-evans-reveals-smus-next-big-move-after/id1896902919?i=1000797340862"
-    },
-    {
-     "id": "bdbe5df5a4",
-     "title": "Inside SMU Basketball: New Faces, Big Expectations & NBA Debates | The Five",
-     "published": "2026-10-15T21:14:43Z",
-     "dur": "35 min",
-     "audio": "https://anchor.fm/s/113681870/podcast/play/127541124/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-15%2F434260709-44100-2-b7a54a90c46d1.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/inside-smu-basketball-new-faces-big-expectations-nba/id1896902919?i=1000796553549"
-    }
-   ]
-  },
-  {
-   "key": "all-access-am",
-   "name": "All-Access AM",
-   "apple": "https://podcasts.apple.com/us/podcast/all-access-am-with-billy-embody/id1846140556",
-   "spotify": "https://open.spotify.com/show/3T8zaBlk1yDnsfmfRdj401",
-   "art": "assets/img/pods/all-access-am.webp",
-   "episodes": [
-    {
-     "id": "b485157f12",
-     "title": "Darian Mensah Bowl for Miami vs. Duke | SMU hosts Wake Forest in CFP battle | Week 11 ACC Preview",
-     "published": "2026-11-12T15:17:21Z",
-     "dur": "40 min",
-     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/f55516de-5b96-4721-ae78-27c13afd970d/group-item/61491937-e27f-4c42-8de4-acd6079a88e5/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
-     "apple": "https://podcasts.apple.com/us/podcast/darian-mensah-bowl-for-miami-vs-duke-smu-hosts-wake/id1846140556?i=1000801535668"
-    },
-    {
-     "id": "172a0817ec",
-     "title": "No. 1 Miami on Upset Alert at UNC? | New SMU look | Week 9 College Football ACC Game Previews, Picks",
-     "published": "2026-10-29T14:58:49Z",
-     "dur": "33 min",
-     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/f89d0382-bd1a-4285-bc1d-afd7b0a809c8/group-item/a83ba498-c7e7-4dde-9c5a-b29acf6268e2/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
-     "apple": "https://podcasts.apple.com/us/podcast/no-1-miami-on-upset-alert-at-unc-new-smu-look-week/id1846140556?i=1000798728465"
-    },
-    {
-     "id": "b2ac697563",
-     "title": "FSU at Miami Spotlight, Wake Forest at Cal Preview, Virginia at SMU Storylines | ACC Week 7",
-     "published": "2026-10-14T14:08:12Z",
-     "dur": "36 min",
-     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/1a931c20-45e2-4e84-8f59-194733a33fe8/group-item/3e6c49ba-4129-47d4-8831-45348be8e240/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
-     "apple": "https://podcasts.apple.com/us/podcast/fsu-at-miami-spotlight-wake-forest-at-cal-preview-virginia/id1846140556?i=1000796321415"
-    },
-    {
-     "id": "ca17eb64af",
-     "title": "HUGE Miami, Louisville wins in Week 3 | SMU, Virginia facing big regroup | ACC Football Takeaways",
-     "published": "2026-09-21T15:00:00Z",
-     "dur": "51 min",
-     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/73a49646-01d8-4ba3-b723-c924a8ba01c1/group-item/1b1b1142-81e3-45c8-a8bd-c84fcb6a4f5a/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
-     "apple": "https://podcasts.apple.com/us/podcast/huge-miami-louisville-wins-in-week-3-smu-virginia-facing/id1846140556?i=1000791295380"
-    },
-    {
-     "id": "95592b4c95",
-     "title": "Top 25 Matchup for SMU-Louisville | ACC Week 3 Football Predictions, Storylines | College Football",
-     "published": "2026-09-17T16:11:33Z",
-     "dur": "43 min",
-     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/4799b62c-2c20-461d-b78d-2d400f6127ac/group-item/7716a23c-2ed9-499e-90ec-c8689223fd74/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
-     "apple": "https://podcasts.apple.com/us/podcast/top-25-matchup-for-smu-louisville-acc-week-3-football/id1846140556?i=1000790377252"
-    },
-    {
-     "id": "5d9f439f4e",
-     "title": "Clemson, Louisville, SMU aim for STATEMENT wins in Week 1 | Tosh Lupoi, James Franklin eras begin",
-     "published": "2026-09-03T14:52:26Z",
-     "dur": "42 min",
-     "audio": "https://cdn.simplecast.com/media/audio/transcoded/6d408633-a4c5-4e39-a992-6abbee4ae499/0e3b8787-adab-434d-a0d2-a0e841d467fa/episodes/audio/group/1e07be53-2cbf-42e4-925c-a4892966fd73/group-item/b4a2a926-915a-4756-9b29-0c03f9c79f04/128_default_tc.mp3?aid=rss_feed&feed=CCXG3jol",
-     "apple": "https://podcasts.apple.com/us/podcast/clemson-louisville-smu-aim-for-statement-wins-in-week/id1846140556?i=1000787670673"
-    }
-   ],
-   "broad": true
-  },
-  {
-   "key": "locked-on-acc",
-   "name": "Locked On ACC",
-   "apple": "https://podcasts.apple.com/us/podcast/locked-on-acc-daily-college-football-basketball-podcast/id1496630229",
-   "spotify": "https://open.spotify.com/show/645eP4x6J0G3tpazJSYpPN",
-   "art": "assets/img/pods/locked-on-acc.webp",
-   "episodes": [
-    {
-     "id": "c2ff5cb798",
-     "title": "WEEK 10 ACC RECAP: Miami Comes Up Short in South Bend, SMU Offense EXPLODES vs. Virginia Tech",
-     "published": "2026-11-09T23:20:24Z",
-     "dur": "32 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/9f1b137f-5770-4165-b948-04402aa6934d/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=9f1b137f-5770-4165-b948-04402aa6934d&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/week-10-acc-recap-miami-comes-up-short-in-south-bend/id1496630229?i=1000800872310"
-    },
-    {
-     "id": "441a8fea0f",
-     "title": "ACC WEEK 10 PREVIEW: SMU & Virginia Tech CLASH as Miami TRAVELS to Notre Dame for MONSTER SHOWDOWN",
-     "published": "2026-11-05T23:17:22Z",
-     "dur": "33 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/73e81162-39ab-42e5-b987-faf849715949/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=73e81162-39ab-42e5-b987-faf849715949&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/acc-week-10-preview-smu-virginia-tech-clash-as-miami/id1496630229?i=1000800125025"
-    },
-    {
-     "id": "3eb240a126",
-     "title": "WEEK 8 ACC PREVIEW: Miami Hurricanes Look to DOMINATE Pitt, SMU-Cal, GT-BC, UNC-Cuse",
-     "published": "2026-10-23T14:58:23Z",
-     "dur": "29 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/1f944632-3622-4894-bdce-6b7901ba035b/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=1f944632-3622-4894-bdce-6b7901ba035b&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/week-8-acc-preview-miami-hurricanes-look-to-dominate/id1496630229?i=1000797795955"
-    },
-    {
-     "id": "ce0c95f60c",
-     "title": "MIDSEASON TIERS: Miami, Wake Forest, SMU CLIMB ACC Football Rankings as Clemson, Louisville FALL",
-     "published": "2026-10-21T01:23:59Z",
-     "dur": "34 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/f37ff16a-ae32-437e-b37a-89d02b1ed874/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=f37ff16a-ae32-437e-b37a-89d02b1ed874&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/midseason-tiers-miami-wake-forest-smu-climb-acc-football/id1496630229?i=1000797358914"
-    },
-    {
-     "id": "2d9c7b6fef",
-     "title": "WEEK 6 ACC PREVIEW: Duke Battles North Carolina, SMU Clashes with Virginia, & Wake Heads West to Cal",
-     "published": "2026-10-15T22:12:03Z",
-     "dur": "28 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/9a9741fb-4ca4-4242-ba55-642f0a3feacf/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=9a9741fb-4ca4-4242-ba55-642f0a3feacf&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/week-6-acc-preview-duke-battles-north-carolina-smu/id1496630229?i=1000796558439"
-    },
-    {
-     "id": "2a5b963630",
-     "title": "DANGER SIGNS: SMU and Kevin Jennings STRUGGLE as NC State SURVIVES major App State rally",
-     "published": "2026-09-28T22:12:07Z",
-     "dur": "31 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/769e70ec-aa0e-4e52-8519-cfdac56af0d6/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=769e70ec-aa0e-4e52-8519-cfdac56af0d6&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/danger-signs-smu-and-kevin-jennings-struggle-as-nc/id1496630229?i=1000792096007"
-    },
-    {
-     "id": "2e983b31f1",
-     "title": "STATEMENT WIN: Louisville’s Explosive Run Game DOMINATES SMU—Is Charlotte Now INEVITABLE?",
-     "published": "2026-09-21T22:19:15Z",
-     "dur": "35 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/d88fd9dc-f3f4-4526-89d7-d6c5bf5c9698/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=d88fd9dc-f3f4-4526-89d7-d6c5bf5c9698&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/statement-win-louisvilles-explosive-run-game-dominates/id1496630229?i=1000791007757"
-    },
-    {
-     "id": "c30b6ec7ec",
-     "title": "SHOWDOWN: Louisville vs SMU – Kevin Jennings and Lincoln Kienholz FACE OFF in Pivotal ACC Clash",
-     "published": "2026-09-16T22:47:52Z",
-     "dur": "31 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/c3abaedf-6d4e-417f-8140-df1f56ad5ca1/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=c3abaedf-6d4e-417f-8140-df1f56ad5ca1&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/showdown-louisville-vs-smu-kevin-jennings-and-lincoln/id1496630229?i=1000790224808"
-    },
-    {
-     "id": "d65d4203d4",
-     "title": "TITLE CHASERS: Miami, SMU & Louisville SEASON PREVIEW—Who Can CONTROL the ACC?",
-     "published": "2026-08-19T07:00:00Z",
-     "dur": "37 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/f206e359-f6c4-478c-960e-1bed567f7bfa/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=f206e359-f6c4-478c-960e-1bed567f7bfa&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/title-chasers-miami-smu-louisville-season-preview-who/id1496630229?i=1000784248674"
-    },
-    {
-     "id": "26e00103bc",
-     "title": "PLAYOFF PUSH: Can Miami, SMU, and Louisville EARN Two CFP Bids for the ACC This Year?",
-     "published": "2026-08-13T16:01:56Z",
-     "dur": "37 min",
-     "audio": "https://dts.podtrac.com/redirect.mp3/pdrl.fm/38e601/lockedon.simplecastaudio.com/3abfab2f-9314-48b9-88fc-0471e0f634cb/episodes/4aec1a6f-0752-4267-a274-9ed1b525caea/audio/128/default.mp3?aid=rss_feed&awCollectionId=3abfab2f-9314-48b9-88fc-0471e0f634cb&awEpisodeId=4aec1a6f-0752-4267-a274-9ed1b525caea&feed=30WG0faH",
-     "apple": "https://podcasts.apple.com/us/podcast/playoff-push-can-miami-smu-and-louisville-earn-two/id1496630229?i=1000783168039"
-    }
-   ],
-   "broad": true
-  },
-  {
-   "key": "kc-masterpiece",
-   "name": "The K&C Masterpiece",
-   "apple": "https://podcasts.apple.com/us/podcast/the-k-c-masterpiece/id772390971",
-   "spotify": "https://open.spotify.com/show/14ggDlF9fxpbYGCZWMHokQ",
-   "art": "assets/img/pods/kc-masterpiece.webp",
-   "episodes": [
-    {
-     "id": "4ea7cd2d50",
-     "title": "Garrett Gilbert on the Cowboys' defensive struggles, SMU's homecoming loss",
-     "published": "2026-11-17T18:33:43Z",
-     "dur": "16 min",
-     "audio": "https://serve.castfire.com/audio/9030579/9030579_2026-11-17-180719.128.mp3?rssID=3125",
-     "apple": "https://podcasts.apple.com/us/podcast/garrett-gilbert-on-the-cowboys-defensive-struggles/id772390971?i=1000802541010"
-    },
-    {
-     "id": "744adb6b3b",
-     "title": "Hour 2: DC insider Mickey Spagnola, Former SMU, Texas Longhorns, Dallas Cowboys QB Garrett Gilbert, and Gridiron Gravy",
-     "published": "2026-11-17T18:31:22Z",
-     "dur": "43 min",
-     "audio": "https://serve.castfire.com/audio/9030556/9030556_2026-11-17-182256.128.mp3?rssID=3125",
-     "apple": "https://podcasts.apple.com/us/podcast/hour-2-dc-insider-mickey-spagnola-former-smu-texas/id772390971?i=1000802540894"
-    },
-    {
-     "id": "9d8cab9375",
-     "title": "11:00 - SMU Men's basketball HC Andy Enfield in studio! - Signing day names, Homecoming preview, and season preview",
-     "published": "2026-11-11T19:12:21Z",
-     "dur": "18 min",
-     "audio": "https://serve.castfire.com/audio/8990057/8990057_2026-11-11-193257.128.mp3?rssID=3125",
-     "apple": "https://podcasts.apple.com/us/podcast/11-00-smu-mens-basketball-hc-andy-enfield-in-studio/id772390971?i=1000801278460"
-    },
-    {
-     "id": "ce5f382ba7",
-     "title": "Hour 2: SMU Men's BBall HC Andy Enfield, Gridiron Gravy, and Mickey Spagnola",
-     "published": "2026-11-11T19:09:50Z",
-     "dur": "42 min",
-     "audio": "https://serve.castfire.com/audio/8990022/8990022_2026-11-11-190322.128.mp3?rssID=3125",
-     "apple": "https://podcasts.apple.com/us/podcast/hour-2-smu-mens-bball-hc-andy-enfield-gridiron-gravy/id772390971?i=1000801277757"
-    },
-    {
-     "id": "dc0af8c8ec",
-     "title": "SMU’s Gritty FSU Win and Dabo Swinney’s Growing Clemson Crisis",
-     "published": "2026-09-08T18:00:00Z",
-     "dur": "20 min",
-     "audio": "https://serve.castfire.com/audio/8645464/8645464_2026-09-08-182804.128.mp3?rssID=3125"
-    },
-    {
-     "id": "452ed1d67d",
-     "title": "Hour 3 - Rhet Lashlee, Tuesday Tailgate, Baseball Nuggets",
-     "published": "2026-09-01T18:03:00Z",
-     "dur": "45 min",
-     "audio": "https://serve.castfire.com/audio/8632925/8632925_2026-09-01-183125.128.mp3?rssID=3125"
-    },
-    {
-     "id": "d971ff7aa2",
-     "title": "Rhet Lashlee on SMU's ACC Goals and Quarterback Kevin Jennings",
-     "published": "2026-09-01T17:00:00Z",
-     "dur": "16 min",
-     "audio": "https://serve.castfire.com/audio/8632179/8632179_2026-09-01-141419.128.mp3?rssID=3125"
-    }
-   ],
-   "broad": true
-  },
-  {
-   "key": "inside-access",
-   "name": "Inside ACCess",
-   "apple": "https://podcasts.apple.com/us/podcast/inside-access/id1833079426",
-   "spotify": "https://open.spotify.com/show/4Mhj9unLtxFFu4V794KjY1",
-   "art": "assets/img/pods/inside-access.webp",
-   "episodes": [
-    {
-     "id": "abb1d00978",
-     "title": "Manny Diaz and Rhett Lashlee join the show, plus Philip Rivers is hired at NC State!",
-     "published": "2026-11-13T02:53:00Z",
-     "dur": "56 min",
-     "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/ESP4016680136.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/manny-diaz-and-rhett-lashlee-join-the-show-plus/id1833079426?i=1000801581388"
-    },
-    {
-     "id": "762e273512",
-     "title": "SMU Head Coach Rhett Lashlee and Joe Ovies join the show",
-     "published": "2026-09-18T01:04:00Z",
-     "dur": "56 min",
-     "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/ESP8552756443.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-head-coach-rhett-lashlee-and-joe-ovies-join-the-show/id1833079426?i=1000790400714"
-    }
-   ],
-   "broad": true
-  },
-  {
-   "key": "accn-football",
-   "name": "ACC Network Football Podcast",
-   "apple": "https://podcasts.apple.com/us/podcast/acc-network-football-podcast/id1833078177",
-   "spotify": "https://open.spotify.com/show/2dGiVf0yHXhdrIPvetIjBY",
-   "art": "assets/img/pods/accn-football.webp",
-   "episodes": [
-    {
-     "id": "bb41402465",
-     "title": "Gio Lopez joins the show, SMU outlasts FSU, Miami makes a statement, plus a Week 2 preview",
-     "published": "2026-09-09T22:44:00Z",
-     "dur": "56 min",
-     "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/ESP7838923192.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/gio-lopez-joins-the-show-smu-outlasts-fsu-miami-makes/id1833078177?i=1000788723586"
-    }
-   ],
-   "broad": true
-  },
-  {
-   "key": "next-round",
-   "name": "The Next Round",
-   "apple": "https://podcasts.apple.com/us/podcast/the-next-round/id1797862560",
-   "spotify": "https://open.spotify.com/show/7zlofzLZht7dYxjNcBNpWN",
-   "art": "assets/img/pods/next-round.webp",
-   "episodes": [
-    {
-     "id": "d682e9ba16",
-     "title": "TNR on Sport & State 9/8/26 - Hour 1 | SMU BEATS Florida State? Is Mike Norvell BEYOND SAVING?",
-     "published": "2026-09-08T21:54:00Z",
-     "dur": "58 min",
-     "audio": "https://traffic.megaphone.fm/DBLM2408280443.mp3"
-    },
-    {
-     "id": "80c14981fa",
-     "title": "Is SMU Ready to Take the Next Step? | Rhett Lashlee Joins The Next Round",
-     "published": "2026-08-06T18:48:00Z",
-     "dur": "17 min",
-     "audio": "https://traffic.megaphone.fm/DBLM9195463069.mp3"
-    }
-   ],
-   "broad": true
-  },
-  {
-   "key": "jim-rome",
-   "name": "The Jim Rome Show",
-   "apple": "https://podcasts.apple.com/us/podcast/the-jim-rome-show/id1435335050",
-   "spotify": "https://open.spotify.com/show/5BPPijSmlIvjYFIb96deix",
-   "art": "assets/img/pods/jim-rome.webp",
-   "episodes": [
-    {
-     "id": "ca43a09bf0",
-     "title": "SMU Football, Dolan LT Hammer, Packers Football",
-     "published": "2026-10-24T01:59:00Z",
-     "dur": "43 min",
-     "audio": "https://pscrb.fm/rss/p/traffic.megaphone.fm/WWO4322032733.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/smu-football-dolan-lt-hammer-packers-football/id1435335050?i=1000797844323"
-    }
-   ],
-   "broad": true
-  },
-  {
-   "key": "dmn",
-   "name": "DMN Morning Debrief",
-   "apple": "https://podcasts.apple.com/us/podcast/the-dallas-morning-news/id1379040585",
-   "spotify": "https://open.spotify.com/show/033Q4qKFrnaZseWfRrqNGa",
-   "art": "assets/img/pods/dmn.webp",
-   "episodes": [
-    {
-     "id": "60dbcf8849",
-     "title": "DMN Morning Debrief: SMU's win over Cal showed Mustangs' depth at running back, for now and years to come",
-     "published": "2026-10-26T17:00:00Z",
-     "dur": "6 min",
-     "audio": "https://mgln.ai/e/211/traffic.megaphone.fm/SFO2083529503.mp3",
-     "apple": "https://podcasts.apple.com/us/podcast/dmn-morning-debrief-smus-win-over-cal-showed-mustangs/id1379040585?i=1000798169511"
-    }
-   ],
-   "broad": true
-  }
- ],
- "new": [
-  {
-   "key": "on-the-pony-express",
-   "id": "dd2bfa5c4a"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "7317bcf472"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "d5505e83af"
-  },
-  {
-   "key": "mustang-studios",
-   "id": "ddc8c2a78f"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "423d086b3d"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "b862a1b721"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "fa1230c5c5"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "1303e81c70"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "5ab3f5e0d5"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "7f68d6c57f"
-  },
-  {
-   "key": "locked-on-smu",
-   "id": "4a69562839"
-  },
-  {
-   "key": "mustang-mood",
-   "id": "00bf3ad7f4"
-  }
- ]
+  ]
 }
