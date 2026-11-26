@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T05:30:12Z",
+ "updated": "2026-11-26T06:30:51Z",
  "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
  "rows": [
   {
@@ -99,7 +99,7 @@
      "id": "kwEsN7-xQG8",
      "title": "SMU Volleyball Post-Match Press Conference vs. Georgia Tech 11-25-26",
      "published": "2026-11-25T22:43:20+00:00",
-     "views": 16,
+     "views": 22,
      "dur": "13:46"
     },
     {
@@ -120,7 +120,7 @@
      "id": "lBZ-Nf4wEZo",
      "title": "SMU Men's Soccer Game Highlights vs Bryant 11-22-2026",
      "published": "2026-11-23T18:18:36+00:00",
-     "views": 169,
+     "views": 178,
      "dur": "4:57"
     },
     {
@@ -288,7 +288,7 @@
      "id": "CfpqHRxrv2U",
      "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
      "published": "2026-11-25T00:00:10+00:00",
-     "views": 77,
+     "views": 78,
      "dur": "32:35"
     },
     {
@@ -362,31 +362,38 @@
    "url": "https://www.youtube.com/@smumustangson3",
    "videos": [
     {
+     "id": "KJ8Z2uC9Z18",
+     "title": "SMU at Stanford game preview, predictions for Week 13 | Must-win for Rhett Lashlee?",
+     "published": "2026-11-26T06:00:27+00:00",
+     "views": 4,
+     "dur": "1:13:30"
+    },
+    {
      "id": "3ByQY1P8exU",
      "title": "Walking 'Strong with Bill Armstrong: SMU's loss to Notre Dame, 'Walking Sonny Dykes' out the door",
      "published": "2026-11-25T22:53:15+00:00",
-     "views": 507,
+     "views": 597,
      "dur": "30:11"
     },
     {
      "id": "jRKcvRaWpHw",
      "title": "Rhett Lashlee assesses SMU play at Notre Dame, previews Stanford and talks injury report",
      "published": "2026-11-25T00:00:10+00:00",
-     "views": 472,
+     "views": 497,
      "dur": "8:01"
     },
     {
      "id": "-Eoyo_JFAZo",
      "title": "Kevin Jennings talks SMU loss at Notre Dame, preparing for Stanford game after injury",
      "published": "2026-11-24T22:49:31+00:00",
-     "views": 154,
+     "views": 157,
      "dur": "2:21"
     },
     {
      "id": "U5iNJy5dEGI",
      "title": "Final thoughts from SMU loss at Notre Dame | Offensive questions for SMU | Grading the Mustangs",
      "published": "2026-11-24T09:00:32+00:00",
-     "views": 667,
+     "views": 671,
      "dur": "1:07:10"
     },
     {
@@ -407,7 +414,7 @@
      "id": "yDhf2elu4No",
      "title": "SMU at Notre Dame Game Recap, Breakdown | QB Chronicles Podcast",
      "published": "2026-11-23T17:00:29+00:00",
-     "views": 314,
+     "views": 316,
      "dur": "25:50"
     },
     {
@@ -435,15 +442,8 @@
      "id": "iQRWJdQeLrs",
      "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
      "published": "2026-11-22T04:33:15+00:00",
-     "views": 12001,
+     "views": 12002,
      "dur": "9:14"
-    },
-    {
-     "id": "_bjSiwOOonQ",
-     "title": "SMU offense faces big test against Irish defense | Impact ND defensive playmakers  to know",
-     "published": "2026-11-22T00:24:20+00:00",
-     "views": 101,
-     "dur": "12:18"
     }
    ]
   },
@@ -463,7 +463,7 @@
      "id": "zC9COACVreU",
      "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
      "published": "2026-11-24T14:00:07+00:00",
-     "views": 327,
+     "views": 331,
      "dur": "27:57"
     },
     {
@@ -767,7 +767,7 @@
      "id": "IG7YjNlRKKI",
      "title": "Utah State vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
      "published": "2026-11-26T03:02:54+00:00",
-     "views": 244,
+     "views": 382,
      "dur": "2:48"
     },
     {
@@ -949,6 +949,10 @@
  ],
  "new": [
   {
+   "key": "on-the-pony-express",
+   "id": "KJ8Z2uC9Z18"
+  },
+  {
    "key": "acc-digital-network",
    "id": "IG7YjNlRKKI"
   },
@@ -979,10 +983,6 @@
   {
    "key": "mustang-studios",
    "id": "CfpqHRxrv2U"
-  },
-  {
-   "key": "on-the-pony-express",
-   "id": "-Eoyo_JFAZo"
   },
   {
    "key": "smu-mustangs",
