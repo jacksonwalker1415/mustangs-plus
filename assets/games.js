@@ -89,16 +89,18 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-25T18:00:00-06:00",
 "tv": "CBSSN",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "L 59-93",
 "links": {
 "watch": "https://www.cbssports.com/watch/cbs-sports-network",
 "listen": "https://smumustangs.com/showcase/?Live=5406",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=684156&vislive=smu",
 "preview": "https://smumustangs.com/news/2026/11/23/mens-basketball-smu-5-0-faces-utah-state-5-0-wednesday-and-no-20-lsu-6-0-thursday-in-acrisure-series-thanksgiving-event",
-"gamecenter": "https://smumustangs.com/game-center/14698"
+"gamecenter": "https://smumustangs.com/game-center/14698",
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2026-27/utah-state/boxscore/14698",
+"recap": "https://smumustangs.com/news/2026/11/25/mens-basketball-mustangs-fall-to-utah-state-in-palm-desert"
 },
-"sb": 684156,
-"note": "Acrisure Series Thanksgiving Event"
+"note": "Acrisure Series Thanksgiving Event",
+"sb": 684156
 },
 {
 "id": "mbb-14700",
@@ -119,8 +121,8 @@ window.MP=window.MP||{};MP.GAMES={
 "watch": "https://www.cbssports.com/watch/cbs-sports-network",
 "listen": "https://smumustangs.com/showcase/?Live=5407",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=689796&vislive=smu",
-"preview": "https://smumustangs.com/news/2026/11/23/mens-basketball-smu-5-0-faces-utah-state-5-0-wednesday-and-no-20-lsu-6-0-thursday-in-acrisure-series-thanksgiving-event",
-"gamecenter": "https://smumustangs.com/game-center/14700"
+"gamecenter": "https://smumustangs.com/game-center/14700",
+"preview": "https://smumustangs.com/news/2026/11/23/mens-basketball-smu-5-0-faces-utah-state-5-0-wednesday-and-no-20-lsu-6-0-thursday-in-acrisure-series-thanksgiving-event"
 },
 "sb": 689796,
 "note": "Acrisure Series Thanksgiving Event"
@@ -764,10 +766,10 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": "W 67-49",
 "links": {
-"gamecenter": "https://smumustangs.com/game-center/14685",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
 "box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/saint-mary-s/boxscore/14685",
-"recap": "https://smumustangs.com/news/2026/11/23/womens-basketball-mustangs-use-dominant-first-half-to-cruise-to-a-67-49-win-over-saint-mary-s"
+"recap": "https://smumustangs.com/news/2026/11/23/womens-basketball-mustangs-use-dominant-first-half-to-cruise-to-a-67-49-win-over-saint-mary-s",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22903",
+"gamecenter": "https://smumustangs.com/game-center/14685"
 },
 "note": "Hoopfest Basketball Women's Challenge"
 },
@@ -787,14 +789,14 @@ window.MP=window.MP||{};MP.GAMES={
 "radio": "SMU App/The Varsity/SiriusXM",
 "res": "L 69-78",
 "links": {
+"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/memphis/boxscore/14686",
+"recap": "https://smumustangs.com/news/2026/11/25/womens-basketball-hagans-jr-scores-27-as-mustangs-fall-to-memphis-in-frisco",
+"program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
+"gamecenter": "https://smumustangs.com/game-center/14686",
 "listen": "https://smumustangs.com/showcase/?Live=5449",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=686687&vislive=smu",
 "preview": "https://smumustangs.com/news/2026/11/22/womens-basketball-smu-heads-to-firsco-to-face-saint-marys-and-memphis-in-hoopfest-basketball-womens-challenge",
-"gamecenter": "https://smumustangs.com/game-center/14686",
-"program": "https://digitalprograms.learfield.com/smuni/wbball/22903/",
-"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark",
-"box": "https://smumustangs.com/sports/womens-basketball/stats/2026-27/memphis/boxscore/14686",
-"recap": "https://smumustangs.com/news/2026/11/25/womens-basketball-hagans-jr-scores-27-as-mustangs-fall-to-memphis-in-frisco"
+"watch": "https://www.espn.com/search/_/q/smu/o/watch/appearance/dark"
 },
 "note": "Hoopfest Basketball Women's Challenge",
 "sb": 686687
