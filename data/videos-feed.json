@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T02:33:27Z",
+  "updated": "2026-11-27T03:36:05Z",
   "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
   "rows": [
     {
@@ -120,7 +120,7 @@
           "id": "lBZ-Nf4wEZo",
           "title": "SMU Men's Soccer Game Highlights vs Bryant 11-22-2026",
           "published": "2026-11-23T18:18:36+00:00",
-          "views": 190,
+          "views": 191,
           "dur": "4:57"
         },
         {
@@ -281,7 +281,7 @@
           "id": "YvdVvQBrDEg",
           "title": "Oziyah Sellers on Chasing Steph Curry, His Sweet 16 Run & Choosing SMU | The Five",
           "published": "2026-11-25T22:00:06+00:00",
-          "views": 45,
+          "views": 48,
           "dur": "17:19"
         },
         {
@@ -365,28 +365,28 @@
           "id": "KJ8Z2uC9Z18",
           "title": "SMU at Stanford game preview, predictions for Week 13 | Must-win for Rhett Lashlee?",
           "published": "2026-11-26T06:00:27+00:00",
-          "views": 243,
+          "views": 282,
           "dur": "1:13:30"
         },
         {
           "id": "3ByQY1P8exU",
           "title": "Walking 'Strong with Bill Armstrong: SMU's loss to Notre Dame, 'Walking Sonny Dykes' out the door",
           "published": "2026-11-25T22:53:15+00:00",
-          "views": 1119,
+          "views": 1131,
           "dur": "30:11"
         },
         {
           "id": "jRKcvRaWpHw",
           "title": "Rhett Lashlee assesses SMU play at Notre Dame, previews Stanford and talks injury report",
           "published": "2026-11-25T00:00:10+00:00",
-          "views": 542,
+          "views": 547,
           "dur": "8:01"
         },
         {
           "id": "-Eoyo_JFAZo",
           "title": "Kevin Jennings talks SMU loss at Notre Dame, preparing for Stanford game after injury",
           "published": "2026-11-24T22:49:31+00:00",
-          "views": 165,
+          "views": 166,
           "dur": "2:21"
         },
         {
@@ -400,14 +400,14 @@
           "id": "TUpHTDiRm2s",
           "title": "Sam Erger talks SMU Volleyball ahead of postseason, transfer portal opening",
           "published": "2026-11-24T04:00:30+00:00",
-          "views": 118,
+          "views": 119,
           "dur": "14:24"
         },
         {
           "id": "tiPMAQpRaI4",
           "title": "SMU Football Recruiting, Transfer Portal Update | Sam Erger talks SMU Volleyball, Postseason Goals",
           "published": "2026-11-24T01:29:03+00:00",
-          "views": 785,
+          "views": 787,
           "dur": "45:18"
         },
         {
@@ -421,7 +421,7 @@
           "id": "u-4w6j6Zs5U",
           "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
           "published": "2026-11-23T12:00:21+00:00",
-          "views": 879,
+          "views": 880,
           "dur": "37:58"
         },
         {
@@ -442,7 +442,7 @@
           "id": "iQRWJdQeLrs",
           "title": "SMU HC Rhett Lashlee on SMU's 24-3 defeat against Notre Dame",
           "published": "2026-11-22T04:33:15+00:00",
-          "views": 12049,
+          "views": 12057,
           "dur": "9:14"
         }
       ]
@@ -491,14 +491,14 @@
           "id": "TZe_YGSgd1w",
           "title": "PRESSURE: Can SMU and Kevin Jennings OVERCOME Road Struggles to Challenge Notre Dame This Weekend?",
           "published": "2026-11-18T16:00:06+00:00",
-          "views": 447,
+          "views": 448,
           "dur": "30:06"
         },
         {
           "id": "5rubqiFcsB0",
           "title": "PROBLEM: Is It Time to QUESTION Rhett Lashlee's Coordinator Hires? The Numbers Say IT MIGHT",
           "published": "2026-11-17T14:00:06+00:00",
-          "views": 558,
+          "views": 560,
           "dur": "30:36"
         },
         {
@@ -547,7 +547,7 @@
           "id": "vLSb9xOCOLk",
           "title": "SMU Football: Notre Dame Recap & The Road Ahead",
           "published": "2026-11-23T12:00:09+00:00",
-          "views": 63,
+          "views": 64,
           "dur": "37:58"
         },
         {
@@ -764,6 +764,13 @@
       "broad": true,
       "videos": [
         {
+          "id": "4chvqnbsFzA",
+          "title": "LSU vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
+          "published": "2026-11-27T03:16:21+00:00",
+          "views": 209,
+          "dur": "3:06"
+        },
+        {
           "id": "IG7YjNlRKKI",
           "title": "Utah State vs. SMU Game Highlights | 2026-27 ACC Men's Basketball",
           "published": "2026-11-26T03:02:54+00:00",
@@ -839,13 +846,6 @@
           "published": "2026-11-18T03:47:14+00:00",
           "dur": "1:51",
           "views": 219
-        },
-        {
-          "id": "BT3RZNh3DrM",
-          "title": "Oral Roberts vs. SMU Condensed Game | 2026-27 ACC Men's Basketball",
-          "published": "2026-11-18T03:33:06+00:00",
-          "dur": "11:47",
-          "views": 242
         }
       ]
     },
@@ -949,6 +949,10 @@
   ],
   "new": [
     {
+      "key": "acc-digital-network",
+      "id": "4chvqnbsFzA"
+    },
+    {
       "key": "on-the-pony-express",
       "id": "KJ8Z2uC9Z18"
     },
@@ -991,10 +995,6 @@
     {
       "key": "acc-digital-network",
       "id": "gRw69KQk-Mg"
-    },
-    {
-      "key": "locked-on-smu",
-      "id": "zC9COACVreU"
     }
   ]
 }

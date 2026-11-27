@@ -93,16 +93,18 @@ window.MP=window.MP||{};MP.GAMES={
 "ko": "2026-11-26T18:00:00-06:00",
 "tv": "CBSSN",
 "radio": "SMU App/The Varsity/SiriusXM",
-"res": null,
+"res": "L 86-95",
 "links": {
+"box": "https://smumustangs.com/sports/mens-basketball/stats/2026-27/lsu/boxscore/14700",
+"recap": "https://smumustangs.com/news/2026/11/26/mens-basketball-smu-falls-in-ot-to-no-20-lsu-95-86",
+"gamecenter": "https://smumustangs.com/game-center/14700",
 "watch": "https://www.cbssports.com/watch/cbs-sports-network",
 "listen": "https://smumustangs.com/showcase/?Live=5407",
 "stats": "https://stats.statbroadcast.com/broadcast/?id=689796&vislive=smu",
-"gamecenter": "https://smumustangs.com/game-center/14700",
 "preview": "https://smumustangs.com/news/2026/11/23/mens-basketball-smu-5-0-faces-utah-state-5-0-wednesday-and-no-20-lsu-6-0-thursday-in-acrisure-series-thanksgiving-event"
 },
-"sb": 689796,
-"note": "Acrisure Series Thanksgiving Event"
+"note": "Acrisure Series Thanksgiving Event",
+"sb": 689796
 },
 {
 "id": "mbb-14739",
