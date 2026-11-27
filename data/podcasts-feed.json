@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T21:33:09Z",
+  "generated": "2026-11-27T19:34:47Z",
   "shows": [
     {
       "key": "on-the-pony-express",
@@ -114,6 +114,13 @@
       "art": "assets/img/pods/locked-on-smu.webp",
       "episodes": [
         {
+          "id": "58c4e173e2",
+          "title": "SMU Must CONTAIN Stanford's Number One Option Micah Ford | Can they Start Fast?",
+          "published": "2026-11-27T19:00:00Z",
+          "dur": "29 min",
+          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/d9bd0f8d-c17a-4416-8745-0ff512fb806d/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=d9bd0f8d-c17a-4416-8745-0ff512fb806d&feed=MciFpBoA"
+        },
+        {
           "id": "d5505e83af",
           "title": "FINISH: Notre Dame LOSS Leaves SMU FACING TOUGH TRUTHS—Can Mustangs Finish STRONG?",
           "published": "2026-11-25T15:00:00Z",
@@ -200,14 +207,6 @@
           "dur": "34 min",
           "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/5a211655-3fa1-4513-a535-a509c9c83ca7/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=5a211655-3fa1-4513-a535-a509c9c83ca7&feed=MciFpBoA",
           "apple": "https://podcasts.apple.com/us/podcast/acc-squad-the-acc-championship-has-been-eliminated/id1824252582?i=1000801590664"
-        },
-        {
-          "id": "9b619733e0",
-          "title": "FIREWORKS: SMU Mustangs Must STOP Gio Lopez & Wake Forest's Explosives to Win ACC Showdown",
-          "published": "2026-11-12T17:00:00Z",
-          "dur": "27 min",
-          "audio": "https://lockedon.simplecastaudio.com/1832a481-a5ae-42f0-b948-559e9654d535/episodes/e426b6de-5c3d-46a3-a912-02372c46e846/audio/128/default.mp3?aid=rss_feed&awCollectionId=1832a481-a5ae-42f0-b948-559e9654d535&awEpisodeId=e426b6de-5c3d-46a3-a912-02372c46e846&feed=MciFpBoA",
-          "apple": "https://podcasts.apple.com/us/podcast/fireworks-smu-mustangs-must-stop-gio-lopez-wake-forests/id1824252582?i=1000801551635"
         }
       ]
     },
@@ -739,6 +738,10 @@
   ],
   "new": [
     {
+      "key": "locked-on-smu",
+      "id": "58c4e173e2"
+    },
+    {
       "key": "on-the-pony-express",
       "id": "dd2bfa5c4a"
     },
@@ -781,10 +784,6 @@
     {
       "key": "locked-on-smu",
       "id": "4a69562839"
-    },
-    {
-      "key": "mustang-mood",
-      "id": "00bf3ad7f4"
     }
   ]
 }
