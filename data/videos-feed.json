@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28T06:31:58Z",
+  "updated": "2026-11-28T12:20:14Z",
   "source": "Public YouTube RSS feeds, checked embeddable via YouTube oEmbed. Built by tools/fetch_youtube.py.",
   "rows": [
     {
@@ -99,21 +99,21 @@
           "id": "kwEsN7-xQG8",
           "title": "SMU Volleyball Post-Match Press Conference vs. Georgia Tech 11-25-26",
           "published": "2026-11-25T22:43:20+00:00",
-          "views": 69,
+          "views": 71,
           "dur": "13:46"
         },
         {
           "id": "mL1CvySpnys",
           "title": "SMU Volleyball Match Highlights vs. Georgia Tech 11-25-26",
           "published": "2026-11-25T21:48:52+00:00",
-          "views": 266,
+          "views": 281,
           "dur": "6:14"
         },
         {
           "id": "SOlov2iwjWQ",
           "title": "SMU Football: Media Availability - Rhett Lashlee and Kevin Jennings 11-24-26",
           "published": "2026-11-24T19:57:15+00:00",
-          "views": 283,
+          "views": 285,
           "dur": "10:22"
         },
         {
@@ -127,7 +127,7 @@
           "id": "QtN2OvjTgzA",
           "title": "SMU Men's Soccer Post Game Press Conference vs Bryant 11-22-2026",
           "published": "2026-11-23T04:24:04+00:00",
-          "views": 161,
+          "views": 162,
           "dur": "21:46"
         },
         {
@@ -141,21 +141,21 @@
           "id": "YYhRpeZl55Q",
           "title": "SMU Women's Basketball Game Highlights vs Grand Canyon 11-21-26",
           "published": "2026-11-22T18:14:48+00:00",
-          "views": 63,
+          "views": 65,
           "dur": "5:03"
         },
         {
           "id": "WTZOIccWfUI",
           "title": "SMU Football: Postgame Press Conference at Notre Dame 11-21-26",
           "published": "2026-11-22T04:41:45+00:00",
-          "views": 2451,
+          "views": 2454,
           "dur": "13:40"
         },
         {
           "id": "cQfFCWYm65g",
           "title": "SMU Women's Basketball: Post Game Press Conference vs GCU 11-21-26",
           "published": "2026-11-22T02:02:55+00:00",
-          "views": 150,
+          "views": 152,
           "dur": "11:22"
         },
         {
@@ -176,7 +176,7 @@
           "id": "BRL2X2RiSCw",
           "title": "SMU Volleyball Match Highlights vs. Virginia Tech 11-20-26",
           "published": "2026-11-21T01:01:43+00:00",
-          "views": 137,
+          "views": 139,
           "dur": "5:07"
         }
       ]
@@ -190,14 +190,14 @@
           "id": "9BzaQQ7QHIE",
           "title": "The Virginia Tech Mini-Movie | SMU Football",
           "published": "2026-11-10T00:45:09+00:00",
-          "views": 2484,
+          "views": 2488,
           "dur": "10:24"
         },
         {
           "id": "sSnTjD7Oz0Q",
           "title": "The Cal Mini-Movie | SMU Football",
           "published": "2026-10-26T23:45:09+00:00",
-          "views": 3932,
+          "views": 3934,
           "dur": "12:01"
         },
         {
@@ -225,14 +225,14 @@
           "id": "Ry_Z_n8biCU",
           "title": "The UC Davis Mini-Movie | SMU Football",
           "published": "2026-09-14T23:55:51+00:00",
-          "views": 3795,
+          "views": 3797,
           "dur": "10:30"
         },
         {
           "id": "d5NzYNQRgPE",
           "title": "The Florida State Mini-Movie | SMU Football",
           "published": "2026-09-10T00:51:17+00:00",
-          "views": 15584,
+          "views": 15586,
           "dur": "19:34"
         },
         {
@@ -246,14 +246,14 @@
           "id": "hm7glDX8m9Q",
           "title": "UNTOLD: Jordyn Adams - Episode 3 | SMU Football",
           "published": "2026-08-18T00:00:06+00:00",
-          "views": 3954,
+          "views": 3957,
           "dur": "34:46"
         },
         {
           "id": "QyNyJTuz_sA",
           "title": "UNTOLD: Brandon Booker & La'Modrick Spencer - Episode 2 | SMU Football",
           "published": "2026-08-11T00:39:38+00:00",
-          "views": 3380,
+          "views": 3381,
           "dur": "21:39"
         },
         {
@@ -267,7 +267,7 @@
           "id": "2p2wYUVLATc",
           "title": "Every 2025 Mini-Movie | SMU Football",
           "published": "2026-02-04T01:12:00+00:00",
-          "views": 3216,
+          "views": 3218,
           "dur": "1:21:59"
         }
       ]
@@ -281,21 +281,21 @@
           "id": "hL67uUSLRE0",
           "title": "SMU's Notre Dame Fallout, Stanford Preview & Basketball's Biggest Test | The 214",
           "published": "2026-11-27T17:00:09+00:00",
-          "views": 24,
+          "views": 36,
           "dur": "22:07"
         },
         {
           "id": "YvdVvQBrDEg",
           "title": "Oziyah Sellers on Chasing Steph Curry, His Sweet 16 Run & Choosing SMU | The Five",
           "published": "2026-11-25T22:00:06+00:00",
-          "views": 62,
+          "views": 63,
           "dur": "17:19"
         },
         {
           "id": "CfpqHRxrv2U",
           "title": "NBA Dreams, Transfer Portal Journeys & SMU's March Madness Goals | The Five",
           "published": "2026-11-25T00:00:10+00:00",
-          "views": 115,
+          "views": 129,
           "dur": "32:35"
         },
         {
@@ -363,10 +363,17 @@
       "url": "https://www.youtube.com/@smumustangson3",
       "videos": [
         {
+          "id": "AHTwqELJ9iY",
+          "title": "SMU - Stanford predictions | Mustangs keys to victory",
+          "published": "2026-11-28T11:59:46+00:00",
+          "views": 0,
+          "dur": "13:22"
+        },
+        {
           "id": "356IWK15bTY",
           "title": "Breaking down new SMU OL commit Jack Schein | SMU Football Recruiting News",
           "published": "2026-11-27T19:35:34+00:00",
-          "views": 89,
+          "views": 131,
           "dur": "6:07",
           "nomax": true
         },
@@ -374,28 +381,28 @@
           "id": "KJ8Z2uC9Z18",
           "title": "SMU at Stanford game preview, predictions for Week 13 | Must-win for Rhett Lashlee?",
           "published": "2026-11-26T06:00:27+00:00",
-          "views": 436,
+          "views": 493,
           "dur": "1:13:30"
         },
         {
           "id": "3ByQY1P8exU",
           "title": "Walking 'Strong with Bill Armstrong: SMU's loss to Notre Dame, 'Walking Sonny Dykes' out the door",
           "published": "2026-11-25T22:53:15+00:00",
-          "views": 1355,
+          "views": 1383,
           "dur": "30:11"
         },
         {
           "id": "jRKcvRaWpHw",
           "title": "Rhett Lashlee assesses SMU play at Notre Dame, previews Stanford and talks injury report",
           "published": "2026-11-25T00:00:10+00:00",
-          "views": 557,
+          "views": 563,
           "dur": "8:01"
         },
         {
           "id": "-Eoyo_JFAZo",
           "title": "Kevin Jennings talks SMU loss at Notre Dame, preparing for Stanford game after injury",
           "published": "2026-11-24T22:49:31+00:00",
-          "views": 169,
+          "views": 170,
           "dur": "2:21"
         },
         {
@@ -416,7 +423,7 @@
           "id": "tiPMAQpRaI4",
           "title": "SMU Football Recruiting, Transfer Portal Update | Sam Erger talks SMU Volleyball, Postseason Goals",
           "published": "2026-11-24T01:29:03+00:00",
-          "views": 816,
+          "views": 820,
           "dur": "45:18"
         },
         {
@@ -430,15 +437,8 @@
           "id": "u-4w6j6Zs5U",
           "title": "The Mustang Mood - SMU Football: Notre Dame Recap & The Road Ahead",
           "published": "2026-11-23T12:00:21+00:00",
-          "views": 892,
+          "views": 893,
           "dur": "37:58"
-        },
-        {
-          "id": "TvbVkXOA1X0",
-          "title": "REACTION: SMU at Notre Dame postgame show, takeaways from trip to South Bend | After 'Stangs Show",
-          "published": "2026-11-22T02:57:00+00:00",
-          "views": 3185,
-          "dur": "25:19"
         },
         {
           "id": "FupLAdqSS5g",
@@ -458,21 +458,21 @@
           "id": "180HC2Zh7dk",
           "title": "SMU Must CONTAIN Stanford's Number One Option Micah Ford | Can they Start Fast?",
           "published": "2026-11-27T19:00:10+00:00",
-          "views": 92,
+          "views": 125,
           "dur": "29:13"
         },
         {
           "id": "TJycGZlHScU",
           "title": "FINISH: Notre Dame LOSS Leaves SMU FACING TOUGH TRUTHS—Can Mustangs Finish STRONG?",
           "published": "2026-11-25T15:00:06+00:00",
-          "views": 317,
+          "views": 320,
           "dur": "34:47"
         },
         {
           "id": "zC9COACVreU",
           "title": "CHANGE: Should SMU BENCH Kevin Jennings for Ty Hawkins In Final Two Games?",
           "published": "2026-11-24T14:00:07+00:00",
-          "views": 359,
+          "views": 366,
           "dur": "27:57"
         },
         {
@@ -514,7 +514,7 @@
           "id": "wg9ivJ7pwDI",
           "title": "SMU and Kevin Jennings Get DOMINATED By Wake Forest, Does Rhett Lashlee Have a Jake Dickert Problem?",
           "published": "2026-11-16T14:00:10+00:00",
-          "views": 1433,
+          "views": 1434,
           "dur": "31:52"
         },
         {
@@ -549,7 +549,7 @@
           "id": "vLSb9xOCOLk",
           "title": "SMU Football: Notre Dame Recap & The Road Ahead",
           "published": "2026-11-23T12:00:09+00:00",
-          "views": 66,
+          "views": 67,
           "dur": "37:58"
         },
         {
@@ -952,6 +952,10 @@
   "new": [
     {
       "key": "on-the-pony-express",
+      "id": "AHTwqELJ9iY"
+    },
+    {
+      "key": "on-the-pony-express",
       "id": "356IWK15bTY"
     },
     {
@@ -973,10 +977,6 @@
     {
       "key": "acc-digital-network",
       "id": "IG7YjNlRKKI"
-    },
-    {
-      "key": "on-the-pony-express",
-      "id": "3ByQY1P8exU"
     },
     {
       "key": "smu-mustangs",
